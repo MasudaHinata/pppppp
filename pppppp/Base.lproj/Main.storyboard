@@ -27,25 +27,28 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="read"/>
                                 <connections>
-                                    <action selector="readButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="i2h-kS-vT6"/>
+                                    <action selector="readButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="QpU-V9-iD7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTI-DS-lO0">
-                                <rect key="frame" x="268" y="518" width="32" height="30"/>
+                                <rect key="frame" x="191" y="378" width="32" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="save"/>
                                 <connections>
-                                    <action selector="saveButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="rM0-9S-tB8"/>
+                                    <action selector="saveButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="qkV-l9-EFe"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="titleTextField" destination="pe9-S1-tHM" id="1pz-fD-x7p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-196" y="94"/>
+            <point key="canvasLocation" x="-383" y="33"/>
         </scene>
     </scenes>
     <resources>

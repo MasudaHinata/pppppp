@@ -1,12 +1,22 @@
 import UIKit
 import HealthKit
 
+
 class ViewController: UIViewController {
+    
+    
+    let saveData: UserDefaults = UserDefaults.standard
+   
+    
+    var weight = 0
+    
     var myHealthStore : HKHealthStore!
     
     let typeOfWeight = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
 
     override func viewDidLoad() {
+        titleTextField.text = String(weight)
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
@@ -19,13 +29,16 @@ class ViewController: UIViewController {
             print(error)
         })
     }
+    @IBOutlet var titleTextField: UITextField!
     
     @IBAction func saveButtonPressed() {
-        saveWeight(weight: 100)
+        saveWeight(weight: Double(weight))
+        saveData.set(weight, forKey: "text")
     }
     
     @IBAction func readButtonPressed() {
-        saveWeight(weight: 100)
+        read()
+        weight = saveData.object(forKey: "text") as! Int
     }
     
     func saveWeight(weight: Double) {
@@ -57,5 +70,4 @@ class ViewController: UIViewController {
         return bodyMasskg
     }
 }
-
 

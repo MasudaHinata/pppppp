@@ -458,7 +458,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = pppppp/ppppppDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DYJGPBK54C;
+				DEVELOPMENT_TEAM = 6G7T42VLF7;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
