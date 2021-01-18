@@ -3,8 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string></string>
+	<string>HealthKitttttttttttttttttttttttttttttttttttt</string>
 	<key>NSHealthShareUsageDescription</key>
+	<string>healthkittttttttttttttttttttttttttttttttttttt</string>
+	<key>CFBundleDisplayName</key>
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

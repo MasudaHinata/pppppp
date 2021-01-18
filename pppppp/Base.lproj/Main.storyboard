@@ -27,7 +27,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="read"/>
                                 <connections>
-                                    <action selector="readButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="QpU-V9-iD7"/>
+                                    <action selector="readButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="KAn-zW-RI7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTI-DS-lO0">
@@ -35,7 +35,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="save"/>
                                 <connections>
-                                    <action selector="saveButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="qkV-l9-EFe"/>
+                                    <action selector="saveButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="AgV-FE-c9b"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -43,7 +43,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="titleTextField" destination="pe9-S1-tHM" id="1pz-fD-x7p"/>
+                        <outlet property="titleTextField" destination="pe9-S1-tHM" id="pIz-DX-hxj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

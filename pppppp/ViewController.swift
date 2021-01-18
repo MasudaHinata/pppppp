@@ -10,7 +10,7 @@ class ViewController: UIViewController {
     
     var weight = 0
     
-    var myHealthStore : HKHealthStore!
+    var myHealthStore = HKHealthStore()
     
     let typeOfWeight = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
 

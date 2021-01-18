@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BE2F95D22588CCF5004DC436 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D12588CCF5004DC436 /* HealthKit.framework */; };
-		BE2F95D42588CD1A004DC436 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */; };
+		BE0BF72725B5C734005646AE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D12588CCF5004DC436 /* HealthKit.framework */; };
+		BE0BF72825B5C73A005646AE /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */; };
 		BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337B2580D07E0027620D /* AppDelegate.swift */; };
 		BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337D2580D07E0027620D /* SceneDelegate.swift */; };
 		BE7F33802580D07E0027620D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337F2580D07E0027620D /* ViewController.swift */; };
@@ -62,8 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE2F95D22588CCF5004DC436 /* HealthKit.framework in Frameworks */,
-				BE2F95D42588CD1A004DC436 /* HealthKitUI.framework in Frameworks */,
+				BE0BF72725B5C734005646AE /* HealthKit.framework in Frameworks */,
+				BE0BF72825B5C73A005646AE /* HealthKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,13 +458,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = pppppp/ppppppDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6G7T42VLF7;
+				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.masuda.hinata.pppppp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -478,13 +478,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = pppppp/pppppp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6G7T42VLF7;
+				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.masuda.hinata.pppppp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.masuda.hinata.pppppp.20210118;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
