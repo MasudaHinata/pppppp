@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        titleTextField.text = String(read() ?? 0)
+        titleTextField.text = String(read() ?? weight)
         
         //ユーザーの許可を得る(healthkit使用)
         let types = Set([
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ titleTextField: UITextField) -> Bool {
-        saveWeight(weight: weight)
+        saveWeight(weight: Double(String(titleTextField.text ?? 0.0))!)
         print(weight)
         return true
     }
