@@ -5,17 +5,18 @@ import HealthKit
 class ViewController: UIViewController {
     
 
-    var weight: Double = 0
+    var weight: Double = 0.0
     
     var myHealthStore = HKHealthStore()
     
     let typeOfWeight = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-
+       
+        titleTextField.text = String(read() ?? 0)
+        
+        //ユーザーの許可を得る(healthkit使用)
         let types = Set([
             HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
         ])
@@ -25,35 +26,25 @@ class ViewController: UIViewController {
             print(error)
         })
         
+        titleTextField.delegate = self
+        
     }
+    
     @IBOutlet var titleTextField: UITextField!
-    
-    
-
-    @IBAction func saveButtonPressed() {
-        
-        saveWeight(weight: weight)
-        print(weight)
-    }
-    
-    @IBAction func readButtonPressed() {
-        
-        titleTextField.text = String(read() ?? 0)
-    }
     
     func saveWeight(weight: Double) {
         
-        let myWeight = HKQuantity(unit: HKUnit.gram(), doubleValue: weight)
+        let Weight = HKQuantity(unit: HKUnit.gram(), doubleValue: weight)
         
-        let myWeightData = HKQuantitySample(type: typeOfWeight, quantity: myWeight, start: Date(), end: Date())
+        let WeightData = HKQuantitySample(type: typeOfWeight, quantity: Weight, start: Date(), end: Date())
         
         // データの保存.
-        self.myHealthStore.save(myWeightData, withCompletion: {
+        self.myHealthStore.save(WeightData, withCompletion: {
             (success: Bool, error: Error!) in
             if success {
                 NSLog("Success!")
             } else {
-                print(error)
+                print("error")
             }
         })
     }
@@ -69,3 +60,14 @@ class ViewController: UIViewController {
         return bodyMasskg
     }
 }
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ titleTextField: UITextField) -> Bool {
+        saveWeight(weight: weight)
+        print(weight)
+        return true
+    }
+    
+}
+
+
