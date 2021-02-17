@@ -4,9 +4,6 @@ import HealthKit
 
 class ViewController: UIViewController {
     
-
-    var weight: Double = 0.0
-    
     var myHealthStore = HKHealthStore()
     
     let typeOfWeight = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
@@ -14,7 +11,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        titleTextField.text = String(read() ?? weight)
+        titleTextField.text = String(read())
         
         //ユーザーの許可を得る(healthkit使用)
         let types = Set([
@@ -34,9 +31,9 @@ class ViewController: UIViewController {
     
     func saveWeight(weight: Double) {
         
-        let Weight = HKQuantity(unit: HKUnit.gram(), doubleValue: weight)
+        let weight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
         
-        let WeightData = HKQuantitySample(type: typeOfWeight, quantity: Weight, start: Date(), end: Date())
+        let WeightData = HKQuantitySample(type: typeOfWeight, quantity: weight, start: Date(), end: Date())
         
         // データの保存.
         self.myHealthStore.save(WeightData, withCompletion: {
@@ -49,8 +46,8 @@ class ViewController: UIViewController {
         })
     }
     
-    func read() -> Double? {
-        var bodyMasskg: Double?
+    func read() -> Double {
+        var bodyMasskg: Double = 0.0
         let query = HKSampleQuery(sampleType: typeOfWeight, predicate: nil, limit: 1, sortDescriptors: nil) { (query, results, error) in
             if let result = results?.first as? HKQuantitySample {
                 bodyMasskg = result.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
@@ -63,11 +60,11 @@ class ViewController: UIViewController {
 
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ titleTextField: UITextField) -> Bool {
-        saveWeight(weight: Double(String(titleTextField.text ?? 0.0))!)
-        print(weight)
+        guard let weightText = titleTextField.text else { return true}
+        saveWeight(weight: Double(weightText)!)
+        print(weightText)
         return true
     }
-    
 }
 
 
