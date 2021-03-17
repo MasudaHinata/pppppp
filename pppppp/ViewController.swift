@@ -6,24 +6,30 @@ class ViewController: UIViewController {
     
     var myHealthStore = HKHealthStore()
     
-    let typeOfWeight = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
+    var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
+    
+    var bodyMass: Double = 0 {
+        didSet {
+            DispatchQueue.main.async {
+                self.titleTextField?.text = String(self.bodyMass)
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        titleTextField.text = String(read())
-        
-        //ユーザーの許可を得る(healthkit使用)
-        let types = Set([
-            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
-        ])
+       //ユーザーの許可を得る(healthkit使用)
+        let types = Set([typeOfBodyMass])
         let healthStore = HKHealthStore()
         healthStore.requestAuthorization(toShare: types, read: types, completion: { success, error in
             print(success)
             print(error)
         })
         
-        titleTextField.delegate = self
+        titleTextField?.delegate = self
+        
+        read()
         
     }
     
@@ -33,7 +39,7 @@ class ViewController: UIViewController {
         
         let weight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
         
-        let WeightData = HKQuantitySample(type: typeOfWeight, quantity: weight, start: Date(), end: Date())
+        let WeightData = HKQuantitySample(type: typeOfBodyMass, quantity: weight, start: Date(), end: Date())
         
         // データの保存.
         self.myHealthStore.save(WeightData, withCompletion: {
@@ -46,15 +52,13 @@ class ViewController: UIViewController {
         })
     }
     
-    func read() -> Double {
-        var bodyMasskg: Double = 0.0
-        let query = HKSampleQuery(sampleType: typeOfWeight, predicate: nil, limit: 1, sortDescriptors: nil) { (query, results, error) in
+    func read() {
+        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: 1, sortDescriptors: nil) { (query, results, error) in
             if let result = results?.first as? HKQuantitySample {
-                bodyMasskg = result.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
+                self.bodyMass = result.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
             }
         }
         myHealthStore.execute(query)
-        return bodyMasskg
     }
 }
 
