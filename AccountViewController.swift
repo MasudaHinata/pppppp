@@ -1,4 +1,4 @@
-import UIKit
+//import UIKit
 import Firebase // Firebaseをインポート
 
 class AccountViewController: UIViewController, UITextFieldDelegate {
@@ -10,9 +10,25 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        auth = Auth.auth()
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+           super.viewDidAppear(animated)
+           if auth.currentUser != nil {
+               // もし既にユーザーにログインができていれば、タイムラインの画面に遷移する。
+               // このときに、ユーザーの情報を次の画面の変数に値渡ししておく。(直接取得することも可能。)
+               performSegue(withIdentifier: "Timeline", sender: auth.currentUser!)
+           }
+       }
+
+       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           let nextViewController = segue.destination as! TimelineViewController
+           let user = sender as! User
+           nextViewController.me = AppUser(data: ["userID": user.uid])
+       }
 
     // 登録ボタンを押したときに呼ぶメソッド。
     @IBAction func registerAccount() {
@@ -20,8 +36,7 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
                let password = passwordTextField.text!
                auth.createUser(withEmail: email, password: password) { (result, error) in
                    if error == nil, let result = result {
-                       // errorが nil であり、resultがnilではない == user情報がきちんと取得されている。
-                       self.performSegue(withIdentifier: "Timeline", sender: result.user)// 遷移先の画面でuser情報を渡している。
+                       self.performSegue(withIdentifier: "Timeline", sender: result.user)
                    }
                }
     }
@@ -34,3 +49,4 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
         }
     }
 }
+
