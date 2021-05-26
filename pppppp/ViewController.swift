@@ -19,7 +19,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
        
        //ユーザーの許可を得る(healthkit使用)
         let types = Set([typeOfBodyMass])
