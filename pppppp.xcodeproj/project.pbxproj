@@ -34,6 +34,7 @@
 		BEA64B0925D3F1A60064F184 /* FirebaseStorageSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BEA64B0825D3F1A60064F184 /* FirebaseStorageSwift */; };
 		BEA64B0B25D3F1A60064F184 /* GoogleUtilities_UserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = BEA64B0A25D3F1A60064F184 /* GoogleUtilities_UserDefaults */; };
 		BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7283A265E613C0004C9BD /* AccountViewController.swift */; };
+		BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		BE92D6C225C17AF800228B3C /* ppppppDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ppppppDebug.entitlements; sourceTree = "<group>"; };
 		BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEB7283A265E613C0004C9BD /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountViewController.swift; path = ../AccountViewController.swift; sourceTree = "<group>"; };
+		BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				BE92D6C125C17AF000228B3C /* pppppp.entitlements */,
 				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
 				BE7F33812580D07E0027620D /* Main.storyboard */,
+				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
 				BE0878F126551E8E007CA984 /* TimelineViewController.swift */,
 				BE7F337B2580D07E0027620D /* AppDelegate.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
@@ -225,6 +228,7 @@
 				BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */,
 				BE0878EF26551DF8007CA984 /* User.swift in Sources */,
 				BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */,
+				BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
 			);
