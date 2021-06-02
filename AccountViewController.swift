@@ -50,6 +50,9 @@ class AccountViewController: UIViewController {
                         self.present(alert, animated: true, completion: nil)
                     }
                 })
+            } else {
+                print("error occured")
+                print(error)
             }
         }
     }

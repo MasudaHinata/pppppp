@@ -250,7 +250,6 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="registerAccount" destination="JTg-Ot-WFO" eventType="touchUpInside" id="2J4-KX-lzq"/>
-                                    <segue destination="jmk-ej-WXg" kind="modal" id="jup-ON-3Le"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -260,16 +259,17 @@
                     <connections>
                         <outlet property="emailTextField" destination="IZv-1V-XVC" id="Fib-y1-a8P"/>
                         <outlet property="passwordTextField" destination="1ft-qY-XpV" id="oiK-Zc-aUU"/>
+                        <segue destination="jmk-ej-WXg" kind="presentation" identifier="Timeline" id="yXS-RT-BVk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ruc-I1-phu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="745" y="836"/>
         </scene>
-        <!--View Controller-->
+        <!--Timeline View Controller-->
         <scene sceneID="Tjd-xu-yfL">
             <objects>
-                <viewController id="jmk-ej-WXg" sceneMemberID="viewController">
+                <viewController id="jmk-ej-WXg" customClass="TimelineViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eYv-4h-1kM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

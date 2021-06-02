@@ -12,7 +12,6 @@
 		BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878F126551E8E007CA984 /* TimelineViewController.swift */; };
 		BE0BF72725B5C734005646AE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D12588CCF5004DC436 /* HealthKit.framework */; };
 		BE0BF72825B5C73A005646AE /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */; };
-		BE26DDC125CABF1400F32559 /* dataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE26DDC025CABF1400F32559 /* dataController.swift */; };
 		BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337B2580D07E0027620D /* AppDelegate.swift */; };
 		BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337D2580D07E0027620D /* SceneDelegate.swift */; };
 		BE7F33802580D07E0027620D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337F2580D07E0027620D /* ViewController.swift */; };
@@ -41,7 +40,6 @@
 		BE0878EB26551BC2007CA984 /* post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
 		BE0878EE26551DF8007CA984 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BE0878F126551E8E007CA984 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
-		BE26DDC025CABF1400F32559 /* dataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataController.swift; sourceTree = "<group>"; };
 		BE2F95D12588CCF5004DC436 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 		BE7F33782580D07E0027620D /* pppppp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pppppp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,14 +114,13 @@
 			children = (
 				BE92D6C225C17AF800228B3C /* ppppppDebug.entitlements */,
 				BE92D6C125C17AF000228B3C /* pppppp.entitlements */,
-				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
 				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				BE0878F126551E8E007CA984 /* TimelineViewController.swift */,
 				BE7F337B2580D07E0027620D /* AppDelegate.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				BE0878EE26551DF8007CA984 /* User.swift */,
-				BE26DDC025CABF1400F32559 /* dataController.swift */,
+				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
 				BE7F337F2580D07E0027620D /* ViewController.swift */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
@@ -227,7 +224,6 @@
 				BE0878EC26551BC2007CA984 /* post.swift in Sources */,
 				BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */,
 				BE0878EF26551DF8007CA984 /* User.swift in Sources */,
-				BE26DDC125CABF1400F32559 /* dataController.swift in Sources */,
 				BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
