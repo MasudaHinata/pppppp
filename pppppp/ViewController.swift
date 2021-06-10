@@ -6,9 +6,7 @@ import HealthKit
 class ViewController: UIViewController {
     
     var myHealthStore = HKHealthStore()
-    
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
-    
     var bodyMass: Double = 0 {
         didSet {
             DispatchQueue.main.async {
@@ -20,7 +18,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
-       
        //ユーザーの許可を得る(healthkit使用)
         let types = Set([typeOfBodyMass])
         let healthStore = HKHealthStore()
@@ -30,7 +27,6 @@ class ViewController: UIViewController {
         })
         
         titleTextField?.delegate = self
-        
         read()
         
     }

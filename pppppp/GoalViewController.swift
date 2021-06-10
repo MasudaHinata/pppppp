@@ -9,9 +9,13 @@ import UIKit
 
 class GoalViewController: UIViewController {
     
+    @IBOutlet var goalButton: UIButton!
     @IBOutlet var goalTextField: UITextField!
-
-    override func viewDidLoad() {
+    var goal: String = ""
+    
+    
+    
+   override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
