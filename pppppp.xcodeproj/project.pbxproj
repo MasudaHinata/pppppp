@@ -116,11 +116,11 @@
 			children = (
 				BE92D6C225C17AF800228B3C /* ppppppDebug.entitlements */,
 				BE92D6C125C17AF000228B3C /* pppppp.entitlements */,
-				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
 				BE7F33812580D07E0027620D /* Main.storyboard */,
+				BE7F337B2580D07E0027620D /* AppDelegate.swift */,
+				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
 				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
 				BE0878F126551E8E007CA984 /* TimelineViewController.swift */,
-				BE7F337B2580D07E0027620D /* AppDelegate.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				BE0878EE26551DF8007CA984 /* User.swift */,
 				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
