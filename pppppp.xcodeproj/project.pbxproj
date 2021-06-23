@@ -35,6 +35,7 @@
 		BEA64B0B25D3F1A60064F184 /* GoogleUtilities_UserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = BEA64B0A25D3F1A60064F184 /* GoogleUtilities_UserDefaults */; };
 		BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7283A265E613C0004C9BD /* AccountViewController.swift */; };
 		BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */; };
+		E7C569E72683489E00BF6F86 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C569E62683489E00BF6F86 /* DataViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEB7283A265E613C0004C9BD /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountViewController.swift; path = ../AccountViewController.swift; sourceTree = "<group>"; };
 		BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
+		E7C569E62683489E00BF6F86 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				BE92D6C125C17AF000228B3C /* pppppp.entitlements */,
 				BE7F337B2580D07E0027620D /* AppDelegate.swift */,
 				BE7F33812580D07E0027620D /* Main.storyboard */,
+				E7C569E62683489E00BF6F86 /* DataViewController.swift */,
 				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
 				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
 				BE0878F126551E8E007CA984 /* TimelineViewController.swift */,
@@ -230,6 +233,7 @@
 				BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */,
 				BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
+				E7C569E72683489E00BF6F86 /* DataViewController.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

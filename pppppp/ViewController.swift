@@ -28,10 +28,16 @@ class ViewController: UIViewController {
         
         titleTextField?.delegate = self
         read()
+
+        label.text = saveData.string(forKey: "key")
+
         
     }
     
     @IBOutlet var titleTextField: UITextField!
+    @IBOutlet var label: UILabel!
+    let saveData: UserDefaults = UserDefaults.standard
+
     
     func saveWeight(weight: Double) {
         
