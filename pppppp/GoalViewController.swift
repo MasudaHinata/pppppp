@@ -11,25 +11,17 @@ class GoalViewController: UIViewController {
     
     @IBOutlet var goalButton: UIButton!
     @IBOutlet var goalTextField: UITextField!
-    var goal: String = ""
-    
-    
-    
+    let saveData: UserDefaults = Foundation.UserDefaults.standard
+
    override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        saveData.set(goalTextField.text, forKey: "key")
     }
-    */
 
+    @IBAction func okButtonPressed() {
+        performSegue(withIdentifier: "toTimeline", sender: nil)
+    }
 }
