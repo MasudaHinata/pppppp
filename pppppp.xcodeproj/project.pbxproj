@@ -14,7 +14,6 @@
 		BE0BF72825B5C73A005646AE /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */; };
 		BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337B2580D07E0027620D /* AppDelegate.swift */; };
 		BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337D2580D07E0027620D /* SceneDelegate.swift */; };
-		BE7F33802580D07E0027620D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337F2580D07E0027620D /* ViewController.swift */; };
 		BE7F33832580D07E0027620D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE7F33812580D07E0027620D /* Main.storyboard */; };
 		BE7F33852580D0810027620D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE7F33842580D0810027620D /* Assets.xcassets */; };
 		BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE7F33862580D0810027620D /* LaunchScreen.storyboard */; };
@@ -35,6 +34,7 @@
 		BEA64B0B25D3F1A60064F184 /* GoogleUtilities_UserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = BEA64B0A25D3F1A60064F184 /* GoogleUtilities_UserDefaults */; };
 		BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7283A265E613C0004C9BD /* AccountViewController.swift */; };
 		BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */; };
+		E7AC455C268C766F00E7CCAC /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC455B268C766F00E7CCAC /* SigninViewController.swift */; };
 		E7C569E72683489E00BF6F86 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C569E62683489E00BF6F86 /* DataViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +47,6 @@
 		BE7F33782580D07E0027620D /* pppppp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pppppp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE7F337B2580D07E0027620D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE7F337D2580D07E0027620D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE7F337F2580D07E0027620D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BE7F33822580D07E0027620D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE7F33842580D0810027620D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE7F33872580D0810027620D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEB7283A265E613C0004C9BD /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountViewController.swift; path = ../AccountViewController.swift; sourceTree = "<group>"; };
 		BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
+		E7AC455B268C766F00E7CCAC /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		E7C569E62683489E00BF6F86 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,8 +126,8 @@
 				BE0878F126551E8E007CA984 /* TimelineViewController.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				BE0878EE26551DF8007CA984 /* User.swift */,
+				E7AC455B268C766F00E7CCAC /* SigninViewController.swift */,
 				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
-				BE7F337F2580D07E0027620D /* ViewController.swift */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
@@ -226,10 +226,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE7F33802580D07E0027620D /* ViewController.swift in Sources */,
 				BE0878EC26551BC2007CA984 /* post.swift in Sources */,
 				BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */,
 				BE0878EF26551DF8007CA984 /* User.swift in Sources */,
+				E7AC455C268C766F00E7CCAC /* SigninViewController.swift in Sources */,
 				BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */,
 				BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
