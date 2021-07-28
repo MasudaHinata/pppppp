@@ -55,7 +55,7 @@ class AccountViewController: UIViewController {
                 print("error occured")
                 print(error)
             }
-        }
+        } 
     }
 }
 

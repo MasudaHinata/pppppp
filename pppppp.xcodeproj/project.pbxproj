@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CAA88EA26B16157005517D5 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88E926B16157005517D5 /* loginViewController.swift */; };
 		BE0878EC26551BC2007CA984 /* post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878EB26551BC2007CA984 /* post.swift */; };
 		BE0878EF26551DF8007CA984 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878EE26551DF8007CA984 /* User.swift */; };
 		BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878F126551E8E007CA984 /* TimelineViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9CAA88E926B16157005517D5 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		BE0878EB26551BC2007CA984 /* post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
 		BE0878EE26551DF8007CA984 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BE0878F126551E8E007CA984 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
 				BE0878F126551E8E007CA984 /* TimelineViewController.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
+				9CAA88E926B16157005517D5 /* loginViewController.swift */,
 				BE0878EE26551DF8007CA984 /* User.swift */,
 				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
 				BE7F337F2580D07E0027620D /* ViewController.swift */,
@@ -230,6 +233,7 @@
 				BE0878EC26551BC2007CA984 /* post.swift in Sources */,
 				BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */,
 				BE0878EF26551DF8007CA984 /* User.swift in Sources */,
+				9CAA88EA26B16157005517D5 /* loginViewController.swift in Sources */,
 				BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */,
 				BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
