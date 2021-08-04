@@ -256,11 +256,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WdF-kl-5fh">
-                                <rect key="frame" x="115" y="420" width="184" height="30"/>
+                                <rect key="frame" x="115" y="450" width="184" height="148"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="アカウントが既にある場合"/>
                                 <connections>
-                                    <segue destination="Vc7-tl-j7N" kind="presentation" id="CQK-Hn-l3b"/>
+                                    <segue destination="Vc7-tl-j7N" kind="presentation" id="7hw-Xr-uuL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -279,7 +279,7 @@
         <!--Login View Controller-->
         <scene sceneID="NN8-k3-hRP">
             <objects>
-                <viewController id="Vc7-tl-j7N" customClass="loginViewController" sceneMemberID="viewController">
+                <viewController id="Vc7-tl-j7N" customClass="LoginViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0AS-tW-eyr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -309,7 +309,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="登録する"/>
                                 <connections>
-                                    <action selector="loginButtonPressed" destination="Vc7-tl-j7N" eventType="touchUpInside" id="vpA-ih-3C3"/>
+                                    <action selector="loginButtonPressed" destination="Vc7-tl-j7N" eventType="touchUpInside" id="ZoG-OV-xyy"/>
                                     <action selector="registerAccount" destination="JTg-Ot-WFO" eventType="touchUpInside" id="17t-Ju-7QF"/>
                                 </connections>
                             </button>
@@ -331,9 +331,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="r6M-dv-m87" id="7wm-6h-uA3"/>
-                        <outlet property="passwordTextField" destination="qT4-c5-j1b" id="mFm-Kw-HKu"/>
-                        <segue destination="jmk-ej-WXg" kind="presentation" id="Mc6-Mr-Z0Z"/>
+                        <outlet property="emailTextField" destination="r6M-dv-m87" id="Pmy-ZF-XHY"/>
+                        <outlet property="passwordTextField" destination="qT4-c5-j1b" id="O0y-6z-8SL"/>
+                        <segue destination="jmk-ej-WXg" kind="presentation" id="eO6-VQ-oBf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AxD-Fj-GTE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -392,7 +392,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Mc6-Mr-Z0Z"/>
+        <segue reference="eO6-VQ-oBf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

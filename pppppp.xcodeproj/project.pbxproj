@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9CAA88EA26B16157005517D5 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88E926B16157005517D5 /* loginViewController.swift */; };
+		9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88EB26B1918B005517D5 /* LoginViewController.swift */; };
+		9CAA892B26BAA0EE005517D5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 9CAA892A26BAA0EE005517D5 /* KeychainAccess */; };
 		BE0878EC26551BC2007CA984 /* post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878EB26551BC2007CA984 /* post.swift */; };
 		BE0878EF26551DF8007CA984 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878EE26551DF8007CA984 /* User.swift */; };
 		BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878F126551E8E007CA984 /* TimelineViewController.swift */; };
@@ -40,7 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9CAA88E926B16157005517D5 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
+		9CAA88EB26B1918B005517D5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BE0878EB26551BC2007CA984 /* post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
 		BE0878EE26551DF8007CA984 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BE0878F126551E8E007CA984 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 				BEA64AFF25D3F1A60064F184 /* FirebaseFirestore in Frameworks */,
 				BE0BF72825B5C73A005646AE /* HealthKitUI.framework in Frameworks */,
 				BEA64AF325D3F1A60064F184 /* FirebaseDynamicLinks in Frameworks */,
+				9CAA892B26BAA0EE005517D5 /* KeychainAccess in Frameworks */,
 				BEA64AF525D3F1A60064F184 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				BEA64AF925D3F1A60064F184 /* FirebaseAuth in Frameworks */,
 				BEA64B0B25D3F1A60064F184 /* GoogleUtilities_UserDefaults in Frameworks */,
@@ -124,10 +126,10 @@
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				E7C569E62683489E00BF6F86 /* DataViewController.swift */,
 				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
+				9CAA88EB26B1918B005517D5 /* LoginViewController.swift */,
 				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
 				BE0878F126551E8E007CA984 /* TimelineViewController.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
-				9CAA88E926B16157005517D5 /* loginViewController.swift */,
 				BE0878EE26551DF8007CA984 /* User.swift */,
 				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
 				BE7F337F2580D07E0027620D /* ViewController.swift */,
@@ -170,6 +172,7 @@
 				BEA64B0625D3F1A60064F184 /* FirebaseCrashlytics */,
 				BEA64B0825D3F1A60064F184 /* FirebaseStorageSwift */,
 				BEA64B0A25D3F1A60064F184 /* GoogleUtilities_UserDefaults */,
+				9CAA892A26BAA0EE005517D5 /* KeychainAccess */,
 			);
 			productName = pppppp;
 			productReference = BE7F33782580D07E0027620D /* pppppp.app */;
@@ -200,6 +203,7 @@
 			mainGroup = BE7F336F2580D07E0027620D;
 			packageReferences = (
 				BEA64AEF25D3F1A60064F184 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				9CAA892926BAA0EE005517D5 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = BE7F33792580D07E0027620D /* Products */;
 			projectDirPath = "";
@@ -233,7 +237,7 @@
 				BE0878EC26551BC2007CA984 /* post.swift in Sources */,
 				BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */,
 				BE0878EF26551DF8007CA984 /* User.swift in Sources */,
-				9CAA88EA26B16157005517D5 /* loginViewController.swift in Sources */,
+				9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */,
 				BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */,
 				BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
@@ -446,6 +450,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9CAA892926BAA0EE005517D5 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
 		BEA64AEF25D3F1A60064F184 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -457,6 +469,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9CAA892A26BAA0EE005517D5 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9CAA892926BAA0EE005517D5 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		BEA64AF025D3F1A60064F184 /* FirebaseInstallations */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BEA64AEF25D3F1A60064F184 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

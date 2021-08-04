@@ -5,10 +5,11 @@
 //  Created by 増田ひなた on 2021/07/28.
 //
 
+
 import UIKit
 import Firebase
 
-class loginViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
@@ -35,3 +36,4 @@ class loginViewController: UIViewController {
         }
     }
 }
+
