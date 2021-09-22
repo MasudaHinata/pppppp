@@ -44,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="目標" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4i1-hr-UXf">
-                                <rect key="frame" x="76" y="145" width="35" height="51"/>
+                                <rect key="frame" x="190" y="59" width="35" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -252,7 +252,7 @@
                                 <state key="normal" title="登録する"/>
                                 <connections>
                                     <action selector="registerAccount" destination="JTg-Ot-WFO" eventType="touchUpInside" id="2J4-KX-lzq"/>
-                                    <segue destination="jmk-ej-WXg" kind="presentation" id="ANS-gN-LJz"/>
+                                    <segue destination="jmk-ej-WXg" kind="presentation" identifier="Timeline" id="ANS-gN-LJz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WdF-kl-5fh">
@@ -333,7 +333,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="r6M-dv-m87" id="Pmy-ZF-XHY"/>
                         <outlet property="passwordTextField" destination="qT4-c5-j1b" id="O0y-6z-8SL"/>
-                        <segue destination="jmk-ej-WXg" kind="presentation" id="eO6-VQ-oBf"/>
+                        <segue destination="jmk-ej-WXg" kind="presentation" identifier="Timeline" id="eO6-VQ-oBf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AxD-Fj-GTE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -361,14 +361,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2W-EJ-q7T">
-                                <rect key="frame" x="192" y="309" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="OK"/>
-                                <connections>
-                                    <action selector="okButtonPressed" destination="jmk-ej-WXg" eventType="touchUpInside" id="3m7-4H-hn6"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="目標を設定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPU-qy-1ro">
                                 <rect key="frame" x="164" y="106" width="87" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -376,6 +368,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2W-EJ-q7T">
+                                <rect key="frame" x="180" y="341" width="55" height="109"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <action selector="okButtonPressed" destination="jmk-ej-WXg" eventType="touchUpInside" id="3m7-4H-hn6"/>
+                                    <segue destination="G3F-5r-J7b" kind="presentation" identifier="toTimeline" id="A5Z-aC-2S2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3cR-V1-Rha"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -383,16 +384,15 @@
                     <connections>
                         <outlet property="goalButton" destination="T2W-EJ-q7T" id="t3P-NZ-2O3"/>
                         <outlet property="goalTextField" destination="PTf-gf-aCE" id="7Vw-yp-bAt"/>
-                        <segue destination="G3F-5r-J7b" kind="presentation" identifier="toTimeline" id="Z4n-16-MqP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2p-FI-gbJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-896" y="1"/>
+            <point key="canvasLocation" x="-897.10144927536237" y="0.6696428571428571"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eO6-VQ-oBf"/>
+        <segue reference="ANS-gN-LJz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
