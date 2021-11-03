@@ -1,6 +1,6 @@
 import UIKit
 import HealthKit
-
+import Firebase
 
 
 class ViewController: UIViewController {
@@ -14,7 +14,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
      

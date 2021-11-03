@@ -6,12 +6,29 @@
 //
 
 import UIKit
+import Firebase
+
 
 class DataViewController: UIViewController {
 
     @IBOutlet var label: UILabel!
     let saveData: UserDefaults = UserDefaults.standard
+    
+    let db = Firestore.firestore()
 
+    // Add a new document with a generated ID
+       var ref: DocumentReference? = nil
+       ref = db.collection("users").addDocument(data: [
+           "first": "Ada",
+           "last": "Lovelace",
+           "born": 1815
+       ]) { err in
+           if let err = err {
+               print("Error adding document: \(err)")
+           } else {
+               print("Document added with ID: \(ref!.documentID)")
+           }
+       }
     
     override func viewDidLoad() {
         super.viewDidLoad()
