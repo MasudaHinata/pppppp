@@ -1,11 +1,3 @@
-//
-//  loginViewController.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2021/07/28.
-//
-
-
 import UIKit
 import Firebase
 
@@ -15,8 +7,10 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordTextField: UITextField!
     var auth: Auth!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        design()
         auth = Auth.auth()
     }
    
@@ -35,5 +29,14 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    func design() {
+        emailTextField.layer.cornerRadius = 32
+        passwordTextField.layer.cornerRadius = 32
+        emailTextField.clipsToBounds = true
+        passwordTextField.clipsToBounds = true
+    }
+    
 }
+
 

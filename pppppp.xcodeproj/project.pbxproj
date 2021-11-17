@@ -11,7 +11,6 @@
 		9CAA892B26BAA0EE005517D5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 9CAA892A26BAA0EE005517D5 /* KeychainAccess */; };
 		BE0878EC26551BC2007CA984 /* post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878EB26551BC2007CA984 /* post.swift */; };
 		BE0878EF26551DF8007CA984 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878EE26551DF8007CA984 /* User.swift */; };
-		BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878F126551E8E007CA984 /* TimelineViewController.swift */; };
 		BE0BF72725B5C734005646AE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D12588CCF5004DC436 /* HealthKit.framework */; };
 		BE0BF72825B5C73A005646AE /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */; };
 		BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337B2580D07E0027620D /* AppDelegate.swift */; };
@@ -37,14 +36,12 @@
 		BEA64B0B25D3F1A60064F184 /* GoogleUtilities_UserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = BEA64B0A25D3F1A60064F184 /* GoogleUtilities_UserDefaults */; };
 		BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7283A265E613C0004C9BD /* AccountViewController.swift */; };
 		BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */; };
-		E7C569E72683489E00BF6F86 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C569E62683489E00BF6F86 /* DataViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9CAA88EB26B1918B005517D5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BE0878EB26551BC2007CA984 /* post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
 		BE0878EE26551DF8007CA984 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BE0878F126551E8E007CA984 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		BE2F95D12588CCF5004DC436 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 		BE7F33782580D07E0027620D /* pppppp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pppppp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,11 +53,9 @@
 		BE7F33872580D0810027620D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE7F33892580D0810027620D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE92D6C125C17AF000228B3C /* pppppp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pppppp.entitlements; sourceTree = "<group>"; };
-		BE92D6C225C17AF800228B3C /* ppppppDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ppppppDebug.entitlements; sourceTree = "<group>"; };
 		BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEB7283A265E613C0004C9BD /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountViewController.swift; path = ../AccountViewController.swift; sourceTree = "<group>"; };
 		BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
-		E7C569E62683489E00BF6F86 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,19 +115,16 @@
 		BE7F337A2580D07E0027620D /* pppppp */ = {
 			isa = PBXGroup;
 			children = (
-				BE92D6C225C17AF800228B3C /* ppppppDebug.entitlements */,
 				BE92D6C125C17AF000228B3C /* pppppp.entitlements */,
 				BE7F337B2580D07E0027620D /* AppDelegate.swift */,
 				BE7F33812580D07E0027620D /* Main.storyboard */,
-				E7C569E62683489E00BF6F86 /* DataViewController.swift */,
 				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
-				9CAA88EB26B1918B005517D5 /* LoginViewController.swift */,
-				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
-				BE0878F126551E8E007CA984 /* TimelineViewController.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				BE0878EE26551DF8007CA984 /* User.swift */,
-				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
 				BE7F337F2580D07E0027620D /* ViewController.swift */,
+				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
+				9CAA88EB26B1918B005517D5 /* LoginViewController.swift */,
+				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
@@ -238,10 +230,8 @@
 				BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */,
 				BE0878EF26551DF8007CA984 /* User.swift in Sources */,
 				9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */,
-				BE0878F226551E8E007CA984 /* TimelineViewController.swift in Sources */,
 				BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
-				E7C569E72683489E00BF6F86 /* DataViewController.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,15 +379,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = pppppp/ppppppDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = pppppp/pppppp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R974FN29R;
+				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.ppppppppppp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -412,13 +402,13 @@
 				CODE_SIGN_ENTITLEMENTS = pppppp/pppppp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7R974FN29R;
+				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.ppppppppppp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

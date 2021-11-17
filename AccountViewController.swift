@@ -4,15 +4,31 @@ import Firebase
 class AccountViewController: UIViewController {
 
     var auth: Auth!
+    
+    @IBOutlet var EmailTextField: UITextField! {
+        didSet {
+            EmailTextField.layer.cornerRadius = 16
+            EmailTextField.layer.cornerCurve = .continuous
+        }
+    }
 
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
+  
+    @IBOutlet var PasswordTextField: UITextField! {
+        didSet{
+            PasswordTextField.layer.cornerRadius = 16
+            PasswordTextField.layer.cornerCurve = .continuous
+        }
+    }
+    
+    @IBAction func LoginButton() {
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         auth = Auth.auth()
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
+        EmailTextField.delegate = self
+        PasswordTextField.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -40,8 +56,8 @@ class AccountViewController: UIViewController {
     }
 
     @IBAction func registerAccount() {
-        let email = emailTextField.text!
-        let password = passwordTextField.text!
+        let email = EmailTextField.text!
+        let password = PasswordTextField.text!
         auth.createUser(withEmail: email, password: password) { (result, error) in
             if error == nil, let result = result {
                 result.user.sendEmailVerification(completion: { (error) in

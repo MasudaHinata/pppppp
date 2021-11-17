@@ -2,23 +2,26 @@ import UIKit
 import HealthKit
 import Firebase
 
-
 class ViewController: UIViewController {
+    
+    @IBOutlet var titleTextField: UITextField!
+    @IBOutlet var Label: UILabel!
+    
+    let db = Firestore.firestore()
     
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
     var bodyMass: Double = 0 {
         didSet {
             DispatchQueue.main.async {
-                self.titleTextField?.text = String(self.bodyMass)
+                self.titleTextField.text = String(self.bodyMass)
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-       //ユーザーの許可を得る(healthkit使用)
+    
         let types = Set([typeOfBodyMass])
         let healthStore = HKHealthStore()
         healthStore.requestAuthorization(toShare: types, read: types, completion: { success, error in
@@ -34,8 +37,6 @@ class ViewController: UIViewController {
         
     }
     
-    @IBOutlet var titleTextField: UITextField!
-    @IBOutlet var label: UILabel!
     let saveData: UserDefaults = UserDefaults.standard
 
     
@@ -58,8 +59,8 @@ class ViewController: UIViewController {
     
     func read() {
         let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: 1, sortDescriptors: nil) { (query, results, error) in
-            if let result = results?.first as? HKQuantitySample {
-                self.bodyMass = result.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
+            if let results = results as? [HKQuantitySample] {
+                print(results)
             }
         }
         myHealthStore.execute(query)
