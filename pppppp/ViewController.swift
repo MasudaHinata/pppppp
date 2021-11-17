@@ -4,8 +4,10 @@ import Firebase
 
 class ViewController: UIViewController {
     
+    var me: AppUser!
+    
     @IBOutlet var titleTextField: UITextField!
-    @IBOutlet var Label: UILabel!
+    @IBOutlet var label: UILabel!
     
     let db = Firestore.firestore()
     

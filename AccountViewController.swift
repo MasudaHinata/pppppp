@@ -49,7 +49,7 @@ class AccountViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let nextViewController = segue.destination as? TimelineViewController{
+        if let nextViewController = segue.destination as? ViewController{
             let user = sender as! User
             nextViewController.me = AppUser(data: ["userID": user.uid])
         }

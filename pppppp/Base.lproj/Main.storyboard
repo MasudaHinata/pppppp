@@ -58,7 +58,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="自分" id="0XE-Bx-nSG"/>
                     <connections>
-                        <outlet property="Label" destination="L2e-5l-CSq" id="h9d-xa-3ZS"/>
+                        <outlet property="label" destination="L2e-5l-CSq" id="K8T-M4-evm"/>
                         <outlet property="titleTextField" destination="6aX-pG-RT5" id="bBH-oB-Dox"/>
                     </connections>
                 </viewController>
