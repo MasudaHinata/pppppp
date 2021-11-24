@@ -31,12 +31,9 @@ class LoginViewController: UIViewController {
     }
     
     func design() {
-        emailTextField.layer.cornerRadius = 32
-        passwordTextField.layer.cornerRadius = 32
+        emailTextField.layer.cornerRadius = 24
+        passwordTextField.layer.cornerRadius = 24
         emailTextField.clipsToBounds = true
         passwordTextField.clipsToBounds = true
     }
-    
 }
-
-

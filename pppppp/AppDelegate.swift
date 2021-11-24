@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2020/12/09.
-//
-
 import UIKit
 import Firebase
 
