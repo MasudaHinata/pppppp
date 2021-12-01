@@ -9,6 +9,7 @@ class AccountViewController: UIViewController {
         didSet {
             EmailTextField.layer.cornerRadius = 16
             EmailTextField.layer.cornerCurve = .continuous
+            EmailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         }
     }
 
@@ -17,6 +18,7 @@ class AccountViewController: UIViewController {
         didSet{
             PasswordTextField.layer.cornerRadius = 16
             PasswordTextField.layer.cornerCurve = .continuous
+            PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your email address", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         }
     }
     
