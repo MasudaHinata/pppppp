@@ -3,14 +3,34 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var emailTextField: UITextField! {
+        didSet {
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            emailTextField.layer.cornerRadius = 24
+            emailTextField.clipsToBounds = true
+        }
+    }
+    @IBOutlet var passwordTextField: UITextField! {
+        didSet {
+            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            passwordTextField.layer.cornerRadius = 24
+            passwordTextField.clipsToBounds = true
+        }
+    }
+    
+    @IBOutlet var goButton: UIButton! {
+        didSet {
+            goButton.layer.cornerRadius = 24
+            goButton.layer.cornerCurve = .continuous
+        }
+    }
+    
     var auth: Auth!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        design()
+      
         auth = Auth.auth()
     }
    
@@ -28,12 +48,5 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    func design() {
-        emailTextField.layer.cornerRadius = 24
-        passwordTextField.layer.cornerRadius = 24
-        emailTextField.clipsToBounds = true
-        passwordTextField.clipsToBounds = true
     }
 }

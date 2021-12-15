@@ -5,33 +5,31 @@ class AccountViewController: UIViewController {
 
     var auth: Auth!
     
-    @IBOutlet var EmailTextField: UITextField! {
+    @IBOutlet var emailTextField: UITextField! {
         didSet {
-            EmailTextField.layer.cornerRadius = 16
-            EmailTextField.layer.cornerCurve = .continuous
-            EmailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         }
     }
-
-  
-    @IBOutlet var PasswordTextField: UITextField! {
-        didSet{
-            PasswordTextField.layer.cornerRadius = 16
-            PasswordTextField.layer.cornerCurve = .continuous
-            PasswordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your email address", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+    @IBOutlet var passwordTextField: UITextField! {
+        didSet {
+            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         }
     }
     
-    @IBAction func LoginButton() {
-        
-    }
+    @IBOutlet var LoginButton: UIButton!
+    @IBOutlet var GoButton: UIButton!
+
+    
 
     override func viewDidLoad() {
+        design()
         super.viewDidLoad()
         auth = Auth.auth()
-        EmailTextField.delegate = self
-        PasswordTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
+      
+        
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -58,8 +56,8 @@ class AccountViewController: UIViewController {
     }
 
     @IBAction func registerAccount() {
-        let email = EmailTextField.text!
-        let password = PasswordTextField.text!
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
         auth.createUser(withEmail: email, password: password) { (result, error) in
             if error == nil, let result = result {
                 result.user.sendEmailVerification(completion: { (error) in
@@ -75,6 +73,17 @@ class AccountViewController: UIViewController {
             }
         } 
     }
+    
+    func design() {
+        emailTextField.layer.cornerRadius = 24
+        passwordTextField.layer.cornerRadius = 24
+        GoButton.layer.cornerRadius = 24
+        emailTextField.clipsToBounds = true
+        passwordTextField.clipsToBounds = true
+        GoButton.clipsToBounds = true
+    }
+
+    
 }
 
 // デリゲートメソッドは可読性のためextensionで分けて記述します。
