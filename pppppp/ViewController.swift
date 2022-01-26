@@ -57,6 +57,25 @@ class ViewController: UIViewController {
                 print("error")
             }
         })
+        if let user = Auth.auth().currentUser {
+            let dataStore = Firestore.firestore()
+                    dataStore.collection("weight").addDocument(data: [
+                        "text": weight,
+                        "name": user.displayName,
+                        "sender_id": UUID(),
+                        "date": Date()
+                    ]) { err in
+                        DispatchQueue.main.async {
+                            if let err = err {
+                                print("Error writing document: \(err)")
+                            } else {
+                              return
+                            }
+                        }
+                    }
+        }
+        
+        
     }
     
     func read() {
