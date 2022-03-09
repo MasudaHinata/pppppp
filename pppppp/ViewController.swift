@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         titleTextField?.delegate = self
         read()
 
-        label.text = saveData.string(forKey: "key")
+        //label.text = saveData.string(forKey: "key")
 
         
     }
