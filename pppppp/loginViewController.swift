@@ -3,6 +3,8 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet var LoginButton: UIButton!
+    
     @IBOutlet var emailTextField: UITextField! {
         didSet {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
