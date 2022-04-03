@@ -9,13 +9,23 @@ import UIKit
 
 class GoalViewController: UIViewController {
     
-    @IBOutlet var goalButton: UIButton!
     @IBOutlet var goalTextField: UITextField!
+    @IBOutlet var goButton: UIButton!
+    
     let saveData: UserDefaults = Foundation.UserDefaults.standard
 
    override func viewDidLoad() {
         super.viewDidLoad()
+       design()
     }
+    
+    func design() {
+        goalTextField.layer.cornerRadius = 24
+        goButton.layer.cornerRadius = 24
+        goalTextField.clipsToBounds = true
+        goButton.clipsToBounds = true
+    }
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         saveData.set(goalTextField.text, forKey: "key")

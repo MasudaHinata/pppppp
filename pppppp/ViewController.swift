@@ -9,6 +9,11 @@ class ViewController: UIViewController {
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var label: UILabel!
     
+    @IBAction func SettingButton() {
+        
+    }
+
+    
     let db = Firestore.firestore()
     
     var myHealthStore = HKHealthStore()
