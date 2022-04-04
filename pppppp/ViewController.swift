@@ -8,7 +8,6 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var label: UILabel!
-    
     @IBAction func SettingButton() {
         
     }

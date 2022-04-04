@@ -12,13 +12,13 @@ class AccountViewController: UIViewController {
     }
     @IBOutlet var passwordTextField: UITextField! {
         didSet {
-            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            passwordTextField.attributedPlaceholder = NSAttributedString(string: "confirm your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         }
     }
     
     @IBOutlet var password2TextField: UITextField! {
         didSet {
-            password2TextField.attributedPlaceholder = NSAttributedString(string: "confirm your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            password2TextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         }
     }
     
@@ -35,7 +35,7 @@ class AccountViewController: UIViewController {
             }
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
-        }else {
+        };if passwordTextField.text != password2TextField.text {
             let alert = UIAlertController(title: "パスワードが一致しません", message: "パスワードを確認してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)
