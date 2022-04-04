@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 
 class AccountViewController: UIViewController {
-
+    
     var auth: Auth!
     
     @IBOutlet var emailTextField: UITextField! {
@@ -16,11 +16,36 @@ class AccountViewController: UIViewController {
         }
     }
     
+    @IBOutlet var password2TextField: UITextField! {
+        didSet {
+            password2TextField.attributedPlaceholder = NSAttributedString(string: "confirm your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        }
+    }
+    
     @IBOutlet var LoginButton: UIButton!
     @IBOutlet var GoButton: UIButton!
-
+    @IBAction func GooButton() {
+        
+        if passwordTextField.text == password2TextField.text {
+            registerAccount()
+        };if passwordTextField.text == "" {
+            let alert = UIAlertController(title: "パスワードを入力してください", message: "パスワードを確認してください", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }else {
+            let alert = UIAlertController(title: "パスワードが一致しません", message: "パスワードを確認してください", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
+    }
     
-
+    
     override func viewDidLoad() {
         design()
         super.viewDidLoad()
@@ -28,9 +53,9 @@ class AccountViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
-      
-        
-
+    
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if auth.currentUser != nil {
@@ -47,14 +72,14 @@ class AccountViewController: UIViewController {
             })
         }
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextViewController = segue.destination as? ViewController{
             let user = sender as! User
             nextViewController.me = AppUser(data: ["userID": user.uid])
         }
     }
-
+    
     @IBAction func registerAccount() {
         let email = emailTextField.text!
         let password = passwordTextField.text!
@@ -71,18 +96,21 @@ class AccountViewController: UIViewController {
                 print("error occured")
                 print(error)
             }
-        } 
+        }
     }
     
     func design() {
         emailTextField.layer.cornerRadius = 24
         passwordTextField.layer.cornerRadius = 24
-        GoButton.layer.cornerRadius = 24
+        password2TextField.layer.cornerRadius = 24
         emailTextField.clipsToBounds = true
         passwordTextField.clipsToBounds = true
+        password2TextField.clipsToBounds = true
+        GoButton.layer.cornerRadius = 24
         GoButton.clipsToBounds = true
+        
     }
-
+    
     
 }
 

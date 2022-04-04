@@ -2,7 +2,7 @@ import UIKit
 import HealthKit
 import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITextFieldDelegate {
     
     var me: AppUser!
     
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         if let user = Auth.auth().currentUser {
             let dataStore = Firestore.firestore()
                     dataStore.collection("weight").addDocument(data: [
-                        "text": weight,
+                        "weight": weight,
                         "name": user.displayName,
                         "sender_id": UUID(),
                         "date": Date()
@@ -91,13 +91,19 @@ class ViewController: UIViewController {
         }
         myHealthStore.execute(query)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            // キーボードを閉じる
+            titleTextField.resignFirstResponder()
+            return true
+        }
 }
 
-extension ViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ titleTextField: UITextField) -> Bool {
-        guard let weightText = titleTextField.text else { return true}
-        saveWeight(weight: Double(weightText)!)
-        print(weightText)
-        return true
-    }
-}
+//extension ViewController: UITextFieldDelegate {
+//    func textFieldShouldReturn(_ titleTextField: UITextField) -> Bool {
+//        guard let weightText = titleTextField.text else { return true}
+//        saveWeight(weight: Double(weightText)!)
+//        print(weightText)
+//        return true
+//    }
+//}
