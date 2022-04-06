@@ -4,15 +4,33 @@ import Firebase
 
 class ViewController: UIViewController,UITextFieldDelegate {
     
-    var me: AppUser!
+    var me: User!
+    var auth: Auth!
+   
     
     @IBOutlet var titleTextField: UITextField!
-    @IBOutlet var label: UILabel!
+    @IBOutlet var loginLabel: UILabel!
+
+    @IBAction func addButton() {
+        saveWeight(weight: 40)
+    }
+    
     @IBAction func SettingButton() {
         
     }
-
     
+    @IBAction func logoutButton() {
+            let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+        
+        appear()
+        
+    }
+
     let db = Firestore.firestore()
     
     var myHealthStore = HKHealthStore()
@@ -25,9 +43,13 @@ class ViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
+        auth = Auth.auth()
+        
         let types = Set([typeOfBodyMass])
         let healthStore = HKHealthStore()
         healthStore.requestAuthorization(toShare: types, read: types, completion: { success, error in
@@ -43,16 +65,14 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
     }
     
-    let saveData: UserDefaults = UserDefaults.standard
+//    let saveData: UserDefaults = UserDefaults.standard
 
-    
+    // データの保存.
     func saveWeight(weight: Double) {
         
-        let weight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
-        
-        let WeightData = HKQuantitySample(type: typeOfBodyMass, quantity: weight, start: Date(), end: Date())
-        
-        // データの保存.
+        let quantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
+        let WeightData = HKQuantitySample(type: typeOfBodyMass, quantity: quantity, start: Date(), end: Date())
+    
         self.myHealthStore.save(WeightData, withCompletion: {
             (success: Bool, error: Error!) in
             if success {
@@ -61,27 +81,30 @@ class ViewController: UIViewController,UITextFieldDelegate {
                 print("error")
             }
         })
-        if let user = Auth.auth().currentUser {
-            let dataStore = Firestore.firestore()
-                    dataStore.collection("weight").addDocument(data: [
-                        "weight": weight,
-                        "name": user.displayName,
-                        "sender_id": UUID(),
-                        "date": Date()
-                    ]) { err in
-                        DispatchQueue.main.async {
-                            if let err = err {
-                                print("Error writing document: \(err)")
-                            } else {
-                              return
-                            }
-                        }
-                    }
-        }
         
+    
+        
+//        if Auth.auth().currentUser != nil {
+//            let dataStore = Firestore.firestore()
+//            dataStore.collection("UserData/\(me.uid)/weightData").addDocument(data: [
+//                        "weight": weight,
+//                        "sender_id": UUID().uuidString,
+//                        "date": Date()
+//                    ]) { err in
+//                        DispatchQueue.main.async {
+//                            if let err = err {
+//                                print("Error writing document: \(err)")
+//                            } else {
+//                              return
+//                            }
+//                        }
+//                    }
+//        }
+
         
     }
     
+    //データを取得
     func read() {
         let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: 1, sortDescriptors: nil) { (query, results, error) in
             if let results = results as? [HKQuantitySample] {
@@ -91,18 +114,42 @@ class ViewController: UIViewController,UITextFieldDelegate {
         myHealthStore.execute(query)
     }
     
+    // キーボードを閉じる
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            // キーボードを閉じる
             titleTextField.resignFirstResponder()
             return true
         }
-}
+    
+    func appear() {
+        if auth.currentUser != nil {
+            auth.currentUser?.reload(completion: { [self] error in
+                if error == nil {
+                    if self.auth.currentUser?.isEmailVerified == true {
+                        return //login ok
+                        loginLabel.text = "ログイン中"
+                    } else {
+                        //メール認証がまだ
+                        if self.auth.currentUser?.isEmailVerified == false {
+                               let alert = UIAlertController(title: "確認用メールを送信しているので確認をお願いします。", message: "まだメール認証が完了していません。", preferredStyle: .alert)
+                               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                               self.present(alert, animated: true, completion: nil)
+                           }
+                    }
+                }
+            })
+        } else {
+           //user情報なし。ログインにとばす
+               //self.auth.currentUser?.isEmailVerified == true
+               //self.performSegue(withIdentifier: "toCreateAccount", sender: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                    showDetailViewController(secondVC, sender: self)
+        }
+    }
 
-//extension ViewController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ titleTextField: UITextField) -> Bool {
-//        guard let weightText = titleTextField.text else { return true}
-//        saveWeight(weight: Double(weightText)!)
-//        print(weightText)
-//        return true
-//    }
-//}
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        appear()
+    }
+}
