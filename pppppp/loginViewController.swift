@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
                 } else {
                     print("パスワードかメールアドレスが間違っています")
                     let alert = UIAlertController(title: "メールアドレスかパスワードが間違っています", message: "確認してください", preferredStyle: .alert)
-                    
+
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         self.dismiss(animated: true, completion: nil)
                     }
@@ -63,4 +63,5 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
 }

@@ -27,7 +27,9 @@ class ViewController: UIViewController,UITextFieldDelegate {
             print("Error signing out: %@", signOutError)
         }
         
-        appear()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                showDetailViewController(secondVC, sender: self)
         
     }
 
@@ -43,7 +45,34 @@ class ViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if auth.currentUser != nil {
+            auth.currentUser?.reload(completion: { [self] error in
+                if error == nil {
+                    if self.auth.currentUser?.isEmailVerified == true {
+                        return //login ok
+                        loginLabel.text = "ログイン中"
+                    } else {
+                        //メール認証がまだ
+                        if self.auth.currentUser?.isEmailVerified == false {
+                               let alert = UIAlertController(title: "確認用メールを送信しているので確認をお願いします。", message: "まだメール認証が完了していません。", preferredStyle: .alert)
+                               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                               self.present(alert, animated: true, completion: nil)
+                           }
+                    }
+                }
+            })
+        } else {
+           //user情報なし。ログインにとばす
+               //self.auth.currentUser?.isEmailVerified == true
+               //self.performSegue(withIdentifier: "toCreateAccount", sender: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                    showDetailViewController(secondVC, sender: self)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,9 +176,5 @@ class ViewController: UIViewController,UITextFieldDelegate {
         }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        appear()
-    }
+    
 }
