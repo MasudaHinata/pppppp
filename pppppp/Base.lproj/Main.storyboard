@@ -127,7 +127,7 @@
                             <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="tap10UnaryCalls:" destination="C6X-Qw-bEO" id="aH7-NR-Xrn"/>
+                                <action selector="SettingButton" destination="C6X-Qw-bEO" id="0l2-4r-bAn"/>
                                 <segue destination="Vye-k5-sAg" kind="presentation" id="TY5-fx-J8M"/>
                             </connections>
                         </barButtonItem>
