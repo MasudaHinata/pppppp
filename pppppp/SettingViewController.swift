@@ -18,10 +18,15 @@ class SettingViewController: UIViewController {
     
     @IBAction func deleteAccount() {
         Auth.auth().currentUser?.delete {  (error) in
+
             if error != nil {
             // An error happened.
           } else {
             // Account deleted.
+              let alert = UIAlertController(title: "アカウントを削除しました", message: "アカウントを削除しました", preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+              self.present(alert, animated: true, completion: nil)
+              
               self.performSegue(withIdentifier: "toBack", sender: nil)
           }
         }

@@ -9,6 +9,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var label: UILabel!
     var auth: Auth!
     
+    
     @IBOutlet var emailTextField: UITextField! {
         didSet {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 255, green: 255, blue: 255, alpha: 0.5)])
@@ -47,18 +48,15 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] authResult, error in
           guard let self = self else { return }
             
-            if error != nil {
+        if error != nil {
                 if self.auth.currentUser?.isEmailVerified == true {
                     print("あってる！！！")
                     self.performSegue(withIdentifier: "toTimeline", sender: self.auth.currentUser!)
                 } else {
                     print("パスワードかメールアドレスが間違っています")
-                    let alert = UIAlertController(title: "メールアドレスかパスワードが間違っています", message: "確認してください", preferredStyle: .alert)
-
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    alert.addAction(ok)
+                    let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています", message: "パスワードかメールアドレスを確認してください。", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }

@@ -248,7 +248,6 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="GooButton" destination="JTg-Ot-WFO" eventType="touchUpInside" id="XAk-x9-15r"/>
                                     <action selector="registerAccount" destination="JTg-Ot-WFO" eventType="touchUpInside" id="vML-U6-8Jx"/>
                                 </connections>
                             </button>

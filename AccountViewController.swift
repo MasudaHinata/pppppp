@@ -65,31 +65,6 @@ class AccountViewController: UIViewController {
         
         
     }
-    
-    
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        if auth.currentUser != nil {
-//            auth.currentUser?.reload(completion: { error in
-//                 if self.auth.currentUser?.isEmailVerified == false {
-//                        let alert = UIAlertController(title: "確認用メールを送信しているので確認をお願いします。", message: "まだメール認証が完了していません。", preferredStyle: .alert)
-//                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//                        self.present(alert, animated: true, completion: nil)
-//                    }
-//            })
-//        }
-//    }
-    
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toTimeline" {
-//            let user = self.auth.currentUser
-//            let nextViewController = segue.destination as! ViewController
-//            nextViewController.me = user
-//        }
-//    }
-    
     @IBAction func registerAccount() {
         let email = emailTextField.text!
         let password = passwordTextField.text!
@@ -120,6 +95,32 @@ class AccountViewController: UIViewController {
         GoButton.clipsToBounds = true
     }
     
+    
+    
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        if auth.currentUser != nil {
+//            auth.currentUser?.reload(completion: { error in
+//                 if self.auth.currentUser?.isEmailVerified == false {
+//                        let alert = UIAlertController(title: "確認用メールを送信しているので確認をお願いします。", message: "まだメール認証が完了していません。", preferredStyle: .alert)
+//                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                        self.present(alert, animated: true, completion: nil)
+//                    }
+//            })
+//        }
+//    }
+    
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toTimeline" {
+//            let user = self.auth.currentUser
+//            let nextViewController = segue.destination as! ViewController
+//            nextViewController.me = user
+//        }
+//    }
+    
+   
 }
 
 

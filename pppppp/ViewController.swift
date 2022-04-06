@@ -10,7 +10,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var loginLabel: UILabel!
-
+    
     @IBAction func addButton() {
         saveWeight(weight: 40)
     }
