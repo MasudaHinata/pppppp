@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class AccountViewController: UIViewController {
+class AccountViewController: UIViewController ,UITextFieldDelegate {
     
     var auth: Auth!
 
@@ -28,6 +28,7 @@ class AccountViewController: UIViewController {
     @IBOutlet var GoButton: UIButton!
     @IBAction func GooButton() {
         
+//        passwordconfirm
         if passwordTextField.text == password2TextField.text {
             registerAccount()
         };if passwordTextField.text == "" {
@@ -47,7 +48,7 @@ class AccountViewController: UIViewController {
         }
     }
     
-    
+//    ログインできてるかどうか
     @IBAction func button() {
         if auth.currentUser == nil {
             label.text = "ログインしてない"
@@ -60,11 +61,11 @@ class AccountViewController: UIViewController {
         design()
         super.viewDidLoad()
         auth = Auth.auth()
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        
-        
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.password2TextField.delegate = self
     }
+    
     @IBAction func registerAccount() {
         let email = emailTextField.text!
         let password = passwordTextField.text!
@@ -120,14 +121,11 @@ class AccountViewController: UIViewController {
 //        }
 //    }
     
-   
-}
-
-
-// デリゲートメソッドは可読性のためextensionで分けて記述します。
-extension AccountViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        password2TextField.resignFirstResponder()
+            return true
     }
+   
 }

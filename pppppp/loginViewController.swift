@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var createAcoountButton: UIButton!
     @IBOutlet var goButton: UIButton!
@@ -29,10 +29,15 @@ class LoginViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         design()
         auth = Auth.auth()
+        
+        self.emailTextField?.delegate = self
+        self.passwordTextField?.delegate = self
     }
     
     func design() {
@@ -48,19 +53,24 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] authResult, error in
           guard let self = self else { return }
             
-        if error != nil {
+//        if error != nil {
                 if self.auth.currentUser?.isEmailVerified == true {
                     print("あってる！！！")
                     self.performSegue(withIdentifier: "toTimeline", sender: self.auth.currentUser!)
                 } else {
                     print("パスワードかメールアドレスが間違っています")
-                    let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています", message: "パスワードかメールアドレスを確認してください。", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています。", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
-                    
                 }
-            }
+//            }
         }
     }
     
+    
+    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+            return true
+    }
 }

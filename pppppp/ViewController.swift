@@ -10,7 +10,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     let db = Firestore.firestore()
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
-    var bodyMass: Double = 0 {
+    var bodyMass: Double! {
         didSet {
             DispatchQueue.main.async {
                 self.titleTextField.text = String(self.bodyMass)
@@ -24,7 +24,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
 //    体重を追加する
     @IBAction func addButton() {
-        saveWeight(weight: 80)
+        saveWeight(weight: bodyMass)
     }
     
 //    設定画面に飛ぶ
@@ -114,25 +114,25 @@ class ViewController: UIViewController,UITextFieldDelegate {
         })
         
     
-//
-//        if Auth.auth().currentUser != nil {
-//            let dataStore = Firestore.firestore()
-//            let db = Firestore.firestore()
-//            db.collection("UserData")
-//                        .document("UUID()")
-//                        .collection("weightData") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
-//                        .document("weightData()")
-//                        .setData([
-//                weight: "quantity",
-//            ]) { err in
-//                if let err = err {
-//                    print("Error writing document: \(err)")
-//                } else {
-//                    print("Document successfully written!")
-//                }
-//            }
-//
-//        }
+
+        if Auth.auth().currentUser != nil {
+            let dataStore = Firestore.firestore()
+            let db = Firestore.firestore()
+            db.collection("UserData")
+                        .document("UUID()")
+                        .collection("weightData") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
+                        .document("weightData()")
+                        .setData([
+                            "weight": "weight",
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+
+        }
     }
     //データを取得
     func read() {

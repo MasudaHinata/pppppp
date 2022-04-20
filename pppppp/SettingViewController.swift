@@ -16,6 +16,8 @@ class SettingViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+//    アカウントを削除する
     @IBAction func deleteAccount() {
         Auth.auth().currentUser?.delete {  (error) in
 
