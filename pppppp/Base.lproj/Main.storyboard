@@ -250,8 +250,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="GooButton" destination="JTg-Ot-WFO" eventType="touchUpInside" id="47s-ia-I62"/>
-                                    <action selector="registerAccount" destination="JTg-Ot-WFO" eventType="touchUpInside" id="vML-U6-8Jx"/>
+                                    <action selector="GooButton" destination="JTg-Ot-WFO" eventType="touchUpInside" id="H4a-sv-FeR"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wee-Ky-fyl">
@@ -276,6 +275,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="LoginButton" destination="JTg-Ot-WFO" eventType="touchUpInside" id="dCL-te-r87"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" alpha="0.50999999046325684" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MT6-Ls-qrT">
                                 <rect key="frame" x="43.5" y="400" width="327" height="48"/>
@@ -325,7 +327,6 @@
                     <navigationItem key="navigationItem" id="wkL-lD-7rR"/>
                     <connections>
                         <outlet property="GoButton" destination="Nbd-wP-U6k" id="GoI-Ar-jbl"/>
-                        <outlet property="LoginButton" destination="WdF-kl-5fh" id="NeL-PR-AtH"/>
                         <outlet property="emailTextField" destination="IZv-1V-XVC" id="BZ9-7a-Kaj"/>
                         <outlet property="label" destination="Pau-xT-MIC" id="m9h-eC-QMv"/>
                         <outlet property="password2TextField" destination="VQ6-H4-IZf" id="2Yf-wc-QR3"/>
@@ -337,7 +338,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ruc-I1-phu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2136" y="642"/>
+            <point key="canvasLocation" x="-1465" y="814"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="NN8-k3-hRP">
@@ -402,7 +403,7 @@
                                     <color key="titleColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="JTg-Ot-WFO" kind="presentation" modalPresentationStyle="fullScreen" id="CiU-be-7cY"/>
+                                    <action selector="createAcoountButton" destination="Vc7-tl-j7N" eventType="touchUpInside" id="4lH-5R-eXi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="685-6T-dUY">
@@ -439,18 +440,18 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="createAcoountButton" destination="Hum-JV-3Bc" id="gSD-oQ-676"/>
                         <outlet property="emailTextField" destination="OPc-6w-uNu" id="APC-l2-hCv"/>
                         <outlet property="goButton" destination="rpp-2C-UAa" id="SZ0-N6-gKY"/>
                         <outlet property="label" destination="Fo3-Ce-PjA" id="ls1-eh-Td7"/>
                         <outlet property="loginLabel" destination="Deh-rw-zcP" id="caJ-PF-ubh"/>
                         <outlet property="passwordTextField" destination="WaZ-TG-ZSF" id="PO7-fE-xad"/>
                         <segue destination="Bgd-UE-uNF" kind="presentation" identifier="toTimeline" modalPresentationStyle="fullScreen" id="4ek-KI-Hda"/>
+                        <segue destination="JTg-Ot-WFO" kind="presentation" identifier="toCreate" id="zmi-Ef-Nip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AxD-Fj-GTE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2532" y="-110"/>
+            <point key="canvasLocation" x="-2280" y="-25"/>
         </scene>
         <!--Goal View Controller-->
         <scene sceneID="Tjd-xu-yfL">
@@ -570,9 +571,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="21m-Ha-mYO"/>
         <segue reference="4ek-KI-Hda"/>
-        <segue reference="CiU-be-7cY"/>
+        <segue reference="zmi-Ef-Nip"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>

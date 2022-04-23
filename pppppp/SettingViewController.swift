@@ -30,8 +30,16 @@ class SettingViewController: UIViewController {
                   
                   let delete = UIAlertAction(title: "削除", style: .default, handler: { (action) -> Void in
                       Auth.auth().currentUser?.delete()
-                      self.performSegue(withIdentifier: "toAccountCreate", sender: nil)
                       print("アカウントを削除しました")
+                      
+                      let alert2 = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました",     preferredStyle: .alert)
+                      let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                      self.dismiss(animated: true, completion: nil)
+                      }
+                      alert2.addAction(ok)
+                      self.present(alert2, animated: true, completion: nil)
+                      
+                      self.performSegue(withIdentifier: "toAccountCreate", sender: nil)
                   })
                   
                   let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
@@ -42,7 +50,6 @@ class SettingViewController: UIViewController {
                   alert.addAction(cancel)
                   
                   self.present(alert, animated: true, completion: nil)
-              
     }
 //        }
 //    }

@@ -23,14 +23,17 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     }
     
     @IBOutlet var welcomeLabel: UILabel!
-    @IBOutlet var LoginButton: UIButton!
     @IBOutlet var label: UILabel!
     @IBOutlet var GoButton: UIButton!
+    
+    @IBAction func LoginButton () {
+        self.performSegue(withIdentifier: "toLogin", sender: nil)
+    }
+    
     @IBAction func GooButton() {
-        
+
 //        passwordconfirm
         if passwordTextField.text == password2TextField.text {
-            self.performSegue(withIdentifier: "toLogin", sender: nil)
             registerAccount()
         };if passwordTextField.text == "" {
             print("パスワードが入力されていない")
@@ -68,9 +71,10 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         self.password2TextField.delegate = self
     }
     
-    @IBAction func registerAccount() {
+    func registerAccount() {
         let email = emailTextField.text!
         let password = passwordTextField.text!
+    
         auth.createUser(withEmail: email, password: password) { (result, error) in
             if error == nil, let result = result {
                 result.user.sendEmailVerification(completion: { (error) in

@@ -3,12 +3,14 @@ import Firebase
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var createAcoountButton: UIButton!
     @IBOutlet var goButton: UIButton!
     @IBOutlet var loginLabel: UILabel!
     @IBOutlet var label: UILabel!
     var auth: Auth!
     
+    @IBAction func createAcoountButton () {
+        self.performSegue(withIdentifier: "toCreate", sender: nil)
+    }
     
     @IBOutlet var emailTextField: UITextField! {
         didSet {
