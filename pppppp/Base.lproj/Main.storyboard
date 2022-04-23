@@ -200,7 +200,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="JTg-Ot-WFO" kind="presentation" identifier="toBack" id="CVe-CW-7gY"/>
+                        <segue destination="JTg-Ot-WFO" kind="presentation" identifier="toAccountCreate" id="CVe-CW-7gY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBg-nX-cPc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -250,6 +250,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="GooButton" destination="JTg-Ot-WFO" eventType="touchUpInside" id="47s-ia-I62"/>
                                     <action selector="registerAccount" destination="JTg-Ot-WFO" eventType="touchUpInside" id="vML-U6-8Jx"/>
                                 </connections>
                             </button>
@@ -275,9 +276,6 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="Vc7-tl-j7N" kind="presentation" identifier="" modalPresentationStyle="fullScreen" id="uYA-oz-Hri"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" alpha="0.50999999046325684" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MT6-Ls-qrT">
                                 <rect key="frame" x="43.5" y="400" width="327" height="48"/>
@@ -334,6 +332,7 @@
                         <outlet property="passwordTextField" destination="MT6-Ls-qrT" id="BDe-Ee-x9n"/>
                         <outlet property="welcomeLabel" destination="wee-Ky-fyl" id="Nhk-n3-TB3"/>
                         <segue destination="jmk-ej-WXg" kind="presentation" identifier="toGoal" id="O38-xz-bfu"/>
+                        <segue destination="Vc7-tl-j7N" kind="presentation" identifier="toLogin" modalPresentationStyle="fullScreen" id="21m-Ha-mYO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ruc-I1-phu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -390,7 +389,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
                             <button opaque="NO" alpha="0.64999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hum-JV-3Bc">
                                 <rect key="frame" x="110" y="503" width="194" height="41"/>
@@ -571,6 +570,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="21m-Ha-mYO"/>
         <segue reference="4ek-KI-Hda"/>
         <segue reference="CiU-be-7cY"/>
     </inferredMetricsTieBreakers>

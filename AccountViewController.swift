@@ -30,9 +30,11 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         
 //        passwordconfirm
         if passwordTextField.text == password2TextField.text {
+            self.performSegue(withIdentifier: "toLogin", sender: nil)
             registerAccount()
         };if passwordTextField.text == "" {
-            let alert = UIAlertController(title: "パスワードを入力してください", message: "パスワードを確認してください", preferredStyle: .alert)
+            print("パスワードが入力されていない")
+            let alert = UIAlertController(title: "パスワードが入力されていません", message: "パスワードを入力してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)
             }
@@ -76,6 +78,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
                         let alert = UIAlertController(title: "仮登録を行いました。", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
+                        self.performSegue(withIdentifier: "toLogin", sender: nil)
                     }
                 })
             } else {

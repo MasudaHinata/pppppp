@@ -19,7 +19,7 @@ class SettingViewController: UIViewController {
     
 //    アカウントを削除する
     @IBAction func deleteAccount() {
-        Auth.auth().currentUser?.delete {  (error) in
+//        Auth.auth().currentUser?.delete {  (error) in
 
 //            if error != nil {
 //                print("An error happened.")
@@ -29,13 +29,13 @@ class SettingViewController: UIViewController {
               let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
                   
                   let delete = UIAlertAction(title: "削除", style: .default, handler: { (action) -> Void in
-                      (error != nil) != true
+                      Auth.auth().currentUser?.delete()
+                      self.performSegue(withIdentifier: "toAccountCreate", sender: nil)
                       print("アカウントを削除しました")
                   })
                   
                   let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
                       print("キャンセル")
-                      (error != nil) == true
                   })
                   
                   alert.addAction(delete)
@@ -43,9 +43,9 @@ class SettingViewController: UIViewController {
                   
                   self.present(alert, animated: true, completion: nil)
               
-          }
-//        }
     }
+//        }
+//    }
     
     
     
