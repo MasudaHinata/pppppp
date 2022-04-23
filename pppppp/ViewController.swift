@@ -10,21 +10,23 @@ class ViewController: UIViewController,UITextFieldDelegate {
     let db = Firestore.firestore()
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
-    var bodyMass: Double! {
+    var weight: Double! {
         didSet {
             DispatchQueue.main.async {
-                self.titleTextField.text = String(self.bodyMass)
+                self.titleTextField.text = String(self.weight)
             }
         }
     }
     
+    
+
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var loginLabel: UILabel!
     
 //    体重を追加する
     @IBAction func addButton() {
-        saveWeight(weight: bodyMass)
+        saveWeight(weight: )
     }
     
 //    設定画面に飛ぶ
@@ -32,20 +34,6 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
     }
     
-////    ログアウトする
-//    @IBAction func logoutButton() {
-//            let firebaseAuth = Auth.auth()
-//        do {
-//            try firebaseAuth.signOut()
-//        } catch let signOutError as NSError {
-//            print("Error signing out: %@", signOutError)
-//        }
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-//                showDetailViewController(secondVC, sender: self)
-//    }
-//
-//    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -88,7 +76,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
             print(error)
         })
         
-        titleTextField?.delegate = self
+        self.titleTextField?.delegate = self
         read()
 
         //label.text = saveData.string(forKey: "key")
@@ -98,47 +86,48 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
 //    let saveData: UserDefaults = UserDefaults.standard
 
-    // データの保存.
+    // firebaseにデータの保存.
     func saveWeight(weight: Double) {
-        
+
         let quantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
         let WeightData = HKQuantitySample(type: typeOfBodyMass, quantity: quantity, start: Date(), end: Date())
-    
+
         self.myHealthStore.save(WeightData, withCompletion: {
             (success: Bool, error: Error!) in
             if success {
-                NSLog("Success!")
+                NSLog("成功!")
             } else {
-                print("error")
+                print("失敗、エラー")
             }
         })
         
     
 
-        if Auth.auth().currentUser != nil {
-            let dataStore = Firestore.firestore()
-            let db = Firestore.firestore()
-            db.collection("UserData")
-                        .document("UUID()")
-                        .collection("weightData") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
-                        .document("weightData()")
-                        .setData([
-                            "weight": "weight",
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                }
-            }
-
-        }
+//        if Auth.auth().currentUser != nil {
+//            let dataStore = Firestore.firestore()
+//            let db = Firestore.firestore()
+//            db.collection("UserData")
+//                        .document("UUID()")
+//                        .collection("weightData") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
+//                        .document("weightData()")
+//                        .setData([
+//                            "weight": "weight",
+//            ]) { err in
+//                if let err = err {
+//                    print("Error writing document: \(err)")
+//                } else {
+//                    print("Document successfully written!")
+//                }
+//            }
+//
+//        }
     }
+    
     //データを取得
     func read() {
         let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: 1, sortDescriptors: nil) { (query, results, error) in
-            if let results = results as? [HKQuantitySample] {
-                print(results)
+            if results is [HKQuantitySample] {
+                print("データを取得しました")
             }
         }
         myHealthStore.execute(query)

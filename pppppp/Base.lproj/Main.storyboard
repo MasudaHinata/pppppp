@@ -169,18 +169,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXn-5e-6JZ">
-                                <rect key="frame" x="142" y="532" width="118" height="152"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemPinkColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="deleteAccount">
-                                    <color key="baseForegroundColor" systemColor="systemPinkColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="deleteAccount" destination="Vye-k5-sAg" eventType="touchUpInside" id="5Pa-1f-uTC"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDL-uK-uDI">
                                 <rect key="frame" x="148" y="532" width="107" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -189,6 +177,18 @@
                                 <buttonConfiguration key="configuration" style="plain" title="logout"/>
                                 <connections>
                                     <action selector="logoutButton" destination="Vye-k5-sAg" eventType="touchUpInside" id="DEU-NM-2FS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXn-5e-6JZ">
+                                <rect key="frame" x="77" y="558" width="260" height="152"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemPinkColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="deleteAccount">
+                                    <color key="baseForegroundColor" systemColor="systemPinkColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="deleteAccount" destination="Vye-k5-sAg" eventType="touchUpInside" id="5Pa-1f-uTC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -521,7 +521,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Nkd-Bg-xls"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="AHh-SN-Iu0">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="largeTitleTextAttributes">
@@ -539,7 +539,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4ek-KI-Hda"/>
+        <segue reference="hQl-kJ-alt"/>
         <segue reference="CVe-CW-7gY"/>
     </inferredMetricsTieBreakers>
     <resources>
