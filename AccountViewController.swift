@@ -23,7 +23,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     }
     
     @IBOutlet var welcomeLabel: UILabel!
-    @IBOutlet var label: UILabel!
     @IBOutlet var GoButton: UIButton!
     
     @IBAction func LoginButton () {
@@ -52,16 +51,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             present(alert, animated: true, completion: nil)
         }
     }
-    
-//    ログインできてるかどうか
-    @IBAction func button() {
-        if auth.currentUser == nil {
-            label.text = "ログインしてない"
-        }else{
-            label.text = "ログイン中"
-        }
-    }
-    
+        
     override func viewDidLoad() {
         design()
         super.viewDidLoad()

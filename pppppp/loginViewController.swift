@@ -5,7 +5,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var goButton: UIButton!
     @IBOutlet var loginLabel: UILabel!
-    @IBOutlet var label: UILabel!
     var auth: Auth!
     
     @IBAction func createAcoountButton () {
@@ -22,15 +21,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         }
     }
-    
-    @IBAction func button() {
-        if auth.currentUser == nil {
-            label.text = "ログインしてない"
-        }else {
-            label.text = "ログイン中"
-        }
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +49,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 if self.auth.currentUser?.isEmailVerified == true {
                     print("あってる！！！")
                     self.performSegue(withIdentifier: "toTimeline", sender: self.auth.currentUser!)
-                } else {
+                };if self.auth.currentUser?.isEmailVerified == nil {
+                    print("アカウントが見つかりません")
+                    let alert = UIAlertController(title: "アカウントが見つかりません。", message: "パスワードを確認してください", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }else {
                     print("パスワードかメールアドレスが間違っています")
                     let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています。", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

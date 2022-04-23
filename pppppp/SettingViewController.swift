@@ -16,7 +16,19 @@ class SettingViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
+    //    ログアウトする
+        @IBAction func logoutButton() {
+                let firebaseAuth = Auth.auth()
+            do {
+                try firebaseAuth.signOut()
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+            }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                    showDetailViewController(secondVC, sender: self)
+        }
+
 //    アカウントを削除する
     @IBAction func deleteAccount() {
 //        Auth.auth().currentUser?.delete {  (error) in
