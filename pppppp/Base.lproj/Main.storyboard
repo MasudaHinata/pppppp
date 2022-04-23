@@ -14,11 +14,11 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="C6X-Qw-bEO" customClass="ViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ia-4m-9zf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-IK-WaW">
-                                <rect key="frame" x="0.0" y="628" width="414" height="214"/>
+                                <rect key="frame" x="0.0" y="682" width="414" height="214"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u5l-7p-7bM">
                                         <rect key="frame" x="20" y="97" width="265" height="87"/>
@@ -187,7 +187,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="deleteAccount" destination="Vye-k5-sAg" eventType="touchUpInside" id="5Pa-1f-uTC"/>
-                                    <segue destination="JTg-Ot-WFO" kind="presentation" identifier="toBack" id="ChK-Wd-PT1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -200,6 +199,9 @@
                             <constraint firstItem="3cV-h1-TUd" firstAttribute="leading" secondItem="9Ja-eE-xFc" secondAttribute="leading" constant="36" id="R2s-kS-Vtw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="JTg-Ot-WFO" kind="presentation" identifier="toBack" id="CVe-CW-7gY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBg-nX-cPc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -222,7 +224,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" alpha="0.50999999046325684" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your EmailAddress" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VQ6-H4-IZf">
                                 <rect key="frame" x="43.5" y="327" width="327" height="48"/>
@@ -233,7 +235,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nbd-wP-U6k">
                                 <rect key="frame" x="43.5" y="473" width="327" height="54"/>
@@ -286,7 +288,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pau-xT-MIC">
                                 <rect key="frame" x="176" y="93" width="218" height="21"/>
@@ -377,7 +379,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   Enter your EmailAddress" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OPc-6w-uNu">
                                 <rect key="frame" x="43.5" y="278" width="327" height="48"/>
@@ -388,7 +390,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                             </textField>
                             <button opaque="NO" alpha="0.64999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hum-JV-3Bc">
                                 <rect key="frame" x="110" y="503" width="194" height="41"/>
@@ -444,7 +446,7 @@
                         <outlet property="label" destination="Fo3-Ce-PjA" id="ls1-eh-Td7"/>
                         <outlet property="loginLabel" destination="Deh-rw-zcP" id="caJ-PF-ubh"/>
                         <outlet property="passwordTextField" destination="WaZ-TG-ZSF" id="PO7-fE-xad"/>
-                        <segue destination="Bgd-UE-uNF" kind="presentation" identifier="toTimeline" id="4ek-KI-Hda"/>
+                        <segue destination="Bgd-UE-uNF" kind="presentation" identifier="toTimeline" modalPresentationStyle="fullScreen" id="4ek-KI-Hda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AxD-Fj-GTE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -551,7 +553,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Nkd-Bg-xls"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="AHh-SN-Iu0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="largeTitleTextAttributes">
@@ -569,7 +571,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uYA-oz-Hri"/>
         <segue reference="4ek-KI-Hda"/>
         <segue reference="CiU-be-7cY"/>
     </inferredMetricsTieBreakers>
