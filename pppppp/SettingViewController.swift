@@ -21,24 +21,21 @@ class SettingViewController: UIViewController {
     @IBAction func deleteAccount() {
         Auth.auth().currentUser?.delete {  (error) in
 
-            if error != nil {
-                print("An error happened.")
-          } else {
-                print("Account deleted.")
-//              let alert = UIAlertController(title: "アカウントを削除しました", message: "アカウントを削除しました", preferredStyle: .alert)
-//              alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//              self.present(alert, animated: true, completion: nil)
+//            if error != nil {
+//                print("An error happened.")
+//          } else {
+//                print("Account deleted.")
 //
-//              self.performSegue(withIdentifier: "toBack", sender: nil)
-              
               let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
                   
                   let delete = UIAlertAction(title: "削除", style: .default, handler: { (action) -> Void in
+                      (error != nil) != true
                       print("アカウントを削除しました")
                   })
                   
                   let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
                       print("キャンセル")
+                      (error != nil) == true
                   })
                   
                   alert.addAction(delete)
@@ -47,25 +44,13 @@ class SettingViewController: UIViewController {
                   self.present(alert, animated: true, completion: nil)
               
           }
-        }
+//        }
     }
     
     
     
     
-//    let alert = UIAlertController(title: "タイトル", message: "メッセージ", preferredStyle: .alert)
-//    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-//        self.dismiss(animated: true, completion: nil)
-//    }
-//    //ここから追加
-//    let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (acrion) in
-//        self.dismiss(animated: true, completion: nil)
-//    }
-//    alert.addAction(cancel)
-//    //ここまで追加
-//    alert.addAction(ok)
-//    present(alert, animated: true, completion: nil)
-    
+//    self.performSegue(withIdentifier: "toBack", sender: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
