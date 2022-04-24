@@ -26,7 +26,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
 //    体重を追加する
     @IBAction func addButton() {
-        saveWeight(weight: )
+        saveWeight(weight: Double(self.titleTextField.text)!)
     }
     
 //    設定画面に飛ぶ
@@ -97,7 +97,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
             if success {
                 NSLog("成功!")
             } else {
-                print("失敗、エラー")
+                print("失敗")
             }
         })
         
