@@ -31,19 +31,19 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     
     @IBAction func GooButton() {
         
-        if self.isValidEmail(self.emailTextField.text!){
-            // メールアドレスが正しく入力された場合
-            registerAccount()
-        } else {
-            // メールアドレスが正しく入力されなかった場合
-            print("メールアドレスの形式が間違っています")
-            let alert = UIAlertController(title: "メールアドレスの形式が間違っています", message: "メールアドレスを確認してください", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-//                self.dismiss(animated: true, completion: nil)
-            }
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
-        }
+//        if self.isValidEmail(self.emailTextField.text!){
+//            // メールアドレスが正しく入力された場合
+//            registerAccount()
+//        } else {
+//            // メールアドレスが正しく入力されなかった場合
+//            print("メールアドレスの形式が間違っています")
+//            let alert = UIAlertController(title: "メールアドレスの形式が間違っています", message: "メールアドレスを確認してください", preferredStyle: .alert)
+//            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+////                self.dismiss(animated: true, completion: nil)
+//            }
+//            alert.addAction(ok)
+//            present(alert, animated: true, completion: nil)
+//        }
 
 //        passwordconfirm
         if passwordTextField.text == password2TextField.text {
@@ -63,7 +63,20 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             }
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
+        }else if self.isValidEmail(self.emailTextField.text!){
+            // メールアドレスが正しく入力された場合
+            registerAccount()
+        } else {
+            // メールアドレスが正しく入力されなかった場合
+            print("メールアドレスの形式が間違っています")
+            let alert = UIAlertController(title: "メールアドレスの形式が間違っています", message: "メールアドレスを確認してください", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//                self.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
         }
+
     }
         
     override func viewDidLoad() {
