@@ -10,14 +10,15 @@ class ViewController: UIViewController,UITextFieldDelegate {
     let db = Firestore.firestore()
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
-    var weight: Double! {
-        didSet {
-            DispatchQueue.main.async {
-                self.titleTextField.text = String(self.weight)
-            }
-        }
-    }
-    
+    var weight: Double!
+//    {
+//        didSet {
+//            DispatchQueue.main.async {
+//                self.titleTextField.text = String(self.weight)
+//            }
+//        }
+//    }
+
     
 
     
@@ -26,7 +27,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
 //    体重を追加する
     @IBAction func addButton() {
-        saveWeight(weight: Double(self.titleTextField.text)!)
+//        saveWeight(weight: Double(titleTextField.text ?? weight)!)
     }
     
 //    設定画面に飛ぶ
@@ -78,7 +79,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
         self.titleTextField?.delegate = self
         read()
-
+        
         //label.text = saveData.string(forKey: "key")
 
         

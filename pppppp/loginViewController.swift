@@ -6,14 +6,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var goButton: UIButton!
     @IBOutlet var loginLabel: UILabel!
     var auth: Auth!
-    
-    @IBAction func createAcoountButton () {
-        self.performSegue(withIdentifier: "toCreate", sender: nil)
-    }
-    
+        
     @IBOutlet var emailTextField: UITextField! {
         didSet {
-            emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 255, green: 255, blue: 255, alpha: 0.5)])
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         }
     }
     @IBOutlet var passwordTextField: UITextField! {

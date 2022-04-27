@@ -12,31 +12,52 @@ class SettingViewController: UIViewController {
     var auth: Auth!
     let user = Auth.auth().currentUser
     
-    @IBAction func back() {
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func back() {
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
     //    ログアウトする
-        @IBAction func logoutButton() {
-                let firebaseAuth = Auth.auth()
-            do {
-                let alert3 = UIAlertController(title: "ログアウトしました", message: "ログアウトしました",        preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.dismiss(animated: true, completion: nil)
-                }
-                alert3.addAction(ok)
-                self.present(alert3, animated: true, completion: nil)
-            
-                try firebaseAuth.signOut()
-            } catch let signOutError as NSError {
-                print("Error signing out: %@", signOutError)
-            }
-            
+    @IBAction func logoutButton() {
+            let firebaseAuth = Auth.auth()
+        do {
+            let alert3 = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
                 
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                    showDetailViewController(secondVC, sender: self)
+                let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { (action) -> Void in
+                    Auth.auth().currentUser?.delete()
+                    print("ログアウトしました")
+                    
+                    let alert4 = UIAlertController(title: "ログアウトしました", message: "ありがとうございました",     preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.dismiss(animated: true, completion: nil)
+                    }
+                    alert4.addAction(ok)
+                    self.present(alert4, animated: true, completion: nil)
+                    
+                    self.performSegue(withIdentifier: "toAccountCreate", sender: nil)
+                })
+                
+                let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+                    print("キャンセル")
+                })
+                
+                alert3.addAction(delete)
+                alert3.addAction(cancel)
+                
+                self.present(alert3, animated: true, completion: nil)
+        
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
         }
+        
+            
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                showDetailViewController(secondVC, sender: self)
+    }
+    
+    
+    
 
 //    アカウントを削除する
     @IBAction func deleteAccount() {

@@ -30,6 +30,20 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     }
     
     @IBAction func GooButton() {
+        
+        if self.isValidEmail(self.emailTextField.text!){
+            // メールアドレスが正しく入力された場合
+            registerAccount()
+        } else {
+            // メールアドレスが正しく入力されなかった場合
+            print("メールアドレスの形式が間違っています")
+            let alert = UIAlertController(title: "メールアドレスの形式が間違っています", message: "メールアドレスを確認してください", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//                self.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
 
 //        passwordconfirm
         if passwordTextField.text == password2TextField.text {
@@ -38,14 +52,14 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             print("パスワードが入力されていない")
             let alert = UIAlertController(title: "パスワードが入力されていません", message: "パスワードを入力してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
+//                self.dismiss(animated: true, completion: nil)
             }
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
-        };if passwordTextField.text != password2TextField.text {
+        }else if passwordTextField.text != password2TextField.text {
             let alert = UIAlertController(title: "パスワードが一致しません", message: "パスワードを確認してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
+//                self.dismiss(animated: true, completion: nil)
             }
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
@@ -93,7 +107,12 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         GoButton.clipsToBounds = true
     }
     
-    
+    func isValidEmail(_ string: String) -> Bool {
+            let emailRegEx = "[A-Z0-9a-z._+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+            let result = emailTest.evaluate(with: string)
+            return result
+     }
     
     
 //    override func viewDidAppear(_ animated: Bool) {
