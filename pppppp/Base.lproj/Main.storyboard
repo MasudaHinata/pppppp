@@ -58,7 +58,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="addButton" destination="C6X-Qw-bEO" eventType="touchUpInside" id="NRi-3E-5Ol"/>
+                                            <action selector="addButtonPressed" destination="C6X-Qw-bEO" eventType="touchUpInside" id="Cd5-px-lba"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Current Weight here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sU-GS-os8">
@@ -118,7 +118,6 @@
                             <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="SettingButton" destination="C6X-Qw-bEO" id="0l2-4r-bAn"/>
                                 <segue destination="Mbw-yo-Nq6" kind="presentation" id="TY5-fx-J8M"/>
                             </connections>
                         </barButtonItem>
@@ -130,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="518.84057971014499" y="-25.446428571428569"/>
+            <point key="canvasLocation" x="26" y="-25"/>
         </scene>
         <!--Settings-->
         <scene sceneID="U9G-Ko-Kd7">
@@ -173,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBg-nX-cPc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2205.7971014492755" y="-25.446428571428569"/>
+            <point key="canvasLocation" x="1522" y="-25"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="hqQ-Hn-Rgy">
@@ -289,7 +288,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ruc-I1-phu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2251" y="716"/>
+            <point key="canvasLocation" x="-2174" y="-25"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="NN8-k3-hRP">
@@ -368,7 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AxD-Fj-GTE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2280" y="-25"/>
+            <point key="canvasLocation" x="-2897" y="-25"/>
         </scene>
         <!--Goal View Controller-->
         <scene sceneID="Tjd-xu-yfL">
@@ -483,7 +482,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFg-BV-JmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-391.304347826087" y="-25.446428571428569"/>
+            <point key="canvasLocation" x="-694" y="-25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GrR-oR-vlr">
@@ -510,7 +509,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb0-4X-IKf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1295.6521739130435" y="-25.446428571428569"/>
+            <point key="canvasLocation" x="783" y="-25"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
