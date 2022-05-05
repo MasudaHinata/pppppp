@@ -1,88 +1,81 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "abseil",
-        "repositoryURL": "https://github.com/firebase/abseil-cpp.git",
-        "state": {
-          "branch": null,
-          "revision": "d30bd7751ce343a05fca6413de0dec062163e5e9",
-          "version": null
-        }
-      },
-      {
-        "package": "BoringSSL-GRPC",
-        "repositoryURL": "https://github.com/firebase/boringssl.git",
-        "state": {
-          "branch": null,
-          "revision": "897ffb6fbb5a5ea149216d664ce8b04d77e3df22",
-          "version": null
-        }
-      },
-      {
-        "package": "Firebase",
-        "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
-        "state": {
-          "branch": "6.32-spm-beta",
-          "revision": "f25eda58236c2408302bf0f981ac59e951264cea",
-          "version": null
-        }
-      },
-      {
-        "package": "gRPC",
-        "repositoryURL": "https://github.com/firebase/grpc.git",
-        "state": {
-          "branch": null,
-          "revision": "cae939a8823bbc39912aa2990cf95e29ace381b3",
-          "version": null
-        }
-      },
-      {
-        "package": "GTMSessionFetcher",
-        "repositoryURL": "https://github.com/google/gtm-session-fetcher.git",
-        "state": {
-          "branch": null,
-          "revision": "91ed3d188eb95705fef3c249453b81f32dc557d1",
-          "version": "1.5.0"
-        }
-      },
-      {
-        "package": "KeychainAccess",
-        "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess/",
-        "state": {
-          "branch": null,
-          "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
-          "version": "4.2.2"
-        }
-      },
-      {
-        "package": "leveldb",
-        "repositoryURL": "https://github.com/firebase/leveldb.git",
-        "state": {
-          "branch": null,
-          "revision": "3f046978ecffd57ea6eb9a0897cc8a3b45b44df8",
-          "version": null
-        }
-      },
-      {
-        "package": "nanopb",
-        "repositoryURL": "https://github.com/nanopb/nanopb.git",
-        "state": {
-          "branch": null,
-          "revision": "3cfa21200eea012d8765239ad4c50d8a36c283f1",
-          "version": null
-        }
-      },
-      {
-        "package": "Promises",
-        "repositoryURL": "https://github.com/google/promises.git",
-        "state": {
-          "branch": null,
-          "revision": "afa9a1ace74e116848d4f743599ab83e584ff8cb",
-          "version": "1.2.12"
-        }
+  "pins" : [
+    {
+      "identity" : "abseil-cpp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/firebase/abseil-cpp.git",
+      "state" : {
+        "revision" : "d30bd7751ce343a05fca6413de0dec062163e5e9"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "boringssl",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/firebase/boringssl.git",
+      "state" : {
+        "revision" : "897ffb6fbb5a5ea149216d664ce8b04d77e3df22"
+      }
+    },
+    {
+      "identity" : "firebase-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/firebase/firebase-ios-sdk.git",
+      "state" : {
+        "branch" : "6.32-spm-beta",
+        "revision" : "f25eda58236c2408302bf0f981ac59e951264cea"
+      }
+    },
+    {
+      "identity" : "grpc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/firebase/grpc.git",
+      "state" : {
+        "revision" : "cae939a8823bbc39912aa2990cf95e29ace381b3"
+      }
+    },
+    {
+      "identity" : "gtm-session-fetcher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/gtm-session-fetcher.git",
+      "state" : {
+        "revision" : "91ed3d188eb95705fef3c249453b81f32dc557d1",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "keychainaccess",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishikawakatsumi/KeychainAccess/",
+      "state" : {
+        "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
+        "version" : "4.2.2"
+      }
+    },
+    {
+      "identity" : "leveldb",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/firebase/leveldb.git",
+      "state" : {
+        "revision" : "3f046978ecffd57ea6eb9a0897cc8a3b45b44df8"
+      }
+    },
+    {
+      "identity" : "nanopb",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nanopb/nanopb.git",
+      "state" : {
+        "revision" : "3cfa21200eea012d8765239ad4c50d8a36c283f1"
+      }
+    },
+    {
+      "identity" : "promises",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/promises.git",
+      "state" : {
+        "revision" : "afa9a1ace74e116848d4f743599ab83e584ff8cb",
+        "version" : "1.2.12"
+      }
+    }
+  ],
+  "version" : 2
 }

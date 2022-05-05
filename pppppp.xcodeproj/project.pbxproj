@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88EB26B1918B005517D5 /* LoginViewController.swift */; };
 		9CAA892B26BAA0EE005517D5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 9CAA892A26BAA0EE005517D5 /* KeychainAccess */; };
+		9CEB8D442823793B00C56E75 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 9CEB8D432823793B00C56E75 /* AppIcon.appiconset */; };
 		9CF0089827D8C5430072F6EC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0089727D8C5430072F6EC /* SettingViewController.swift */; };
 		BE0878EC26551BC2007CA984 /* post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878EB26551BC2007CA984 /* post.swift */; };
 		BE0BF72725B5C734005646AE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D12588CCF5004DC436 /* HealthKit.framework */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		9CAA88EB26B1918B005517D5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9CEB8D432823793B00C56E75 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppIcon.appiconset; path = ../../../../AppIcon.appiconset; sourceTree = "<group>"; };
 		9CF0089727D8C5430072F6EC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		BE0878EB26551BC2007CA984 /* post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
 		BE2F95D12588CCF5004DC436 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -126,6 +128,7 @@
 				9CAA88EB26B1918B005517D5 /* LoginViewController.swift */,
 				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
+				9CEB8D432823793B00C56E75 /* AppIcon.appiconset */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
 				BE7F33892580D0810027620D /* Info.plist */,
@@ -214,6 +217,7 @@
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
 				BEA64AED25D3EC040064F184 /* GoogleService-Info.plist in Resources */,
 				BE7F33852580D0810027620D /* Assets.xcassets in Resources */,
+				9CEB8D442823793B00C56E75 /* AppIcon.appiconset in Resources */,
 				BE7F33832580D07E0027620D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

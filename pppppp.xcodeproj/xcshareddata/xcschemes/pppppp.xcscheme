@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BE7F33772580D07E0027620D"
-               BuildableName = "pppppp.app"
+               BuildableName = "Sanitas.app"
                BlueprintName = "pppppp"
                ReferencedContainer = "container:pppppp.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BE7F33772580D07E0027620D"
-            BuildableName = "pppppp.app"
+            BuildableName = "Sanitas.app"
             BlueprintName = "pppppp"
             ReferencedContainer = "container:pppppp.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BE7F33772580D07E0027620D"
-            BuildableName = "pppppp.app"
+            BuildableName = "Sanitas.app"
             BlueprintName = "pppppp"
             ReferencedContainer = "container:pppppp.xcodeproj">
          </BuildableReference>

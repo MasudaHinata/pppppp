@@ -26,14 +26,15 @@ class SettingViewController: UIViewController {
                     Auth.auth().currentUser?.delete()
                     print("ログアウトしました")
                     
-                    let alert4 = UIAlertController(title: "ログアウトしました", message: "ありがとうございました",     preferredStyle: .alert)
+                    let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました",     preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                     self.dismiss(animated: true, completion: nil)
                     }
-                    alert4.addAction(ok)
-                    self.present(alert4, animated: true, completion: nil)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
                     
                     self.performSegue(withIdentifier: "toAccountCreate", sender: nil)
+                
                 })
                 
                 let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in

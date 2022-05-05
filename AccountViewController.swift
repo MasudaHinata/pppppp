@@ -45,10 +45,27 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
 //            present(alert, animated: true, completion: nil)
 //        }
 
-//        passwordconfirm
+        if self.isValidEmail(self.emailTextField.text!){
+            // メールアドレスが正しく入力された場合
+            register()
+        } else {
+            // メールアドレスが正しく入力されなかった場合
+            print("メールアドレスの形式が間違っています")
+            let alert = UIAlertController(title: "メールアドレスの形式が間違っています", message: "メールアドレスを確認してください", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//                self.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
+        
+
+    }
+    
+    func register () {
         if passwordTextField.text == password2TextField.text {
             registerAccount()
-        };if passwordTextField.text == "" {
+        }else if passwordTextField.text == "" {
             print("パスワードが入力されていない")
             let alert = UIAlertController(title: "パスワードが入力されていません", message: "パスワードを入力してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -63,21 +80,12 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             }
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
-        }else if self.isValidEmail(self.emailTextField.text!){
-            // メールアドレスが正しく入力された場合
-            registerAccount()
-        } else {
-            // メールアドレスが正しく入力されなかった場合
-            print("メールアドレスの形式が間違っています")
-            let alert = UIAlertController(title: "メールアドレスの形式が間違っています", message: "メールアドレスを確認してください", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-//                self.dismiss(animated: true, completion: nil)
-            }
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
         }
 
     }
+    
+    
+    
         
     override func viewDidLoad() {
         design()
