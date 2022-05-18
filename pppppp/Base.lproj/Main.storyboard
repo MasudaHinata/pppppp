@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bgd-UE-uNF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,7 +12,7 @@
         <!--Dashboard-->
         <scene sceneID="Le5-1j-13Q">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="C6X-Qw-bEO" customClass="ViewController" customModule="Sanitas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="C6X-Qw-bEO" customClass="ViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ia-4m-9zf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,7 +133,7 @@
         <!--Settings-->
         <scene sceneID="U9G-Ko-Kd7">
             <objects>
-                <viewController storyboardIdentifier="Setting" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vye-k5-sAg" customClass="SettingViewController" customModule="Sanitas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Setting" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vye-k5-sAg" customClass="SettingViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tei-wQ-LUf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -166,6 +165,9 @@
                         <color key="backgroundColor" red="0.062745101750000004" green="0.0039215688589999999" blue="0.28627452250000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="always" id="jLO-ek-4TD"/>
+                    <connections>
+                        <segue destination="JTg-Ot-WFO" kind="presentation" identifier="toAccountCreate" id="SwX-ME-uZD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBg-nX-cPc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -174,7 +176,7 @@
         <!--Account View Controller-->
         <scene sceneID="hqQ-Hn-Rgy">
             <objects>
-                <viewController storyboardIdentifier="AccountViewController" modalPresentationStyle="fullScreen" id="JTg-Ot-WFO" customClass="AccountViewController" customModule="Sanitas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountViewController" modalPresentationStyle="fullScreen" id="JTg-Ot-WFO" customClass="AccountViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9zj-VF-8ti">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -290,7 +292,7 @@
         <!--Login View Controller-->
         <scene sceneID="NN8-k3-hRP">
             <objects>
-                <viewController id="Vc7-tl-j7N" customClass="LoginViewController" customModule="Sanitas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vc7-tl-j7N" customClass="LoginViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0AS-tW-eyr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -369,7 +371,7 @@
         <!--Goal View Controller-->
         <scene sceneID="Tjd-xu-yfL">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="jmk-ej-WXg" customClass="GoalViewController" customModule="Sanitas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="jmk-ej-WXg" customClass="GoalViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eYv-4h-1kM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -502,7 +504,6 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="Vye-k5-sAg" kind="relationship" relationship="rootViewController" id="dq7-mL-V0n"/>
-                        <segue destination="JTg-Ot-WFO" kind="presentation" identifier="toAccountCreate" modalPresentationStyle="fullScreen" id="K7F-4r-VWR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eb0-4X-IKf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -511,7 +512,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4ek-KI-Hda"/>
+        <segue reference="E4O-dy-8UO"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>

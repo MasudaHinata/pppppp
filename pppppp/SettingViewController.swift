@@ -27,13 +27,13 @@ class SettingViewController: UIViewController {
                     print("ログアウトしました")
                     
                     let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました",     preferredStyle: .alert)
+                    self.performSegue(withIdentifier: "toAccountCreate", sender: nil)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.dismiss(animated: true, completion: nil)
                     }
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
                     
-                    self.performSegue(withIdentifier: "toAccountCreate", sender: nil)
+                   
                 
                 })
                 
