@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C1A900C283506D5004B4100 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A900B283506D5004B4100 /* FriendListViewController.swift */; };
 		9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88EB26B1918B005517D5 /* LoginViewController.swift */; };
 		9CAA892B26BAA0EE005517D5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 9CAA892A26BAA0EE005517D5 /* KeychainAccess */; };
 		9CEB8D442823793B00C56E75 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 9CEB8D432823793B00C56E75 /* AppIcon.appiconset */; };
@@ -36,10 +37,11 @@
 		BEA64B0925D3F1A60064F184 /* FirebaseStorageSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BEA64B0825D3F1A60064F184 /* FirebaseStorageSwift */; };
 		BEA64B0B25D3F1A60064F184 /* GoogleUtilities_UserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = BEA64B0A25D3F1A60064F184 /* GoogleUtilities_UserDefaults */; };
 		BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB7283A265E613C0004C9BD /* AccountViewController.swift */; };
-		BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */; };
+		BEBCC6E626679D8E0081FC61 /* ProfilelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCC6E526679D8E0081FC61 /* ProfilelViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C1A900B283506D5004B4100 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		9CAA88EB26B1918B005517D5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9CEB8D432823793B00C56E75 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppIcon.appiconset; path = ../../../../AppIcon.appiconset; sourceTree = "<group>"; };
 		9CF0089727D8C5430072F6EC /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -57,7 +59,7 @@
 		BE92D6C125C17AF000228B3C /* pppppp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pppppp.entitlements; sourceTree = "<group>"; };
 		BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BEB7283A265E613C0004C9BD /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountViewController.swift; path = ../AccountViewController.swift; sourceTree = "<group>"; };
-		BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
+		BEBCC6E526679D8E0081FC61 /* ProfilelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilelViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,11 +122,12 @@
 				BE92D6C125C17AF000228B3C /* pppppp.entitlements */,
 				BE7F337B2580D07E0027620D /* AppDelegate.swift */,
 				BE7F33812580D07E0027620D /* Main.storyboard */,
+				9C1A900B283506D5004B4100 /* FriendListViewController.swift */,
 				9CF0089727D8C5430072F6EC /* SettingViewController.swift */,
 				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				BE7F337F2580D07E0027620D /* ViewController.swift */,
-				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
+				BEBCC6E526679D8E0081FC61 /* ProfilelViewController.swift */,
 				9CAA88EB26B1918B005517D5 /* LoginViewController.swift */,
 				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
@@ -231,10 +234,11 @@
 			files = (
 				BE7F33802580D07E0027620D /* ViewController.swift in Sources */,
 				BE0878EC26551BC2007CA984 /* post.swift in Sources */,
+				9C1A900C283506D5004B4100 /* FriendListViewController.swift in Sources */,
 				BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */,
 				9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */,
 				9CF0089827D8C5430072F6EC /* SettingViewController.swift in Sources */,
-				BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */,
+				BEBCC6E626679D8E0081FC61 /* ProfilelViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
 			);
