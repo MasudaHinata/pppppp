@@ -7,10 +7,13 @@
 
 import UIKit
 import Firebase
+import FirebaseDynamicLinks
+
 
 class FriendListViewController: UIViewController {
 
     @IBOutlet var textField: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +23,13 @@ class FriendListViewController: UIViewController {
     
     
     
+    
     @IBAction func addFriend() {
     
         var friendId: String!
         friendId = textField.text
+        
+
         
         if let currentUser = Auth.auth().currentUser {
             let db = Firestore.firestore()
@@ -44,18 +50,4 @@ class FriendListViewController: UIViewController {
         
     }
     
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

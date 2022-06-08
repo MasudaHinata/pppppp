@@ -1,5 +1,7 @@
 import UIKit
 import Firebase
+import FirebaseDynamicLinks
+      
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
