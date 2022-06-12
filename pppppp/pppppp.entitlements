@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>https://sanitas.dev</string>
+		<string>applinks:sanitas.dev</string>
 	</array>
 	<key>com.apple.developer.healthkit</key>
 	<true/>

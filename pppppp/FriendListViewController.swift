@@ -13,6 +13,14 @@ import FirebaseDynamicLinks
 class FriendListViewController: UIViewController {
 
     @IBOutlet var textField: UITextField!
+    @IBOutlet var label: UILabel!
+    @IBAction func checkButton() {
+        
+    }
+    
+    @IBAction func rejectButton() {
+        
+    }
     
     
     override func viewDidLoad() {
@@ -49,5 +57,7 @@ class FriendListViewController: UIViewController {
         }
         
     }
+    
+    
     
 }
