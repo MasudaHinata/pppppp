@@ -13,18 +13,14 @@ import FirebaseDynamicLinks
 class FriendListViewController: UIViewController {
 
     @IBOutlet var textField: UITextField!
-    @IBOutlet var label: UILabel!
-    @IBAction func checkButton() {
-        
-    }
-    
-    @IBAction func rejectButton() {
-        
-    }
-    
-    
+   
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userID = Auth.auth().currentUser!.uid
+        print(userID)
+        print("ユーザーIDを取得しました")
 
         // Do any additional setup after loading the view.
     }

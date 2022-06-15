@@ -6,9 +6,11 @@ import FirebaseDynamicLinks
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
         let db = Firestore.firestore()
+        FirebaseApp.configure()
         return true
     }
     
@@ -29,5 +31,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 
+    let userID = Auth.auth().currentUser!.uid
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let query = url.query {
+            
+            
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "profile")
+            self.window?.makeKeyAndVisible()
+        }
+        return true
+    }
+    
+    
+    
+    
+    
 }
 

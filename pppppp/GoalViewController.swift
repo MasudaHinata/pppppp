@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class ProfileViewController: UIViewController {
+class GoalViewController: UIViewController {
     
     @IBOutlet var goalTextField: UITextField!
     @IBOutlet var goButton: UIButton!
