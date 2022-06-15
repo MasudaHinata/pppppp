@@ -164,13 +164,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtR-6C-FUP">
-                                <rect key="frame" x="170" y="491" width="75" height="35"/>
+                                <rect key="frame" x="170" y="577" width="75" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
                                     <action selector="Button" destination="JpV-aJ-uMr" eventType="touchUpInside" id="KjI-yd-d8i"/>
-                                    <segue destination="9k2-Xi-rtU" kind="presentation" id="qlR-l3-rNJ"/>
+                                    <segue destination="9k2-Xi-rtU" kind="presentation" id="rZE-Gx-egB"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -180,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOQ-FS-X6v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-935" y="678"/>
+            <point key="canvasLocation" x="893" y="678"/>
         </scene>
         <!--Friend List View Controller-->
         <scene sceneID="e2P-sf-bnW">
@@ -250,6 +250,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz7-VA-54e">
+                                <rect key="frame" x="183" y="357" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="pressedButton" destination="9k2-Xi-rtU" eventType="touchUpInside" id="o6J-fQ-VYk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X3F-JQ-TXk"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -624,7 +633,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="E4O-dy-8UO"/>
-        <segue reference="qlR-l3-rNJ"/>
+        <segue reference="rZE-Gx-egB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="114"/>

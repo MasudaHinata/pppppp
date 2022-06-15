@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController {
     @IBAction func Button(){
         
     }
-    
+    var recievedID: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
