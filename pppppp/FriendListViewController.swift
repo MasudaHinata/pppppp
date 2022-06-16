@@ -24,22 +24,18 @@ class FriendListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         print(userID)
-        shareUrlString = "sanitas-ios-dev://?id=\(userID)"
-
         print("ユーザーIDを取得しました")
+        shareUrlString = "sanitas-ios-dev://?id=\(userID)"
         
-        // Do any additional setup after loading the view.
     }
     
-    
     func showShareSheet() {
-       let shareImage = UIImage(named: "logo")!
-       let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
-       let activityVC = UIActivityViewController(activityItems: [shareImage], applicationActivities: nil)
-       present(activityVC, animated: true, completion: nil)
-   }
+        let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
+        let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
+        present(activityVC, animated: true, completion: nil)
+        print("リンクをシェアします")
+    }
     
     @IBAction func addFriend() {
         

@@ -6,7 +6,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var goButton: UIButton!
     @IBOutlet var loginLabel: UILabel!
     var auth: Auth!
-        
+    
     @IBOutlet var emailTextField: UITextField! {
         didSet {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
@@ -20,7 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         design()
         auth = Auth.auth()
         
@@ -36,27 +36,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         goButton.layer.cornerRadius = 24
         goButton.clipsToBounds = true
     }
-   
+    
     @IBAction func goButtonPressed() {
         Auth.auth().signIn(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] authResult, error in
-          guard let self = self else { return }
+            guard let self = self else { return }
             
-//        if error != nil {
-                if self.auth.currentUser?.isEmailVerified == true {
-                    print("あってる！！！")
-                    self.performSegue(withIdentifier: "toTimeline", sender: self.auth.currentUser!)
-                };if self.auth.currentUser?.isEmailVerified == nil {
-                    print("アカウントが見つかりません")
-                    let alert = UIAlertController(title: "アカウントが見つかりません。", message: "パスワードを確認してください", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }else {
-                    print("パスワードかメールアドレスが間違っています")
-                    let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています。", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-//            }
+            //        if error != nil {
+            if self.auth.currentUser?.isEmailVerified == true {
+                print("あってる！！！")
+                self.performSegue(withIdentifier: "toTimeline", sender: self.auth.currentUser!)
+            };if self.auth.currentUser?.isEmailVerified == nil {
+                print("アカウントが見つかりません")
+                let alert = UIAlertController(title: "アカウントが見つかりません。", message: "パスワードを確認してください", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }else {
+                print("パスワードかメールアドレスが間違っています")
+                let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています。", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            //            }
         }
     }
     
@@ -64,6 +64,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-            return true
+        return true
     }
 }

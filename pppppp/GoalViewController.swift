@@ -15,10 +15,10 @@ class GoalViewController: UIViewController {
     
     
     let saveData: UserDefaults = Foundation.UserDefaults.standard
-
-   override func viewDidLoad() {
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
-       design()
+        design()
     }
     
     func design() {
@@ -27,14 +27,14 @@ class GoalViewController: UIViewController {
         goalTextField.clipsToBounds = true
         goButton.clipsToBounds = true
     }
-
-
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         saveData.set(goalTextField.text, forKey: "key")
     }
-
+    
     @IBAction func okButtonPressed() {
         performSegue(withIdentifier: "toTimeline", sender: nil)
     }
-
+    
 }

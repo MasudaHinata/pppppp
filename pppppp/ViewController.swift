@@ -14,6 +14,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var loginLabel: UILabel!
+    @IBAction func addButtonPressed() {
+        guard let inputWeightText = titleTextField.text else { return }
+        guard let inputWeight = Double(inputWeightText) else { return }
+        saveWeight(weight: inputWeight)
+        print("体重を保存しました")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +44,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             auth.currentUser?.reload(completion: { [self] error in
                 if error == nil {
                     if self.auth.currentUser?.isEmailVerified == true {
-                        return //login ok
                         loginLabel.text = "ログイン中"
+                        return //login ok
                     } else {
                         //メール認証がまだ
                         if self.auth.currentUser?.isEmailVerified == false {
@@ -103,17 +109,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         myHealthStore.execute(query)
     }
     
-    @IBAction func addButtonPressed() {
-        guard let inputWeightText = titleTextField.text else { return }
-        guard let inputWeight = Double(inputWeightText) else { return }
-        saveWeight(weight: inputWeight)
+    func textFieldShouldReturn(_ titleTextField: UITextField) -> Bool {
+        titleTextField.resignFirstResponder()
+        return true
     }
+    
 }
 
-//extension ViewController: UITextFieldDelegate {
-//    // キーボードを閉じる
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
-//}
