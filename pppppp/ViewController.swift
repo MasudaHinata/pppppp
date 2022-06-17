@@ -10,6 +10,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let db = Firestore.firestore()
     
     @IBOutlet var loginLabel: UILabel!
+    @IBAction func friendsButton() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "FriendListViewController")
+        self.showDetailViewController(secondVC, sender: self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

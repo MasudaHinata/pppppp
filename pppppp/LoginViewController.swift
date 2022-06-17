@@ -40,11 +40,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func goButtonPressed() {
         Auth.auth().signIn(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] authResult, error in
             guard let self = self else { return }
-            
-            //        if error != nil {
-            if self.auth.currentUser?.isEmailVerified == true {
+                
+                if self.auth.currentUser?.isEmailVerified == true {
                 print("あってる！！！")
-                self.performSegue(withIdentifier: "toTimeline", sender: self.auth.currentUser!)
+                
+                //遷移
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
+                self.showDetailViewController(secondVC, sender: self)
+                
             };if self.auth.currentUser?.isEmailVerified == nil {
                 print("アカウントが見つかりません")
                 let alert = UIAlertController(title: "アカウントが見つかりません。", message: "パスワードを確認してください", preferredStyle: .alert)
