@@ -29,22 +29,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if let query = url.query {
-            
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            
-            let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "profile") as? ProfileViewController
-            vc?.recievedID = query
-            self.window?.rootViewController = vc
-            self.window?.makeKeyAndVisible()
-        }
-        return true
-    }
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        if let query = url.query {
+//
+////            self.window = UIWindow(frame: UIScreen.main.bounds)
+////            let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "profile") as? ProfileViewController
+////            vc?.recievedID = query
+////            self.window?.rootViewController = vc
+////            self.window?.makeKeyAndVisible()
+////
+//
+//
+////            print("呼ばれたよ")
+////            self.window?.rootViewController = ProfileViewController()
+//        }
+//        return true
+//    }
+//
     
-    
-    
-    
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//
+//
+//           //遷移させたいViewControllerが格納されているStoryBoardファイルを指定
+//        let MainStoryboard: UIStoryboard = UIStoryboard(name: "profile", bundle: nil)
+//        let resultVC: ProfileViewController = MainStoryboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+//        self.window?.rootViewController = resultVC
+//
+//        self.window?.makeKeyAndVisible()
+//        return true
+//    }
+
     
 }
 

@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63n-pl-KmS">
-                                <rect key="frame" x="301" y="249" width="81" height="37"/>
+                                <rect key="frame" x="194" y="186" width="81" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="" cornerStyle="capsule">
@@ -50,7 +50,7 @@
                                 </items>
                             </tabBar>
                             <view alpha="0.75" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-IK-WaW">
-                                <rect key="frame" x="0.0" y="633" width="414" height="214"/>
+                                <rect key="frame" x="0.0" y="546" width="414" height="214"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u5l-7p-7bM">
                                         <rect key="frame" x="20" y="97" width="265" height="87"/>
@@ -157,13 +157,13 @@
         <!--Profile View Controller-->
         <scene sceneID="KPq-9t-VNS">
             <objects>
-                <viewController storyboardIdentifier="profile" id="JpV-aJ-uMr" customClass="ProfileViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JpV-aJ-uMr" customClass="ProfileViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kpu-B1-lft">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtR-6C-FUP">
-                                <rect key="frame" x="170" y="577" width="75" height="35"/>
+                                <rect key="frame" x="103" y="577" width="75" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
@@ -174,12 +174,12 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kUm-hU-jVe"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.070588238540000001" green="0.0039215688589999999" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOQ-FS-X6v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="893" y="678"/>
+            <point key="canvasLocation" x="806" y="678"/>
         </scene>
         <!--Friend List View Controller-->
         <scene sceneID="e2P-sf-bnW">
@@ -605,9 +605,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="114"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
