@@ -11,7 +11,6 @@ import Firebase
 
 class FriendListViewController: UIViewController {
     
-    @IBOutlet var textField: UITextField!
     @IBAction func pressedButton() {
         
         showShareSheet()
@@ -40,9 +39,6 @@ class FriendListViewController: UIViewController {
     @IBAction func addFriend() {
         
         var friendId: String!
-        friendId = textField.text
-        
-        
         
         if let currentUser = Auth.auth().currentUser {
             let db = Firestore.firestore()

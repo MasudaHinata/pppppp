@@ -53,9 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let MainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let resultVC: ProfileViewController = MainStoryboard.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
         self.window?.rootViewController = resultVC
-        
         self.window?.makeKeyAndVisible()
-        //        return true
         
     }
     
