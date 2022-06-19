@@ -13,7 +13,6 @@ class GoalViewController: UIViewController {
     @IBOutlet var goalTextField: UITextField!
     @IBOutlet var goButton: UIButton!
     
-    
     let saveData: UserDefaults = Foundation.UserDefaults.standard
     
     override func viewDidLoad() {
@@ -34,7 +33,9 @@ class GoalViewController: UIViewController {
     }
     
     @IBAction func okButtonPressed() {
-        performSegue(withIdentifier: "toTimeline", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
     
 }
