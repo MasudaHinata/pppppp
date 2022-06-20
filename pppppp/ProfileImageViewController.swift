@@ -14,9 +14,6 @@ class ProfileImageViewController: UIViewController,UIImagePickerControllerDelega
         
         hantei()
         
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let secondVC = storyboard.instantiateViewController(identifier: "GoalViewController")
-//        self.showDetailViewController(secondVC, sender: self)
     }
     
     @IBAction func uploadButton(_ sender: Any) {
@@ -54,7 +51,7 @@ class ProfileImageViewController: UIViewController,UIImagePickerControllerDelega
     
     func hantei() {
         if imageView == nil {
-//            ここ動いてない
+            //            ここ動いてない
             print("画像が選択されてない")
             let alert = UIAlertController(title: "パスワードが一致しません", message: "パスワードを確認してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
