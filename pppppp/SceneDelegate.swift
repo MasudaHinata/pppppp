@@ -49,11 +49,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        
+       
         //queryを取得
         if let url = URLContexts.first?.url{
-            print("query : \(url.query!)")
-            print("queryが取得されました")
+            let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+            if let queryValue = urlComponents?.queryItems?.first?.value {
+                print("クエリーーーーーーーーはーーーー\(queryValue)")
+                print("queryが取得されましたよん")
+            }
         }
         
         //遷移

@@ -20,7 +20,7 @@ class FriendListViewController: UIViewController {
         super.viewDidLoad()
         
         print(userID)
-        print("ユーザーIDを取得しました")
+        print("自分のユーザーIDを取得しました")
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
         
     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController {
     
@@ -15,16 +16,18 @@ class ProfileViewController: UIViewController {
         self.showDetailViewController(secondVC, sender: self)
     }
     
-//    var recievedID: String?
     
-  
+    
+    func recieveID() {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        print("query : \(url.query!)")
+        recieveID()
         
     }
     
     
-  
 }
