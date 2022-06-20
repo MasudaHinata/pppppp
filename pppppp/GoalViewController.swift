@@ -13,6 +13,7 @@ class GoalViewController: UIViewController {
     @IBOutlet var goalTextField: UITextField!
     @IBOutlet var goButton: UIButton!
     
+    
     let saveData: UserDefaults = Foundation.UserDefaults.standard
     
     override func viewDidLoad() {

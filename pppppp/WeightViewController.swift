@@ -22,7 +22,6 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
         guard let inputWeightText = weightTextField.text else { return }
         guard let inputWeight = Double(inputWeightText) else { return }
         saveWeight(weight: inputWeight)
-        print("体重を保存しました")
     }
     
     override func viewDidLoad() {
@@ -33,7 +32,7 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
         let healthStore = HKHealthStore()
         healthStore.requestAuthorization(toShare: types, read: types, completion: { success, error in
             print(success)
-            print(error)
+//            print(error)
         })
         self.weightTextField?.delegate = self
         read()

@@ -13,6 +13,8 @@
 		9C98901928509A7D00602D2C /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 9C98901828509A7D00602D2C /* AppIcon.appiconset */; };
 		9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88EB26B1918B005517D5 /* LoginViewController.swift */; };
 		9CAA892B26BAA0EE005517D5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 9CAA892A26BAA0EE005517D5 /* KeychainAccess */; };
+		9CDF759B285F555A00209FD0 /* ProfileNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF759A285F555A00209FD0 /* ProfileNameViewController.swift */; };
+		9CDF759D285F557000209FD0 /* ProfileImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF759C285F557000209FD0 /* ProfileImageViewController.swift */; };
 		BE0878EC26551BC2007CA984 /* post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878EB26551BC2007CA984 /* post.swift */; };
 		BE0BF72725B5C734005646AE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D12588CCF5004DC436 /* HealthKit.framework */; };
 		BE0BF72825B5C73A005646AE /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */; };
@@ -47,6 +49,8 @@
 		9C4F1C742859E6F500623C66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9C98901828509A7D00602D2C /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppIcon.appiconset; path = ../../../AppIcon.appiconset; sourceTree = "<group>"; };
 		9CAA88EB26B1918B005517D5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9CDF759A285F555A00209FD0 /* ProfileNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNameViewController.swift; sourceTree = "<group>"; };
+		9CDF759C285F557000209FD0 /* ProfileImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageViewController.swift; sourceTree = "<group>"; };
 		BE0878EB26551BC2007CA984 /* post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
 		BE2F95D12588CCF5004DC436 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
@@ -131,8 +135,10 @@
 				9C3A353F2859CEF100404AA6 /* WeightViewController.swift */,
 				BEB7283A265E613C0004C9BD /* AccountViewController.swift */,
 				9CAA88EB26B1918B005517D5 /* LoginViewController.swift */,
-				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
 				9C4F1C742859E6F500623C66 /* ProfileViewController.swift */,
+				9CDF759A285F555A00209FD0 /* ProfileNameViewController.swift */,
+				9CDF759C285F557000209FD0 /* ProfileImageViewController.swift */,
+				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
@@ -235,8 +241,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CDF759D285F557000209FD0 /* ProfileImageViewController.swift in Sources */,
 				BE7F33802580D07E0027620D /* ViewController.swift in Sources */,
 				BE0878EC26551BC2007CA984 /* post.swift in Sources */,
+				9CDF759B285F555A00209FD0 /* ProfileNameViewController.swift in Sources */,
 				9C1A900C283506D5004B4100 /* FriendListViewController.swift in Sources */,
 				BEB7283B265E613C0004C9BD /* AccountViewController.swift in Sources */,
 				9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */,

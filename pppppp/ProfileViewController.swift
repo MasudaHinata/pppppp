@@ -9,9 +9,13 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    @IBAction func Button(){
-        
+    @IBAction func backButton(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
+    
+    
     var recievedID: String?
     override func viewDidLoad() {
         super.viewDidLoad()

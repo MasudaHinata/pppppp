@@ -26,7 +26,9 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     @IBOutlet var GoButton: UIButton!
     
     @IBAction func LoginButton () {
-        self.performSegue(withIdentifier: "toLogin", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     @IBAction func GooButton() {
@@ -91,7 +93,10 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
                         let alert = UIAlertController(title: "仮登録を行いました。", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
-                        self.performSegue(withIdentifier: "toLogin", sender: nil)
+                        
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "ProfileNameViewController")
+                        self.showDetailViewController(secondVC, sender: self)
                     }
                 })
             } else {
