@@ -78,6 +78,9 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="follow"/>
+                                <connections>
+                                    <action selector="addFriend" destination="JpV-aJ-uMr" eventType="touchUpInside" id="eyK-M1-pML"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kUm-hU-jVe"/>

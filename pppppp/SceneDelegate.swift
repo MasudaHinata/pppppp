@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+//    let friendsQueryId: String = "\(queryValue)"
     
     
     
@@ -54,8 +55,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let url = URLContexts.first?.url{
             let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
             if let queryValue = urlComponents?.queryItems?.first?.value {
-                print("クエリーーーーーーーーはーーーー\(queryValue)")
-                print("queryが取得されましたよん")
+                print("クエリは\(queryValue)")
+                print("queryが取得されました")
             }
         }
         

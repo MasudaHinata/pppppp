@@ -1,5 +1,4 @@
 import UIKit
-import HealthKit
 import Firebase
 import SwiftUI
 

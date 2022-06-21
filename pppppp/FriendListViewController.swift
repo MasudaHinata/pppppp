@@ -39,28 +39,6 @@ class FriendListViewController: UIViewController {
         print("リンクをシェアします")
     }
     
-    @IBAction func addFriend() {
-        
-        var friendId: String!
-        
-        if let currentUser = Auth.auth().currentUser {
-            let db = Firestore.firestore()
-            db.collection("UserData")
-                .document(currentUser.uid)
-                .collection("friendsList")
-                .document("\(Date())") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
-                .setData([
-                    "friendId": String(friendId)
-                ]) { err in
-                    if let err = err {
-                        print("Error writing document: \(err)")
-                    } else {
-                        print("Document successfully written!")
-                    }
-                }
-        }
-    }
-    
     //    ログアウトする
     @IBAction func logoutButton() {
         let firebaseAuth = Auth.auth()

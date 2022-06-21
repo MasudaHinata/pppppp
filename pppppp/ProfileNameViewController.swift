@@ -10,10 +10,10 @@ import Firebase
 
 class ProfileNameViewController: UIViewController, UITextFieldDelegate {
     
-   
+    
     @IBOutlet var nameTextField: UITextField!
     @IBAction func nameButton() {
-
+        
         profileName = nameTextField.text!
         saveProfileName(profileName: profileName)
         

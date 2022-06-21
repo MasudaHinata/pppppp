@@ -34,9 +34,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
-	<string>healthkittttttttttttttttttttttttttttttttttttt</string>
+	<string>Healthcareに情報をかき込みます</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>HealthKitttttttttttttttttttttttttttttttttttt</string>
+	<string>Healthcareから情報を読み込みます</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
