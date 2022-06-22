@@ -18,11 +18,7 @@ class ProfileViewController: UIViewController {
         self.showDetailViewController(secondVC, sender: self)
     }
     
-    let friendId: String = "x8TAcesm4Yarre6ZTuOJX5Z81Ty2"
-    
-    func recieveID() {
-        
-    }
+    var friendId: String = "x8TAcesm4Yarre6ZTuOJX5Z81Ty2"
     
     @IBAction func addFriend() {
         
@@ -40,7 +36,7 @@ class ProfileViewController: UIViewController {
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
-                        print("fireStoreに保存したお")
+                        print("fireStoreに保存して友達を追加したよ")
                         let alert = UIAlertController(title: "友達を追加しました", message: "\(self.friendId)を友達追加しました", preferredStyle: .alert)
                         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         }
@@ -53,10 +49,5 @@ class ProfileViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        recieveID()
-        
     }
-    
-    
 }

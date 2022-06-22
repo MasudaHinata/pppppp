@@ -31,6 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 if error == nil {
                     if self.auth.currentUser?.isEmailVerified == true {
                         loginLabel.text = "ログイン中"
+                        print("ログインしています")
                         return //login ok
                     } else {
                         //メール認証がまだ
@@ -42,7 +43,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
             })
-        } else {
+        } else if auth.currentUser == nil{
+            print("ログインされてない！ログインしてください")
             //loginに飛ばす
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
