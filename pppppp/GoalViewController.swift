@@ -13,7 +13,8 @@ class GoalViewController: UIViewController {
     @IBOutlet var goalTextField: UITextField!
     @IBOutlet var goButton: UIButton!
     
-    let saveData: UserDefaults = Foundation.UserDefaults.standard
+    
+    //  let saveData: UserDefaults = Foundation.UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +29,9 @@ class GoalViewController: UIViewController {
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        saveData.set(goalTextField.text, forKey: "key")
-    }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        saveData.set(goalTextField.text, forKey: "key")
+    //    }
     
     @IBAction func okButtonPressed() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

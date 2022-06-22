@@ -41,7 +41,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         Auth.auth().signIn(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] authResult, error in
             guard let self = self else { return }
                 
-                if self.auth.currentUser?.isEmailVerified == true {
+            if self.auth.currentUser?.isEmailVerified == true {
                 print("あってる！！！")
                 
                 //遷移
@@ -60,7 +60,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-            //            }
         }
     }
     

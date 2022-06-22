@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+//    let friendsQueryId: String = "\(queryValue)"
+    
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -48,10 +50,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+       
+        var recievedId: String = ""
         
-        //        遷移させたいViewControllerが格納されているStoryBoardファイルを指定
+        //queryを取得
+        if let url = URLContexts.first?.url{
+            let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+            if let queryValue = urlComponents?.queryItems?.first?.value {
+                print("クエリは\(queryValue)")
+                recievedId = queryValue
+                print("queryが取得されました")
+            }
+        }
+        
+        //遷移
         let MainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let resultVC: ProfileViewController = MainStoryboard.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+        resultVC.friendId = recievedId
         self.window?.rootViewController = resultVC
         self.window?.makeKeyAndVisible()
         
