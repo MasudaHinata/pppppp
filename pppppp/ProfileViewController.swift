@@ -55,12 +55,10 @@ class ProfileViewController: UIViewController {
                 .document("\(Date())") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
                 .setData([
                     "friendId": String(userID)
-                    
                 ]) { [self] err in
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
-                        
                         print("友達のfireStoreに保存して自分を追加したよ")
                     }
                 }

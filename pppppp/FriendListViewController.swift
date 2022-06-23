@@ -25,6 +25,37 @@ class FriendListViewController: UIViewController {
         
     }
     
+//    db.collection("cities").document("DC").delete() { err in
+//        if let err = err {
+//            print("Error removing document: \(err)")
+//        } else {
+//            print("Document successfully removed!")
+//        }
+//    }
+    
+    
+    //    友達を削除する
+    @IBAction func deleteFriends() {
+//        
+//        let friendsId = "x8TAcesm4Yarre6ZTuOJX5Z81Ty2"
+//        
+//        let db = Firestore.firestore()
+//        db.collection("UserData")
+//            .document(userID)
+//            .collection("friendsList")
+//            .document("frindsList") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
+//            .collection(String(friendsId))
+//            .delete() { err in
+//                if let err = err {
+//                    print("Error removing document: \(err)")
+//                } else {
+//                    print("友達消したよ!")
+//                }
+//            }
+    }
+                
+                
+    
     //    リンクのシェアシート出す
     @IBAction func pressedButton() {
         

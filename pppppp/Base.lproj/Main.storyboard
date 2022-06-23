@@ -139,6 +139,17 @@
                                     <action selector="logoutButton" destination="9k2-Xi-rtU" eventType="touchUpInside" id="y5w-dQ-cV4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uag-DH-9GA">
+                                <rect key="frame" x="143" y="309" width="207" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="deleteFriends" destination="9k2-Xi-rtU" eventType="touchUpInside" id="7Zv-Q4-cbN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X3F-JQ-TXk"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -146,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alU-ni-ndf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1393" y="-25"/>
+            <point key="canvasLocation" x="1392.753623188406" y="-25.446428571428569"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="hqQ-Hn-Rgy">
