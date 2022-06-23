@@ -38,8 +38,6 @@ class WeightViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         weighttable.delegate = self
         weighttable.dataSource = self
         
-        print ("かいはつやめたい")
-        
 //        read()
     }
     
