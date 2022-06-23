@@ -9,7 +9,7 @@ import UIKit
 import HealthKit
 import Firebase
 
-class WeightViewController: UIViewController, UITextFieldDelegate {
+class WeightViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate,UITableViewDataSource {
     
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
@@ -17,6 +17,7 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet var weightTextField: UITextField!
+    @IBOutlet var weighttable: UITableView!
     
     @IBAction func addButtonPressed() {
         guard let inputWeightText = weightTextField.text else { return }
@@ -34,7 +35,35 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
         })
         
         self.weightTextField?.delegate = self
-        read()
+        weighttable.delegate = self
+        weighttable.dataSource = self
+        
+        print ("かいはつやめたい")
+        
+//        read()
+    }
+    
+//    cellの数指定
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+//    cellの中身
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let weigthcell = tableView.dequeueReusableCell(withIdentifier: "WeightCell")
+        
+        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: Int(Double(0.1)), sortDescriptors: nil) { (query, results, error) in
+            if results is [HKQuantitySample] {
+                if results is [HKQuantitySample] {
+                    // 取得したデータを格納
+                    weigthcell?.textLabel?.text = "体重は\(String(describing: results))"
+//                    print("体重は\(String(describing: results))")
+                }
+            }
+        }
+        myHealthStore.execute(query)
+//        weigthcell?.textLabel?.text = "体重は\(String(describing: results))"
+        
+        return weigthcell!
     }
     
     // firebaseにデータの保存.
@@ -72,61 +101,20 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-        //データを取得
+    //データをHealthkitから取得
 //    func read() {
-//        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: 1, sortDescriptors: nil) { (query, results, error) in
-//            if results is [HKQuantitySample] {
-//                print("\(query)")
-//                print("データを取得しました")
 //
+//        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: Int(Double(0.1)), sortDescriptors: nil) { (query, results, error) in
+//            if results is [HKQuantitySample] {
+//                if results is [HKQuantitySample] {
+//                    // 取得したデータを格納
+////                    print("体重は\(String(describing: results))")
+//                }
 //            }
 //        }
 //        myHealthStore.execute(query)
 //    }
     
-    func read() {
-        
-        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: Int(1.0), sortDescriptors: nil) { (query, results, error) in
-            if results is [HKQuantitySample] {
-                if results is [HKQuantitySample] {
-                    // 取得したデータを格納
-                    print("体重ううううううは\(String(describing: results))")
-                }
-            }
-        }
-        myHealthStore.execute(query)
-    }
-    
-//    func read(){
-//            // 取得する期間を設定
-//            let dateformatter = DateFormatter()
-//            dateformatter.dateFormat = "yyyy/MM/dd"
-//            let startDate = dateformatter.date(from: "2000/1/1")
-//            let endDate = dateformatter.date(from: "2022/06/21")
-//
-//            // 取得するデータを設定
-//            let typeOfWeight = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
-//            let statsOptions: HKStatisticsOptions = [HKStatisticsOptions.discreteMin, HKStatisticsOptions.discreteMax]
-//
-//            let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: HKQueryOptions.strictStartDate)
-//            let query = HKStatisticsQuery(quantityType: typeOfWeight!, quantitySamplePredicate: predicate, options: statsOptions, completionHandler: { (query, result, error) in
-//                if let e = error {
-//                    print("Error: \(e.localizedDescription)")
-//                    return
-//                }
-//                DispatchQueue.main.async {
-//                    guard let r = result else {
-//                        return
-//                    }
-//                    let min = r.minimumQuantity()
-//                    let max = r.maximumQuantity()
-//                    if min != nil && max != nil {
-//                        print("\(r.startDate) : \(r.endDate) 最小:\(min!) 最大:\(max!)")
-//                    }
-//                }
-//            })
-//            myHealthStore.execute(query)
-//        }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         weightTextField.resignFirstResponder()
