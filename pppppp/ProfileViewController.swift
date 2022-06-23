@@ -10,6 +10,8 @@ import Firebase
 
 class ProfileViewController: UIViewController {
     
+    let userID = Auth.auth().currentUser!.uid
+    
     //    x8TAcesm4Yarre6ZTuOJX5Z81Ty2
     
     @IBAction func backButton(){
@@ -22,8 +24,6 @@ class ProfileViewController: UIViewController {
     
     @IBAction func addFriend() {
         
-//        let friendId: String = "x8TAcesm4Yarre6ZTuOJX5Z81Ty2"
-        
         if let currentUser = Auth.auth().currentUser {
             let db = Firestore.firestore()
             db.collection("UserData")
@@ -32,10 +32,12 @@ class ProfileViewController: UIViewController {
                 .document("\(Date())") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
                 .setData([
                     "friendId": String(friendId)
+                    
                 ]) { [self] err in
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
+                        
                         print("fireStoreに保存して友達を追加したよ")
                         let alert = UIAlertController(title: "友達を追加しました", message: "\(self.friendId)を友達追加しました", preferredStyle: .alert)
                         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -44,10 +46,32 @@ class ProfileViewController: UIViewController {
                     }
                 }
         }
+        
+        if Auth.auth().currentUser != nil {
+            let db = Firestore.firestore()
+            db.collection("UserData")
+                .document(friendId)
+                .collection("friendsList")
+                .document("\(Date())") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
+                .setData([
+                    "friendId": String(userID)
+                    
+                ]) { [self] err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        
+                        print("友達のfireStoreに保存して自分を追加したよ")
+                    }
+                }
+        }
     }
     
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(userID)
+        print("自分のユーザーIDを取得しました")
     }
 }

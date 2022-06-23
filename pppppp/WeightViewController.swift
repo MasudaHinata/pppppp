@@ -9,7 +9,7 @@ import UIKit
 import HealthKit
 import Firebase
 
-class WeightViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate,UITableViewDataSource {
+class WeightViewController: UIViewController, UITextFieldDelegate {
     
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
@@ -17,7 +17,7 @@ class WeightViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     
     
     @IBOutlet var weightTextField: UITextField!
-    @IBOutlet var weighttable: UITableView!
+    @IBOutlet var weightLabel: UILabel!
     
     @IBAction func addButtonPressed() {
         guard let inputWeightText = weightTextField.text else { return }
@@ -35,33 +35,8 @@ class WeightViewController: UIViewController, UITextFieldDelegate, UITableViewDe
         })
         
         self.weightTextField?.delegate = self
-        weighttable.delegate = self
-        weighttable.dataSource = self
         
-//        read()
-    }
-    
-//    cellの数指定
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-//    cellの中身
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let weigthcell = tableView.dequeueReusableCell(withIdentifier: "WeightCell")
-        
-        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: Int(Double(0.1)), sortDescriptors: nil) { (query, results, error) in
-            if results is [HKQuantitySample] {
-                if results is [HKQuantitySample] {
-                    // 取得したデータを格納
-                    weigthcell?.textLabel?.text = "体重は\(String(describing: results))"
-//                    print("体重は\(String(describing: results))")
-                }
-            }
-        }
-        myHealthStore.execute(query)
-//        weigthcell?.textLabel?.text = "体重は\(String(describing: results))"
-        
-        return weigthcell!
+        read()
     }
     
     // firebaseにデータの保存.
@@ -100,18 +75,19 @@ class WeightViewController: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     //データをHealthkitから取得
-//    func read() {
-//
-//        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: Int(Double(0.1)), sortDescriptors: nil) { (query, results, error) in
-//            if results is [HKQuantitySample] {
-//                if results is [HKQuantitySample] {
-//                    // 取得したデータを格納
-////                    print("体重は\(String(describing: results))")
-//                }
-//            }
-//        }
-//        myHealthStore.execute(query)
-//    }
+    func read() {
+        
+        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
+            if results is [HKQuantitySample] {
+                if results is [HKQuantitySample] {
+                    // 取得したデータを格納
+                    self.weightLabel.text = "体重は\(String(describing: results))"
+                    print("体重は\(String(describing: results))")
+                }
+            }
+        }
+        myHealthStore.execute(query)
+    }
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
