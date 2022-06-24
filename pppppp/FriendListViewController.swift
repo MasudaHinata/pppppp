@@ -27,26 +27,45 @@ class FriendListViewController: UIViewController {
     }
     //    友達を削除する
     @IBAction func deleteFriends() {
-
-
-
-        if let currentUser = Auth.auth().currentUser {
-            let db = Firestore.firestore()
-            db.collection("UserData")
-                .document(currentUser.uid)
-                .collection("friendsList")
-                .document(friendId)
-                .delete() { err in
-                    if let err = err {
-                        print("Error removing document: \(err)")
-                    } else {
-                        self.mydelete()
-                        print("友達を削除しました")
+        
+        let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
+        
+        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { (action) -> Void in
+            
+            if let currentUser = Auth.auth().currentUser {
+                let db = Firestore.firestore()
+                db.collection("UserData")
+                    .document(currentUser.uid)
+                    .collection("friendsList")
+                    .document(self.friendId)
+                    .delete() { err in
+                        if let err = err {
+                            print("Error removing document: \(err)")
+                        } else {
+                            self.mydelete()
+                            print("友達を削除しました")
+                        }
                     }
-                }
-        }
-
-
+            }
+            
+            print("友達を削除したのよ")
+            
+            let alert2 = UIAlertController(title: "友達の削除", message: "友達を削除しました", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alert2.addAction(ok)
+            self.present(alert2, animated: true, completion: nil)
+        })
+        
+        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+            print("キャンセル")
+        })
+        
+        alert.addAction(delete)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     func mydelete () {
