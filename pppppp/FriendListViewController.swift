@@ -15,7 +15,7 @@ class FriendListViewController: UIViewController {
     let user = Auth.auth().currentUser
     var shareUrlString: String?
     let userID = Auth.auth().currentUser!.uid
-    var friendId: String!
+    var friendId: String = "x8TAcesm4Yarre6ZTuOJX5Z81Ty2"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,30 +25,17 @@ class FriendListViewController: UIViewController {
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
         
     }
-    
     //    友達を削除する
     @IBAction func deleteFriends() {
 
 
-
-//          await firebaseFirestore
-//              .collection('users')
-//              .doc('mail')
-//              .collection('name')
-//              .get()
-//              .asStream()
-//              .forEach((element) {
-//            for (var element in element.docs) {
-//              element.reference.delete();
-//            }
-//          });
 
         if let currentUser = Auth.auth().currentUser {
             let db = Firestore.firestore()
             db.collection("UserData")
                 .document(currentUser.uid)
                 .collection("friendsList")
-                .document("x8TAcesm4Yarre6ZTuOJX5Z81Ty2")
+                .document(friendId)
                 .delete() { err in
                     if let err = err {
                         print("Error removing document: \(err)")
@@ -67,14 +54,17 @@ class FriendListViewController: UIViewController {
         if let currentUser = Auth.auth().currentUser {
             let db = Firestore.firestore()
             db.collection("UserData")
-                .document(currentUser.uid)
+                .document(friendId)
                 .collection("friendsList")
                 .document(userID)
                 .delete() { err in
                     if let err = err {
                         print("Error removing document: \(err)")
                     } else {
-                        print("自分を友達のリスとから削除しました")
+                        print("自分を友達のリストから削除しました")
+                        let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
                     }
                 }
         }

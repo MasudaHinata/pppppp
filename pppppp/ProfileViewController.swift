@@ -9,6 +9,20 @@ import UIKit
 import Firebase
 
 class ProfileViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print(userID)
+        print(friendId)
+        print("ああああああああ")
+        friendsname()
+        
+    }
+    
+    var friendId: String!
+    let userID = Auth.auth().currentUser!.uid
+    
+    @IBOutlet var friendLabel: UILabel!
     
     @IBAction func backButton(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -16,9 +30,28 @@ class ProfileViewController: UIViewController {
         self.showDetailViewController(secondVC, sender: self)
     }
     
-    var friendId: String!
-    let userID = Auth.auth().currentUser!.uid
+    //    友達の名前を取得する
+        func friendsname() {
+
+            let db = Firestore.firestore()
+            let docRef = db.collection("UserData")
+                .document(friendId)
+                .collection("profileData")
+                .document("nameData")
+            
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                    print("ドキュメントデータ: \(dataDescription)")
+                    self.friendLabel.text = dataDescription
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
+        
     
+//    友達を追加する
     @IBAction func addFriend() {
         
         if let currentUser = Auth.auth().currentUser {
@@ -52,17 +85,9 @@ class ProfileViewController: UIViewController {
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
-                        print("友達のfireStoreに保存して自分を追加したよ")
+                        print("友達のフレンドリストに自分を追加したよ")
                     }
                 }
         }
-    }
-    
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        print(userID)
-        print("自分のユーザーIDを取得しました")
     }
 }
