@@ -25,20 +25,11 @@ class FriendListViewController: UIViewController {
         
     }
     
-//    db.collection("cities").document("DC").delete() { err in
-//        if let err = err {
-//            print("Error removing document: \(err)")
-//        } else {
-//            print("Document successfully removed!")
-//        }
-//    }
-    
-    
     //    友達を削除する
     @IBAction func deleteFriends() {
-//        
+//
 //        let friendsId = "x8TAcesm4Yarre6ZTuOJX5Z81Ty2"
-//        
+//
 //        let db = Firestore.firestore()
 //        db.collection("UserData")
 //            .document(userID)

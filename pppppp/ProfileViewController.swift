@@ -10,26 +10,46 @@ import Firebase
 
 class ProfileViewController: UIViewController {
     
-    let userID = Auth.auth().currentUser!.uid
-    
-    //    x8TAcesm4Yarre6ZTuOJX5Z81Ty2
-    
     @IBAction func backButton(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
     
-    var friendId: String = "x8TAcesm4Yarre6ZTuOJX5Z81Ty2"
+    var friendId: String!
+    let userID = Auth.auth().currentUser!.uid
     
     @IBAction func addFriend() {
+//
+//        if let currentUser = Auth.auth().currentUser {
+//            let db = Firestore.firestore()
+//            db.collection("UserData")
+//                .document(currentUser.uid)
+//                .collection("friendsList")
+//                .document("\(Date())") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
+//                .setData([
+//                    "friendId": String(friendId)
+//
+//                ]) { [self] err in
+//                    if let err = err {
+//                        print("Error writing document: \(err)")
+//                    } else {
+//
+//                        print("fireStoreに保存して友達を追加したよ")
+//                        let alert = UIAlertController(title: "友達を追加しました", message: "\(self.friendId)を友達追加しました", preferredStyle: .alert)
+//                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//                        }
+//                        alert.addAction(ok)
+//                    }
+//                }
+//        }
         
         if let currentUser = Auth.auth().currentUser {
             let db = Firestore.firestore()
             db.collection("UserData")
                 .document(currentUser.uid)
                 .collection("friendsList")
-                .document("\(Date())") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
+                .document(friendId)
                 .setData([
                     "friendId": String(friendId)
                     
@@ -37,24 +57,24 @@ class ProfileViewController: UIViewController {
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
-                        
+                        let alert = UIAlertController(title: "友達追加", message: "友達になりました", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
                         print("fireStoreに保存して友達を追加したよ")
-                        let alert = UIAlertController(title: "友達を追加しました", message: "\(self.friendId)を友達追加しました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        }
-                        alert.addAction(ok)
                     }
                 }
         }
         
+    
         if Auth.auth().currentUser != nil {
             let db = Firestore.firestore()
             db.collection("UserData")
                 .document(friendId)
                 .collection("friendsList")
-                .document("\(Date())") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
-                .setData([
-                    "friendId": String(userID)
+                .document(userID) // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
+                .setData([:
+//                    "friendId": String(userID)
+                    
                 ]) { [self] err in
                     if let err = err {
                         print("Error writing document: \(err)")

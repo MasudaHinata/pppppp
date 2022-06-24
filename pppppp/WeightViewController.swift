@@ -76,17 +76,18 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
     
     //データをHealthkitから取得
     func read() {
-        
-        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
-            if results is [HKQuantitySample] {
+        DispatchQueue.main.async { [self] in
+            let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
                 if results is [HKQuantitySample] {
-                    // 取得したデータを格納
-                    self.weightLabel.text = "体重は\(String(describing: results))"
-                    print("体重は\(String(describing: results))")
+                    if results is [HKQuantitySample] {
+                        // 取得したデータを格納
+                        self.weightLabel.text = "体重は\(String(describing: results))"
+                        print("体重は\(String(describing: results))")
+                    }
                 }
             }
+            myHealthStore.execute(query)
         }
-        myHealthStore.execute(query)
     }
     
     
