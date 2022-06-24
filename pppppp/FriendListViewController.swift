@@ -15,6 +15,7 @@ class FriendListViewController: UIViewController {
     let user = Auth.auth().currentUser
     var shareUrlString: String?
     let userID = Auth.auth().currentUser!.uid
+    var friendId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,22 +28,57 @@ class FriendListViewController: UIViewController {
     
     //    友達を削除する
     @IBAction func deleteFriends() {
-//
-//        let friendsId = "x8TAcesm4Yarre6ZTuOJX5Z81Ty2"
-//
-//        let db = Firestore.firestore()
-//        db.collection("UserData")
-//            .document(userID)
-//            .collection("friendsList")
-//            .document("frindsList") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
-//            .collection(String(friendsId))
-//            .delete() { err in
-//                if let err = err {
-//                    print("Error removing document: \(err)")
-//                } else {
-//                    print("友達消したよ!")
-//                }
+
+
+
+//          await firebaseFirestore
+//              .collection('users')
+//              .doc('mail')
+//              .collection('name')
+//              .get()
+//              .asStream()
+//              .forEach((element) {
+//            for (var element in element.docs) {
+//              element.reference.delete();
 //            }
+//          });
+
+        if let currentUser = Auth.auth().currentUser {
+            let db = Firestore.firestore()
+            db.collection("UserData")
+                .document(currentUser.uid)
+                .collection("friendsList")
+                .document("x8TAcesm4Yarre6ZTuOJX5Z81Ty2")
+                .delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        self.mydelete()
+                        print("友達を削除しました")
+                    }
+                }
+        }
+
+
+    }
+    
+    func mydelete () {
+        
+        if let currentUser = Auth.auth().currentUser {
+            let db = Firestore.firestore()
+            db.collection("UserData")
+                .document(currentUser.uid)
+                .collection("friendsList")
+                .document(userID)
+                .delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        print("自分を友達のリスとから削除しました")
+                    }
+                }
+        }
+        
     }
                 
                 

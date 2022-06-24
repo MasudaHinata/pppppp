@@ -54,7 +54,7 @@
         <!--Profile View Controller-->
         <scene sceneID="KPq-9t-VNS">
             <objects>
-                <viewController storyboardIdentifier="profile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JpV-aJ-uMr" customClass="ProfileViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JpV-aJ-uMr" customClass="ProfileViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kpu-B1-lft">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -20,29 +20,6 @@ class ProfileViewController: UIViewController {
     let userID = Auth.auth().currentUser!.uid
     
     @IBAction func addFriend() {
-//
-//        if let currentUser = Auth.auth().currentUser {
-//            let db = Firestore.firestore()
-//            db.collection("UserData")
-//                .document(currentUser.uid)
-//                .collection("friendsList")
-//                .document("\(Date())") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
-//                .setData([
-//                    "friendId": String(friendId)
-//
-//                ]) { [self] err in
-//                    if let err = err {
-//                        print("Error writing document: \(err)")
-//                    } else {
-//
-//                        print("fireStoreに保存して友達を追加したよ")
-//                        let alert = UIAlertController(title: "友達を追加しました", message: "\(self.friendId)を友達追加しました", preferredStyle: .alert)
-//                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-//                        }
-//                        alert.addAction(ok)
-//                    }
-//                }
-//        }
         
         if let currentUser = Auth.auth().currentUser {
             let db = Firestore.firestore()
@@ -50,9 +27,7 @@ class ProfileViewController: UIViewController {
                 .document(currentUser.uid)
                 .collection("friendsList")
                 .document(friendId)
-                .setData([
-                    "friendId": String(friendId)
-                    
+                .setData([:
                 ]) { [self] err in
                     if let err = err {
                         print("Error writing document: \(err)")
@@ -73,8 +48,6 @@ class ProfileViewController: UIViewController {
                 .collection("friendsList")
                 .document(userID) // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
                 .setData([:
-//                    "friendId": String(userID)
-                    
                 ]) { [self] err in
                     if let err = err {
                         print("Error writing document: \(err)")

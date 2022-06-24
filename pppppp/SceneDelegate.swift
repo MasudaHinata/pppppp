@@ -65,9 +65,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //遷移
         let MainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let resultVC: ProfileViewController = MainStoryboard.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+        let resultVC: ProfileViewController = MainStoryboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         resultVC.friendId = recievedId
+//        let ressultVC: FriendListViewController = MainStoryboard.instantiateViewController(withIdentifier: "FriendListViewController") as! FriendListViewController
+//        resultVC.friendId = recievedId
         self.window?.rootViewController = resultVC
+//        self.window?.rootViewController = ressultVC
         self.window?.makeKeyAndVisible()
         
     }
