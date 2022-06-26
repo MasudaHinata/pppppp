@@ -41,9 +41,10 @@ class ProfileViewController: UIViewController {
             
             docRef.getDocument { (document, error) in
                 if let document = document, document.exists {
-                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                    print("ドキュメントデータ: \(dataDescription)")
-                    self.friendLabel.text = dataDescription
+//                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                    print(document.data()!["name"]!)
+//                    print("ドキュメントデータ: \(dataDescription)")
+                    self.friendLabel.text = "\(document.data()!["name"]!)"
                 } else {
                     print("Document does not exist")
                 }

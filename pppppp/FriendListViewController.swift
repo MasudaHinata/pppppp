@@ -69,8 +69,7 @@ class FriendListViewController: UIViewController {
     }
     
     func mydelete () {
-        
-        if let currentUser = Auth.auth().currentUser {
+    
             let db = Firestore.firestore()
             db.collection("UserData")
                 .document(friendId)
@@ -86,8 +85,6 @@ class FriendListViewController: UIViewController {
                         self.present(alert, animated: true, completion: nil)
                     }
                 }
-        }
-        
     }
                 
                 
