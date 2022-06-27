@@ -59,8 +59,11 @@ class ProfileViewController: UIViewController {
                 .document(currentUser.uid)
                 .collection("friendsList")
                 .document(friendId)
-                .setData([:
-                         ]) { [self] err in
+                .setData([
+                    
+                    "friendId": friendId
+                    
+                ]) { [self] err in
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
@@ -77,7 +80,9 @@ class ProfileViewController: UIViewController {
             .document(friendId)
             .collection("friendsList")
             .document(userID) // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
-            .setData([:
+            .setData([
+                "friendId": userID
+                
                      ]) { [self] err in
                 if let err = err {
                     print("Error writing document: \(err)")
