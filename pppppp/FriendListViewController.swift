@@ -24,7 +24,33 @@ class FriendListViewController: UIViewController {
         print("自分のユーザーIDを取得しました")
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
         
+        getfriendsid()
+        
     }
+    
+//    友達のIDを取得する
+    func getfriendsid() {
+
+        let db = Firestore.firestore()
+        db.collection("UserData")
+            .document(userID)
+            .collection("friendsList")
+            .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("友達のIDは\(document.data()["friendId"]!)")
+                }
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    
     //    友達を削除する
     @IBAction func deleteFriends() {
         
@@ -91,9 +117,7 @@ class FriendListViewController: UIViewController {
     
     //    リンクのシェアシート出す
     @IBAction func pressedButton() {
-        
         showShareSheet()
-        
     }
     
     func showShareSheet() {

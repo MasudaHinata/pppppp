@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
         print(userID)
         print(friendId)
         print("ああああああああ")
-        friendsname()
+        getfriendsname()
         
     }
     
@@ -31,28 +31,26 @@ class ProfileViewController: UIViewController {
     }
     
     //    友達の名前を取得する
-        func friendsname() {
-
-            let db = Firestore.firestore()
-            let docRef = db.collection("UserData")
-                .document(friendId)
-                .collection("profileData")
-                .document("nameData")
-            
-            docRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-//                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                    print(document.data()!["name"]!)
-//                    print("ドキュメントデータ: \(dataDescription)")
-                    self.friendLabel.text = "\(document.data()!["name"]!)"
-                } else {
-                    print("Document does not exist")
-                }
+    func getfriendsname() {
+        
+        let db = Firestore.firestore()
+        let docRef = db.collection("UserData")
+            .document(friendId)
+            .collection("profileData")
+            .document("nameData")
+        
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                print("友達の名前は\(document.data()!["name"]!)")
+                self.friendLabel.text = "\(document.data()!["name"]!)"
+            } else {
+                print("存在してない")
             }
         }
-        
+    }
     
-//    友達を追加する
+    
+    //    友達を追加する
     @IBAction func addFriend() {
         
         if let currentUser = Auth.auth().currentUser {
@@ -62,33 +60,35 @@ class ProfileViewController: UIViewController {
                 .collection("friendsList")
                 .document(friendId)
                 .setData([:
-                ]) { [self] err in
+                         ]) { [self] err in
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
-                        let alert = UIAlertController(title: "友達追加", message: "友達になりました", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+                        addfriend2()
                         print("fireStoreに保存して友達を追加したよ")
                     }
                 }
         }
-        
-    
-        if Auth.auth().currentUser != nil {
-            let db = Firestore.firestore()
-            db.collection("UserData")
-                .document(friendId)
-                .collection("friendsList")
-                .document(userID) // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
-                .setData([:
-                ]) { [self] err in
-                    if let err = err {
-                        print("Error writing document: \(err)")
-                    } else {
-                        print("友達のフレンドリストに自分を追加したよ")
-                    }
-                }
-        }
     }
+    func addfriend2() {
+        
+        let db = Firestore.firestore()
+        db.collection("UserData")
+            .document(friendId)
+            .collection("friendsList")
+            .document(userID) // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
+            .setData([:
+                     ]) { [self] err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("友達のフレンドリストに自分を追加したよ")
+                    let alert = UIAlertController(title: "友達追加", message: "友達になりました", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+    }
+    
+    
 }
