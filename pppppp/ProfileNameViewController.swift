@@ -38,8 +38,6 @@ class ProfileNameViewController: UIViewController, UITextFieldDelegate {
             let db = Firestore.firestore()
             db.collection("UserData")
                 .document(currentUser.uid)
-                .collection("profileData")
-                .document("nameData") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
                 .setData([
                     "name": String(profileName)
                 ]) { err in

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 
 class FriendListViewController: UIViewController {
@@ -15,7 +16,8 @@ class FriendListViewController: UIViewController {
     let user = Auth.auth().currentUser
     var shareUrlString: String?
     let userID = Auth.auth().currentUser!.uid
-    var friendId: String = ""
+    var completionHandlers = [() -> Void]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,175 +26,111 @@ class FriendListViewController: UIViewController {
         print("自分のユーザーIDを取得しました")
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
         
-        //        getfriendsid()
-        getfriendsdata()
-        
+        getfriendIds { [weak self] friendIdList in
+            self?.getUserDataFromIds(friendIdList: friendIdList)
+        }
     }
     
-    
     //    友達の情報をとってくる
-    func getfriendsdata ()  {
+    func getfriendIds(completion: @escaping ([String]) -> Void)  {
+        
+        var friendIdList = [String]()
         
         let db = Firestore.firestore()
-        db.collection("UserData")
-            .document(userID)
-            .collection("friendsList")
-            .getDocuments() { (querySnapshot, err) in
+        db.collection("UserData").document(userID).collection("friendsList").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if let snapShot = querySnapshot {
+                    let documents = snapShot.documents
+                    friendIdList = documents.compactMap {
+                        return $0.data()["friendId"] as! String
+                    }
+                    print("友達のID\(friendIdList)")
+                    completion(friendIdList)
+                }
+            }
+        }
+    }
+    
+    func getUserDataFromIds(friendIdList: [String]) {
+        let db = Firestore.firestore()
+        for friendId in friendIdList {
+            db.collection("UserData").document(friendId).getDocument { (snapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
-                    
-                    if let snapShot = querySnapshot {
-                        let documents = snapShot.documents
-                        let friendslist = documents.compactMap {
-                            // この1行でデコード終了
-                            return $0.data()["friendId"] as! String
-                        }
-                        print(friendslist)
-                        
-                        let friendsdata = friendslist.compactMap {
-                            
-                            
-                            db.collection("UserData")
-                                .document($0)
-                                .collection("profileData")
-                                .getDocuments() { (querySnapshot, err) in
-                                    if let err = err {
-                                        print("Error getting documents: \(err)")
-                                    } else {
-                                        
-                                    }
-                                    
-                                    return $0.data()["nameData"] as! String
-                                }
-                            
-                        }
-                        
-                        
+                    if let snapshot = snapshot {
+                        let documents = try? snapshot.data(as: User.self)
+                        print(documents)
                     }
                 }
             }
-        
-        
-        //        let friendsdata = friendslist.compactMap {
-        //
-        //
-        //            db.collection("UserData")
-        //                .document(friendslist)
-        //                .collection("profileData")
-        //                .getDocuments() { (querySnapshot, err) in
-        //                    if let err = err {
-        //                        print("Error getting documents: \(err)")
-        //                    } else {
-        //
-        //                    }
-        //
-        //                    return $0.data()["nameData"] as! String
-        //                }
-        //
-        //        }
-        
+        }
     }
     
-    
-    
-    
-    ////    友達のIDを取得する
-    //    func getfriendsid() {
+    //    //    友達を削除する
+    //    @IBAction func deleteFriends() {
+    //
+    //        let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
+    //
+    //        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { (action) -> Void in
+    //
+    //            if let currentUser = Auth.auth().currentUser {
+    //                let db = Firestore.firestore()
+    //                db.collection("UserData")
+    //                    .document(currentUser.uid)
+    //                    .collection("friendsList")
+    //                    .document(self.friendId)
+    //                    .delete() { err in
+    //                        if let err = err {
+    //                            print("Error removing document: \(err)")
+    //                        } else {
+    //                            self.mydelete()
+    //                            print("友達を削除しました")
+    //                        }
+    //                    }
+    //            }
+    //
+    //            print("友達を削除したのよ")
+    //
+    //            let alert2 = UIAlertController(title: "友達の削除", message: "友達を削除しました", preferredStyle: .alert)
+    //            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+    //                self.dismiss(animated: true, completion: nil)
+    //            }
+    //            alert2.addAction(ok)
+    //            self.present(alert2, animated: true, completion: nil)
+    //        })
+    //
+    //        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+    //            print("キャンセル")
+    //        })
+    //
+    //        alert.addAction(delete)
+    //        alert.addAction(cancel)
+    //
+    //        self.present(alert, animated: true, completion: nil)
+    //    }
+    //
+    //    func mydelete () {
     //
     //        let db = Firestore.firestore()
     //        db.collection("UserData")
-    //            .document(userID)
+    //            .document(friendId)
     //            .collection("friendsList")
-    //            .getDocuments() { (querySnapshot, err) in
-    //            if let err = err {
-    //                print("Error getting documents: \(err)")
-    //            } else {
-    //
-    ////                for document in querySnapshot!.documents {
-    ////                    print("友達のIDは\(document.data()["friendId"]!)")
-    ////                    friendId = document.data()["friendId"]! as! String
-    ////                    print("友達のIDを変数に代入した\(friendId)")
-    ////                }
-    //
-    //                if let snapShot = querySnapshot {
-    //                    let documents = snapShot.documents
-    //                    let friendslist = documents.compactMap {
-    //                        // この1行でデコード終了
-    //                        return $0.data()["friendId"] as! String
-    //                    }
-    //                    print(friendslist)
+    //            .document(userID)
+    //            .delete() { err in
+    //                if let err = err {
+    //                    print("Error removing document: \(err)")
+    //                } else {
+    //                    print("自分を友達のリストから削除しました")
+    //                    let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
+    //                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    //                    self.present(alert, animated: true, completion: nil)
     //                }
     //            }
-    //        }
-    //
     //    }
     //
-    //
-    
-    
-    //    友達を削除する
-    @IBAction func deleteFriends() {
-        
-        let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
-        
-        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { (action) -> Void in
-            
-            if let currentUser = Auth.auth().currentUser {
-                let db = Firestore.firestore()
-                db.collection("UserData")
-                    .document(currentUser.uid)
-                    .collection("friendsList")
-                    .document(self.friendId)
-                    .delete() { err in
-                        if let err = err {
-                            print("Error removing document: \(err)")
-                        } else {
-                            self.mydelete()
-                            print("友達を削除しました")
-                        }
-                    }
-            }
-            
-            print("友達を削除したのよ")
-            
-            let alert2 = UIAlertController(title: "友達の削除", message: "友達を削除しました", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
-            }
-            alert2.addAction(ok)
-            self.present(alert2, animated: true, completion: nil)
-        })
-        
-        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-            print("キャンセル")
-        })
-        
-        alert.addAction(delete)
-        alert.addAction(cancel)
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func mydelete () {
-        
-        let db = Firestore.firestore()
-        db.collection("UserData")
-            .document(friendId)
-            .collection("friendsList")
-            .document(userID)
-            .delete() { err in
-                if let err = err {
-                    print("Error removing document: \(err)")
-                } else {
-                    print("自分を友達のリストから削除しました")
-                    let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-    }
-    
     
     
     //    リンクのシェアシート出す
