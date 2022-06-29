@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class ProfileViewController: UIViewController {
     override func viewDidLoad() {

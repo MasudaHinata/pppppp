@@ -19,6 +19,21 @@ class FriendListViewController: UIViewController {
     var completionHandlers = [() -> Void]()
     
     
+    var friendList = [User]() {
+        didSet {
+            self.friendcollectionView.reloadData()
+        }
+    }
+    
+    @IBOutlet var friendcollectionView: UICollectionView! {
+        didSet {
+            friendcollectionView.delegate = self
+            friendcollectionView.dataSource = self
+            friendcollectionView.register(UINib(nibName: "FriendDataCell", bundle: nil), forCellWithReuseIdentifier: "frienddatacell")
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +44,8 @@ class FriendListViewController: UIViewController {
         getfriendIds { [weak self] friendIdList in
             self?.getUserDataFromIds(friendIdList: friendIdList)
         }
+        
+//        collectionViewFlowLayout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 64)
     }
     
     //    友達の情報をとってくる
@@ -53,7 +70,7 @@ class FriendListViewController: UIViewController {
         }
     }
     
-    func getUserDataFromIds(friendIdList: [String]) {
+    func getUserDataFromIds(friendIdList: [String]){
         let db = Firestore.firestore()
         for friendId in friendIdList {
             db.collection("UserData").document(friendId).getDocument { (snapshot, err) in
@@ -61,8 +78,10 @@ class FriendListViewController: UIViewController {
                     print("Error getting documents: \(err)")
                 } else {
                     if let snapshot = snapshot {
-                        let documents = try? snapshot.data(as: User.self)
-                        print(documents)
+                        let user = try? snapshot.data(as: User.self)
+                        self.friendList.append(user!)
+                        //TODO: didSetを呼ぶために仕方なく代入している
+                        self.friendList = self.friendList
                     }
                 }
             }
@@ -213,4 +232,19 @@ class FriendListViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    
+}
+
+extension FriendListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return friendList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "frienddatacell", for: indexPath)  as! FriendDataCell
+        cell.nameLabel.text = friendList[indexPath.row].name
+        return cell
+    }
 }
