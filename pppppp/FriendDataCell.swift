@@ -11,6 +11,7 @@ class FriendDataCell: UICollectionViewCell {
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var idLabel: UILabel!
+    @IBOutlet var deleteButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

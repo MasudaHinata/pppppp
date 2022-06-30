@@ -184,9 +184,9 @@
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
 				BE7F33892580D0810027620D /* Info.plist */,
-				9C699036286B3CC6009D5BF5 /* User.swift */,
 				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
 				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
+				9C699036286B3CC6009D5BF5 /* User.swift */,
 				9C699042286DA189009D5BF5 /* UIColorHex.swift */,
 			);
 			path = pppppp;
