@@ -36,7 +36,7 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
         
         self.weightTextField?.delegate = self
         
-        read()
+//        read()
     }
     
     // firebaseにデータの保存.
@@ -50,45 +50,27 @@ class WeightViewController: UIViewController, UITextFieldDelegate {
             if success {
                 NSLog("HealthKit保存成功!")
             } else {
-                print("HealthKitできませんでした。")
+                print("HealthKitに保存できませんでした。")
             }
         })
         
-        
-        if let currentUser = Auth.auth().currentUser {
-            let db = Firestore.firestore()
-            db.collection("UserData")
-                .document(currentUser.uid)
-                .collection("weightData")
-                .document("\(Date())") // サブコレクションであるprefecturesがない場合、自動でリストが生成される。
-                .setData([
-                    "weight": String(weight),
-                    "date"  : Date(),
-                ]) { err in
-                    if let err = err {
-                        print("Error writing document: \(err)")
-                    } else {
-                        print("Document successfully written!")
-                    }
-                }
-        }
     }
     
-    //データをHealthkitから取得
-    func read() {
-        DispatchQueue.main.async { [self] in
-            let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
-                if results is [HKQuantitySample] {
-                    if results is [HKQuantitySample] {
-                        // 取得したデータを格納
-                        self.weightLabel.text = "体重は\(String(describing: results))"
-                        print("体重は\(String(describing: results))")
-                    }
-                }
-            }
-            myHealthStore.execute(query)
-        }
-    }
+//    //データをHealthkitから取得
+//    func read() {
+//        DispatchQueue.main.async { [self] in
+//            let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
+//                if results is [HKQuantitySample] {
+//                    if results is [HKQuantitySample] {
+//                        // 取得したデータを格納
+//                        self.weightLabel.text = "体重は\(String(describing: results))"
+//                        print("体重は\(String(describing: results))")
+//                    }
+//                }
+//            }
+//            myHealthStore.execute(query)
+//        }
+//    }
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
