@@ -18,7 +18,6 @@ class FriendListViewController: UIViewController {
     let userID = Auth.auth().currentUser!.uid
     var completionHandlers = [() -> Void]()
     
-    
     var friendList = [User]() {
         didSet {
             self.friendcollectionView.reloadData()
@@ -29,6 +28,11 @@ class FriendListViewController: UIViewController {
         didSet {
             friendcollectionView.delegate = self
             friendcollectionView.dataSource = self
+            
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSize(width: 400, height: 50)
+            friendcollectionView.collectionViewLayout = layout
+            
             friendcollectionView.register(UINib(nibName: "FriendDataCell", bundle: nil), forCellWithReuseIdentifier: "frienddatacell")
         }
     }
@@ -45,13 +49,14 @@ class FriendListViewController: UIViewController {
             self?.getUserDataFromIds(friendIdList: friendIdList)
         }
         
-//        collectionViewFlowLayout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 64)
+       
     }
+    var friendIdList = [String]()
     
     //    友達の情報をとってくる
     func getfriendIds(completion: @escaping ([String]) -> Void)  {
         
-        var friendIdList = [String]()
+//        var friendIdList = [String]()
         
         let db = Firestore.firestore()
         db.collection("UserData").document(userID).collection("friendsList").getDocuments() { (querySnapshot, err) in
@@ -60,11 +65,11 @@ class FriendListViewController: UIViewController {
             } else {
                 if let snapShot = querySnapshot {
                     let documents = snapShot.documents
-                    friendIdList = documents.compactMap {
+                    self.friendIdList = documents.compactMap {
                         return $0.data()["friendId"] as! String
                     }
-                    print("友達のID\(friendIdList)")
-                    completion(friendIdList)
+                    print("友達のID\(self.friendIdList)")
+                    completion(self.friendIdList)
                 }
             }
         }
@@ -87,70 +92,6 @@ class FriendListViewController: UIViewController {
             }
         }
     }
-    
-    //    //    友達を削除する
-    //    @IBAction func deleteFriends() {
-    //
-    //        let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
-    //
-    //        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { (action) -> Void in
-    //
-    //            if let currentUser = Auth.auth().currentUser {
-    //                let db = Firestore.firestore()
-    //                db.collection("UserData")
-    //                    .document(currentUser.uid)
-    //                    .collection("friendsList")
-    //                    .document(self.friendId)
-    //                    .delete() { err in
-    //                        if let err = err {
-    //                            print("Error removing document: \(err)")
-    //                        } else {
-    //                            self.mydelete()
-    //                            print("友達を削除しました")
-    //                        }
-    //                    }
-    //            }
-    //
-    //            print("友達を削除したのよ")
-    //
-    //            let alert2 = UIAlertController(title: "友達の削除", message: "友達を削除しました", preferredStyle: .alert)
-    //            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-    //                self.dismiss(animated: true, completion: nil)
-    //            }
-    //            alert2.addAction(ok)
-    //            self.present(alert2, animated: true, completion: nil)
-    //        })
-    //
-    //        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-    //            print("キャンセル")
-    //        })
-    //
-    //        alert.addAction(delete)
-    //        alert.addAction(cancel)
-    //
-    //        self.present(alert, animated: true, completion: nil)
-    //    }
-    //
-    //    func mydelete () {
-    //
-    //        let db = Firestore.firestore()
-    //        db.collection("UserData")
-    //            .document(friendId)
-    //            .collection("friendsList")
-    //            .document(userID)
-    //            .delete() { err in
-    //                if let err = err {
-    //                    print("Error removing document: \(err)")
-    //                } else {
-    //                    print("自分を友達のリストから削除しました")
-    //                    let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
-    //                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-    //                    self.present(alert, animated: true, completion: nil)
-    //                }
-    //            }
-    //    }
-    //
-    
     
     //    リンクのシェアシート出す
     @IBAction func pressedButton() {
@@ -232,7 +173,81 @@ class FriendListViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
+    //        //    友達を削除する
+    //        @IBAction func deleteFriends() {
+    //
+    //            let db = Firestore.firestore()
+    //            let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
+    //            let delete = UIAlertAction(title: "削除", style: .destructive, handler: { (action) -> Void in
+    //
+    //                if let currentUser = Auth.auth().currentUser {
+    //
+    //                    db.collection("UserData")
+    //                        .document(currentUser.uid)
+    //                        .collection("friendsList")
+    //                        .document(self.friendId)
+    //                        .delete() { err in
+    //                            if let err = err {
+    //                                print("Error removing document: \(err)")
+    //                            } else {
+    //                                self.mydelete()
+    //                                print("友達を削除しました")
+    //                            }
+    //                        }
+    //                }
+    //
+    //                db.collection("UserData")
+    //                    .document(friendId)
+    //                    .collection("friendsList")
+    //                    .document(userID)
+    //                    .delete() { err in
+    //                        if let err = err {
+    //                            print("Error removing document: \(err)")
+    //                        } else {
+    //                            print("自分を友達のリストから削除しました")
+    //                            let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
+    //                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    //                            self.present(alert, animated: true, completion: nil)
+    //                        }
+    //                    }
+    //                print("友達を削除した")
+    //
+    //                let alert2 = UIAlertController(title: "友達の削除", message: "友達を削除しました", preferredStyle: .alert)
+    //                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+    //                    self.dismiss(animated: true, completion: nil)
+    //                }
+    //                alert2.addAction(ok)
+    //                self.present(alert2, animated: true, completion: nil)
+    //            })
+    //
+    //            let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+    //                print("キャンセル")
+    //            })
+    //
+    //            alert.addAction(delete)
+    //            alert.addAction(cancel)
+    //
+    //            self.present(alert, animated: true, completion: nil)
+    //        }
+    //
+    //        func mydelete () {
+    //
+    //            let db = Firestore.firestore()
+    //            db.collection("UserData")
+    //                .document(friendId)
+    //                .collection("friendsList")
+    //                .document(userID)
+    //                .delete() { err in
+    //                    if let err = err {
+    //                        print("Error removing document: \(err)")
+    //                    } else {
+    //                        print("自分を友達のリストから削除しました")
+    //                        let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
+    //                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    //                        self.present(alert, animated: true, completion: nil)
+    //                    }
+    //                }
+    //        }
     
 }
 
@@ -245,6 +260,10 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "frienddatacell", for: indexPath)  as! FriendDataCell
         cell.nameLabel.text = friendList[indexPath.row].name
+        cell.idLabel.text = friendIdList[indexPath.row]
+        
+        cell.backgroundColor = UIColor(hex: "B8E9FF")
+        
         return cell
     }
 }

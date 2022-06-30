@@ -11,18 +11,25 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="frienddatacell" id="gTV-IL-0wX" customClass="FriendDataCell" customModule="pppppp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="178" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="178" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9I-B8-fFX">
-                        <rect key="frame" x="19" y="14.666666666666664" width="140" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9I-B8-fFX">
+                        <rect key="frame" x="17" y="15" width="140" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="140" id="LuA-Jx-xit"/>
                             <constraint firstAttribute="height" constant="21" id="yB5-Ha-mbf"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7x-am-rQQ">
+                        <rect key="frame" x="135" y="15" width="148" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -34,11 +41,12 @@
                 <constraint firstItem="t9I-B8-fFX" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Hc8-81-AZY"/>
                 <constraint firstItem="t9I-B8-fFX" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="UEw-Zf-8yK"/>
             </constraints>
-            <size key="customSize" width="178" height="50"/>
+            <size key="customSize" width="300" height="50"/>
             <connections>
+                <outlet property="idLabel" destination="D7x-am-rQQ" id="hUX-dY-cZY"/>
                 <outlet property="nameLabel" destination="t9I-B8-fFX" id="2cU-rn-F1E"/>
             </connections>
-            <point key="canvasLocation" x="149.23076923076923" y="20.616113744075829"/>
+            <point key="canvasLocation" x="237.69230769230768" y="20.616113744075829"/>
         </collectionViewCell>
     </objects>
 </document>
