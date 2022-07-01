@@ -89,7 +89,12 @@ class ProfileViewController: UIViewController {
                     print("友達のフレンドリストに自分を追加したよ")
                     let alert = UIAlertController(title: "友達追加", message: "友達になりました", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+//                    self.present(alert, animated: true, completion: nil)
+                    
+//                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                    let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
+//                    self.showDetailViewController(secondVC, sender: self)
+//                    
                 }
             }
     }
