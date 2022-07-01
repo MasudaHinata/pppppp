@@ -40,7 +40,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func goButtonPressed() {
         Auth.auth().signIn(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] authResult, error in
             guard let self = self else { return }
-                
+            
             if self.auth.currentUser?.isEmailVerified == true {
                 print("あってる！！！")
                 
@@ -49,12 +49,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
                 self.showDetailViewController(secondVC, sender: self)
                 
-            };if self.auth.currentUser?.isEmailVerified == nil {
-                print("アカウントが見つかりません")
-                let alert = UIAlertController(title: "アカウントが見つかりません。", message: "パスワードを確認してください", preferredStyle: .alert)
+            }else if self.passwordTextField.text == "" {
+                print("パスワード入力されてない")
+                let alert = UIAlertController(title: "エラー", message: "パスワードを確認してください", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-            }else {
+                
+            }else if self.auth.currentUser?.isEmailVerified == nil {
                 print("パスワードかメールアドレスが間違っています")
                 let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています。", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

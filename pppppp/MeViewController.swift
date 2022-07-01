@@ -10,27 +10,27 @@ import HealthKit
 import Firebase
 import FirebaseFirestore
 
-class MeViewController: UIViewController, UITextFieldDelegate {
+class MeViewController: UIViewController {
     
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
     var weight: Double!
 //    let userID = Auth.auth().currentUser!.uid
     
-    
     @IBOutlet var weightTextField: UITextField!
     @IBOutlet var weightLabel: UILabel!
     @IBOutlet var mynameLabel: UILabel!
     
     @IBAction func addButtonPressed() {
-        guard let inputWeightText = weightTextField.text else { return }
-        guard let inputWeight = Double(inputWeightText) else { return }
-        saveWeight(weight: inputWeight)
+//        guard let inputWeightText = weightTextField.text else { return }
+//        guard let inputWeight = Double(inputWeightText) else { return }
+//        saveWeight(weight: inputWeight)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        HealthKitの許可
         let types = Set([typeOfBodyMass])
         let healthStore = HKHealthStore()
         healthStore.requestAuthorization(toShare: types, read: types, completion: { success, error in
@@ -39,10 +39,11 @@ class MeViewController: UIViewController, UITextFieldDelegate {
         
         self.weightTextField?.delegate = self
         
+//        getname()
 //        read()
     }
 
-////    名前を表示
+//    名前を表示
 //    func getname() {
 //
 //        let db = Firestore.firestore()
@@ -51,7 +52,7 @@ class MeViewController: UIViewController, UITextFieldDelegate {
 //
 //        docRef.getDocument { (document, error) in
 //            if let document = document, document.exists {
-//                print("友達の名前は\(document.data()!["name"]!)")
+//                print("自分の名前は\(document.data()!["name"]!)")
 //                self.mynameLabel.text = "\(document.data()!["name"]!)"
 //            } else {
 //                print("存在してない")
@@ -59,25 +60,23 @@ class MeViewController: UIViewController, UITextFieldDelegate {
 //        }
 //    }
     
-    
-    
-    // firebaseに体重を保存.
-    func saveWeight(weight: Double) {
-        
-        let quantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
-        let WeightData = HKQuantitySample(type: typeOfBodyMass, quantity: quantity, start: Date(), end: Date())
-        
-        self.myHealthStore.save(WeightData, withCompletion: {
-            (success: Bool, error: Error!) in
-            if success {
-                NSLog("HealthKit保存成功!")
-            } else {
-                print("HealthKitに保存できませんでした。")
-            }
-        })
-        
-    }
-    
+    // HealthKitに体重を保存.
+//    func saveWeight(weight: Double) {
+//
+//        let quantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
+//        let WeightData = HKQuantitySample(type: typeOfBodyMass, quantity: quantity, start: Date(), end: Date())
+//
+//        self.myHealthStore.save(WeightData, withCompletion: {
+//            (success: Bool, error: Error!) in
+//            if success {
+//                NSLog("HealthKit保存成功!")
+//            } else {
+//                print("HealthKitに保存できませんでした。")
+//            }
+//        })
+//
+//    }
+
 //    //データをHealthkitから取得
 //    func read() {
 //        DispatchQueue.main.async { [self] in
@@ -93,9 +92,12 @@ class MeViewController: UIViewController, UITextFieldDelegate {
 //            myHealthStore.execute(query)
 //        }
 //    }
+
+}
+
+extension MeViewController: UITextFieldDelegate {
     
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         weightTextField.resignFirstResponder()
         return true
     }
