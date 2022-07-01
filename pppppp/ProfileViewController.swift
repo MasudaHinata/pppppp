@@ -37,8 +37,6 @@ class ProfileViewController: UIViewController {
         let db = Firestore.firestore()
         let docRef = db.collection("UserData")
             .document(friendId)
-            .collection("profileData")
-            .document("nameData")
         
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {

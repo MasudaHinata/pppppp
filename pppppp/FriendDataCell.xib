@@ -28,18 +28,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7x-am-rQQ">
-                        <rect key="frame" x="234" y="9" width="266" height="21"/>
+                        <rect key="frame" x="270" y="15" width="266" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SR9-zr-25J">
-                        <rect key="frame" x="143" y="8" width="75" height="35"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -49,7 +43,6 @@
             </constraints>
             <size key="customSize" width="500" height="50"/>
             <connections>
-                <outlet property="deleteButton" destination="SR9-zr-25J" id="jcS-Dq-41I"/>
                 <outlet property="idLabel" destination="D7x-am-rQQ" id="hUX-dY-cZY"/>
                 <outlet property="nameLabel" destination="t9I-B8-fFX" id="2cU-rn-F1E"/>
             </connections>
