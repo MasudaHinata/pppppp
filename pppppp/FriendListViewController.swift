@@ -189,7 +189,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     }
     
     
-//セルをタップしたら友達を削除するかのアラート
+    //セルをタップしたら友達を削除するかのアラート
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let deleteFriendId = friendList[indexPath.row].id else { return }
         
@@ -199,22 +199,22 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
             if let currentUser = Auth.auth().currentUser {
                 
                 db.collection("UserData").document(currentUser.uid).collection("friendsList").document(deleteFriendId).delete() { err in
-                        if let err = err {
-                            print("Error removing document: \(err)")
-                        } else {
-                            db.collection("UserData").document(deleteFriendId).collection("friendsList").document(currentUser.uid).delete() { err in
-                                if let err = err {
-                                    print("Error removing document: \(err)")
-                                } else {
-                                    print("自分を友達のリストから削除しました")
-                                    let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                                    self.present(alert, animated: true, completion: nil)
-                                }
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        db.collection("UserData").document(deleteFriendId).collection("friendsList").document(currentUser.uid).delete() { err in
+                            if let err = err {
+                                print("Error removing document: \(err)")
+                            } else {
+                                print("自分を友達のリストから削除しました")
+                                let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
                             }
-                            print("友達を削除しました")
                         }
+                        print("友達を削除しました")
                     }
+                }
             }
             
             let alert2 = UIAlertController(title: "友達の削除", message: "友達を削除しました", preferredStyle: .alert)

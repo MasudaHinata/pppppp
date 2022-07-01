@@ -43,8 +43,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             if self.auth.currentUser?.isEmailVerified == true {
                 print("あってる！！！")
-                
-                //遷移
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
                 self.showDetailViewController(secondVC, sender: self)
