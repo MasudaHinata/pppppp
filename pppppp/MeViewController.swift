@@ -72,6 +72,17 @@ class MeViewController: UIViewController {
     
         }
     
+//    身長を取得
+    func readHeight (){
+//            let type = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight)
+            let query = HKSampleQuery(sampleType: type!, predicate: nil, limit: 10, sortDescriptors: nil, resultsHandler: { query, data, error in
+                print(query)
+                print(data) // → Optional([180 m "MyApp" (1) 2016-05-08 13:16:51 +0900 2016-05-08 13:16:51 +0900])
+                print(error)
+            })
+            print(myHealthStore.execute(query))
+    }
+
     //体重データをHealthkitから取得
 
     
