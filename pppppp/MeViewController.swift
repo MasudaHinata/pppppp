@@ -18,25 +18,34 @@ class MeViewController: UIViewController {
     let userID = Auth.auth().currentUser!.uid
     
     @IBOutlet var weightTextField: UITextField!
-    @IBOutlet var weightLabel: UILabel!
     @IBOutlet var mynameLabel: UILabel!
     @IBAction func addButtonPressed() {
         guard let inputWeightText = weightTextField.text else { return }
         guard let inputWeight = Double(inputWeightText) else { return }
         saveWeight(weight: inputWeight)
     }
+//    @IBOutlet var queryStatusLabel: UITextView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //HealthKitの許可
         let types = Set([typeOfBodyMass])
-        let healthStore = HKHealthStore()
-        healthStore.requestAuthorization(toShare: types, read: types, completion: { success, error in
+        myHealthStore.requestAuthorization(toShare: types, read: types, completion: { success, error in
             print(success)
         })
-        self.weightTextField?.delegate = self
         
+        let readTypes = Set([
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount )!
+        ])
+
+        myHealthStore.requestAuthorization(toShare: [], read: readTypes, completion: { success, error in
+            print(success)
+        })
+        
+        
+        self.weightTextField?.delegate = self
         getname()
         //read()
     }
@@ -57,7 +66,43 @@ class MeViewController: UIViewController {
     
         }
     
-    //データをHealthkitから取得
+    //体重データをHealthkitから取得
+
+    
+    
+    //体重データをHealthkitから取得
+//    @IBAction func getBodyMass(_ sender: Any) {
+//            let start = Calendar.current.date(byAdding: .month, value: -48, to: Date())
+//            let end = Date()
+//            let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
+//            let sampleType = HKQuantityType.quantityType(forIdentifier: .bodyMass)!
+//
+//            let query = HKSampleQuery(
+//                sampleType: sampleType,
+//                predicate: predicate,
+//                limit: HKObjectQueryNoLimit,
+//                sortDescriptors: nil) {
+//                (query, results, error) in
+//
+//                let samples = results as! [HKQuantitySample]
+//
+//                var buf = ""
+//                for sample in samples {
+//                    // Process each sample here.
+//                    let s = sample.quantity
+//                    print("\(String(describing: sample))")
+//
+//                    buf.append("\(sample.startDate) \(String(describing: s))\n")
+//                }
+//
+//                DispatchQueue.main.async {
+//                    self.queryStatusLabel.text = "\(buf)"
+//                }
+//            }
+//            self.myHealthStore.execute(query)
+//        }
+
+    //体重データをHealthkitから取得
     //    func read() {
     //        DispatchQueue.main.async { [self] in
     //            let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
