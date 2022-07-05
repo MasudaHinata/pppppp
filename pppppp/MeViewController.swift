@@ -44,6 +44,12 @@ class MeViewController: UIViewController {
             print(success)
         })
         
+        let heightTypes = Set([
+            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
+        ])
+        myHealthStore.requestAuthorization(toShare: [], read: heightTypes, completion: { success, error in
+            print(success)
+        })
         
         self.weightTextField?.delegate = self
         getname()
