@@ -101,6 +101,8 @@ class MeViewController: UIViewController, UITextFieldDelegate {
 
     }
     
+    
+    
     //    体重を取得
     @IBAction func readweight() {
         DispatchQueue.main.async { [self] in
@@ -109,7 +111,7 @@ class MeViewController: UIViewController, UITextFieldDelegate {
                     if results is [HKQuantitySample] {
                         // 取得したデータを格納
                         
-                        print("体重は\(String(describing: results))")
+                    print("体重は\(String(describing: results))")
                     }
                 }
             }
