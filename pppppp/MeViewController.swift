@@ -10,7 +10,7 @@ import HealthKit
 import Firebase
 import FirebaseFirestore
 
-class MeViewController: UIViewController {
+class MeViewController: UIViewController, UITextFieldDelegate {
     
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
@@ -31,7 +31,23 @@ class MeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //HealthKitの許可
+        // ツールバーのインスタンスを作成
+             let toolBar = UIToolbar()
+
+             // ツールバーに配置するアイテムのインスタンスを作成
+        let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let okButton: UIBarButtonItem = UIBarButtonItem(title: "OK", style: UIBarButtonItem.Style.plain, target: self, action: #selector(tapOkButton(_:)))
+
+             // アイテムを配置
+             toolBar.setItems([flexibleItem, okButton, flexibleItem], animated: true)
+
+             // ツールバーのサイズを指定
+             toolBar.sizeToFit()
+
+             // テキストフィールドにツールバーを設定
+            weightTextField.inputAccessoryView = toolBar
+        
+    //HealthKitの許可
         let types = Set([typeOfBodyMass])
         myHealthStore.requestAuthorization(toShare: types, read: types, completion: { success, error in
             print(success)
@@ -55,7 +71,7 @@ class MeViewController: UIViewController {
         self.weightTextField?.delegate = self
         getname()
     }
-    //HealthKitに体重を保存.
+    //体重を保存.
     func saveWeight(weight: Double) {
         
         let quantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
@@ -73,11 +89,19 @@ class MeViewController: UIViewController {
     }
     
     //    身長を取得
-    func readHeight() {
+    func readheight() {
+        
+        
         
     }
     
-    //    体重データをHealthkitから取得
+    //歩数を取得
+    func readsteps (){
+        
+
+    }
+    
+    //    体重を取得
     @IBAction func readweight() {
         DispatchQueue.main.async { [self] in
             let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
@@ -109,10 +133,16 @@ class MeViewController: UIViewController {
             }
         }
     }
-}
-extension MeViewController: UITextFieldDelegate {
-    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        weightTextField.resignFirstResponder()
-        return true
+    
+    @objc func tapOkButton(_ sender: UIButton){
+        // キーボードを閉じる
+        self.view.endEditing(true)
     }
+    
 }
+//extension MeViewController: UITextFieldDelegate {
+//    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        weightTextField.resignFirstResponder()
+//        return true
+//    }
+//}
