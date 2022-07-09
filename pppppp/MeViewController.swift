@@ -14,6 +14,7 @@ class MeViewController: UIViewController, UITextFieldDelegate {
     
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
+    var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var weight: Double!
     let userID = Auth.auth().currentUser!.uid
     
@@ -31,21 +32,12 @@ class MeViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // ツールバーのインスタンスを作成
-             let toolBar = UIToolbar()
-
-             // ツールバーに配置するアイテムのインスタンスを作成
+        let toolBar = UIToolbar()
         let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let okButton: UIBarButtonItem = UIBarButtonItem(title: "OK", style: UIBarButtonItem.Style.plain, target: self, action: #selector(tapOkButton(_:)))
-
-             // アイテムを配置
-             toolBar.setItems([flexibleItem, okButton, flexibleItem], animated: true)
-
-             // ツールバーのサイズを指定
-             toolBar.sizeToFit()
-
-             // テキストフィールドにツールバーを設定
-            weightTextField.inputAccessoryView = toolBar
+        toolBar.setItems([flexibleItem, okButton, flexibleItem], animated: true)
+        toolBar.sizeToFit()
+        weightTextField.inputAccessoryView = toolBar
         
     //HealthKitの許可
         let types = Set([typeOfBodyMass])
@@ -53,9 +45,10 @@ class MeViewController: UIViewController, UITextFieldDelegate {
             print(success)
         })
         
-        let readTypes = Set([
-            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount )!
-        ])
+//        let readTypes = Set([
+//            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
+//        ])
+        let  readTypes = Set([typeOfStepCount])
         
         myHealthStore.requestAuthorization(toShare: [], read: readTypes, completion: { success, error in
             print(success)
@@ -95,11 +88,43 @@ class MeViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    //歩数を取得
-    func readsteps (){
+    @IBAction func readsteps() {
         
+        let start = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        let end = Date()
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
+        
+        DispatchQueue.main.async { [self] in
+            let query = HKSampleQuery(sampleType: self.typeOfStepCount, predicate: predicate, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
+                if results is [HKQuantitySample] {
+                    if results is [HKQuantitySample] {
+                        // 取得したデータを格納
 
+                    print("歩数は\(String(describing: results))")
+                    }
+                }
+            }
+            myHealthStore.execute(query)
+        }
+        
     }
+    
+    //歩数を取得
+//    @IBAction func readsteps (){
+//
+//        DispatchQueue.main.async { [self] in
+//            let query = HKSampleQuery(sampleType: self.typeOfStepCount, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
+//                if results is [HKQuantitySample] {
+//                    if results is [HKQuantitySample] {
+//                        // 取得したデータを格納
+//
+//                    print("体重は\(String(describing: results))")
+//                    }
+//                }
+//            }
+//            myHealthStore.execute(query)
+//        }
+//    }
     
     
     

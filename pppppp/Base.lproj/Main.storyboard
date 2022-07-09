@@ -540,12 +540,21 @@
                                 <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIl-uE-JKW">
-                                <rect key="frame" x="170" y="302" width="75" height="35"/>
+                                <rect key="frame" x="161" y="265" width="94" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="体重取得"/>
                                 <connections>
                                     <action selector="readweight" destination="9qf-JZ-69t" eventType="touchUpInside" id="BCZ-V9-gPC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xQ-Uq-Em9">
+                                <rect key="frame" x="162" y="372" width="94" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="歩数取得"/>
+                                <connections>
+                                    <action selector="readsteps" destination="9qf-JZ-69t" eventType="touchUpInside" id="oYa-wr-7OM"/>
                                 </connections>
                             </button>
                         </subviews>
