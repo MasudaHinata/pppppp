@@ -557,6 +557,15 @@
                                     <action selector="readsteps" destination="9qf-JZ-69t" eventType="touchUpInside" id="oYa-wr-7OM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5S-mn-j84">
+                                <rect key="frame" x="181" y="472" width="94" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="身長取得"/>
+                                <connections>
+                                    <action selector="readheight" destination="9qf-JZ-69t" eventType="touchUpInside" id="Wpb-oa-Uaf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ldU-sy-YlS"/>
                         <color key="backgroundColor" red="0.062745101750000004" green="0.0039215688589999999" blue="0.28627452250000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

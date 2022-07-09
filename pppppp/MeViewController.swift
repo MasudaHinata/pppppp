@@ -15,6 +15,7 @@ class MeViewController: UIViewController, UITextFieldDelegate {
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
+    var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
     var weight: Double!
     let userID = Auth.auth().currentUser!.uid
     
@@ -41,25 +42,11 @@ class MeViewController: UIViewController, UITextFieldDelegate {
         
     //HealthKitの許可
         let types = Set([typeOfBodyMass])
-        myHealthStore.requestAuthorization(toShare: types, read: types, completion: { success, error in
+        let readtypes = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
+        myHealthStore.requestAuthorization(toShare: types, read: readtypes, completion: { success, error in
             print(success)
         })
         
-//        let readTypes = Set([
-//            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
-//        ])
-        let  readTypes = Set([typeOfStepCount])
-        
-        myHealthStore.requestAuthorization(toShare: [], read: readTypes, completion: { success, error in
-            print(success)
-        })
-        
-        let heightTypes = Set([
-            HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
-        ])
-        myHealthStore.requestAuthorization(toShare: [], read: heightTypes, completion: { success, error in
-            print(success)
-        })
         
         self.weightTextField?.delegate = self
         getname()
@@ -82,9 +69,20 @@ class MeViewController: UIViewController, UITextFieldDelegate {
     }
     
     //    身長を取得
-    func readheight() {
+    @IBAction func readheight() {
         
-        
+        DispatchQueue.main.async { [self] in
+            let query = HKSampleQuery(sampleType: self.typeOfHeight, predicate: nil, limit: Int(1.0), sortDescriptors: nil) { (query, results, error) in
+                if results is [HKQuantitySample] {
+                    if results is [HKQuantitySample] {
+                        // 取得したデータを格納
+                        
+                    print("身長は\(String(describing: results))")
+                    }
+                }
+            }
+            myHealthStore.execute(query)
+        }
         
     }
     
@@ -108,26 +106,7 @@ class MeViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    
-    //歩数を取得
-//    @IBAction func readsteps (){
-//
-//        DispatchQueue.main.async { [self] in
-//            let query = HKSampleQuery(sampleType: self.typeOfStepCount, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
-//                if results is [HKQuantitySample] {
-//                    if results is [HKQuantitySample] {
-//                        // 取得したデータを格納
-//
-//                    print("体重は\(String(describing: results))")
-//                    }
-//                }
-//            }
-//            myHealthStore.execute(query)
-//        }
-//    }
-    
-    
-    
+        
     //    体重を取得
     @IBAction func readweight() {
         DispatchQueue.main.async { [self] in
