@@ -15,7 +15,6 @@ class FriendListViewController: UIViewController {
     var auth: Auth!
     let user = Auth.auth().currentUser
     var shareUrlString: String?
-    let userID = Auth.auth().currentUser!.uid
     var completionHandlers = [() -> Void]()
     var friendIdList = [String]()
     
@@ -50,22 +49,50 @@ class FriendListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(userID)
+        auth = Auth.auth()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        //ログインできてるかどうかの判定
+        if auth.currentUser != nil {
+            auth.currentUser?.reload(completion: { [self] error in
+                if error == nil {
+                    if self.auth.currentUser?.isEmailVerified == true {
+                        print("ログインしています")
+                        return
+                    } else {
+                        //メール認証がまだ
+                        if self.auth.currentUser?.isEmailVerified == false {
+                            let alert = UIAlertController(title: "確認用メールを送信しているので確認をお願いします。", message: "まだメール認証が完了していません。", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        } else if auth.currentUser == nil{
+            print("ログインされてない！ログインしてください")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+            showDetailViewController(secondVC, sender: self)
+        }
+
+//        print(userID)
+        guard let userID = user?.uid else { return }
         print("自分のユーザーIDを取得しました")
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
-        
+
         getfriendIds { [weak self] friendIdList in
         self?.getUserDataFromIds(friendIdList: friendIdList)
         }
-        
+
         getname()
-        
+
     }
     
     //    名前を表示
     func getname() {
-        
+        guard let userID = user?.uid else { return }
         let db = Firestore.firestore()
         db.collection("UserData").document(userID).getDocument { (snapshot, err) in
             if let err = err {
@@ -82,7 +109,8 @@ class FriendListViewController: UIViewController {
     
     //    友達の情報をとってくる
     func getfriendIds(completion: @escaping ([String]) -> Void)  {
-        
+
+        guard let userID = user?.uid else { return }
         let db = Firestore.firestore()
         db.collection("UserData").document(userID).collection("friendsList").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -125,6 +153,7 @@ class FriendListViewController: UIViewController {
     }
     
     func showShareSheet() {
+        guard let userID = user?.uid else { return }
         let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
         let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
