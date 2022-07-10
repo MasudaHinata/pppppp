@@ -10,9 +10,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let db = Firestore.firestore()
     
     @IBOutlet var loginLabel: UILabel!
-    @IBAction func friendsButton() {
+    @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "FriendListViewController")
+        let secondVC = storyboard.instantiateViewController(identifier: "MeViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
     

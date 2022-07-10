@@ -21,7 +21,7 @@ class MeViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet var weightTextField: UITextField!
-    @IBOutlet var mynameLabel: UILabel!
+   
     @IBAction func addButtonPressed() {
         guard let inputWeightText = weightTextField.text else { return }
         guard let inputWeight = Double(inputWeightText) else { return }
@@ -40,7 +40,7 @@ class MeViewController: UIViewController, UITextFieldDelegate {
         toolBar.sizeToFit()
         weightTextField.inputAccessoryView = toolBar
         
-    //HealthKitの許可
+        //HealthKitの許可
         let types = Set([typeOfBodyMass])
         let readtypes = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
         myHealthStore.requestAuthorization(toShare: types, read: readtypes, completion: { success, error in
@@ -49,7 +49,6 @@ class MeViewController: UIViewController, UITextFieldDelegate {
         
         
         self.weightTextField?.delegate = self
-        getname()
     }
     //体重を保存.
     func saveWeight(weight: Double) {
@@ -77,7 +76,7 @@ class MeViewController: UIViewController, UITextFieldDelegate {
                     if results is [HKQuantitySample] {
                         // 取得したデータを格納
                         
-                    print("身長は\(String(describing: results))")
+                        print("身長は\(String(describing: results))")
                     }
                 }
             }
@@ -97,8 +96,8 @@ class MeViewController: UIViewController, UITextFieldDelegate {
                 if results is [HKQuantitySample] {
                     if results is [HKQuantitySample] {
                         // 取得したデータを格納
-
-                    print("歩数は\(String(describing: results))")
+                        
+                        print("歩数は\(String(describing: results))")
                     }
                 }
             }
@@ -106,7 +105,7 @@ class MeViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-        
+    
     //    体重を取得
     @IBAction func readweight() {
         DispatchQueue.main.async { [self] in
@@ -115,7 +114,7 @@ class MeViewController: UIViewController, UITextFieldDelegate {
                     if results is [HKQuantitySample] {
                         // 取得したデータを格納
                         
-                    print("体重は\(String(describing: results))")
+                        print("体重は\(String(describing: results))")
                     }
                 }
             }
@@ -123,22 +122,6 @@ class MeViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //    名前を表示
-    func getname() {
-        
-        let db = Firestore.firestore()
-        db.collection("UserData").document(userID).getDocument { (snapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                if let snapshot = snapshot {
-                    let user = snapshot.data()!["name"]!
-                    print(user)
-                    self.mynameLabel.text = user as? String
-                }
-            }
-        }
-    }
     
     @objc func tapOkButton(_ sender: UIButton){
         // キーボードを閉じる

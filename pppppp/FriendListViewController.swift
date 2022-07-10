@@ -25,6 +25,15 @@ class FriendListViewController: UIViewController {
         }
     }
     
+    
+    
+    @IBOutlet var mynameLabel: UILabel!
+    @IBAction func dataputButton() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "MeViewController")
+        self.showDetailViewController(secondVC, sender: self)
+    }
+    
     @IBOutlet var friendcollectionView: UICollectionView! {
         didSet {
             friendcollectionView.delegate = self
@@ -47,10 +56,28 @@ class FriendListViewController: UIViewController {
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
         
         getfriendIds { [weak self] friendIdList in
-            self?.getUserDataFromIds(friendIdList: friendIdList)
+        self?.getUserDataFromIds(friendIdList: friendIdList)
         }
         
+        getname()
         
+    }
+    
+    //    名前を表示
+    func getname() {
+        
+        let db = Firestore.firestore()
+        db.collection("UserData").document(userID).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if let snapshot = snapshot {
+                    let user = snapshot.data()!["name"]!
+                    print(user)
+                    self.mynameLabel.text = user as? String
+                }
+            }
+        }
     }
     
     //    友達の情報をとってくる
@@ -183,7 +210,6 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "frienddatacell", for: indexPath)  as! FriendDataCell
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.idLabel.text = friendList[indexPath.row].id
-        cell.backgroundColor = UIColor(hex: "B8E9FF")
         
         return cell
     }
