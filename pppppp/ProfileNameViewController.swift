@@ -20,7 +20,7 @@ class ProfileNameViewController: UIViewController, UITextFieldDelegate {
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ProfileImageViewController")
+        let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
         self.showDetailViewController(secondVC, sender: self)
         
     }

@@ -1,5 +1,5 @@
 //
-// MeViewController.swift
+//  HealthDataViewController.swift
 //  pppppp
 //
 //  Created by 増田ひなた on 2022/06/15.
@@ -10,7 +10,7 @@ import HealthKit
 import Firebase
 import FirebaseFirestore
 
-class MeViewController: UIViewController, UITextFieldDelegate {
+class HealthDataViewController: UIViewController, UITextFieldDelegate {
     
     var myHealthStore = HKHealthStore()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
@@ -129,9 +129,4 @@ class MeViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
-//extension MeViewController: UITextFieldDelegate {
-//    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        weightTextField.resignFirstResponder()
-//        return true
-//    }
-//}
+

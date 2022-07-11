@@ -12,7 +12,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var loginLabel: UILabel!
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "MeViewController")
+        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
     

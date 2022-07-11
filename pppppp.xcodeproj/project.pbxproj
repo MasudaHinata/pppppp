@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C1A900C283506D5004B4100 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A900B283506D5004B4100 /* FriendListViewController.swift */; };
-		9C3A35402859CEF100404AA6 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3A353F2859CEF100404AA6 /* MeViewController.swift */; };
+		9C3A35402859CEF100404AA6 /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3A353F2859CEF100404AA6 /* HealthDataViewController.swift */; };
 		9C4F1C752859E6F500623C66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F1C742859E6F500623C66 /* ProfileViewController.swift */; };
 		9C699037286B3CC6009D5BF5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C699036286B3CC6009D5BF5 /* User.swift */; };
 		9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69903E286C6517009D5BF5 /* FriendDataCell.swift */; };
@@ -48,7 +48,7 @@
 
 /* Begin PBXFileReference section */
 		9C1A900B283506D5004B4100 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
-		9C3A353F2859CEF100404AA6 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		9C3A353F2859CEF100404AA6 /* HealthDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
 		9C4F1C742859E6F500623C66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9C699036286B3CC6009D5BF5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C69903E286C6517009D5BF5 /* FriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDataCell.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				BE7F337F2580D07E0027620D /* ViewController.swift */,
 				9C1A900B283506D5004B4100 /* FriendListViewController.swift */,
-				9C3A353F2859CEF100404AA6 /* MeViewController.swift */,
+				9C3A353F2859CEF100404AA6 /* HealthDataViewController.swift */,
 				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
 				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
 				9CAA88EB26B1918B005517D5 /* LoginViewController.swift */,
@@ -259,7 +259,7 @@
 				9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */,
 				9C4F1C752859E6F500623C66 /* ProfileViewController.swift in Sources */,
 				BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */,
-				9C3A35402859CEF100404AA6 /* MeViewController.swift in Sources */,
+				9C3A35402859CEF100404AA6 /* HealthDataViewController.swift in Sources */,
 				9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
