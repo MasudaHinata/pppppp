@@ -286,9 +286,10 @@ class FriendListViewController: UIViewController {
     
     
     @IBOutlet var mynameLabel: UILabel!
+    
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "MeViewController")
+        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
     

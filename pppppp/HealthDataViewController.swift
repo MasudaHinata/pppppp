@@ -52,24 +52,25 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
     }
     //体重を保存.
     func saveWeight(weight: Double) {
-        
-        let quantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
-        let WeightData = HKQuantitySample(type: typeOfBodyMass, quantity: quantity, start: Date(), end: Date())
-        
-        self.myHealthStore.save(WeightData, withCompletion: {
-            (success: Bool, error: Error!) in
-            if success {
-                NSLog("HealthKit保存成功!")
-            } else {
-                print("HealthKitに保存できませんでした。")
-            }
-        })
-        
+        DispatchQueue.main.async { [self] in
+            let quantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
+            let WeightData = HKQuantitySample(type: typeOfBodyMass, quantity: quantity, start: Date(), end: Date())
+            
+            self.myHealthStore.save(WeightData, withCompletion: {
+                (success: Bool, error: Error!) in
+                if success {
+                    let alert = UIAlertController(title: "記録", message: "体重を記録しました。", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    print("HealthKit保存成功!")
+                } else {
+                    print("HealthKitに保存できませんでした。")
+                }
+            })
+        }
     }
-    
     //    身長を取得
     @IBAction func readheight() {
-        
         DispatchQueue.main.async { [self] in
             let query = HKSampleQuery(sampleType: self.typeOfHeight, predicate: nil, limit: Int(1.0), sortDescriptors: nil) { (query, results, error) in
                 if results is [HKQuantitySample] {
@@ -86,7 +87,6 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func readsteps() {
-        
         let start = Calendar.current.date(byAdding: .day, value: -7, to: Date())
         let end = Date()
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
@@ -113,7 +113,6 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
                 if results is [HKQuantitySample] {
                     if results is [HKQuantitySample] {
                         // 取得したデータを格納
-                        
                         print("体重は\(String(describing: results))")
                     }
                 }

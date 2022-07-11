@@ -486,63 +486,66 @@
             <point key="canvasLocation" x="4124.6376811594209" y="784.82142857142856"/>
         </scene>
         <!--Health Data View Controller-->
-        <scene sceneID="JCb-GZ-TGH">
+        <scene sceneID="2z4-xi-Jvi">
             <objects>
-                <viewController storyboardIdentifier="HealthDataViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1HG-CV-6wm" customClass="HealthDataViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZMO-AX-x2W">
+                <viewController storyboardIdentifier="HealthDataViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9kw-x1-zJW" customClass="HealthDataViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W83-MO-WNk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxo-PX-sWI">
-                                <rect key="frame" x="178" y="348" width="59" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fr-PY-P5W">
+                                <rect key="frame" x="201" y="167" width="59" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="体重"/>
                                 <connections>
-                                    <action selector="readweight" destination="1HG-CV-6wm" eventType="touchUpInside" id="00g-Qy-xAF"/>
+                                    <action selector="readweight" destination="9kw-x1-zJW" eventType="touchUpInside" id="Dsb-VI-ha5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29G-V4-3bN">
-                                <rect key="frame" x="178" y="431" width="59" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcG-eb-yVV">
+                                <rect key="frame" x="201" y="247" width="59" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="歩数"/>
                                 <connections>
-                                    <action selector="readsteps" destination="1HG-CV-6wm" eventType="touchUpInside" id="lHe-vE-dia"/>
+                                    <action selector="readsteps" destination="9kw-x1-zJW" eventType="touchUpInside" id="Hkm-2g-5io"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3X-HW-7T6">
-                                <rect key="frame" x="178" y="498" width="59" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mn-Ja-YRO">
+                                <rect key="frame" x="241" y="530" width="55" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                                <connections>
+                                    <action selector="addButtonPressed" destination="9kw-x1-zJW" eventType="touchUpInside" id="DwR-z1-hWh"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s95-6B-WTh">
+                                <rect key="frame" x="101" y="531" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VnP-QC-hCM">
+                                <rect key="frame" x="189" y="359" width="59" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="身長"/>
                                 <connections>
-                                    <action selector="readheight" destination="1HG-CV-6wm" eventType="touchUpInside" id="0t6-VK-nhC"/>
+                                    <action selector="readheight" destination="9kw-x1-zJW" eventType="touchUpInside" id="1jN-0k-PO6"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="moV-CA-Zeb">
-                                <rect key="frame" x="93" y="587" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlO-1L-LuP">
-                                <rect key="frame" x="228" y="586" width="55" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add"/>
-                            </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="abS-LL-kpC"/>
-                        <color key="backgroundColor" red="0.062745101750000004" green="0.0039215688589999999" blue="0.28627452250000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <viewLayoutGuide key="safeArea" id="T6G-9T-BxG"/>
+                        <color key="backgroundColor" red="0.074509803921568626" green="0.0" blue="0.2985896468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="weightTextField" destination="moV-CA-Zeb" id="7ge-wX-jsH"/>
+                        <outlet property="weightTextField" destination="s95-6B-WTh" id="haS-nZ-yXj"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Y3-le-M72" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jsc-Eg-oXE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5048" y="785"/>
+            <point key="canvasLocation" x="5013" y="813"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XfS-aq-DeV">
