@@ -15,7 +15,6 @@ class ProfileViewController: UIViewController {
         
         print(userID)
         print(friendId)
-        print("ああああああああ")
         getfriendsname()
     }
     
@@ -23,12 +22,10 @@ class ProfileViewController: UIViewController {
     var friendId: String!
     let userID = Auth.auth().currentUser!.uid
     
+    
     @IBOutlet var friendLabel: UILabel!
     
     @IBAction func backButton(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
-        self.showDetailViewController(secondVC, sender: self)
     }
     
     //    友達の名前を取得する

@@ -201,19 +201,33 @@ class FriendListViewController: UIViewController {
     @IBAction func deleteAccount() {
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
         
-        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { (action) -> Void in
-            Auth.auth().currentUser?.delete()
-            print("アカウントを削除しました")
+        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
             
-            let alert2 = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                self.showDetailViewController(secondVC, sender: self)
-                
+            self.user?.delete { error in
+                if error != nil {
+                  print("An error happened.")
+                } else {
+                  print("アカウントを削除しました")
+                  let alert2 = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
+                  let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                      let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                      self.showDetailViewController(secondVC, sender: self)
+                      
+                  }
+                  alert2.addAction(ok)
+              }
             }
-            alert2.addAction(ok)
-            self.present(alert2, animated: true, completion: nil)
+                        
+//            let alert2 = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
+//            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+//                self.showDetailViewController(secondVC, sender: self)
+//
+//            }
+//            alert2.addAction(ok)
+//            self.present(alert2, animated: true, completion: nil)
             
 
         })
@@ -228,6 +242,7 @@ class FriendListViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
+
 extension FriendListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
