@@ -8,6 +8,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var me: User!
     var auth: Auth!
     let db = Firestore.firestore()
+    let user = Auth.auth().currentUser
     
     @IBOutlet var loginLabel: UILabel!
     @IBAction func dataputButton() {
@@ -26,14 +27,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //ログインできてるかどうかの判定
+        //ログインできてるかとfirestoreに情報があるかの判定
         if auth.currentUser != nil {
             auth.currentUser?.reload(completion: { [self] error in
                 if error == nil {
                     if self.auth.currentUser?.isEmailVerified == true {
-                        loginLabel.text = "ログイン中"
                         print("ログインしています")
-                        return
+                        //名前があるかどうかの判定
+                        let userID = user?.uid
+                        let db = Firestore.firestore()
+                        db.collection("UserData").document(userID!).getDocument { [self] (snapshot, err) in
+                            if let err = err {
+                                print("Error getting documents: \(err)")
+                            } else {
+                                if let snapshot = snapshot {
+                                    if snapshot.data()?["name"]! == nil {
+                                        print("結果なし")
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        let secondVC = storyboard.instantiateViewController(identifier: "ProfileNameViewController")
+                                        showDetailViewController(secondVC, sender: self)
+                                        
+                                    } else {
+                                        print(snapshot.data()!["name"]!)
+                                    }
+                                }
+                                return
+                            }
+                        };return
                     } else {
                         //メール認証がまだ
                         if self.auth.currentUser?.isEmailVerified == false {
