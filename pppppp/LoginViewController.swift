@@ -42,10 +42,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             guard let self = self else { return }
             
             if self.auth.currentUser?.isEmailVerified == true {
-                print("あってる！！！")
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
-                self.showDetailViewController(secondVC, sender: self)
+                print("パスワードとメールアドレス一致")
+                self.performSegue(withIdentifier: "tooViewController", sender: nil)
                 
             }else if self.passwordTextField.text == "" {
                 print("パスワード入力されてない")

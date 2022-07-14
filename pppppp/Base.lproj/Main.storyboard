@@ -70,7 +70,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="backButton" destination="JpV-aJ-uMr" eventType="touchUpInside" id="VrI-Qg-q1f"/>
-                                    <segue destination="hdq-Kh-yzh" kind="presentation" modalPresentationStyle="fullScreen" id="eiM-0p-Kgr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMj-Ce-wXw">
@@ -95,11 +94,12 @@
                     </view>
                     <connections>
                         <outlet property="friendLabel" destination="1Uz-nn-8ck" id="EL3-fS-Zbw"/>
+                        <segue destination="hdq-Kh-yzh" kind="presentation" identifier="toViewController" modalPresentationStyle="fullScreen" id="UbM-Xc-XVF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOQ-FS-X6v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="604" y="66"/>
+            <point key="canvasLocation" x="1443" y="66"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="hqQ-Hn-Rgy">
@@ -287,6 +287,7 @@
                         <outlet property="goButton" destination="rpp-2C-UAa" id="SZ0-N6-gKY"/>
                         <outlet property="loginLabel" destination="Deh-rw-zcP" id="caJ-PF-ubh"/>
                         <outlet property="passwordTextField" destination="WaZ-TG-ZSF" id="PO7-fE-xad"/>
+                        <segue destination="hdq-Kh-yzh" kind="presentation" identifier="tooViewController" modalPresentationStyle="fullScreen" id="ycS-Sb-ePy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AxD-Fj-GTE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -329,6 +330,7 @@
                     </view>
                     <connections>
                         <outlet property="nameTextField" destination="Yqh-41-qRe" id="xNQ-ak-FCZ"/>
+                        <segue destination="hdq-Kh-yzh" kind="presentation" identifier="toooViewController" modalPresentationStyle="fullScreen" id="rvo-f5-0o7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2p-FI-gbJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -619,7 +621,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zOI-KC-VWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-93" y="785"/>
+            <point key="canvasLocation" x="-246" y="940"/>
         </scene>
         <!--Goal View Controller-->
         <scene sceneID="KVy-yM-kEA">
@@ -682,9 +684,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1V-gn-zIo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="741" y="785"/>
+            <point key="canvasLocation" x="610" y="1029"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="rvo-f5-0o7"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>

@@ -1,10 +1,3 @@
-//
-//  ProfileViewController.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/06/15.
-//
-
 import UIKit
 import Firebase
 import FirebaseFirestore
@@ -26,6 +19,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet var friendLabel: UILabel!
     
     @IBAction func backButton(){
+        self.performSegue(withIdentifier: "toViewController", sender: nil)
     }
     
     //    友達の名前を取得する
@@ -77,9 +71,7 @@ class ProfileViewController: UIViewController {
                                     let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
                                         
                                         
-                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                        let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
-                                        self.showDetailViewController(secondVC, sender: self)
+                                        self.performSegue(withIdentifier: "toViewController", sender: nil)
                                     }
                                     )
                                     alertController.addAction(okAction)

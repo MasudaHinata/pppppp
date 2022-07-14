@@ -38,11 +38,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         let db = Firestore.firestore()
                         db.collection("UserData").document(userID!).getDocument { [self] (snapshot, err) in
                             if let err = err {
-                                print("Error getting documents: \(err)")
+                                print("自分の名前を取得しようとした/エラーは: \(err)")
                             } else {
                                 if let snapshot = snapshot {
                                     if snapshot.data()?["name"]! == nil {
-                                        print("結果なし")
+                                        print("自分の名前を取得しようとした/firestoreに情報なし")
                                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                         let secondVC = storyboard.instantiateViewController(identifier: "ProfileNameViewController")
                                         showDetailViewController(secondVC, sender: self)
@@ -65,7 +65,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             })
         } else if auth.currentUser == nil{
-            print("ログインされてない！ログインしてください")
+            print("ログインされてない")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
             showDetailViewController(secondVC, sender: self)

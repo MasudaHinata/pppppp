@@ -18,10 +18,10 @@ class ProfileNameViewController: UIViewController, UITextFieldDelegate {
         profileName = nameTextField.text!
         saveProfileName(profileName: profileName)
         
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        self.performSegue(withIdentifier: "toooViewController", sender: nil)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let secondVC = storyboard.instantiateViewController(identifier: "ViewController")
+//        self.showDetailViewController(secondVC, sender: self)
         
     }
     

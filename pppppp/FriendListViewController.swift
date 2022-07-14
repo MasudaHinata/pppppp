@@ -64,11 +64,11 @@ class FriendListViewController: UIViewController {
                          let db = Firestore.firestore()
                          db.collection("UserData").document(userID!).getDocument { [self] (snapshot, err) in
                              if let err = err {
-                                 print("Error getting documents: \(err)")
+                                 print("自分の名前を取得しようとした/エラーは:\(err)")
                              } else {
                                  if let snapshot = snapshot {
                                      if snapshot.data()?["name"]! == nil {
-                                         print("結果なし")
+                                         print("自分の名前を取得しようとした/firestoreに情報なし")
                                          let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                          let secondVC = storyboard.instantiateViewController(identifier: "ProfileNameViewController")
                                          showDetailViewController(secondVC, sender: self)
@@ -159,7 +159,6 @@ class FriendListViewController: UIViewController {
          let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
          let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
          present(activityVC, animated: true, completion: nil)
-        print("リンクをシェアします")
     }
     
     //ログアウトする
@@ -193,43 +192,36 @@ class FriendListViewController: UIViewController {
             
             try firebaseAuth.signOut()
         } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+            print("サインアウトしようとした/エラーは: %@", signOutError)
         }
     }
     
     //    アカウントを削除する
     @IBAction func deleteAccount() {
+        
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
         
-        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
-            
-            self.user?.delete { error in
+        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { (action) -> Void in
+            self.user?.delete() { error in
                 if error != nil {
-                  print("An error happened.")
+                    print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
                 } else {
-                  print("アカウントを削除しました")
-                  let alert2 = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
-                  let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                      let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                      let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                      self.showDetailViewController(secondVC, sender: self)
-                      
-                  }
-                  alert2.addAction(ok)
-              }
-            }
+                    
+                    print("アカウントを削除しました")
+                    let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         
-//            let alert2 = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
-//            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-//                self.showDetailViewController(secondVC, sender: self)
-//
-//            }
-//            alert2.addAction(ok)
-//            self.present(alert2, animated: true, completion: nil)
-            
-
+                        print("アカウントを削除しました")
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                        self.showDetailViewController(secondVC, sender: self)
+                        
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                }
+            }
         })
         
         let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
@@ -258,7 +250,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     }
     
     
-    //セルをタップしたら友達を削除するかのアラート
+    //友達を削除する
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let deleteFriendId = friendList[indexPath.row].id else { return }
         
