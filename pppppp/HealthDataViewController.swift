@@ -1,10 +1,3 @@
-//
-//  HealthDataViewController.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/06/15.
-//
-
 import UIKit
 import HealthKit
 import Firebase

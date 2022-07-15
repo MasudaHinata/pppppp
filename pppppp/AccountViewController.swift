@@ -33,10 +33,40 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     
     @IBAction func GooButton() {
         
-        
         if self.isValidEmail(self.emailTextField.text!){
             // メールアドレスが正しく入力された場合
-            register()
+            if passwordTextField.text == password2TextField.text {
+                let email = emailTextField.text!
+                let password = passwordTextField.text!
+                
+                auth.createUser(withEmail: email, password: password) { (result, error) in
+                    if error == nil, let result = result {
+                        result.user.sendEmailVerification(completion: { (error) in
+                            if error == nil {
+                                let alert = UIAlertController(title: "仮登録を行いました。", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        })
+                    } else {
+                        print("error occured")
+                        print(error)
+                    }
+                }
+            }else if passwordTextField.text == "" {
+                print("パスワードが入力されていない")
+                let alert = UIAlertController(title: "パスワードが入力されていません", message: "パスワードを入力してください", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                }
+                alert.addAction(ok)
+                present(alert, animated: true, completion: nil)
+            }else if passwordTextField.text != password2TextField.text {
+                let alert = UIAlertController(title: "パスワードが一致しません", message: "パスワードを確認してください", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                }
+                alert.addAction(ok)
+                present(alert, animated: true, completion: nil)
+            }
         } else {
             // メールアドレスが正しく入力されなかった場合
             print("メールアドレスの形式が間違っています")
@@ -46,13 +76,27 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
         }
-        
-        
     }
     
     func register () {
         if passwordTextField.text == password2TextField.text {
-            registerAccount()
+            let email = emailTextField.text!
+            let password = passwordTextField.text!
+            
+            auth.createUser(withEmail: email, password: password) { (result, error) in
+                if error == nil, let result = result {
+                    result.user.sendEmailVerification(completion: { (error) in
+                        if error == nil {
+                            let alert = UIAlertController(title: "仮登録を行いました。", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    })
+                } else {
+                    print("error occured")
+                    print(error)
+                }
+            }
         }else if passwordTextField.text == "" {
             print("パスワードが入力されていない")
             let alert = UIAlertController(title: "パスワードが入力されていません", message: "パスワードを入力してください", preferredStyle: .alert)
@@ -70,9 +114,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         
     }
     
-    
-    
-    
     override func viewDidLoad() {
         design()
         super.viewDidLoad()
@@ -80,26 +121,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
         self.password2TextField.delegate = self
-    }
-    
-    func registerAccount() {
-        let email = emailTextField.text!
-        let password = passwordTextField.text!
-        
-        auth.createUser(withEmail: email, password: password) { (result, error) in
-            if error == nil, let result = result {
-                result.user.sendEmailVerification(completion: { (error) in
-                    if error == nil {
-                        let alert = UIAlertController(title: "仮登録を行いました。", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                })
-            } else {
-                print("error occured")
-                print(error)
-            }
-        }
     }
     
     func design() {
@@ -127,5 +148,4 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         password2TextField.resignFirstResponder()
         return true
     }
-    
 }

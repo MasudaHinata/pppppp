@@ -26,11 +26,10 @@ class ProfileImageViewController: UIViewController,UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         design()
     }
     
-    // 画像が選択された時に呼ばれる
+    //画像が選択された時に呼ばれる
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
         if let selectedImage = info[.originalImage] as? UIImage {
             imageView.image = selectedImage  //imageViewにカメラロールから選んだ画像を表示する
@@ -38,7 +37,7 @@ class ProfileImageViewController: UIViewController,UIImagePickerControllerDelega
         self.dismiss(animated: true)  //画像をImageViewに表示したらアルバムを閉じる
     }
     
-    // 画像選択がキャンセルされた時に呼ばれる
+    //画像選択がキャンセルされた時に呼ばれる
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }

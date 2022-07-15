@@ -57,9 +57,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         //メール認証がまだ
                         if self.auth.currentUser?.isEmailVerified == false {
-                            let alert = UIAlertController(title: "確認用メールを送信しているので確認をお願いします。", message: "まだメール認証が完了していません。", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            self.present(alert, animated: true, completion: nil)
+                            let alert = UIAlertController(title: "まだメール認証が完了していません。", message: "確認用メールを送信しているので確認をお願いします。", preferredStyle: .alert)
+                            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                                self.showDetailViewController(secondVC, sender: self)
+                            }
+                            alert.addAction(ok)
+                            present(alert, animated: true, completion: nil)
                         }
                     }
                 }
