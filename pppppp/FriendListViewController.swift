@@ -196,34 +196,35 @@ class FriendListViewController: UIViewController {
         }
     }
     
-    //    アカウントを削除する
+    //アカウントを削除する
     @IBAction func deleteAccount() {
         
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
-        
-        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { (action) -> Void in
-            self.user?.delete() { error in
-                if error != nil {
-                    print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
-                } else {
-                    
-                    print("アカウントを削除しました")
-                    let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        
-                        print("アカウントを削除しました")
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                        self.showDetailViewController(secondVC, sender: self)
-                        
-                    }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
-                    
-                }
-            }
+        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
+            
+//            self.user?.delete() { error in
+//
+//                if error != nil {
+//                    print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
+//                } else {
+//
+//                    print("アカウントを削除しました")
+//                    let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
+//                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//
+//                        print("アカウントを削除しました")
+//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+//                        self.showDetailViewController(secondVC, sender: self)
+//
+//                    }
+//                    alert.addAction(ok)
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//            }
+            self.detadelete()
+            
         })
-        
         let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
             print("キャンセル")
         })
@@ -233,8 +234,43 @@ class FriendListViewController: UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
+    func detadelete() {
+       
+//        let db = Firestore.firestore()
+//        let docRef = db.collection("UserData").document("friendsList")
+//
+//        docRef.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+//                print("Document data: \(dataDescription)")
+//            } else {
+//                print("Document does not exist")
+//            }
+//        }
+        
+        let userID = user?.uid
+        let db = Firestore.firestore()
+        db.collection("UserData").document(userID!).collection("friendsList").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if let snapShot = querySnapshot {
+                    let documents = snapShot.documents
+                    let friendsId = documents.compactMap {
+                        return $0.data()["friendId"] as! String
+                    }
+                    print("友達のID\(friendsId)")
+                }
+            }
+        }
+    }
+    
+    
+    
+    
 }
-
 extension FriendListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
