@@ -10,12 +10,12 @@ import FirebaseFirestore
 
 class FriendListViewController: UIViewController {
     
-     var auth: Auth!
-     let user = Auth.auth().currentUser
-     var shareUrlString: String?
-     var completionHandlers = [() -> Void]()
-     var friendIdList = [String]()
-
+    var auth: Auth!
+    let user = Auth.auth().currentUser
+    var shareUrlString: String?
+    var completionHandlers = [() -> Void]()
+    var friendIdList = [String]()
+    
     var friendList = [User]() {
         didSet {
             self.friendcollectionView.reloadData()
@@ -45,77 +45,75 @@ class FriendListViewController: UIViewController {
         }
     }
     
-
-     override func viewDidLoad() {
-         super.viewDidLoad()
-         auth = Auth.auth()
-     }
-
-     override func viewDidAppear(_ animated: Bool) {
-         
-    //ログインできてるかとfirestoreに情報があるかの判定
-         if auth.currentUser != nil {
-             auth.currentUser?.reload(completion: { [self] error in
-                 if error == nil {
-                     if self.auth.currentUser?.isEmailVerified == true {
-                         print("ログインしています")
-                         //名前があるかどうかの判定
-                         let userID = user?.uid
-                         let db = Firestore.firestore()
-                         db.collection("UserData").document(userID!).getDocument { [self] (snapshot, err) in
-                             if let err = err {
-                                 print("自分の名前を取得しようとした/エラーは:\(err)")
-                             } else {
-                                 if let snapshot = snapshot {
-                                     if snapshot.data()?["name"]! == nil {
-                                         print("自分の名前を取得しようとした/firestoreに情報なし")
-                                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                         let secondVC = storyboard.instantiateViewController(identifier: "ProfileNameViewController")
-                                         showDetailViewController(secondVC, sender: self)
-                                         
-                                     } else {
-                                         print(snapshot.data()!["name"]!)
-                                         self.mynameLabel.text = snapshot.data()!["name"]! as? String
-                                     }
-                                 }
-                                 return
-                             }
-                         };return
-                     } else {
-                         //メール認証がまだ
-                         if self.auth.currentUser?.isEmailVerified == false {
-                             let alert = UIAlertController(title: "確認用メールを送信しているので確認をお願いします。", message: "まだメール認証が完了していません。", preferredStyle: .alert)
-                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                             self.present(alert, animated: true, completion: nil)
-                         }
-                     }
-                 }
-             })
-         } else if auth.currentUser == nil{
-             print("ログインされてない！ログインしてください")
-             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-             let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-             showDetailViewController(secondVC, sender: self)
-         }
-         
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        auth = Auth.auth()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        //ログインできてるかとfirestoreに情報があるかの判定
+        if auth.currentUser != nil {
+            auth.currentUser?.reload(completion: { [self] error in
+                if error == nil {
+                    if self.auth.currentUser?.isEmailVerified == true {
+                        print("ログインしています")
+                        //名前があるかどうかの判定
+                        let userID = user?.uid
+                        let db = Firestore.firestore()
+                        db.collection("UserData").document(userID!).getDocument { [self] (snapshot, err) in
+                            if let err = err {
+                                print("自分の名前を取得しようとした/エラーは:\(err)")
+                            } else {
+                                if let snapshot = snapshot {
+                                    if snapshot.data()?["name"]! == nil {
+                                        print("自分の名前を取得しようとした/firestoreに情報なし")
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        let secondVC = storyboard.instantiateViewController(identifier: "ProfileNameViewController")
+                                        showDetailViewController(secondVC, sender: self)
+                                        
+                                    } else {
+                                        print(snapshot.data()!["name"]!)
+                                        self.mynameLabel.text = snapshot.data()!["name"]! as? String
+                                    }
+                                }
+                                return
+                            }
+                        };return
+                    } else {
+                        //メール認証がまだ
+                        if self.auth.currentUser?.isEmailVerified == false {
+                            let alert = UIAlertController(title: "確認用メールを送信しているので確認をお願いします。", message: "まだメール認証が完了していません。", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                }
+            })
+        } else if auth.currentUser == nil{
+            print("ログインされてない！ログインしてください")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+            showDetailViewController(secondVC, sender: self)
+        }
+        
         guard let userID = user?.uid else { return }
-         print("自分のユーザーIDを取得しました")
-         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
-
-         getfriendIds { [weak self] friendIdList in
-         self?.getUserDataFromIds(friendIdList: friendIdList)
-         }
-
-
-     }
-
-     //友達の情報をとってくる
-     func getfriendIds(completion: @escaping ([String]) -> Void)  {
-
-         guard let userID = user?.uid else { return }
-         let db = Firestore.firestore()
-         db.collection("UserData").document(userID).collection("friendsList").getDocuments() { (querySnapshot, err) in
-             if let err = err {
+        print("自分のユーザーIDを取得しました")
+        shareUrlString = "sanitas-ios-dev://?id=\(userID)"
+        
+        getfriendIds { [weak self] friendIdList in
+            self?.getUserDataFromIds(friendIdList: friendIdList)
+        }
+    }
+    
+    //友達の情報をとってくる
+    func getfriendIds(completion: @escaping ([String]) -> Void)  {
+        
+        guard let userID = user?.uid else { return }
+        let db = Firestore.firestore()
+        db.collection("UserData").document(userID).collection("friendsList").getDocuments() { (querySnapshot, err) in
+            if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 if let snapShot = querySnapshot {
@@ -129,6 +127,7 @@ class FriendListViewController: UIViewController {
             }
         }
     }
+    
     
     func getUserDataFromIds(friendIdList: [String]){
         let db = Firestore.firestore()
@@ -152,13 +151,13 @@ class FriendListViewController: UIViewController {
     //リンクのシェアシート出す
     @IBAction func pressedButton() {
         showShareSheet()
-     }
-
-     func showShareSheet() {
-         guard let userID = user?.uid else { return }
-         let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
-         let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
-         present(activityVC, animated: true, completion: nil)
+    }
+    
+    func showShareSheet() {
+        guard let userID = user?.uid else { return }
+        let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
+        let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
+        present(activityVC, animated: true, completion: nil)
     }
     
     //ログアウトする
@@ -202,27 +201,61 @@ class FriendListViewController: UIViewController {
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
             
-//            self.user?.delete() { error in
-//
-//                if error != nil {
-//                    print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
-//                } else {
-//
-//                    print("アカウントを削除しました")
-//                    let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
-//                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-//
-//                        print("アカウントを削除しました")
-//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-//                        self.showDetailViewController(secondVC, sender: self)
-//
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//            }
-            self.detadelete()
+            guard let userID = user?.uid else { return }
+            let db = Firestore.firestore()
+            db.collection("UserData").document(userID).collection("friendsList").getDocuments() { [self] (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if let snapShot = querySnapshot {
+                        let documents = snapShot.documents
+                        self.friendIdList = documents.compactMap {
+                            return $0.data()["friendId"] as? String
+                        }
+                        print("友達のID\(self.friendIdList)")
+                        
+                        for friendId in self.friendIdList {
+                            
+                            let db = Firestore.firestore()
+                            db.collection("UserData").document(friendId).collection("friendsList").document(user!.uid).delete() { [self] err in
+                                if let err = err {
+                                    print("Error removing document: \(err)")
+                                } else {
+                                    print("自分を友達のfriendListから削除しました")
+                                    
+                                    let db = Firestore.firestore()
+                                    db.collection("UserData").document(user!.uid).delete() { err in
+                                        if let err = err {
+                                            print("Error removing document: \(err)")
+                                        } else {
+                                            print("firestorから自分のデータ消した")
+2
+                                            self.user?.delete() { error in
+                                                if error != nil {
+                                                    print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
+                                                } else {
+                                                    let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
+                                                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                                                        
+                                                        print("アカウントを削除しました")
+                                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                                                        self.showDetailViewController(secondVC, sender: self)
+                                                        
+                                                    }
+                                                    alert.addAction(ok)
+                                                    self.present(alert, animated: true, completion: nil)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
             
         })
         let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
@@ -235,41 +268,34 @@ class FriendListViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
-    func detadelete() {
-       
-//        let db = Firestore.firestore()
-//        let docRef = db.collection("UserData").document("friendsList")
-//
-//        docRef.getDocument { (document, error) in
-//            if let document = document, document.exists {
-//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-//                print("Document data: \(dataDescription)")
-//            } else {
-//                print("Document does not exist")
-//            }
-//        }
-        
-        let userID = user?.uid
+    func deleteme() {
         let db = Firestore.firestore()
-        db.collection("UserData").document(userID!).collection("friendsList").getDocuments() { (querySnapshot, err) in
+        db.collection("UserData").document(user!.uid).delete() { err in
             if let err = err {
-                print("Error getting documents: \(err)")
+                print("Error removing document: \(err)")
             } else {
-                if let snapShot = querySnapshot {
-                    let documents = snapShot.documents
-                    let friendsId = documents.compactMap {
-                        return $0.data()["friendId"] as! String
+                print("firestorから自分のデータ消した")
+                self.user?.delete() { error in
+                    
+                    if error != nil {
+                        print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
+                    } else {
+                        let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                            
+                            print("アカウントを削除しました")
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                            self.showDetailViewController(secondVC, sender: self)
+                            
+                        }
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: nil)
                     }
-                    print("友達のID\(friendsId)")
                 }
             }
         }
     }
-    
-    
-    
-    
 }
 extension FriendListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -309,7 +335,6 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
                                 self.present(alert, animated: true, completion: nil)
                             }
                         }
-                        print("友達を削除しました")
                     }
                 }
             }
