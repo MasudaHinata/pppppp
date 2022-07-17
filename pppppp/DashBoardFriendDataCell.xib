@@ -18,14 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lP-Lc-i7p">
-                        <rect key="frame" x="57" y="47" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59j-Fk-94G">
-                        <rect key="frame" x="240" y="46" width="42" height="21"/>
+                        <rect key="frame" x="57" y="47" width="164" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -36,10 +29,9 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="405" height="137"/>
             <connections>
-                <outlet property="idLabel" destination="59j-Fk-94G" id="YlC-Gj-98k"/>
                 <outlet property="nameLabel" destination="3lP-Lc-i7p" id="BMT-4d-HHI"/>
             </connections>
-            <point key="canvasLocation" x="411.53846153846155" y="51.18483412322275"/>
+            <point key="canvasLocation" x="411.53846153846155" y="50.829383886255918"/>
         </collectionViewCell>
     </objects>
 </document>
