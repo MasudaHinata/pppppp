@@ -14,6 +14,8 @@
 		9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69903E286C6517009D5BF5 /* FriendDataCell.swift */; };
 		9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C69903F286C6517009D5BF5 /* FriendDataCell.xib */; };
 		9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C699042286DA189009D5BF5 /* UIColorHex.swift */; };
+		9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */; };
+		9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */; };
 		9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88EB26B1918B005517D5 /* LoginViewController.swift */; };
 		9CAA892B26BAA0EE005517D5 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 9CAA892A26BAA0EE005517D5 /* KeychainAccess */; };
 		9CDF759B285F555A00209FD0 /* ProfileNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF759A285F555A00209FD0 /* ProfileNameViewController.swift */; };
@@ -54,6 +56,8 @@
 		9C69903E286C6517009D5BF5 /* FriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDataCell.swift; sourceTree = "<group>"; };
 		9C69903F286C6517009D5BF5 /* FriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendDataCell.xib; sourceTree = "<group>"; };
 		9C699042286DA189009D5BF5 /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
+		9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardFriendDataCell.swift; sourceTree = "<group>"; };
+		9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardFriendDataCell.xib; sourceTree = "<group>"; };
 		9CAA88EB26B1918B005517D5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9CDF759A285F555A00209FD0 /* ProfileNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNameViewController.swift; sourceTree = "<group>"; };
 		9CDF759C285F557000209FD0 /* ProfileImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				BE7F337F2580D07E0027620D /* ViewController.swift */,
+				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
+				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
 				9C1A900B283506D5004B4100 /* FriendListViewController.swift */,
 				9C3A353F2859CEF100404AA6 /* HealthDataViewController.swift */,
 				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
@@ -237,6 +243,7 @@
 				9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */,
 				BEA64AED25D3EC040064F184 /* GoogleService-Info.plist in Resources */,
 				BE7F33852580D0810027620D /* Assets.xcassets in Resources */,
+				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
 				BE7F33832580D07E0027620D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +257,7 @@
 			files = (
 				9C699037286B3CC6009D5BF5 /* User.swift in Sources */,
 				9CDF759D285F557000209FD0 /* ProfileImageViewController.swift in Sources */,
+				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
 				BE7F33802580D07E0027620D /* ViewController.swift in Sources */,
 				9CDF759F286326A600209FD0 /* AccountViewController.swift in Sources */,
 				BE0878EC26551BC2007CA984 /* post.swift in Sources */,

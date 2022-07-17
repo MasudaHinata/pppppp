@@ -200,7 +200,7 @@ class FriendListViewController: UIViewController {
         
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
-            
+        
             guard let userID = user?.uid else { return }
             let db = Firestore.firestore()
             db.collection("UserData").document(userID).collection("friendsList").getDocuments() { [self] (querySnapshot, err) in
@@ -229,7 +229,6 @@ class FriendListViewController: UIViewController {
                                             print("Error removing document: \(err)")
                                         } else {
                                             print("firestorから自分のデータ消した")
-2
                                             self.user?.delete() { error in
                                                 if error != nil {
                                                     print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
@@ -266,35 +265,6 @@ class FriendListViewController: UIViewController {
         alert.addAction(cancel)
         
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    func deleteme() {
-        let db = Firestore.firestore()
-        db.collection("UserData").document(user!.uid).delete() { err in
-            if let err = err {
-                print("Error removing document: \(err)")
-            } else {
-                print("firestorから自分のデータ消した")
-                self.user?.delete() { error in
-                    
-                    if error != nil {
-                        print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
-                    } else {
-                        let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                            
-                            print("アカウントを削除しました")
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                            self.showDetailViewController(secondVC, sender: self)
-                            
-                        }
-                        alert.addAction(ok)
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                }
-            }
-        }
     }
 }
 extension FriendListViewController: UICollectionViewDataSource, UICollectionViewDelegate {

@@ -10,6 +10,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
     
+    
     @IBOutlet var loginLabel: UILabel!
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
