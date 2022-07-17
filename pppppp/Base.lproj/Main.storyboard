@@ -42,6 +42,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mdI-C5-FLv">
                                 <rect key="frame" x="20" y="220" width="382" height="411"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yVG-Ie-r77">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -456,7 +457,6 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rol-Tk-v1L">
                                 <rect key="frame" x="20" y="240" width="374" height="351"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UoR-4d-fU7">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -524,7 +524,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="体重"/>
                                 <connections>
-                                    <action selector="readweight" destination="9kw-x1-zJW" eventType="touchUpInside" id="Dsb-VI-ha5"/>
+                                    <action selector="readWeight" destination="9kw-x1-zJW" eventType="touchUpInside" id="8A4-zg-oWw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcG-eb-yVV">
@@ -533,7 +533,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="歩数"/>
                                 <connections>
-                                    <action selector="readsteps" destination="9kw-x1-zJW" eventType="touchUpInside" id="Hkm-2g-5io"/>
+                                    <action selector="readSteps" destination="9kw-x1-zJW" eventType="touchUpInside" id="XMK-zB-vcY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mn-Ja-YRO">
@@ -557,7 +557,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="身長"/>
                                 <connections>
-                                    <action selector="readheight" destination="9kw-x1-zJW" eventType="touchUpInside" id="1jN-0k-PO6"/>
+                                    <action selector="readHeight" destination="9kw-x1-zJW" eventType="touchUpInside" id="CNw-tJ-KrA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -718,9 +718,6 @@
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="suit.heart" catalog="system" width="128" height="107"/>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

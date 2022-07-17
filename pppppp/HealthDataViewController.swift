@@ -14,7 +14,7 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet var weightTextField: UITextField!
-   
+    
     @IBAction func addButtonPressed() {
         guard let inputWeightText = weightTextField.text else { return }
         guard let inputWeight = Double(inputWeightText) else { return }
@@ -33,7 +33,7 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
         toolBar.sizeToFit()
         weightTextField.inputAccessoryView = toolBar
         
-        //HealthKitの許可
+        //HealthKit使用の許可
         let types = Set([typeOfBodyMass])
         let readtypes = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
         myHealthStore.requestAuthorization(toShare: types, read: readtypes, completion: { success, error in
@@ -62,8 +62,11 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
             })
         }
     }
-    //    身長を取得
-    @IBAction func readheight() {
+    //身長を取得
+    @IBAction func readHeight() {
+        readheight()
+    }
+    func readheight() {
         DispatchQueue.main.async { [self] in
             let query = HKSampleQuery(sampleType: self.typeOfHeight, predicate: nil, limit: Int(1.0), sortDescriptors: nil) { (query, results, error) in
                 if results is [HKQuantitySample] {
@@ -79,7 +82,11 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func readsteps() {
+    //歩数を取得
+    @IBAction func readSteps(){
+        readsteps()
+    }
+    func readsteps() {
         let start = Calendar.current.date(byAdding: .day, value: -7, to: Date())
         let end = Date()
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
@@ -99,21 +106,30 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    //    体重を取得
-    @IBAction func readweight() {
+    //体重を取得
+    @IBAction func readWeight() {
+        readweight()
+    }
+    func readweight() {
+        
+//        let start = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+//        let end = Date()
+//        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
+
+
         DispatchQueue.main.async { [self] in
             let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
                 if results is [HKQuantitySample] {
                     if results is [HKQuantitySample] {
                         // 取得したデータを格納
-                        print("体重は\(String(describing: results))")
+                        let result = results?.last as! HKQuantitySample
+                        print(result.quantity.doubleValue(for: .gramUnit(with: .kilo)))
                     }
                 }
             }
             myHealthStore.execute(query)
         }
     }
-    
     
     @objc func tapOkButton(_ sender: UIButton){
         // キーボードを閉じる
