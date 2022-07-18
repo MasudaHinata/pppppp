@@ -112,11 +112,6 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
     }
     func readweight() {
         
-//        let start = Calendar.current.date(byAdding: .day, value: -7, to: Date())
-//        let end = Date()
-//        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
-
-
         DispatchQueue.main.async { [self] in
             let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
                 if results is [HKQuantitySample] {
