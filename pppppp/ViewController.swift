@@ -50,8 +50,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let task = Task { [weak self] in
             do {
-                let frinedIds = try? await FirebaseClient.shared.getfriendIds()
-                for try await id in frinedIds {
+                let friendIds = try? await FirebaseClient.shared.getfriendIds()
+                guard let friendIds = friendIds else { return }
+                for id in friendIds {
                     let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
                     if let friend = friend {
                         self?.friendList.append(friend)
