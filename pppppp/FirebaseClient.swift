@@ -69,23 +69,12 @@ final class FirebaseClient {
         }
     }
     
-    
-    func getUserDataFromIds(friendIdList: [String]){
-        for friendId in friendIdList { [weak self] in
-            self.db.collection("UserData").document(friendId).getDocument { (snapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    if let snapshot = snapshot {
-                        let user = try? snapshot.data(as: User.self)
-                        self.friendList.append(user!)
-                        //TODO: didSetを呼ぶために仕方なく代入している
-                        self.friendList = self.friendList
-                        print(self.friendList)
-                    }
-                }
-            }
-        }
+    func getUserDataFromId(friendId: String) async throws -> User? {
+        
+        guard (user?.uid) != nil else { return nil }
+        let querySnapshot = try await db.collection("UserData").document(friendId).getDocument()
+        let user = try? querySnapshot.data(as: User.self)
+        return user
     }
 }
 

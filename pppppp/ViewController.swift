@@ -48,8 +48,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        getfriendIds { [weak self] friendIdList in
-            self?.getUserDataFromIds(friendIdList: friendIdList)
+        let task = Task { [weak self] in
+            do {
+                let frinedIds = try? await FirebaseClient.shared.getfriendIds()
+                for try await id in frinedIds {
+                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
+                    if let friend = friend {
+                        self?.friendList.append(friend)
+                        //FIXME: 本当はここで呼びたくない
+                        self?.collectionView.reloadData()
+                    }
+                }
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
         }
         
     }
