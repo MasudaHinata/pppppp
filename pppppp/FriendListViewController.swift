@@ -9,7 +9,6 @@ import Combine
 import Firebase
 import FirebaseFirestore
 
-//@MainActor
 class FriendListViewController: UIViewController {
     
     var auth: Auth!
