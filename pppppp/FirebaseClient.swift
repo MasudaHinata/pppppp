@@ -59,31 +59,20 @@ final class FirebaseClient {
         }
     }
     
-    func getfriendIds(completion: @escaping ([String]) -> Void)  {
-        
-        guard let userID = user?.uid else { return }
-        let db = Firestore.firestore()
-        db.collection("UserData").document(userID).collection("friendsList").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                if let snapShot = querySnapshot {
-                    let documents = snapShot.documents
-                    let friendIdList = documents.compactMap {
-                        return $0.data()["friendId"] as! String
-                    }
-                    print("友達のID\(friendIdList)")
-                    completion(friendIdList)
-                }
-            }
+    func getfriendIds() async throws -> [String] {
+        //FIXME: エラーハンドリングをする
+        guard let userID = user?.uid else { return [] }
+        let querySnapshot = try await db.collection("UserData").document(userID).collection("friendsList").getDocuments()
+        let documents = querySnapshot.documents
+        return documents.compactMap {
+            return $0.data()["friendId"] as? String
         }
     }
     
     
     func getUserDataFromIds(friendIdList: [String]){
-        let db = Firestore.firestore()
-        for friendId in friendIdList {
-            db.collection("UserData").document(friendId).getDocument { (snapshot, err) in
+        for friendId in friendIdList { [weak self] in
+            self.db.collection("UserData").document(friendId).getDocument { (snapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
