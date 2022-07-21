@@ -69,6 +69,26 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
         try await self.myHealthStore.save(WeightData)
 
     }
+    
+    //体重を取得
+    @IBAction func readWeight() {
+        readweight()
+    }
+    func readweight() {
+
+        DispatchQueue.main.async { [self] in
+            let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
+                if results is [HKQuantitySample] {
+                    if results is [HKQuantitySample] {
+                        // 取得したデータを格納
+                        let result = results?.last as! HKQuantitySample
+                        print(result.quantity.doubleValue(for: .gramUnit(with: .kilo)))
+                    }
+                }
+            }
+            myHealthStore.execute(query)
+        }
+    }
     //身長を取得
     @IBAction func readHeight() {
         readheight()
@@ -111,26 +131,6 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
             myHealthStore.execute(query)
         }
 
-    }
-
-    //体重を取得
-    @IBAction func readWeight() {
-        readweight()
-    }
-    func readweight() {
-
-        DispatchQueue.main.async { [self] in
-            let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
-                if results is [HKQuantitySample] {
-                    if results is [HKQuantitySample] {
-                        // 取得したデータを格納
-                        let result = results?.last as! HKQuantitySample
-                        print(result.quantity.doubleValue(for: .gramUnit(with: .kilo)))
-                    }
-                }
-            }
-            myHealthStore.execute(query)
-        }
     }
 
     @objc func tapOkButton(_ sender: UIButton){
