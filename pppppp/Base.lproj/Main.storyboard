@@ -518,46 +518,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fr-PY-P5W">
-                                <rect key="frame" x="201" y="167" width="59" height="35"/>
+                            <textField opaque="NO" alpha="0.56000000238418579" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your weight" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tq0-h5-5t4">
+                                <rect key="frame" x="66" y="440" width="168" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="体重"/>
-                                <connections>
-                                    <action selector="readWeight" destination="9kw-x1-zJW" eventType="touchUpInside" id="8A4-zg-oWw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcG-eb-yVV">
-                                <rect key="frame" x="201" y="247" width="59" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="歩数"/>
-                                <connections>
-                                    <action selector="readSteps" destination="9kw-x1-zJW" eventType="touchUpInside" id="XMK-zB-vcY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mn-Ja-YRO">
-                                <rect key="frame" x="241" y="530" width="55" height="35"/>
+                                <color key="backgroundColor" red="0.56078431370000004" green="0.58039215690000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eL-HE-PQt">
+                                <rect key="frame" x="284" y="447" width="55" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Add"/>
                                 <connections>
-                                    <action selector="addButtonPressed" destination="9kw-x1-zJW" eventType="touchUpInside" id="DwR-z1-hWh"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s95-6B-WTh">
-                                <rect key="frame" x="101" y="531" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VnP-QC-hCM">
-                                <rect key="frame" x="189" y="359" width="59" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="身長"/>
-                                <connections>
-                                    <action selector="readHeight" destination="9kw-x1-zJW" eventType="touchUpInside" id="CNw-tJ-KrA"/>
+                                    <action selector="writeWeightData" destination="9kw-x1-zJW" eventType="touchUpInside" id="awh-oN-0c6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -565,7 +540,7 @@
                         <color key="backgroundColor" red="0.074509803921568626" green="0.0" blue="0.2985896468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="weightTextField" destination="s95-6B-WTh" id="haS-nZ-yXj"/>
+                        <outlet property="weightTextField" destination="tq0-h5-5t4" id="eCp-aZ-jKz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsc-Eg-oXE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

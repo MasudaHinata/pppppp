@@ -1,137 +1,102 @@
 import UIKit
 import HealthKit
-import Firebase
-import FirebaseFirestore
+import Combine
 
-class HealthDataViewController: UIViewController, UITextFieldDelegate {
+class HealthDataViewController: UIViewController {
     
-    let kgUnit: HKUnit = HKUnit(from: "kg")
-    
-    var myHealthStore = HKHealthStore()
+    let myHealthStore = HKHealthStore()
+    var cancellables = Set<AnyCancellable>()
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
     var weight: Double!
-    let userID = Auth.auth().currentUser!.uid
-
     @IBOutlet var weightTextField: UITextField!
-    
-    @IBAction func addButtonPressed() {
-        guard let inputWeightText = weightTextField.text else { return }
-        guard let inputWeight = Double(inputWeightText) else { return }
-        saveWeight(weight: inputWeight)
-    }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let toolBar = UIToolbar()
-        let flexibleItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let okButton: UIBarButtonItem = UIBarButtonItem(title: "OK", style: UIBarButtonItem.Style.plain, target: self, action: #selector(tapOkButton(_:)))
-        toolBar.setItems([flexibleItem, okButton, flexibleItem], animated: true)
-        toolBar.sizeToFit()
-        weightTextField.inputAccessoryView = toolBar
-        
-        //HealthKit使用の許可
-        let types = Set([typeOfBodyMass])
-        let readtypes = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
-        myHealthStore.requestAuthorization(toShare: types, read: readtypes, completion: { success, error in
+        //healthkit使用の許可
+        let typeOfWrite = Set([typeOfBodyMass])
+        let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
+        myHealthStore.requestAuthorization(toShare: typeOfWrite ,read: typeOfRead,completion: { (success, error) in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
             print(success)
         })
         
-        
-        self.weightTextField?.delegate = self
+        readWeight()
+        readSteps()
     }
-    //体重を保存.
-    func saveWeight(weight: Double) {
-        DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else { return }
-            let quantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
-            let WeightData = HKQuantitySample(type: self.typeOfBodyMass, quantity: quantity, start: Date(), end: Date())
-
-            self.myHealthStore.save(WeightData, withCompletion: {
-                (success: Bool, error: Error!) in
-                if success {
-//                    let alert = UIAlertController(title: "記録", message: "体重を記録しました。", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-                    print("HealthKit保存成功!")
-                } else {
-                    print("HealthKitに保存できませんでした。")
-                }
-            })
-        }
-    }
-    //身長を取得
-    @IBAction func readHeight() {
-        readheight()
-    }
-    func readheight() {
-        DispatchQueue.main.async { [self] in
-            let query = HKSampleQuery(sampleType: self.typeOfHeight, predicate: nil, limit: Int(1.0), sortDescriptors: nil) { (query, results, error) in
-                if results is [HKQuantitySample] {
-                    if results is [HKQuantitySample] {
-                        // 取得したデータを格納
-
-                        print("身長は\(String(describing: results))")
-                    }
-                }
-            }
-            myHealthStore.execute(query)
-        }
-
-    }
-
-    //歩数を取得
-    @IBAction func readSteps(){
-        readsteps()
-    }
-    func readsteps() {
-        let start = Calendar.current.date(byAdding: .day, value: -7, to: Date())
-        let end = Date()
-        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
-
-        DispatchQueue.main.async { [self] in
-            let query = HKSampleQuery(sampleType: self.typeOfStepCount, predicate: predicate, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
-                if results is [HKQuantitySample] {
-                    if results is [HKQuantitySample] {
-                        // 取得したデータを格納
-
-                        print("歩数は\(String(describing: results))")
-                    }
-                }
-            }
-            myHealthStore.execute(query)
-        }
-
-    }
-
     //体重を取得
-    @IBAction func readWeight() {
-        readweight()
-    }
-    func readweight() {
-
-        DispatchQueue.main.async { [self] in
-            let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
-                if results is [HKQuantitySample] {
-                    if results is [HKQuantitySample] {
-                        // 取得したデータを格納
-                        let result = results?.last as! HKQuantitySample
-                        print(result.quantity.doubleValue(for: .gramUnit(with: .kilo)))
-                    }
-                }
-            }
-            myHealthStore.execute(query)
+    func readWeight() {
+        let distanceType = HKObjectType.quantityType(forIdentifier: .bodyMass)!
+        let startDate = DateComponents(year: 2021, month: 6, day: 15)
+        let endDate = DateComponents(year: 2022, month: 7, day: 21)
+        let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.date(from: startDate)!,end: Calendar.current.date(from: endDate)!)
+        let query = HKStatisticsQuery(quantityType: distanceType, quantitySamplePredicate: predicate, options: [.cumulativeSum]) { query, results,error in
+            print(results?.sumQuantity()!)
         }
+        myHealthStore.execute(query)
+        
+//        let endDate = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,ascending: false)
+//        let bodyMassQuery = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: 0, sortDescriptors: [endDate]) { (query, results, error) in
+//
+//            print(results!)
+//            let result = results?.last as! HKQuantitySample
+//            print(result.quantity.doubleValue(for: .gramUnit(with: .kilo)) ,"kg")
+//
+//
+//        }
+//        myHealthStore.execute(bodyMassQuery)
     }
-
-    @objc func tapOkButton(_ sender: UIButton){
-        // キーボードを閉じる
-        self.view.endEditing(true)
+    func readSteps() {
+        let distanceType = HKObjectType.quantityType(forIdentifier: .stepCount)!
+        let startDate = DateComponents(year: 2021, month: 6, day: 15)
+        let endDate = DateComponents(year: 2022, month: 7, day: 21)
+        let predicate = HKQuery.predicateForSamples(
+            withStart: Calendar.current.date(from: startDate)!,
+            end: Calendar.current.date(from: endDate)!
+        )
+        let query = HKStatisticsQuery(quantityType: distanceType,quantitySamplePredicate: predicate,options: [.cumulativeSum]) { query, statistics, error in
+            
+            print(statistics!.sumQuantity()!)
+            }
+        myHealthStore.execute(query)
     }
     
+    //体重を保存
+    @IBAction func writeWeightData() {
+        guard let inputWeightText = weightTextField.text else { return }
+        guard let inputWeight = Double(inputWeightText) else { return }
+        
+        let task = Task { [weak self] in
+            do {
+                guard let self = self else { return }
+                try await writeWeight(weight: inputWeight)
+                let alart = UIAlertController(title: "記録", message: "体重を記録しました", preferredStyle: .alert)
+                let action = UIAlertAction(title: "ok", style: .default)
+                alart.addAction(action)
+                self.present(alart, animated: true)
+            }
+            catch {
+                print("error")
+            }
+        }
+        
+        cancellables.insert(.init { task.cancel() })
+        
+    }
+    
+    
+    func writeWeight(weight: Double) async throws {
+        let myWeight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
+        let myWeightData = HKQuantitySample(type: typeOfBodyMass, quantity: myWeight, start: Date(),end: Date())
+        try await self.myHealthStore.save(myWeightData)
+    }
+    
+    
 }
-
