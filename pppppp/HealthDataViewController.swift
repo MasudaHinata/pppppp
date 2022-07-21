@@ -1,3 +1,4 @@
+import Combine
 import UIKit
 import HealthKit
 import Firebase
@@ -14,12 +15,29 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
     var weight: Double!
     let userID = Auth.auth().currentUser!.uid
 
+    var cancellables = Set<AnyCancellable>()
+
     @IBOutlet var weightTextField: UITextField!
     
     @IBAction func addButtonPressed() {
         guard let inputWeightText = weightTextField.text else { return }
         guard let inputWeight = Double(inputWeightText) else { return }
-        saveWeight(weight: inputWeight)
+
+        let task = Task { [weak self] in
+            do {
+                guard let self = self else { return }
+                try await saveWeight(weight: inputWeight)
+                let alert = UIAlertController(title: "saved", message: "🦄", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self.present(alert, animated: true)
+            }
+            catch {
+                print("error")
+            }
+        }
+
+        cancellables.insert(.init { task.cancel() })
     }
     
     
@@ -45,24 +63,11 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
         self.weightTextField?.delegate = self
     }
     //体重を保存.
-    func saveWeight(weight: Double) {
-        DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else { return }
-            let quantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
-            let WeightData = HKQuantitySample(type: self.typeOfBodyMass, quantity: quantity, start: Date(), end: Date())
+    func saveWeight(weight: Double) async throws {
+        let quantity = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
+        let WeightData = HKQuantitySample(type: self.typeOfBodyMass, quantity: quantity, start: Date(), end: Date())
+        try await self.myHealthStore.save(WeightData)
 
-            self.myHealthStore.save(WeightData, withCompletion: {
-                (success: Bool, error: Error!) in
-                if success {
-//                    let alert = UIAlertController(title: "記録", message: "体重を記録しました。", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-                    print("HealthKit保存成功!")
-                } else {
-                    print("HealthKitに保存できませんでした。")
-                }
-            })
-        }
     }
     //身長を取得
     @IBAction func readHeight() {
