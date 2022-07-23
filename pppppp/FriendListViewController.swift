@@ -77,7 +77,6 @@ class FriendListViewController: UIViewController {
                 print("error")
             }
         }
-        
         cancellables.insert(.init { task.cancel() })
     }
     

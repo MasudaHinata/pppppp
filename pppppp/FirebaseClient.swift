@@ -29,7 +29,10 @@ final class FirebaseClient {
     
     //ログインできてるかとfirestoreに情報があるかの判定
     private func validate() async throws {
-        guard let user = user else { throw FirebaseClientAuthError.notAuthenticated }
+        guard let user = user else {
+            await ErrorHelper.shared.showAlert(title: "ログインしてない", messege: "あ")
+            throw FirebaseClientAuthError.notAuthenticated
+        }
         try await user.reload()
         if !user.isEmailVerified {
             throw FirebaseClientAuthError.emailVerifyRequired
