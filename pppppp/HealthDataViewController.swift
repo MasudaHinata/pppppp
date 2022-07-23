@@ -38,34 +38,21 @@ class HealthDataViewController: UIViewController {
     
     func readSteps() {
         let distanceType = HKObjectType.quantityType(forIdentifier: .stepCount)!
-        
+
         let calendar = Calendar.current
         let date = Date()
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
         let startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: date))
         print("日付をとってくるよ",startDate!,endDate!)
-        
-        let dateFormatter = DateFormatter()
-//        let dateFormatter.TimeZone = TimeZone(identifier: "Asia/Tokyo")
-//        let dateFormatter.Locale = Locale(identifier: "ja_JP")
-        dateFormatter.dateFormat = "YYYY/M/d/(EEEEE) HH:mm:ss"
-        let stepStartData = dateFormatter.string(from: startDate!)
-        let stepEndData = dateFormatter.string(from: endDate!)
-        print(stepStartData,stepEndData)
-        
-        let fromDate = dateFormatter.date(from: stepStartData)!
-        let toDate = dateFormatter.date(from: stepEndData)!
-        print("あああああああ")
-        print(fromDate,toDate)
-        print("ああああああああああ")
-//        let startDate = DateComponents(year: 2021, month: 6, day: 15)
-//        let endDate = DateComponents(year: 2022, month: 7, day: 21)
-//        let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.date(from: fromDate)!,end: Calendar.current.date(from: toDate)!)
-        let predicate = HKQuery.predicateForSamples(withStart: fromDate, end: toDate, options: [])
+
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
         let query = HKStatisticsQuery(quantityType: distanceType,quantitySamplePredicate: predicate,options: [.cumulativeSum]) { query, statistics, error in
 
             print(statistics!.sumQuantity()!)
-            }
+            
+//            let averageSteps = statistics / 7
+//            print(averageSteps)
+        }
         myHealthStore.execute(query)
     }
     
