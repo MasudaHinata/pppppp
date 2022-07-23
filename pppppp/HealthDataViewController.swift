@@ -42,14 +42,16 @@ class HealthDataViewController: UIViewController {
         let calendar = Calendar.current
         let date = Date()
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
-        let startDate = calendar.date(byAdding: .day, value: -8, to: calendar.startOfDay(for: date))
+        let startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: date))
         print("日付をとってくるよ",startDate!,endDate!)
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY/M/d/(EEEEE) 12:00:00"
+//        let dateFormatter.TimeZone = TimeZone(identifier: "Asia/Tokyo")
+//        let dateFormatter.Locale = Locale(identifier: "ja_JP")
+        dateFormatter.dateFormat = "YYYY/M/d/(EEEEE) HH:mm:ss"
         let stepStartData = dateFormatter.string(from: startDate!)
         let stepEndData = dateFormatter.string(from: endDate!)
-//        print(stepStartData,stepEndData)
+        print(stepStartData,stepEndData)
         
         let fromDate = dateFormatter.date(from: stepStartData)!
         let toDate = dateFormatter.date(from: stepEndData)!
@@ -58,12 +60,13 @@ class HealthDataViewController: UIViewController {
         print("ああああああああああ")
 //        let startDate = DateComponents(year: 2021, month: 6, day: 15)
 //        let endDate = DateComponents(year: 2022, month: 7, day: 21)
-//        let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.date(from: stepStartData)!,end: Calendar.current.date(from: stepEndDate)!)
-//        let query = HKStatisticsQuery(quantityType: distanceType,quantitySamplePredicate: predicate,options: [.cumulativeSum]) { query, statistics, error in
-//
-//            print(statistics!.sumQuantity()!)
-//            }
-//        myHealthStore.execute(query)
+//        let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.date(from: fromDate)!,end: Calendar.current.date(from: toDate)!)
+        let predicate = HKQuery.predicateForSamples(withStart: fromDate, end: toDate, options: [])
+        let query = HKStatisticsQuery(quantityType: distanceType,quantitySamplePredicate: predicate,options: [.cumulativeSum]) { query, statistics, error in
+
+            print(statistics!.sumQuantity()!)
+            }
+        myHealthStore.execute(query)
     }
     
     //体重を保存
