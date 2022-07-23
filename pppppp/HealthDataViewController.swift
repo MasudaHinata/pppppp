@@ -33,39 +33,37 @@ class HealthDataViewController: UIViewController {
     }
     //体重を取得
     func readWeight() {
-        let distanceType = HKObjectType.quantityType(forIdentifier: .bodyMass)!
-        let startDate = DateComponents(year: 2021, month: 6, day: 15)
-        let endDate = DateComponents(year: 2022, month: 7, day: 21)
-        let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.date(from: startDate)!,end: Calendar.current.date(from: endDate)!)
-        let query = HKStatisticsQuery(quantityType: distanceType, quantitySamplePredicate: predicate, options: [.cumulativeSum]) { query, results,error in
-            print(results?.sumQuantity()!)
-        }
-        myHealthStore.execute(query)
         
-//        let endDate = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,ascending: false)
-//        let bodyMassQuery = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: 0, sortDescriptors: [endDate]) { (query, results, error) in
-//
-//            print(results!)
-//            let result = results?.last as! HKQuantitySample
-//            print(result.quantity.doubleValue(for: .gramUnit(with: .kilo)) ,"kg")
-//
-//
-//        }
-//        myHealthStore.execute(bodyMassQuery)
     }
+    
     func readSteps() {
         let distanceType = HKObjectType.quantityType(forIdentifier: .stepCount)!
-        let startDate = DateComponents(year: 2021, month: 6, day: 15)
-        let endDate = DateComponents(year: 2022, month: 7, day: 21)
-        let predicate = HKQuery.predicateForSamples(
-            withStart: Calendar.current.date(from: startDate)!,
-            end: Calendar.current.date(from: endDate)!
-        )
-        let query = HKStatisticsQuery(quantityType: distanceType,quantitySamplePredicate: predicate,options: [.cumulativeSum]) { query, statistics, error in
-            
-            print(statistics!.sumQuantity()!)
-            }
-        myHealthStore.execute(query)
+        
+        let calendar = Calendar.current
+        let date = Date()
+        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
+        let startDate = calendar.date(byAdding: .day, value: -8, to: calendar.startOfDay(for: date))
+        print("日付をとってくるよ",startDate!,endDate!)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY/M/d/(EEEEE) 12:00:00"
+        let stepStartData = dateFormatter.string(from: startDate!)
+        let stepEndData = dateFormatter.string(from: endDate!)
+//        print(stepStartData,stepEndData)
+        
+        let fromDate = dateFormatter.date(from: stepStartData)!
+        let toDate = dateFormatter.date(from: stepEndData)!
+        print("あああああああ")
+        print(fromDate,toDate)
+        print("ああああああああああ")
+//        let startDate = DateComponents(year: 2021, month: 6, day: 15)
+//        let endDate = DateComponents(year: 2022, month: 7, day: 21)
+//        let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.date(from: stepStartData)!,end: Calendar.current.date(from: stepEndDate)!)
+//        let query = HKStatisticsQuery(quantityType: distanceType,quantitySamplePredicate: predicate,options: [.cumulativeSum]) { query, statistics, error in
+//
+//            print(statistics!.sumQuantity()!)
+//            }
+//        myHealthStore.execute(query)
     }
     
     //体重を保存
