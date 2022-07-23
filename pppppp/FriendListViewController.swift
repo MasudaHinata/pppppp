@@ -132,7 +132,6 @@ class FriendListViewController: UIViewController {
     
     //アカウントを削除する
     @IBAction func deleteAccount() {
-//
 //        let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
 //        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
 //
@@ -271,5 +270,4 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
     }
-    
 }

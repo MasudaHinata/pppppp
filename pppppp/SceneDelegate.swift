@@ -10,19 +10,29 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    private var errorWindow: ErrorWindow?
+
+    private var errorWindow: CoverWindow?
+    private var loginWindow: CoverWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
-        errorWindow = ErrorWindow(windowScene: scene)
+        
+        errorWindow = CoverWindow(windowScene: scene)
         let vc = UIViewController()
         errorWindow?.rootViewController = vc
-        ErrorHelper.shared.viewController = vc
+        ErrorHelper.shared.viewController = errorWindow?.rootViewController
         errorWindow?.windowLevel = UIWindow.Level.normal + 1
         errorWindow?.isHidden = false
+        
+        loginWindow = CoverWindow(windowScene: scene)
+        let vc2 = UIViewController()
+        loginWindow?.rootViewController = vc2
+        LoginHelper.shared.viewController = loginWindow?.rootViewController
+        loginWindow?.windowLevel = UIWindow.Level.normal + 1
+        loginWindow?.isHidden = false
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -63,8 +73,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 recievedId = queryValue
             }
         }
-        let MainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let resultVC: ProfileViewController = MainStoryboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let resultVC: ProfileViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         resultVC.friendId = recievedId
         self.window?.rootViewController = resultVC
         self.window?.makeKeyAndVisible()
