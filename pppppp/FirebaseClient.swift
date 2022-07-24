@@ -67,9 +67,5 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
-    
-    
-    
-    
 }
 

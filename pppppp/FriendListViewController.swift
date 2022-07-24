@@ -231,13 +231,14 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     
     //友達を削除する
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let deleteFriendId = friendList[indexPath.row].id else { return }
         
+        guard let deleteFriendId = friendList[indexPath.row].id else { return }
+
         let db = Firestore.firestore()
         let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { (action) -> Void in
             if let currentUser = Auth.auth().currentUser {
-                
+
                 db.collection("UserData").document(currentUser.uid).collection("friendsList").document(deleteFriendId).delete() { err in
                     if let err = err {
                         print("Error removing document: \(err)")
@@ -255,7 +256,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
                     }
                 }
             }
-            
+
             let alert2 = UIAlertController(title: "友達の削除", message: "友達を削除しました", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)
