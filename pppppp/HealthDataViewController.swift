@@ -50,8 +50,8 @@ class HealthDataViewController: UIViewController {
 
             print(statistics!.sumQuantity()!)
             
-//            let averageSteps = statistics / 7
-//            print(averageSteps)
+            let averageSteps = (statistics?.sumQuantity()!.doubleValue(for: .count()))! / 7
+            print(averageSteps)
         }
         myHealthStore.execute(query)
     }
