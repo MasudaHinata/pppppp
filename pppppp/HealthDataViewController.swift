@@ -17,6 +17,10 @@ class HealthDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGR.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGR)
+
         //healthkit使用の許可
         let typeOfWrite = Set([typeOfBodyMass])
         let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
@@ -28,29 +32,38 @@ class HealthDataViewController: UIViewController {
             print(success)
         })
         
-        readWeight()
+//        readWeight()
         readSteps()
     }
+    
     //体重を取得
     func readWeight() {
         
+        let endDate = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,ascending: false)
+        let bodyMassQuery = HKSampleQuery(sampleType: typeOfBodyMass,predicate: nil,limit: 0,sortDescriptors: [endDate]) { (query, results, error) in
+            
+            
+            let myRecentSample = results as? HKQuantitySample
+            let myResentWeighingData = myRecentSample!.quantity.doubleValue(for: .gramUnit(with: .kilo))
+            print(myResentWeighingData)
+        }
+        myHealthStore.execute(bodyMassQuery)
     }
     
     func readSteps() {
-        let distanceType = HKObjectType.quantityType(forIdentifier: .stepCount)!
-
+        
         let calendar = Calendar.current
         let date = Date()
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
-        let startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: date))
+        let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
         print("日付をとってくるよ",startDate!,endDate!)
 
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
-        let query = HKStatisticsQuery(quantityType: distanceType,quantitySamplePredicate: predicate,options: [.cumulativeSum]) { query, statistics, error in
+        let query = HKStatisticsQuery(quantityType: typeOfStepCount,quantitySamplePredicate: predicate,options: [.cumulativeSum]) { query, statistics, error in
 
             print(statistics!.sumQuantity()!)
             
-            let averageSteps = (statistics?.sumQuantity()!.doubleValue(for: .count()))! / 7
+            let averageSteps = (statistics?.sumQuantity()!.doubleValue(for: .count()))! / 31
             print(averageSteps)
         }
         myHealthStore.execute(query)
@@ -79,12 +92,13 @@ class HealthDataViewController: UIViewController {
         
     }
     
-    
     func writeWeight(weight: Double) async throws {
         let myWeight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
         let myWeightData = HKQuantitySample(type: typeOfBodyMass, quantity: myWeight, start: Date(),end: Date())
         try await self.myHealthStore.save(myWeightData)
     }
     
-    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
 }
