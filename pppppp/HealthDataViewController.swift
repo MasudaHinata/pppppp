@@ -1,7 +1,5 @@
 import UIKit
 import HealthKit
-import Firebase
-import FirebaseFirestore
 
 class HealthDataViewController: UIViewController, UITextFieldDelegate {
     
@@ -10,7 +8,6 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
     var weight: Double!
-    let userID = Auth.auth().currentUser!.uid
     
     
     @IBOutlet var weightTextField: UITextField!

@@ -45,7 +45,7 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
     }
-
+    
     public func getfriendIds() async throws -> [String] {
         //FIXME: エラーハンドリングをする
         try await validate()
@@ -67,5 +67,9 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
+    
+    
+    
+    
 }
 
