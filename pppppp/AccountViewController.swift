@@ -115,6 +115,10 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
+        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGR.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGR)
+        
         design()
         super.viewDidLoad()
         auth = Auth.auth()
@@ -148,4 +152,9 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         password2TextField.resignFirstResponder()
         return true
     }
+    
+    @objc func dismissKeyboard() {
+           self.view.endEditing(true)
+       }
+       
 }
