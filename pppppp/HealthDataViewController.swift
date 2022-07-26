@@ -13,8 +13,6 @@ class HealthDataViewController: UIViewController {
     var stepPoint = Int()
     @IBOutlet var weightTextField: UITextField!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,30 +31,27 @@ class HealthDataViewController: UIViewController {
             print(success)
         })
         
-        //        readWeight()
-        
         let task = Task { [weak self] in
             do {
                 try await readSteps()
+//                try await readWeight()
             }
             catch {
                 //TODO: ERROR Handling
                 print("error")
             }
         }
-        
+        cancellables.insert(.init { task.cancel() })
     }
     
     //体重を取得
-    func readWeight() {
-        let endDate = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,ascending: false)
-        let bodyMassQuery = HKSampleQuery(sampleType: typeOfBodyMass,predicate: nil,limit: 0,sortDescriptors: [endDate]) { (query, results, error) in
-            
-            let myRecentSample = results as? HKQuantitySample
-            let myResentWeighingData = myRecentSample!.quantity.doubleValue(for: .gramUnit(with: .kilo))
-            print(myResentWeighingData)
-        }
-        myHealthStore.execute(bodyMassQuery)
+    func readWeight() async throws {
+        
+//        let predicate = HKSamplePredicate.sample(type: HKCategoryType(.sleepAnalysis))
+//        let descriptor = HKSampleQueryDescriptor(predicates: [predicate], sortDescriptors: [])
+//        let samples = try await descriptor.result(for: myHealthStore)
+//         /* 処理 */
+//        print(samples)
     }
     
     //歩数を取得
