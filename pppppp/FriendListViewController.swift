@@ -11,6 +11,7 @@ import FirebaseFirestore
 
 class FriendListViewController: UIViewController {
     
+    
     var auth: Auth!
     let user = Auth.auth().currentUser
     var shareUrlString: String?
@@ -36,6 +37,7 @@ class FriendListViewController: UIViewController {
     
     @IBOutlet var friendcollectionView: UICollectionView! {
         didSet {
+//            FirebaseClient.shared.delegate = self
             friendcollectionView.delegate = self
             friendcollectionView.dataSource = self
             
@@ -80,8 +82,13 @@ class FriendListViewController: UIViewController {
         cancellables.insert(.init { task.cancel() })
     }
     
-    //友達の情報をとってくる
+
     
+//    func acountDeleted() {
+//        let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
+//    }
     
     //リンクのシェアシート出す
     @IBAction func pressedButton() {
@@ -231,7 +238,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     
     //友達を削除する
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
         guard let deleteFriendId = friendList[indexPath.row].id else { return }
 
         let db = Firestore.firestore()
