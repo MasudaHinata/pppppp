@@ -10,6 +10,7 @@ class HealthDataViewController: UIViewController {
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
     var weight: Double!
+    var stepPoint = Int()
     @IBOutlet var weightTextField: UITextField!
     
     
@@ -20,7 +21,7 @@ class HealthDataViewController: UIViewController {
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
-
+        
         //healthkit使用の許可
         let typeOfWrite = Set([typeOfBodyMass])
         let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
@@ -32,16 +33,24 @@ class HealthDataViewController: UIViewController {
             print(success)
         })
         
-//        readWeight()
-        readSteps()
+        //        readWeight()
+        
+        let task = Task { [weak self] in
+            do {
+                try await readSteps()
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+        
     }
     
     //体重を取得
     func readWeight() {
-        
         let endDate = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,ascending: false)
         let bodyMassQuery = HKSampleQuery(sampleType: typeOfBodyMass,predicate: nil,limit: 0,sortDescriptors: [endDate]) { (query, results, error) in
-            
             
             let myRecentSample = results as? HKQuantitySample
             let myResentWeighingData = myRecentSample!.quantity.doubleValue(for: .gramUnit(with: .kilo))
@@ -50,23 +59,23 @@ class HealthDataViewController: UIViewController {
         myHealthStore.execute(bodyMassQuery)
     }
     
-    func readSteps() {
-        
+    //歩数を取得
+    func readSteps() async throws {
         let calendar = Calendar.current
         let date = Date()
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
         let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
-        print("日付をとってくるよ",startDate!,endDate!)
-
-        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
-        let query = HKStatisticsQuery(quantityType: typeOfStepCount,quantitySamplePredicate: predicate,options: [.cumulativeSum]) { query, statistics, error in
-
-            print(statistics!.sumQuantity()!)
-            
-            let averageSteps = (statistics?.sumQuantity()!.doubleValue(for: .count()))! / 31
-            print(averageSteps)
-        }
-        myHealthStore.execute(query)
+        let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate:today)
+        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+        
+        let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        
+        print(stepCount!)
+        let averageSteps = stepCount! / 31
+        print(averageSteps)
+        self.stepPoint = Int(Float(averageSteps))
+        print(self.stepPoint)
     }
     
     //体重を保存
@@ -87,9 +96,7 @@ class HealthDataViewController: UIViewController {
                 print("error")
             }
         }
-        
         cancellables.insert(.init { task.cancel() })
-        
     }
     
     func writeWeight(weight: Double) async throws {
