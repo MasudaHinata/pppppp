@@ -34,7 +34,7 @@ class HealthDataViewController: UIViewController {
         let task = Task { [weak self] in
             do {
                 try await readSteps()
-//                try await readWeight()
+                try await readWeight()
             }
             catch {
                 //TODO: ERROR Handling
@@ -47,11 +47,18 @@ class HealthDataViewController: UIViewController {
     //体重を取得
     func readWeight() async throws {
         
-//        let predicate = HKSamplePredicate.sample(type: HKCategoryType(.sleepAnalysis))
-//        let descriptor = HKSampleQueryDescriptor(predicates: [predicate], sortDescriptors: [])
-//        let samples = try await descriptor.result(for: myHealthStore)
-//         /* 処理 */
-//        print(samples)
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
+
+//        let calendar = Calendar.current
+//        let date = Date()
+//        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
+//        let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
+        let results = try await descriptor.result(for: myHealthStore)
+
+        let doubleValues = results.map {
+            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
+        }
+        print(doubleValues)
     }
     
     //歩数を取得
@@ -63,9 +70,8 @@ class HealthDataViewController: UIViewController {
         let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
         let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate:today)
         let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        
+    
         let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        
         print(stepCount!)
         let averageSteps = stepCount! / 31
         print(averageSteps)
