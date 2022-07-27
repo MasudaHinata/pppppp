@@ -21,7 +21,7 @@ enum FirebaseClientFirestoreError: Error {
     case userDataNotFound
 }
 
-protocol FirebaseClientDelegate: class {
+protocol FirebaseClientDelegate: AnyObject {
       func friendDeleted()
   }
 
@@ -76,20 +76,9 @@ final class FirebaseClient {
     
     //友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
-        
-        db.collection("UserData").document(user!.uid).collection("friendsList").document(deleteFriendId).delete() { [self] err in
-            if let err = err {
-                print("Error removing document: \(err)")
-            } else {
-                self.db.collection("UserData").document(deleteFriendId).collection("friendsList").document(user!.uid).delete() { err in
-                    if let err = err {
-                        print("Error removing document: \(err)")
-                    } else {
-                        print("自分を友達のリストから削除しました")
-                        self.delegate?.friendDeleted()
-                    }
-                }
-            }
-        }
+        var result = try await db.collection("UserData").document(user!.uid).collection("friendsList").document(deleteFriendId).delete()
+        result = try await db.collection("UserData").document(deleteFriendId).collection("friendsList").document(user!.uid).delete()
+        print("自分を友達のリストから削除しました")
+        self.delegate?.friendDeleted()
     }
 }

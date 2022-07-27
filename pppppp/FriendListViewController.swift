@@ -9,7 +9,8 @@ import Combine
 import Firebase
 import FirebaseFirestore
 
-class FriendListViewController: UIViewController, FirebaseClientDelegate {
+@MainActor
+final class FriendListViewController: UIViewController, FirebaseClientDelegate {
     
     
     var auth: Auth!
@@ -83,11 +84,12 @@ class FriendListViewController: UIViewController, FirebaseClientDelegate {
     }
     
     
-    
     func friendDeleted() {
         let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     //リンクのシェアシート出す
@@ -244,9 +246,16 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
         let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
         
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
-            
-            FirebaseClient.shared.deleteFriendQuery(deleteFriendId:
-                                                        self.friendList[indexPath.row].id!)
+            let task = Task {
+                do {
+                    try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: deleteFriendId)
+                }
+                catch {
+                    //TODO: ERROR Handling
+                    print("error")
+                }
+            }
+            cancellables.insert(.init { task.cancel() })
         })
         let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
             print("キャンセル")
