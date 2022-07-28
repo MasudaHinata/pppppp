@@ -81,4 +81,22 @@ final class FirebaseClient {
         print("自分を友達のリストから削除しました")
         await self.delegate?.friendDeleted()
     }
+    //ログアウトする
+    func logout() async throws {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print("サインアウトしようとした/エラーは: %@", signOutError)
+        }
+    }
+    //アカウントを削除する
+    func accountDelete() async throws {
+        let friendIds = try? await FirebaseClient.shared.getfriendIds()
+        guard let friendIds = friendIds else { return }
+        for friendsId in friendIds {
+            var results = try await db.collection("UserData").document(friendsId).collection("friendsList").document(user!.uid).delete()
+            results = try await db.collection("UserData").document(user!.uid).delete()
+        }
+    }
 }
