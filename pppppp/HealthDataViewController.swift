@@ -1,6 +1,6 @@
+import Combine
 import UIKit
 import HealthKit
-import Combine
 
 class HealthDataViewController: UIViewController {
     
@@ -12,7 +12,7 @@ class HealthDataViewController: UIViewController {
     var weight: Double!
     var stepPoint = Int()
     @IBOutlet var weightTextField: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +30,7 @@ class HealthDataViewController: UIViewController {
             }
             print(success)
         })
-        
+
         let task = Task { [weak self] in
             do {
                 try await readSteps()

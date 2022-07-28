@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C1A900C283506D5004B4100 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A900B283506D5004B4100 /* FriendListViewController.swift */; };
+		9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2BE4402885108300431FEC /* FirebaseClient.swift */; };
 		9C3A35402859CEF100404AA6 /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3A353F2859CEF100404AA6 /* HealthDataViewController.swift */; };
 		9C4F1C752859E6F500623C66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F1C742859E6F500623C66 /* ProfileViewController.swift */; };
 		9C699037286B3CC6009D5BF5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C699036286B3CC6009D5BF5 /* User.swift */; };
@@ -21,6 +22,9 @@
 		9CDF759B285F555A00209FD0 /* ProfileNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF759A285F555A00209FD0 /* ProfileNameViewController.swift */; };
 		9CDF759D285F557000209FD0 /* ProfileImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF759C285F557000209FD0 /* ProfileImageViewController.swift */; };
 		9CDF759F286326A600209FD0 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF759E286326A600209FD0 /* AccountViewController.swift */; };
+		9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B88288C384100FFE94C /* CoverWindow.swift */; };
+		9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */; };
+		9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B8C288C548D00FFE94C /* LoginHelper.swift */; };
 		BE0878EC26551BC2007CA984 /* post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0878EB26551BC2007CA984 /* post.swift */; };
 		BE0BF72725B5C734005646AE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D12588CCF5004DC436 /* HealthKit.framework */; };
 		BE0BF72825B5C73A005646AE /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */; };
@@ -39,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		9C1A900B283506D5004B4100 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
+		9C2BE4402885108300431FEC /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		9C3A353F2859CEF100404AA6 /* HealthDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
 		9C4F1C742859E6F500623C66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9C699036286B3CC6009D5BF5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -51,6 +56,9 @@
 		9CDF759A285F555A00209FD0 /* ProfileNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNameViewController.swift; sourceTree = "<group>"; };
 		9CDF759C285F557000209FD0 /* ProfileImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageViewController.swift; sourceTree = "<group>"; };
 		9CDF759E286326A600209FD0 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		9CE63B88288C384100FFE94C /* CoverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverWindow.swift; sourceTree = "<group>"; };
+		9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHelper.swift; sourceTree = "<group>"; };
+		9CE63B8C288C548D00FFE94C /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		BE0878EB26551BC2007CA984 /* post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = post.swift; sourceTree = "<group>"; };
 		BE2F95D12588CCF5004DC436 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
@@ -135,6 +143,10 @@
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				9C699036286B3CC6009D5BF5 /* User.swift */,
 				9C699042286DA189009D5BF5 /* UIColorHex.swift */,
+				9C2BE4402885108300431FEC /* FirebaseClient.swift */,
+				9CE63B88288C384100FFE94C /* CoverWindow.swift */,
+				9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */,
+				9CE63B8C288C548D00FFE94C /* LoginHelper.swift */,
 			);
 			path = pppppp;
 			sourceTree = "<group>";
@@ -224,15 +236,19 @@
 			files = (
 				9C699037286B3CC6009D5BF5 /* User.swift in Sources */,
 				9CDF759D285F557000209FD0 /* ProfileImageViewController.swift in Sources */,
+				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
 				BE7F33802580D07E0027620D /* ViewController.swift in Sources */,
 				9CDF759F286326A600209FD0 /* AccountViewController.swift in Sources */,
 				BE0878EC26551BC2007CA984 /* post.swift in Sources */,
 				9CDF759B285F555A00209FD0 /* ProfileNameViewController.swift in Sources */,
+				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
+				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
 				9C1A900C283506D5004B4100 /* FriendListViewController.swift in Sources */,
 				9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */,
 				9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */,
 				9C4F1C752859E6F500623C66 /* ProfileViewController.swift in Sources */,
+				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
 				BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */,
 				9C3A35402859CEF100404AA6 /* HealthDataViewController.swift in Sources */,
 				9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */,
