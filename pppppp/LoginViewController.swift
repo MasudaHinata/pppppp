@@ -21,6 +21,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGR.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGR)
+        
         design()
         auth = Auth.auth()
         
@@ -59,7 +63,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
     
     @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
