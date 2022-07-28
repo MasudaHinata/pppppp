@@ -1,14 +1,9 @@
 import UIKit
-import Firebase
 import SwiftUI
-import FirebaseFirestore
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
     var me: User!
-    var auth: Auth!
-    let db = Firestore.firestore()
-    let user = Auth.auth().currentUser
     var friendIdList = [String]()
     
     var friendList = [User]() {
@@ -21,7 +16,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
-            
             let layout = UICollectionViewFlowLayout()
             layout.itemSize = CGSize(width: 500, height: 100)
             collectionView.collectionViewLayout = layout
@@ -40,9 +34,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        auth = Auth.auth()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,51 +57,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print("error")
             }
         }
-        
-    }
-    //友達の情報をとってくる
-    func getfriendIds(completion: @escaping ([String]) -> Void)  {
-        
-        guard let userID = user?.uid else { return }
-        let db = Firestore.firestore()
-        db.collection("UserData").document(userID).collection("friendsList").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                if let snapShot = querySnapshot {
-                    let documents = snapShot.documents
-                    self.friendIdList = documents.compactMap {
-                        return $0.data()["friendId"] as! String
-                    }
-                    print("友達のID\(self.friendIdList)")
-                    completion(self.friendIdList)
-                }
-            }
-        }
-    }
-    
-    
-    func getUserDataFromIds(friendIdList: [String]){
-        let db = Firestore.firestore()
-        for friendId in friendIdList {
-            db.collection("UserData").document(friendId).getDocument { (snapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    if let snapshot = snapshot {
-                        let user = try? snapshot.data(as: User.self)
-                        self.friendList.append(user!)
-                        //TODO: didSetを呼ぶために仕方なく代入している
-                        self.friendList = self.friendList
-                        print(self.friendList)
-                    }
-                }
-            }
-        }
     }
 }
-
-
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
