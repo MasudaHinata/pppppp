@@ -3,18 +3,10 @@ import Firebase
 import FirebaseFirestore
 
 class ProfileViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        print(userID)
-        print(friendId)
-        getfriendsname()
-    }
-    
     
     var friendId: String!
     let userID = Auth.auth().currentUser!.uid
-    
+    let db = Firestore.firestore()
     
     @IBOutlet var friendLabel: UILabel!
     
@@ -22,66 +14,41 @@ class ProfileViewController: UIViewController {
         self.performSegue(withIdentifier: "toViewController", sender: nil)
     }
     
-    //    友達の名前を取得する
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getfriendsname()
+    }
+    //友達の名前を取得する
     func getfriendsname() {
-        
-        let db = Firestore.firestore()
-        let docRef = db.collection("UserData")
-            .document(friendId)
-        
+        let docRef = db.collection("UserData").document(friendId)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 print("友達の名前は\(document.data()!["name"]!)")
                 self.friendLabel.text = "\(document.data()!["name"]!)"
             } else {
-                print("存在してない")
+                print("error存在してない")
             }
         }
     }
-    
-    
     //    友達を追加する
     @IBAction func addFriend() {
-        
-        if let currentUser = Auth.auth().currentUser {
-            let db = Firestore.firestore()
-            db.collection("UserData")
-                .document(currentUser.uid)
-                .collection("friendsList")
-                .document(friendId)
-                .setData([
-                    
-                    "friendId": friendId
-                    
-                ]) { [self] err in
+        db.collection("UserData").document(userID).collection("friendsList").document(friendId).setData(["friendId": friendId]) { [self] err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                db.collection("UserData").document(friendId).collection("friendsList").document(userID).setData(["friendId": userID]) { [self] err in
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
-                        
-                        let db = Firestore.firestore()
-                        db.collection("UserData").document(friendId).collection("friendsList").document(userID)
-                            .setData([
-                                "friendId": userID
-                                
-                            ]) { [self] err in
-                                if let err = err {
-                                    print("Error writing document: \(err)")
-                                } else {
-                                    let alertController = UIAlertController(title: "友達追加", message: "友達を追加しました", preferredStyle: UIAlertController.Style.alert)
-                                    let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
-                                        
-                                        
-                                        self.performSegue(withIdentifier: "toViewController", sender: nil)
-                                    }
-                                    )
-                                    alertController.addAction(okAction)
-                                    present(alertController, animated: true, completion: nil)
-                                    
-                                    print("友達になった")
-                                }
-                            }
+                        let alertController = UIAlertController(title: "友達追加", message: "友達を追加しました", preferredStyle: UIAlertController.Style.alert)
+                        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+                            self.performSegue(withIdentifier: "toViewController", sender: nil)
+                        })
+                        alertController.addAction(okAction)
+                        present(alertController, animated: true, completion: nil)
                     }
                 }
+            }
         }
     }
 }

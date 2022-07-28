@@ -33,7 +33,7 @@ final class FirebaseClient {
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
     
-    //ログインできてるかとfirestoreに情報があるかの判定
+    //ログインできてるか,firestoreに情報があるかの判定
     func validate() async throws {
         guard let user = user else {
             await LoginHelper.shared.showAccountViewController()

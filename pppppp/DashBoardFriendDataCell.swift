@@ -8,12 +8,11 @@
 import UIKit
 
 class DashBoardFriendDataCell: UICollectionViewCell {
-    
+
     @IBOutlet var nameLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
 }

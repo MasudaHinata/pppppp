@@ -19,7 +19,6 @@ class HealthDataViewController: UIViewController {
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
-        
         //healthkit使用の許可
         let typeOfWrite = Set([typeOfBodyMass])
         let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
@@ -30,7 +29,7 @@ class HealthDataViewController: UIViewController {
             }
             print(success)
         })
-
+        
         let task = Task { [weak self] in
             do {
                 try await readSteps()
@@ -104,7 +103,7 @@ class HealthDataViewController: UIViewController {
         let myWeightData = HKQuantitySample(type: typeOfBodyMass, quantity: myWeight, start: Date(),end: Date())
         try await self.myHealthStore.save(myWeightData)
     }
-    
+
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }

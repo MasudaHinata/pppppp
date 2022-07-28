@@ -42,26 +42,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func goButtonPressed() {
-        Auth.auth().signIn(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] authResult, error in
+        auth.signIn(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] authResult, error in
             guard let self = self else { return }
             if self.auth.currentUser?.isEmailVerified == true {
                 print("パスワードとメールアドレス一致")
                 let task = Task {
                     do {
                         try await FirebaseClient.shared.validate()
+                        //FIXME: ビルドしたすぐ後にログインするとここが呼ばれない
                         self.performSegue(withIdentifier: "tooViewController", sender: nil)
                     }
                     catch {
-                        print("error")
+                        print("errorrerrrr")
                     }
                 }
-            }else if self.passwordTextField.text == "" {
+            } else if self.passwordTextField.text == "" {
                 print("パスワード入力されてない")
                 let alert = UIAlertController(title: "エラー", message: "パスワードを確認してください", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 
-            }else if self.auth.currentUser?.isEmailVerified == nil {
+            } else if self.auth.currentUser?.isEmailVerified == nil {
                 print("パスワードかメールアドレスが間違っています")
                 let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています。", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
