@@ -10,15 +10,29 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-//    let friendsQueryId: String = "\(queryValue)"
-    
-    
+
+    private var errorWindow: CoverWindow?
+    private var loginWindow: CoverWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let scene = (scene as? UIWindowScene) else { return }
+        
+        errorWindow = CoverWindow(windowScene: scene)
+        let vc = UIViewController()
+        errorWindow?.rootViewController = vc
+        ErrorHelper.shared.viewController = errorWindow?.rootViewController
+        errorWindow?.windowLevel = UIWindow.Level.normal + 1
+        errorWindow?.isHidden = false
+        
+        loginWindow = CoverWindow(windowScene: scene)
+        let vc2 = UIViewController()
+        loginWindow?.rootViewController = vc2
+        LoginHelper.shared.viewController = loginWindow?.rootViewController
+        loginWindow?.windowLevel = UIWindow.Level.normal + 1
+        loginWindow?.isHidden = false
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -52,26 +66,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
        
         var recievedId: String = ""
-        
-        //queryを取得
-        if let url = URLContexts.first?.url{
+        if let url = URLContexts.first?.url {
             let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
             if let queryValue = urlComponents?.queryItems?.first?.value {
                 print("クエリ(友達のID)は\(queryValue)")
                 recievedId = queryValue
             }
         }
-        
-        //遷移
-        let MainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let resultVC: ProfileViewController = MainStoryboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let resultVC: ProfileViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         resultVC.friendId = recievedId
-//        let ressultVC: FriendListViewController = MainStoryboard.instantiateViewController(withIdentifier: "FriendListViewController") as! FriendListViewController
-//        resultVC.friendId = recievedId
         self.window?.rootViewController = resultVC
-//        self.window?.rootViewController = ressultVC
         self.window?.makeKeyAndVisible()
-        
     }
-    
 }
