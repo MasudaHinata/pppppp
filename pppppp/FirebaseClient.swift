@@ -34,7 +34,7 @@ final class FirebaseClient {
     let user = Auth.auth().currentUser
     
     //ログインできてるかとfirestoreに情報があるかの判定
-    private func validate() async throws {
+    func validate() async throws {
         guard let user = user else {
             await LoginHelper.shared.showAccountViewController()
             throw FirebaseClientAuthError.notAuthenticated
@@ -49,6 +49,7 @@ final class FirebaseClient {
         guard let user = try? snapshot.data(as: User.self) else {
             await LoginHelper.shared.showProfileNameViewController()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
+            return
         }
     }
     
@@ -73,7 +74,6 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
-    
     //友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
         var result = try await db.collection("UserData").document(user!.uid).collection("friendsList").document(deleteFriendId).delete()

@@ -44,11 +44,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func goButtonPressed() {
         Auth.auth().signIn(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] authResult, error in
             guard let self = self else { return }
-            
             if self.auth.currentUser?.isEmailVerified == true {
                 print("パスワードとメールアドレス一致")
-                self.performSegue(withIdentifier: "tooViewController", sender: nil)
-                
+                let task = Task {
+                    do {
+                        try await FirebaseClient.shared.validate()
+                        self.performSegue(withIdentifier: "tooViewController", sender: nil)
+                    }
+                    catch {
+                        print("error")
+                    }
+                }
             }else if self.passwordTextField.text == "" {
                 print("パスワード入力されてない")
                 let alert = UIAlertController(title: "エラー", message: "パスワードを確認してください", preferredStyle: .alert)
@@ -66,7 +72,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
-    
     @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
