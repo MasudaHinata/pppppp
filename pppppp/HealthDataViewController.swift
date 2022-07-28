@@ -11,7 +11,6 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
     var weight: Double!
-    let userID = Auth.auth().currentUser!.uid
 
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var weightTextField: UITextField!
@@ -128,25 +127,6 @@ class HealthDataViewController: UIViewController, UITextFieldDelegate {
             myHealthStore.execute(query)
         }
 
-    }
-
-    //体重を取得
-    @IBAction func readWeight() {
-        readweight()
-    }
-    func readweight() {
-        DispatchQueue.main.async { [self] in
-            let query = HKSampleQuery(sampleType: self.typeOfBodyMass, predicate: nil, limit: Int(Float(0.1)), sortDescriptors: nil) { (query, results, error) in
-                if results is [HKQuantitySample] {
-                    if results is [HKQuantitySample] {
-                        // 取得したデータを格納
-                        let result = results?.last as! HKQuantitySample
-                        print(result.quantity.doubleValue(for: .gramUnit(with: .kilo)))
-                    }
-                }
-            }
-            myHealthStore.execute(query)
-        }
     }
 
     @objc func tapOkButton(_ sender: UIButton){

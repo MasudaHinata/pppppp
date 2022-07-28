@@ -22,7 +22,7 @@ enum FirebaseClientFirestoreError: Error {
 }
 
 protocol FirebaseClientDelegate: AnyObject {
-      func friendDeleted()
+    func friendDeleted() async
   }
 
 final class FirebaseClient {
@@ -79,6 +79,6 @@ final class FirebaseClient {
         var result = try await db.collection("UserData").document(user!.uid).collection("friendsList").document(deleteFriendId).delete()
         result = try await db.collection("UserData").document(deleteFriendId).collection("friendsList").document(user!.uid).delete()
         print("自分を友達のリストから削除しました")
-        self.delegate?.friendDeleted()
+        await self.delegate?.friendDeleted()
     }
 }
