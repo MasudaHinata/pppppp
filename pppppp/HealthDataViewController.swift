@@ -9,8 +9,12 @@ class HealthDataViewController: UIViewController {
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
+    let calendar = Calendar.current
+    let date = Date()
     var weight: Double!
-    var stepPoint = Int()
+    var averageSteps = Int()
+    var yesterdaySteps = Int()
+
     @IBOutlet var weightTextField: UITextField!
 
     override func viewDidLoad() {
@@ -30,13 +34,13 @@ class HealthDataViewController: UIViewController {
             print(success)
         })
         
-        let task = Task { [weak self] in
+        let task = Task {
             do {
-                try await readSteps()
+                try await readAverageSteps()
+                try await readYesterdaySteps()
                 try await readWeight()
             }
             catch {
-                //TODO: ERROR Handling
                 print("error")
             }
         }
@@ -45,8 +49,6 @@ class HealthDataViewController: UIViewController {
     
     //体重を取得
     func readWeight() async throws {
-        let calendar = Calendar.current
-        let date = Date()
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
         let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
         
@@ -58,23 +60,36 @@ class HealthDataViewController: UIViewController {
         }
         print(doubleValues)
     }
-    
-    //歩数を取得
-    func readSteps() async throws {
-        let calendar = Calendar.current
-        let date = Date()
+    //TODO: funcひとつにまとめる
+    //１ヶ月平均の歩数を取得
+    func readAverageSteps() async throws {
+        //TODO: やっぱりGMT直す
+        let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
+        let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
+        let periodAve = HKQuery.predicateForSamples(withStart: startDateAve, end: endDateAve)
+        let stepsTodayAve = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodAve)
+        let sumOfStepsQueryAve = HKStatisticsQueryDescriptor(predicate: stepsTodayAve, options: .cumulativeSum)
+        print(startDateAve!,endDateAve!)
+        //FIXME: ERRORHANDLING
+        let stepCount = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        print(stepCount!)
+        averageSteps = Int(stepCount! / 31)
+        print(averageSteps)
+    }
+    //昨日の歩数を取得
+    func readYesterdaySteps() async throws {
+        //TODO: やっぱりGMT直す
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
-        let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
-        let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate:today)
+        let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
+        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
         let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-    
+        print(startDate!,endDate!)
+        //FIXME: ERRORHANDLING
         let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         print(stepCount!)
-        let averageSteps = stepCount! / 31
-        print(averageSteps)
-        self.stepPoint = Int(Float(averageSteps))
-        print(self.stepPoint)
+        yesterdaySteps = Int(stepCount!)
+        print(yesterdaySteps)
     }
     
     //体重を保存
