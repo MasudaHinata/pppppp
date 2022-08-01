@@ -61,32 +61,33 @@ class HealthDataViewController: UIViewController {
     //TODO: funcひとつにまとめる
     
     func createStepPoint() async throws {
-        //TODO: やっぱりGMT直す,ERRORHANDLING
+        //TODO: ERRORHANDLING
         let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
         let periodAve = HKQuery.predicateForSamples(withStart: startDateAve, end: endDateAve)
         let stepsTodayAve = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodAve)
         let sumOfStepsQueryAve = HKStatisticsQueryDescriptor(predicate: stepsTodayAve, options: .cumulativeSum)
-        //TODO: やっぱりGMT直す,ERRORHANDLING
+        //１ヶ月の平均歩数を取得
+        let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        print(stepCountAve!)
+        print(startDateAve!,"から",endDateAve!,"までの平均歩数は",Int(stepCountAve! / 31))
+    
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
         let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
         let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
         print(startDate!,endDate!)
         let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        
-        //１ヶ月の平均歩数を取得
-        let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        print(stepCountAve!)
         //昨日の歩数を取得
         let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        print(stepCount!)
+        print(startDate!,"から",endDate!,"までの歩数は",Int(stepCount!))
         
-        print("昨日までの１ヶ月間の平均歩数は",Int(stepCountAve! / 31),"昨日の歩数は",Int(stepCount!))
-        
-        
-        stepPoint = Int(stepCount!) - Int(stepCountAve! / 31)
+        stepPoint = Int(stepCount!) - Int(stepCountAve! / 30)
         print(stepPoint)
+        
+//        if stepPoint <= 1000 {
+//            
+//        }ele
     }
     
     //体重を保存
