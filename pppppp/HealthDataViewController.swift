@@ -84,10 +84,6 @@ class HealthDataViewController: UIViewController {
         
         stepPoint = Int(stepCount!) - Int(stepCountAve! / 30)
         print(stepPoint)
-        
-//        if stepPoint <= 1000 {
-//            
-//        }ele
     }
     
     //体重を保存
