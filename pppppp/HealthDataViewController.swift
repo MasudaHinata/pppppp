@@ -2,6 +2,9 @@ import Combine
 import UIKit
 import HealthKit
 
+import Firebase
+import FirebaseFirestore
+
 class HealthDataViewController: UIViewController {
     
     let myHealthStore = HKHealthStore()
@@ -83,6 +86,31 @@ class HealthDataViewController: UIViewController {
         
         stepPoint = Int(stepCount!) - Int(stepCountAve! / 30)
         print(stepPoint)
+        
+        let task = Task { [weak self] in
+            do {
+                try await firebasePutData()
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+    }
+    
+    func firebasePutData() async throws {
+        let db = Firestore.firestore()
+        let user = Auth.auth().currentUser
+        
+        db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").setData([
+            "point": stepPoint
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
     }
     
     //体重を保存

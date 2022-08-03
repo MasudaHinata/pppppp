@@ -24,11 +24,19 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjV-bM-7NQ">
+                        <rect key="frame" x="229" y="45" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="405" height="137"/>
             <connections>
+                <outlet property="dataLabel" destination="vjV-bM-7NQ" id="USe-Rd-Wgc"/>
                 <outlet property="nameLabel" destination="3lP-Lc-i7p" id="BMT-4d-HHI"/>
             </connections>
             <point key="canvasLocation" x="411.53846153846155" y="50.829383886255918"/>
