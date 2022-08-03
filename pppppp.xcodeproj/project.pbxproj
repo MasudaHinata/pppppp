@@ -40,7 +40,6 @@
 		BEA64AF925D3F1A60064F184 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BEA64AF825D3F1A60064F184 /* FirebaseAuth */; };
 		BEA64AFD25D3F1A60064F184 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BEA64AFC25D3F1A60064F184 /* FirebaseFirestoreSwift */; };
 		BEA64AFF25D3F1A60064F184 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BEA64AFE25D3F1A60064F184 /* FirebaseFirestore */; };
-		BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +73,6 @@
 		BE7F33872580D0810027620D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE7F33892580D0810027620D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +136,6 @@
 				9CDF759E286326A600209FD0 /* AccountViewController.swift */,
 				9CDF759A285F555A00209FD0 /* ProfileNameViewController.swift */,
 				9CDF759C285F557000209FD0 /* ProfileImageViewController.swift */,
-				BEBCC6E526679D8E0081FC61 /* GoalViewController.swift */,
 				9C4F1C742859E6F500623C66 /* ProfileViewController.swift */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
@@ -256,7 +253,6 @@
 				9C4F1C752859E6F500623C66 /* ProfileViewController.swift in Sources */,
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
 				9CE0D288289A85A100B960B6 /* UserHealth.swift in Sources */,
-				BEBCC6E626679D8E0081FC61 /* GoalViewController.swift in Sources */,
 				9C3A35402859CEF100404AA6 /* HealthDataViewController.swift in Sources */,
 				9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,

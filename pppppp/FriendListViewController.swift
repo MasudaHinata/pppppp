@@ -173,7 +173,6 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "frienddatacell", for: indexPath)  as! FriendDataCell
         cell.nameLabel.text = friendList[indexPath.row].name
-        cell.idLabel.text = friendList[indexPath.row].id
         return cell
     }
     //友達を削除する
