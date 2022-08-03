@@ -10,6 +10,7 @@ import UIKit
 class DashBoardFriendDataCell: UICollectionViewCell {
 
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var dataLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

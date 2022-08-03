@@ -2,6 +2,9 @@ import Combine
 import UIKit
 import HealthKit
 
+import Firebase
+import FirebaseFirestore
+
 class HealthDataViewController: UIViewController {
     
     let myHealthStore = HKHealthStore()
@@ -12,8 +15,7 @@ class HealthDataViewController: UIViewController {
     let calendar = Calendar.current
     let date = Date()
     var weight: Double!
-    var averageSteps = Int()
-    var yesterdaySteps = Int()
+    var stepPoint = Int()
 
     @IBOutlet var weightTextField: UITextField!
 
@@ -36,8 +38,7 @@ class HealthDataViewController: UIViewController {
         
         let task = Task {
             do {
-                try await readAverageSteps()
-                try await readYesterdaySteps()
+                try await createStepPoint()
                 try await readWeight()
             }
             catch {
@@ -60,36 +61,56 @@ class HealthDataViewController: UIViewController {
         }
         print(doubleValues)
     }
-    //TODO: funcひとつにまとめる
-    //１ヶ月平均の歩数を取得
-    func readAverageSteps() async throws {
-        //TODO: やっぱりGMT直す
+    
+    func createStepPoint() async throws {
+        //TODO: ERRORHANDLING
         let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
         let periodAve = HKQuery.predicateForSamples(withStart: startDateAve, end: endDateAve)
         let stepsTodayAve = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodAve)
         let sumOfStepsQueryAve = HKStatisticsQueryDescriptor(predicate: stepsTodayAve, options: .cumulativeSum)
-        print(startDateAve!,endDateAve!)
-        //FIXME: ERRORHANDLING
-        let stepCount = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        print(stepCount!)
-        averageSteps = Int(stepCount! / 31)
-        print(averageSteps)
-    }
-    //昨日の歩数を取得
-    func readYesterdaySteps() async throws {
-        //TODO: やっぱりGMT直す
+        //１ヶ月の平均歩数を取得
+        let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        print(stepCountAve!)
+        print(startDateAve!,"から",endDateAve!,"までの平均歩数は",Int(stepCountAve! / 31))
+    
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
         let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
         let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
         print(startDate!,endDate!)
-        //FIXME: ERRORHANDLING
+        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+        //昨日の歩数を取得
         let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        print(stepCount!)
-        yesterdaySteps = Int(stepCount!)
-        print(yesterdaySteps)
+        print(startDate!,"から",endDate!,"までの歩数は",Int(stepCount!))
+        
+        stepPoint = Int(stepCount!) - Int(stepCountAve! / 30)
+        print(stepPoint)
+        
+        let task = Task { [weak self] in
+            do {
+                try await firebasePutData()
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+    }
+    
+    func firebasePutData() async throws {
+        let db = Firestore.firestore()
+        let user = Auth.auth().currentUser
+        
+        db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").setData([
+            "point": stepPoint
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
     }
     
     //体重を保存

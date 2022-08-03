@@ -5,12 +5,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var me: User!
     var friendIdList = [String]()
-    
-    var friendList = [User]() {
-        didSet {
-            self.collectionView.reloadData()
-        }
-    }
+    var friendList = [User]()
+    var friendsList = [UserHealth]()
     
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
@@ -47,9 +43,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
                     if let friend = friend {
                         self?.friendList.append(friend)
-                        //FIXME: 本当はここで呼びたくない
-                        self?.collectionView.reloadData()
                     }
+                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
+                    if let friends = friends {
+                        self?.friendsList.append(friends)
+                    }
+                    self!.collectionView.reloadData()
                 }
             }
             catch {
@@ -68,6 +67,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         cell.nameLabel.text = friendList[indexPath.row].name
+        cell.dataLabel.text = friendsList[indexPath.row].point
         return cell
     }
 }

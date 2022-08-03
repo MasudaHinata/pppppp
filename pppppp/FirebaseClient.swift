@@ -53,6 +53,17 @@ final class FirebaseClient {
         }
     }
     
+    public func getHealthDataFromId(friendsId: String) async throws -> UserHealth {
+        let querySnapshot = try await db.collection("UserData").document(friendsId).collection("HealthData").document("Data()").getDocument()
+        do {
+            let user = try querySnapshot.data(as: UserHealth.self)
+            print(user)
+            return user
+        } catch {
+            throw FirebaseClientFirestoreError.userDataNotFound
+        }
+    }
+    
     public func getfriendIds() async throws -> [String] {
         //FIXME: エラーハンドリングをする
         try await validate()

@@ -6,16 +6,15 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class ProfileImageViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    
     @IBOutlet var imageView: UIImageView!
     @IBAction func nextButton() {
-        
         hantei()
-        
     }
-    
     @IBAction func uploadButton(_ sender: Any) {
         let picker = UIImagePickerController() //アルバムを開く処理を呼び出す
         picker.sourceType = .photoLibrary
@@ -45,7 +44,6 @@ class ProfileImageViewController: UIViewController,UIImagePickerControllerDelega
     func design() {
         imageView.layer.cornerRadius = 86
         imageView.clipsToBounds = true
-        
     }
     
     func hantei() {
