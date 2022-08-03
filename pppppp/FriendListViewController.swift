@@ -47,6 +47,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         print("自分のユーザーIDを取得しました")
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
         
+        friendList.removeAll()
         let task = Task { [weak self] in
             do {
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
@@ -94,7 +95,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         do {
             let alert3 = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
             let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
-                
+    
                 let task = Task { [weak self] in
                     do {
                         try await FirebaseClient.shared.logout()

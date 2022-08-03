@@ -64,6 +64,7 @@ final class FirebaseClient {
         }
     }
     
+    //TODO: addsnapshotListener
     public func getfriendIds() async throws -> [String] {
         //FIXME: エラーハンドリングをする
         try await validate()

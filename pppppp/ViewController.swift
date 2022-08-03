@@ -34,7 +34,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        friendList.removeAll()
+        friendsList.removeAll()
         let task = Task { [weak self] in
             do {
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
