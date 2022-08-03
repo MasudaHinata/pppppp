@@ -58,7 +58,6 @@ class HealthDataViewController: UIViewController {
         }
         print(doubleValues)
     }
-    //TODO: funcひとつにまとめる
     
     func createStepPoint() async throws {
         //TODO: ERRORHANDLING
