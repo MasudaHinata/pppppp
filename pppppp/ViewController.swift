@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             collectionView.delegate = self
             collectionView.dataSource = self
             let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 500, height: 100)
+            layout.itemSize = CGSize(width: 349, height: 130)
             collectionView.collectionViewLayout = layout
             
             collectionView.register(UINib(nibName: "DashBoardFriendDataCell", bundle: nil), forCellWithReuseIdentifier: "DashBoardFriendDataCell")
