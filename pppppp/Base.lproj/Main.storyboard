@@ -118,6 +118,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kUm-hU-jVe"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
                         <outlet property="addFriendButton" destination="kMj-Ce-wXw" id="7rd-Tz-liK"/>
