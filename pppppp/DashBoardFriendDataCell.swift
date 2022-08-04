@@ -14,6 +14,6 @@ class DashBoardFriendDataCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // Initialization coder
     }
 }

@@ -95,14 +95,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9C19098E289BE86D00C126A6 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				9C19098F289BE89B00C126A6 /* f5_6_0110 */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		BE2F95D02588CCF5004DC436 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,7 +151,7 @@
 				9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */,
 				9CE63B8C288C548D00FFE94C /* LoginHelper.swift */,
 				9CE0D287289A85A100B960B6 /* UserHealth.swift */,
-				9C19098E289BE86D00C126A6 /* Fonts */,
+				9C19098F289BE89B00C126A6 /* f5_6_0110 */,
 			);
 			path = pppppp;
 			sourceTree = "<group>";
