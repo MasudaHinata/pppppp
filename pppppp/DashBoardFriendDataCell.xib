@@ -48,7 +48,6 @@
                 <connections>
                     <outlet property="dataLabel" destination="bdd-P8-OhF" id="jcq-9L-ba0"/>
                     <outlet property="nameLabel" destination="voH-JH-1AQ" id="CNw-ry-M7s"/>
-                    <outlet property="ptLabel" destination="fnf-vb-KOp" id="Y0n-r2-Mir"/>
                 </connections>
             </collectionViewCellContentView>
             <size key="customSize" width="349" height="130"/>

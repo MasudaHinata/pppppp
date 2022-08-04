@@ -69,6 +69,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.dataLabel.text = friendsList[indexPath.row].point
+        
         return cell
     }
 }
