@@ -76,6 +76,12 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string></string>
+	</array>
+	<key> item1</key>
+	<string>f5_6_0110</string>
 	<key>NSCameraUsageDescription</key>
 	<string></string>
 </dict>
