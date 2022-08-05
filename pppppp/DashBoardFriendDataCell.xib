@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" red="0.72156862745098038" green="0.9137254901960784" blue="1" alpha="0.33000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                 <connections>
                     <outlet property="dataLabel" destination="bdd-P8-OhF" id="jcq-9L-ba0"/>
                     <outlet property="nameLabel" destination="voH-JH-1AQ" id="CNw-ry-M7s"/>
