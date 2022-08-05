@@ -70,6 +70,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.dataLabel.text = friendsList[indexPath.row].point
         
+        cell.layer.cornerRadius = 27
         return cell
     }
 }
