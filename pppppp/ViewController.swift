@@ -7,21 +7,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var friendIdList = [String]()
     var friendList = [User]()
     var friendsList = [UserHealth]()
-    
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
+            
             let layout = UICollectionViewFlowLayout()
             layout.itemSize = CGSize(width: 349, height: 130)
+            layout.minimumLineSpacing = 22
             collectionView.collectionViewLayout = layout
             
             collectionView.register(UINib(nibName: "DashBoardFriendDataCell", bundle: nil), forCellWithReuseIdentifier: "DashBoardFriendDataCell")
         }
     }
     
-    
-    @IBOutlet var loginLabel: UILabel!
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
@@ -61,6 +60,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendList.count
     }
@@ -73,4 +73,18 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.layer.cornerRadius = 27
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+            let cellWidth = Int(flowLayout.itemSize.width)
+            let cellSpacing = Int(flowLayout.minimumInteritemSpacing)
+            let cellCount = friendList.count
+
+            let totalCellWidth = cellWidth * cellCount
+            let totalSpacingWidth = cellSpacing * (cellCount - 1)
+
+            let inset = (collectionView.bounds.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+
+            return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
+        }
 }
