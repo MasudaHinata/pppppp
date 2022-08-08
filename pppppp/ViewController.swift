@@ -1,20 +1,21 @@
 import UIKit
 import SwiftUI
+import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate{
     
     var me: User!
     var friendIdList = [String]()
     var friendList = [User]()
     var friendsList = [UserHealth]()
     var friendLists = [UserIcon]()
+    let layout = UICollectionViewFlowLayout()
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
             
-            let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 349, height: 130)
+            
             layout.minimumLineSpacing = 22
             collectionView.collectionViewLayout = layout
             
@@ -30,6 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 130)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,7 +66,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendList.count
@@ -72,14 +75,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
+        cell.layer.cornerRadius = 27
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.dataLabel.text = friendsList[indexPath.row].point
-        
-//        let imageUrl: URL = URL(string: friendLists[indexPath.row].imageURL)!
-//        let imageData: Data = try! Data(contentsOf: imageUrl)
-//        cell.iconView.image = UIImage(data: imageData)!
-        
-        cell.layer.cornerRadius = 27
+
+        cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
         return cell
     }
 }

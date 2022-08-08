@@ -15,11 +15,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
     let user = FirebaseClient.shared.user
     var shareUrlString: String?
     var completionHandlers = [() -> Void]()
-    var friendList = [User]() {
-        didSet {
-            self.friendcollectionView.reloadData()
-        }
-    }
+    var friendList = [User]()
+    var friendLists = [UserIcon]()
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
@@ -60,9 +57,12 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
                     let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
                     if let friend = friend {
                         self?.friendList.append(friend)
-                        //FIXME: 本当はここで呼びたくないDelegate使いたい
-                        self?.friendcollectionView.reloadData()
                     }
+                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+                    if let friendss = friendss {
+                        self?.friendLists.append(friendss)
+                    }
+                    self!.friendcollectionView.reloadData()
                 }
             }
             catch {
@@ -199,6 +199,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "frienddatacell", for: indexPath)  as! FriendDataCell
         cell.nameLabel.text = friendList[indexPath.row].name
+        cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
         return cell
     }
     //友達を削除する

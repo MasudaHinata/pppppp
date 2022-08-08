@@ -46,16 +46,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             guard let self = self else { return }
             if self.auth.currentUser?.isEmailVerified == true {
                 print("パスワードとメールアドレス一致")
-                let task = Task {
-                    do {
-                        try await FirebaseClient.shared.validate()
-                        //FIXME: ビルドしたすぐ後にログインするとここが呼ばれない
-                        self.performSegue(withIdentifier: "tooViewController", sender: nil)
-                    }
-                    catch {
-                        print("errorrerrrr")
-                    }
-                }
+                self.performSegue(withIdentifier: "toViewController", sender: nil)
             } else if self.passwordTextField.text == "" {
                 print("パスワード入力されてない")
                 let alert = UIAlertController(title: "エラー", message: "パスワードを確認してください", preferredStyle: .alert)
