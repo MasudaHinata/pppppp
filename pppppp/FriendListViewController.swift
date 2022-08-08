@@ -19,7 +19,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         }
     }
     var cancellables = Set<AnyCancellable>()
-    @IBOutlet var mynameLabel: UILabel!
     
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

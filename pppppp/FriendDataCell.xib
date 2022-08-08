@@ -17,8 +17,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="464" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9I-B8-fFX">
-                        <rect key="frame" x="17" y="15" width="122" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9I-B8-fFX">
+                        <rect key="frame" x="162" y="14.666666666666664" width="140" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="140" id="LuA-Jx-xit"/>
                             <constraint firstAttribute="height" constant="21" id="yB5-Ha-mbf"/>
@@ -31,8 +31,8 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="t9I-B8-fFX" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Hc8-81-AZY"/>
                 <constraint firstItem="t9I-B8-fFX" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="UEw-Zf-8yK"/>
+                <constraint firstItem="t9I-B8-fFX" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="jr7-Ye-dh2"/>
             </constraints>
             <size key="customSize" width="464" height="50"/>
             <connections>
