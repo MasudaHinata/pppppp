@@ -53,18 +53,8 @@ final class FirebaseClient {
         }
     }
     
-    public func getHealthDataFromId(friendsId: String) async throws -> UserHealth {
-        let querySnapshot = try await db.collection("UserData").document(friendsId).collection("HealthData").document("Data()").getDocument()
-        do {
-            let user = try querySnapshot.data(as: UserHealth.self)
-            print(user)
-            return user
-        } catch {
-            throw FirebaseClientFirestoreError.userDataNotFound
-        }
-    }
-    
     //TODO: addsnapshotListener
+    //IDを取得
     public func getfriendIds() async throws -> [String] {
         //FIXME: エラーハンドリングをする
         try await validate()
@@ -75,12 +65,23 @@ final class FirebaseClient {
             return $0.data()["friendId"] as? String
         }
     }
-    
+    //IDから名前とか取得
     public func getUserDataFromId(friendId: String) async throws -> User {
         try await validate()
         let querySnapshot = try await db.collection("UserData").document(friendId).getDocument()
         do {
             let user = try querySnapshot.data(as: User.self)
+            return user
+        } catch {
+            throw FirebaseClientFirestoreError.userDataNotFound
+        }
+    }
+    //IDからポイントを取得
+    public func getHealthDataFromId(friendsId: String) async throws -> UserHealth {
+        let querySnapshot = try await db.collection("UserData").document(friendsId).collection("HealthData").document("Date()").getDocument()
+        do {
+            let user = try querySnapshot.data(as: UserHealth.self)
+            print(user)
             return user
         } catch {
             throw FirebaseClientFirestoreError.userDataNotFound

@@ -500,7 +500,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ldU-sy-YlS"/>
-                        <color key="backgroundColor" red="0.062745101750000004" green="0.0039215688589999999" blue="0.28627452250000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="ldU-sy-YlS" firstAttribute="bottom" secondItem="xMX-Dl-tKe" secondAttribute="bottom" constant="35" id="R4j-7d-25x"/>
                             <constraint firstItem="ldU-sy-YlS" firstAttribute="trailing" secondItem="xMX-Dl-tKe" secondAttribute="trailing" constant="30" id="UQh-0m-dZO"/>
@@ -628,7 +628,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ycS-Sb-ePy"/>
+        <segue reference="UbM-Xc-XVF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
