@@ -7,21 +7,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var friendIdList = [String]()
     var friendList = [User]()
     var friendsList = [UserHealth]()
-    
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
+            
             let layout = UICollectionViewFlowLayout()
             layout.itemSize = CGSize(width: 349, height: 130)
+            layout.minimumLineSpacing = 22
             collectionView.collectionViewLayout = layout
             
             collectionView.register(UINib(nibName: "DashBoardFriendDataCell", bundle: nil), forCellWithReuseIdentifier: "DashBoardFriendDataCell")
         }
     }
     
-    
-    @IBOutlet var loginLabel: UILabel!
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
@@ -60,7 +59,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendList.count
     }
@@ -70,6 +70,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.dataLabel.text = friendsList[indexPath.row].point
         
+        cell.layer.cornerRadius = 27
         return cell
     }
 }
