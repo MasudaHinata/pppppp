@@ -62,10 +62,29 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, UIImagePicke
     }
     //②
     func checkpassword() {
-        if passwordTextField.text == password2TextField.text {
+        if passwordTextField.text == password2TextField.text && passwordTextField.text != ""{
             print("パスワードok")
-            self.profileName = (self.nameTextField.text!)
-            self.saveProfileName(profileName: self.profileName)
+            let email = self.emailTextField.text!
+            let password = self.passwordTextField.text!
+            
+            self.auth.createUser(withEmail: email, password: password) { (result, error) in
+                if error == nil, let result = result {
+                    result.user.sendEmailVerification(completion: { [weak self] (error) in
+                        if error == nil {
+                            print("アカウントを作成しました")
+                            let alert = UIAlertController(title: "仮登録を行いました", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
+                            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                                self?.profileName = (self?.nameTextField.text!)!
+                                self?.saveProfileName(profileName: self!.profileName)
+                            }
+                            alert.addAction(ok)
+                            self?.present(alert, animated: true, completion: nil)
+                        }
+                    })
+                } else {
+                    print("error occured\(error)")
+                }
+            }
         } else if passwordTextField.text == "" {
             print("パスワードが入力されていない")
             let alert = UIAlertController(title: "パスワードが入力されていません", message: "パスワードを入力してください", preferredStyle: .alert)
@@ -126,29 +145,10 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, UIImagePicke
                                         print("firestoreへ保存が失敗")
                                         
                                     } else {
-                                        print("firestoreへ保存成功")
-                                        let email = self.emailTextField.text!
-                                        let password = self.passwordTextField.text!
-                                        
-                                        self.auth.createUser(withEmail: email, password: password) { (result, error) in
-                                            if error == nil, let result = result {
-                                                result.user.sendEmailVerification(completion: { [weak self] (error) in
-                                                    if error == nil {
-                                                        print("アカウントを作成しました")
-                                                        let alert = UIAlertController(title: "仮登録を行いました", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
-                                                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                                                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                                            let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
-                                                            self?.showDetailViewController(secondVC, sender: self)
-                                                        }
-                                                        alert.addAction(ok)
-                                                        self?.present(alert, animated: true, completion: nil)
-                                                    }
-                                                })
-                                            } else {
-                                                print("error occured\(error)")
-                                            }
-                                        }
+                                        print("画像をfirestoreへ保存成功")
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
+                                        self?.showDetailViewController(secondVC, sender: self)
                                     }
                                 }
                             } else {
@@ -211,7 +211,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, UIImagePicke
         return true
     }
     @objc func dismissKeyboard() {
-           self.view.endEditing(true)
+        self.view.endEditing(true)
     }
     @IBAction func LoginButton () {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

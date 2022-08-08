@@ -52,14 +52,16 @@ final class FirebaseClient {
         let userID = user?.uid
         let snapshot = try await self.db.collection("UserData").document(userID!).getDocument()
         guard let user = try? snapshot.data(as: User.self) else {
-            
+            try await db.collection("UserData").document(userID!).setData(["name": "名称未設定"])
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
             return
         }
         //アイコンがあるかどうかの判定
         let querySnapshot = try await self.db.collection("UserData").document(userID!).collection("IconData").document("Icon").getDocument()
-        guard let icon = try? querySnapshot.data(as: User.self) else {
-            
+        guard let icon = try? querySnapshot.data(as: UserIcon.self) else {
+            try await db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData([
+                "imageURL": "64f3736430fc0b1db5b4bd8cdf3c9325.jpg"
+            ])
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
             return
         }
