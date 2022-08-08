@@ -11,6 +11,14 @@ class ProfileNameViewController: UIViewController, UITextFieldDelegate {
     @IBAction func nameButton() {
         profileName = nameTextField.text!
         saveProfileName(profileName: profileName)
+//        let task = Task { [weak self] in
+//            do {
+//                try await saveProfileName(profileName: profileName)
+//            }
+//            catch {
+//                print("errrror")
+//            }
+//        }
     }
     
     override func viewDidLoad() {
@@ -25,9 +33,22 @@ class ProfileNameViewController: UIViewController, UITextFieldDelegate {
                     print("Error writing document: \(err)")
                 } else {
                     print("名前をfirestoreに保存しました")
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let secondVC = storyboard.instantiateViewController(identifier: "ProfileImageViewController")
-                    self.showDetailViewController(secondVC, sender: self)
+                    
+                    let db = FirebaseClient.shared.db
+                    let user = FirebaseClient.shared.user
+                    let docRef = db.collection("UserData").document(self.userID!).collection("IconData").document("Icon")
+                    docRef.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                            print("Document data: \(dataDescription)")
+                            self.performSegue(withIdentifier: "gooooViewController", sender: nil)
+                        } else {
+                            print("Document does not exist")
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let secondVC = storyboard.instantiateViewController(identifier: "ProfileImageViewController")
+                            self.showDetailViewController(secondVC, sender: self)
+                        }
+                    }
                 }
             }
         } else {

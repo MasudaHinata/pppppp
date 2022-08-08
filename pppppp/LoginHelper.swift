@@ -25,4 +25,11 @@ class LoginHelper {
         let profileNameVC: ProfileNameViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileNameViewController") as! ProfileNameViewController
         viewController?.present(profileNameVC, animated: true, completion: nil)
     }
+    
+    func showProfileImageViewController() {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileNameVC: ProfileImageViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileImageViewController") as! ProfileImageViewController
+        viewController?.present(profileNameVC, animated: true, completion: nil)
+    }
+
 }

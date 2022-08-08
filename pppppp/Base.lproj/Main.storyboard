@@ -393,6 +393,7 @@
                     </view>
                     <connections>
                         <outlet property="nameTextField" destination="Yqh-41-qRe" id="xNQ-ak-FCZ"/>
+                        <segue destination="hdq-Kh-yzh" kind="presentation" identifier="gooooViewController" id="YqW-4a-ZVk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2p-FI-gbJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -604,7 +605,7 @@
         <!--Profile Image View Controller-->
         <scene sceneID="gkb-Xf-gwL">
             <objects>
-                <viewController storyboardIdentifier="ProfileImageViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8x1-27-e0v" customClass="ProfileImageViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ProfileImageViewController" storyboardIdentifier="ProfileImageViewController" modalPresentationStyle="fullScreen" id="8x1-27-e0v" customClass="ProfileImageViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MDh-3t-0S4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -658,7 +659,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UbM-Xc-XVF"/>
+        <segue reference="YqW-4a-ZVk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
