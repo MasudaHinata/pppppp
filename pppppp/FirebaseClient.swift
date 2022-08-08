@@ -59,6 +59,7 @@ final class FirebaseClient {
 //            return
 //        }
     }
+    
     //TODO: addsnapshotListener
     //IDを取得
     public func getfriendIds() async throws -> [String] {

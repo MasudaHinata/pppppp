@@ -10,7 +10,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet var friendLabel: UILabel!
     @IBOutlet var addFriendButton: UIButton!
-    @IBOutlet var FriendIconView: UIImageView!
+    @IBOutlet var friendIconView: UIImageView!
     
     @IBAction func backButton(){
         self.performSegue(withIdentifier: "toViewController", sender: nil)
@@ -50,19 +50,12 @@ class ProfileViewController: UIViewController {
         let docRef = db.collection("UserData").document(friendId).collection("IconData").document("Icon")
         docRef.getDocument { [weak self] (document, error) in
             if let document = document, document.exists {
-//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
                 print("Document data: \(document.data()!["imageURL"]!)")
-                let url = document.data()!["imageURL"]!
-                
                 let imageUrl:URL = URL(string: document.data()!["imageURL"]! as! String)!
-                // URL型からData型に変換
                 let imageData:Data = try! Data(contentsOf: imageUrl)
-                // 画像をセットする
-                self?.FriendIconView.image = UIImage(data: imageData)!
-
-                
+                self?.friendIconView.image = UIImage(data: imageData)!
             } else {
-                print("Document does not exist")
+                print("友達のアイコンなし")
             }
         }
     }
