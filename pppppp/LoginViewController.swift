@@ -48,12 +48,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("パスワードとメールアドレス一致")
                 let task = Task {
                     do {
-                        try await FirebaseClient.shared.validate()
+                        try await FirebaseClient.shared.checkName()
+                        print("チェック")
+
                         //FIXME: ビルドしたすぐ後にログインするとここが呼ばれない
-                        self.performSegue(withIdentifier: "tooViewController", sender: nil)
+                        self.performSegue(withIdentifier: "toViewController", sender: nil)
                     }
                     catch {
-                        print("errorrerrrr")
+                        print("error")
+                        print("Unexpected error: \(error).")
                     }
                 }
             } else if self.passwordTextField.text == "" {

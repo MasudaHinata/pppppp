@@ -16,7 +16,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
             collectionView.dataSource = self
             
             
-//            layout.minimumLineSpacing = 22
+            layout.minimumLineSpacing = 22
             collectionView.collectionViewLayout = layout
             
             collectionView.register(UINib(nibName: "DashBoardFriendDataCell", bundle: nil), forCellWithReuseIdentifier: "DashBoardFriendDataCell")
@@ -82,7 +82,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
 //        let imageData: Data = try! Data(contentsOf: imageUrl)
 //        cell.iconView.image = UIImage(data: imageData)!
 
-        cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
+//        cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
         return cell
     }
 }

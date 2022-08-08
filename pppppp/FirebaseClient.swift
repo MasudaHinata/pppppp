@@ -35,6 +35,7 @@ final class FirebaseClient {
     
     //ログインできてるか,firestoreに情報があるかの判定
     func validate() async throws {
+        
         guard let user = user else {
             await LoginHelper.shared.showAccountViewController()
             throw FirebaseClientAuthError.notAuthenticated
@@ -43,9 +44,11 @@ final class FirebaseClient {
         if !user.isEmailVerified {
             throw FirebaseClientAuthError.emailVerifyRequired
         }
+    }
+    func checkName() async throws {
         //名前があるかどうかの判定
-        let userID = user.uid
-        let snapshot = try await self.db.collection("UserData").document(userID).getDocument()
+        let userID = user?.uid
+        let snapshot = try await self.db.collection("UserData").document(userID!).getDocument()
         guard let user = try? snapshot.data(as: User.self) else {
             await LoginHelper.shared.showProfileNameViewController()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
