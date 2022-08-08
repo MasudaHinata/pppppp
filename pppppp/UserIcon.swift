@@ -11,9 +11,4 @@ import FirebaseFirestoreSwift
 class UserIcon: Codable {
     @DocumentID var id: String?
     var imageURL: String
-
-//    init(document: QueryDocumentSnapshot) {
-//        let postDic = document.data()
-//        self.imageURL = postDic["imageURL"] as? String
-//    }
 }

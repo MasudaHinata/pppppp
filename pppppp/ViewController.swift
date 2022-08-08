@@ -75,7 +75,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.dataLabel.text = friendsList[indexPath.row].point
         
-//        let imageUrl: URL = URL(string: friendLists[indexPath.row].imageURL as! String)!
+//        let imageUrl: URL = URL(string: friendLists[indexPath.row].imageURL)!
 //        let imageData: Data = try! Data(contentsOf: imageUrl)
 //        cell.iconView.image = UIImage(data: imageData)!
         

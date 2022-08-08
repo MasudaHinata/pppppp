@@ -87,7 +87,7 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
-    //IDからポイントを取得
+    //IDからアイコンの画像URLを取得
     public func getIconDataFromId(friendIds: String) async throws -> UserIcon {
         let querySnapshot = try await db.collection("UserData").document(friendIds).collection("IconData").document("Icon").getDocument()
         do {
