@@ -16,9 +16,9 @@ class HealthDataViewController: UIViewController {
     let date = Date()
     var weight: Double!
     var stepPoint = Int()
-
+    
     @IBOutlet var weightTextField: UITextField!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,20 +48,6 @@ class HealthDataViewController: UIViewController {
         cancellables.insert(.init { task.cancel() })
     }
     
-    //体重を取得
-    func readWeight() async throws {
-        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
-        let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
-        
-        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
-        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
-        let results = try await descriptor.result(for: myHealthStore)
-        let doubleValues = results.map {
-            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
-        }
-        print(doubleValues)
-    }
-    
     func createStepPoint() async throws {
         //TODO: ERRORHANDLING
         let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
@@ -73,7 +59,7 @@ class HealthDataViewController: UIViewController {
         let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         print(stepCountAve!)
         print(startDateAve!,"から",endDateAve!,"までの平均歩数は",Int(stepCountAve! / 31))
-    
+        
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
         let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
@@ -97,7 +83,7 @@ class HealthDataViewController: UIViewController {
             }
         }
     }
-    
+    //ポイントをfirebaseに保存
     func firebasePutData() async throws {
         let db = Firestore.firestore()
         let user = Auth.auth().currentUser
@@ -112,7 +98,19 @@ class HealthDataViewController: UIViewController {
             }
         }
     }
-    
+    //体重を取得
+    func readWeight() async throws {
+        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
+        let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
+        
+        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
+        let results = try await descriptor.result(for: myHealthStore)
+        let doubleValues = results.map {
+            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
+        }
+        print(doubleValues)
+    }
     //体重を保存
     @IBAction func writeWeightData() {
         guard let inputWeightText = weightTextField.text else { return }
@@ -133,13 +131,13 @@ class HealthDataViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    
+    //体重を取得
     func writeWeight(weight: Double) async throws {
         let myWeight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
         let myWeightData = HKQuantitySample(type: typeOfBodyMass, quantity: myWeight, start: Date(),end: Date())
         try await self.myHealthStore.save(myWeightData)
     }
-
+    
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
