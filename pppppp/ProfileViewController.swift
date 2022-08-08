@@ -9,8 +9,8 @@ class ProfileViewController: UIViewController {
     let db = Firestore.firestore()
     
     @IBOutlet var friendLabel: UILabel!
-//    @IBOutlet var backLabel: UILabel!
     @IBOutlet var addFriendButton: UIButton!
+    @IBOutlet var FriendIconView: UIImageView!
     
     @IBAction func backButton(){
         self.performSegue(withIdentifier: "toViewController", sender: nil)
@@ -19,14 +19,21 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getfriendsname()
+        getfriendsIcon()
         
         addFriendButton.layer.borderWidth = 4.0
         addFriendButton.layer.borderColor = UIColor.white.cgColor
         addFriendButton.layer.cornerRadius = 12.0
-//        backLabel.layer.cornerRadius = 32.0
-//        backLabel.clipsToBounds = true
+        //        let task = Task { [weak self] in
+        //            do {
+        //               try await getfriendsIcon()
+        //            }
+        //            catch {
+        //                print("err")
+        //            }
+        //        }
     }
-    //友達の名前を取得する
+    //友達の名前を表示する
     func getfriendsname() {
         let docRef = db.collection("UserData").document(friendId)
         docRef.getDocument { (document, error) in
@@ -35,6 +42,27 @@ class ProfileViewController: UIViewController {
                 self.friendLabel.text = "\(document.data()!["name"]!)"
             } else {
                 print("error存在してない")
+            }
+        }
+    }
+    //友達のアイコンを表示する
+    func getfriendsIcon() {
+        let docRef = db.collection("UserData").document(friendId).collection("IconData").document("Icon")
+        docRef.getDocument { [weak self] (document, error) in
+            if let document = document, document.exists {
+//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                print("Document data: \(document.data()!["imageURL"]!)")
+                let url = document.data()!["imageURL"]!
+                
+                let imageUrl:URL = URL(string: document.data()!["imageURL"]! as! String)!
+                // URL型からData型に変換
+                let imageData:Data = try! Data(contentsOf: imageUrl)
+                // 画像をセットする
+                self?.FriendIconView.image = UIImage(data: imageData)!
+
+                
+            } else {
+                print("Document does not exist")
             }
         }
     }

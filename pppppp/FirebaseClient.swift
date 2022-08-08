@@ -51,13 +51,13 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
             return
         }
-        //アイコンがあるかどうかの判定
-        let querySnapshot = try await self.db.collection("UserData").document(userID).collection("IconData").document("Icon").getDocument()
-        guard let icon = try? querySnapshot.data(as: User.self) else {
-            await LoginHelper.shared.showProfileImageViewController()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-            return
-        }
+//        //アイコンがあるかどうかの判定
+//        let querySnapshot = try await self.db.collection("UserData").document(userID).collection("IconData").document("Icon").getDocument()
+//        guard let icon = try? querySnapshot.data(as: User.self) else {
+//            await LoginHelper.shared.showProfileImageViewController()
+//            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+//            return
+//        }
     }
     //TODO: addsnapshotListener
     //IDを取得
