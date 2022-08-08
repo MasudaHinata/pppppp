@@ -9,7 +9,7 @@ class ProfileViewController: UIViewController {
     let db = Firestore.firestore()
     
     @IBOutlet var friendLabel: UILabel!
-    @IBOutlet var backLabel: UILabel!
+//    @IBOutlet var backLabel: UILabel!
     @IBOutlet var addFriendButton: UIButton!
     
     @IBAction func backButton(){
@@ -23,8 +23,8 @@ class ProfileViewController: UIViewController {
         addFriendButton.layer.borderWidth = 4.0
         addFriendButton.layer.borderColor = UIColor.white.cgColor
         addFriendButton.layer.cornerRadius = 12.0
-        backLabel.layer.cornerRadius = 32.0
-        backLabel.clipsToBounds = true
+//        backLabel.layer.cornerRadius = 32.0
+//        backLabel.clipsToBounds = true
     }
     //友達の名前を取得する
     func getfriendsname() {
