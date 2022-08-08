@@ -51,6 +51,13 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
             return
         }
+//        //アイコンがあるかどうかの判定
+//        let querySnapshot = try await self.db.collection("UserData").document(userID).collection("IconData").document("Icon").getDocument()
+//        guard let icon = try? querySnapshot.data(as: User.self) else {
+//            await LoginHelper.shared.showProfileImageViewController()
+//            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+//            return
+//        }
     }
     
     //TODO: addsnapshotListener
@@ -81,6 +88,17 @@ final class FirebaseClient {
         let querySnapshot = try await db.collection("UserData").document(friendsId).collection("HealthData").document("Date()").getDocument()
         do {
             let user = try querySnapshot.data(as: UserHealth.self)
+            print(user)
+            return user
+        } catch {
+            throw FirebaseClientFirestoreError.userDataNotFound
+        }
+    }
+    //IDからアイコンの画像URLを取得
+    public func getIconDataFromId(friendIds: String) async throws -> UserIcon {
+        let querySnapshot = try await db.collection("UserData").document(friendIds).collection("IconData").document("Icon").getDocument()
+        do {
+            let user = try querySnapshot.data(as: UserIcon.self)
             print(user)
             return user
         } catch {

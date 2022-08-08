@@ -7,6 +7,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var friendIdList = [String]()
     var friendList = [User]()
     var friendsList = [UserHealth]()
+    var friendLists = [UserIcon]()
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
@@ -48,6 +49,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     if let friends = friends {
                         self?.friendsList.append(friends)
                     }
+                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+                    if let friendss = friendss {
+                        self?.friendLists.append(friendss)
+                    }
                     self!.collectionView.reloadData()
                 }
             }
@@ -69,6 +74,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.dataLabel.text = friendsList[indexPath.row].point
+        
+//        let imageUrl: URL = URL(string: friendLists[indexPath.row].imageURL)!
+//        let imageData: Data = try! Data(contentsOf: imageUrl)
+//        cell.iconView.image = UIImage(data: imageData)!
         
         cell.layer.cornerRadius = 27
         return cell
