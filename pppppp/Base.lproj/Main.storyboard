@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hdq-Kh-yzh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8x1-27-e0v">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -363,12 +363,11 @@
                     </view>
                     <connections>
                         <outlet property="nameTextField" destination="Yqh-41-qRe" id="xNQ-ak-FCZ"/>
-                        <segue destination="hdq-Kh-yzh" kind="presentation" identifier="toooViewController" modalPresentationStyle="fullScreen" id="rvo-f5-0o7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2p-FI-gbJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1035" y="785"/>
+            <point key="canvasLocation" x="-141" y="737"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="Apd-pZ-okF">
@@ -556,7 +555,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="XfS-aq-DeV">
             <objects>
-                <tabBarController id="hdq-Kh-yzh" sceneMemberID="viewController">
+                <tabBarController modalPresentationStyle="fullScreen" id="hdq-Kh-yzh" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gWF-wa-1Lx">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -620,15 +619,16 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="GwO-MQ-YaT" id="Pp3-6C-ZGa"/>
+                        <segue destination="hdq-Kh-yzh" kind="presentation" identifier="tooViewController" id="LWG-8H-IA2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zOI-KC-VWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-246" y="940"/>
+            <point key="canvasLocation" x="778" y="737"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UbM-Xc-XVF"/>
+        <segue reference="LWG-8H-IA2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
