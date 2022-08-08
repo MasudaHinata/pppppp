@@ -78,9 +78,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
         cell.layer.cornerRadius = 27
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.dataLabel.text = friendsList[indexPath.row].point
-//        let imageUrl: URL = URL(string: friendLists[indexPath.row].imageURL)!
-//        let imageData: Data = try! Data(contentsOf: imageUrl)
-//        cell.iconView.image = UIImage(data: imageData)!
 
 //        cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
         return cell

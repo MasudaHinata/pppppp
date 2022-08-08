@@ -14,6 +14,7 @@ enum FirebaseClientAuthError: Error {
     case notAuthenticated
     case emailVerifyRequired
     case firestoreUserDataNotCreated
+    case firestoreIconDataNotCreated
     case unknown
 }
 
@@ -45,22 +46,23 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.emailVerifyRequired
         }
     }
+    
     func checkName() async throws {
         //名前があるかどうかの判定
         let userID = user?.uid
         let snapshot = try await self.db.collection("UserData").document(userID!).getDocument()
         guard let user = try? snapshot.data(as: User.self) else {
-            await LoginHelper.shared.showProfileNameViewController()
+            
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
             return
         }
-//        //アイコンがあるかどうかの判定
-//        let querySnapshot = try await self.db.collection("UserData").document(userID).collection("IconData").document("Icon").getDocument()
-//        guard let icon = try? querySnapshot.data(as: User.self) else {
-//            await LoginHelper.shared.showProfileImageViewController()
-//            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-//            return
-//        }
+        //アイコンがあるかどうかの判定
+        let querySnapshot = try await self.db.collection("UserData").document(userID!).collection("IconData").document("Icon").getDocument()
+        guard let icon = try? querySnapshot.data(as: User.self) else {
+            
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+            return
+        }
     }
     
     //TODO: addsnapshotListener
