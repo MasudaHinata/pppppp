@@ -99,7 +99,7 @@ final class FirebaseClient {
         let querySnapshot = try await db.collection("UserData").document(friendIds).collection("IconData").document("Icon").getDocument()
         do {
             let user = try querySnapshot.data(as: UserIcon.self)
-            print(user)
+            print(user.imageURL)
             return user
         } catch {
             throw FirebaseClientFirestoreError.userDataNotFound

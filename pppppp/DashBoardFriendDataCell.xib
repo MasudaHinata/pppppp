@@ -36,10 +36,6 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0lo-Na-LXb">
-                        <rect key="frame" x="8" y="16" width="97" height="72"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voH-JH-1AQ">
                         <rect key="frame" x="113" y="16" width="160" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -47,17 +43,17 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sz8-7w-ZbX">
+                        <rect key="frame" x="0.0" y="4" width="113" height="95"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.72156862745098038" green="0.9137254901960784" blue="1" alpha="0.33000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                <connections>
-                    <outlet property="dataLabel" destination="bdd-P8-OhF" id="jcq-9L-ba0"/>
-                    <outlet property="iconView" destination="0lo-Na-LXb" id="fUE-2o-Y7h"/>
-                    <outlet property="nameLabel" destination="voH-JH-1AQ" id="CNw-ry-M7s"/>
-                </connections>
             </collectionViewCellContentView>
             <size key="customSize" width="349" height="130"/>
             <connections>
                 <outlet property="dataLabel" destination="bdd-P8-OhF" id="J2e-eK-gLG"/>
+                <outlet property="iconView" destination="sz8-7w-ZbX" id="KWk-pL-eBw"/>
                 <outlet property="nameLabel" destination="voH-JH-1AQ" id="eJ4-So-pmm"/>
             </connections>
             <point key="canvasLocation" x="114.61538461538461" y="-77.488151658767762"/>
