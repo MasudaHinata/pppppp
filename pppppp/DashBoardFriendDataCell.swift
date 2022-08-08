@@ -11,6 +11,7 @@ class DashBoardFriendDataCell: UICollectionViewCell {
 
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dataLabel: UILabel!
+    @IBOutlet var iconView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

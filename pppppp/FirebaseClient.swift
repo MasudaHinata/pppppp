@@ -87,6 +87,17 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
+    //IDからポイントを取得
+    public func getIconDataFromId(friendIds: String) async throws -> UserIcon {
+        let querySnapshot = try await db.collection("UserData").document(friendIds).collection("IconData").document("Icon").getDocument()
+        do {
+            let user = try querySnapshot.data(as: UserIcon.self)
+            print(user)
+            return user
+        } catch {
+            throw FirebaseClientFirestoreError.userDataNotFound
+        }
+    }
     //友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
         var result = try await db.collection("UserData").document(user!.uid).collection("friendsList").document(deleteFriendId).delete()
