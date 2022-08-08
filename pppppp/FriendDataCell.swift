@@ -10,6 +10,7 @@ import UIKit
 class FriendDataCell: UICollectionViewCell {
     
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var iconView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

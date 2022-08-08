@@ -79,7 +79,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.dataLabel.text = friendsList[indexPath.row].point
 
-//        cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
+        cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
         return cell
     }
 }

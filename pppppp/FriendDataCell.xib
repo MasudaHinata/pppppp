@@ -27,6 +27,10 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jx9-cw-zbR">
+                        <rect key="frame" x="101" y="-1" width="52" height="52"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -36,6 +40,7 @@
             </constraints>
             <size key="customSize" width="464" height="50"/>
             <connections>
+                <outlet property="iconView" destination="jx9-cw-zbR" id="vkf-u3-kO4"/>
                 <outlet property="nameLabel" destination="t9I-B8-fFX" id="2cU-rn-F1E"/>
             </connections>
             <point key="canvasLocation" x="83.07692307692308" y="20.616113744075829"/>
