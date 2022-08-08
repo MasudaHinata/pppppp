@@ -6,6 +6,7 @@
 //
 
 import FirebaseAuth
+import FirebaseStorage
 import FirebaseFirestore
 import Foundation
 import UIKit
@@ -51,16 +52,17 @@ final class FirebaseClient {
         //名前があるかどうかの判定
         let userID = user?.uid
         let snapshot = try await self.db.collection("UserData").document(userID!).getDocument()
-        guard let user = try? snapshot.data(as: User.self) else {
+        guard (try? snapshot.data(as: User.self)) != nil else {
             try await db.collection("UserData").document(userID!).setData(["name": "名称未設定"])
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
             return
         }
         //アイコンがあるかどうかの判定
         let querySnapshot = try await self.db.collection("UserData").document(userID!).collection("IconData").document("Icon").getDocument()
-        guard let icon = try? querySnapshot.data(as: UserIcon.self) else {
+        guard (try? querySnapshot.data(as: UserIcon.self)) != nil else {
+            print("アイコンなし")
             try await db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData([
-                "imageURL": "64f3736430fc0b1db5b4bd8cdf3c9325.jpg"
+                "imageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
             ])
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
             return
@@ -72,6 +74,7 @@ final class FirebaseClient {
     public func getfriendIds() async throws -> [String] {
         //FIXME: エラーハンドリングをする
         try await validate()
+        try await checkName()
         guard let userID = user?.uid else { fatalError("validate not working") }
         let querySnapshot = try await db.collection("UserData").document(userID).collection("friendsList").getDocuments()
         let documents = querySnapshot.documents
@@ -81,7 +84,6 @@ final class FirebaseClient {
     }
     //IDから名前とか取得
     public func getUserDataFromId(friendId: String) async throws -> User {
-        try await validate()
         let querySnapshot = try await db.collection("UserData").document(friendId).getDocument()
         do {
             let user = try querySnapshot.data(as: User.self)

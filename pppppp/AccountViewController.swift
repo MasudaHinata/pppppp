@@ -148,7 +148,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, UIImagePicke
                                         print("画像をfirestoreへ保存成功")
                                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                         let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
-                                        self?.showDetailViewController(secondVC, sender: self)
+                                        self.showDetailViewController(secondVC, sender: self)
                                     }
                                 }
                             } else {
@@ -162,12 +162,11 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, UIImagePicke
             }
         } else {
             print("画像が選択されてない")
-            let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
-            }
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
+            let db = Firestore.firestore()
+            var userID = Auth.auth().currentUser?.uid
+            db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData([
+                "imageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
+            ])
         }
     }
     //アルバムを開く処理を呼び出す
