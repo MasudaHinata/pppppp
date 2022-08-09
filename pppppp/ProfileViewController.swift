@@ -21,17 +21,12 @@ class ProfileViewController: UIViewController {
         getfriendsname()
         getfriendsIcon()
         
+        friendIconView.layer.cornerRadius = 88
+        friendIconView.clipsToBounds = true
+        
         addFriendButton.layer.borderWidth = 4.0
         addFriendButton.layer.borderColor = UIColor.white.cgColor
         addFriendButton.layer.cornerRadius = 12.0
-        //        let task = Task { [weak self] in
-        //            do {
-        //               try await getfriendsIcon()
-        //            }
-        //            catch {
-        //                print("err")
-        //            }
-        //        }
     }
     //友達の名前を表示する
     func getfriendsname() {
