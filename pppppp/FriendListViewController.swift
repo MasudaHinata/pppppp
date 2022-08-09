@@ -20,6 +20,11 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
+    @IBAction func goSettingButton() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ChangeProfileViewController")
+        self.showDetailViewController(secondVC, sender: self)
+    }
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
@@ -115,80 +120,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
         let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
-    }
-    //ログアウトする
-    @IBAction func logoutButton() {
-        do {
-            let alert3 = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
-            let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
-    
-                let task = Task { [weak self] in
-                    do {
-                        try await FirebaseClient.shared.logout()
-                        print("ログアウトしました")
-                        let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                            self?.showDetailViewController(secondVC, sender: self)
-                        }
-                        alert.addAction(ok)
-                        self?.present(alert, animated: true, completion: nil)
-                    }
-                    catch {
-                        //TODO: ERROR Handling
-                        print("error")
-                    }
-                }
-                self.cancellables.insert(.init { task.cancel() })
-            })
-            let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-                print("キャンセル")
-            })
-            alert3.addAction(delete)
-            alert3.addAction(cancel)
-            self.present(alert3, animated: true, completion: nil)
-        }
-    }
-    //アカウントを削除する
-    @IBAction func deleteAccount() {
-                let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
-                let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
-                    
-                    let task = Task { [weak self] in
-                        do {
-                            try await FirebaseClient.shared.accountDelete()
-                            try await self?.user?.delete()
-                            let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
-                            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                                print("アカウントを削除しました")
-                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                                self?.showDetailViewController(secondVC, sender: self)
-                            }
-                            alert.addAction(ok)
-                            self?.present(alert, animated: true, completion: nil)
-                        }
-                        catch {
-                            print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
-                            let alert = UIAlertController(title: "エラー", message: "ログインし直してもう一度お試しください", preferredStyle: .alert)
-                            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                                self?.showDetailViewController(secondVC, sender: self)
-                            }
-                            alert.addAction(ok)
-                            self?.present(alert, animated: true, completion: nil)
-                        }
-                    }
-                    cancellables.insert(.init { task.cancel() })
-                })
-                let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-                    print("キャンセル")
-                })
-                alert.addAction(delete)
-                alert.addAction(cancel)
-                self.present(alert, animated: true, completion: nil)
     }
 }
 

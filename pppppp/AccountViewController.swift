@@ -3,12 +3,11 @@ import Firebase
 import FirebaseFirestore
 import FirebaseStorage
 
-class AccountViewController: UIViewController ,UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AccountViewController: UIViewController ,UITextFieldDelegate {
     
     var auth: Auth!
     var profileName: String = ""
     @IBOutlet var GoButton: UIButton!
-    @IBOutlet var imageView: UIImageView!
     @IBOutlet var emailTextField: UITextField! {
         didSet {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
@@ -125,68 +124,28 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, UIImagePicke
     }
     //④画像をfirestoreに保存する
     func ImageputFirestore() {
-        if let selectImage = imageView.image {
-            let imageName = "\(Date().timeIntervalSince1970).jpg"
-            let reference = Storage.storage().reference().child("posts/\(imageName)")
-            if let imageData = selectImage.jpegData(compressionQuality: 0.8) {
-                let metadata = StorageMetadata()
-                metadata.contentType = "image/jpeg"
-                reference.putData(imageData, metadata: metadata, completion:{(metadata, error) in
-                    if let _ = metadata {
-                        reference.downloadURL{(url,error) in
-                            if let downloadUrl = url {
-                                let downloadUrlStr = downloadUrl.absoluteString
-                                let user = FirebaseClient.shared.user
-                                let db = FirebaseClient.shared.db
-                                db.collection("UserData").document(user!.uid).collection("IconData").document("Icon").setData([
-                                    "imageURL": downloadUrlStr
-                                ]){ error in
-                                    if let error = error {
-                                        print("firestoreへ保存が失敗")
-                                        
-                                    } else {
-                                        print("画像をfirestoreへ保存成功")
-                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                        let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
-                                        self.showDetailViewController(secondVC, sender: self)
-                                    }
-                                }
-                            } else {
-                                print("downloadURLの取得が失敗した場合の処理")
-                            }
-                        }
-                    } else {
-                        print("storageの保存が失敗")
-                    }
-                })
+        let db = Firestore.firestore()
+        var userID = Auth.auth().currentUser?.uid
+        db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData([
+            "imageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
+        ])
+        print("初期画像を設定")
+        let task = Task {
+            do {
+                var point = Scorering.shared.stepPoint
+                point = 0
+                try await Scorering.shared.firebasePutData(point: point)
+                
+                print("初期ポイントをfirestoreに保存成功")
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
+                self.showDetailViewController(secondVC, sender: self)
             }
-        } else {
-            print("画像が選択されてない")
-            let db = Firestore.firestore()
-            var userID = Auth.auth().currentUser?.uid
-            db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData([
-                "imageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
-            ])
+            catch{
+                print("初期ポイントをfirestoreに保存error")
+            }
         }
-    }
-    //アルバムを開く処理を呼び出す
-    @IBAction func uploadButton(_ sender: Any) {
-        let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.delegate = self
-        present(picker, animated: true)
-        self.present(picker, animated: true, completion: nil)
-    }
-    //画像が選択された時に呼ばれる
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
-        if let selectedImage = info[.originalImage] as? UIImage {
-            imageView.image = selectedImage  //imageViewにカメラロールから選んだ画像を表示する
-        }
-        self.dismiss(animated: true)  //画像をImageViewに表示したらアルバムを閉じる
-    }
-    //画像選択がキャンセルされた時に呼ばれる
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
     }
     func design() {
         emailTextField.layer.cornerRadius = 24
@@ -199,8 +158,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, UIImagePicke
         nameTextField.clipsToBounds = true
         GoButton.layer.cornerRadius = 24
         GoButton.clipsToBounds = true
-        imageView.layer.cornerRadius = 86
-        imageView.clipsToBounds = true
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()

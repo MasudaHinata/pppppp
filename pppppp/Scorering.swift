@@ -65,7 +65,7 @@ final class Scorering {
         
         let task = Task { [weak self] in
             do {
-                try await firebasePutData()
+                try await firebasePutData(point: stepPoint)
             }
             catch {
                 //TODO: ERROR Handling
@@ -74,12 +74,12 @@ final class Scorering {
         }
     }
     //ポイントをfirebaseに保存
-    func firebasePutData() async throws {
+    func firebasePutData(point: Int) async throws {
         let db = Firestore.firestore()
         let user = Auth.auth().currentUser
         
         db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").setData([
-            "point": stepPoint
+            "point": point
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
