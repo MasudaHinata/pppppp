@@ -2,8 +2,8 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate{
-    
+class ViewController: UIViewController, UITextFieldDelegate {
+
     var me: User!
     var friendIdList = [String]()
     var friendList = [User]()
@@ -22,7 +22,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
             collectionView.register(UINib(nibName: "DashBoardFriendDataCell", bundle: nil), forCellWithReuseIdentifier: "DashBoardFriendDataCell")
         }
     }
-    
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
@@ -66,8 +65,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
     }
 }
 
+
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendList.count
@@ -76,6 +75,9 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         cell.layer.cornerRadius = 27
+        cell.iconView.layer.cornerRadius = 38
+        cell.iconView.clipsToBounds = true
+        
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.dataLabel.text = friendsList[indexPath.row].point
 
