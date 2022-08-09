@@ -16,6 +16,7 @@
 		9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69903E286C6517009D5BF5 /* FriendDataCell.swift */; };
 		9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C69903F286C6517009D5BF5 /* FriendDataCell.xib */; };
 		9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C699042286DA189009D5BF5 /* UIColorHex.swift */; };
+		9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */; };
 		9C7F3C25289CA21F0039BA2E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7F3C24289CA21F0039BA2E /* FirebaseAuth */; };
 		9C7F3C27289CA2250039BA2E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7F3C26289CA2250039BA2E /* FirebaseFirestore */; };
 		9C7F3C29289CA22A0039BA2E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7F3C28289CA22A0039BA2E /* FirebaseFirestoreSwift */; };
@@ -54,6 +55,7 @@
 		9C69903E286C6517009D5BF5 /* FriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDataCell.swift; sourceTree = "<group>"; };
 		9C69903F286C6517009D5BF5 /* FriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendDataCell.xib; sourceTree = "<group>"; };
 		9C699042286DA189009D5BF5 /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
+		9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scorering.swift; sourceTree = "<group>"; };
 		9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardFriendDataCell.swift; sourceTree = "<group>"; };
 		9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardFriendDataCell.xib; sourceTree = "<group>"; };
 		9CAA88EB26B1918B005517D5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
 				BE7F33892580D0810027620D /* Info.plist */,
+				9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				9C699036286B3CC6009D5BF5 /* User.swift */,
 				9C699042286DA189009D5BF5 /* UIColorHex.swift */,
@@ -251,6 +254,7 @@
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
 				BE7F33802580D07E0027620D /* ViewController.swift in Sources */,
 				9CDF759F286326A600209FD0 /* AccountViewController.swift in Sources */,
+				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
 				BE0878EC26551BC2007CA984 /* post.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
