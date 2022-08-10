@@ -2,7 +2,7 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate{
+class ViewController: UIViewController, UITextFieldDelegate {
     
     var me: User!
     var friendIdList = [String]()
@@ -15,14 +15,12 @@ class ViewController: UIViewController, UITextFieldDelegate{
             collectionView.delegate = self
             collectionView.dataSource = self
             
-            
             layout.minimumLineSpacing = 22
             collectionView.collectionViewLayout = layout
             
             collectionView.register(UINib(nibName: "DashBoardFriendDataCell", bundle: nil), forCellWithReuseIdentifier: "DashBoardFriendDataCell")
         }
     }
-    
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
@@ -38,6 +36,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         super.viewDidAppear(animated)
         friendList.removeAll()
         friendsList.removeAll()
+        friendLists.removeAll()
         let task = Task { [weak self] in
             do {
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
@@ -68,7 +67,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendList.count
     }
@@ -76,9 +74,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         cell.layer.cornerRadius = 27
+        cell.iconView.layer.cornerRadius = 30
+        cell.iconView.clipsToBounds = true
+        
         cell.nameLabel.text = friendList[indexPath.row].name
-        cell.dataLabel.text = friendsList[indexPath.row].point
-
+        cell.dataLabel.text = String(friendsList[indexPath.row].point)
         cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
         return cell
     }

@@ -16,7 +16,7 @@ class SettingIconViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.layer.cornerRadius = 86
+        imageView.layer.cornerRadius = 88
         imageView.clipsToBounds = true
         // Do any additional setup after loading the view.
     }

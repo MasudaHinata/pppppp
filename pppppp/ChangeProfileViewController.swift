@@ -36,6 +36,8 @@ class ChangeProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        myIconView.layer.cornerRadius = 43
+        myIconView.clipsToBounds = true
         getMyData()
         // Do any additional setup after loading the view.
     }

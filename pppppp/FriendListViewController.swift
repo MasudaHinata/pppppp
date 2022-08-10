@@ -43,6 +43,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        myIconView.layer.cornerRadius = 50
+        myIconView.clipsToBounds = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -129,6 +131,10 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "frienddatacell", for: indexPath)  as! FriendDataCell
+        
+        cell.iconView.layer.cornerRadius = 27
+        cell.iconView.clipsToBounds = true
+        
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
         return cell
