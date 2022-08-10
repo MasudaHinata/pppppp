@@ -3,7 +3,7 @@ import SwiftUI
 import Kingfisher
 
 class ViewController: UIViewController, UITextFieldDelegate {
-
+    
     var me: User!
     var friendIdList = [String]()
     var friendList = [User]()
@@ -64,7 +64,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
 }
-
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     

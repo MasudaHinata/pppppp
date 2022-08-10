@@ -54,7 +54,7 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    //    友達を追加する
+    //友達を追加する
     @IBAction func addFriend() {
         db.collection("UserData").document(userID).collection("friendsList").document(friendId).setData(["friendId": friendId]) { [self] err in
             if let err = err {
