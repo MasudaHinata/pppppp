@@ -10,5 +10,5 @@ import FirebaseFirestoreSwift
 
 struct UserHealth: Codable {
     @DocumentID var id: String?
-    let point: String
+    let point: Int
 }

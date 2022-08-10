@@ -15,7 +15,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             collectionView.delegate = self
             collectionView.dataSource = self
             
-            
             layout.minimumLineSpacing = 22
             collectionView.collectionViewLayout = layout
             
@@ -37,6 +36,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidAppear(animated)
         friendList.removeAll()
         friendsList.removeAll()
+        friendLists.removeAll()
         let task = Task { [weak self] in
             do {
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
@@ -79,8 +79,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
         cell.iconView.clipsToBounds = true
         
         cell.nameLabel.text = friendList[indexPath.row].name
-//        cell.dataLabel.text = friendsList[indexPath.row].point
-
+        cell.dataLabel.text = String(friendsList[indexPath.row].point)
         cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
         return cell
     }
