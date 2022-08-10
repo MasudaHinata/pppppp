@@ -20,18 +20,20 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63n-pl-KmS">
                                 <rect key="frame" x="300" y="694" width="84" height="84"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="" cornerStyle="capsule">
                                     <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="56"/>
-                                    <color key="baseForegroundColor" red="0.52156865600000002" green="0.62745100259999997" blue="0.76862752440000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="baseForegroundColor" red="0.52156862745098043" green="0.62745098039215685" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="dataputButton" destination="C6X-Qw-bEO" eventType="touchUpInside" id="2aH-zF-V4L"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mdI-C5-FLv">
-                                <rect key="frame" x="0.0" y="130" width="414" height="556"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="533"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -430,13 +432,6 @@
                                     <action selector="dataputButton" destination="9qf-JZ-69t" eventType="touchUpInside" id="6Go-rV-7Fv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqo-U2-Cfl">
-                                <rect key="frame" x="66" y="713" width="108" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ZQ-OO-cOF">
                                 <rect key="frame" x="40" y="140" width="103" height="103"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -452,9 +447,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz7-VA-54e">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz7-VA-54e">
                                 <rect key="frame" x="203" y="715" width="60" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large"/>
@@ -491,15 +485,32 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBn-cf-5AB">
+                                <rect key="frame" x="300" y="694" width="84" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqo-U2-Cfl">
+                                <rect key="frame" x="58" y="729" width="108" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ldU-sy-YlS"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8ZQ-OO-cOF" firstAttribute="top" secondItem="ldU-sy-YlS" secondAttribute="top" id="56A-DZ-TYr"/>
+                            <constraint firstItem="ldU-sy-YlS" firstAttribute="bottom" secondItem="Pqo-U2-Cfl" secondAttribute="bottom" constant="60" id="6h2-DS-p6N"/>
+                            <constraint firstItem="xMX-Dl-tKe" firstAttribute="leading" secondItem="Lz7-VA-54e" secondAttribute="trailing" constant="37" id="9ux-cf-QjP"/>
+                            <constraint firstItem="ldU-sy-YlS" firstAttribute="bottom" secondItem="Lz7-VA-54e" secondAttribute="bottom" constant="55" id="HGa-eL-4Fg"/>
                             <constraint firstItem="8ZQ-OO-cOF" firstAttribute="leading" secondItem="ldU-sy-YlS" secondAttribute="leading" constant="40" id="NMf-7G-oIf"/>
                             <constraint firstItem="ldU-sy-YlS" firstAttribute="bottom" secondItem="xMX-Dl-tKe" secondAttribute="bottom" constant="35" id="R4j-7d-25x"/>
                             <constraint firstItem="ldU-sy-YlS" firstAttribute="trailing" secondItem="xMX-Dl-tKe" secondAttribute="trailing" constant="30" id="UQh-0m-dZO"/>
+                            <constraint firstItem="Lz7-VA-54e" firstAttribute="leading" secondItem="Pqo-U2-Cfl" secondAttribute="trailing" constant="37" id="bKD-AQ-c9a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Me" largeTitleDisplayMode="always" id="VMF-5D-Uhx"/>

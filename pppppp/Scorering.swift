@@ -23,7 +23,7 @@ final class Scorering {
     let calendar = Calendar.current
     let date = Date()
     var weight: Double!
-    var stepPoint = Int()
+    var sanitasPoint = Int()
     
     //healthkit使用の許可
     func getPermissionHealthKit() {
@@ -60,12 +60,12 @@ final class Scorering {
         let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         print(startDate!,"から",endDate!,"までの歩数は",Int(stepCount!))
         
-        stepPoint = Int(stepCount!) - Int(stepCountAve! / 30)
-        print(stepPoint)
+        sanitasPoint = Int(stepCount!) - Int(stepCountAve! / 30)
+        print(sanitasPoint)
         
         let task = Task { [weak self] in
             do {
-                try await firebasePutData(point: stepPoint)
+                try await firebasePutData(point: sanitasPoint)
             }
             catch {
                 //TODO: ERROR Handling
