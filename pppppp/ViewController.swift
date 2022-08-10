@@ -39,6 +39,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         friendLists.removeAll()
         let task = Task { [weak self] in
             do {
+                try await Scorering.shared.createStepPoint()
+                
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
                 guard let friendIds = friendIds else { return }
                 for id in friendIds {
