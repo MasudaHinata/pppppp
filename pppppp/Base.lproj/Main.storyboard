@@ -7,6 +7,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,57 +19,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mdI-C5-FLv">
-                                <rect key="frame" x="0.0" y="140" width="414" height="490"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63n-pl-KmS">
+                                <rect key="frame" x="300" y="694" width="84" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="DQp-ju-kNI"/>
+                                    <constraint firstAttribute="height" constant="84" id="rq3-2f-TOt"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system" title="" cornerStyle="capsule">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="56"/>
+                                    <color key="baseForegroundColor" red="0.52156865600000002" green="0.62745100259999997" blue="0.76862752440000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="dataputButton" destination="C6X-Qw-bEO" eventType="touchUpInside" id="66P-PF-hp8"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="unX-EV-8eA">
+                                <rect key="frame" x="20" y="140" width="374" height="546"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yVG-Ie-r77">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="546" id="rJK-M9-yCE"/>
+                                    <constraint firstAttribute="width" constant="374" id="sdS-w2-ce0"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oLX-5d-FrM">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="nxN-UL-v43">
-                                        <rect key="frame" x="32.5" y="0.0" width="349" height="130"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cbD-bO-Okb">
+                                        <rect key="frame" x="12.5" y="0.0" width="349" height="130"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8Ix-Dh-9uP">
                                             <rect key="frame" x="0.0" y="0.0" width="349" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                        </view>
+                                        </collectionViewCellContentView>
                                         <size key="customSize" width="349" height="130"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAa-Gi-27m">
-                                <rect key="frame" x="300" y="694" width="84" height="84"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="" cornerStyle="capsule">
-                                    <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="56"/>
-                                    <color key="baseForegroundColor" red="0.52156862749999999" green="0.62745098040000002" blue="0.7725490196" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="dataputButton" destination="9qf-JZ-69t" eventType="touchUpInside" id="u6t-93-Sue"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yZS-7u-8PC"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="yZS-7u-8PC" firstAttribute="bottom" secondItem="HAa-Gi-27m" secondAttribute="bottom" constant="35" id="ZiG-j6-clg"/>
-                            <constraint firstItem="yZS-7u-8PC" firstAttribute="trailing" secondItem="HAa-Gi-27m" secondAttribute="trailing" constant="30" id="kBd-Gm-PaZ"/>
+                            <constraint firstItem="unX-EV-8eA" firstAttribute="centerX" secondItem="1Ia-4m-9zf" secondAttribute="centerX" id="1N2-Ld-ikP"/>
+                            <constraint firstItem="yZS-7u-8PC" firstAttribute="bottom" secondItem="63n-pl-KmS" secondAttribute="bottom" constant="35" id="9tQ-uN-YWz"/>
+                            <constraint firstItem="yZS-7u-8PC" firstAttribute="trailing" secondItem="63n-pl-KmS" secondAttribute="trailing" constant="30" id="eaX-e3-DQx"/>
+                            <constraint firstItem="unX-EV-8eA" firstAttribute="top" secondItem="yZS-7u-8PC" secondAttribute="top" id="uNL-hy-D0I"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="always" id="U5C-91-Dkl"/>
                     <connections>
-                        <outlet property="collectionView" destination="mdI-C5-FLv" id="o4y-M1-dc6"/>
+                        <outlet property="collectionView" destination="unX-EV-8eA" id="day-jH-d6Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4054" y="-224"/>
+            <point key="canvasLocation" x="4053.6231884057975" y="-224.33035714285714"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="KPq-9t-VNS">
@@ -797,11 +805,10 @@
         <scene sceneID="XfS-aq-DeV">
             <objects>
                 <tabBarController modalPresentationStyle="fullScreen" id="hdq-Kh-yzh" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="gWF-wa-1Lx">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gWF-wa-1Lx">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.070588238540000001" green="0.0039215688589999999" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>

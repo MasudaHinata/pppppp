@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 130)
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
     }
     
     let user = FirebaseClient.shared.user
