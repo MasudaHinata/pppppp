@@ -24,7 +24,6 @@ final class Scorering {
     let date = Date()
     var weight: Double!
     var untilNowPoint = Int()
-    var todayPoint = Int()
     var sanitasPoint = Int()
     
     //healthkit使用の許可
@@ -52,16 +51,6 @@ final class Scorering {
         } catch {
             print("error")
         }
-        
-        
-//        db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").getDocument { [self] (document, error) in
-//            if let document = document, document.exists {
-//                self.untilNowPoint = (document.data()!["point"]! as? Int)!
-//                print("今までのポイントは\(String(describing: self.untilNowPoint))")
-//            } else {
-//                print("error存在してない")
-//            }
-//        }
     }
 
     func createStepPoint() async throws {
@@ -88,9 +77,63 @@ final class Scorering {
         let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         print(startDate!,"から",endDate!,"までの歩数は",Int(stepCount!))
 
-        todayPoint = Int(stepCount!) - Int(stepCountAve! / 30)
+        var differencePoint = Int()
+        var todayPoint = Int()
+        differencePoint = Int(stepCount!) - Int(stepCountAve! / 30)
+        print("歩数の差は\(differencePoint)")
+        
+        switch differencePoint {
+        case (...0):
+            todayPoint = 0
+        case (0...500):
+            todayPoint = 2
+        case (500...1000):
+            todayPoint = 3
+        case (1000...2000):
+            todayPoint = 5
+        case (2000...3000):
+            todayPoint = 10
+        case (3000...4000):
+            todayPoint = 15
+        case (4000...5000):
+            todayPoint = 20
+        case (5000...6000):
+            todayPoint = 25
+        case (6000...7000):
+            todayPoint = 30
+        case (7000...8000):
+            todayPoint = 35
+        case (8000...9000):
+            todayPoint = 40
+        case (9000...10000):
+            todayPoint = 45
+        case (10000...11000):
+            todayPoint = 50
+        case (11000...12000):
+            todayPoint = 55
+        case (12000...13000):
+            todayPoint = 60
+        case (13000...14000):
+            todayPoint = 65
+        case (14000...15000):
+            todayPoint = 70
+        case (15000...16000):
+            todayPoint = 75
+        case (16000...17000):
+            todayPoint = 80
+        case (17000...18000):
+            todayPoint = 85
+        case (18000...19000):
+            todayPoint = 90
+        case (19000...20000):
+            todayPoint = 95
+        case (20000...):
+            todayPoint = 100
+        default:
+            break
+        }
+        
         print("今日の歩数のポイントは\(todayPoint)")
-
         sanitasPoint = self.untilNowPoint + todayPoint
         print("累積ポイントは\(sanitasPoint)")
     }
