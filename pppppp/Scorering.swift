@@ -38,6 +38,41 @@ final class Scorering {
         })
     }
     
+//    func createStepPoint() async throws {
+//        //TODO: ERRORHANDLING
+//        let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
+//        let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
+//        let periodAve = HKQuery.predicateForSamples(withStart: startDateAve, end: endDateAve)
+//        let stepsTodayAve = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodAve)
+//        let sumOfStepsQueryAve = HKStatisticsQueryDescriptor(predicate: stepsTodayAve, options: .cumulativeSum)
+//        //１ヶ月の平均歩数を取得
+//        let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+//        print(stepCountAve!)
+//        print(startDateAve!,"から",endDateAve!,"までの平均歩数は",Int(stepCountAve! / 31))
+//
+//        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
+//        let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
+//        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+//        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+//        print(startDate!,endDate!)
+//        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+//        //昨日の歩数を取得
+//        let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+//        print(startDate!,"から",endDate!,"までの歩数は",Int(stepCount!))
+//
+//        sanitasPoint = Int(stepCount!) - Int(stepCountAve! / 30)
+//        print(sanitasPoint)
+//
+////        let task = Task { [weak self] in
+////            do {
+////                try await firebasePutData(point: sanitasPoint)
+////            }
+////            catch {
+////                //TODO: ERROR Handling
+////                print("error")
+////            }
+////        }
+//    }
     func createStepPoint() async throws {
         //TODO: ERRORHANDLING
         let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
@@ -63,15 +98,15 @@ final class Scorering {
         sanitasPoint = Int(stepCount!) - Int(stepCountAve! / 30)
         print(sanitasPoint)
         
-        let task = Task { [weak self] in
-            do {
-                try await firebasePutData(point: sanitasPoint)
-            }
-            catch {
-                //TODO: ERROR Handling
-                print("error")
-            }
-        }
+//        let task = Task { [weak self] in
+//            do {
+//                try await firebasePutData(point: sanitasPoint)
+//            }
+//            catch {
+//                //TODO: ERROR Handling
+//                print("error")
+//            }
+//        }
     }
     //ポイントをfirebaseに保存
     func firebasePutData(point: Int) async throws {
@@ -84,7 +119,7 @@ final class Scorering {
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
-                print("Document successfully written!")
+                print("ポイントをfirestoreに保存！")
             }
         }
     }

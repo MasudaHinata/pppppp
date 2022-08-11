@@ -36,7 +36,6 @@ class HealthDataViewController: UIViewController {
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
     }
-
     //体重を保存
     @IBAction func writeWeightData() {
         guard let inputWeightText = weightTextField.text else { return }
@@ -56,6 +55,52 @@ class HealthDataViewController: UIViewController {
             }
         }
         cancellables.insert(.init { task.cancel() })
+    }
+    //自己評価
+    @IBAction func goodButton(){
+        let task = Task {
+            do {
+                try await Scorering.shared.createStepPoint()
+                let sanitasPoint = Scorering.shared.sanitasPoint
+                let sanitasPoints = sanitasPoint + 20
+                try await Scorering.shared.firebasePutData(point: sanitasPoints)
+                
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+    }
+    @IBAction func normalButton(){
+        let task = Task {
+            do {
+                try await Scorering.shared.createStepPoint()
+                let sanitasPoint = Scorering.shared.sanitasPoint
+                let sanitasPoints = sanitasPoint + 15
+                try await Scorering.shared.firebasePutData(point: sanitasPoints)
+                
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+    }
+    @IBAction func badButton(){
+        let task = Task {
+            do {
+                try await Scorering.shared.createStepPoint()
+                let sanitasPoint = Scorering.shared.sanitasPoint
+                let sanitasPoints = sanitasPoint + 10
+                try await Scorering.shared.firebasePutData(point: sanitasPoints)
+                
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
     }
 
     @objc func dismissKeyboard() {
