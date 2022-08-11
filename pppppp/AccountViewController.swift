@@ -132,7 +132,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         print("初期画像を設定")
         let task = Task {
             do {
-                var point = Scorering.shared.stepPoint
+                var point = Scorering.shared.sanitasPoint
                 point = 0
                 try await Scorering.shared.firebasePutData(point: point)
                 

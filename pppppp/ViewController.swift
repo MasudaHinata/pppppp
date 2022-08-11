@@ -29,8 +29,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 130)
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
     }
+    
+    let user = FirebaseClient.shared.user
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -42,7 +44,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 try await Scorering.shared.createStepPoint()
                 
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
-                guard let friendIds = friendIds else { return }
+                guard var friendIds = friendIds else { return }
+                friendIds += [String(user!.uid)]
                 for id in friendIds {
                     let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
                     if let friend = friend {
