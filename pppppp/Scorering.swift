@@ -23,6 +23,7 @@ final class Scorering {
     let calendar = Calendar.current
     let date = Date()
     var weight: Double!
+    var untilNowPoint = Int()
     var sanitasPoint = Int()
     
     //healthkit使用の許可
@@ -38,40 +39,103 @@ final class Scorering {
         })
     }
     
+    func getUntilNowPoint() async throws {
+        let db = Firestore.firestore()
+        let user = Auth.auth().currentUser
+        
+        let querySnapshot = try await db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").getDocument()
+        do {
+            untilNowPoint = try querySnapshot.data()!["point"]! as! Int
+            print("今までのポイントは\(String(describing: untilNowPoint))")
+            
+        } catch {
+            print("error")
+        }
+    }
+
     func createStepPoint() async throws {
+
+        try await getUntilNowPoint()
+
         //TODO: ERRORHANDLING
         let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
         let periodAve = HKQuery.predicateForSamples(withStart: startDateAve, end: endDateAve)
         let stepsTodayAve = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodAve)
         let sumOfStepsQueryAve = HKStatisticsQueryDescriptor(predicate: stepsTodayAve, options: .cumulativeSum)
-        //１ヶ月の平均歩数を取得
-        let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        print(stepCountAve!)
-        print(startDateAve!,"から",endDateAve!,"までの平均歩数は",Int(stepCountAve! / 31))
-        
+
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
         let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
         let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
         print(startDate!,endDate!)
         let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+        //１ヶ月の平均歩数を取得
+        let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        print(startDateAve!,"から",endDateAve!,"までの平均歩数は",Int(stepCountAve! / 31))
         //昨日の歩数を取得
         let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         print(startDate!,"から",endDate!,"までの歩数は",Int(stepCount!))
+
+        var differencePoint = Int()
+        var todayPoint = Int()
+        differencePoint = Int(stepCount!) - Int(stepCountAve! / 30)
+        print("歩数の差は\(differencePoint)")
         
-        sanitasPoint = Int(stepCount!) - Int(stepCountAve! / 30)
-        print(sanitasPoint)
-        
-        let task = Task { [weak self] in
-            do {
-                try await firebasePutData(point: sanitasPoint)
-            }
-            catch {
-                //TODO: ERROR Handling
-                print("error")
-            }
+        switch differencePoint {
+        case (...0):
+            todayPoint = 0
+        case (0...500):
+            todayPoint = 2
+        case (500...1000):
+            todayPoint = 3
+        case (1000...2000):
+            todayPoint = 5
+        case (2000...3000):
+            todayPoint = 10
+        case (3000...4000):
+            todayPoint = 15
+        case (4000...5000):
+            todayPoint = 20
+        case (5000...6000):
+            todayPoint = 25
+        case (6000...7000):
+            todayPoint = 30
+        case (7000...8000):
+            todayPoint = 35
+        case (8000...9000):
+            todayPoint = 40
+        case (9000...10000):
+            todayPoint = 45
+        case (10000...11000):
+            todayPoint = 50
+        case (11000...12000):
+            todayPoint = 55
+        case (12000...13000):
+            todayPoint = 60
+        case (13000...14000):
+            todayPoint = 65
+        case (14000...15000):
+            todayPoint = 70
+        case (15000...16000):
+            todayPoint = 75
+        case (16000...17000):
+            todayPoint = 80
+        case (17000...18000):
+            todayPoint = 85
+        case (18000...19000):
+            todayPoint = 90
+        case (19000...20000):
+            todayPoint = 95
+        case (20000...):
+            todayPoint = 100
+        default:
+            break
         }
+        
+        print("今日の歩数のポイントは\(todayPoint)")
+        sanitasPoint = self.untilNowPoint + todayPoint
+        print("累積ポイントは\(sanitasPoint)")
     }
     //ポイントをfirebaseに保存
     func firebasePutData(point: Int) async throws {
@@ -84,7 +148,7 @@ final class Scorering {
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
-                print("Document successfully written!")
+                print("ポイントをfirestoreに保存！")
             }
         }
     }
