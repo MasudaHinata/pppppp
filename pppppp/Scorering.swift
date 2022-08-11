@@ -23,6 +23,8 @@ final class Scorering {
     let calendar = Calendar.current
     let date = Date()
     var weight: Double!
+    var untilNowPoint = Int()
+    var todayPoint = Int()
     var sanitasPoint = Int()
     
     //healthkit使用の許可
@@ -38,75 +40,59 @@ final class Scorering {
         })
     }
     
-//    func createStepPoint() async throws {
-//        //TODO: ERRORHANDLING
-//        let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
-//        let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
-//        let periodAve = HKQuery.predicateForSamples(withStart: startDateAve, end: endDateAve)
-//        let stepsTodayAve = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodAve)
-//        let sumOfStepsQueryAve = HKStatisticsQueryDescriptor(predicate: stepsTodayAve, options: .cumulativeSum)
-//        //１ヶ月の平均歩数を取得
-//        let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-//        print(stepCountAve!)
-//        print(startDateAve!,"から",endDateAve!,"までの平均歩数は",Int(stepCountAve! / 31))
-//
-//        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
-//        let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
-//        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-//        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-//        print(startDate!,endDate!)
-//        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-//        //昨日の歩数を取得
-//        let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-//        print(startDate!,"から",endDate!,"までの歩数は",Int(stepCount!))
-//
-//        sanitasPoint = Int(stepCount!) - Int(stepCountAve! / 30)
-//        print(sanitasPoint)
-//
-////        let task = Task { [weak self] in
-////            do {
-////                try await firebasePutData(point: sanitasPoint)
-////            }
-////            catch {
-////                //TODO: ERROR Handling
-////                print("error")
-////            }
-////        }
-//    }
+    func getUntilNowPoint() async throws {
+        let db = Firestore.firestore()
+        let user = Auth.auth().currentUser
+        
+        let querySnapshot = try await db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").getDocument()
+        do {
+            untilNowPoint = try querySnapshot.data()!["point"]! as! Int
+            print("今までのポイントは\(String(describing: untilNowPoint))")
+            
+        } catch {
+            print("error")
+        }
+        
+        
+//        db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").getDocument { [self] (document, error) in
+//            if let document = document, document.exists {
+//                self.untilNowPoint = (document.data()!["point"]! as? Int)!
+//                print("今までのポイントは\(String(describing: self.untilNowPoint))")
+//            } else {
+//                print("error存在してない")
+//            }
+//        }
+    }
+
     func createStepPoint() async throws {
+
+        try await getUntilNowPoint()
+
         //TODO: ERRORHANDLING
         let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
         let periodAve = HKQuery.predicateForSamples(withStart: startDateAve, end: endDateAve)
         let stepsTodayAve = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodAve)
         let sumOfStepsQueryAve = HKStatisticsQueryDescriptor(predicate: stepsTodayAve, options: .cumulativeSum)
-        //１ヶ月の平均歩数を取得
-        let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        print(stepCountAve!)
-        print(startDateAve!,"から",endDateAve!,"までの平均歩数は",Int(stepCountAve! / 31))
-        
+
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
         let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
         let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
         print(startDate!,endDate!)
         let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+        //１ヶ月の平均歩数を取得
+        let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        print(startDateAve!,"から",endDateAve!,"までの平均歩数は",Int(stepCountAve! / 31))
         //昨日の歩数を取得
         let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         print(startDate!,"から",endDate!,"までの歩数は",Int(stepCount!))
-        
-        sanitasPoint = Int(stepCount!) - Int(stepCountAve! / 30)
-        print(sanitasPoint)
-        
-//        let task = Task { [weak self] in
-//            do {
-//                try await firebasePutData(point: sanitasPoint)
-//            }
-//            catch {
-//                //TODO: ERROR Handling
-//                print("error")
-//            }
-//        }
+
+        todayPoint = Int(stepCount!) - Int(stepCountAve! / 30)
+        print("今日の歩数のポイントは\(todayPoint)")
+
+        sanitasPoint = self.untilNowPoint + todayPoint
+        print("累積ポイントは\(sanitasPoint)")
     }
     //ポイントをfirebaseに保存
     func firebasePutData(point: Int) async throws {

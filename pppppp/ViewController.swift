@@ -45,7 +45,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let sanitasPoint = Scorering.shared.sanitasPoint
                 try await Scorering.shared.firebasePutData(point: sanitasPoint)
                 
-                
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
                 guard var friendIds = friendIds else { return }
                 friendIds += [String(user!.uid)]
