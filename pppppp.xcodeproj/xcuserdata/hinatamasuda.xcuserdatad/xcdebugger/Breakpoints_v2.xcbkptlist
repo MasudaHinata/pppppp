@@ -3,4 +3,617 @@
    uuid = "1F61D5BB-22EB-4E0D-910A-38ED8E316A99"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A678F2D-5168-42ED-A476-A645471A26A9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/Scorering.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "getUntilNowPoint()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA15A277-92A0-4CAF-ABB3-732412F1A0C0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/Scorering.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "getUntilNowPoint()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FA15A277-92A0-4CAF-ABB3-732412F1A0C0 - 2fb14965a9eaafca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for pppppp.Scorering.getUntilNowPoint() async throws -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/Scorering.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "280">
+               </Location>
+               <Location
+                  uuid = "FA15A277-92A0-4CAF-ABB3-732412F1A0C0 - 53d4653e732cdff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for pppppp.Scorering.getUntilNowPoint() async throws -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/Scorering.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "FA15A277-92A0-4CAF-ABB3-732412F1A0C0 - 4841b2647137e7c8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for pppppp.Scorering.getUntilNowPoint() async throws -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/Scorering.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "188">
+               </Location>
+               <Location
+                  uuid = "FA15A277-92A0-4CAF-ABB3-732412F1A0C0 - 6479cee454ddbbcf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for pppppp.Scorering.getUntilNowPoint() async throws -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/Scorering.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3424362-57D3-4035-A711-049BC2A67B17"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/Scorering.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "getUntilNowPoint()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E87A5093-D7C6-4BAF-9351-C54C7F1B3353"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/Scorering.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "createStepPoint()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CEB295EF-F516-48E2-966E-A548193AC64C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/Scorering.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "createStepPoint()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8DB3333E-FE38-4E2D-A087-21D501102880"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/Scorering.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "createStepPoint()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EEEA9A71-EF66-45B2-9D4A-680D1BF0960E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/Scorering.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "createStepPoint()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EEEA9A71-EF66-45B2-9D4A-680D1BF0960E - de937244f66803f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "pppppp.Scorering.createStepPoint() async throws -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/Scorering.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "920">
+               </Location>
+               <Location
+                  uuid = "EEEA9A71-EF66-45B2-9D4A-680D1BF0960E - a38a0d7e8b88284"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for pppppp.Scorering.createStepPoint() async throws -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/Scorering.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0BE4487C-9425-4354-8D90-99F6A8623D76"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0BE4487C-9425-4354-8D90-99F6A8623D76 - d4fce251bf5028e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "0BE4487C-9425-4354-8D90-99F6A8623D76 - e33bb3972412f71c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) await resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "0BE4487C-9425-4354-8D90-99F6A8623D76 - 9a0bf7b073ae9911"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(16) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "160">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6188A445-1519-4551-AB6E-A02EC057A451"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6188A445-1519-4551-AB6E-A02EC057A451 - 79c42488bba2950f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "1168">
+               </Location>
+               <Location
+                  uuid = "6188A445-1519-4551-AB6E-A02EC057A451 - d594c4666754a28a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(8) await resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "6188A445-1519-4551-AB6E-A02EC057A451 - d2d672fb8371129"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(9) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "200">
+               </Location>
+               <Location
+                  uuid = "6188A445-1519-4551-AB6E-A02EC057A451 - 993d482deb289302"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(13) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "616">
+               </Location>
+               <Location
+                  uuid = "6188A445-1519-4551-AB6E-A02EC057A451 - 9a0bf7b073ae989d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(16) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "1180">
+               </Location>
+               <Location
+                  uuid = "6188A445-1519-4551-AB6E-A02EC057A451 - 2d642e36a12087be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(17) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "6188A445-1519-4551-AB6E-A02EC057A451 - 9b40a2c2dc248078"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(19) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "628">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9F1943C8-3623-42D4-AC21-32A0BA4C45D4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9F1943C8-3623-42D4-AC21-32A0BA4C45D4 - d2d672fb83711ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(9) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "796">
+               </Location>
+               <Location
+                  uuid = "9F1943C8-3623-42D4-AC21-32A0BA4C45D4 - 124dfc72049d91c9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(10) await resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "9F1943C8-3623-42D4-AC21-32A0BA4C45D4 - 2cd6d7117054a9c4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(11) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "200">
+               </Location>
+               <Location
+                  uuid = "9F1943C8-3623-42D4-AC21-32A0BA4C45D4 - 2d642e36a120873a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(17) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "772">
+               </Location>
+               <Location
+                  uuid = "9F1943C8-3623-42D4-AC21-32A0BA4C45D4 - f056684ceea285db"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(18) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "596A76C4-73A9-465B-BB85-A18D81EFEB0E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "596A76C4-73A9-465B-BB85-A18D81EFEB0E - 2cd6d7117054aab8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(11) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "780">
+               </Location>
+               <Location
+                  uuid = "596A76C4-73A9-465B-BB85-A18D81EFEB0E - ccd5041cfdae2887"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(12) await resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "596A76C4-73A9-465B-BB85-A18D81EFEB0E - f056684ceea286a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(18) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "788">
+               </Location>
+               <Location
+                  uuid = "596A76C4-73A9-465B-BB85-A18D81EFEB0E - 9b40a2c2dc248380"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(19) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "236">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9CD7C03D-83F2-4A8C-8A0E-C6509F0D01B4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "pppppp/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9CD7C03D-83F2-4A8C-8A0E-C6509F0D01B4 - 2c2f82a3d8aa9cf2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(14) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "9CD7C03D-83F2-4A8C-8A0E-C6509F0D01B4 - f719bd3a062c9f2d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(15) suspend resume partial function for closure #1 @Sendable () async -&gt; () in pppppp.ViewController.viewDidAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "pppppp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hinatamasuda/Desktop/pc/app/pppppp/pppppp/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "148">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

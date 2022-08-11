@@ -25,6 +25,7 @@ final class Scorering {
     var weight: Double!
     var untilNowPoint = Int()
     var sanitasPoint = Int()
+    let UD = UserDefaults.standard
     
     //healthkit使用の許可
     func getPermissionHealthKit() {
@@ -52,18 +53,56 @@ final class Scorering {
             print("error")
         }
     }
-
+    
     func createStepPoint() async throws {
-
+        
+//        //日本時間を設定
+//        let now_day = Date(timeIntervalSinceNow: 60 * 60 * 9)
+//        //日付判定結果
+//        var judge = Bool()
+//        // 日時経過チェック
+//        if UD.object(forKey: "today") != nil {
+//            let past_day = UD.object(forKey: "today") as! Date
+//            let now = calendar.component(.day, from: now_day)
+//            let past = calendar.component(.day, from: past_day)
+//            
+//            print(UD.object(forKey: "today")!)
+//            print(now)
+//            
+//            //日にちが変わっていた場合
+//            if now != past {
+//                judge = true
+//            }
+//            else {
+//                judge = false
+//            }
+//        } else { //初回実行のみelse
+//            judge = true
+//            /* 今の日時を保存 */
+//            UD.set(now_day, forKey: "today")
+//            print(UD.object(forKey: "today")!)
+//        }
+//        /* 日付が変わった場合はtrueの処理 */
+//        if judge == true {
+//            judge = false
+//            //日付が変わった時の処理をここに書く
+//            print("日付変わったから歩数のポイントを作成")
+//        }
+//        else {
+//            //日付が変わっていない時の処理をここに書く
+//            print("今日の歩数ポイント作成済み")
+//        }
+        
+        
+        
         try await getUntilNowPoint()
-
         //TODO: ERRORHANDLING
         let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
         let periodAve = HKQuery.predicateForSamples(withStart: startDateAve, end: endDateAve)
         let stepsTodayAve = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodAve)
         let sumOfStepsQueryAve = HKStatisticsQueryDescriptor(predicate: stepsTodayAve, options: .cumulativeSum)
-
+        
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
         let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
@@ -76,7 +115,7 @@ final class Scorering {
         //昨日の歩数を取得
         let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         print(startDate!,"から",endDate!,"までの歩数は",Int(stepCount!))
-
+        
         var differencePoint = Int()
         var todayPoint = Int()
         differencePoint = Int(stepCount!) - Int(stepCountAve! / 30)
@@ -135,6 +174,7 @@ final class Scorering {
         
         print("今日の歩数のポイントは\(todayPoint)")
         sanitasPoint = self.untilNowPoint + todayPoint
+//        sanitasPoint = todayPoint
         print("累積ポイントは\(sanitasPoint)")
     }
     //ポイントをfirebaseに保存
