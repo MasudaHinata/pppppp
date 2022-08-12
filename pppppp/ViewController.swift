@@ -138,8 +138,3 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
         return cell
     }
 }
-extension UserDefaults {
-    func removeAll() {
-        dictionaryRepresentation().forEach { removeObject(forKey: $0.key) }
-    }
-}
