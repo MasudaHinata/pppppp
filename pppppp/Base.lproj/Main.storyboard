@@ -565,7 +565,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="今日の自己評価">
+                                <state key="normal" title="今日の自己評価をする">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
@@ -781,57 +781,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnx-HQ-Qw3">
-                                <rect key="frame" x="287" y="371" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ZN-eo-K4c">
+                                <rect key="frame" x="186.5" y="420.5" width="41" height="55"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="良い">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="goodButton" destination="jqz-O8-fRh" eventType="touchUpInside" id="fk5-iF-gVO"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ZN-eo-K4c">
-                                <rect key="frame" x="181" y="371" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="普通">
+                                <state key="normal" title="🙂">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <action selector="normalButton" destination="jqz-O8-fRh" eventType="touchUpInside" id="8VA-8e-leM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GV8-Ez-0HZ">
-                                <rect key="frame" x="52" y="371" width="78" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GV8-Ez-0HZ">
+                                <rect key="frame" x="75.5" y="420.5" width="41" height="55"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="良くない">
+                                <state key="normal" title="😱">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <action selector="badButton" destination="jqz-O8-fRh" eventType="touchUpInside" id="lEC-Z3-SNu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今日の評価" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AL1-Cx-Oo6">
-                                <rect key="frame" x="167" y="296" width="102" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日の評価を入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AL1-Cx-Oo6">
+                                <rect key="frame" x="64" y="376.5" width="286" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnx-HQ-Qw3">
+                                <rect key="frame" x="297.5" y="420.5" width="41" height="55"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="🥳">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="goodButton" destination="jqz-O8-fRh" eventType="touchUpInside" id="fk5-iF-gVO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1hZ-sJ-gA7"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="4ZN-eo-K4c" firstAttribute="top" secondItem="AL1-Cx-Oo6" secondAttribute="bottom" constant="20" id="0Lg-nf-s88"/>
+                            <constraint firstItem="4ZN-eo-K4c" firstAttribute="leading" secondItem="GV8-Ez-0HZ" secondAttribute="trailing" constant="70" id="5Jd-pP-Ogb"/>
+                            <constraint firstItem="4ZN-eo-K4c" firstAttribute="centerY" secondItem="ws7-kQ-A5h" secondAttribute="centerY" id="DdS-Vl-caf"/>
+                            <constraint firstItem="AL1-Cx-Oo6" firstAttribute="centerX" secondItem="ws7-kQ-A5h" secondAttribute="centerX" id="GOS-Db-3Aj"/>
+                            <constraint firstItem="lnx-HQ-Qw3" firstAttribute="centerY" secondItem="ws7-kQ-A5h" secondAttribute="centerY" id="RZn-if-ta3"/>
+                            <constraint firstItem="GV8-Ez-0HZ" firstAttribute="centerY" secondItem="ws7-kQ-A5h" secondAttribute="centerY" id="ZDy-Il-1Hw"/>
+                            <constraint firstItem="4ZN-eo-K4c" firstAttribute="centerX" secondItem="ws7-kQ-A5h" secondAttribute="centerX" id="eBL-FA-sfz"/>
+                            <constraint firstItem="lnx-HQ-Qw3" firstAttribute="leading" secondItem="4ZN-eo-K4c" secondAttribute="trailing" constant="70" id="roU-Oc-gpE"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <segue destination="hdq-Kh-yzh" kind="presentation" identifier="toooooViewController" id="YCM-cH-zpW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1A-PN-yvM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4768" y="-224"/>
+            <point key="canvasLocation" x="4767" y="-224"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XfS-aq-DeV">
@@ -854,7 +863,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UbM-Xc-XVF"/>
+        <segue reference="YCM-cH-zpW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="highlighter" catalog="system" width="128" height="120"/>

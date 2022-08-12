@@ -22,6 +22,7 @@ class SelfAssessmentViewController: UIViewController {
                 let untilNowPoint = Scorering.shared.untilNowPoint
                 let sanitasPoints = untilNowPoint + 15
                 try await Scorering.shared.firebasePutData(point: sanitasPoints)
+                self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
                 //TODO: ERROR Handling
@@ -36,6 +37,7 @@ class SelfAssessmentViewController: UIViewController {
                 let untilNowPoint = Scorering.shared.untilNowPoint
                 let sanitasPoints = untilNowPoint + 10
                 try await Scorering.shared.firebasePutData(point: sanitasPoints)
+                self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
                 //TODO: ERROR Handling
@@ -50,7 +52,7 @@ class SelfAssessmentViewController: UIViewController {
                 let untilNowPoint = Scorering.shared.untilNowPoint
                 let sanitasPoints = untilNowPoint + 5
                 try await Scorering.shared.firebasePutData(point: sanitasPoints)
-                
+                self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
                 //TODO: ERROR Handling
@@ -58,15 +60,4 @@ class SelfAssessmentViewController: UIViewController {
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
