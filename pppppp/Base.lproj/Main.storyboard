@@ -532,16 +532,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" alpha="0.56000000238418579" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your weight" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tq0-h5-5t4">
+                            <textField opaque="NO" alpha="0.56000000238418579" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your weight" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tq0-h5-5t4">
                                 <rect key="frame" x="85" y="131" width="168" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.56078431370000004" green="0.58039215690000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="0k0-1G-Odg"/>
+                                    <constraint firstAttribute="width" constant="168" id="jNV-sf-hFJ"/>
+                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93e-wV-iSz">
-                                <rect key="frame" x="284" y="130" width="39" height="49"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93e-wV-iSz">
+                                <rect key="frame" x="283" y="130" width="39" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="KfV-eN-Bcr"/>
                                     <constraint firstAttribute="width" constant="39" id="NJ9-Ct-dRM"/>
@@ -603,6 +606,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="T6G-9T-BxG"/>
                         <color key="backgroundColor" red="0.074509803921568626" green="0.0" blue="0.2985896468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tq0-h5-5t4" firstAttribute="leading" secondItem="T6G-9T-BxG" secondAttribute="leading" constant="85" id="5F6-eK-XPo"/>
+                            <constraint firstItem="93e-wV-iSz" firstAttribute="leading" secondItem="tq0-h5-5t4" secondAttribute="trailing" constant="30" id="ALW-0r-j2W"/>
+                            <constraint firstItem="tq0-h5-5t4" firstAttribute="top" secondItem="T6G-9T-BxG" secondAttribute="top" constant="87" id="QXY-SS-1HT"/>
+                            <constraint firstItem="93e-wV-iSz" firstAttribute="top" secondItem="T6G-9T-BxG" secondAttribute="top" constant="86" id="jly-zc-TFS"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="weightTextField" destination="tq0-h5-5t4" id="eCp-aZ-jKz"/>

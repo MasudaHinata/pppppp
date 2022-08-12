@@ -60,11 +60,10 @@ class HealthDataViewController: UIViewController {
     @IBAction func goodButton(){
         let task = Task {
             do {
-                try await Scorering.shared.createStepPoint()
-                let sanitasPoint = Scorering.shared.sanitasPoint
-                let sanitasPoints = sanitasPoint + 20
+                try await Scorering.shared.getUntilNowPoint()
+                let untilNowPoint = Scorering.shared.untilNowPoint
+                let sanitasPoints = untilNowPoint + 15
                 try await Scorering.shared.firebasePutData(point: sanitasPoints)
-                
             }
             catch {
                 //TODO: ERROR Handling
@@ -75,11 +74,10 @@ class HealthDataViewController: UIViewController {
     @IBAction func normalButton(){
         let task = Task {
             do {
-                try await Scorering.shared.createStepPoint()
-                let sanitasPoint = Scorering.shared.sanitasPoint
-                let sanitasPoints = sanitasPoint + 15
+                try await Scorering.shared.getUntilNowPoint()
+                let untilNowPoint = Scorering.shared.untilNowPoint
+                let sanitasPoints = untilNowPoint + 10
                 try await Scorering.shared.firebasePutData(point: sanitasPoints)
-                
             }
             catch {
                 //TODO: ERROR Handling
@@ -90,9 +88,9 @@ class HealthDataViewController: UIViewController {
     @IBAction func badButton(){
         let task = Task {
             do {
-                try await Scorering.shared.createStepPoint()
-                let sanitasPoint = Scorering.shared.sanitasPoint
-                let sanitasPoints = sanitasPoint + 10
+                try await Scorering.shared.getUntilNowPoint()
+                let untilNowPoint = Scorering.shared.untilNowPoint
+                let sanitasPoints = untilNowPoint + 5
                 try await Scorering.shared.firebasePutData(point: sanitasPoints)
                 
             }

@@ -162,6 +162,7 @@ final class Scorering {
             print("今日の歩数のポイントは\(todayPoint)")
             sanitasPoint = self.untilNowPoint + todayPoint
             print("累積ポイントは\(sanitasPoint)")
+            try await Scorering.shared.firebasePutData(point: sanitasPoint)
             UD.set(now_day, forKey: "today")
             print(UD.object(forKey: "today")!)
         }
