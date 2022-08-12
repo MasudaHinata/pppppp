@@ -29,6 +29,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Scorering.shared.getPermissionHealthKit()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
     }
     

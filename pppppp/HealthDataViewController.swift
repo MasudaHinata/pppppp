@@ -12,6 +12,9 @@ class HealthDataViewController: UIViewController {
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
+    let UD = UserDefaults.standard
+    let calendar = Calendar.current
+    let date = Date()
     
     @IBOutlet var weightTextField: UITextField!
     
@@ -56,48 +59,42 @@ class HealthDataViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    //自己評価
-    @IBAction func goodButton(){
-        let task = Task {
-            do {
-                try await Scorering.shared.getUntilNowPoint()
-                let untilNowPoint = Scorering.shared.untilNowPoint
-                let sanitasPoints = untilNowPoint + 15
-                try await Scorering.shared.firebasePutData(point: sanitasPoints)
+
+    @IBAction func goSelfButton(){
+        let now_day = Date(timeIntervalSinceNow: 60 * 60 * 9)
+        var judge = Bool()
+        if UD.object(forKey: "key") != nil {
+            let past_day = UD.object(forKey: "key") as! Date
+            let now = calendar.component(.day, from: now_day)
+            let past = calendar.component(.day, from: past_day)
+            print(UD.object(forKey: "key")!)
+            print(now)
+            if now != past {
+                judge = true
             }
-            catch {
-                //TODO: ERROR Handling
-                print("error")
+            else {
+                judge = false
             }
+        } else {
+            judge = true
+            UD.set(now_day, forKey: "key")
+            print(UD.object(forKey: "key")!)
         }
-    }
-    @IBAction func normalButton(){
-        let task = Task {
-            do {
-                try await Scorering.shared.getUntilNowPoint()
-                let untilNowPoint = Scorering.shared.untilNowPoint
-                let sanitasPoints = untilNowPoint + 10
-                try await Scorering.shared.firebasePutData(point: sanitasPoints)
-            }
-            catch {
-                //TODO: ERROR Handling
-                print("error")
-            }
+        if judge == true {
+            judge = false
+            print("日付変わったから自己評価する")
+            UD.set(now_day, forKey: "key")
+            print(UD.object(forKey: "key")!)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
+            self.showDetailViewController(secondVC, sender: self)
         }
-    }
-    @IBAction func badButton(){
-        let task = Task {
-            do {
-                try await Scorering.shared.getUntilNowPoint()
-                let untilNowPoint = Scorering.shared.untilNowPoint
-                let sanitasPoints = untilNowPoint + 5
-                try await Scorering.shared.firebasePutData(point: sanitasPoints)
-                
-            }
-            catch {
-                //TODO: ERROR Handling
-                print("error")
-            }
+        else {
+            print("今日はもう自己評価した")
+            let alart = UIAlertController(title: "エラー", message: "今日の自己評価は完了しています", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ok", style: .default)
+            alart.addAction(action)
+            self.present(alart, animated: true)
         }
     }
 
