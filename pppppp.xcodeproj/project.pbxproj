@@ -146,6 +146,7 @@
 				9CDF759E286326A600209FD0 /* AccountViewController.swift */,
 				9C4F1C742859E6F500623C66 /* ProfileViewController.swift */,
 				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
+				9C61891728A5F35B00DE6942 /* SelfAssessmentViewController.swift */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
@@ -161,7 +162,6 @@
 				9CE63B8C288C548D00FFE94C /* LoginHelper.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */,
-				9C61891728A5F35B00DE6942 /* SelfAssessmentViewController.swift */,
 			);
 			path = pppppp;
 			sourceTree = "<group>";

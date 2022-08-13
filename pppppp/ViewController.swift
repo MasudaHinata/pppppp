@@ -33,53 +33,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         Scorering.shared.getPermissionHealthKit()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
-        
-        let now_day = Date(timeIntervalSinceNow: 60 * 9)
-        var judge = Bool()
-        let now = calendar.component(.hour, from: now_day)
-        
-        if now >= 19 {
-            judge = true
-        }
-        else {
-            judge = false
-        }
-        if judge == true {
-            judge = false
-            print("19時以降だから自己評価よぶ")
-            
-            let nowDay = Date(timeIntervalSinceNow: 60 * 60 * 9)
-            var judgge = Bool()
-            if UD.object(forKey: "sss") != nil {
-                let past_day = UD.object(forKey: "sss") as! Date
-                let noww = calendar.component(.day, from: nowDay)
-                let past = calendar.component(.day, from: past_day)
-                print(UD.object(forKey: "sss")!)
-                if noww != past {
-                    judgge = true
-                } else {
-                    judgge = false
-                }
-            } else {
-                judgge = true
-                UD.set(nowDay, forKey: "sss")
-                print(UD.object(forKey: "sss")!)
-            }
-            if judgge == true {
-                judgge = false
-                print("日付変わったから自己評価する")
-                UD.set(nowDay, forKey: "sss")
-                print(UD.object(forKey: "sss")!)
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
-                self.showDetailViewController(secondVC, sender: self)
-            } else {
-                print("今日はもう自己評価した")
-            }
-        }
-        else {
-            print("まだ19時前")
-        }
     }
     
     let user = FirebaseClient.shared.user
@@ -117,6 +70,54 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print("error")
             }
         }
+        
+        var judge = Bool()
+        let now = calendar.component(.hour, from: Date())
+        print(now)
+        
+        if now >= 19 {
+            judge = true
+        }
+        else {
+            judge = false
+        }
+        if judge == true {
+            judge = false
+            print("19時以降だから自己評価よぶ")
+            UserDefaults.standard.removeObject(forKey: "sss")
+            var judgge = Bool()
+            if UD.object(forKey: "sss") != nil {
+                let past_day = UD.object(forKey: "sss") as! Date
+                let noww = calendar.component(.day, from: Date())
+                let past = calendar.component(.day, from: past_day)
+                print(UD.object(forKey: "sss")!)
+                if noww != past {
+                    judgge = true
+                } else {
+                    judgge = false
+                }
+            } else {
+                judgge = true
+                UD.set(Date(), forKey: "sss")
+                print(UD.object(forKey: "sss")!)
+            }
+            if judgge == true {
+                judgge = false
+                print("日付変わったから自己評価する")
+                UD.set(Date(), forKey: "sss")
+                print(UD.object(forKey: "sss")!)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
+                self.showDetailViewController(secondVC, sender: self)
+                
+            } else {
+                print("今日はもう自己評価した")
+            }
+        }
+        else {
+            print("まだ19時前")
+        }
+        
     }
 }
 
