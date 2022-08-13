@@ -54,6 +54,9 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
         
         getMyData()
+//        FirebaseClient.shared.getMyData()
+//        self.myIconView.image = FirebaseClient.shared.getMyData()
+//        self.myNameLabel.text = "\(document.data()!["name"]!)"
         
         friendList.removeAll()
         let task = Task { [weak self] in
@@ -79,11 +82,11 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    //FriendListViewController自分のアイコンと名前を表示
+    //自分のアイコンと名前を表示
     func getMyData() {
         let db = Firestore.firestore()
         let user = FirebaseClient.shared.user
-        
+
         let docRef = db.collection("UserData").document(user!.uid).collection("IconData").document("Icon")
         docRef.getDocument { [weak self] (document, error) in
             if let document = document, document.exists {
@@ -105,7 +108,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
             }
         }
     }
-    
+
     func friendDeleted() {
         let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
