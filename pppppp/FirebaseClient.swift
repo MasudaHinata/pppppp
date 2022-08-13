@@ -168,4 +168,13 @@ final class FirebaseClient {
             results = try await db.collection("UserData").document(user!.uid).delete()
         }
     }
+    //画像をfirestoreに保存
+    func putIconFirestore() {
+        let db = Firestore.firestore()
+        var userID = Auth.auth().currentUser?.uid
+        db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData([
+            "imageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
+        ])
+        print("初期画像を設定")
+    }
 }
