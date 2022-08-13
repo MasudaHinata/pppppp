@@ -34,6 +34,7 @@ final class FirebaseClient {
     
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
+    var untilNowPoint = Int()
     
     //ログインできてるか,firestoreに情報があるかの判定
     func validate() async throws {
@@ -68,7 +69,35 @@ final class FirebaseClient {
             return
         }
     }
-    
+    //今までの自分のポイントを取得
+    func getUntilNowPoint() async throws {
+        let db = Firestore.firestore()
+        let user = Auth.auth().currentUser
+        
+        let querySnapshot = try await db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").getDocument()
+        do {
+            untilNowPoint = try querySnapshot.data()!["point"]! as! Int
+            print("今までのポイントは\(String(describing: untilNowPoint))")
+            
+        } catch {
+            print("error")
+        }
+    }
+    //ポイントをfirebaseに保存
+    func firebasePutData(point: Int) async throws {
+        let db = Firestore.firestore()
+        let user = Auth.auth().currentUser
+        
+        try await db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").setData([
+            "point": point
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("ポイントをfirestoreに保存！")
+            }
+        }
+    }
     //TODO: addsnapshotListener
     //IDを取得
     public func getfriendIds() async throws -> [String] {

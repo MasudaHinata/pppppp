@@ -134,7 +134,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             do {
                 var point = Scorering.shared.sanitasPoint
                 point = 0
-                try await Scorering.shared.firebasePutData(point: point)
+                try await FirebaseClient.shared.firebasePutData(point: point)
                 
                 print("初期ポイントをfirestoreに保存成功")
                 
