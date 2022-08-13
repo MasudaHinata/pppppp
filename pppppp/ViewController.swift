@@ -84,7 +84,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if judge == true {
             judge = false
             print("19時以降だから自己評価よぶ")
-            UserDefaults.standard.removeObject(forKey: "sss")
             var judgge = Bool()
             if UD.object(forKey: "sss") != nil {
                 let past_day = UD.object(forKey: "sss") as! Date
