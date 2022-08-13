@@ -65,8 +65,8 @@ final class Scorering {
             let past_day = UD.object(forKey: "today") as! Date
             let now = calendar.component(.day, from: now_day)
             let past = calendar.component(.day, from: past_day)
-            print(UD.object(forKey: "today")!)
-            print(now)
+//            print(UD.object(forKey: "today")!)
+//            print(now)
             if now != past {
                 judge = true
             }
