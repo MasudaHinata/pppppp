@@ -18,7 +18,6 @@
 		9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C69903F286C6517009D5BF5 /* FriendDataCell.xib */; };
 		9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C699042286DA189009D5BF5 /* UIColorHex.swift */; };
 		9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */; };
-		9C6F344C28A1E8A400E0FAB8 /* SettingIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6F344B28A1E8A400E0FAB8 /* SettingIconViewController.swift */; };
 		9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */; };
 		9C7F3C25289CA21F0039BA2E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7F3C24289CA21F0039BA2E /* FirebaseAuth */; };
 		9C7F3C27289CA2250039BA2E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7F3C26289CA2250039BA2E /* FirebaseFirestore */; };
@@ -60,7 +59,6 @@
 		9C69903F286C6517009D5BF5 /* FriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendDataCell.xib; sourceTree = "<group>"; };
 		9C699042286DA189009D5BF5 /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
 		9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scorering.swift; sourceTree = "<group>"; };
-		9C6F344B28A1E8A400E0FAB8 /* SettingIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIconViewController.swift; sourceTree = "<group>"; };
 		9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileViewController.swift; sourceTree = "<group>"; };
 		9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardFriendDataCell.swift; sourceTree = "<group>"; };
 		9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardFriendDataCell.xib; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 				9CAA88EB26B1918B005517D5 /* LoginViewController.swift */,
 				9CDF759E286326A600209FD0 /* AccountViewController.swift */,
 				9C4F1C742859E6F500623C66 /* ProfileViewController.swift */,
-				9C6F344B28A1E8A400E0FAB8 /* SettingIconViewController.swift */,
 				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
@@ -273,7 +270,6 @@
 				9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */,
 				9C4F1C752859E6F500623C66 /* ProfileViewController.swift in Sources */,
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
-				9C6F344C28A1E8A400E0FAB8 /* SettingIconViewController.swift in Sources */,
 				9CE0D288289A85A100B960B6 /* UserHealth.swift in Sources */,
 				9C3A35402859CEF100404AA6 /* HealthDataViewController.swift in Sources */,
 				9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */,

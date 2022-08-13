@@ -9,20 +9,36 @@ import UIKit
 import Combine
 import Firebase
 import FirebaseFirestore
+import FirebaseStorage
 
-
-class ChangeProfileViewController: UIViewController {
+class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     var cancellables = Set<AnyCancellable>()
     let user = FirebaseClient.shared.user
     var profileName: String = ""
     var myName: String!
     @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
-    @IBAction func goSettingButton() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "SettingIconViewController")
-        self.showDetailViewController(secondVC, sender: self)
+    
+    //アルバムを開く処理を呼び出す
+    @IBAction func uploadButton(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        present(picker, animated: true)
+        self.present(picker, animated: true, completion: nil)
     }
+    //画像が選択された時に呼ばれる
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            myIconView.image = selectedImage  //imageViewにカメラロールから選んだ画像を表示する
+        }
+        self.dismiss(animated: true)  //画像をImageViewに表示したらアルバムを閉じる
+    }
+    //画像選択がキャンセルされた時に呼ばれる
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBOutlet var nameTextField: UITextField! {
         didSet {
             nameTextField.attributedPlaceholder = NSAttributedString(string: "change you name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
@@ -40,6 +56,63 @@ class ChangeProfileViewController: UIViewController {
         myIconView.clipsToBounds = true
         getMyData()
         // Do any additional setup after loading the view.
+    }
+    //名前を変更
+    func saveProfileName(profileName: String) {
+        var user = FirebaseClient.shared.user
+        let db = FirebaseClient.shared.db
+        
+        if let selectImage = myIconView.image {
+            let imageName = "\(Date().timeIntervalSince1970).jpg"
+            let reference = Storage.storage().reference().child("posts/\(imageName)")
+            if let imageData = selectImage.jpegData(compressionQuality: 0.8) {
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpeg"
+                reference.putData(imageData, metadata: metadata, completion:{(metadata, error) in
+                    if let _ = metadata {
+                        reference.downloadURL{(url,error) in
+                            if let downloadUrl = url {
+                                let downloadUrlStr = downloadUrl.absoluteString
+                    
+                                db.collection("UserData").document(user!.uid).collection("IconData").document("Icon").setData([
+                                    "imageURL": downloadUrlStr
+                                ]){ error in
+                                    if let error = error {
+                                        print("firestoreへ保存が失敗")
+                                    } else if error == nil {
+                                        print("画像をfirestoreへ保存成功")
+                                        db.collection("UserData").document(user!.uid).setData(["name": String(profileName)]) { [self] err in
+                                            if let err = err {
+                                                print("Error writing document: \(err)")
+                                            } else {
+                                                print("名前をfirestoreに保存しました")
+                                                let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
+                                                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                                                    getMyData()
+                                                }
+                                                alert.addAction(ok)
+                                                present(alert, animated: true, completion: nil)
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                print("downloadURLの取得が失敗した場合の処理")
+                            }
+                        }
+                    } else {
+                        print("storageの保存が失敗")
+                    }
+                })
+            }
+        } else {
+            print("画像が選択されてない")
+            let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            }
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     //自分のアイコンと名前を表示
     func getMyData() {
@@ -68,29 +141,6 @@ class ChangeProfileViewController: UIViewController {
         }
     }
         
-    //名前を変更
-    func saveProfileName(profileName: String) {
-        let db = Firestore.firestore()
-        
-        if profileName != "" {
-            db.collection("UserData").document(user!.uid).setData(["name": String(profileName)]) { [self] err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("名前をfirestoreに保存しました")
-                    
-                    let alert = UIAlertController(title: "完了", message: "名前を変更しました", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        getMyData()
-                    }
-                    alert.addAction(ok)
-                    present(alert, animated: true, completion: nil)
-                }
-            }
-        } else {
-        }
-    }
-    
     //ログアウトする
     @IBAction func logoutButton() {
         do {
