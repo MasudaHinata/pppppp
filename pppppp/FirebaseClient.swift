@@ -138,36 +138,47 @@ final class FirebaseClient {
         }
     }
     //自分の情報を表示する
-    func showMyData(imageView: UIImageView, label: UILabel) {
+//    func showMyData(imageView: UIImageView, label: UILabel) {
+//        let db = Firestore.firestore()
+//        let user = FirebaseClient.shared.user
+//        let docRef = db.collection("UserData").document(user!.uid).collection("IconData").document("Icon")
+//        docRef.getDocument { [weak self] (document, error) in
+//            if let document = document, document.exists {
+//                print("自分のアイコンのURLは: \(document.data()!["imageURL"]!)")
+//                let url = URL(string: document.data()!["imageURL"]! as! String)
+//                do {
+//                    let data = try Data(contentsOf: url!)
+//                    let image = UIImage(data: data)
+//                    imageView.image = image
+//                } catch let err {
+//                    print("Error: \(err.localizedDescription)")
+//                }
+//            } else {
+//                print("自分のアイコンなし")
+//            }
+//        }
+//        let doccRef = db.collection("UserData").document(user!.uid)
+//        doccRef.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                print("自分の名前は\(document.data()!["name"]!)")
+//                let data = document.data()!["name"]!
+//                label.text = data as! String
+//            } else {
+//                print("error存在してない")
+//            }
+//        }
+//    }
+    
+    func getMyData() async throws -> URL {
         let db = Firestore.firestore()
         let user = FirebaseClient.shared.user
-        let docRef = db.collection("UserData").document(user!.uid).collection("IconData").document("Icon")
-        docRef.getDocument { [weak self] (document, error) in
-            if let document = document, document.exists {
-                print("自分のアイコンのURLは: \(document.data()!["imageURL"]!)")
-                let url = URL(string: document.data()!["imageURL"]! as! String)
-                do {
-                    let data = try Data(contentsOf: url!)
-                    let image = UIImage(data: data)
-                    imageView.image = image
-                } catch let err {
-                    print("Error: \(err.localizedDescription)")
-                }
-            } else {
-                print("自分のアイコンなし")
-            }
-        }
-        let doccRef = db.collection("UserData").document(user!.uid)
-        doccRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                print("自分の名前は\(document.data()!["name"]!)")
-                let data = document.data()!["name"]!
-                label.text = data as! String
-            } else {
-                print("error存在してない")
-            }
-        }
+        
+        let querySnapShot = try await db.collection("UserData").document(user!.uid).collection("IconData").document("Icon").getDocument()
+        print("自分のアイコンのURLは: \(querySnapShot.data()!["imageURL"]!)")
+        let url = URL(string: querySnapShot.data()!["imageURL"]! as! String)!
+        return url
     }
+    
     //画像をfirestoreに保存
     func putIconFirestore() {
         let db = Firestore.firestore()

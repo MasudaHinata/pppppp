@@ -50,12 +50,12 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         guard let userID = user?.uid else { return }
         print("自分のユーザーIDを取得しました")
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
-    
-        FirebaseClient.shared.showMyData(imageView: myIconView, label: myNameLabel)
-        
+     
         friendList.removeAll()
         let task = Task { [weak self] in
             do {
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData())
+                
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
                 guard let friendIds = friendIds else { return }
                 for id in friendIds {

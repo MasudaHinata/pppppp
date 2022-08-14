@@ -57,7 +57,14 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
-        FirebaseClient.shared.showMyData(imageView: myIconView, label: myNameLabel)
+        let task = Task {
+            do {
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData())
+            }
+            catch {
+                
+            }
+        }
     }
     //名前を変更
     func saveProfileName(profileName: String) {
@@ -90,7 +97,14 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                                 print("名前をfirestoreに保存しました")
                                                 let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                                                 let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                                                    FirebaseClient.shared.showMyData(imageView: myIconView, label: myNameLabel)
+                                                    let task = Task {
+                                                        do {
+                                                            try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData())
+                                                        }
+                                                        catch {
+                                                            
+                                                        }
+                                                    }
                                                 }
                                                 alert.addAction(ok)
                                                 present(alert, animated: true, completion: nil)
