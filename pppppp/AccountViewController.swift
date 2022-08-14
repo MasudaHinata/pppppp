@@ -1,11 +1,8 @@
 import UIKit
-import Firebase
-import FirebaseFirestore
 import FirebaseStorage
 
 class AccountViewController: UIViewController ,UITextFieldDelegate {
     
-    var auth: Auth!
     var profileName: String = ""
     @IBOutlet var GoButton: UIButton!
     @IBOutlet var emailTextField: UITextField! {
@@ -30,8 +27,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     }
     
     @IBAction func GooButton() {
-        //①
-        
         if self.isValidEmail(self.emailTextField.text!) {
             print("メールアドレスok")
             checkpassword()
@@ -53,7 +48,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         
         design()
         super.viewDidLoad()
-        auth = Auth.auth()
         self.nameTextField?.delegate = self
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
@@ -61,28 +55,28 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     }
     //②
     func checkpassword() {
-        if passwordTextField.text == password2TextField.text && passwordTextField.text != ""{
+        if passwordTextField.text == password2TextField.text && passwordTextField.text != "" {
             print("パスワードok")
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
+            self.profileName = (self.nameTextField.text!)
             
-            self.auth.createUser(withEmail: email, password: password) { (result, error) in
-                if error == nil, let result = result {
-                    result.user.sendEmailVerification(completion: { [weak self] (error) in
-                        if error == nil {
-                            print("アカウントを作成しました")
-                            let alert = UIAlertController(title: "仮登録を行いました", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
-                            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                                self?.profileName = (self?.nameTextField.text!)!
-                                self?.saveProfileName(profileName: self!.profileName)
-                            }
-                            alert.addAction(ok)
-                            self?.present(alert, animated: true, completion: nil)
-                        }
-                    })
-                } else {
-                    print("error occured\(error)")
+            if profileName != "" {
+                
+                FirebaseClient.shared.createAccount(email: email, password: password)
+                let alert = UIAlertController(title: "仮登録を行いました", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
+                    aaa()
                 }
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+                
+            } else {
+                let alert = UIAlertController(title: "エラー", message: "名前を入力してください", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                }
+                alert.addAction(ok)
+                present(alert, animated: true, completion: nil)
             }
         } else if passwordTextField.text == "" {
             print("パスワードが入力されていない")
@@ -99,49 +93,22 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             present(alert, animated: true, completion: nil)
         }
     }
-    //③firebaseに名前を保存
-    func saveProfileName(profileName: String) {
-        let db = Firestore.firestore()
-        var userID = Auth.auth().currentUser?.uid
-        
-        if profileName != "" {
-            db.collection("UserData").document(userID!).setData(["name": String(profileName)]) { [self] err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("名前をfirestoreに保存しました")
-                    self.ImageputFirestore()
-                }
-            }
-        } else {
-            let alert = UIAlertController(title: "エラー", message: "名前を入力してください", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
-            }
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
-        }
-    }
-    //④画像をfirestoreに保存する
-    func ImageputFirestore() {
-        FirebaseClient.shared.putIconFirestore(image: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
+    func aaa() {
         let task = Task {
             do {
-                var point = Scorering.shared.sanitasPoint
-                point = 0
-                try await FirebaseClient.shared.firebasePutData(point: point)
-                
-                print("初期ポイントをfirestoreに保存成功")
-                
+                FirebaseClient.shared.putNameFirestore(name: self.profileName)
+                FirebaseClient.shared.putIconFirestore(image: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
+                try await FirebaseClient.shared.firebasePutData(point: 0)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
                 self.showDetailViewController(secondVC, sender: self)
             }
-            catch{
-                print("初期ポイントをfirestoreに保存error")
+            catch {
+                print("error")
             }
         }
     }
+
     func design() {
         emailTextField.layer.cornerRadius = 24
         emailTextField.clipsToBounds = true

@@ -183,7 +183,22 @@ final class FirebaseClient {
         await self.delegate?.friendDeleted()
     }
     /*　firebaseAuth　*/
-    
+    //アカウントを作成する
+    func createAccount(email: String, password: String) {
+        self.firebaseAuth.createUser(withEmail: email, password: password) { (result, error) in
+            if error == nil, let result = result {
+                result.user.sendEmailVerification(completion: { [weak self] (error) in
+                    if error == nil {
+                        print("アカウントを作成しました")
+                    }
+                })
+            } else {
+                print("error occured\(error)")
+            }
+        }
+        
+        
+    }
     //ログインできてるか,firestoreに情報があるかの判定
     func validate() async throws {
         guard let user = user else {
