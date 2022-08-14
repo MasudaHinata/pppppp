@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Kingfisher
 
 @MainActor
 final class FriendListViewController: UIViewController, FirebaseClientDelegate {
@@ -54,7 +55,9 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         friendList.removeAll()
         let task = Task { [weak self] in
             do {
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData())
+                let userID = FirebaseClient.shared.userID
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
                 
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
                 guard let friendIds = friendIds else { return }

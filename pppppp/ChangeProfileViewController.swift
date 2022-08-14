@@ -7,9 +7,8 @@
 
 import UIKit
 import Combine
-import Firebase
-import FirebaseFirestore
 import FirebaseStorage
+import Kingfisher
 
 class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     var cancellables = Set<AnyCancellable>()
@@ -59,7 +58,9 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData())
+                let userID = FirebaseClient.shared.userID
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
             }
             catch {
                 
@@ -82,36 +83,24 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                         reference.downloadURL{(url,error) in
                             if let downloadUrl = url {
                                 let downloadUrlStr = downloadUrl.absoluteString
-                    
-                                db.collection("UserData").document(user!.uid).collection("IconData").document("Icon").setData([
-                                    "imageURL": downloadUrlStr
-                                ]){ error in
-                                    if let error = error {
-                                        print("firestoreへ保存が失敗")
-                                    } else if error == nil {
-                                        print("画像をfirestoreへ保存成功")
-                                        db.collection("UserData").document(user!.uid).setData(["name": String(profileName)]) { [self] err in
-                                            if let err = err {
-                                                print("Error writing document: \(err)")
-                                            } else {
-                                                print("名前をfirestoreに保存しました")
-                                                let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                                                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                                                    let task = Task {
-                                                        do {
-                                                            try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData())
-                                                        }
-                                                        catch {
-                                                            
-                                                        }
-                                                    }
-                                                }
-                                                alert.addAction(ok)
-                                                present(alert, animated: true, completion: nil)
-                                            }
+                                
+                                FirebaseClient.shared.putIconFirestore(image: downloadUrlStr)
+                                FirebaseClient.shared.putNameFirestore(name: profileName)
+                                let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
+                                let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
+                                    let task = Task {
+                                        do {
+                                            let userID = FirebaseClient.shared.userID
+                                            try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
+                                            try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+                                        }
+                                        catch {
+                                            print("error")
                                         }
                                     }
                                 }
+                                alert.addAction(ok)
+                                self.present(alert, animated: true, completion: nil)
                             } else {
                                 print("downloadURLの取得が失敗した場合の処理")
                             }

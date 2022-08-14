@@ -41,10 +41,11 @@ final class FirebaseClient {
     
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
+    let userID = Auth.auth().currentUser?.uid
     var untilNowPoint = Int()
     
+    //名前とアイコンがあるかどうかの判定
     func checkName() async throws {
-        //名前があるかどうかの判定
         let userID = user?.uid
         let snapshot = try await self.db.collection("UserData").document(userID!).getDocument()
         guard (try? snapshot.data(as: User.self)) != nil else {
@@ -52,7 +53,6 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
             return
         }
-        //アイコンがあるかどうかの判定
         let querySnapshot = try await self.db.collection("UserData").document(userID!).collection("IconData").document("Icon").getDocument()
         guard (try? querySnapshot.data(as: UserIcon.self)) != nil else {
             print("アイコンなし")
@@ -137,57 +137,37 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
-    //自分の情報を表示する
-//    func showMyData(imageView: UIImageView, label: UILabel) {
-//        let db = Firestore.firestore()
-//        let user = FirebaseClient.shared.user
-//        let docRef = db.collection("UserData").document(user!.uid).collection("IconData").document("Icon")
-//        docRef.getDocument { [weak self] (document, error) in
-//            if let document = document, document.exists {
-//                print("自分のアイコンのURLは: \(document.data()!["imageURL"]!)")
-//                let url = URL(string: document.data()!["imageURL"]! as! String)
-//                do {
-//                    let data = try Data(contentsOf: url!)
-//                    let image = UIImage(data: data)
-//                    imageView.image = image
-//                } catch let err {
-//                    print("Error: \(err.localizedDescription)")
-//                }
-//            } else {
-//                print("自分のアイコンなし")
-//            }
-//        }
-//        let doccRef = db.collection("UserData").document(user!.uid)
-//        doccRef.getDocument { (document, error) in
-//            if let document = document, document.exists {
-//                print("自分の名前は\(document.data()!["name"]!)")
-//                let data = document.data()!["name"]!
-//                label.text = data as! String
-//            } else {
-//                print("error存在してない")
-//            }
-//        }
-//    }
-    
-    func getMyData() async throws -> URL {
-        let db = Firestore.firestore()
-        let user = FirebaseClient.shared.user
-        
-        let querySnapShot = try await db.collection("UserData").document(user!.uid).collection("IconData").document("Icon").getDocument()
-        print("自分のアイコンのURLは: \(querySnapShot.data()!["imageURL"]!)")
+    //名前を表示する
+    func getMyNameData(user: String) async throws -> String {
+        let querySnapShot = try await db.collection("UserData").document(user).getDocument()
+        print("名前は\(querySnapShot.data()!["name"]!)")
+        let data = querySnapShot.data()!["name"]!
+        return data as! String
+    }
+
+    //アイコンを表示する
+    func getMyData(user: String) async throws -> URL {
+    let querySnapShot = try await db.collection("UserData").document(user).collection("IconData").document("Icon").getDocument()
+        print("アイコンのURLは: \(querySnapShot.data()!["imageURL"]!)")
         let url = URL(string: querySnapShot.data()!["imageURL"]! as! String)!
         return url
     }
     
     //画像をfirestoreに保存
-    func putIconFirestore() {
+    func putIconFirestore(image: String) {
         let db = Firestore.firestore()
         var userID = Auth.auth().currentUser?.uid
-        db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData([
-            "imageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
-        ])
-        print("初期画像を設定")
+        db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData(["imageURL": image])
+        print("画像を設定")
     }
+    //名前をfirestoreに保存
+    func putNameFirestore(name: String) {
+        let db = Firestore.firestore()
+        var userID = Auth.auth().currentUser?.uid
+        db.collection("UserData").document(userID!).setData(["name": name])
+        print("画像を設定")
+    }
+    
     //友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
         var result = try await db.collection("UserData").document(user!.uid).collection("friendsList").document(deleteFriendId).delete()
