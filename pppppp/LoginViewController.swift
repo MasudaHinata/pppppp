@@ -1,11 +1,9 @@
 import UIKit
-import Firebase
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClientAuthDelegate {
     
     @IBOutlet var goButton: UIButton!
     @IBOutlet var loginLabel: UILabel!
-    var auth: Auth!
     
     @IBOutlet var emailTextField: UITextField! {
         didSet {
@@ -21,12 +19,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FirebaseClient.shared.delegateLogin = self
+        
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
         
         design()
-        auth = Auth.auth()
         
         self.emailTextField?.delegate = self
         self.passwordTextField?.delegate = self
@@ -41,24 +40,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         goButton.clipsToBounds = true
     }
     
+    func loginHelperAlert() {
+        let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func loginScene() {
+        self.performSegue(withIdentifier: "toViewController", sender: nil)
+    }
+    
     @IBAction func goButtonPressed() {
-        auth.signIn(withEmail: emailTextField.text ?? "", password: passwordTextField.text ?? "") { [weak self] authResult, error in
-            guard let self = self else { return }
-            if self.auth.currentUser?.isEmailVerified == true {
-                print("パスワードとメールアドレス一致")
-                self.performSegue(withIdentifier: "toViewController", sender: nil)
-            } else if self.passwordTextField.text == "" {
-                print("パスワード入力されてない")
-                let alert = UIAlertController(title: "エラー", message: "パスワードを確認してください", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                
-            } else if self.auth.currentUser?.isEmailVerified == nil {
-                print("パスワードかメールアドレスが間違っています")
-                let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています。", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
+        
+        if passwordTextField.text == "" {
+            print("パスワード入力されてない")
+            let alert = UIAlertController(title: "エラー", message: "パスワードか入力されていません", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
         }
     }
     @objc func dismissKeyboard() {

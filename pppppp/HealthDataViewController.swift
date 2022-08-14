@@ -2,9 +2,6 @@ import Combine
 import UIKit
 import HealthKit
 
-import Firebase
-import FirebaseFirestore
-
 class HealthDataViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()

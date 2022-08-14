@@ -7,8 +7,6 @@
 
 import Foundation
 import HealthKit
-import Firebase
-import FirebaseFirestore
 
 let myHealthStore = HKHealthStore()
 var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
@@ -23,7 +21,6 @@ final class Scorering {
     let calendar = Calendar.current
     let date = Date()
     var weight: Double!
-    var untilNowPoint = Int()
     var sanitasPoint = Int()
     let UD = UserDefaults.standard
     
@@ -38,20 +35,6 @@ final class Scorering {
             }
             print(success)
         })
-    }
-    
-    func getUntilNowPoint() async throws {
-        let db = Firestore.firestore()
-        let user = Auth.auth().currentUser
-        
-        let querySnapshot = try await db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").getDocument()
-        do {
-            untilNowPoint = try querySnapshot.data()!["point"]! as! Int
-            print("今までのポイントは\(String(describing: untilNowPoint))")
-            
-        } catch {
-            print("error")
-        }
     }
     
     func createStepPoint() async throws {
@@ -75,7 +58,8 @@ final class Scorering {
         if judge == true {
             judge = false
             print("日付変わったから歩数のポイントを作成")
-            try await getUntilNowPoint()
+            try await FirebaseClient.shared.getUntilNowPoint()
+            let untilNowPoint = FirebaseClient.shared.untilNowPoint
             
             //TODO: ERRORHANDLING
             let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
@@ -129,9 +113,9 @@ final class Scorering {
             default: break
             }
             print("今日の歩数のポイントは\(todayPoint)")
-            sanitasPoint = self.untilNowPoint + todayPoint
+            sanitasPoint = untilNowPoint + todayPoint
             print("累積ポイントは\(sanitasPoint)")
-            try await Scorering.shared.firebasePutData(point: sanitasPoint)
+            try await FirebaseClient.shared.firebasePutData(point: sanitasPoint)
             UD.set(Date(), forKey: "today")
             print(UD.object(forKey: "today")!)
         }
@@ -139,21 +123,7 @@ final class Scorering {
             print("今日の歩数ポイント作成済み")
         }
     }
-    //ポイントをfirebaseに保存
-    func firebasePutData(point: Int) async throws {
-        let db = Firestore.firestore()
-        let user = Auth.auth().currentUser
-        
-        try await db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").setData([
-            "point": point
-        ]) { err in
-            if let err = err {
-                print("Error writing document: \(err)")
-            } else {
-                print("ポイントをfirestoreに保存！")
-            }
-        }
-    }
+
     //体重を取得
     func readWeight() async throws {
         let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))

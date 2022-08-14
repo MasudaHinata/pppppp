@@ -18,10 +18,10 @@ class SelfAssessmentViewController: UIViewController {
     @IBAction func goodButton(){
         let task = Task {
             do {
-                try await Scorering.shared.getUntilNowPoint()
-                let untilNowPoint = Scorering.shared.untilNowPoint
+                try await FirebaseClient.shared.getUntilNowPoint()
+                let untilNowPoint = FirebaseClient.shared.untilNowPoint
                 let sanitasPoints = untilNowPoint + 15
-                try await Scorering.shared.firebasePutData(point: sanitasPoints)
+                try await FirebaseClient.shared.firebasePutData(point: sanitasPoints)
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
@@ -33,10 +33,10 @@ class SelfAssessmentViewController: UIViewController {
     @IBAction func normalButton(){
         let task = Task {
             do {
-                try await Scorering.shared.getUntilNowPoint()
-                let untilNowPoint = Scorering.shared.untilNowPoint
+                try await FirebaseClient.shared.getUntilNowPoint()
+                let untilNowPoint = FirebaseClient.shared.untilNowPoint
                 let sanitasPoints = untilNowPoint + 10
-                try await Scorering.shared.firebasePutData(point: sanitasPoints)
+                try await FirebaseClient.shared.firebasePutData(point: sanitasPoints)
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
@@ -48,10 +48,10 @@ class SelfAssessmentViewController: UIViewController {
     @IBAction func badButton(){
         let task = Task {
             do {
-                try await Scorering.shared.getUntilNowPoint()
-                let untilNowPoint = Scorering.shared.untilNowPoint
+                try await FirebaseClient.shared.getUntilNowPoint()
+                let untilNowPoint = FirebaseClient.shared.untilNowPoint
                 let sanitasPoints = untilNowPoint + 5
-                try await Scorering.shared.firebasePutData(point: sanitasPoints)
+                try await FirebaseClient.shared.firebasePutData(point: sanitasPoints)
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {

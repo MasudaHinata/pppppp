@@ -7,9 +7,8 @@
 
 import UIKit
 import Combine
-import Firebase
-import FirebaseFirestore
 import FirebaseStorage
+import Kingfisher
 
 class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     var cancellables = Set<AnyCancellable>()
@@ -54,8 +53,19 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         
         myIconView.layer.cornerRadius = 43
         myIconView.clipsToBounds = true
-        getMyData()
         // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        let task = Task {
+            do {
+                let userID = FirebaseClient.shared.userID
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+            }
+            catch {
+                
+            }
+        }
     }
     //名前を変更
     func saveProfileName(profileName: String) {
@@ -72,28 +82,29 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                     if let _ = metadata {
                         reference.downloadURL{(url,error) in
                             if let downloadUrl = url {
-                                let downloadUrlStr = downloadUrl.absoluteString
-                    
-                                db.collection("UserData").document(user!.uid).collection("IconData").document("Icon").setData([
-                                    "imageURL": downloadUrlStr
-                                ]){ error in
-                                    if let error = error {
-                                        print("firestoreへ保存が失敗")
-                                    } else if error == nil {
-                                        print("画像をfirestoreへ保存成功")
-                                        db.collection("UserData").document(user!.uid).setData(["name": String(profileName)]) { [self] err in
-                                            if let err = err {
-                                                print("Error writing document: \(err)")
-                                            } else {
-                                                print("名前をfirestoreに保存しました")
-                                                let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                                                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                                                    getMyData()
+                                let task = Task {
+                                    do {
+                                        let downloadUrlStr = downloadUrl.absoluteString
+                                        try await FirebaseClient.shared.putIconFirestore(image: downloadUrlStr)
+                                        try await FirebaseClient.shared.putNameFirestore(name: profileName)
+                                        let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
+                                        let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
+                                            let task = Task {
+                                                do {
+                                                    let userID = FirebaseClient.shared.userID
+                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
+                                                    try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
                                                 }
-                                                alert.addAction(ok)
-                                                present(alert, animated: true, completion: nil)
+                                                catch {
+                                                    print("error")
+                                                }
                                             }
                                         }
+                                        alert.addAction(ok)
+                                        self.present(alert, animated: true, completion: nil)
+                                    }
+                                    catch {
+                                        print("error")
                                     }
                                 }
                             } else {
@@ -114,33 +125,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             self.present(alert, animated: true, completion: nil)
         }
     }
-    //自分のアイコンと名前を表示
-    func getMyData() {
-        let db = Firestore.firestore()
-        let user = FirebaseClient.shared.user
-        
-        let docRef = db.collection("UserData").document(user!.uid).collection("IconData").document("Icon")
-        docRef.getDocument { [weak self] (document, error) in
-            if let document = document, document.exists {
-                print("Document data: \(document.data()!["imageURL"]!)")
-                let imageUrl:URL = URL(string: document.data()!["imageURL"]! as! String)!
-                let imageData:Data = try! Data(contentsOf: imageUrl)
-                self?.myIconView.image = UIImage(data: imageData)!
-            } else {
-                print("自分のアイコンなし")
-            }
-        }
-        let doccRef = db.collection("UserData").document(user!.uid)
-        doccRef.getDocument { [weak self] (document, error) in
-            if let document = document, document.exists {
-                print("自分の名前は\(document.data()!["name"]!)")
-                self?.myNameLabel.text = document.data()!["name"]! as? String
-            } else {
-                print("error存在してない")
-            }
-        }
-    }
-        
     //ログアウトする
     @IBAction func logoutButton() {
         do {

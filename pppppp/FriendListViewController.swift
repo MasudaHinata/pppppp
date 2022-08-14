@@ -7,8 +7,7 @@
 
 import UIKit
 import Combine
-import FirebaseFirestore
-import Firebase
+import Kingfisher
 
 @MainActor
 final class FriendListViewController: UIViewController, FirebaseClientDelegate {
@@ -52,12 +51,14 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         guard let userID = user?.uid else { return }
         print("自分のユーザーIDを取得しました")
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
-        
-        getMyData()
-        
+     
         friendList.removeAll()
         let task = Task { [weak self] in
             do {
+                let userID = FirebaseClient.shared.userID
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+                
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
                 guard let friendIds = friendIds else { return }
                 for id in friendIds {
@@ -79,33 +80,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    //FriendListViewController自分のアイコンと名前を表示
-    func getMyData() {
-        let db = Firestore.firestore()
-        let user = FirebaseClient.shared.user
-        
-        let docRef = db.collection("UserData").document(user!.uid).collection("IconData").document("Icon")
-        docRef.getDocument { [weak self] (document, error) in
-            if let document = document, document.exists {
-                print("Document data: \(document.data()!["imageURL"]!)")
-                let imageUrl:URL = URL(string: document.data()!["imageURL"]! as! String)!
-                let imageData:Data = try! Data(contentsOf: imageUrl)
-                self?.myIconView.image = UIImage(data: imageData)!
-            } else {
-                print("自分のアイコンなし")
-            }
-        }
-        let doccRef = db.collection("UserData").document(user!.uid)
-        doccRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                print("自分の名前は\(document.data()!["name"]!)")
-                self.myNameLabel.text = "\(document.data()!["name"]!)"
-            } else {
-                print("error存在してない")
-            }
-        }
-    }
-    
     func friendDeleted() {
         let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

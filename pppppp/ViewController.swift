@@ -74,7 +74,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         print(now)
-        
+//        UserDefaults.standard.removeObject(forKey: "sss")        
         if now >= 19 {
             judge = true
         }
@@ -108,7 +108,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
                 self.showDetailViewController(secondVC, sender: self)
-                
+
             } else {
                 print("今日はもう自己評価した")
             }
@@ -116,7 +116,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         else {
             print("まだ19時前")
         }
-        
     }
 }
 
