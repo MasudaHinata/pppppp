@@ -15,12 +15,12 @@
         <scene sceneID="Le5-1j-13Q">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="C6X-Qw-bEO" customClass="ViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="1Ia-4m-9zf">
+                    <view key="view" contentMode="scaleToFill" id="1Ia-4m-9zf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="unX-EV-8eA">
-                                <rect key="frame" x="20" y="44" width="374" height="507"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="unX-EV-8eA">
+                                <rect key="frame" x="20" y="140" width="374" height="673"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="673" id="8VN-V2-j7y"/>
@@ -44,8 +44,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63n-pl-KmS">
-                                <rect key="frame" x="300" y="432" width="84" height="84"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63n-pl-KmS">
+                                <rect key="frame" x="300" y="694" width="84" height="84"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="84" id="DQp-ju-kNI"/>
                                     <constraint firstAttribute="height" constant="84" id="rq3-2f-TOt"/>
@@ -773,6 +773,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.070588238540000001" green="0.0039215688589999999" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
@@ -786,7 +787,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UbM-Xc-XVF"/>
+        <segue reference="YCM-cH-zpW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.rotate" catalog="system" width="128" height="93"/>

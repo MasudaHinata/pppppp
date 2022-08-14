@@ -62,8 +62,14 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             self.profileName = (self.nameTextField.text!)
             
             if profileName != "" {
-                
-                FirebaseClient.shared.createAccount(email: email, password: password)
+                let task = Task {
+                    do {
+                        try await FirebaseClient.shared.createAccount(email: email, password: password)
+                    }
+                    catch {
+                        print("error")
+                    }
+                }
                 let alert = UIAlertController(title: "仮登録を行いました", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                     aaa()

@@ -177,8 +177,8 @@ final class FirebaseClient {
         await self.delegate?.friendDeleted()
     }
     //アカウントを作成する
-    func createAccount(email: String, password: String) {
-        self.firebaseAuth.createUser(withEmail: email, password: password) { (result, error) in
+    func createAccount(email: String, password: String) async throws {
+        try await self.firebaseAuth.createUser(withEmail: email, password: password) { (result, error) in
             if error == nil, let result = result {
                 result.user.sendEmailVerification(completion: { [weak self] (error) in
                     if error == nil {
@@ -202,8 +202,8 @@ final class FirebaseClient {
         }
     }
     //ログインする
-    func login(email: String, password: String) {
-        firebaseAuth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
+    func login(email: String, password: String) async throws {
+        try await firebaseAuth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
             if self.firebaseAuth.currentUser?.isEmailVerified == true {
                 print("パスワードとメールアドレス一致")

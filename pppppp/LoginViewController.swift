@@ -59,7 +59,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
+            let task = Task {
+                do {
+                    try await FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
+                }
+                catch {
+                    print("error")
+                }
+            }
         }
     }
     @objc func dismissKeyboard() {
