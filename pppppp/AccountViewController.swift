@@ -131,7 +131,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
 //        ])
 //        print("初期画像を設定")
         FirebaseClient.shared.putIconFirestore()
-        
         let task = Task {
             do {
                 var point = Scorering.shared.sanitasPoint

@@ -7,8 +7,6 @@
 
 import UIKit
 import Combine
-//import FirebaseFirestore
-//import Firebase
 
 @MainActor
 final class FriendListViewController: UIViewController, FirebaseClientDelegate {

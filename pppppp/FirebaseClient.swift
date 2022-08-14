@@ -25,29 +25,23 @@ enum FirebaseClientFirestoreError: Error {
 
 protocol FirebaseClientDelegate: AnyObject {
     func friendDeleted() async
-  }
+}
+
+protocol FirebaseClientAuthDelegate: AnyObject {
+    func loginScene()
+    func loginHelperAlert()
+}
+
 
 final class FirebaseClient {
     static let shared = FirebaseClient()
     weak var delegate: FirebaseClientDelegate?
+    weak var delegateLogin: FirebaseClientAuthDelegate?
     private init() {}
     
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
     var untilNowPoint = Int()
-    
-    //ログインできてるか,firestoreに情報があるかの判定
-    func validate() async throws {
-        
-        guard let user = user else {
-            await LoginHelper.shared.showAccountViewController()
-            throw FirebaseClientAuthError.notAuthenticated
-        }
-        try await user.reload()
-        if !user.isEmailVerified {
-            throw FirebaseClientAuthError.emailVerifyRequired
-        }
-    }
     
     func checkName() async throws {
         //名前があるかどうかの判定
@@ -67,37 +61,6 @@ final class FirebaseClient {
             ])
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
             return
-        }
-    }
-    //自分の情報を表示する
-    func showMyData(imageView: UIImageView, label: UILabel) {
-        let db = Firestore.firestore()
-        let user = FirebaseClient.shared.user
-        let docRef = db.collection("UserData").document(user!.uid).collection("IconData").document("Icon")
-        docRef.getDocument { [weak self] (document, error) in
-            if let document = document, document.exists {
-                print("自分のアイコンのURLは: \(document.data()!["imageURL"]!)")
-                let url = URL(string: document.data()!["imageURL"]! as! String)
-                do {
-                    let data = try Data(contentsOf: url!)
-                    let image = UIImage(data: data)
-                    imageView.image = image
-                } catch let err {
-                    print("Error: \(err.localizedDescription)")
-                }
-            } else {
-                print("自分のアイコンなし")
-            }
-        }
-        let doccRef = db.collection("UserData").document(user!.uid)
-        doccRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                print("自分の名前は\(document.data()!["name"]!)")
-                let data = document.data()!["name"]!
-                label.text = data as! String
-            } else {
-                print("error存在してない")
-            }
         }
     }
     //今までの自分のポイントを取得
@@ -174,6 +137,46 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
+    //自分の情報を表示する
+    func showMyData(imageView: UIImageView, label: UILabel) {
+        let db = Firestore.firestore()
+        let user = FirebaseClient.shared.user
+        let docRef = db.collection("UserData").document(user!.uid).collection("IconData").document("Icon")
+        docRef.getDocument { [weak self] (document, error) in
+            if let document = document, document.exists {
+                print("自分のアイコンのURLは: \(document.data()!["imageURL"]!)")
+                let url = URL(string: document.data()!["imageURL"]! as! String)
+                do {
+                    let data = try Data(contentsOf: url!)
+                    let image = UIImage(data: data)
+                    imageView.image = image
+                } catch let err {
+                    print("Error: \(err.localizedDescription)")
+                }
+            } else {
+                print("自分のアイコンなし")
+            }
+        }
+        let doccRef = db.collection("UserData").document(user!.uid)
+        doccRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                print("自分の名前は\(document.data()!["name"]!)")
+                let data = document.data()!["name"]!
+                label.text = data as! String
+            } else {
+                print("error存在してない")
+            }
+        }
+    }
+    //画像をfirestoreに保存
+    func putIconFirestore() {
+        let db = Firestore.firestore()
+        var userID = Auth.auth().currentUser?.uid
+        db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData([
+            "imageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
+        ])
+        print("初期画像を設定")
+    }
     //友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
         var result = try await db.collection("UserData").document(user!.uid).collection("friendsList").document(deleteFriendId).delete()
@@ -181,9 +184,36 @@ final class FirebaseClient {
         print("自分を友達のリストから削除しました")
         await self.delegate?.friendDeleted()
     }
+    /*　firebaseAuth　*/
+    let firebaseAuth = Auth.auth()
+    
+    //ログインできてるか,firestoreに情報があるかの判定
+    func validate() async throws {
+        guard let user = user else {
+            await LoginHelper.shared.showAccountViewController()
+            throw FirebaseClientAuthError.notAuthenticated
+        }
+        try await user.reload()
+        if !user.isEmailVerified {
+            throw FirebaseClientAuthError.emailVerifyRequired
+        }
+    }
+    //ログインする
+    func login(email: String, password: String) {
+        firebaseAuth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let self = self else { return }
+            if self.firebaseAuth.currentUser?.isEmailVerified == true {
+                print("パスワードとメールアドレス一致")
+                self.delegateLogin?.loginScene()
+            } else if self.firebaseAuth.currentUser?.isEmailVerified == nil {
+                print("パスワードかメールアドレスが間違っています")
+                self.delegateLogin?.loginHelperAlert()
+            }
+        }
+        
+    }
     //ログアウトする
     func logout() async throws {
-        let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
         } catch let signOutError as NSError {
@@ -198,14 +228,5 @@ final class FirebaseClient {
             var results = try await db.collection("UserData").document(friendsId).collection("friendsList").document(user!.uid).delete()
             results = try await db.collection("UserData").document(user!.uid).delete()
         }
-    }
-    //画像をfirestoreに保存
-    func putIconFirestore() {
-        let db = Firestore.firestore()
-        var userID = Auth.auth().currentUser?.uid
-        db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData([
-            "imageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
-        ])
-        print("初期画像を設定")
     }
 }
