@@ -54,8 +54,10 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         
         myIconView.layer.cornerRadius = 43
         myIconView.clipsToBounds = true
-        getMyData()
         // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        FirebaseClient.shared.showMyData(imageView: myIconView, label: myNameLabel)
     }
     //名前を変更
     func saveProfileName(profileName: String) {
@@ -88,7 +90,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                                 print("名前をfirestoreに保存しました")
                                                 let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                                                 let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                                                    getMyData()
+                                                    FirebaseClient.shared.showMyData(imageView: myIconView, label: myNameLabel)
                                                 }
                                                 alert.addAction(ok)
                                                 present(alert, animated: true, completion: nil)
@@ -114,33 +116,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             self.present(alert, animated: true, completion: nil)
         }
     }
-    //自分のアイコンと名前を表示
-    func getMyData() {
-        let db = Firestore.firestore()
-        let user = FirebaseClient.shared.user
-        
-        let docRef = db.collection("UserData").document(user!.uid).collection("IconData").document("Icon")
-        docRef.getDocument { [weak self] (document, error) in
-            if let document = document, document.exists {
-                print("Document data: \(document.data()!["imageURL"]!)")
-                let imageUrl:URL = URL(string: document.data()!["imageURL"]! as! String)!
-                let imageData:Data = try! Data(contentsOf: imageUrl)
-                self?.myIconView.image = UIImage(data: imageData)!
-            } else {
-                print("自分のアイコンなし")
-            }
-        }
-        let doccRef = db.collection("UserData").document(user!.uid)
-        doccRef.getDocument { [weak self] (document, error) in
-            if let document = document, document.exists {
-                print("自分の名前は\(document.data()!["name"]!)")
-                self?.myNameLabel.text = document.data()!["name"]! as? String
-            } else {
-                print("error存在してない")
-            }
-        }
-    }
-        
     //ログアウトする
     @IBAction func logoutButton() {
         do {
