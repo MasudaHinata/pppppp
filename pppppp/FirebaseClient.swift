@@ -40,6 +40,7 @@ final class FirebaseClient {
     private init() {}
     
     let db = Firestore.firestore()
+    let firebaseAuth = Auth.auth()
     let user = Auth.auth().currentUser
     let userID = Auth.auth().currentUser?.uid
     var untilNowPoint = Int()
@@ -168,6 +169,12 @@ final class FirebaseClient {
         print("画像を設定")
     }
     
+    //友達を追加する
+    func addFriend(friendId: String) async throws {
+        var result = try await db.collection("UserData").document(user!.uid).collection("friendsList").document(friendId).setData(["friendId": friendId])
+        result = try await db.collection("UserData").document(friendId).collection("friendsList").document(user!.uid).setData(["friendId": user!.uid])
+        
+    }
     //友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
         var result = try await db.collection("UserData").document(user!.uid).collection("friendsList").document(deleteFriendId).delete()
@@ -176,7 +183,6 @@ final class FirebaseClient {
         await self.delegate?.friendDeleted()
     }
     /*　firebaseAuth　*/
-    let firebaseAuth = Auth.auth()
     
     //ログインできてるか,firestoreに情報があるかの判定
     func validate() async throws {

@@ -152,8 +152,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="FriendIconView" destination="2qd-sR-dRs" id="FlB-yf-L3I"/>
                         <outlet property="addFriendButton" destination="kMj-Ce-wXw" id="7rd-Tz-liK"/>
+                        <outlet property="friendIconView" destination="2qd-sR-dRs" id="dEL-pU-OXB"/>
                         <outlet property="friendLabel" destination="1Uz-nn-8ck" id="EL3-fS-Zbw"/>
                         <segue destination="hdq-Kh-yzh" kind="presentation" identifier="toViewController" modalPresentationStyle="fullScreen" id="UbM-Xc-XVF"/>
                     </connections>
@@ -786,7 +786,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YCM-cH-zpW"/>
+        <segue reference="UbM-Xc-XVF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.rotate" catalog="system" width="128" height="93"/>
