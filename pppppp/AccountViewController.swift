@@ -96,8 +96,8 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     func aaa() {
         let task = Task {
             do {
-                FirebaseClient.shared.putNameFirestore(name: self.profileName)
-                FirebaseClient.shared.putIconFirestore(image: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
+                try await FirebaseClient.shared.putNameFirestore(name: self.profileName)
+                try await FirebaseClient.shared.putIconFirestore(image: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
                 try await FirebaseClient.shared.firebasePutData(point: 0)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")

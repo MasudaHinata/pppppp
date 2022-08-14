@@ -82,25 +82,31 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                     if let _ = metadata {
                         reference.downloadURL{(url,error) in
                             if let downloadUrl = url {
-                                let downloadUrlStr = downloadUrl.absoluteString
-                                
-                                FirebaseClient.shared.putIconFirestore(image: downloadUrlStr)
-                                FirebaseClient.shared.putNameFirestore(name: profileName)
-                                let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                                let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                                    let task = Task {
-                                        do {
-                                            let userID = FirebaseClient.shared.userID
-                                            try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
-                                            try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+                                let task = Task {
+                                    do {
+                                        let downloadUrlStr = downloadUrl.absoluteString
+                                        try await FirebaseClient.shared.putIconFirestore(image: downloadUrlStr)
+                                        try await FirebaseClient.shared.putNameFirestore(name: profileName)
+                                        let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
+                                        let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
+                                            let task = Task {
+                                                do {
+                                                    let userID = FirebaseClient.shared.userID
+                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
+                                                    try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+                                                }
+                                                catch {
+                                                    print("error")
+                                                }
+                                            }
                                         }
-                                        catch {
-                                            print("error")
-                                        }
+                                        alert.addAction(ok)
+                                        self.present(alert, animated: true, completion: nil)
+                                    }
+                                    catch {
+                                        print("error")
                                     }
                                 }
-                                alert.addAction(ok)
-                                self.present(alert, animated: true, completion: nil)
                             } else {
                                 print("downloadURLの取得が失敗した場合の処理")
                             }

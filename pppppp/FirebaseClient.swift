@@ -155,25 +155,19 @@ final class FirebaseClient {
     }
     
     //画像をfirestoreに保存
-    func putIconFirestore(image: String) {
-        let db = Firestore.firestore()
-        var userID = Auth.auth().currentUser?.uid
-        db.collection("UserData").document(userID!).collection("IconData").document("Icon").setData(["imageURL": image])
+    func putIconFirestore(image: String) async throws {
+        try await db.collection("UserData").document(user!.uid).collection("IconData").document("Icon").setData(["imageURL": image])
         print("画像を設定")
     }
     //名前をfirestoreに保存
-    func putNameFirestore(name: String) {
-        let db = Firestore.firestore()
-        var userID = Auth.auth().currentUser?.uid
-        db.collection("UserData").document(userID!).setData(["name": name])
-        print("画像を設定")
+    func putNameFirestore(name: String) async throws {
+        try await db.collection("UserData").document(user!.uid).setData(["name": name])
+        print("名前を設定")
     }
-    
     //友達を追加する
     func addFriend(friendId: String) async throws {
         var result = try await db.collection("UserData").document(user!.uid).collection("friendsList").document(friendId).setData(["friendId": friendId])
         result = try await db.collection("UserData").document(friendId).collection("friendsList").document(user!.uid).setData(["friendId": user!.uid])
-        
     }
     //友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
@@ -182,7 +176,6 @@ final class FirebaseClient {
         print("自分を友達のリストから削除しました")
         await self.delegate?.friendDeleted()
     }
-    /*　firebaseAuth　*/
     //アカウントを作成する
     func createAccount(email: String, password: String) {
         self.firebaseAuth.createUser(withEmail: email, password: password) { (result, error) in
@@ -196,8 +189,6 @@ final class FirebaseClient {
                 print("error occured\(error)")
             }
         }
-        
-        
     }
     //ログインできてるか,firestoreに情報があるかの判定
     func validate() async throws {
@@ -222,7 +213,6 @@ final class FirebaseClient {
                 self.delegateLogin?.loginHelperAlert()
             }
         }
-        
     }
     //ログアウトする
     func logout() async throws {
