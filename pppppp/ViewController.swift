@@ -66,20 +66,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dateComponents = DateComponents(
-            calendar: Calendar.current,
-            timeZone: TimeZone.current,
-            hour: 19,
-            minute: 00
-        )
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        let content = UNMutableNotificationContent()
-        //TODO: 文ちゃんと考える
-        content.title = "自己評価をしてポイントを獲得しましょう"
-        content.body = "19時になりました"
-        content.sound = UNNotificationSound.default
-        var request = UNNotificationRequest.init(identifier: "自己評価をしてポイントを獲得しましょう", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
+        
+//        let dateComponents = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, hour: 19, minute: 00)
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+//        let content = UNMutableNotificationContent()
+//        //TODO: 文ちゃんと考える
+//        content.title = "自己評価をしてポイントを獲得しましょう"
+//        content.body = "19時になりました"
+//        content.sound = UNNotificationSound.default
+//        var request = UNNotificationRequest.init(identifier: "自己評価をしてポイントを獲得しましょう", content: content, trigger: trigger)
+//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         
         //        collectionView.refreshControl = refreshControl
         //        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)

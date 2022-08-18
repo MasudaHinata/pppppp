@@ -30,6 +30,7 @@
 		9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88EB26B1918B005517D5 /* LoginViewController.swift */; };
 		9CB2AB9728A0ACCD0050562C /* UserIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB2AB9628A0ACCD0050562C /* UserIcon.swift */; };
 		9CB2AB9A28A116120050562C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9CB2AB9928A116120050562C /* Kingfisher */; };
+		9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD49C2628AEAD5E000CDEDF /* NotificationManager.swift */; };
 		9CDF759F286326A600209FD0 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF759E286326A600209FD0 /* AccountViewController.swift */; };
 		9CE0D288289A85A100B960B6 /* UserHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE0D287289A85A100B960B6 /* UserHealth.swift */; };
 		9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B88288C384100FFE94C /* CoverWindow.swift */; };
@@ -64,6 +65,7 @@
 		9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardFriendDataCell.xib; sourceTree = "<group>"; };
 		9CAA88EB26B1918B005517D5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9CB2AB9628A0ACCD0050562C /* UserIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIcon.swift; sourceTree = "<group>"; };
+		9CD49C2628AEAD5E000CDEDF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		9CDF759E286326A600209FD0 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		9CE0D287289A85A100B960B6 /* UserHealth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHealth.swift; sourceTree = "<group>"; };
 		9CE63B88288C384100FFE94C /* CoverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverWindow.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				9CE63B8C288C548D00FFE94C /* LoginHelper.swift */,
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */,
+				9CD49C2628AEAD5E000CDEDF /* NotificationManager.swift */,
 			);
 			path = pppppp;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				9C61891828A5F35B00DE6942 /* SelfAssessmentViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
+				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
