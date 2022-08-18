@@ -15,11 +15,11 @@
         <scene sceneID="Le5-1j-13Q">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="C6X-Qw-bEO" customClass="ViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1Ia-4m-9zf">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="1Ia-4m-9zf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="unX-EV-8eA">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="unX-EV-8eA">
                                 <rect key="frame" x="20" y="88" width="374" height="725"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -44,7 +44,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63n-pl-KmS">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63n-pl-KmS">
                                 <rect key="frame" x="300" y="694" width="84" height="84"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="84" id="DQp-ju-kNI"/>
@@ -70,7 +70,14 @@
                             <constraint firstItem="unX-EV-8eA" firstAttribute="top" secondItem="yZS-7u-8PC" secondAttribute="top" id="uNL-hy-D0I"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="always" id="U5C-91-Dkl"/>
+                    <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="always" id="U5C-91-Dkl">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.triangle.2.circlepath" catalog="system" id="Nu4-5D-93Q">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="reloadButton" destination="C6X-Qw-bEO" id="YbE-uf-WaX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="unX-EV-8eA" id="day-jH-d6Y"/>
                     </connections>
@@ -427,10 +434,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSB-ZY-ZIb">
-                                <rect key="frame" x="16" y="169" width="382" height="112"/>
+                                <rect key="frame" x="16" y="169" width="382" height="128"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ZQ-OO-cOF">
-                                        <rect key="frame" x="8" y="8" width="96" height="96"/>
+                                        <rect key="frame" x="16" y="16" width="96" height="96"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="96" id="9N4-TP-ocC"/>
@@ -438,13 +445,13 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6h-oz-eaW">
-                                        <rect key="frame" x="112" y="56" width="0.0" height="0.0"/>
+                                        <rect key="frame" x="120" y="64" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz7-VA-54e">
-                                        <rect key="frame" x="314" y="34.5" width="60" height="43"/>
+                                        <rect key="frame" x="314" y="42.5" width="60" height="43"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large"/>
@@ -460,16 +467,16 @@
                                 <constraints>
                                     <constraint firstItem="A6h-oz-eaW" firstAttribute="centerY" secondItem="fSB-ZY-ZIb" secondAttribute="centerY" id="0TQ-ih-ziM"/>
                                     <constraint firstAttribute="trailing" secondItem="Lz7-VA-54e" secondAttribute="trailing" constant="8" id="JDG-gg-L4z"/>
-                                    <constraint firstItem="8ZQ-OO-cOF" firstAttribute="top" secondItem="fSB-ZY-ZIb" secondAttribute="top" constant="8" id="MtP-aR-gtd"/>
-                                    <constraint firstItem="8ZQ-OO-cOF" firstAttribute="leading" secondItem="fSB-ZY-ZIb" secondAttribute="leading" constant="8" id="QZc-ad-x7N"/>
-                                    <constraint firstAttribute="bottom" secondItem="8ZQ-OO-cOF" secondAttribute="bottom" constant="8" id="WN8-LO-Aak"/>
+                                    <constraint firstItem="8ZQ-OO-cOF" firstAttribute="top" secondItem="fSB-ZY-ZIb" secondAttribute="top" constant="16" id="MtP-aR-gtd"/>
+                                    <constraint firstItem="8ZQ-OO-cOF" firstAttribute="leading" secondItem="fSB-ZY-ZIb" secondAttribute="leading" constant="16" id="QZc-ad-x7N"/>
+                                    <constraint firstAttribute="bottom" secondItem="8ZQ-OO-cOF" secondAttribute="bottom" constant="16" id="WN8-LO-Aak"/>
                                     <constraint firstItem="Lz7-VA-54e" firstAttribute="centerY" secondItem="fSB-ZY-ZIb" secondAttribute="centerY" id="dh7-Cc-EAB"/>
                                     <constraint firstItem="8ZQ-OO-cOF" firstAttribute="centerY" secondItem="fSB-ZY-ZIb" secondAttribute="centerY" id="iCQ-fE-mI4"/>
                                     <constraint firstItem="A6h-oz-eaW" firstAttribute="leading" secondItem="8ZQ-OO-cOF" secondAttribute="trailing" constant="8" symbolic="YES" id="s0A-FI-Y5H"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rol-Tk-v1L">
-                                <rect key="frame" x="0.0" y="326" width="414" height="487"/>
+                                <rect key="frame" x="0.0" y="342" width="414" height="471"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UoR-4d-fU7">
@@ -487,7 +494,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRIENDLIST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZs-Xn-Ghm">
-                                <rect key="frame" x="24" y="305" width="83" height="17"/>
+                                <rect key="frame" x="24" y="321" width="83" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="0.72999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -511,12 +518,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" largeTitleDisplayMode="always" id="VMF-5D-Uhx">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="gearshape" catalog="system" id="uqV-WD-5nC">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="goSettingButton" destination="9qf-JZ-69t" id="0i8-3H-eFB"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="gearshape" catalog="system" id="uqV-WD-5nC">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="goSettingButton" destination="9qf-JZ-69t" id="0i8-3H-eFB"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="arrow.triangle.2.circlepath" catalog="system" id="yv0-KS-Wmm">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="reloadButton" destination="9qf-JZ-69t" id="4dh-Dq-SiA"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -642,10 +657,10 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFS-Ba-ls3">
-                                <rect key="frame" x="46" y="97" width="39" height="40"/>
+                                <rect key="frame" x="41" y="97" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="39" id="7VG-sv-rLV"/>
+                                    <constraint firstAttribute="width" constant="40" id="7VG-sv-rLV"/>
                                     <constraint firstAttribute="height" constant="40" id="GrO-SK-bOQ"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -682,14 +697,14 @@
                         <constraints>
                             <constraint firstItem="3eA-mb-cCf" firstAttribute="top" secondItem="meD-lh-SHX" secondAttribute="top" constant="32" id="0Nv-AQ-mGk"/>
                             <constraint firstItem="4da-2V-OHO" firstAttribute="top" secondItem="3eA-mb-cCf" secondAttribute="bottom" constant="15" id="2aZ-sA-j2g"/>
+                            <constraint firstItem="HFS-Ba-ls3" firstAttribute="centerX" secondItem="3eA-mb-cCf" secondAttribute="centerX" id="47D-Pt-NaQ"/>
                             <constraint firstItem="4da-2V-OHO" firstAttribute="centerX" secondItem="g8B-Ih-AYR" secondAttribute="centerX" id="92X-os-ErJ"/>
                             <constraint firstItem="3eA-mb-cCf" firstAttribute="leading" secondItem="meD-lh-SHX" secondAttribute="leading" constant="20" id="Aa9-qr-Mxo"/>
                             <constraint firstItem="DDE-hp-Qwe" firstAttribute="top" secondItem="meD-lh-SHX" secondAttribute="top" constant="59" id="QUh-JM-tAc"/>
                             <constraint firstItem="DDE-hp-Qwe" firstAttribute="leading" secondItem="3eA-mb-cCf" secondAttribute="trailing" constant="20" id="cCB-GX-Fmw"/>
+                            <constraint firstItem="HFS-Ba-ls3" firstAttribute="centerY" secondItem="3eA-mb-cCf" secondAttribute="centerY" id="faN-JV-lA7"/>
                             <constraint firstItem="DGh-nE-QAv" firstAttribute="top" secondItem="4da-2V-OHO" secondAttribute="bottom" constant="15" id="gme-Q1-ILF"/>
-                            <constraint firstItem="HFS-Ba-ls3" firstAttribute="top" secondItem="meD-lh-SHX" secondAttribute="top" constant="53" id="kOL-1O-hjp"/>
                             <constraint firstItem="DGh-nE-QAv" firstAttribute="centerX" secondItem="g8B-Ih-AYR" secondAttribute="centerX" id="lwb-gF-O3M"/>
-                            <constraint firstItem="HFS-Ba-ls3" firstAttribute="leading" secondItem="meD-lh-SHX" secondAttribute="leading" constant="46" id="yWF-rq-yhG"/>
                         </constraints>
                     </view>
                     <connections>
@@ -796,6 +811,7 @@
         <segue reference="YCM-cH-zpW"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="104"/>
         <image name="camera.rotate" catalog="system" width="128" height="93"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="highlighter" catalog="system" width="128" height="120"/>

@@ -24,11 +24,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         let secondVC = storyboard.instantiateViewController(identifier: "ChangeProfileViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
-    @IBAction func dataputButton() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
-        self.showDetailViewController(secondVC, sender: self)
-    }
     @IBOutlet var friendcollectionView: UICollectionView! {
         didSet {
             FirebaseClient.shared.delegate = self
@@ -39,21 +34,54 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
     }
     @IBOutlet var profileBackgroundView: UIView! {
         didSet {
-            profileBackgroundView.layer.cornerCurve = .continuous
-            profileBackgroundView.layer.cornerRadius = 16
+            profileBackgroundView.layer.cornerRadius = 40
             profileBackgroundView.layer.masksToBounds = true
+            profileBackgroundView.layer.cornerCurve = .continuous
         }
     }
+    @IBAction func reloadButton() {
+        friendList.removeAll()
+        friendLists.removeAll()
+        let task = Task { [weak self] in
+            do {
+                let userID = FirebaseClient.shared.userID
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+                
+                let friendIds = try? await FirebaseClient.shared.getfriendIds()
+                guard let friendIds = friendIds else { return }
+                for id in friendIds {
+                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
+                    if let friend = friend {
+                        self?.friendList.append(friend)
+                    }
+                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+                    if let friendss = friendss {
+                        self?.friendLists.append(friendss)
+                    }
+                    self!.friendcollectionView.reloadData()
+                }
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        myIconView.layer.cornerRadius = 50
+        myIconView.layer.cornerRadius = 32
         myIconView.clipsToBounds = true
+        myIconView.layer.cornerCurve = .continuous
         
         guard let userID = user?.uid else { return }
         print("自分のユーザーIDを取得しました")
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
      
         friendList.removeAll()
+        friendLists.removeAll()
         let task = Task { [weak self] in
             do {
                 let userID = FirebaseClient.shared.userID
@@ -114,10 +142,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "frienddatacell", for: indexPath)  as! FriendDataCell
-        
-        cell.iconView.layer.cornerRadius = 27
-        cell.iconView.clipsToBounds = true
-        
+            
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
         return cell

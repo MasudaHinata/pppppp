@@ -29,7 +29,39 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
-    
+    @IBAction func reloadButton() {
+        friendList.removeAll()
+        friendsList.removeAll()
+        friendLists.removeAll()
+        let task = Task { [weak self] in
+            do {
+                let friendIds = try? await FirebaseClient.shared.getfriendIds()
+                guard var friendIds = friendIds else { return }
+                friendIds += [String(user!.uid)]
+                for id in friendIds {
+                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
+                    if let friend = friend {
+                        self?.friendList.append(friend)
+                    }
+                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
+                    if let friends = friends {
+                        self?.friendsList.append(friends)
+                    }
+                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+                    if let friendss = friendss {
+                        self?.friendLists.append(friendss)
+                    }
+                    self!.collectionView.reloadData()
+                }
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+        
+        cancellables.insert(.init { task.cancel() })
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         Scorering.shared.getPermissionHealthKit()
@@ -66,7 +98,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print("error")
             }
         }
-        
         cancellables.insert(.init { task.cancel() })
     }
     

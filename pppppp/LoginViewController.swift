@@ -33,11 +33,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
     
     func design() {
         emailTextField.layer.cornerRadius = 24
-        passwordTextField.layer.cornerRadius = 24
         emailTextField.clipsToBounds = true
+        emailTextField.layer.cornerCurve = .continuous
+        passwordTextField.layer.cornerRadius = 24
         passwordTextField.clipsToBounds = true
+        passwordTextField.layer.cornerCurve = .continuous
         goButton.layer.cornerRadius = 24
         goButton.clipsToBounds = true
+        goButton.layer.cornerCurve = .continuous
     }
     
     func loginHelperAlert() {

@@ -10,13 +10,19 @@ import UIKit
 class FriendDataCell: UICollectionViewCell {
     
     @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var iconView: UIImageView!
+    @IBOutlet var iconView: UIImageView! {
+        didSet {
+            iconView.layer.cornerRadius = 24
+            iconView.clipsToBounds = true
+            iconView.layer.cornerCurve = .continuous
+        }
+    }
     
     @IBOutlet var profileBackgroundView: UIView! {
         didSet {
-            profileBackgroundView.layer.cornerCurve = .continuous
-            profileBackgroundView.layer.cornerRadius = 16
+            profileBackgroundView.layer.cornerRadius = 32
             profileBackgroundView.layer.masksToBounds = true
+            profileBackgroundView.layer.cornerCurve = .continuous
         }
     }
     
@@ -24,5 +30,4 @@ class FriendDataCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
 }

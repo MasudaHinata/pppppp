@@ -53,6 +53,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         
         myIconView.layer.cornerRadius = 43
         myIconView.clipsToBounds = true
+        myIconView.layer.cornerCurve = .continuous
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
