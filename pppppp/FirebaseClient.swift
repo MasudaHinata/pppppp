@@ -116,7 +116,7 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
-    //IDからポイントを取得
+//    IDからポイントを取得
     public func getHealthDataFromId(friendsId: String) async throws -> UserHealth {
         let querySnapshot = try await db.collection("UserData").document(friendsId).collection("HealthData").document("Date()").getDocument()
         do {
@@ -127,6 +127,20 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
+    
+//    public func getHealthDataFromId(friendsId: String) async throws {
+//        db.collection("UserData").document(friendsId).collection("HealthData").document("Date()").addSnapshotListener { documentSnapshot, error in
+//            guard let document = documentSnapshot else {
+//                print("Error fetching document: \(error!)")
+//                return
+//            }
+//            guard let data = document.data()!["point"]! else {
+//                print("Document data was empty.")
+//                return
+//            }
+//            print("Current data: \(data)")
+//        }
+//    }
     //IDからアイコンの画像URLを取得
     public func getIconDataFromId(friendIds: String) async throws -> UserIcon {
         let querySnapshot = try await db.collection("UserData").document(friendIds).collection("IconData").document("Icon").getDocument()
@@ -136,6 +150,7 @@ final class FirebaseClient {
             return user
         } catch {
             throw FirebaseClientFirestoreError.userDataNotFound
+//            try await ErrorHelper.shared.showAlert(title: "エラー", messege: "a")
         }
     }
     //名前を表示する
@@ -145,7 +160,6 @@ final class FirebaseClient {
         let data = querySnapShot.data()!["name"]!
         return data as! String
     }
-
     //アイコンを表示する
     func getMyData(user: String) async throws -> URL {
     let querySnapShot = try await db.collection("UserData").document(user).collection("IconData").document("Icon").getDocument()
@@ -153,7 +167,6 @@ final class FirebaseClient {
         let url = URL(string: querySnapShot.data()!["imageURL"]! as! String)!
         return url
     }
-    
     //画像をfirestoreに保存
     func putIconFirestore(image: String) async throws {
         try await db.collection("UserData").document(user!.uid).collection("IconData").document("Icon").setData(["imageURL": image])
