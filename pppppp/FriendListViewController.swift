@@ -34,10 +34,14 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
             FirebaseClient.shared.delegate = self
             friendcollectionView.delegate = self
             friendcollectionView.dataSource = self
-            let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 500, height: 50)
-            friendcollectionView.collectionViewLayout = layout
             friendcollectionView.register(UINib(nibName: "FriendDataCell", bundle: nil), forCellWithReuseIdentifier: "frienddatacell")
+        }
+    }
+    @IBOutlet var profileBackgroundView: UIView! {
+        didSet {
+            profileBackgroundView.layer.cornerCurve = .continuous
+            profileBackgroundView.layer.cornerRadius = 16
+            profileBackgroundView.layer.masksToBounds = true
         }
     }
     override func viewDidLoad() {
@@ -76,6 +80,13 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
             }
         }
         cancellables.insert(.init { task.cancel() })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
+        friendcollectionView.collectionViewLayout = layout
     }
 
     func friendDeleted() {

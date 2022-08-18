@@ -130,9 +130,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
-        cell.layer.cornerRadius = 27
-        cell.iconView.layer.cornerRadius = 30
-        cell.iconView.clipsToBounds = true
         
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.dataLabel.text = String(friendsList[indexPath.row].point)

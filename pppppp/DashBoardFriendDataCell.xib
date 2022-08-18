@@ -29,13 +29,19 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sz8-7w-ZbX">
-                        <rect key="frame" x="21" y="4" width="62" height="62"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sz8-7w-ZbX">
+                        <rect key="frame" x="16" y="16" width="62" height="62"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="62" id="Di9-or-eJO"/>
+                            <constraint firstAttribute="width" constant="62" id="VbT-6R-G1b"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voH-JH-1AQ">
-                        <rect key="frame" x="94" y="15" width="160" height="41"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voH-JH-1AQ">
+                        <rect key="frame" x="94" y="16" width="160" height="62"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="160" id="5zY-Ty-fdd"/>
+                            <constraint firstAttribute="height" constant="62" id="j4X-q0-ZgR"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -48,7 +54,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.72156862745098038" green="0.9137254901960784" blue="1" alpha="0.33000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="1" alpha="0.16035687311178248" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="sz8-7w-ZbX" firstAttribute="leading" secondItem="IWW-Zl-nFm" secondAttribute="leading" constant="16" id="WWR-KS-FVT"/>
+                    <constraint firstItem="voH-JH-1AQ" firstAttribute="top" secondItem="IWW-Zl-nFm" secondAttribute="top" constant="16" id="g7b-OC-fFM"/>
+                    <constraint firstItem="voH-JH-1AQ" firstAttribute="leading" secondItem="sz8-7w-ZbX" secondAttribute="trailing" constant="16" id="hlH-Bv-HDJ"/>
+                    <constraint firstItem="sz8-7w-ZbX" firstAttribute="top" secondItem="IWW-Zl-nFm" secondAttribute="top" constant="16" id="ueM-eP-eEP"/>
+                </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="349" height="130"/>
             <connections>
