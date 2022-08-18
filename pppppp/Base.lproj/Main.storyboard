@@ -71,7 +71,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="always" id="U5C-91-Dkl">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.triangle.2.circlepath" catalog="system" id="Nu4-5D-93Q">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="Nu4-5D-93Q">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="reloadButton" destination="C6X-Qw-bEO" id="YbE-uf-WaX"/>
@@ -525,7 +525,7 @@
                                     <action selector="goSettingButton" destination="9qf-JZ-69t" id="0i8-3H-eFB"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="arrow.triangle.2.circlepath" catalog="system" id="yv0-KS-Wmm">
+                            <barButtonItem title="Item" image="arrow.clockwise" catalog="system" id="yv0-KS-Wmm">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="reloadButton" destination="9qf-JZ-69t" id="4dh-Dq-SiA"/>
@@ -707,6 +707,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="change" destination="DGh-nE-QAv" id="FWY-tM-MDb"/>
                         <outlet property="myIconView" destination="3eA-mb-cCf" id="utd-ik-qXP"/>
                         <outlet property="myNameLabel" destination="DDE-hp-Qwe" id="VRz-U7-QvC"/>
                         <outlet property="nameTextField" destination="4da-2V-OHO" id="rA8-xI-WQ5"/>
@@ -810,7 +811,7 @@
         <segue reference="YCM-cH-zpW"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="104"/>
+        <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
         <image name="camera.rotate" catalog="system" width="128" height="93"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="highlighter" catalog="system" width="128" height="120"/>

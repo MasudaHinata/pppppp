@@ -43,7 +43,14 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             nameTextField.attributedPlaceholder = NSAttributedString(string: "change you name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         }
     }
-    @IBOutlet var change: UIButton!
+    @IBOutlet var change: UIButton! {
+        didSet {
+            change.layer.cornerRadius = 24
+            change.clipsToBounds = true
+            change.layer.cornerCurve = .continuous
+        }
+    }
+    
     @IBAction func changeProfile() {
         profileName = (nameTextField.text!)
         saveProfile(profileName: profileName)
@@ -55,9 +62,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         nameTextField.layer.cornerRadius = 24
         nameTextField.clipsToBounds = true
         nameTextField.layer.cornerCurve = .continuous
-        change.layer.cornerRadius = 24
-        change.clipsToBounds = true
-        change.layer.cornerCurve = .continuous
         myIconView.layer.cornerRadius = 43
         myIconView.clipsToBounds = true
         myIconView.layer.cornerCurve = .continuous
