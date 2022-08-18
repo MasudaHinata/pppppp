@@ -44,9 +44,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         super.viewDidLoad()
         myIconView.layer.cornerRadius = 50
         myIconView.clipsToBounds = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         
         guard let userID = user?.uid else { return }
         print("自分のユーザーIDを取得しました")
@@ -80,6 +77,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
+
     func friendDeleted() {
         let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

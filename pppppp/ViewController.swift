@@ -1,9 +1,10 @@
+import Combine
 import UIKit
 import SwiftUI
 import Kingfisher
 
 class ViewController: UIViewController, UITextFieldDelegate {
-    
+    var cancellables = Set<AnyCancellable>()
     var me: User!
     var friendIdList = [String]()
     var friendList = [User]()
@@ -33,12 +34,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         Scorering.shared.getPermissionHealthKit()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
-    }
-    
-    let user = FirebaseClient.shared.user
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
         friendList.removeAll()
         friendsList.removeAll()
         friendLists.removeAll()
@@ -71,6 +67,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
+        cancellables.insert(.init { task.cancel() })
+    }
+    
+    let user = FirebaseClient.shared.user
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         print(now)
