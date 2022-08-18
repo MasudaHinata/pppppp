@@ -66,9 +66,8 @@ final class FirebaseClient {
     }
     //今までの自分のポイントを取得
     func getUntilNowPoint() async throws {
-        let db = Firestore.firestore()
-        let user = Auth.auth().currentUser
-        
+        try await validate()
+        try await checkName()
         let querySnapshot = try await db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").getDocument()
         do {
             untilNowPoint = try querySnapshot.data()!["point"]! as! Int
@@ -80,9 +79,6 @@ final class FirebaseClient {
     }
     //ポイントをfirebaseに保存
     func firebasePutData(point: Int) async throws {
-        let db = Firestore.firestore()
-        let user = Auth.auth().currentUser
-        
         try await db.collection("UserData").document(user!.uid).collection("HealthData").document("Date()").setData([
             "point": point
         ]) { err in

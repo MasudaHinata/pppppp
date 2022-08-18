@@ -17,10 +17,12 @@ class ProfileViewController: UIViewController {
         
         friendIconView.layer.cornerRadius = 88
         friendIconView.clipsToBounds = true
+        friendIconView.layer.cornerCurve = .continuous
         
         addFriendButton.layer.borderWidth = 4.0
         addFriendButton.layer.borderColor = UIColor.white.cgColor
         addFriendButton.layer.cornerRadius = 12.0
+        addFriendButton.layer.cornerCurve = .continuous
     }
     override func viewDidAppear(_ animated: Bool) {
         let task = Task { [weak self] in

@@ -118,14 +118,19 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     func design() {
         emailTextField.layer.cornerRadius = 24
         emailTextField.clipsToBounds = true
+        emailTextField.layer.cornerCurve = .continuous
         passwordTextField.layer.cornerRadius = 24
         passwordTextField.clipsToBounds = true
+        passwordTextField.layer.cornerCurve = .continuous
         password2TextField.layer.cornerRadius = 24
         password2TextField.clipsToBounds = true
+        password2TextField.layer.cornerCurve = .continuous
         nameTextField.layer.cornerRadius = 24
         nameTextField.clipsToBounds = true
+        nameTextField.layer.cornerCurve = .continuous
         GoButton.layer.cornerRadius = 24
         GoButton.clipsToBounds = true
+        GoButton.layer.cornerCurve = .continuous
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()

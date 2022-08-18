@@ -43,16 +43,24 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             nameTextField.attributedPlaceholder = NSAttributedString(string: "change you name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         }
     }
-    @IBAction func changeName() {
+    @IBOutlet var change: UIButton!
+    @IBAction func changeProfile() {
         profileName = (nameTextField.text!)
-        saveProfileName(profileName: profileName)
+        saveProfile(profileName: profileName)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nameTextField.layer.cornerRadius = 24
+        nameTextField.clipsToBounds = true
+        nameTextField.layer.cornerCurve = .continuous
+        change.layer.cornerRadius = 24
+        change.clipsToBounds = true
+        change.layer.cornerCurve = .continuous
         myIconView.layer.cornerRadius = 43
         myIconView.clipsToBounds = true
+        myIconView.layer.cornerCurve = .continuous
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -68,7 +76,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     //名前を変更
-    func saveProfileName(profileName: String) {
+    func saveProfile(profileName: String) {
         var user = FirebaseClient.shared.user
         let db = FirebaseClient.shared.db
         
