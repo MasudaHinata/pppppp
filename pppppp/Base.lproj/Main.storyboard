@@ -554,18 +554,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" alpha="0.56000000238418579" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your weight" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tq0-h5-5t4">
-                                <rect key="frame" x="85" y="131" width="168" height="48"/>
+                                <rect key="frame" x="32" y="76" width="280" height="48"/>
                                 <color key="backgroundColor" red="0.56078431370000004" green="0.58039215690000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="0k0-1G-Odg"/>
-                                    <constraint firstAttribute="width" constant="168" id="jNV-sf-hFJ"/>
+                                    <constraint firstAttribute="width" constant="280" id="jNV-sf-hFJ"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93e-wV-iSz">
-                                <rect key="frame" x="283" y="130" width="39" height="49"/>
+                                <rect key="frame" x="343" y="76" width="39" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="KfV-eN-Bcr"/>
                                     <constraint firstAttribute="width" constant="39" id="NJ9-Ct-dRM"/>
@@ -584,10 +584,10 @@
                         <viewLayoutGuide key="safeArea" id="T6G-9T-BxG"/>
                         <color key="backgroundColor" red="0.074509803921568626" green="0.0" blue="0.2985896468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="tq0-h5-5t4" firstAttribute="leading" secondItem="T6G-9T-BxG" secondAttribute="leading" constant="85" id="5F6-eK-XPo"/>
-                            <constraint firstItem="93e-wV-iSz" firstAttribute="leading" secondItem="tq0-h5-5t4" secondAttribute="trailing" constant="30" id="ALW-0r-j2W"/>
-                            <constraint firstItem="tq0-h5-5t4" firstAttribute="top" secondItem="T6G-9T-BxG" secondAttribute="top" constant="87" id="QXY-SS-1HT"/>
-                            <constraint firstItem="93e-wV-iSz" firstAttribute="top" secondItem="T6G-9T-BxG" secondAttribute="top" constant="86" id="jly-zc-TFS"/>
+                            <constraint firstItem="T6G-9T-BxG" firstAttribute="trailing" secondItem="93e-wV-iSz" secondAttribute="trailing" constant="32" id="Zyt-oJ-idd"/>
+                            <constraint firstItem="tq0-h5-5t4" firstAttribute="top" secondItem="T6G-9T-BxG" secondAttribute="top" constant="32" id="cYB-5i-aQv"/>
+                            <constraint firstItem="tq0-h5-5t4" firstAttribute="leading" secondItem="T6G-9T-BxG" secondAttribute="leading" constant="32" id="crW-Bu-gKJ"/>
+                            <constraint firstItem="93e-wV-iSz" firstAttribute="top" secondItem="T6G-9T-BxG" secondAttribute="top" constant="32" id="jly-zc-TFS"/>
                         </constraints>
                     </view>
                     <connections>
@@ -687,7 +687,6 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="changeProfile" destination="nMh-M6-xwp" eventType="touchUpInside" id="h5k-2Z-OjV"/>
                                     <action selector="goButtonPressed" destination="Vc7-tl-j7N" eventType="touchUpInside" id="pZb-Sn-QnN"/>
                                 </connections>
                             </button>
@@ -708,7 +707,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="change" destination="DGh-nE-QAv" id="adg-Iu-TjC"/>
                         <outlet property="myIconView" destination="3eA-mb-cCf" id="utd-ik-qXP"/>
                         <outlet property="myNameLabel" destination="DDE-hp-Qwe" id="VRz-U7-QvC"/>
                         <outlet property="nameTextField" destination="4da-2V-OHO" id="rA8-xI-WQ5"/>
