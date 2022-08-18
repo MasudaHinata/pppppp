@@ -79,7 +79,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         guard let userID = user?.uid else { return }
         print("自分のユーザーIDを取得しました")
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
-     
+        
         friendList.removeAll()
         friendLists.removeAll()
         let task = Task { [weak self] in
@@ -116,7 +116,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
         friendcollectionView.collectionViewLayout = layout
     }
-
+    
     func friendDeleted() {
         let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -142,7 +142,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "frienddatacell", for: indexPath)  as! FriendDataCell
-            
+        
         cell.nameLabel.text = friendList[indexPath.row].name
         cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
         return cell

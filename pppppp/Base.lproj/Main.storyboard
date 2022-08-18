@@ -687,7 +687,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="changeName" destination="nMh-M6-xwp" eventType="touchUpInside" id="AJk-gj-Yr4"/>
+                                    <action selector="changeProfile" destination="nMh-M6-xwp" eventType="touchUpInside" id="h5k-2Z-OjV"/>
                                     <action selector="goButtonPressed" destination="Vc7-tl-j7N" eventType="touchUpInside" id="pZb-Sn-QnN"/>
                                 </connections>
                             </button>
@@ -708,6 +708,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="change" destination="DGh-nE-QAv" id="adg-Iu-TjC"/>
                         <outlet property="myIconView" destination="3eA-mb-cCf" id="utd-ik-qXP"/>
                         <outlet property="myNameLabel" destination="DDE-hp-Qwe" id="VRz-U7-QvC"/>
                         <outlet property="nameTextField" destination="4da-2V-OHO" id="rA8-xI-WQ5"/>
