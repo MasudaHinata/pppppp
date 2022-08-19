@@ -14,8 +14,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
     let user = FirebaseClient.shared.user
     var shareUrlString: String?
     var completionHandlers = [() -> Void]()
-    var friendList = [User]()
-    var friendLists = [UserIcon]()
+    var friendNameList = [User]()
+    var friendIconList = [UserIcon]()
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
@@ -40,8 +40,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         }
     }
     @IBAction func reloadButton() {
-        friendList.removeAll()
-        friendLists.removeAll()
+        friendNameList.removeAll()
+        friendIconList.removeAll()
         let task = Task { [weak self] in
             do {
                 let userID = FirebaseClient.shared.userID
@@ -53,11 +53,11 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
                 for id in friendIds {
                     let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
                     if let friend = friend {
-                        self?.friendList.append(friend)
+                        self?.friendNameList.append(friend)
                     }
                     let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
                     if let friendss = friendss {
-                        self?.friendLists.append(friendss)
+                        self?.friendIconList.append(friendss)
                     }
                     self!.friendcollectionView.reloadData()
                 }
@@ -80,8 +80,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
         print("自分のユーザーIDを取得しました")
         shareUrlString = "sanitas-ios-dev://?id=\(userID)"
         
-        friendList.removeAll()
-        friendLists.removeAll()
+        friendNameList.removeAll()
+        friendIconList.removeAll()
         let task = Task { [weak self] in
             do {
                 let userID = FirebaseClient.shared.userID
@@ -93,11 +93,11 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
                 for id in friendIds {
                     let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
                     if let friend = friend {
-                        self?.friendList.append(friend)
+                        self?.friendNameList.append(friend)
                     }
                     let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
                     if let friendss = friendss {
-                        self?.friendLists.append(friendss)
+                        self?.friendIconList.append(friendss)
                     }
                     self!.friendcollectionView.reloadData()
                 }
@@ -138,19 +138,19 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
 
 extension FriendListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return friendList.count
+        return friendNameList.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "frienddatacell", for: indexPath)  as! FriendDataCell
         
-        cell.nameLabel.text = friendList[indexPath.row].name
-        cell.iconView.kf.setImage(with: URL(string: friendLists[indexPath.row].imageURL)!)
+        cell.nameLabel.text = friendNameList[indexPath.row].name
+        cell.iconView.kf.setImage(with: URL(string: friendIconList[indexPath.row].imageURL)!)
         return cell
     }
     //友達を削除する
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let deleteFriendId = friendList[indexPath.row].id else { return }
+        guard let deleteFriendId = friendNameList[indexPath.row].id else { return }
         let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
             let task = Task {

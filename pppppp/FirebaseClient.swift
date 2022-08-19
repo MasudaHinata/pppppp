@@ -112,7 +112,7 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
-//    IDからポイントを取得
+    //IDからポイントを取得
     public func getHealthDataFromId(friendsId: String) async throws -> UserHealth {
         let querySnapshot = try await db.collection("UserData").document(friendsId).collection("HealthData").document("Date()").getDocument()
         do {
@@ -123,20 +123,6 @@ final class FirebaseClient {
             throw FirebaseClientFirestoreError.userDataNotFound
         }
     }
-    
-//    public func getHealthDataFromId(friendsId: String) async throws {
-//        db.collection("UserData").document(friendsId).collection("HealthData").document("Date()").addSnapshotListener { documentSnapshot, error in
-//            guard let document = documentSnapshot else {
-//                print("Error fetching document: \(error!)")
-//                return
-//            }
-//            guard let data = document.data()!["point"]! else {
-//                print("Document data was empty.")
-//                return
-//            }
-//            print("Current data: \(data)")
-//        }
-//    }
     //IDからアイコンの画像URLを取得
     public func getIconDataFromId(friendIds: String) async throws -> UserIcon {
         let querySnapshot = try await db.collection("UserData").document(friendIds).collection("IconData").document("Icon").getDocument()

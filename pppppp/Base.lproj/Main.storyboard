@@ -687,6 +687,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="changeProfile" destination="nMh-M6-xwp" eventType="touchUpInside" id="w6B-ug-WAj"/>
                                     <action selector="goButtonPressed" destination="Vc7-tl-j7N" eventType="touchUpInside" id="pZb-Sn-QnN"/>
                                 </connections>
                             </button>
