@@ -53,10 +53,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         friendIconList.removeAll()
         let task = Task { [weak self] in
             do {
-                let userID = FirebaseClient.shared.userID
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
-                
                 let friendIds = try? await FirebaseClient.shared.getfriendIds()
                 guard let friendIds = friendIds else { return }
                 for id in friendIds {
@@ -78,6 +74,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,6 +162,19 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
             let task = Task {
                 do {
                     try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: deleteFriendId)
+                    let friendIds = try? await FirebaseClient.shared.getfriendIds()
+                    guard let friendIds = friendIds else { return }
+                    for id in friendIds {
+                        let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
+                        if let friend = friend {
+                            self.friendNameList.append(friend)
+                        }
+                        let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+                        if let friendss = friendss {
+                            self.friendIconList.append(friendss)
+                        }
+                        self.friendcollectionView.reloadData()
+                    }
                 }
                 catch {
                     //TODO: ERROR Handling
