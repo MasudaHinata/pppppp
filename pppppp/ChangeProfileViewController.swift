@@ -18,6 +18,12 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
     
+    var sceneChangeProfile: sceneChangeProfile!
+    @IBAction func back_page1(_ sender: Any) {
+        dismiss(animated: true, completion: {
+            self.sceneChangeProfile.scene()
+        })
+    }
     //アルバムを開く処理を呼び出す
     @IBAction func uploadButton(_ sender: Any) {
         let picker = UIImagePickerController()
@@ -58,6 +64,10 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGR.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGR)
         
         nameTextField.layer.cornerRadius = 24
         nameTextField.clipsToBounds = true
@@ -210,5 +220,12 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextField.resignFirstResponder()
+        return true
     }
 }
