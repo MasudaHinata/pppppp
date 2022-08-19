@@ -9,8 +9,22 @@ import UIKit
 import Combine
 import Kingfisher
 
+protocol sceneChangeProfile {
+    func scene()
+}
+
 @MainActor
-final class FriendListViewController: UIViewController, FirebaseClientDelegate {
+final class FriendListViewController: UIViewController, FirebaseClientDelegate, sceneChangeProfile {
+    
+    func scene() {
+        viewDidLoad()
+    }
+    @IBAction func to_page2(_ sender: Any) {
+        let page2 = self.storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
+        page2.sceneChangeProfile = self
+        self.present(page2,animated: true,completion: nil)
+    }
+    
     let user = FirebaseClient.shared.user
     var shareUrlString: String?
     var completionHandlers = [() -> Void]()
@@ -19,11 +33,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate {
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
-    @IBAction func goSettingButton() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ChangeProfileViewController")
-        self.showDetailViewController(secondVC, sender: self)
-    }
     @IBOutlet var friendcollectionView: UICollectionView! {
         didSet {
             FirebaseClient.shared.delegate = self
