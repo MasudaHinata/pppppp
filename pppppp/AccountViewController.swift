@@ -1,8 +1,10 @@
 import UIKit
 import FirebaseStorage
+import Combine
 
 class AccountViewController: UIViewController ,UITextFieldDelegate {
     
+    var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
     @IBOutlet var GoButton: UIButton!
     @IBOutlet var emailTextField: UITextField! {
@@ -70,6 +72,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
                         print("error")
                     }
                 }
+                cancellables.insert(.init { task.cancel() })
                 let alert = UIAlertController(title: "仮登録を行いました", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                     aaa()
@@ -113,6 +116,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
                 print("error")
             }
         }
+        cancellables.insert(.init { task.cancel() })
     }
 
     func design() {

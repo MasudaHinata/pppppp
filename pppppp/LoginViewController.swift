@@ -1,7 +1,9 @@
 import UIKit
+import Combine
 
 class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClientAuthDelegate {
     
+    var cancellables = Set<AnyCancellable>()
     @IBOutlet var goButton: UIButton!
     @IBOutlet var loginLabel: UILabel!
     
@@ -70,6 +72,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
                     print("error")
                 }
             }
+            cancellables.insert(.init { task.cancel() })
         }
     }
     @objc func dismissKeyboard() {

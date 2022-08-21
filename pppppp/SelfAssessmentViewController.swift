@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class SelfAssessmentViewController: UIViewController {
+    
+    var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,7 @@ class SelfAssessmentViewController: UIViewController {
                 print("error")
             }
         }
+        cancellables.insert(.init { task.cancel() })
     }
     @IBAction func normalButton(){
         let task = Task {
@@ -44,6 +48,7 @@ class SelfAssessmentViewController: UIViewController {
                 print("error")
             }
         }
+        cancellables.insert(.init { task.cancel() })
     }
     @IBAction func badButton(){
         let task = Task {
@@ -59,5 +64,6 @@ class SelfAssessmentViewController: UIViewController {
                 print("error")
             }
         }
+        cancellables.insert(.init { task.cancel() })
     }
 }

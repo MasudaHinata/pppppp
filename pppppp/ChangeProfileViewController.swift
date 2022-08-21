@@ -77,7 +77,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         myIconView.layer.cornerCurve = .continuous
     }
     override func viewDidAppear(_ animated: Bool) {
-        Task {
+        let task = Task {
             do {
                 let userID = FirebaseClient.shared.userID
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
@@ -103,7 +103,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                     if let _ = metadata {
                         reference.downloadURL{(url,error) in
                             if let downloadUrl = url {
-                                Task {
+                                let task = Task {
                                     do {
                                         let downloadUrlStr = downloadUrl.absoluteString
                                         try await FirebaseClient.shared.putIconFirestore(image: downloadUrlStr)
