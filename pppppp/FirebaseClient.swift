@@ -132,7 +132,6 @@ final class FirebaseClient {
             return user
         } catch {
             throw FirebaseClientFirestoreError.userDataNotFound
-//            try await ErrorHelper.shared.showAlert(title: "エラー", messege: "a")
         }
     }
     //名前を表示する

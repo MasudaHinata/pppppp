@@ -35,9 +35,9 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     //画像が選択された時に呼ばれる
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
         if let selectedImage = info[.originalImage] as? UIImage {
-            myIconView.image = selectedImage  //imageViewにカメラロールから選んだ画像を表示する
+            myIconView.image = selectedImage
         }
-        self.dismiss(animated: true)  //画像をImageViewに表示したらアルバムを閉じる
+        self.dismiss(animated: true)
     }
     //画像選択がキャンセルされた時に呼ばれる
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -75,10 +75,9 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         myIconView.layer.cornerRadius = 43
         myIconView.clipsToBounds = true
         myIconView.layer.cornerCurve = .continuous
-        // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
-        let task = Task {
+        Task {
             do {
                 let userID = FirebaseClient.shared.userID
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
@@ -104,7 +103,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                     if let _ = metadata {
                         reference.downloadURL{(url,error) in
                             if let downloadUrl = url {
-                                let task = Task {
+                                Task {
                                     do {
                                         let downloadUrlStr = downloadUrl.absoluteString
                                         try await FirebaseClient.shared.putIconFirestore(image: downloadUrlStr)
