@@ -102,7 +102,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                 let task = Task {
                                     do {
                                         let downloadUrlStr = downloadUrl.absoluteString
-                                        try await FirebaseClient.shared.putIconFirestore(image: downloadUrlStr)
+                                        try await FirebaseClient.shared.putIconFirestore(imageURL: downloadUrlStr)
                                         try await FirebaseClient.shared.putNameFirestore(name: profileName)
                                         let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                                         let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in

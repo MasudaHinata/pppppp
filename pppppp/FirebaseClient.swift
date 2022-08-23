@@ -45,9 +45,10 @@ final class FirebaseClient {
     
     //今までの自分のポイントを取得
     func getUntilNowPoint() async throws {
-        try await  validate()
-        try await checkName()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         let querySnapshot = try await db.collection("UserData").document(userID).collection("HealthData").document("Date()").getDocument()
         do {
@@ -60,9 +61,10 @@ final class FirebaseClient {
     }
     //ポイントをfirebaseに保存
     func firebasePutData(point: Int) async throws {
-        try await  validate()
-        try await checkName()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         try await db.collection("UserData").document(userID).collection("HealthData").document("Date()").setData([
             "point": point
@@ -77,12 +79,12 @@ final class FirebaseClient {
     //TODO: addsnapshotListener
     //IDを取得
     public func getfriendIds() async throws -> [String] {
-        try await  validate()
-        try await checkName()
         //FIXME: エラーハンドリングをする
-        try await validate()
-        try await checkName()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        try await checkNameData()
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         let querySnapshot = try await db.collection("UserData").document(userID).collection("friendsList").getDocuments()
         let documents = querySnapshot.documents
@@ -92,8 +94,6 @@ final class FirebaseClient {
     }
     //IDから名前とか取得
     public func getUserDataFromId(friendId: String) async throws -> User {
-        try await  validate()
-        try await checkName()
         let querySnapshot = try await db.collection("UserData").document(friendId).getDocument()
         do {
             let user = try querySnapshot.data(as: User.self)
@@ -104,8 +104,6 @@ final class FirebaseClient {
     }
     //IDからポイントを取得
     public func getHealthDataFromId(friendsId: String) async throws -> UserHealth {
-        try await  validate()
-        try await checkName()
         let querySnapshot = try await db.collection("UserData").document(friendsId).collection("HealthData").document("Date()").getDocument()
         do {
             let user = try querySnapshot.data(as: UserHealth.self)
@@ -117,8 +115,6 @@ final class FirebaseClient {
     }
     //IDからアイコンの画像URLを取得
     public func getIconDataFromId(friendIds: String) async throws -> UserIcon {
-        try await  validate()
-        try await checkName()
         let querySnapshot = try await db.collection("UserData").document(friendIds).collection("IconData").document("Icon").getDocument()
         do {
             let user = try querySnapshot.data(as: UserIcon.self)
@@ -130,9 +126,11 @@ final class FirebaseClient {
     }
     //自分の名前を表示する
     func getMyNameData() async throws -> String {
-        try await  validate()
-        try await checkName()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        try await self.checkNameData()
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         let querySnapShot = try await db.collection("UserData").document(userID).getDocument()
         print("自分の名前は\(querySnapShot.data()!["name"]!)")
@@ -142,9 +140,11 @@ final class FirebaseClient {
     
     //自分のアイコンを表示する
     func getMyIconData() async throws -> URL {
-        try await  validate()
-        try await checkName()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        try await checkIconData()
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         let querySnapShot = try await db.collection("UserData").document(userID).collection("IconData").document("Icon").getDocument()
         print("自分のアイコンのURLは: \(querySnapShot.data()!["imageURL"]!)")
@@ -153,54 +153,54 @@ final class FirebaseClient {
     }
     //友達の名前を表示する
     func getFriendNameData(friendId: String) async throws -> String {
-        try await  validate()
-        try await checkName()
         let querySnapShot = try await db.collection("UserData").document(friendId).getDocument()
         print("友達の名前は\(querySnapShot.data()!["name"]!)")
         let data = querySnapShot.data()!["name"]!
         return data as! String
     }
-    //友田家のアイコンを表示する
+    //友達のアイコンを表示する
     func getFriendData(friendId: String) async throws -> URL {
-        try await  validate()
-        try await checkName()
         let querySnapShot = try await db.collection("UserData").document(friendId).collection("IconData").document("Icon").getDocument()
         print("友達のアイコンのURLは: \(querySnapShot.data()!["imageURL"]!)")
         let url = URL(string: querySnapShot.data()!["imageURL"]! as! String)!
         return url
     }
     //画像をfirestoreに保存
-    func putIconFirestore(image: String) async throws {
-        try await  validate()
-        try await checkName()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+    func putIconFirestore(imageURL: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
-        try await db.collection("UserData").document(userID).collection("IconData").document("Icon").setData(["imageURL": image])
+        try await db.collection("UserData").document(userID).collection("IconData").document("Icon").setData(["imageURL": imageURL])
         print("画像を設定")
     }
     //名前をfirestoreに保存
     func putNameFirestore(name: String) async throws {
-        try await  validate()
-        try await checkName()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         try await db.collection("UserData").document(userID).setData(["name": name])
         print("名前を設定")
     }
     //友達を追加する
     func addFriend(friendId: String) async throws {
-        try await  validate()
-        try await checkName()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         var result = try await db.collection("UserData").document(userID).collection("friendsList").document(friendId).setData(["friendId": friendId])
         result = try await db.collection("UserData").document(friendId).collection("friendsList").document(userID).setData(["friendId": userID])
     }
     //友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
-        try await  validate()
-        try await checkName()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         var result = try await db.collection("UserData").document(userID).collection("friendsList").document(deleteFriendId).delete()
         result = try await db.collection("UserData").document(deleteFriendId).collection("friendsList").document(userID).delete()
@@ -213,16 +213,19 @@ final class FirebaseClient {
             await LoginHelper.shared.showAccountViewController()
             return
         }
-        
+
         try await user.reload()
         if !user.isEmailVerified {
             throw FirebaseClientAuthError.emailVerifyRequired
         }
     }
-    //名前とアイコンがあるかどうかの判定
-    func checkName() async throws {
-        try await validate()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+    //名前があるかどうかの判定
+    func checkNameData() async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            try await self.checkNameData()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         let snapshot = try await db.collection("UserData").document(userID).getDocument()
         guard (try? snapshot.data(as: User.self)) != nil else {
@@ -230,6 +233,15 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
             return
         }
+    }
+    //アイコンがあるかどうかの判定
+    func checkIconData() async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            try await self.checkIconData()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
         let querySnapshot = try await self.db.collection("UserData").document(userID).collection("IconData").document("Icon").getDocument()
         guard (try? querySnapshot.data(as: UserIcon.self)) != nil else {
             try await db.collection("UserData").document(userID).collection("IconData").document("Icon").setData([
@@ -256,8 +268,10 @@ final class FirebaseClient {
     }
     //アカウントを削除する
     func accountDelete() async throws {
-        try await  validate()
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         let friendIds = try? await FirebaseClient.shared.getfriendIds()
         guard let friendIds = friendIds else { return }
@@ -269,7 +283,6 @@ final class FirebaseClient {
     
     //ログインする
     func login(email: String, password: String) async throws {
-        try await  validate()
         try await firebaseAuth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
             if self.firebaseAuth.currentUser?.isEmailVerified == true {
@@ -291,7 +304,10 @@ final class FirebaseClient {
     }
     //UUIDをとる
     func getUserUUID() throws -> String {
-        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
         let userID = user.uid
         return userID
     }
