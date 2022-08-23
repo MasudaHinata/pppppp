@@ -27,8 +27,8 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let task = Task { [weak self] in
             do {
-                try await friendIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: friendId!))
-                try await friendLabel.text = FirebaseClient.shared.getMyNameData(user: friendId)
+                try await friendIconView.kf.setImage(with: FirebaseClient.shared.getFriendData(friendId: friendId!))
+                try await friendLabel.text = FirebaseClient.shared.getFriendNameData(friendId: friendId)
             }
             catch {
                 

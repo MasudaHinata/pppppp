@@ -137,20 +137,37 @@ final class FirebaseClient {
             return user
         } catch {
             throw FirebaseClientFirestoreError.userDataNotFound
-//            try await ErrorHelper.shared.showAlert(title: "エラー", messege: "a")
         }
     }
-    //名前を表示する
-    func getMyNameData(user: String) async throws -> String {
-        let querySnapShot = try await db.collection("UserData").document(user).getDocument()
-        print("名前は\(querySnapShot.data()!["name"]!)")
+    //自分の名前を表示する
+    func getMyNameData() async throws -> String {
+        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        let userID = user.uid
+        let querySnapShot = try await db.collection("UserData").document(userID).getDocument()
+        print("自分の名前は\(querySnapShot.data()!["name"]!)")
         let data = querySnapShot.data()!["name"]!
         return data as! String
     }
-    //アイコンを表示する
-    func getMyData(user: String) async throws -> URL {
-    let querySnapShot = try await db.collection("UserData").document(user).collection("IconData").document("Icon").getDocument()
-        print("アイコンのURLは: \(querySnapShot.data()!["imageURL"]!)")
+    //自分のアイコンを表示する
+    func getMyData() async throws -> URL {
+        guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
+        let userID = user.uid
+        let querySnapShot = try await db.collection("UserData").document(userID).collection("IconData").document("Icon").getDocument()
+        print("自分のアイコンのURLは: \(querySnapShot.data()!["imageURL"]!)")
+        let url = URL(string: querySnapShot.data()!["imageURL"]! as! String)!
+        return url
+    }
+    //友達の名前を表示する
+    func getFriendNameData(friendId: String) async throws -> String {
+        let querySnapShot = try await db.collection("UserData").document(friendId).getDocument()
+        print("友達の名前は\(querySnapShot.data()!["name"]!)")
+        let data = querySnapShot.data()!["name"]!
+        return data as! String
+    }
+    //友田家のアイコンを表示する
+    func getFriendData(friendId: String) async throws -> URL {
+        let querySnapShot = try await db.collection("UserData").document(friendId).collection("IconData").document("Icon").getDocument()
+        print("友達のアイコンのURLは: \(querySnapShot.data()!["imageURL"]!)")
         let url = URL(string: querySnapShot.data()!["imageURL"]! as! String)!
         return url
     }

@@ -34,9 +34,9 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     //画像が選択された時に呼ばれる
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
         if let selectedImage = info[.originalImage] as? UIImage {
-            myIconView.image = selectedImage  //imageViewにカメラロールから選んだ画像を表示する
+            myIconView.image = selectedImage
         }
-        self.dismiss(animated: true)  //画像をImageViewに表示したらアルバムを閉じる
+        self.dismiss(animated: true)
     }
     //画像選択がキャンセルされた時に呼ばれる
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -80,8 +80,8 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         let task = Task {
             do {
                 let userID = FirebaseClient.shared.userID
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData())
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
             }
             catch {
                 
@@ -90,8 +90,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     //名前を変更
     func saveProfile(profileName: String) {
-//        var userId = try! FirebaseClient.shared.getUserUUID()
-        
         if let selectImage = myIconView.image {
             let imageName = "\(Date().timeIntervalSince1970).jpg"
             let reference = Storage.storage().reference().child("posts/\(imageName)")
@@ -111,9 +109,8 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                         let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                                             let task = Task {
                                                 do {
-                                                    let userID = FirebaseClient.shared.userID
-                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
-                                                    try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyData())
+                                                    try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData()
                                                 }
                                                 catch {
                                                     print("error")
