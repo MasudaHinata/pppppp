@@ -126,6 +126,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         print(now)
