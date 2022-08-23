@@ -34,33 +34,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
         friendNameList.removeAll()
         friendPointList.removeAll()
         friendIconList.removeAll()
-//        let task = Task { [weak self] in
-//            do {
-//                let friendIds = try? await FirebaseClient.shared.getfriendIds()
-//                guard var friendIds = friendIds else { return }
+        let task = Task { [weak self] in
+            do {
+                let friendIds = try? await FirebaseClient.shared.getfriendIds()
+                guard var friendIds = friendIds else { return }
 //                friendIds += [String(user!.uid)]
-//                for id in friendIds {
-//                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
-//                    if let friend = friend {
-//                        self?.friendNameList.append(friend)
-//                    }
-//                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
-//                    if let friends = friends {
-//                        self?.friendPointList.append(friends)
-//                    }
-//                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
-//                    if let friendss = friendss {
-//                        self?.friendIconList.append(friendss)
-//                    }
-//                    self!.collectionView.reloadData()
-//                }
-//            }
-//            catch {
-//                //TODO: ERROR Handling
-//                print("error")
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
+                for id in friendIds {
+                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
+                    if let friend = friend {
+                        self?.friendNameList.append(friend)
+                    }
+                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
+                    if let friends = friends {
+                        self?.friendPointList.append(friends)
+                    }
+                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+                    if let friendss = friendss {
+                        self?.friendIconList.append(friendss)
+                    }
+                    self!.collectionView.reloadData()
+                }
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -172,12 +172,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             print("まだ19時前")
         }
     }
-    @objc func refresh(sender: UIRefreshControl) {
-        //ここに通信処理などデータフェッチの処理を書く
-        //データフェッチが終わったらUIRefreshControl.endRefreshing()を呼ぶ必要がある
-        friendNameList.removeAll()
-        friendPointList.removeAll()
-        friendIconList.removeAll()
+//    @objc func refresh(sender: UIRefreshControl) {
+//        //ここに通信処理などデータフェッチの処理を書く
+//        //データフェッチが終わったらUIRefreshControl.endRefreshing()を呼ぶ必要がある
+//        friendNameList.removeAll()
+//        friendPointList.removeAll()
+//        friendIconList.removeAll()
 //        let task = Task { [weak self] in
 //            do {
 //                let friendIds = try? await FirebaseClient.shared.getfriendIds()
@@ -206,7 +206,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        }
 //        cancellables.insert(.init { task.cancel() })
         //UIRefreshControl.endRefreshing()
-    }
+//    }
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
