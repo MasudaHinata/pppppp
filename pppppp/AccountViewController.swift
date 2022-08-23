@@ -1,9 +1,10 @@
+import Combine
 import UIKit
 import FirebaseStorage
 import Combine
 
 class AccountViewController: UIViewController ,UITextFieldDelegate {
-    
+
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
     @IBOutlet var GoButton: UIButton!
@@ -67,9 +68,10 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
                 let task = Task {
                     do {
                         try await FirebaseClient.shared.createAccount(email: email, password: password)
+                        try await self.initializePersonalData()
                     }
                     catch {
-                        print("error")
+                        print("check password error")
                     }
                 }
                 cancellables.insert(.init { task.cancel() })
@@ -105,9 +107,10 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     func aaa() {
         let task = Task {
             do {
-                try await FirebaseClient.shared.putNameFirestore(name: self.profileName)
-                try await FirebaseClient.shared.putIconFirestore(image: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
-                try await FirebaseClient.shared.firebasePutData(point: 0)
+                var result = try await FirebaseClient.shared.putNameFirestore(name: self.profileName)
+                result = try await FirebaseClient.shared.putIconFirestore(image: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
+                result = try await FirebaseClient.shared.firebasePutData(point: 0)
+                print(result)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
                 self.showDetailViewController(secondVC, sender: self)
@@ -117,6 +120,12 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             }
         }
         cancellables.insert(.init { task.cancel() })
+    }
+    
+    func initializePersonalData() async throws {
+        try await FirebaseClient.shared.putNameFirestore(name: self.profileName)
+        try await FirebaseClient.shared.putIconFirestore(image: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
+        try await FirebaseClient.shared.firebasePutData(point: 0)
     }
 
     func design() {

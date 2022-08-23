@@ -12,7 +12,6 @@ import Kingfisher
 
 class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     var cancellables = Set<AnyCancellable>()
-    let user = FirebaseClient.shared.user
     var profileName: String = ""
     var myName: String!
     @IBOutlet var myIconView: UIImageView!
@@ -79,20 +78,17 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
-                let userID = FirebaseClient.shared.userID
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
             }
             catch {
                 
             }
         }
+        cancellables.insert(.init { task.cancel() })
     }
     //名前を変更
     func saveProfile(profileName: String) {
-        var user = FirebaseClient.shared.user
-        let db = FirebaseClient.shared.db
-        
         if let selectImage = myIconView.image {
             let imageName = "\(Date().timeIntervalSince1970).jpg"
             let reference = Storage.storage().reference().child("posts/\(imageName)")
@@ -112,9 +108,8 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                         let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                                             let task = Task {
                                                 do {
-                                                    let userID = FirebaseClient.shared.userID
-                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
-                                                    try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                                                    try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData()
                                                 }
                                                 catch {
                                                     print("error")
@@ -182,13 +177,13 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     //アカウントを削除する
     @IBAction func deleteAccount() {
+        
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
             
             let task = Task { [weak self] in
                 do {
                     try await FirebaseClient.shared.accountDelete()
-                    try await self?.user?.delete()
                     let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         print("アカウントを削除しました")
