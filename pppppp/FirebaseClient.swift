@@ -37,13 +37,11 @@ final class FirebaseClient {
     static let shared = FirebaseClient()
     weak var delegate: FirebaseClientDelegate?
     weak var delegateLogin: FirebaseClientAuthDelegate?
-    let db = Firestore.firestore()
     private init() {}
     
     
     let firebaseAuth = Auth.auth()
-    
-    let userID = Auth.auth().currentUser?.uid
+    let db = Firestore.firestore()
     var untilNowPoint = Int()
     
     //名前とアイコンがあるかどうかの判定
@@ -148,8 +146,9 @@ final class FirebaseClient {
         let data = querySnapShot.data()!["name"]!
         return data as! String
     }
+    
     //自分のアイコンを表示する
-    func getMyData() async throws -> URL {
+    func getMyIconData() async throws -> URL {
         guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
         let userID = user.uid
         let querySnapShot = try await db.collection("UserData").document(userID).collection("IconData").document("Icon").getDocument()
@@ -201,6 +200,18 @@ final class FirebaseClient {
         print("自分を友達のリストから削除しました")
         await self.delegate?.friendDeleted()
     }
+    //ログインできてるか,firestoreに情報があるかの判定
+    func validate() async throws {
+        guard let user = Auth.auth().currentUser else {
+            await LoginHelper.shared.showAccountViewController()
+            return
+        }
+        
+        try await user.reload()
+        if !user.isEmailVerified {
+            throw FirebaseClientAuthError.emailVerifyRequired
+        }
+    }
     //アカウントを作成する
     func createAccount(email: String, password: String) async throws {
         try await self.firebaseAuth.createUser(withEmail: email, password: password) { (result, error) in
@@ -215,18 +226,18 @@ final class FirebaseClient {
             }
         }
     }
-    //ログインできてるか,firestoreに情報があるかの判定
-    func validate() async throws {
-        guard let user = Auth.auth().currentUser else {
-            await LoginHelper.shared.showAccountViewController()
-            return
-        }
-        
-        try await user.reload()
-        if !user.isEmailVerified {
-            throw FirebaseClientAuthError.emailVerifyRequired
+    //アカウントを削除する
+    func accountDelete() async throws {
+        guard let user = Auth.auth().currentUser else { return }
+        let userID = user.uid
+        let friendIds = try? await FirebaseClient.shared.getfriendIds()
+        guard let friendIds = friendIds else { return }
+        for friendsId in friendIds {
+            var results = try await db.collection("UserData").document(friendsId).collection("friendsList").document(userID).delete()
+            results = try await db.collection("UserData").document(userID).delete()
         }
     }
+    
     //ログインする
     func login(email: String, password: String) async throws {
         try await firebaseAuth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
@@ -248,18 +259,7 @@ final class FirebaseClient {
             print("サインアウトしようとした/エラーは: %@", signOutError)
         }
     }
-    //アカウントを削除する
-    func accountDelete() async throws {
-        guard let user = Auth.auth().currentUser else { return }
-        let userID = user.uid
-        let friendIds = try? await FirebaseClient.shared.getfriendIds()
-        guard let friendIds = friendIds else { return }
-        for friendsId in friendIds {
-            var results = try await db.collection("UserData").document(friendsId).collection("friendsList").document(userID).delete()
-            results = try await db.collection("UserData").document(userID).delete()
-        }
-    }
-    
+    //UUIDをとる
     func getUserUUID() throws -> String {
         guard let user = Auth.auth().currentUser else { throw FirebaseClientAuthError.firestoreUserDataNotCreated }
         let userID = user.uid

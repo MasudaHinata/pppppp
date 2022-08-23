@@ -74,13 +74,11 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         myIconView.layer.cornerRadius = 43
         myIconView.clipsToBounds = true
         myIconView.layer.cornerCurve = .continuous
-        // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
-                let userID = FirebaseClient.shared.userID
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData())
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
             }
             catch {
@@ -109,7 +107,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                         let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                                             let task = Task {
                                                 do {
-                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyData())
+                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                                                     try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData()
                                                 }
                                                 catch {

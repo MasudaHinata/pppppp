@@ -81,12 +81,15 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         myIconView.layer.cornerCurve = .continuous
         friendNameList.removeAll()
         friendIconList.removeAll()
-//        let task = Task { [weak self] in
-//            do {
-//                let userID = FirebaseClient.shared.userID
-//                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
-//                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
-//                
+        
+        let task = Task { [weak self] in
+            do {
+                let imageURL = try await FirebaseClient.shared.getMyIconData()
+                myIconView.kf.setImage(with: imageURL)
+                
+//                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
+
 //                let friendIds = try? await FirebaseClient.shared.getfriendIds()
 //                guard let friendIds = friendIds else { return }
 //                for id in friendIds {
@@ -100,13 +103,13 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
 //                    }
 //                    self!.friendcollectionView.reloadData()
 //                }
-//            }
-//            catch {
-//                //TODO: ERROR Handling
-//                print("error")
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -74,7 +74,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        
 //        let dateComponents = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, hour: 19, minute: 00)
 //        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
 //        let content = UNMutableNotificationContent()
@@ -97,7 +96,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        let task = Task { [weak self] in
 //            do {
 //                try await Scorering.shared.createStepPoint()
-//                
+//
 //                let friendIds = try? await FirebaseClient.shared.getfriendIds()
 //                guard var friendIds = friendIds else { return }
 //                friendIds += [String(user!.uid)]
