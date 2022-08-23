@@ -1,9 +1,10 @@
 import UIKit
+import Combine
 
 class ProfileViewController: UIViewController {
     
     var friendId: String!
-    
+    var cancellables = Set<AnyCancellable>()
     @IBOutlet var friendLabel: UILabel!
     @IBOutlet var addFriendButton: UIButton!
     @IBOutlet var friendIconView: UIImageView!
@@ -34,6 +35,7 @@ class ProfileViewController: UIViewController {
                 
             }
         }
+        cancellables.insert(.init { task.cancel() })
     }
     //友達を追加する
     @IBAction func addFriend() {
@@ -51,5 +53,6 @@ class ProfileViewController: UIViewController {
                 print("エラー")
             }
         }
+        cancellables.insert(.init { task.cancel() })
     }
 }
