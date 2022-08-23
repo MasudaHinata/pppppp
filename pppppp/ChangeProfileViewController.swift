@@ -85,6 +85,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                 
             }
         }
+        cancellables.insert(.init { task.cancel() })
     }
     //名前を変更
     func saveProfile(profileName: String) {

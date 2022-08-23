@@ -84,25 +84,22 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         
         let task = Task { [weak self] in
             do {
-                let imageURL = try await FirebaseClient.shared.getMyIconData()
-                myIconView.kf.setImage(with: imageURL)
-                
-//                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
 
-//                let friendIds = try? await FirebaseClient.shared.getfriendIds()
-//                guard let friendIds = friendIds else { return }
-//                for id in friendIds {
-//                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
-//                    if let friend = friend {
-//                        self?.friendNameList.append(friend)
-//                    }
-//                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
-//                    if let friendss = friendss {
-//                        self?.friendIconList.append(friendss)
-//                    }
-//                    self!.friendcollectionView.reloadData()
-//                }
+                let friendIds = try? await FirebaseClient.shared.getfriendIds()
+                guard let friendIds = friendIds else { return }
+                for id in friendIds {
+                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
+                    if let friend = friend {
+                        self?.friendNameList.append(friend)
+                    }
+                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+                    if let friendss = friendss {
+                        self?.friendIconList.append(friendss)
+                    }
+                    self!.friendcollectionView.reloadData()
+                }
             }
             catch {
                 //TODO: ERROR Handling
