@@ -11,7 +11,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var friendNameList = [User]()
     var friendPointList = [UserHealth]()
     var friendIconList = [UserIcon]()
-    let user = FirebaseClient.shared.user
     let layout = UICollectionViewFlowLayout()
     let UD = UserDefaults.standard
     let calendar = Calendar.current
@@ -35,38 +34,46 @@ class ViewController: UIViewController, UITextFieldDelegate {
         friendNameList.removeAll()
         friendPointList.removeAll()
         friendIconList.removeAll()
-        let task = Task { [weak self] in
-            do {
-                let friendIds = try? await FirebaseClient.shared.getfriendIds()
-                guard var friendIds = friendIds else { return }
-                friendIds += [String(user!.uid)]
-                for id in friendIds {
-                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
-                    if let friend = friend {
-                        self?.friendNameList.append(friend)
-                    }
-                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
-                    if let friends = friends {
-                        self?.friendPointList.append(friends)
-                    }
-                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
-                    if let friendss = friendss {
-                        self?.friendIconList.append(friendss)
-                    }
-                    self!.collectionView.reloadData()
-                }
-            }
-            catch {
-                //TODO: ERROR Handling
-                print("error")
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
+//        let task = Task { [weak self] in
+//            do {
+//                let friendIds = try? await FirebaseClient.shared.getfriendIds()
+//                guard var friendIds = friendIds else { return }
+//                friendIds += [String(user!.uid)]
+//                for id in friendIds {
+//                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
+//                    if let friend = friend {
+//                        self?.friendNameList.append(friend)
+//                    }
+//                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
+//                    if let friends = friends {
+//                        self?.friendPointList.append(friends)
+//                    }
+//                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+//                    if let friendss = friendss {
+//                        self?.friendIconList.append(friendss)
+//                    }
+//                    self!.collectionView.reloadData()
+//                }
+//            }
+//            catch {
+//                //TODO: ERROR Handling
+//                print("error")
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
+        let task = Task {
+            do {
+                try await FirebaseClient.shared.validate()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
         
 //        let dateComponents = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, hour: 19, minute: 00)
 //        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
@@ -87,35 +94,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
         friendNameList.removeAll()
         friendPointList.removeAll()
         friendIconList.removeAll()
-        let task = Task { [weak self] in
-            do {
-                try await Scorering.shared.createStepPoint()
-                
-                let friendIds = try? await FirebaseClient.shared.getfriendIds()
-                guard var friendIds = friendIds else { return }
-                friendIds += [String(user!.uid)]
-                for id in friendIds {
-                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
-                    if let friend = friend {
-                        self?.friendNameList.append(friend)
-                    }
-                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
-                    if let friends = friends {
-                        self?.friendPointList.append(friends)
-                    }
-                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
-                    if let friendss = friendss {
-                        self?.friendIconList.append(friendss)
-                    }
-                    self!.collectionView.reloadData()
-                }
-            }
-            catch {
-                //TODO: ERROR Handling
-                print("error")
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
+//        let task = Task { [weak self] in
+//            do {
+//                try await Scorering.shared.createStepPoint()
+//                
+//                let friendIds = try? await FirebaseClient.shared.getfriendIds()
+//                guard var friendIds = friendIds else { return }
+//                friendIds += [String(user!.uid)]
+//                for id in friendIds {
+//                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
+//                    if let friend = friend {
+//                        self?.friendNameList.append(friend)
+//                    }
+//                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
+//                    if let friends = friends {
+//                        self?.friendPointList.append(friends)
+//                    }
+//                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+//                    if let friendss = friendss {
+//                        self?.friendIconList.append(friendss)
+//                    }
+//                    self!.collectionView.reloadData()
+//                }
+//            }
+//            catch {
+//                //TODO: ERROR Handling
+//                print("error")
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -172,33 +179,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
         friendNameList.removeAll()
         friendPointList.removeAll()
         friendIconList.removeAll()
-        let task = Task { [weak self] in
-            do {
-                let friendIds = try? await FirebaseClient.shared.getfriendIds()
-                guard var friendIds = friendIds else { return }
-                friendIds += [String(user!.uid)]
-                for id in friendIds {
-                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
-                    if let friend = friend {
-                        self?.friendNameList.append(friend)
-                    }
-                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
-                    if let friends = friends {
-                        self?.friendPointList.append(friends)
-                    }
-                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
-                    if let friendss = friendss {
-                        self?.friendIconList.append(friendss)
-                    }
-                    self!.collectionView.reloadData()
-                }
-            }
-            catch {
-                //TODO: ERROR Handling
-                print("error")
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
+//        let task = Task { [weak self] in
+//            do {
+//                let friendIds = try? await FirebaseClient.shared.getfriendIds()
+//                guard var friendIds = friendIds else { return }
+//                friendIds += [String(user!.uid)]
+//                for id in friendIds {
+//                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
+//                    if let friend = friend {
+//                        self?.friendNameList.append(friend)
+//                    }
+//                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
+//                    if let friends = friends {
+//                        self?.friendPointList.append(friends)
+//                    }
+//                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+//                    if let friendss = friendss {
+//                        self?.friendIconList.append(friendss)
+//                    }
+//                    self!.collectionView.reloadData()
+//                }
+//            }
+//            catch {
+//                //TODO: ERROR Handling
+//                print("error")
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
         //UIRefreshControl.endRefreshing()
     }
 }

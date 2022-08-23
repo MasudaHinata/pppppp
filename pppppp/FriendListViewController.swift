@@ -24,9 +24,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         page2.sceneChangeProfile = self
         self.present(page2,animated: true,completion: nil)
     }
-    
-    let user = FirebaseClient.shared.user
-    var shareUrlString: String?
+
     var completionHandlers = [() -> Void]()
     var friendNameList = [User]()
     var friendIconList = [UserIcon]()
@@ -81,39 +79,34 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         myIconView.layer.cornerRadius = 32
         myIconView.clipsToBounds = true
         myIconView.layer.cornerCurve = .continuous
-        
-        guard let userID = user?.uid else { return }
-        print("自分のユーザーIDを取得しました")
-        shareUrlString = "sanitas-ios-dev://?id=\(userID)"
-        
         friendNameList.removeAll()
         friendIconList.removeAll()
-        let task = Task { [weak self] in
-            do {
-                let userID = FirebaseClient.shared.userID
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
-                
-                let friendIds = try? await FirebaseClient.shared.getfriendIds()
-                guard let friendIds = friendIds else { return }
-                for id in friendIds {
-                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
-                    if let friend = friend {
-                        self?.friendNameList.append(friend)
-                    }
-                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
-                    if let friendss = friendss {
-                        self?.friendIconList.append(friendss)
-                    }
-                    self!.friendcollectionView.reloadData()
-                }
-            }
-            catch {
-                //TODO: ERROR Handling
-                print("error")
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
+//        let task = Task { [weak self] in
+//            do {
+//                let userID = FirebaseClient.shared.userID
+//                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyData(user: userID!))
+//                try await myNameLabel.text = FirebaseClient.shared.getMyNameData(user: userID!)
+//                
+//                let friendIds = try? await FirebaseClient.shared.getfriendIds()
+//                guard let friendIds = friendIds else { return }
+//                for id in friendIds {
+//                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
+//                    if let friend = friend {
+//                        self?.friendNameList.append(friend)
+//                    }
+//                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
+//                    if let friendss = friendss {
+//                        self?.friendIconList.append(friendss)
+//                    }
+//                    self!.friendcollectionView.reloadData()
+//                }
+//            }
+//            catch {
+//                //TODO: ERROR Handling
+//                print("error")
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -135,10 +128,16 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         showShareSheet()
     }
     func showShareSheet() {
-        guard let userID = user?.uid else { return }
-        let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
-        let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
-        present(activityVC, animated: true, completion: nil)
+        do {
+            let userID = try FirebaseClient.shared.getUserUUID()
+            print("自分のユーザーIDを取得しました")
+            let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
+            let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
+            present(activityVC, animated: true, completion: nil)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
     }
 }
 

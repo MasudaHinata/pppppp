@@ -12,7 +12,6 @@ import Kingfisher
 
 class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     var cancellables = Set<AnyCancellable>()
-    let user = FirebaseClient.shared.user
     var profileName: String = ""
     var myName: String!
     @IBOutlet var myIconView: UIImageView!
@@ -91,8 +90,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     //名前を変更
     func saveProfile(profileName: String) {
-        var user = FirebaseClient.shared.user
-        let db = FirebaseClient.shared.db
+//        var userId = try! FirebaseClient.shared.getUserUUID()
         
         if let selectImage = myIconView.image {
             let imageName = "\(Date().timeIntervalSince1970).jpg"
@@ -183,13 +181,13 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     //アカウントを削除する
     @IBAction func deleteAccount() {
+        
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
             
             let task = Task { [weak self] in
                 do {
                     try await FirebaseClient.shared.accountDelete()
-                    try await self?.user?.delete()
                     let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         print("アカウントを削除しました")
