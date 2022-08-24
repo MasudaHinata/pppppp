@@ -14,8 +14,19 @@ class SelfAssessmentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let task = Task {
+            do {
+                try await FirebaseClient.shared.validate()
+                try await FirebaseClient.shared.checkIconData()
+                try await FirebaseClient.shared.checkNameData()
+            }
+            catch {
+                print("Self viewApe", error.localizedDescription)
+            }
+        }
     }
     //自己評価
     @IBAction func goodButton(){

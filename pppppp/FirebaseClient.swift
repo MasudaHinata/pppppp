@@ -51,7 +51,7 @@ final class FirebaseClient {
         }
         let userID = user.uid
         let querySnapshot = try await db.collection("User").document(userID).collection("HealthData").document("Date()").getDocument()
-//        untilNowPoint = querySnapshot.data()?["point"] as? Int ?? 0
+        //        untilNowPoint = querySnapshot.data()?["point"] as? Int ?? 0
         do {
             untilNowPoint = try querySnapshot.data()!["point"]! as! Int
             print("今までのポイントは\(String(describing: untilNowPoint))")
@@ -217,15 +217,15 @@ final class FirebaseClient {
         
         //TODO: 友達のFriendListから自分を削除
         
-//        try await db.collection("UserData").document(userID).delete()
-//        user.delete{ error in
-//            if let error = error {
-//                // An error happened.
-//            } else {
-//                // Account deleted.
-//
-//            }
-//        }
+        //        try await db.collection("UserData").document(userID).delete()
+        //        user.delete{ error in
+        //            if let error = error {
+        //                // An error happened.
+        //            } else {
+        //                // Account deleted.
+        //
+        //            }
+        //        }
     }
     
     //ログインする
