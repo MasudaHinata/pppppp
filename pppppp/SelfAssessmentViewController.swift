@@ -19,7 +19,7 @@ class SelfAssessmentViewController: UIViewController {
         super.viewDidAppear(animated)
         let task = Task {
             do {
-                try await FirebaseClient.shared.validate()
+                try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.checkIconData()
                 try await FirebaseClient.shared.checkNameData()
             }
