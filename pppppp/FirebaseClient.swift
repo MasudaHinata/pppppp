@@ -154,7 +154,7 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        try await db.collection("UserData").document(userID).updateData(["name": name])
+        try await db.collection("User").document(userID).updateData(["name": name])
         print("名前を設定")
     }
     //友達を追加する
@@ -169,17 +169,15 @@ final class FirebaseClient {
     }
     //友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
-//        guard let user = Auth.auth().currentUser else {
-//            try await  self.validate()
-//           t throw FirebaseClientAuthError.firestoreUserDataNotCreated
-//        }
-//        let userID = user.uid
-//        var result = try await db.collection("User").whereField("FriendList",arrayContains: userID).getDocuments().delete()
-//
-////        var result = try await db.collection("User").document(userID).collection("friendsList").document(deleteFriendId).delete()
-////        result = try await db.collection("User").document(deleteFriendId).collection("friendsList").document(userID).delete()
-//        print("自分を友達のリストから削除しました")
-//        await self.delegate?.friendDeleted()
+        guard let user = Auth.auth().currentUser else {
+            try await  self.validate()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        var result = try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayRemove([deleteFriendId])])
+        result = try await db.collection("User").document(deleteFriendId).updateData(["FriendList": FieldValue.arrayRemove([userID])])
+        print("自分を友達のリストから削除しました")
+        await self.delegate?.friendDeleted()
     }
     //ログインできてるかの判定
     func validate() async throws {

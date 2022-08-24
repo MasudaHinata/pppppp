@@ -527,7 +527,7 @@
                             <barButtonItem title="Item" image="arrow.clockwise" catalog="system" id="yv0-KS-Wmm">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <action selector="reloadButton" destination="9qf-JZ-69t" id="4dh-Dq-SiA"/>
+                                    <action selector="reloadButton" destination="9qf-JZ-69t" id="hby-Jr-k9r"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>

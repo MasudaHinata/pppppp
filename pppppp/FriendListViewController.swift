@@ -45,21 +45,21 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
             profileBackgroundView.layer.cornerCurve = .continuous
         }
     }
-//    @IBAction func reloadButton() {
-//        friendDataList.removeAll()
-//        let task = Task { [weak self] in
-//            do {
-//                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
-//                self!.collectionView.reloadData()
-//            }
-//            catch (let error){
-//                //TODO: ERROR Handling
-//                print("FriendListViewContro reload error: \(error)")
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
-//    }
-    
+    @IBAction func reloadButton() {
+        friendDataList.removeAll()
+        let task = Task { [weak self] in
+            guard let self = self else { return }
+            do {
+                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                self.friendcollectionView.reloadData()
+            }
+            catch (let error){
+                //TODO: ERROR Handling
+                print("FriendListViewContro reload error: \(error)")
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,12 +68,13 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         myIconView.layer.cornerCurve = .continuous
         friendDataList.removeAll()
         let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
 
-//                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
-//                self!.collectionView.reloadData()
+                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                self.friendcollectionView.reloadData()
             }
             catch(let error) {
                 print("friendlistViewContro viewdidload error: \(error)")
@@ -127,41 +128,30 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
         cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
         return cell
     }
-//    //友達を削除する
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//        guard let deleteFriendId = friendNameList[indexPath.row].id else { return }
-//        let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
-//        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
-//            let task = Task {
-//                do {
-//                    try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: deleteFriendId)
-//                    let friendIds = try? await FirebaseClient.shared.getfriendIds()
-//                    guard let friendIds = friendIds else { return }
-//                    for id in friendIds {
-//                        let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
-//                        if let friend = friend {
-//                            self.friendNameList.append(friend)
-//                        }
-//                        let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
-//                        if let friendss = friendss {
-//                            self.friendIconList.append(friendss)
-//                        }
-//                        self.friendcollectionView.reloadData()
-//                    }
-//                }
-//                catch (let error){
-//                    //TODO: ERROR Handling
-//                    print("FriendListViewContro collectionview error: \(error)")
-//                }
-//            }
-//            cancellables.insert(.init { task.cancel() })
-//        })
-//        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-//            print("キャンセル")
-//        })
-//        alert.addAction(delete)
-//        alert.addAction(cancel)
-//        self.present(alert, animated: true, completion: nil)
-//    }
+    //友達を削除する
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        guard let deleteFriendId = friendDataList[indexPath.row].id else { return }
+        let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
+        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
+            let task = Task {
+                do {
+                    try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: deleteFriendId)
+                    friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                    self.friendcollectionView.reloadData()
+                }
+                catch (let error){
+                    //TODO: ERROR Handling
+                    print("FriendListViewContro collectionview error: \(error)")
+                }
+            }
+            cancellables.insert(.init { task.cancel() })
+        })
+        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+            print("キャンセル")
+        })
+        alert.addAction(delete)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
 }

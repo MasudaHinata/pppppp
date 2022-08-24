@@ -6,6 +6,7 @@ import Kingfisher
 class ViewController: UIViewController, UITextFieldDelegate {
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
+    let refreshControl = UIRefreshControl()
     var friendDataList = [FriendListItem]()
     let layout = UICollectionViewFlowLayout()
     let UD = UserDefaults.standard
@@ -30,6 +31,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
+        
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
         
         Scorering.shared.getPermissionHealthKit()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
@@ -112,6 +116,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         cancellables.insert(.init { task.cancel() })
+    }
+    @objc func refresh(sender: UIRefreshControl) {
+        let task = Task { [weak self] in
+            do {
+                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                self!.collectionView.reloadData()
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+        refreshControl.endRefreshing()
     }
 }
 
