@@ -19,6 +19,14 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
     func scene() {
         viewDidLoad()
     }
+    func friendDeleted() {
+        let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func to_page2(_ sender: Any) {
         let page2 = self.storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
         page2.sceneChangeProfile = self
@@ -79,14 +87,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
         friendcollectionView.collectionViewLayout = layout
     }
-    
-    func friendDeleted() {
-        let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
+
     //リンクのシェアシート出す
     @IBAction func pressedButton() {
         showShareSheet()

@@ -57,8 +57,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     
     @IBAction func changeProfile() {
-        profileName = (nameTextField.text!)
-        saveProfile(profileName: profileName)
+        saveProfile()
     }
     
     override func viewDidLoad() {
@@ -88,7 +87,22 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         cancellables.insert(.init { task.cancel() })
     }
     //名前を変更
-    func saveProfile(profileName: String) {
+    func settingChangeName(profileName: String) {
+        if profileName == "" {
+            print("名前変更なし")
+        } else if profileName != "" {
+            Task {
+                do {
+                    try await FirebaseClient.shared.putNameFirestore(name: profileName)
+                }
+                catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    //プロフィールを変更
+    func saveProfile() {
         if let selectImage = myIconView.image {
             let imageName = "\(Date().timeIntervalSince1970).jpg"
             let reference = Storage.storage().reference().child("posts/\(imageName)")
@@ -97,13 +111,15 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                 metadata.contentType = "image/jpeg"
                 reference.putData(imageData, metadata: metadata, completion:{(metadata, error) in
                     if let _ = metadata {
-                        reference.downloadURL{(url,error) in
+                        reference.downloadURL{ [self] (url,error) in
                             if let downloadUrl = url {
                                 let task = Task {
                                     do {
                                         let downloadUrlStr = downloadUrl.absoluteString
+                                        profileName = (self.nameTextField.text!)
                                         try await FirebaseClient.shared.putIconFirestore(imageURL: downloadUrlStr)
-                                        try await FirebaseClient.shared.putNameFirestore(name: profileName)
+                                        self.settingChangeName(profileName: self.profileName)
+                    
                                         let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                                         let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                                             let task = Task {
@@ -115,6 +131,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                                     print("error")
                                                 }
                                             }
+                                            cancellables.insert(.init { task.cancel() })
                                         }
                                         alert.addAction(ok)
                                         self.present(alert, animated: true, completion: nil)
@@ -123,6 +140,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                         print("error")
                                     }
                                 }
+                                self.cancellables.insert(.init { task.cancel() })
                             } else {
                                 print("downloadURLの取得が失敗した場合の処理")
                             }
@@ -141,39 +159,95 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             self.present(alert, animated: true, completion: nil)
         }
     }
-    //ログアウトする
-    @IBAction func logoutButton() {
-        do {
-            let alert3 = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
-            let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
-                
-                let task = Task { [weak self] in
-                    do {
-                        try await FirebaseClient.shared.logout()
-                        print("ログアウトしました")
-                        let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                            self?.showDetailViewController(secondVC, sender: self)
-                        }
-                        alert.addAction(ok)
-                        self?.present(alert, animated: true, completion: nil)
-                    }
-                    catch {
-                        print("Change Logout error", error.localizedDescription)
-                    }
-                }
-                self.cancellables.insert(.init { task.cancel() })
-            })
-            let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-                print("キャンセル")
-            })
-            alert3.addAction(delete)
-            alert3.addAction(cancel)
-            self.present(alert3, animated: true, completion: nil)
-        }
-    }
+//    //プロフィールを変更
+//    func saveProfile(profileName: String) {
+//        if let selectImage = myIconView.image {
+//            let imageName = "\(Date().timeIntervalSince1970).jpg"
+//            let reference = Storage.storage().reference().child("posts/\(imageName)")
+//            if let imageData = selectImage.jpegData(compressionQuality: 0.8) {
+//                let metadata = StorageMetadata()
+//                metadata.contentType = "image/jpeg"
+//                reference.putData(imageData, metadata: metadata, completion:{(metadata, error) in
+//                    if let _ = metadata {
+//                        reference.downloadURL{ (url,error) in
+//                            if let downloadUrl = url {
+//                                let task = Task {
+//                                    do {
+//                                        let downloadUrlStr = downloadUrl.absoluteString
+//                                        try await FirebaseClient.shared.putIconFirestore(imageURL: downloadUrlStr)
+//                                        try await FirebaseClient.shared.putNameFirestore(name: profileName)
+//                                        let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
+//                                        let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
+//                                            let task = Task {
+//                                                do {
+//                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+//                                                    try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData()
+//                                                }
+//                                                catch {
+//                                                    print("error")
+//                                                }
+//                                            }
+//                                            cancellables.insert(.init { task.cancel() })
+//                                        }
+//                                        alert.addAction(ok)
+//                                        self.present(alert, animated: true, completion: nil)
+//                                    }
+//                                    catch {
+//                                        print("error")
+//                                    }
+//                                }
+//                                self.cancellables.insert(.init { task.cancel() })
+//                            } else {
+//                                print("downloadURLの取得が失敗した場合の処理")
+//                            }
+//                        }
+//                    } else {
+//                        print("storageの保存が失敗")
+//                    }
+//                })
+//            }
+//        } else {
+//            print("画像が選択されてない")
+//            let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
+//            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//            }
+//            alert.addAction(ok)
+//            self.present(alert, animated: true, completion: nil)
+//        }
+//    }
+//    //ログアウトする
+//    @IBAction func logoutButton() {
+//        do {
+//            let alert3 = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
+//            let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
+//
+//                let task = Task { [weak self] in
+//                    do {
+//                        try await FirebaseClient.shared.logout()
+//                        print("ログアウトしました")
+//                        let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました", preferredStyle: .alert)
+//                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+//                            self?.showDetailViewController(secondVC, sender: self)
+//                        }
+//                        alert.addAction(ok)
+//                        self?.present(alert, animated: true, completion: nil)
+//                    }
+//                    catch {
+//                        print("Change Logout error", error.localizedDescription)
+//                    }
+//                }
+//                self.cancellables.insert(.init { task.cancel() })
+//            })
+//            let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+//                print("キャンセル")
+//            })
+//            alert3.addAction(delete)
+//            alert3.addAction(cancel)
+//            self.present(alert3, animated: true, completion: nil)
+//        }
+//    }
     //アカウントを削除する
     @IBAction func deleteAccount() {
         
