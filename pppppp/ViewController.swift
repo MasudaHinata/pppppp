@@ -6,7 +6,7 @@ import Kingfisher
 class ViewController: UIViewController, UITextFieldDelegate {
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
-    let refreshControl = UIRefreshControl()
+    var refreshControl = UIRefreshControl()
     var friendDataList = [FriendListItem]()
     let layout = UICollectionViewFlowLayout()
     let UD = UserDefaults.standard
@@ -33,6 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
         
         collectionView.refreshControl = refreshControl
+        refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
         
         Scorering.shared.getPermissionHealthKit()

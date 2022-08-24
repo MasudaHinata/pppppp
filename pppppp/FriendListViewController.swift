@@ -28,7 +28,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
     var completionHandlers = [() -> Void]()
     var friendDataList = [FriendListItem]()
     var cancellables = Set<AnyCancellable>()
-    let refreshCtl = UIRefreshControl()
+    var refreshCtl = UIRefreshControl()
     @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var friendcollectionView: UICollectionView! {
@@ -49,7 +49,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addTarget(self, action: #selector(FriendListViewController.refresh(sender:)), for: .valueChanged)
         
