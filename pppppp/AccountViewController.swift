@@ -71,7 +71,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
                         try await self.initializePersonalData()
                     }
                     catch {
-                        print("check password error:," error.localizedDescription)
+                        print("check password error:,",error.localizedDescription)
                     }
                 }
                 cancellables.insert(.init { task.cancel() })
