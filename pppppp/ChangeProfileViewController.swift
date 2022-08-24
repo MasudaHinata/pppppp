@@ -161,8 +161,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                         self?.present(alert, animated: true, completion: nil)
                     }
                     catch {
-                        //TODO: ERROR Handling
-                        print("error")
+                        print("Change Logout error", error.localizedDescription)
                     }
                 }
                 self.cancellables.insert(.init { task.cancel() })

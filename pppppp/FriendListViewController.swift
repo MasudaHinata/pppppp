@@ -66,8 +66,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
                 friendDataList = try await FirebaseClient.shared.getfriendProfileData()
                 self.friendcollectionView.reloadData()
             }
-            catch(let error) {
-                print("friendlistViewContro viewdidload error: \(error)")
+            catch {
+                print("friendlistViewContro viewdidload error:",error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -112,8 +112,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
                 self!.friendcollectionView.reloadData()
             }
             catch {
-                //TODO: ERROR Handling
-                print("error")
+                print("FreindListViewContro refresh error:", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -144,9 +143,8 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
                     friendDataList = try await FirebaseClient.shared.getfriendProfileData()
                     self.friendcollectionView.reloadData()
                 }
-                catch (let error){
-                    //TODO: ERROR Handling
-                    print("FriendListViewContro collectionview error: \(error)")
+                catch {
+                    print("FriendListViewContro collectionview error:",error.localizedDescription)
                 }
             }
             cancellables.insert(.init { task.cancel() })

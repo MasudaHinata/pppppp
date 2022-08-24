@@ -71,13 +71,13 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
                         try await self.initializePersonalData()
                     }
                     catch {
-                        print("check password error")
+                        print("check password error:," error.localizedDescription)
                     }
                 }
                 cancellables.insert(.init { task.cancel() })
                 let alert = UIAlertController(title: "仮登録を行いました", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                    aaa()
+                    initialSetting()
                 }
                 alert.addAction(ok)
                 self.present(alert, animated: true, completion: nil)
@@ -104,7 +104,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             present(alert, animated: true, completion: nil)
         }
     }
-    func aaa() {
+    func initialSetting() {
         let task = Task {
             do {
                 var result = try await FirebaseClient.shared.putNameFirestore(name: self.profileName)
@@ -116,7 +116,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
                 self.showDetailViewController(secondVC, sender: self)
             }
             catch {
-                print("error")
+                print("Account initialSetting error",error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })

@@ -30,7 +30,7 @@ class HealthDataViewController: UIViewController {
                 try await Scorering.shared.readWeight()
             }
             catch {
-                print("HealthData error")
+                print("HealthData viewDid error", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -54,7 +54,7 @@ class HealthDataViewController: UIViewController {
                 self.present(alart, animated: true)
             }
             catch {
-                print("writeWeight error")
+                print("HealthData writeWeight error:", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })

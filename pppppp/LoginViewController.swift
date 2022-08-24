@@ -69,7 +69,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
                     try await FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }
                 catch {
-                    print("error")
+                    print("LoginView goButtonPressed error:", error.localizedDescription)
                 }
             }
             cancellables.insert(.init { task.cancel() })

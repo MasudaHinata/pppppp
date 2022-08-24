@@ -56,7 +56,7 @@ final class FirebaseClient {
             print("今までのポイントは\(String(describing: untilNowPoint))")
             
         } catch {
-            print("error")
+            print("FirebaseClient getUntilNowPoint error")
         }
     }
     //ポイントをfirebaseに保存
@@ -66,9 +66,7 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        try await db.collection("User").document(userID).collection("HealthData").document("Date()").setData([
-            "point": point
-        ]) { err in
+        try await db.collection("User").document(userID).collection("HealthData").document("Date()").setData(["point": point]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
@@ -227,7 +225,7 @@ final class FirebaseClient {
                     }
                 })
             } else {
-                print("error occured\(error)")
+                print("createAccount error", error.localizedDescription)
             }
         }
     }

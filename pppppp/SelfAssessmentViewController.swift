@@ -28,8 +28,7 @@ class SelfAssessmentViewController: UIViewController {
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
-                //TODO: ERROR Handling
-                print("error")
+                print("SelfViewCotro good error", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -44,8 +43,7 @@ class SelfAssessmentViewController: UIViewController {
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
-                //TODO: ERROR Handling
-                print("error")
+                print("Self normal error", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -60,8 +58,7 @@ class SelfAssessmentViewController: UIViewController {
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
-                //TODO: ERROR Handling
-                print("error")
+                print("Self bad error", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })

@@ -42,13 +42,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         friendDataList.removeAll()
         let tassk = Task { [weak self] in
             do {
-                //try await Scorering.shared.createStepPoint()
+                try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getfriendProfileData()
                 self!.collectionView.reloadData()
             }
             catch {
-                //TODO: ERROR Handling
-                print("error")
+                print("ViewContro ViewDid error",error.localizedDescription)
             }
         }
         cancellables.insert(.init { tassk.cancel() })
@@ -110,8 +109,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self!.collectionView.reloadData()
             }
             catch {
-                //TODO: ERROR Handling
-                print("error")
+                print("ViewContro refresh error",error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
