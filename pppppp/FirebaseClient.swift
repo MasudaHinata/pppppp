@@ -187,6 +187,7 @@ final class FirebaseClient {
         let snapshot = try await db.collection("User").document(userID).getDocument()
         guard snapshot.data()!["name"] != nil else {
             try await putNameFirestore(name: "名称未設定")
+            return
         }
     }
     //アイコンがあるかどうかの判定
@@ -199,6 +200,7 @@ final class FirebaseClient {
         let querySnapshot = try await self.db.collection("User").document(userID).getDocument()
         guard querySnapshot.data()!["IconImageURL"] != nil else {
             try await putIconFirestore(imageURL: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
+            return
         }
     }
     //アカウントを作成する
@@ -212,11 +214,17 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-//        let friendIds = try? await FirebaseClient.shared.getfriendIds()
-//        guard let friendIds = friendIds else { return }
-//        for friendsId in friendIds {
-//            var results = try await db.collection("User").document(friendsId).collection("friendsList").document(userID).delete()
-//            results = try await db.collection("UserData").document(userID).delete()
+        
+//        let querySnapshot = try await db.collection("cities").whereField("FriendList",arrayContains: userID).getDocuments()
+        
+//        try await db.collection("UserData").document(userID).delete()
+//        user.delete{ error in
+//            if let error = error {
+//                // An error happened.
+//            } else {
+//                // Account deleted.
+//
+//            }
 //        }
     }
     
