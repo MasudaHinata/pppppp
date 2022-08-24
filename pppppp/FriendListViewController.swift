@@ -28,6 +28,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
     var completionHandlers = [() -> Void]()
     var friendDataList = [FriendListItem]()
     var cancellables = Set<AnyCancellable>()
+    let refreshCtl = UIRefreshControl()
     @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var friendcollectionView: UICollectionView! {
@@ -45,24 +46,13 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
             profileBackgroundView.layer.cornerCurve = .continuous
         }
     }
-    @IBAction func reloadButton() {
-        friendDataList.removeAll()
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
-                self.friendcollectionView.reloadData()
-            }
-            catch (let error){
-                //TODO: ERROR Handling
-                print("FriendListViewContro reload error: \(error)")
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        friendcollectionView.refreshControl = refreshCtl
+        refreshCtl.addTarget(self, action: #selector(FriendListViewController.refresh(sender:)), for: .valueChanged)
+        
         myIconView.layer.cornerRadius = 32
         myIconView.clipsToBounds = true
         myIconView.layer.cornerCurve = .continuous
@@ -114,6 +104,20 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
             }
         }
         cancellables.insert(.init { task.cancel() })
+    }
+    @objc func refresh(sender: UIRefreshControl) {
+        let task = Task { [weak self] in
+            do {
+                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                self!.friendcollectionView.reloadData()
+            }
+            catch {
+                //TODO: ERROR Handling
+                print("error")
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+        refreshCtl.endRefreshing()
     }
 }
 

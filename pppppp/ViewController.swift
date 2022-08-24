@@ -102,21 +102,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             print("まだ19時前")
         }
     }
-
-    @IBAction func reloadButton() {
-        friendDataList.removeAll()
-        let task = Task { [weak self] in
-            do {
-                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
-                self!.collectionView.reloadData()
-            }
-            catch(let error) {
-                //TODO: ERROR Handling
-                print("viewContro reload error: \(error)")
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-    }
     @objc func refresh(sender: UIRefreshControl) {
         let task = Task { [weak self] in
             do {

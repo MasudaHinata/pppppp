@@ -69,14 +69,7 @@
                             <constraint firstItem="unX-EV-8eA" firstAttribute="top" secondItem="yZS-7u-8PC" secondAttribute="top" id="uNL-hy-D0I"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="always" id="U5C-91-Dkl">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="Nu4-5D-93Q">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="reloadButton" destination="C6X-Qw-bEO" id="YbE-uf-WaX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="always" id="U5C-91-Dkl"/>
                     <connections>
                         <outlet property="collectionView" destination="unX-EV-8eA" id="day-jH-d6Y"/>
                     </connections>
@@ -517,20 +510,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" largeTitleDisplayMode="always" id="VMF-5D-Uhx">
-                        <rightBarButtonItems>
-                            <barButtonItem title="Item" image="gearshape" catalog="system" id="uqV-WD-5nC">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="to_page2:" destination="9qf-JZ-69t" id="shW-Od-gq0"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Item" image="arrow.clockwise" catalog="system" id="yv0-KS-Wmm">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="reloadButton" destination="9qf-JZ-69t" id="hby-Jr-k9r"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="gearshape" catalog="system" id="uqV-WD-5nC">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="to_page2:" destination="9qf-JZ-69t" id="shW-Od-gq0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -824,7 +809,6 @@
         <segue reference="UbM-Xc-XVF"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="camera.rotate" catalog="system" width="128" height="94"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="highlighter" catalog="system" width="128" height="119"/>
