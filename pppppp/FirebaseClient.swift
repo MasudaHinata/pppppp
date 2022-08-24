@@ -215,7 +215,7 @@ final class FirebaseClient {
         }
         let userID = user.uid
         
-//        let querySnapshot = try await db.collection("cities").whereField("FriendList",arrayContains: userID).getDocuments()
+        //TODO: 友達のFriendListから自分を削除
         
 //        try await db.collection("UserData").document(userID).delete()
 //        user.delete{ error in
