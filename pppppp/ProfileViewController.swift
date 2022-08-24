@@ -50,7 +50,7 @@ class ProfileViewController: UIViewController {
                 present(alertController, animated: true, completion: nil)
             }
             catch {
-                print("エラー")
+                print("profileViewContro addFriend: error")
             }
         }
         cancellables.insert(.init { task.cancel() })
