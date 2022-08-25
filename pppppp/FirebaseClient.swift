@@ -42,6 +42,11 @@ protocol FireStoreCheckName: AnyObject {
 protocol FirebaseCreatedAccount: AnyObject {
     func accountCreated()
 }
+protocol FirebaseDeleteAccount: AnyObject {
+    func accountDeleted()
+    func faildAcccountDelete()
+}
+
 
 final class FirebaseClient {
     static let shared = FirebaseClient()
@@ -50,6 +55,7 @@ final class FirebaseClient {
     weak var emailVerifyDelegate: FirebaseEmailVarify?
     weak var notChangeDelegate: FireStoreCheckName?
     weak var createdAccount: FirebaseCreatedAccount?
+    weak var deleteAccount: FirebaseDeleteAccount?
     private init() {}
     
     var cancellables = Set<AnyCancellable>()
@@ -155,6 +161,7 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).collection("HealthData").document("Date()").updateData(["point": point])
         //TODO: ポイント獲得のアラート
+        
     }
     //画像をfirestoreに保存
     func putIconFirestore(imageURL: String) async throws {
@@ -211,8 +218,6 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         if user.isEmailVerified == false {
-            print("確認メールがまだ")
-            //TODO: delegateでアラートだす
             self.emailVerifyDelegate?.emailVerifyRequiredAlert()
             throw FirebaseClientAuthError.emailVerifyRequired
         }
@@ -264,8 +269,6 @@ final class FirebaseClient {
             if error == nil, let result = result {
                 result.user.sendEmailVerification(completion: { (error) in
                     if error == nil {
-                        print("メール認証")
-                        //TODO: delegateでメール送信しましたっていう
                         self.createdAccount?.accountCreated()
                     }
                 })
@@ -320,12 +323,19 @@ final class FirebaseClient {
         }
         user.delete { error in
             if let error = error {
-                // An error happened.
                 print("FirebaseClient accountDeleteAuth error:", error)
-                //TODO: delegateでアラート
+                let task = Task {
+                    do {
+                        try await self.logout()
+                        self.deleteAccount?.faildAcccountDelete()
+                    }
+                    catch {
+                        
+                    }
+                }
+                self.cancellables.insert(.init { task.cancel() })
             } else {
-                //TODO: delegateでアラート、画面遷移
-                print("アカウント削除完了")
+                self.deleteAccount?.accountDeleted()
             }
         }
     }

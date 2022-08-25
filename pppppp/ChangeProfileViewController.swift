@@ -10,7 +10,8 @@ import Combine
 import FirebaseStorage
 import Kingfisher
 
-class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FirebaseDeleteAccount {
+    
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
     var myName: String!
@@ -63,6 +64,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseClient.shared.deleteAccount = self
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -189,7 +191,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     //アカウントを削除する
     @IBAction func deleteAccount() {
-        
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
             
@@ -226,6 +227,31 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
+    }
+    func accountDeleted() {
+        let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func faildAcccountDelete() {
+        let alert = UIAlertController(title: "エラー", message: "ログインしなおしてもう一度試してください", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
