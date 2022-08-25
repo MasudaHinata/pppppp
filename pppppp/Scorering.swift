@@ -30,7 +30,7 @@ final class Scorering {
         let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
         myHealthStore.requestAuthorization(toShare: typeOfWrite ,read: typeOfRead,completion: { (success, error) in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
+                print("Scorering getPermission error:", error.localizedDescription)
                 return
             }
             print(success)

@@ -14,7 +14,13 @@ protocol sceneChangeProfile {
 }
 
 @MainActor
-final class FriendListViewController: UIViewController, FirebaseClientDelegate, sceneChangeProfile {
+final class FriendListViewController: UIViewController, FirebaseClientDelegate, sceneChangeProfile, FireStoreCheckName {
+//    @MainActor
+    func notChangeName() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ChangeNameViewController")
+        self.showDetailViewController(secondVC, sender: self)
+    }
     
     func scene() {
         viewDidLoad()
@@ -57,6 +63,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseClient.shared.notChangeDelegate = self
+        
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addTarget(self, action: #selector(FriendListViewController.refresh(sender:)), for: .valueChanged)
@@ -101,7 +109,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
                 let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
                 present(activityVC, animated: true, completion: nil)
             } catch {
-                print(error.localizedDescription)
+                print("FriendListViewContro showShareSheet:",error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })

@@ -3,9 +3,8 @@ import FirebaseStorage
 import Combine
 
 class AccountViewController: UIViewController ,UITextFieldDelegate {
-
+    
     var cancellables = Set<AnyCancellable>()
-    var profileName: String = ""
     @IBOutlet var GoButton: UIButton!
     @IBOutlet var emailTextField: UITextField! {
         didSet {
@@ -18,16 +17,17 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     @IBOutlet var passwordTextField: UITextField! {
         didSet {
             passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            passwordTextField.layer.cornerRadius = 24
+            passwordTextField.clipsToBounds = true
+            passwordTextField.layer.cornerCurve = .continuous
         }
     }
     @IBOutlet var password2TextField: UITextField! {
         didSet {
             password2TextField.attributedPlaceholder = NSAttributedString(string: "confirm your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        }
-    }
-    @IBOutlet var nameTextField: UITextField! {
-        didSet {
-            nameTextField.attributedPlaceholder = NSAttributedString(string: "Enter your name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            password2TextField.layer.cornerRadius = 24
+            password2TextField.clipsToBounds = true
+            password2TextField.layer.cornerCurve = .continuous
         }
     }
     
@@ -47,13 +47,15 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         
     }
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
         
-        design()
-        super.viewDidLoad()
-        self.nameTextField?.delegate = self
+        GoButton.layer.cornerRadius = 24
+        GoButton.clipsToBounds = true
+        GoButton.layer.cornerCurve = .continuous
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
         self.password2TextField.delegate = self
@@ -64,33 +66,23 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             print("パスワードok")
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
-            self.profileName = (self.nameTextField.text!)
             
-            if profileName != "" {
-                let task = Task {
-                    do {
-                        try await FirebaseClient.shared.createAccount(email: email, password: password)
-                        try await self.initializePersonalData()
-                    }
-                    catch {
-                        print("check password error:,",error.localizedDescription)
-                    }
+            let task = Task {
+                do {
+                    FirebaseClient.shared.createAccount(email: email, password: password)
                 }
-                cancellables.insert(.init { task.cancel() })
-                let alert = UIAlertController(title: "仮登録を行いました", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                    initialSetting()
+                catch {
+                    print("check password error:,",error.localizedDescription)
                 }
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
-                
-            } else {
-                let alert = UIAlertController(title: "エラー", message: "名前を入力してください", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                }
-                alert.addAction(ok)
-                present(alert, animated: true, completion: nil)
             }
+            cancellables.insert(.init { task.cancel() })
+            //ここで呼ぶのやめる
+            let alert = UIAlertController(title: "仮登録を行いました", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
+                print("仮登録完了")
+            }
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
         } else if passwordTextField.text == "" {
             print("パスワードが入力されていない")
             let alert = UIAlertController(title: "パスワードが入力されていません", message: "パスワードを入力してください", preferredStyle: .alert)
@@ -106,52 +98,11 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
             present(alert, animated: true, completion: nil)
         }
     }
-    func initialSetting() {
-        let task = Task {
-            do {
-                var result = try await FirebaseClient.shared.putNameFirestore(name: self.profileName)
-                result = try await FirebaseClient.shared.putIconFirestore(imageURL: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
-                result = try await FirebaseClient.shared.firebasePutData(point: 0)
-                print(result)
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
-                self.showDetailViewController(secondVC, sender: self)
-            }
-            catch {
-                print("Account initialSetting error:",error.localizedDescription)
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-    }
     
-    func initializePersonalData() async throws {
-        try await FirebaseClient.shared.setNameFirestore(name: self.profileName)
-        try await FirebaseClient.shared.putIconFirestore(imageURL: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
-        try await FirebaseClient.shared.firebasePutData(point: 0)
-    }
-
-    func design() {
-//        emailTextField.layer.cornerRadius = 24
-//        emailTextField.clipsToBounds = true
-//        emailTextField.layer.cornerCurve = .continuous
-        passwordTextField.layer.cornerRadius = 24
-        passwordTextField.clipsToBounds = true
-        passwordTextField.layer.cornerCurve = .continuous
-        password2TextField.layer.cornerRadius = 24
-        password2TextField.clipsToBounds = true
-        password2TextField.layer.cornerCurve = .continuous
-        nameTextField.layer.cornerRadius = 24
-        nameTextField.clipsToBounds = true
-        nameTextField.layer.cornerCurve = .continuous
-        GoButton.layer.cornerRadius = 24
-        GoButton.clipsToBounds = true
-        GoButton.layer.cornerCurve = .continuous
-    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         password2TextField.resignFirstResponder()
-        nameTextField.resignFirstResponder()
         return true
     }
     @objc func dismissKeyboard() {

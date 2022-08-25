@@ -97,7 +97,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                     try await FirebaseClient.shared.putNameFirestore(name: profileName)
                 }
                 catch {
-                    print(error.localizedDescription)
+                    print("ChangeProfile settingChangeName91:", error.localizedDescription)
                 }
             }
         }
@@ -120,25 +120,18 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                         profileName = (self.nameTextField.text!)
                                         try await FirebaseClient.shared.putIconFirestore(imageURL: downloadUrlStr)
                                         self.settingChangeName(profileName: self.profileName)
-                                        
+                        
                                         let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                                         let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                                            let task = Task {
-                                                do {
-                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                                                    try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData()
-                                                }
-                                                catch {
-                                                    print("error")
-                                                }
-                                            }
-                                            cancellables.insert(.init { task.cancel() })
+                                            dismiss(animated: true, completion: {
+                                                self.sceneChangeProfile.scene()
+                                            })
                                         }
                                         alert.addAction(ok)
                                         self.present(alert, animated: true, completion: nil)
                                     }
                                     catch {
-                                        print("error")
+                                        print("ChangeProfileView 134 error:", error.localizedDescription)
                                     }
                                 }
                                 self.cancellables.insert(.init { task.cancel() })
@@ -214,7 +207,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                     self?.present(alert, animated: true, completion: nil)
                 }
                 catch {
-                    print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
+                    print("ChangeProfile deleteAccount210:\(String(describing: error.localizedDescription))")
                     let alert = UIAlertController(title: "エラー", message: "ログインし直してもう一度お試しください", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)

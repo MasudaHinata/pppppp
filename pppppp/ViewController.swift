@@ -3,7 +3,7 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, FirebaseCreateAccount {
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
     var refreshControl = UIRefreshControl()
@@ -30,6 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FirebaseClient.shared.emailVerifyDelegate = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
         
         collectionView.refreshControl = refreshControl
@@ -42,7 +43,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         friendDataList.removeAll()
         let tassk = Task { [weak self] in
             do {
-                try await Scorering.shared.createStepPoint()
+                try await FirebaseClient.shared.emailVerifyRequiredCheck()
+                //↓ 呼ばれてない
+                try await FirebaseClient.shared.checkIconData()
+                try await FirebaseClient.shared.checkNameData()
+                
+//                try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getfriendProfileData()
                 self!.collectionView.reloadData()
             }
@@ -59,7 +65,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         print(now)
-        //        UserDefaults.standard.removeObject(forKey: "sss")
+        //UserDefaults.standard.removeObject(forKey: "sss")
         if now >= 19 {
             judge = true
         }
@@ -116,29 +122,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
         cancellables.insert(.init { task.cancel() })
         refreshControl.endRefreshing()
     }
+    func emailVerifyRequiredAlert() {
+        let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("💩💩💩💩")
-        print(friendDataList.count)
         return friendDataList.count
     }
     
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        print("create cell")
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
-    //
-    //        cell.nameLabel.text = friendDataList[indexPath.row].name
-    ////        cell.dataLabel.text = String(friendPointList[indexPath.row].point)
-    //        cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
-    //        return cell
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("create cell")
-        print("💀💀💀💀💀")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         
         cell.nameLabel.text = friendDataList[indexPath.row].name
