@@ -25,26 +25,25 @@ enum FirebaseClientFirestoreError: Error {
 protocol FirebaseClientDelegate: AnyObject {
     func friendDeleted() async
 }
-
 protocol FirebaseClientAuthDelegate: AnyObject {
     func loginScene()
     func loginHelperAlert()
 }
-
 protocol FirebaseEmailVarify: AnyObject {
     func emailVerifyRequiredAlert()
 }
-
 protocol FireStoreCheckName: AnyObject {
     func notChangeName()
 }
-
 protocol FirebaseCreatedAccount: AnyObject {
     func accountCreated()
 }
 protocol FirebaseDeleteAccount: AnyObject {
     func accountDeleted()
     func faildAcccountDelete()
+}
+protocol FirebasePutPoint: AnyObject {
+    func putPointForFirestore(point: Int)
 }
 
 
@@ -56,6 +55,7 @@ final class FirebaseClient {
     weak var notChangeDelegate: FireStoreCheckName?
     weak var createdAccount: FirebaseCreatedAccount?
     weak var deleteAccount: FirebaseDeleteAccount?
+    weak var putPoint: FirebasePutPoint?
     private init() {}
     
     var cancellables = Set<AnyCancellable>()
@@ -63,7 +63,7 @@ final class FirebaseClient {
     let db = Firestore.firestore()
     var untilNowPoint = Int()
     
-    //今までの自分のポイントを取得
+    //今までの自分のポイントを取得l
     func getUntilNowPoint() async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -152,6 +152,16 @@ final class FirebaseClient {
         
         try await db.collection("User").document(userID).setData(["name" : name])
     }
+    //自己評価ポイントをfirebaseに保存
+    func firebaseSelfPutData(point: Int) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.userAuthCheck()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        try await db.collection("User").document(userID).collection("HealthData").document("Date()").updateData(["point": point])
+        self.putPoint?.putPointForFirestore(point: point)
+    }
     //ポイントをfirebaseに保存
     func firebasePutData(point: Int) async throws {
         guard let user = Auth.auth().currentUser else {
@@ -161,7 +171,6 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).collection("HealthData").document("Date()").updateData(["point": point])
         //TODO: ポイント獲得のアラート
-        
     }
     //画像をfirestoreに保存
     func putIconFirestore(imageURL: String) async throws {

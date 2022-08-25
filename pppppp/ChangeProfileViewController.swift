@@ -240,7 +240,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
     func faildAcccountDelete() {
         let alert = UIAlertController(title: "エラー", message: "ログインしなおしてもう一度試してください", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in

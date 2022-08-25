@@ -8,12 +8,12 @@
 import UIKit
 import Combine
 
-class SelfAssessmentViewController: UIViewController {
-    
+class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
     var cancellables = Set<AnyCancellable>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseClient.shared.putPoint = self
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -24,9 +24,10 @@ class SelfAssessmentViewController: UIViewController {
                 try await FirebaseClient.shared.checkNameData()
             }
             catch {
-                print("Self viewApe", error.localizedDescription)
+                print("SelfViewCotro viewApe", error.localizedDescription)
             }
         }
+        cancellables.insert(.init { task.cancel() })
     }
     //自己評価
     @IBAction func goodButton(){
@@ -35,11 +36,11 @@ class SelfAssessmentViewController: UIViewController {
                 try await FirebaseClient.shared.getUntilNowPoint()
                 let untilNowPoint = FirebaseClient.shared.untilNowPoint
                 let sanitasPoints = untilNowPoint + 15
-                try await FirebaseClient.shared.firebasePutData(point: sanitasPoints)
+                try await FirebaseClient.shared.firebaseSelfPutData(point: sanitasPoints)
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
-                print("SelfViewCotro good error", error.localizedDescription)
+                print("SelfViewCotro goodButton error:", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -50,11 +51,11 @@ class SelfAssessmentViewController: UIViewController {
                 try await FirebaseClient.shared.getUntilNowPoint()
                 let untilNowPoint = FirebaseClient.shared.untilNowPoint
                 let sanitasPoints = untilNowPoint + 10
-                try await FirebaseClient.shared.firebasePutData(point: sanitasPoints)
+                try await FirebaseClient.shared.firebaseSelfPutData(point: sanitasPoints)
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
-                print("Self normal error", error.localizedDescription)
+                print("SelfViewCotro normalButton error", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -65,13 +66,20 @@ class SelfAssessmentViewController: UIViewController {
                 try await FirebaseClient.shared.getUntilNowPoint()
                 let untilNowPoint = FirebaseClient.shared.untilNowPoint
                 let sanitasPoints = untilNowPoint + 5
-                try await FirebaseClient.shared.firebasePutData(point: sanitasPoints)
+                try await FirebaseClient.shared.firebaseSelfPutData(point: sanitasPoints)
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
-                print("Self bad error", error.localizedDescription)
+                print("SelfViewCotro badButton error", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
+    }
+    func putPointForFirestore(point: Int) {
+        let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
