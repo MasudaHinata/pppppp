@@ -205,9 +205,9 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                     let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         print("アカウントを削除しました")
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                        self?.showDetailViewController(secondVC, sender: self)
+//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+//                        self?.showDetailViewController(secondVC, sender: self)
                     }
                     alert.addAction(ok)
                     self?.present(alert, animated: true, completion: nil)

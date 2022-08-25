@@ -9,7 +9,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseFirestore
 import Foundation
-import UIKit
+import Combine
 
 enum FirebaseClientAuthError: Error {
     case notAuthenticated
@@ -38,7 +38,7 @@ final class FirebaseClient {
     weak var delegateLogin: FirebaseClientAuthDelegate?
     private init() {}
     
-    
+    var cancellables = Set<AnyCancellable>()
     let firebaseAuth = Auth.auth()
     let db = Firestore.firestore()
     var untilNowPoint = Int()
@@ -204,6 +204,20 @@ final class FirebaseClient {
     func createAccount(email: String, password: String) async throws {
         try await self.firebaseAuth.createUser(withEmail: email, password: password)
     }
+    
+    func getfriendIdList() async throws -> [String] {
+//        guard let user = Auth.auth().currentUser else {
+//            try await  self.userAuthCheck()
+//            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+//        }
+//        let userID = user.uid
+//
+//        let querySnapshot = try await db.collection("User").document(userID).whereField("FriendList",arrayContains: userID).getDocuments()
+//        let documents = querySnapshot.documents
+//        return documents.compactMap {
+//            return $0.data() as? String
+//        }
+    }
     //アカウントを削除する
     func accountDelete() async throws {
         guard let user = Auth.auth().currentUser else {
@@ -211,6 +225,22 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
+//
+//        let task = Task { [weak self] in
+//            do {
+//                let friendIds = try? await getfriendIdList()
+//                guard let friendIds = friendIds else { return }
+//                for id in friendIds {
+//                    let friend = try await db.collection("User").document(id).updateData(["FriendList": FieldValue.arrayRemove([userID])])
+//                }
+//            }
+//            catch {
+//                print("firebaseClient accountDelete error")
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
+        
+        try await db.collection("User").document(userID).whereField("FriendList",arrayContains: userID).updateData(["FriendList": FieldValue.arrayRemove([userID])])
         
         //TODO: 友達のFriendListから自分を削除
         
@@ -226,6 +256,7 @@ final class FirebaseClient {
     }
     
     //ログインする
+    @MainActor
     func login(email: String, password: String) async throws {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
         if authReault.user.isEmailVerified {

@@ -1,6 +1,7 @@
 import UIKit
 import Combine
 
+@MainActor
 class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClientAuthDelegate {
     
     var cancellables = Set<AnyCancellable>()
