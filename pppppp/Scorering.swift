@@ -126,8 +126,8 @@ final class Scorering {
 
     //体重を取得
     func readWeight() async throws {
-        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
-        let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
+//        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
+//        let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
         
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)

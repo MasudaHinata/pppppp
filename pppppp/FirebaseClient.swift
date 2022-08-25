@@ -68,10 +68,10 @@ final class FirebaseClient {
         }
         let userID = user.uid
         try await db.collection("User").document(userID).collection("HealthData").document("Date()").updateData(["point": point])
+        //TODO: ポイント獲得のアラート
     }
     //友達のデータを取得
     public func getfriendProfileData() async throws -> [FriendListItem] {
-        //FIXME: エラーハンドリングをする
         try await checkNameData()
         try await checkIconData()
         guard let user = Auth.auth().currentUser else {
@@ -80,13 +80,10 @@ final class FirebaseClient {
         }
         let userID = user.uid
         let querySnapshot = try await db.collection("User").whereField("FriendList",arrayContains: userID).getDocuments()
-        print(querySnapshot)
-        
         var friends: [FriendListItem] = []
         for friendData in querySnapshot.documents {
             friends.append(try friendData.data(as: FriendListItem.self))
         }
-        print(friends)
         return friends
     }
     //自分の名前を表示する
