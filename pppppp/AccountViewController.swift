@@ -35,12 +35,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             print("メールアドレスok")
             createAccount()
         } else {
-            print("メールアドレスの形式が間違っています")
-            let alert = UIAlertController(title: "メールアドレスの形式が間違っています", message: "メールアドレスを確認してください", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            }
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
+            showAlert(title: "メールアドレスの形式が間違っています", message: "メールアドレスを確認してください")
         }
         
     }
@@ -70,27 +65,23 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
                 do {
                     FirebaseClient.shared.createAccount(email: email, password: password)
                 }
-                catch {
-                    print("check password error:,",error.localizedDescription)
-                }
+//                catch {
+//                    print("check password error:,",error.localizedDescription)
+//                }
             }
             cancellables.insert(.init { task.cancel() })
         } else if passwordTextField.text == "" {
-            print("パスワードが入力されていない")
-            let alert = UIAlertController(title: "パスワードが入力されていません", message: "パスワードを入力してください", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            }
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
+            showAlert(title: "パスワードが入力されていません", message: "パスワードを確認してください")
         } else if passwordTextField.text != password2TextField.text {
-            let alert = UIAlertController(title: "パスワードが一致しません", message: "パスワードを確認してください", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            }
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
+            showAlert(title: "パスワードが一致しません", message: "パスワードを確認してください")
         }
     }
-    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        self.present(alert, animated: true)
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
