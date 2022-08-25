@@ -3,7 +3,7 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate, FirebaseCreateAccount {
+class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify {
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
     var refreshControl = UIRefreshControl()

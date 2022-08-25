@@ -31,7 +31,7 @@ protocol FirebaseClientAuthDelegate: AnyObject {
     func loginHelperAlert()
 }
 
-protocol FirebaseCreateAccount: AnyObject {
+protocol FirebaseEmailVarify: AnyObject {
     func emailVerifyRequiredAlert()
 }
 
@@ -39,12 +39,17 @@ protocol FireStoreCheckName: AnyObject {
     func notChangeName()
 }
 
+protocol FirebaseCreatedAccount: AnyObject {
+    func accountCreated()
+}
+
 final class FirebaseClient {
     static let shared = FirebaseClient()
     weak var delegate: FirebaseClientDelegate?
     weak var delegateLogin: FirebaseClientAuthDelegate?
-    weak var emailVerifyDelegate: FirebaseCreateAccount?
+    weak var emailVerifyDelegate: FirebaseEmailVarify?
     weak var notChangeDelegate: FireStoreCheckName?
+    weak var createdAccount: FirebaseCreatedAccount?
     private init() {}
     
     var cancellables = Set<AnyCancellable>()
@@ -232,7 +237,6 @@ final class FirebaseClient {
         }
         if String("名称未設定") == querySnapshot.data()!["name"]! as! String {
             self.notChangeDelegate?.notChangeName()
-            print("名称未設定です")
         }
     }
     //アイコンがあるかどうかの判定
@@ -255,13 +259,14 @@ final class FirebaseClient {
         }
     }
     //アカウントを作成する
-    func createAccount(email: String, password: String) /* async throws */ {
+    func createAccount(email: String, password: String) {
         firebaseAuth.createUser(withEmail: email, password: password) { (result, error) in
             if error == nil, let result = result {
                 result.user.sendEmailVerification(completion: { (error) in
                     if error == nil {
                         print("メール認証")
                         //TODO: delegateでメール送信しましたっていう
+                        self.createdAccount?.accountCreated()
                     }
                 })
             } else {
@@ -269,8 +274,7 @@ final class FirebaseClient {
             }
         }
     }
-    
-    
+    //友達のリストを取得する
     func getfriendIdList() async throws  {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -295,7 +299,7 @@ final class FirebaseClient {
         }
         let userID = user.uid
         
-        let task = Task { //[weak self] in
+        let task = Task {
             do {
                 try? await getfriendIdList()
                 try await db.collection("User").document(userID).delete()
@@ -320,7 +324,6 @@ final class FirebaseClient {
                 print("FirebaseClient accountDeleteAuth error:", error)
                 //TODO: delegateでアラート
             } else {
-                // Account deleted.
                 //TODO: delegateでアラート、画面遷移
                 print("アカウント削除完了")
             }

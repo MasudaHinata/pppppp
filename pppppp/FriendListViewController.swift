@@ -15,7 +15,6 @@ protocol sceneChangeProfile {
 
 @MainActor
 final class FriendListViewController: UIViewController, FirebaseClientDelegate, sceneChangeProfile, FireStoreCheckName {
-//    @MainActor
     func notChangeName() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "ChangeNameViewController")

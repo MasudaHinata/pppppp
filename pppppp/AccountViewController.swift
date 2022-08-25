@@ -2,8 +2,7 @@ import UIKit
 import FirebaseStorage
 import Combine
 
-class AccountViewController: UIViewController ,UITextFieldDelegate {
-    
+class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCreatedAccount {
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var GoButton: UIButton!
     @IBOutlet var emailTextField: UITextField! {
@@ -34,9 +33,8 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     @IBAction func GooButton() {
         if self.isValidEmail(self.emailTextField.text!) {
             print("メールアドレスok")
-            checkpassword()
+            createAccount()
         } else {
-            // メールアドレスが正しく入力されなかった場合
             print("メールアドレスの形式が間違っています")
             let alert = UIAlertController(title: "メールアドレスの形式が間違っています", message: "メールアドレスを確認してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -48,6 +46,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseClient.shared.createdAccount = self
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -60,8 +59,8 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         self.passwordTextField.delegate = self
         self.password2TextField.delegate = self
     }
-    //②
-    func checkpassword() {
+    
+    func createAccount() {
         if passwordTextField.text == password2TextField.text && passwordTextField.text != "" {
             print("パスワードok")
             let email = self.emailTextField.text!
@@ -76,13 +75,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
                 }
             }
             cancellables.insert(.init { task.cancel() })
-            //ここで呼ぶのやめる
-            let alert = UIAlertController(title: "仮登録を行いました", message: "入力したメールアドレス宛に確認メールを送信しました。", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                print("仮登録完了")
-            }
-            alert.addAction(ok)
-            self.present(alert, animated: true, completion: nil)
         } else if passwordTextField.text == "" {
             print("パスワードが入力されていない")
             let alert = UIAlertController(title: "パスワードが入力されていません", message: "パスワードを入力してください", preferredStyle: .alert)
@@ -118,5 +110,17 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         let result = emailTest.evaluate(with: string)
         return result
+    }
+    func accountCreated() {
+        let alert = UIAlertController(title: "仮登録メールを送信しました", message: "メールを確認してください", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

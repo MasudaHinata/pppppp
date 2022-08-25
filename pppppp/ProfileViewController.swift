@@ -26,7 +26,7 @@ class ProfileViewController: UIViewController {
         addFriendButton.layer.cornerCurve = .continuous
     }
     override func viewDidAppear(_ animated: Bool) {
-        let task = Task { [weak self] in
+        let task = Task {
             do {
                 try await friendIconView.kf.setImage(with: FirebaseClient.shared.getFriendData(friendId: friendId!))
                 try await friendLabel.text = FirebaseClient.shared.getFriendNameData(friendId: friendId)
