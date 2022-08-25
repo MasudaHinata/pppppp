@@ -75,6 +75,9 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
+                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.emailVerifyRequiredCheck()
+                
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
 

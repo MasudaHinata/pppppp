@@ -43,10 +43,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         friendDataList.removeAll()
         let tassk = Task { [weak self] in
             do {
+                try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.emailVerifyRequiredCheck()
-                //↓ 呼ばれてない
-                try await FirebaseClient.shared.checkIconData()
-                try await FirebaseClient.shared.checkNameData()
                 
 //                try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getfriendProfileData()
