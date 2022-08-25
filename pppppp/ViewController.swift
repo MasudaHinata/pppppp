@@ -105,8 +105,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @objc func refresh(sender: UIRefreshControl) {
         let task = Task { [weak self] in
             do {
+                guard let self = self else { return }
                 friendDataList = try await FirebaseClient.shared.getfriendProfileData()
-                self!.collectionView.reloadData()
+                self.collectionView.reloadData()
             }
             catch {
                 print("ViewContro refresh error",error.localizedDescription)
@@ -117,17 +118,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("💩💩💩💩")
+        print(friendDataList.count)
         return friendDataList.count
     }
     
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        print("create cell")
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
+    //
+    //        cell.nameLabel.text = friendDataList[indexPath.row].name
+    ////        cell.dataLabel.text = String(friendPointList[indexPath.row].point)
+    //        cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
+    //        return cell
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("create cell")
+        print("💀💀💀💀💀")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         
         cell.nameLabel.text = friendDataList[indexPath.row].name
-//        cell.dataLabel.text = String(friendPointList[indexPath.row].point)
+//      cell.dataLabel.text = String(friendPointList[indexPath.row].point)
         cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
         return cell
     }

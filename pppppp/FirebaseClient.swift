@@ -31,7 +31,6 @@ protocol FirebaseClientAuthDelegate: AnyObject {
     func loginHelperAlert()
 }
 
-
 final class FirebaseClient {
     static let shared = FirebaseClient()
     weak var delegate: FirebaseClientDelegate?
@@ -142,6 +141,15 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["name": name])
     }
+    
+    func setNameFirestore(name: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await self.userAuthCheck()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        try await db.collection("User").document(userID).setData(["name" : name])
+    }
     //友達を追加する
     func addFriend(friendId: String) async throws {
         guard let user = Auth.auth().currentUser else {
@@ -205,18 +213,21 @@ final class FirebaseClient {
         try await self.firebaseAuth.createUser(withEmail: email, password: password)
     }
     
-    func getfriendIdList() async throws -> [String] {
-//        guard let user = Auth.auth().currentUser else {
-//            try await  self.userAuthCheck()
-//            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-//        }
-//        let userID = user.uid
-//
-//        let querySnapshot = try await db.collection("User").document(userID).whereField("FriendList",arrayContains: userID).getDocuments()
-//        let documents = querySnapshot.documents
-//        return documents.compactMap {
-//            return $0.data() as? String
-//        }
+    func getfriendIdList() async throws  {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.userAuthCheck()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        
+        let querySnapshot = try await db.collection("User").whereField("FriendList",arrayContains: userID).getDocuments()
+        print(querySnapshot)
+
+        let documents = querySnapshot.documents
+        for document in documents {
+            print(document.data()["myID"])
+            try await db.collection("User").document(document.data()["myID"] as! String).updateData(["FriendList": FieldValue.arrayRemove([userID])])
+        }
     }
     //アカウントを削除する
     func accountDelete() async throws {
@@ -225,34 +236,37 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-//
-//        let task = Task { [weak self] in
-//            do {
-//                let friendIds = try? await getfriendIdList()
-//                guard let friendIds = friendIds else { return }
-//                for id in friendIds {
-//                    let friend = try await db.collection("User").document(id).updateData(["FriendList": FieldValue.arrayRemove([userID])])
-//                }
-//            }
-//            catch {
-//                print("firebaseClient accountDelete error")
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
         
-        try await db.collection("User").document(userID).whereField("FriendList",arrayContains: userID).updateData(["FriendList": FieldValue.arrayRemove([userID])])
-        
-        //TODO: 友達のFriendListから自分を削除
-        
-        //        try await db.collection("UserData").document(userID).delete()
-        //        user.delete{ error in
-        //            if let error = error {
-        //                // An error happened.
-        //            } else {
-        //                // Account deleted.
-        //
-        //            }
-        //        }
+        let task = Task { //[weak self] in
+            do {
+                try? await getfriendIdList()
+                try await db.collection("User").document(userID).delete()
+                try await accountDeleteAuth()
+            }
+            catch {
+                print("firebaseClient accountDelete error")
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
+    
+    //アカウントを削除
+    func accountDeleteAuth() async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await self.userAuthCheck()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        user.delete { error in
+            if let error = error {
+                // An error happened.
+                print(error)
+                //TODO: delegateでアラート
+            } else {
+                // Account deleted.
+                //TODO: delegateでアラート、画面遷移
+                print("アカウント削除完了")
+            }
+        }
     }
     
     //ログインする

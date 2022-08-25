@@ -10,12 +10,13 @@ import Combine
 import FirebaseStorage
 import Kingfisher
 
-class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
     var myName: String!
     @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
+    
     
     var sceneChangeProfile: sceneChangeProfile!
     @IBAction func back_page1(_ sender: Any) {
@@ -205,9 +206,9 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                     let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         print("アカウントを削除しました")
-//                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-//                        self?.showDetailViewController(secondVC, sender: self)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                        self?.showDetailViewController(secondVC, sender: self)
                     }
                     alert.addAction(ok)
                     self?.present(alert, animated: true, completion: nil)

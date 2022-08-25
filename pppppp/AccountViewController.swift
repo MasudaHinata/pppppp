@@ -1,4 +1,3 @@
-import Combine
 import UIKit
 import FirebaseStorage
 import Combine
@@ -11,6 +10,9 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
     @IBOutlet var emailTextField: UITextField! {
         didSet {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            emailTextField.layer.cornerRadius = 24
+            emailTextField.clipsToBounds = true
+            emailTextField.layer.cornerCurve = .continuous
         }
     }
     @IBOutlet var passwordTextField: UITextField! {
@@ -116,22 +118,22 @@ class AccountViewController: UIViewController ,UITextFieldDelegate {
                 self.showDetailViewController(secondVC, sender: self)
             }
             catch {
-                print("Account initialSetting error",error.localizedDescription)
+                print("Account initialSetting error:",error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
     }
     
     func initializePersonalData() async throws {
-        try await FirebaseClient.shared.putNameFirestore(name: self.profileName)
+        try await FirebaseClient.shared.setNameFirestore(name: self.profileName)
         try await FirebaseClient.shared.putIconFirestore(imageURL: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
         try await FirebaseClient.shared.firebasePutData(point: 0)
     }
 
     func design() {
-        emailTextField.layer.cornerRadius = 24
-        emailTextField.clipsToBounds = true
-        emailTextField.layer.cornerCurve = .continuous
+//        emailTextField.layer.cornerRadius = 24
+//        emailTextField.clipsToBounds = true
+//        emailTextField.layer.cornerCurve = .continuous
         passwordTextField.layer.cornerRadius = 24
         passwordTextField.clipsToBounds = true
         passwordTextField.layer.cornerCurve = .continuous
