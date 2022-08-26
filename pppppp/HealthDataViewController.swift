@@ -26,11 +26,13 @@ class HealthDataViewController: UIViewController {
         
         let task = Task {
             do {
-                try await Scorering.shared.createStepPoint()
-                try await Scorering.shared.createStepPoint()
                 try await Scorering.shared.readWeight()
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self.present(alert, animated: true)
                 print("HealthData viewDid error", error.localizedDescription)
             }
         }
@@ -55,6 +57,10 @@ class HealthDataViewController: UIViewController {
                 self.present(alart, animated: true)
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("HealthData writeWeight error:", error.localizedDescription)
             }
         }

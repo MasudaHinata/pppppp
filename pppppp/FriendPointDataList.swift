@@ -1,18 +1,16 @@
 //
-//  FriendListItem.swift
+//  FriendPointDataList.swift
 //  pppppp
 //
-//  Created by hinata on 2022/08/24.
+//  Created by hinata on 2022/08/26.
 //
 
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-struct FriendListItem: Codable {
+struct FriendPointDataList: Codable {
     @DocumentID var id: String?
-    let name: String
-    let IconImageURL: String
     var point: Int?
     var date: Timestamp?
 }

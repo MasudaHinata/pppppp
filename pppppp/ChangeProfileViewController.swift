@@ -99,6 +99,10 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                     try await FirebaseClient.shared.putNameFirestore(name: profileName)
                 }
                 catch {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
                     print("ChangeProfile settingChangeName91:", error.localizedDescription)
                 }
             }
@@ -133,6 +137,10 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                         self.present(alert, animated: true, completion: nil)
                                     }
                                     catch {
+                                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                                        let action = UIAlertAction(title: "OK", style: .default)
+                                        alert.addAction(action)
+                                        self.present(alert, animated: true)
                                         print("ChangeProfileView 134 error:", error.localizedDescription)
                                     }
                                 }
@@ -176,6 +184,10 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                         self?.present(alert, animated: true, completion: nil)
                     }
                     catch {
+                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(action)
+                        self!.present(alert, animated: true)
                         print("Change Logout error", error.localizedDescription)
                     }
                 }

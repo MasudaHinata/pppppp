@@ -3,7 +3,7 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify {
+class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify ,FirebasePutPoint {
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
     var refreshControl = UIRefreshControl()
@@ -31,6 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         super.viewDidLoad()
         
         FirebaseClient.shared.emailVerifyDelegate = self
+        FirebaseClient.shared.putPoint = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
         
         collectionView.refreshControl = refreshControl
@@ -46,12 +47,21 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.emailVerifyRequiredCheck()
                 
-//                try await Scorering.shared.createStepPoint()
-                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                //                try await Scorering.shared.createStepPoint()
+                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
+                print("friendDataList")
+                print(friendDataList)
                 self!.collectionView.reloadData()
             }
             catch {
-                print("ViewContro ViewDid error",error.localizedDescription)
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self!.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self!.present(alert, animated: true, completion: nil)
+                
+                print("ViewContro ViewDid error:",error.localizedDescription)
             }
         }
         cancellables.insert(.init { tassk.cancel() })
@@ -63,7 +73,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         print(now)
-        //UserDefaults.standard.removeObject(forKey: "sss")
         if now >= 19 {
             judge = true
         }
@@ -97,7 +106,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
                 self.showDetailViewController(secondVC, sender: self)
-                
             } else {
                 print("今日はもう自己評価した")
             }
@@ -110,10 +118,14 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         let task = Task { [weak self] in
             do {
                 guard let self = self else { return }
-                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 self.collectionView.reloadData()
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("ViewContro refresh error",error.localizedDescription)
             }
         }
@@ -132,10 +144,16 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
             self.present(alert, animated: true, completion: nil)
         }
     }
+    func putPointForFirestore(point: Int) {
+        let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendDataList.count
     }
@@ -144,7 +162,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         
         cell.nameLabel.text = friendDataList[indexPath.row].name
-//      cell.dataLabel.text = String(friendPointList[indexPath.row].point)
+        cell.dataLabel.text = String(friendDataList[indexPath.row].point ?? 0)
         cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
         return cell
     }

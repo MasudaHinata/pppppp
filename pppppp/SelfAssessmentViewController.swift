@@ -24,6 +24,10 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
                 try await FirebaseClient.shared.checkNameData()
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self.present(alert, animated: true)
                 print("SelfViewCotro viewApe", error.localizedDescription)
             }
         }
@@ -33,13 +37,13 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
     @IBAction func goodButton(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.getUntilNowPoint()
-                let untilNowPoint = FirebaseClient.shared.untilNowPoint
-                let sanitasPoints = untilNowPoint + 15
-                try await FirebaseClient.shared.firebaseSelfPutData(point: sanitasPoints)
-                self.performSegue(withIdentifier: "toooooViewController", sender: nil)
+                try await FirebaseClient.shared.firebasePutData(point: 15)
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self.present(alert, animated: true)
                 print("SelfViewCotro goodButton error:", error.localizedDescription)
             }
         }
@@ -48,13 +52,13 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
     @IBAction func normalButton(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.getUntilNowPoint()
-                let untilNowPoint = FirebaseClient.shared.untilNowPoint
-                let sanitasPoints = untilNowPoint + 10
-                try await FirebaseClient.shared.firebaseSelfPutData(point: sanitasPoints)
-                self.performSegue(withIdentifier: "toooooViewController", sender: nil)
+                try await FirebaseClient.shared.firebasePutData(point: 10)
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self.present(alert, animated: true)
                 print("SelfViewCotro normalButton error", error.localizedDescription)
             }
         }
@@ -63,13 +67,13 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
     @IBAction func badButton(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.getUntilNowPoint()
-                let untilNowPoint = FirebaseClient.shared.untilNowPoint
-                let sanitasPoints = untilNowPoint + 5
-                try await FirebaseClient.shared.firebaseSelfPutData(point: sanitasPoints)
-                self.performSegue(withIdentifier: "toooooViewController", sender: nil)
+                try await FirebaseClient.shared.firebasePutData(point: 5)
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self.present(alert, animated: true)
                 print("SelfViewCotro badButton error", error.localizedDescription)
             }
         }
@@ -77,7 +81,10 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
     }
     func putPointForFirestore(point: Int) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.performSegue(withIdentifier: "toooooViewController", sender: nil)
+        }
+        alert.addAction(ok)
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }

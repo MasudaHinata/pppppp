@@ -66,6 +66,10 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
                     FirebaseClient.shared.createAccount(email: email, password: password)
                 }
 //                catch {
+//                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+//                let action = UIAlertAction(title: "OK", style: .default)
+//                alert.addAction(action)
+//                self!.present(alert, animated: true)
 //                    print("check password error:,",error.localizedDescription)
 //                }
             }
