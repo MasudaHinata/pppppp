@@ -46,12 +46,14 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.emailVerifyRequiredCheck()
                 
+                try await FirebaseClient.shared.getFriendPointData()
+                
 //                try await Scorering.shared.createStepPoint()
-                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 self!.collectionView.reloadData()
             }
             catch {
-                print("ViewContro ViewDid error",error.localizedDescription)
+                print("ViewContro ViewDid error:",error.localizedDescription)
             }
         }
         cancellables.insert(.init { tassk.cancel() })
@@ -110,7 +112,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         let task = Task { [weak self] in
             do {
                 guard let self = self else { return }
-                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 self.collectionView.reloadData()
             }
             catch {

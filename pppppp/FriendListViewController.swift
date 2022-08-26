@@ -81,7 +81,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
 
-                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 self.friendcollectionView.reloadData()
             }
             catch {
@@ -119,7 +119,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
     @objc func refresh(sender: UIRefreshControl) {
         let task = Task { [weak self] in
             do {
-                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 self!.friendcollectionView.reloadData()
             }
             catch {
@@ -151,7 +151,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
             let task = Task {
                 do {
                     try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: deleteFriendId)
-                    friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                    friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                     self.friendcollectionView.reloadData()
                 }
                 catch {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		036F697D28B8692B0066A7DA /* FriendPointDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F697C28B8692B0066A7DA /* FriendPointDataList.swift */; };
 		0397BD6E28B5F18600CDFA62 /* FriendListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */; };
 		03DFB7A328B7A8390019381A /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */; };
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
@@ -48,6 +49,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		036F697C28B8692B0066A7DA /* FriendPointDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPointDataList.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListItem.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
@@ -160,8 +162,9 @@
 				BE0878EB26551BC2007CA984 /* post.swift */,
 				9C699042286DA189009D5BF5 /* UIColorHex.swift */,
 				9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */,
-				0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */,
 				03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */,
+				0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */,
+				036F697C28B8692B0066A7DA /* FriendPointDataList.swift */,
 			);
 			path = pppppp;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				9C3A35402859CEF100404AA6 /* HealthDataViewController.swift in Sources */,
 				9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */,
 				03DFB7A328B7A8390019381A /* ChangeNameViewController.swift in Sources */,
+				036F697D28B8692B0066A7DA /* FriendPointDataList.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfAssessmentViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
