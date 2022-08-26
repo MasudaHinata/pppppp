@@ -34,7 +34,6 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
         let task = Task {
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 15)
-                self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
                 print("SelfViewCotro goodButton error:", error.localizedDescription)
@@ -46,7 +45,6 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
         let task = Task {
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 10)
-                self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
                 print("SelfViewCotro normalButton error", error.localizedDescription)
@@ -58,7 +56,6 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
         let task = Task {
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 5)
-                self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
                 print("SelfViewCotro badButton error", error.localizedDescription)
@@ -68,7 +65,10 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
     }
     func putPointForFirestore(point: Int) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.performSegue(withIdentifier: "toooooViewController", sender: nil)
+        }
+        alert.addAction(ok)
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }

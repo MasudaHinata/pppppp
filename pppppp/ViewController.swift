@@ -47,7 +47,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.emailVerifyRequiredCheck()
                 
-//                try await Scorering.shared.createStepPoint()
+                //                try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 print("friendDataList")
                 print(friendDataList)
@@ -66,7 +66,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         print(now)
-//        UserDefaults.standard.removeObject(forKey: "sss")
         if now >= 19 {
             judge = true
         }
@@ -100,7 +99,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
                 self.showDetailViewController(secondVC, sender: self)
-
             } else {
                 print("今日はもう自己評価した")
             }
