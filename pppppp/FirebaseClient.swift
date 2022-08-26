@@ -283,8 +283,8 @@ final class FirebaseClient {
             }
         }
     }
-    //友達のリストを取得する
-    func getfriendIdList() async throws  {
+    //友達のリストから自分を取得する
+    func deleteMeFromFriend() async throws  {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
@@ -310,12 +310,11 @@ final class FirebaseClient {
         
         let task = Task {
             do {
-                try? await getfriendIdList()
+                try? await deleteMeFromFriend()
                 try await db.collection("User").document(userID).delete()
                 try await accountDeleteAuth()
             }
             catch {
-                
                 print("firebaseClient accountDelete error", error.localizedDescription)
             }
         }

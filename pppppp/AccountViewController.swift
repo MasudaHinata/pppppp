@@ -63,15 +63,15 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             
             let task = Task {
                 do {
-                    FirebaseClient.shared.createAccount(email: email, password: password)
+                    try await FirebaseClient.shared.createAccount(email: email, password: password)
                 }
-//                catch {
-//                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-//                let action = UIAlertAction(title: "OK", style: .default)
-//                alert.addAction(action)
-//                self!.present(alert, animated: true)
-//                    print("check password error:,",error.localizedDescription)
-//                }
+                catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
+                    print("check password error:",error.localizedDescription)
+                }
             }
             cancellables.insert(.init { task.cancel() })
         } else if passwordTextField.text == "" {
