@@ -3,6 +3,7 @@ import FirebaseStorage
 import Combine
 
 class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCreatedAccount {
+    
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var GoButton: UIButton!
     @IBOutlet var emailTextField: UITextField! {
@@ -42,7 +43,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.createdAccount = self
-        
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
@@ -66,11 +66,11 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
                     try await FirebaseClient.shared.createAccount(email: email, password: password)
                 }
                 catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(action)
-                self!.present(alert, animated: true)
-                    print("check password error:",error.localizedDescription)
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
+                    print("Account checkPassword error:",error.localizedDescription)
                 }
             }
             cancellables.insert(.init { task.cancel() })

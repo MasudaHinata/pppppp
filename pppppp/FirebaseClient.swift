@@ -225,7 +225,6 @@ final class FirebaseClient {
         }
         if user.isEmailVerified == false {
             self.emailVerifyDelegate?.emailVerifyRequiredAlert()
-            throw FirebaseClientAuthError.emailVerifyRequired
         }
     }
     //名前があるかどうかの判定
@@ -270,18 +269,26 @@ final class FirebaseClient {
         }
     }
     //アカウントを作成する
-    func createAccount(email: String, password: String) {
-        firebaseAuth.createUser(withEmail: email, password: password) { (result, error) in
-            if error == nil, let result = result {
-                result.user.sendEmailVerification(completion: { (error) in
-                    if error == nil {
-                        self.createdAccount?.accountCreated()
-                    }
-                })
-            } else {
-                print("FirebaseClient createAccount error:", error!.localizedDescription)
-            }
-        }
+    func createAccount(email: String, password: String) async throws {
+        //        firebaseAuth.createUser(withEmail: email, password: password) { (result, error) in
+        //            if error == nil, let result = result {
+        //                result.user.sendEmailVerification(completion: { (error) in
+        //                    if error == nil {
+        //                        self.createdAccount?.accountCreated()
+        //                    }
+        //                })
+        //            } else {
+        //                print("FirebaseClient createAccount error:", error!.localizedDescription)
+        //            }
+        //        }
+        let result = try await firebaseAuth.createUser(withEmail: email, password: password)
+        
+            try await result.user.sendEmailVerification(completion: { (error) in
+                if error == nil {
+                    self.createdAccount?.accountCreated()
+                }
+            })
+    
     }
     //友達のリストから自分を取得する
     func deleteMeFromFriend() async throws  {
@@ -334,9 +341,7 @@ final class FirebaseClient {
                         try await self.logout()
                         self.deleteAccount?.faildAcccountDelete()
                     }
-                    catch {
-                        
-                    }
+                    
                 }
                 self.cancellables.insert(.init { task.cancel() })
             } else {
