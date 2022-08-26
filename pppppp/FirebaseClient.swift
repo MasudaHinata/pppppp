@@ -83,13 +83,13 @@ final class FirebaseClient {
     }
     //友達のpointを取得して累積にして表示
     func getFriendPointData(id: String) async throws -> Int {
-//        //TODO: 期間を指定する
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "MMMM d, yyyy HH:mm:ss"
-//        let result = formatter.string(from: Date())
-//        let startDate = result + " " + "07:00:00"
-//        let startTime: Date = formatter.date(from: startDate) ?? Date(timeIntervalSince1970: 0)
-//        let startTimestamp: Timestamp = Timestamp(date: startTime)
+        //        //TODO: 期間を指定する
+        //        let formatter = DateFormatter()
+        //        formatter.dateFormat = "MMMM d, yyyy HH:mm:ss"
+        //        let result = formatter.string(from: Date())
+        //        let startDate = result + " " + "07:00:00"
+        //        let startTime: Date = formatter.date(from: startDate) ?? Date(timeIntervalSince1970: 0)
+        //        let startTimestamp: Timestamp = Timestamp(date: startTime)
         
         let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         var friends: [FriendPointDataList] = []
@@ -258,7 +258,7 @@ final class FirebaseClient {
         }
         let userID = user.uid
         let querySnapshot = try await self.db.collection("User").document(userID).getDocument()
-
+        
         guard querySnapshot.data() != nil else {
             print("ユーザーデータなし")
             try await setUserData(name: "名称未設定")
@@ -315,6 +315,7 @@ final class FirebaseClient {
                 try await accountDeleteAuth()
             }
             catch {
+                
                 print("firebaseClient accountDelete error", error.localizedDescription)
             }
         }

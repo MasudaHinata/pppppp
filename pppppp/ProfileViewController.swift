@@ -50,6 +50,10 @@ class ProfileViewController: UIViewController {
                 present(alertController, animated: true, completion: nil)
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("profileViewContro addFriend error:", error.localizedDescription)
             }
         }

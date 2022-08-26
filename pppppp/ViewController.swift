@@ -54,6 +54,10 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 self!.collectionView.reloadData()
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("ViewContro ViewDid error:",error.localizedDescription)
             }
         }
@@ -115,6 +119,10 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 self.collectionView.reloadData()
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("ViewContro refresh error",error.localizedDescription)
             }
         }
@@ -143,7 +151,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendDataList.count
     }

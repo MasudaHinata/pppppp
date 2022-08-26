@@ -85,6 +85,10 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
                 self.friendcollectionView.reloadData()
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("friendlistViewContro viewdidload error:",error.localizedDescription)
             }
         }
@@ -111,6 +115,10 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
                 let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
                 present(activityVC, animated: true, completion: nil)
             } catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("FriendListViewContro showShareSheet:",error.localizedDescription)
             }
         }
@@ -123,6 +131,10 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
                 self!.friendcollectionView.reloadData()
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("FreindListViewContro refresh error:", error.localizedDescription)
             }
         }
@@ -155,6 +167,10 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
                     self.friendcollectionView.reloadData()
                 }
                 catch {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self!.present(alert, animated: true)
                     print("FriendListViewContro collectionview error:",error.localizedDescription)
                 }
             }

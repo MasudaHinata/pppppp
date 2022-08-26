@@ -24,6 +24,10 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
                 try await FirebaseClient.shared.checkNameData()
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("SelfViewCotro viewApe", error.localizedDescription)
             }
         }
@@ -36,6 +40,10 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
                 try await FirebaseClient.shared.firebasePutData(point: 15)
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("SelfViewCotro goodButton error:", error.localizedDescription)
             }
         }
@@ -47,6 +55,10 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
                 try await FirebaseClient.shared.firebasePutData(point: 10)
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("SelfViewCotro normalButton error", error.localizedDescription)
             }
         }
@@ -58,6 +70,10 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
                 try await FirebaseClient.shared.firebasePutData(point: 5)
             }
             catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
                 print("SelfViewCotro badButton error", error.localizedDescription)
             }
         }

@@ -64,6 +64,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
                     try await FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }
                 catch {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self!.present(alert, animated: true)
                     print("LoginView goButtonPressed error:", error.localizedDescription)
                 }
             }
