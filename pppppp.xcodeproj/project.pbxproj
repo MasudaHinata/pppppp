@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		036F697F28B8EACE0066A7DA /* FriendPointDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F697E28B8EACE0066A7DA /* FriendPointDataList.swift */; };
+		036F698128B940270066A7DA /* SentEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698028B940270066A7DA /* SentEmailViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* FriendListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */; };
 		03DFB7A328B7A8390019381A /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */; };
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		036F697E28B8EACE0066A7DA /* FriendPointDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPointDataList.swift; sourceTree = "<group>"; };
+		036F698028B940270066A7DA /* SentEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentEmailViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListItem.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */,
 				0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */,
 				036F697E28B8EACE0066A7DA /* FriendPointDataList.swift */,
+				036F698028B940270066A7DA /* SentEmailViewController.swift */,
 			);
 			path = pppppp;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
 				9C3A35402859CEF100404AA6 /* HealthDataViewController.swift in Sources */,
 				9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */,
+				036F698128B940270066A7DA /* SentEmailViewController.swift in Sources */,
 				03DFB7A328B7A8390019381A /* ChangeNameViewController.swift in Sources */,
 				036F697F28B8EACE0066A7DA /* FriendPointDataList.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfAssessmentViewController.swift in Sources */,

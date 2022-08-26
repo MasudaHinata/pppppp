@@ -304,10 +304,27 @@
                                     <action selector="goButtonPressed" destination="Vc7-tl-j7N" eventType="touchUpInside" id="lU0-os-9F6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" alpha="0.64999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uej-KG-8Y3">
+                                <rect key="frame" x="81.5" y="571" width="251" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="251" id="4Ii-d5-Pq4"/>
+                                    <constraint firstAttribute="height" constant="41" id="Hm4-Iy-mmO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <state key="normal" title="Forget password?">
+                                    <color key="titleColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="LoginButton" destination="JTg-Ot-WFO" eventType="touchUpInside" id="J14-MP-cMI"/>
+                                    <action selector="sentEmailMore" destination="Vc7-tl-j7N" eventType="touchUpInside" id="H6M-yI-Cz8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1i7-hV-xEw"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="uej-KG-8Y3" firstAttribute="top" secondItem="Cax-z8-egQ" secondAttribute="bottom" constant="20" id="0kG-DI-L4p"/>
+                            <constraint firstItem="uej-KG-8Y3" firstAttribute="centerX" secondItem="0AS-tW-eyr" secondAttribute="centerX" id="29p-fL-G3T"/>
                             <constraint firstItem="LoJ-Xe-v9f" firstAttribute="top" secondItem="QOZ-Of-FbZ" secondAttribute="bottom" constant="25" id="6XS-mH-int"/>
                             <constraint firstItem="Deh-rw-zcP" firstAttribute="centerX" secondItem="0AS-tW-eyr" secondAttribute="centerX" id="AzL-fn-WbH"/>
                             <constraint firstItem="LoJ-Xe-v9f" firstAttribute="centerX" secondItem="0AS-tW-eyr" secondAttribute="centerX" id="HVB-7p-k9x"/>
@@ -830,9 +847,65 @@
             </objects>
             <point key="canvasLocation" x="916" y="429"/>
         </scene>
+        <!--Sent Email View Controller-->
+        <scene sceneID="Tnr-on-WFv">
+            <objects>
+                <viewController storyboardIdentifier="SentEmailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MzG-wF-vWZ" customClass="SentEmailViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xla-jr-ahk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxf-Is-AyA">
+                                <rect key="frame" x="32" y="424" width="350" height="48"/>
+                                <color key="backgroundColor" red="0.57254901960000004" green="0.69803921570000005" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="contentStretch" x="0.59999999999999998" y="0.0" width="1" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="5C5-xB-MOA"/>
+                                    <constraint firstAttribute="height" constant="48" id="kac-bR-Q7U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Update Profile">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeProfile" destination="nMh-M6-xwp" eventType="touchUpInside" id="uDV-dd-VNV"/>
+                                    <action selector="goButtonPressed" destination="Vc7-tl-j7N" eventType="touchUpInside" id="14o-10-ZzZ"/>
+                                    <action selector="sentEmailMore" destination="MzG-wF-vWZ" eventType="touchUpInside" id="DAe-JJ-0dD"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" alpha="0.50999999046325684" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xtv-6m-y9g">
+                                <rect key="frame" x="32" y="356" width="350" height="48"/>
+                                <color key="backgroundColor" red="0.4823529412" green="0.50980392159999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="PqP-Kj-Gb9"/>
+                                    <constraint firstAttribute="width" constant="350" id="ucG-qd-bfw"/>
+                                </constraints>
+                                <color key="textColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RBu-oD-oEe"/>
+                        <color key="backgroundColor" red="0.074509803920000006" green="0.0" blue="0.2985896468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pxf-Is-AyA" firstAttribute="top" secondItem="Xtv-6m-y9g" secondAttribute="bottom" constant="20" id="HDX-eJ-R0V"/>
+                            <constraint firstItem="pxf-Is-AyA" firstAttribute="centerY" secondItem="xla-jr-ahk" secondAttribute="centerY" id="Oyi-xi-1BQ"/>
+                            <constraint firstItem="pxf-Is-AyA" firstAttribute="centerX" secondItem="xla-jr-ahk" secondAttribute="centerX" id="Zso-mQ-grL"/>
+                            <constraint firstItem="Xtv-6m-y9g" firstAttribute="centerX" secondItem="xla-jr-ahk" secondAttribute="centerX" id="hWG-6h-Jv1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Xtv-6m-y9g" id="dLI-Tg-87R"/>
+                        <outlet property="goButton" destination="pxf-Is-AyA" id="8dd-Uq-5Xq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M4h-FI-1RO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="270" y="429"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YCM-cH-zpW"/>
+        <segue reference="ycS-Sb-ePy"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.rotate" catalog="system" width="128" height="94"/>

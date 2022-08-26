@@ -288,7 +288,9 @@ final class FirebaseClient {
                     self.createdAccount?.accountCreated()
                 }
             })
-    
+    }
+    func passwordResetting(email: String) async throws{
+        try await firebaseAuth.sendPasswordReset(withEmail: email)
     }
     //友達のリストから自分を取得する
     func deleteMeFromFriend() async throws  {

@@ -53,6 +53,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
     func loginScene() {
         self.performSegue(withIdentifier: "toViewController", sender: nil)
     }
+    @IBAction func sentEmailMore() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "SentEmailViewController")
+        self.showDetailViewController(secondVC, sender: self)
+    }
     
     @IBAction func goButtonPressed() {
         
