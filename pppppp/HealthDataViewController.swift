@@ -17,6 +17,7 @@ class HealthDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         weightTextField.layer.cornerRadius = 24
         weightTextField.clipsToBounds = true
         weightTextField.layer.cornerCurve = .continuous
