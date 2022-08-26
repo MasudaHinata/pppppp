@@ -86,9 +86,11 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(action)
-                self!.present(alert, animated: true)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self!.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self!.present(alert, animated: true, completion: nil)
                 print("friendlistViewContro viewdidload error:",error.localizedDescription)
             }
         }
@@ -116,9 +118,11 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
                 present(activityVC, animated: true, completion: nil)
             } catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(action)
-                self!.present(alert, animated: true)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
                 print("FriendListViewContro showShareSheet:",error.localizedDescription)
             }
         }
@@ -132,9 +136,11 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(action)
-                self!.present(alert, animated: true)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self!.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self!.present(alert, animated: true, completion: nil)
                 print("FreindListViewContro refresh error:", error.localizedDescription)
             }
         }
@@ -168,9 +174,11 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
                 }
                 catch {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self!.present(alert, animated: true)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self!.viewDidLoad()
+                    }
+                    alert.addAction(ok)
+                    self!.present(alert, animated: true, completion: nil)
                     print("FriendListViewContro collectionview error:",error.localizedDescription)
                 }
             }
