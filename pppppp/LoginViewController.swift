@@ -1,6 +1,7 @@
 import UIKit
 import Combine
 
+@MainActor
 class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClientAuthDelegate {
     
     var cancellables = Set<AnyCancellable>()
@@ -10,11 +11,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
     @IBOutlet var emailTextField: UITextField! {
         didSet {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            emailTextField.layer.cornerRadius = 24
+            emailTextField.clipsToBounds = true
+            emailTextField.layer.cornerCurve = .continuous
         }
     }
     @IBOutlet var passwordTextField: UITextField! {
         didSet {
             passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            passwordTextField.layer.cornerRadius = 24
+            passwordTextField.clipsToBounds = true
+            passwordTextField.layer.cornerCurve = .continuous
         }
     }
     
@@ -27,22 +34,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
         
-        design()
         
-        self.emailTextField?.delegate = self
-        self.passwordTextField?.delegate = self
-    }
-    
-    func design() {
-        emailTextField.layer.cornerRadius = 24
-        emailTextField.clipsToBounds = true
-        emailTextField.layer.cornerCurve = .continuous
-        passwordTextField.layer.cornerRadius = 24
-        passwordTextField.clipsToBounds = true
-        passwordTextField.layer.cornerCurve = .continuous
         goButton.layer.cornerRadius = 24
         goButton.clipsToBounds = true
         goButton.layer.cornerCurve = .continuous
+        
+        self.emailTextField?.delegate = self
+        self.passwordTextField?.delegate = self
     }
     
     func loginHelperAlert() {
@@ -59,21 +57,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
     @IBAction func goButtonPressed() {
         
         if passwordTextField.text == "" {
-            print("パスワード入力されてない")
-            let alert = UIAlertController(title: "エラー", message: "パスワードか入力されていません", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            showAlert(title: "エラー", message: "パスワードか入力されていません")
         } else {
             let task = Task {
                 do {
                     try await FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }
                 catch {
-                    print("error")
+                    print("LoginView goButtonPressed error:", error.localizedDescription)
                 }
             }
             cancellables.insert(.init { task.cancel() })
         }
+    }
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        self.present(alert, animated: true)
     }
     @objc func dismissKeyboard() {
         self.view.endEditing(true)

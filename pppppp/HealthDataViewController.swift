@@ -17,6 +17,7 @@ class HealthDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         weightTextField.layer.cornerRadius = 24
         weightTextField.clipsToBounds = true
         weightTextField.layer.cornerCurve = .continuous
@@ -30,7 +31,7 @@ class HealthDataViewController: UIViewController {
                 try await Scorering.shared.readWeight()
             }
             catch {
-                print("error")
+                print("HealthData viewDid error", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -54,7 +55,7 @@ class HealthDataViewController: UIViewController {
                 self.present(alart, animated: true)
             }
             catch {
-                print("error")
+                print("HealthData writeWeight error:", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })

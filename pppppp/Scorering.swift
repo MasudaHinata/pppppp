@@ -30,7 +30,7 @@ final class Scorering {
         let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
         myHealthStore.requestAuthorization(toShare: typeOfWrite ,read: typeOfRead,completion: { (success, error) in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
+                print("Scorering getPermission error:", error.localizedDescription)
                 return
             }
             print(success)
@@ -116,6 +116,7 @@ final class Scorering {
             sanitasPoint = untilNowPoint + todayPoint
             print("累積ポイントは\(sanitasPoint)")
             try await FirebaseClient.shared.firebasePutData(point: sanitasPoint)
+            
             UD.set(Date(), forKey: "today")
             print(UD.object(forKey: "today")!)
         }
@@ -126,8 +127,8 @@ final class Scorering {
 
     //体重を取得
     func readWeight() async throws {
-        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
-        let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
+//        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
+//        let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
         
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)

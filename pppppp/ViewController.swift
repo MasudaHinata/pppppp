@@ -3,14 +3,11 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify {
     var cancellables = Set<AnyCancellable>()
-    //    let refreshControl = UIRefreshControl()
-    var me: User!
     var friendIdList = [String]()
-    var friendNameList = [User]()
-    var friendPointList = [UserHealth]()
-    var friendIconList = [UserIcon]()
+    var refreshControl = UIRefreshControl()
+    var friendDataList = [FriendListItem]()
     let layout = UICollectionViewFlowLayout()
     let UD = UserDefaults.standard
     let calendar = Calendar.current
@@ -30,95 +27,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
-    @IBAction func reloadButton() {
-        friendNameList.removeAll()
-        friendPointList.removeAll()
-        friendIconList.removeAll()
-        let task = Task { [weak self] in
-            do {
-                let friendIds = try? await FirebaseClient.shared.getfriendIds()
-                guard var friendIds = friendIds else { return }
-//                friendIds += [String(user!.uid)]
-                for id in friendIds {
-                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
-                    if let friend = friend {
-                        self?.friendNameList.append(friend)
-                    }
-                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
-                    if let friends = friends {
-                        self?.friendPointList.append(friends)
-                    }
-                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
-                    if let friendss = friendss {
-                        self?.friendIconList.append(friendss)
-                    }
-                    self!.collectionView.reloadData()
-                }
-            }
-            catch {
-                //TODO: ERROR Handling
-                print("error")
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FirebaseClient.shared.emailVerifyDelegate = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
-        let task = Task {
-            do {
-                try await FirebaseClient.shared.validate()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
         
-//        let dateComponents = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current, hour: 19, minute: 00)
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-//        let content = UNMutableNotificationContent()
-//        //TODO: 文ちゃんと考える
-//        content.title = "自己評価をしてポイントを獲得しましょう"
-//        content.body = "19時になりました"
-//        content.sound = UNNotificationSound.default
-//        var request = UNNotificationRequest.init(identifier: "自己評価をしてポイントを獲得しましょう", content: content, trigger: trigger)
-//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        
-        //        collectionView.refreshControl = refreshControl
-        //        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
         
         Scorering.shared.getPermissionHealthKit()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
         
-        friendNameList.removeAll()
-        friendPointList.removeAll()
-        friendIconList.removeAll()
+        friendDataList.removeAll()
         let tassk = Task { [weak self] in
             do {
-                try await Scorering.shared.createStepPoint()
-
-                let friendIds = try? await FirebaseClient.shared.getfriendIds()
-                guard var friendIds = friendIds else { return }
-//                friendIds += [String(user!.uid)]
-                for id in friendIds {
-                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
-                    if let friend = friend {
-                        self?.friendNameList.append(friend)
-                    }
-                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
-                    if let friends = friends {
-                        self?.friendPointList.append(friends)
-                    }
-                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
-                    if let friendss = friendss {
-                        self?.friendIconList.append(friendss)
-                    }
-                    self!.collectionView.reloadData()
-                }
+                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.emailVerifyRequiredCheck()
+                
+//                try await Scorering.shared.createStepPoint()
+                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                self!.collectionView.reloadData()
             }
             catch {
-                //TODO: ERROR Handling
-                print("error")
+                print("ViewContro ViewDid error",error.localizedDescription)
             }
         }
         cancellables.insert(.init { tassk.cancel() })
@@ -130,7 +63,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         print(now)
-        //        UserDefaults.standard.removeObject(forKey: "sss")
+        //UserDefaults.standard.removeObject(forKey: "sss")
         if now >= 19 {
             judge = true
         }
@@ -173,55 +106,46 @@ class ViewController: UIViewController, UITextFieldDelegate {
             print("まだ19時前")
         }
     }
-//    @objc func refresh(sender: UIRefreshControl) {
-//        //ここに通信処理などデータフェッチの処理を書く
-//        //データフェッチが終わったらUIRefreshControl.endRefreshing()を呼ぶ必要がある
-//        friendNameList.removeAll()
-//        friendPointList.removeAll()
-//        friendIconList.removeAll()
-//        let task = Task { [weak self] in
-//            do {
-//                let friendIds = try? await FirebaseClient.shared.getfriendIds()
-//                guard var friendIds = friendIds else { return }
-//                friendIds += [String(user!.uid)]
-//                for id in friendIds {
-//                    let friend = try? await FirebaseClient.shared.getUserDataFromId(friendId: id)
-//                    if let friend = friend {
-//                        self?.friendNameList.append(friend)
-//                    }
-//                    let friends = try? await FirebaseClient.shared.getHealthDataFromId(friendsId: id)
-//                    if let friends = friends {
-//                        self?.friendPointList.append(friends)
-//                    }
-//                    let friendss = try? await FirebaseClient.shared.getIconDataFromId(friendIds: id)
-//                    if let friendss = friendss {
-//                        self?.friendIconList.append(friendss)
-//                    }
-//                    self!.collectionView.reloadData()
-//                }
-//            }
-//            catch {
-//                //TODO: ERROR Handling
-//                print("error")
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
-        //UIRefreshControl.endRefreshing()
-//    }
+    @objc func refresh(sender: UIRefreshControl) {
+        let task = Task { [weak self] in
+            do {
+                guard let self = self else { return }
+                friendDataList = try await FirebaseClient.shared.getfriendProfileData()
+                self.collectionView.reloadData()
+            }
+            catch {
+                print("ViewContro refresh error",error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+        refreshControl.endRefreshing()
+    }
+    func emailVerifyRequiredAlert() {
+        let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return friendNameList.count
+        return friendDataList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         
-        cell.nameLabel.text = friendNameList[indexPath.row].name
-        cell.dataLabel.text = String(friendPointList[indexPath.row].point)
-        cell.iconView.kf.setImage(with: URL(string: friendIconList[indexPath.row].imageURL)!)
+        cell.nameLabel.text = friendDataList[indexPath.row].name
+//      cell.dataLabel.text = String(friendPointList[indexPath.row].point)
+        cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
         return cell
     }
 }

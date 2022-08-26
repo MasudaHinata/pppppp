@@ -10,12 +10,14 @@ import Combine
 import FirebaseStorage
 import Kingfisher
 
-class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FirebaseDeleteAccount {
+    
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
     var myName: String!
     @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
+    
     
     var sceneChangeProfile: sceneChangeProfile!
     @IBAction func back_page1(_ sender: Any) {
@@ -57,12 +59,12 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     
     @IBAction func changeProfile() {
-        profileName = (nameTextField.text!)
-        saveProfile(profileName: profileName)
+        saveProfile()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseClient.shared.deleteAccount = self
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -88,7 +90,22 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         cancellables.insert(.init { task.cancel() })
     }
     //名前を変更
-    func saveProfile(profileName: String) {
+    func settingChangeName(profileName: String) {
+        if profileName == "" {
+            print("名前変更なし")
+        } else if profileName != "" {
+            Task {
+                do {
+                    try await FirebaseClient.shared.putNameFirestore(name: profileName)
+                }
+                catch {
+                    print("ChangeProfile settingChangeName91:", error.localizedDescription)
+                }
+            }
+        }
+    }
+    //プロフィールを変更
+    func saveProfile() {
         if let selectImage = myIconView.image {
             let imageName = "\(Date().timeIntervalSince1970).jpg"
             let reference = Storage.storage().reference().child("posts/\(imageName)")
@@ -97,32 +114,29 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                 metadata.contentType = "image/jpeg"
                 reference.putData(imageData, metadata: metadata, completion:{(metadata, error) in
                     if let _ = metadata {
-                        reference.downloadURL{(url,error) in
+                        reference.downloadURL{ [self] (url,error) in
                             if let downloadUrl = url {
                                 let task = Task {
                                     do {
                                         let downloadUrlStr = downloadUrl.absoluteString
+                                        profileName = (self.nameTextField.text!)
                                         try await FirebaseClient.shared.putIconFirestore(imageURL: downloadUrlStr)
-                                        try await FirebaseClient.shared.putNameFirestore(name: profileName)
+                                        self.settingChangeName(profileName: self.profileName)
+                        
                                         let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                                         let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                                            let task = Task {
-                                                do {
-                                                    try await self.myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                                                    try await self.myNameLabel.text = FirebaseClient.shared.getMyNameData()
-                                                }
-                                                catch {
-                                                    print("error")
-                                                }
-                                            }
+                                            dismiss(animated: true, completion: {
+                                                self.sceneChangeProfile.scene()
+                                            })
                                         }
                                         alert.addAction(ok)
                                         self.present(alert, animated: true, completion: nil)
                                     }
                                     catch {
-                                        print("error")
+                                        print("ChangeProfileView 134 error:", error.localizedDescription)
                                     }
                                 }
+                                self.cancellables.insert(.init { task.cancel() })
                             } else {
                                 print("downloadURLの取得が失敗した場合の処理")
                             }
@@ -141,6 +155,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
     //ログアウトする
     @IBAction func logoutButton() {
         do {
@@ -161,8 +176,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                         self?.present(alert, animated: true, completion: nil)
                     }
                     catch {
-                        //TODO: ERROR Handling
-                        print("error")
+                        print("Change Logout error", error.localizedDescription)
                     }
                 }
                 self.cancellables.insert(.init { task.cancel() })
@@ -177,7 +191,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     //アカウントを削除する
     @IBAction func deleteAccount() {
-        
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
             
@@ -195,7 +208,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                     self?.present(alert, animated: true, completion: nil)
                 }
                 catch {
-                    print("アカウントを削除できませんでした/エラー:\(String(describing: error))")
+                    print("ChangeProfile deleteAccount210:\(String(describing: error.localizedDescription))")
                     let alert = UIAlertController(title: "エラー", message: "ログインし直してもう一度お試しください", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -214,6 +227,30 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
+    }
+    func accountDeleted() {
+        let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func faildAcccountDelete() {
+        let alert = UIAlertController(title: "エラー", message: "ログインしなおしてもう一度試してください", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
