@@ -37,7 +37,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         page2.sceneChangeProfile = self
         self.present(page2,animated: true,completion: nil)
     }
-
+    
     var completionHandlers = [() -> Void]()
     var friendDataList = [FriendListItem]()
     var cancellables = Set<AnyCancellable>()
@@ -80,7 +80,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
                 
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
-
+                
                 friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 self.friendcollectionView.reloadData()
             }
@@ -97,7 +97,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
         friendcollectionView.collectionViewLayout = layout
     }
-
+    
     //リンクのシェアシート出す
     @IBAction func pressedButton() {
         showShareSheet()
@@ -144,7 +144,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     }
     //友達を削除する
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         guard let deleteFriendId = friendDataList[indexPath.row].id else { return }
         let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in

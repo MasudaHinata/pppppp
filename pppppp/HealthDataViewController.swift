@@ -26,8 +26,6 @@ class HealthDataViewController: UIViewController {
         
         let task = Task {
             do {
-                try await Scorering.shared.createStepPoint()
-                try await Scorering.shared.createStepPoint()
                 try await Scorering.shared.readWeight()
             }
             catch {

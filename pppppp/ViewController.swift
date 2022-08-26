@@ -3,7 +3,7 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify {
+class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify ,FirebasePutPoint {
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
     var refreshControl = UIRefreshControl()
@@ -31,6 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         super.viewDidLoad()
         
         FirebaseClient.shared.emailVerifyDelegate = self
+        FirebaseClient.shared.putPoint = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
         
         collectionView.refreshControl = refreshControl
@@ -46,10 +47,10 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.emailVerifyRequiredCheck()
                 
-                try await FirebaseClient.shared.getFriendPointData()
-                
 //                try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getFriendProfileData()
+                print("friendDataList")
+                print(friendDataList)
                 self!.collectionView.reloadData()
             }
             catch {
@@ -65,7 +66,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         print(now)
-        //UserDefaults.standard.removeObject(forKey: "sss")
+//        UserDefaults.standard.removeObject(forKey: "sss")
         if now >= 19 {
             judge = true
         }
@@ -99,7 +100,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
                 self.showDetailViewController(secondVC, sender: self)
-                
+
             } else {
                 print("今日はもう自己評価した")
             }
@@ -134,6 +135,13 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
             self.present(alert, animated: true, completion: nil)
         }
     }
+    func putPointForFirestore(point: Int) {
+        let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -146,7 +154,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         
         cell.nameLabel.text = friendDataList[indexPath.row].name
-//      cell.dataLabel.text = String(friendPointList[indexPath.row].point)
+        cell.dataLabel.text = String(friendDataList[indexPath.row].point ?? 0)
         cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
         return cell
     }

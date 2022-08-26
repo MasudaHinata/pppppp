@@ -58,8 +58,6 @@ final class Scorering {
         if judge == true {
             judge = false
             print("日付変わったから歩数のポイントを作成")
-            try await FirebaseClient.shared.getUntilNowPoint()
-            let untilNowPoint = FirebaseClient.shared.untilNowPoint
             
             //TODO: ERRORHANDLING
             let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
@@ -112,10 +110,7 @@ final class Scorering {
             case (20000...): todayPoint = 100
             default: break
             }
-            print("今日の歩数のポイントは\(todayPoint)")
-            sanitasPoint = untilNowPoint + todayPoint
-            print("累積ポイントは\(sanitasPoint)")
-            try await FirebaseClient.shared.firebasePutData(point: sanitasPoint)
+            try await FirebaseClient.shared.firebasePutData(point: todayPoint)
             
             UD.set(Date(), forKey: "today")
             print(UD.object(forKey: "today")!)

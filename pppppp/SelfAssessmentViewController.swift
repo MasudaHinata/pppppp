@@ -33,10 +33,7 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
     @IBAction func goodButton(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.getUntilNowPoint()
-                let untilNowPoint = FirebaseClient.shared.untilNowPoint
-                let sanitasPoints = untilNowPoint + 15
-                try await FirebaseClient.shared.firebaseSelfPutData(point: sanitasPoints)
+                try await FirebaseClient.shared.firebasePutData(point: 15)
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
@@ -48,10 +45,7 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
     @IBAction func normalButton(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.getUntilNowPoint()
-                let untilNowPoint = FirebaseClient.shared.untilNowPoint
-                let sanitasPoints = untilNowPoint + 10
-                try await FirebaseClient.shared.firebaseSelfPutData(point: sanitasPoints)
+                try await FirebaseClient.shared.firebasePutData(point: 10)
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {
@@ -63,10 +57,7 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
     @IBAction func badButton(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.getUntilNowPoint()
-                let untilNowPoint = FirebaseClient.shared.untilNowPoint
-                let sanitasPoints = untilNowPoint + 5
-                try await FirebaseClient.shared.firebaseSelfPutData(point: sanitasPoints)
+                try await FirebaseClient.shared.firebasePutData(point: 5)
                 self.performSegue(withIdentifier: "toooooViewController", sender: nil)
             }
             catch {

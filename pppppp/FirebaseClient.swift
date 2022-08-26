@@ -63,23 +63,6 @@ final class FirebaseClient {
     let db = Firestore.firestore()
     var untilNowPoint = Int()
     
-    //今までの自分のポイントを取得l
-    func getUntilNowPoint() async throws {
-        guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        let querySnapshot = try await db.collection("User").document(userID).collection("HealthData").document("Date()").getDocument()
-        //        untilNowPoint = querySnapshot.data()?["point"] as? Int ?? 0
-        do {
-            untilNowPoint = try querySnapshot.data()!["point"]! as! Int
-            print("今までのポイントは\(String(describing: untilNowPoint))")
-            
-        } catch {
-            print("FirebaseClient getUntilNowPoint error")
-        }
-    }
     //友達のデータを取得
     public func getFriendProfileData() async throws -> [FriendListItem] {
         try await checkNameData()
@@ -93,66 +76,33 @@ final class FirebaseClient {
         var friends: [FriendListItem] = []
         for friendData in querySnapshot.documents {
             var friend = try friendData.data(as: FriendListItem.self)
-            friend.point = try await getFriendPointData2()
+            friend.point = try await getFriendPointData(id: friend.id!)
             friends.append(friend)
         }
-        
         return friends
     }
-    
-    func getFriendPointData2() async throws -> Int {
-        return 0
-    }
+    //友達のpointを取得して累積にして表示
+    func getFriendPointData(id: String) async throws -> Int {
+//        //TODO: 期間を指定する
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "MMMM d, yyyy HH:mm:ss"
+//        let result = formatter.string(from: Date())
+//        let startDate = result + " " + "07:00:00"
+//        let startTime: Date = formatter.date(from: startDate) ?? Date(timeIntervalSince1970: 0)
+//        let startTimestamp: Timestamp = Timestamp(date: startTime)
         
-        
-    //友達のポイントを取得
-    func getFriendPointData() async throws -> [FriendPointDataList] {
-        guard let user = Auth.auth().currentUser else {
-            try await self.userAuthCheck()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        
-        // DateFomatterクラスのインスタンス生成
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM d, yyyy HH:mm:ss"
-        let result = formatter.string(from: Date())
-        
-        let startDate = result + " " + "07:00:00"
-        let startTime: Date = formatter.date(from: startDate) ?? Date(timeIntervalSince1970: 0)
-        let startTimestamp: Timestamp = Timestamp(date: startTime)
-        
-        let endDate = result + " " + "23:59:00"
-        let endTime: Date = formatter.date(from: endDate) ?? Date()
-        let endTimestamp: Timestamp = Timestamp(date: endTime)
-        
-        
-        let querySnapshot = try await db.collection("User").whereField("FriendList",arrayContains: userID).getDocuments()
-        print(querySnapshot.documents)
+        let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         var friends: [FriendPointDataList] = []
-        let documents = querySnapshot.documents
-        for document in documents {
-            let snapshot = try await db.collection("User").document(document.documentID).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
-            print(snapshot.documents.map{$0.data()})
-            
-            for friendData in snapshot.documents {
-                print(friendData.data())
-                friends.append(try friendData.data(as: FriendPointDataList.self))
-            }
-//            return friends
+        for friendData in snapshot.documents {
+            print(friendData.data())
+            friends.append(try friendData.data(as: FriendPointDataList.self))
         }
-        print(friends)
-        return friends
-        
-//        let querySnapshot = try await db.collection("User").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: Date())).getDocuments()
-//        print(querySnapshot.documents)
-        
-//        var friends: [FriendPointDataList] = []
-//        for friendData in snapshot.documents {
-//            friends.append(try friendData.data(as: FriendPointDataList.self))
-//            print(friends)
-//        }
-//        return friends
+        let pointArray = friends.map { $0.point }
+        var pointSum = 0
+        for point in pointArray {
+            pointSum += point ?? 0
+        }
+        return pointSum
     }
     //自分の名前を表示する
     func getMyNameData() async throws -> String {
@@ -210,16 +160,6 @@ final class FirebaseClient {
         
         try await db.collection("User").document(userID).setData(["name" : name])
     }
-    //自己評価ポイントをfirebaseに保存
-    func firebaseSelfPutData(point: Int) async throws {
-        guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        try await db.collection("User").document(userID).collection("HealthData").document().setData(["point":point,"date": Timestamp(date: Date())])
-        self.putPoint?.putPointForFirestore(point: point)
-    }
     //ポイントをfirebaseに保存
     func firebasePutData(point: Int) async throws {
         guard let user = Auth.auth().currentUser else {
@@ -227,8 +167,8 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        try await db.collection("User").document(userID).collection("HealthData").document().setData(["point":point,"date": Timestamp(date: Date())])
-        //TODO: ポイント獲得のアラート
+        try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date())])
+        self.putPoint?.putPointForFirestore(point: point)
     }
     //画像をfirestoreに保存
     func putIconFirestore(imageURL: String) async throws {
@@ -268,15 +208,6 @@ final class FirebaseClient {
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayRemove([deleteFriendId])])
         try await db.collection("User").document(deleteFriendId).updateData(["FriendList": FieldValue.arrayRemove([userID])])
         await self.delegate?.friendDeleted()
-    }
-    //myIDを入れる
-    func putMyId() async throws {
-        guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        try await db.collection("User").document(userID).updateData(["myID": FieldValue.arrayUnion([userID])])
     }
     //ログインできてるかの判定
     func userAuthCheck() async throws {
@@ -319,25 +250,6 @@ final class FirebaseClient {
             self.notChangeDelegate?.notChangeName()
         }
     }
-    //myIDがあるかどうかの判定
-    func checkMyId() async throws {
-        guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        let querySnapshot = try await self.db.collection("User").document(userID).getDocument()
-        guard querySnapshot.data() != nil else {
-            print("ユーザーデータなし")
-            try await setUserData(name: "名称未設定")
-            try await putMyId()
-            return
-        }
-        guard querySnapshot.data()!["myID"] != nil else {
-            try await putMyId()
-            return
-        }
-    }
     //アイコンがあるかどうかの判定
     func checkIconData() async throws {
         guard let user = Auth.auth().currentUser else {
@@ -346,7 +258,7 @@ final class FirebaseClient {
         }
         let userID = user.uid
         let querySnapshot = try await self.db.collection("User").document(userID).getDocument()
-        
+
         guard querySnapshot.data() != nil else {
             print("ユーザーデータなし")
             try await setUserData(name: "名称未設定")
@@ -384,8 +296,8 @@ final class FirebaseClient {
         
         let documents = querySnapshot.documents
         for document in documents {
-            print(document.data()["myID"])
-            try await db.collection("User").document(document.data()["myID"] as! String).updateData(["FriendList": FieldValue.arrayRemove([userID])])
+            print(document.documentID)
+            try await db.collection("User").document(document.documentID).updateData(["FriendList": FieldValue.arrayRemove([userID])])
         }
     }
     //アカウントを削除する

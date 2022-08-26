@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
 import Firebase
+import FirebaseFirestoreSwift
 
 struct FriendPointDataList: Codable {
     @DocumentID var id: String?
-    let point: Int?
+    var point: Int?
     var date: Timestamp?
 }
