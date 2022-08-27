@@ -5,7 +5,15 @@ import Combine
 class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCreatedAccount {
     
     var cancellables = Set<AnyCancellable>()
-    @IBOutlet var GoButton: UIButton!
+    @IBOutlet var goButtonLayout: UIButton! {
+        didSet {
+            goButtonLayout.layer.cornerRadius = 24
+            goButtonLayout.clipsToBounds = true
+            goButtonLayout.layer.cornerCurve = .continuous
+        }
+    }
+    
+    
     @IBOutlet var emailTextField: UITextField! {
         didSet {
             emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
@@ -33,6 +41,14 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     
     @IBAction func GooButton() {
         if self.isValidEmail(self.emailTextField.text!) {
+            //            var configuration = UIButton.Configuration.filled()
+            //            configuration.title = "Creating Account..."
+            //            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            //            configuration.imagePlacement = .trailing
+            //            configuration.showsActivityIndicator = true
+            //            configuration.imagePadding = 8
+            //            //searchButtonに反映
+            //            goButtonLayout.configuration = configuration
             print("メールアドレスok")
             createAccount()
         } else {
@@ -47,9 +63,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
         
-        GoButton.layer.cornerRadius = 24
-        GoButton.clipsToBounds = true
-        GoButton.layer.cornerCurve = .continuous
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
         self.password2TextField.delegate = self
@@ -57,6 +70,14 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     
     func createAccount() {
         if passwordTextField.text == password2TextField.text && passwordTextField.text != "" {
+            var configuration = UIButton.Configuration.filled()
+            configuration.title = "Creating Account..."
+            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.imagePlacement = .trailing
+            configuration.showsActivityIndicator = true
+            configuration.imagePadding = 24
+            //searchButtonに反映
+            goButtonLayout.configuration = configuration
             print("パスワードok")
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
@@ -64,6 +85,15 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             let task = Task {
                 do {
                     try await FirebaseClient.shared.createAccount(email: email, password: password)
+//                    var configuration = UIButton.Configuration.gray()
+                    configuration.title = "Sign up"
+                    let symbolConfiguration = UIImage.SymbolConfiguration(scale: .default)
+                    configuration.image = UIImage(systemName: "", withConfiguration: symbolConfiguration)
+                    configuration.cornerStyle = .capsule
+                    configuration.imagePlacement = .trailing
+                    configuration.imagePadding = 24
+                    
+                    goButtonLayout.configuration = configuration
                 }
                 catch {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

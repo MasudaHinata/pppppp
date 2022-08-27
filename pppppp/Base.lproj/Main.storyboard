@@ -183,7 +183,7 @@
                                     <constraint firstAttribute="height" constant="54" id="JC4-Xn-oQz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Go">
+                                <state key="normal" title="Sign up">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -242,8 +242,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="wkL-lD-7rR"/>
                     <connections>
-                        <outlet property="GoButton" destination="Nbd-wP-U6k" id="DXf-4z-wy9"/>
                         <outlet property="emailTextField" destination="IZv-1V-XVC" id="g31-un-GZS"/>
+                        <outlet property="goButtonLayout" destination="Nbd-wP-U6k" id="DXf-4z-wy9"/>
                         <outlet property="password2TextField" destination="MT6-Ls-qrT" id="Ueb-FI-EJx"/>
                         <outlet property="passwordTextField" destination="VQ6-H4-IZf" id="AdE-NW-Mt8"/>
                     </connections>
