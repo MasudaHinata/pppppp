@@ -76,8 +76,8 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = true
             configuration.imagePadding = 24
-            //searchButtonに反映
             goButtonLayout.configuration = configuration
+            
             print("パスワードok")
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
@@ -85,19 +85,23 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             let task = Task {
                 do {
                     try await FirebaseClient.shared.createAccount(email: email, password: password)
-//                    var configuration = UIButton.Configuration.gray()
+                    var configuration = UIButton.Configuration.gray()
                     configuration.title = "Sign up"
-                    let symbolConfiguration = UIImage.SymbolConfiguration(scale: .default)
-                    configuration.image = UIImage(systemName: "", withConfiguration: symbolConfiguration)
                     configuration.cornerStyle = .capsule
                     configuration.imagePlacement = .trailing
                     configuration.imagePadding = 24
-                    
                     goButtonLayout.configuration = configuration
                 }
                 catch {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
+                    let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                        var configuration = UIButton.Configuration.gray()
+                        configuration.title = "Sign up"
+                        configuration.cornerStyle = .capsule
+                        configuration.imagePlacement = .trailing
+                        configuration.imagePadding = 24
+                        self.goButtonLayout.configuration = configuration
+                    }
                     alert.addAction(action)
                     self.present(alert, animated: true)
                     print("Account checkPassword error:",error.localizedDescription)
