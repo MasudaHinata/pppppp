@@ -41,6 +41,7 @@ protocol FirebaseCreatedAccount: AnyObject {
 protocol FirebaseDeleteAccount: AnyObject {
     func accountDeleted()
     func faildAcccountDelete()
+    func faildAcccountDeleteData()
 }
 protocol FirebasePutPoint: AnyObject {
     func putPointForFirestore(point: Int)
@@ -270,24 +271,13 @@ final class FirebaseClient {
     }
     //アカウントを作成する
     func createAccount(email: String, password: String) async throws {
-        //        firebaseAuth.createUser(withEmail: email, password: password) { (result, error) in
-        //            if error == nil, let result = result {
-        //                result.user.sendEmailVerification(completion: { (error) in
-        //                    if error == nil {
-        //                        self.createdAccount?.accountCreated()
-        //                    }
-        //                })
-        //            } else {
-        //                print("FirebaseClient createAccount error:", error!.localizedDescription)
-        //            }
-        //        }
         let result = try await firebaseAuth.createUser(withEmail: email, password: password)
         
-            try await result.user.sendEmailVerification(completion: { (error) in
-                if error == nil {
-                    self.createdAccount?.accountCreated()
-                }
-            })
+        try await result.user.sendEmailVerification(completion: { (error) in
+            if error == nil {
+                self.createdAccount?.accountCreated()
+            }
+        })
     }
     func passwordResetting(email: String) async throws{
         try await firebaseAuth.sendPasswordReset(withEmail: email)
@@ -324,6 +314,7 @@ final class FirebaseClient {
                 try await accountDeleteAuth()
             }
             catch {
+                self.deleteAccount?.faildAcccountDeleteData()
                 print("firebaseClient accountDelete error", error.localizedDescription)
             }
         }
@@ -335,20 +326,12 @@ final class FirebaseClient {
             try await self.userAuthCheck()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
-        user.delete { error in
-            if let error = error {
-                print("FirebaseClient accountDeleteAuth error:", error)
-                let task = Task {
-                    do {
-                        try await self.logout()
-                        self.deleteAccount?.faildAcccountDelete()
-                    }
-                    
-                }
-                self.cancellables.insert(.init { task.cancel() })
-            } else {
-                self.deleteAccount?.accountDeleted()
-            }
+        do {
+            try await user.delete()
+            self.deleteAccount?.accountDeleted()
+        }
+        catch {
+            self.deleteAccount?.faildAcccountDelete()
         }
     }
     //ログインする

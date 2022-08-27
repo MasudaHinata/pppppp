@@ -37,7 +37,7 @@ class SentEmailViewController: UIViewController {
             let task = Task {
                 do {
                     try await FirebaseClient.shared.passwordResetting(email: email)
-                    //ここで呼ぶのやめる
+                    //ここで呼ぶのやめたい
                     dismiss(animated: true, completion: nil)
                 }
                 catch {

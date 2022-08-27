@@ -209,15 +209,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             let task = Task { [weak self] in
                 do {
                     try await FirebaseClient.shared.accountDelete()
-                    let alert = UIAlertController(title: "アカウントを削除しました", message: "ありがとうございました", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        print("アカウントを削除しました")
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                        self?.showDetailViewController(secondVC, sender: self)
-                    }
-                    alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
                 }
                 catch {
                     print("ChangeProfile deleteAccount210:\(String(describing: error.localizedDescription))")
@@ -253,12 +244,20 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     func faildAcccountDelete() {
-        let alert = UIAlertController(title: "エラー", message: "ログインしなおしてもう一度試してください", preferredStyle: .alert)
+        let alert = UIAlertController(title: "ログインしなおしてもう一度試してください", message: "データが全て消えている可能性があります", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
             self.showDetailViewController(secondVC, sender: self)
         }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func faildAcccountDeleteData() {
+        let alert = UIAlertController(title: "もう一度試してください", message: "データの削除に失敗しました", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default)
         alert.addAction(ok)
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)

@@ -49,8 +49,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 
                 //                try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getFriendProfileData()
-                print("friendDataList")
-                print(friendDataList)
                 self!.collectionView.reloadData()
             }
             catch {
