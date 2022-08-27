@@ -20,7 +20,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     
     @IBOutlet var emailTextField: UITextField! {
         didSet {
-            emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress")
             emailTextField.layer.cornerRadius = 24
             emailTextField.clipsToBounds = true
             emailTextField.layer.cornerCurve = .continuous
@@ -28,7 +27,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     }
     @IBOutlet var passwordTextField: UITextField! {
         didSet {
-            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password")
             passwordTextField.layer.cornerRadius = 24
             passwordTextField.clipsToBounds = true
             passwordTextField.layer.cornerCurve = .continuous
@@ -36,7 +34,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     }
     @IBOutlet var password2TextField: UITextField! {
         didSet {
-            password2TextField.attributedPlaceholder = NSAttributedString(string: "confirm your Password")
             password2TextField.layer.cornerRadius = 24
             password2TextField.clipsToBounds = true
             password2TextField.layer.cornerCurve = .continuous
