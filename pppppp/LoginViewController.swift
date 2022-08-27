@@ -10,7 +10,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
     
     @IBOutlet var emailTextField: UITextField! {
         didSet {
-            emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress")
             emailTextField.layer.cornerRadius = 24
             emailTextField.clipsToBounds = true
             emailTextField.layer.cornerCurve = .continuous
@@ -18,7 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
     }
     @IBOutlet var passwordTextField: UITextField! {
         didSet {
-            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+//            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password")
             passwordTextField.layer.cornerRadius = 24
             passwordTextField.clipsToBounds = true
             passwordTextField.layer.cornerCurve = .continuous

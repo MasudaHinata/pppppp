@@ -7,16 +7,20 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var goButtonLayout: UIButton! {
         didSet {
-            goButtonLayout.layer.cornerRadius = 24
-            goButtonLayout.clipsToBounds = true
-            goButtonLayout.layer.cornerCurve = .continuous
+            var configuration = UIButton.Configuration.filled()
+            configuration.title = "Sign up"
+            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.imagePlacement = .trailing
+            configuration.showsActivityIndicator = false
+            configuration.imagePadding = 24
+            configuration.cornerStyle = .capsule
+            goButtonLayout.configuration = configuration
         }
     }
     
-    
     @IBOutlet var emailTextField: UITextField! {
         didSet {
-            emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your EmailAddress")
             emailTextField.layer.cornerRadius = 24
             emailTextField.clipsToBounds = true
             emailTextField.layer.cornerCurve = .continuous
@@ -24,7 +28,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     }
     @IBOutlet var passwordTextField: UITextField! {
         didSet {
-            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your Password")
             passwordTextField.layer.cornerRadius = 24
             passwordTextField.clipsToBounds = true
             passwordTextField.layer.cornerCurve = .continuous
@@ -32,7 +36,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     }
     @IBOutlet var password2TextField: UITextField! {
         didSet {
-            password2TextField.attributedPlaceholder = NSAttributedString(string: "confirm your Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            password2TextField.attributedPlaceholder = NSAttributedString(string: "confirm your Password")
             password2TextField.layer.cornerRadius = 24
             password2TextField.clipsToBounds = true
             password2TextField.layer.cornerCurve = .continuous
@@ -41,14 +45,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     
     @IBAction func GooButton() {
         if self.isValidEmail(self.emailTextField.text!) {
-            //            var configuration = UIButton.Configuration.filled()
-            //            configuration.title = "Creating Account..."
-            //            configuration.baseBackgroundColor = .init(hex: "92B2D3")
-            //            configuration.imagePlacement = .trailing
-            //            configuration.showsActivityIndicator = true
-            //            configuration.imagePadding = 8
-            //            //searchButtonに反映
-            //            goButtonLayout.configuration = configuration
             print("メールアドレスok")
             createAccount()
         } else {
@@ -73,9 +69,10 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Creating Account..."
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
-            configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = true
             configuration.imagePadding = 24
+            configuration.imagePlacement = .trailing
+            configuration.cornerStyle = .capsule
             goButtonLayout.configuration = configuration
             
             print("パスワードok")
@@ -85,27 +82,36 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             let task = Task {
                 do {
                     try await FirebaseClient.shared.createAccount(email: email, password: password)
-                    var configuration = UIButton.Configuration.gray()
-                    configuration.title = "Sign up"
-                    configuration.cornerStyle = .capsule
-                    configuration.imagePlacement = .trailing
-                    configuration.imagePadding = 24
-                    goButtonLayout.configuration = configuration
+//                    var configuration = UIButton.Configuration.gray()
+//                    configuration.title = "Sign up"
+//                    configuration.baseBackgroundColor = .init(hex: "92B2D3")
+//                    configuration.cornerStyle = .capsule
+//                    configuration.imagePlacement = .trailing
+//                    configuration.imagePadding = 24
+//                    goButtonLayout.configuration = configuration
                 }
                 catch {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                        var configuration = UIButton.Configuration.gray()
-                        configuration.title = "Sign up"
-                        configuration.cornerStyle = .capsule
-                        configuration.imagePlacement = .trailing
-                        configuration.imagePadding = 24
-                        self.goButtonLayout.configuration = configuration
+//                        var configuration = UIButton.Configuration.gray()
+//                        configuration.title = "Sign up"
+//                        configuration.baseBackgroundColor = .init(hex: "92B2D3")
+//                        configuration.cornerStyle = .capsule
+//                        configuration.imagePlacement = .trailing
+//                        configuration.imagePadding = 24
+//                        self.goButtonLayout.configuration = configuration
                     }
                     alert.addAction(action)
                     self.present(alert, animated: true)
                     print("Account checkPassword error:",error.localizedDescription)
                 }
+                var configuration = UIButton.Configuration.gray()
+                configuration.title = "Sign up"
+                configuration.baseBackgroundColor = .init(hex: "92B2D3")
+                configuration.cornerStyle = .capsule
+                configuration.imagePlacement = .trailing
+                configuration.imagePadding = 24
+                self.goButtonLayout.configuration = configuration
             }
             cancellables.insert(.init { task.cancel() })
         } else if passwordTextField.text == "" {
