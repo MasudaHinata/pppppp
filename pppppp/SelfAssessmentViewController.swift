@@ -20,6 +20,7 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.emailVerifyRequiredCheck()
                 try await FirebaseClient.shared.checkIconData()
                 try await FirebaseClient.shared.checkNameData()
             }

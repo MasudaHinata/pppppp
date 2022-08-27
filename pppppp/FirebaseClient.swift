@@ -80,6 +80,12 @@ final class FirebaseClient {
             friend.point = try await getFriendPointData(id: friend.id!)
             friends.append(friend)
         }
+        friends.sort(by: {$1.point! < $0.point!})
+
+        for ranking in friends {
+            print("name: \(ranking.name), point: \(ranking.point)")
+        }
+        
         return friends
     }
     //友達のpointを取得して累積にして表示
