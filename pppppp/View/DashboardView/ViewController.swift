@@ -69,7 +69,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         super.viewDidAppear(animated)
         
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
-        mountainView.draw(self.view.bounds)
         
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())

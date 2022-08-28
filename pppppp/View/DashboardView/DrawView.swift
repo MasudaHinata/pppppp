@@ -15,16 +15,6 @@ class DrawView: UIView {
     var friendListItems = [FriendListItem]()
     
     override func draw(_ rect: CGRect) {
-        //        for item in friendListItems {
-        //            graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(self.bounds.width * 0.9))), y: CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), imageURL: item.IconImageURL)
-        //        }
-        //        graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(rect.width * 0.8))), y: CGFloat(Float.random(in: 350 ..< Float(rect.height * 0.7)))), imageURL: "https://firebasestorage.googleapis.com:443/v0/b/healthcare-58d8a.appspot.com/o/posts%2F1661610611.535855.jpg?alt=media&token=59817508-e9c9-4931-ae2e-c01cd2f5af1f")
-        //        graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(rect.width * 0.9))), y: CGFloat(Float.random(in: 350 ..< Float(rect.height * 0.7)))))
-        //        graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(rect.width * 0.9))), y: CGFloat(Float.random(in: 350 ..< Float(rect.height * 0.7)))))
-        //        graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(rect.width * 0.9))), y: CGFloat(Float.random(in: 350 ..< Float(rect.height * 0.7)))))
-        //        graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(rect.width * 0.9))), y: CGFloat(Float.random(in: 350 ..< Float(rect.height * 0.7)))))
-    }
-    func configure(rect: CGRect, friendListItems: [FriendListItem]) {
         for path in paths {
             path.removeAllPoints()
         }
@@ -34,12 +24,11 @@ class DrawView: UIView {
         for item in friendListItems {
             graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(self.bounds.width * 0.9))), y: CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), imageURL: item.IconImageURL)
         }
+    }
+
+    func configure(rect: CGRect, friendListItems: [FriendListItem]) {
         self.friendListItems = friendListItems
         setNeedsDisplay()
-        
-        //        for item in friendListItems {
-        //            graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(self.bounds.width * 0.9))), y: CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), imageURL: item.IconImageURL)
-        //        }
     }
     
     func graph(vertex: CGPoint, imageURL: String) {
