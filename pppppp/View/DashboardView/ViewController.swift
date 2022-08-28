@@ -14,15 +14,14 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     let calendar = Calendar.current
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
-            collectionView.delegate = self
-            collectionView.dataSource = self
-            
+//            collectionView.delegate = self
+//            collectionView.dataSource = self
             layout.minimumLineSpacing = 22
             collectionView.collectionViewLayout = layout
-            
             collectionView.register(UINib(nibName: "DashBoardFriendDataCell", bundle: nil), forCellWithReuseIdentifier: "DashBoardFriendDataCell")
         }
     }
+    @IBOutlet var mountainView: DrawView!
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
@@ -30,14 +29,14 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPoint = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
         
-        collectionView.refreshControl = refreshControl
-        refreshControl.tintColor = .white
-        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
+//        collectionView.refreshControl = refreshControl
+//        refreshControl.tintColor = .white
+//        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
         
         Scorering.shared.getPermissionHealthKit()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
@@ -50,7 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 
 //                try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getFriendProfileData()
-                self!.collectionView.reloadData()
+//                self!.collectionView.reloadData()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -68,6 +67,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+//        mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
@@ -113,24 +114,24 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
             print("まだ19時前")
         }
     }
-    @objc func refresh(sender: UIRefreshControl) {
-        let task = Task { [weak self] in
-            do {
-                guard let self = self else { return }
-                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
-                self.collectionView.reloadData()
-            }
-            catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(action)
-                self!.present(alert, animated: true)
-                print("ViewContro refresh error",error.localizedDescription)
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-        refreshControl.endRefreshing()
-    }
+//    @objc func refresh(sender: UIRefreshControl) {
+//        let task = Task { [weak self] in
+//            do {
+//                guard let self = self else { return }
+//                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
+//                self.collectionView.reloadData()
+//            }
+//            catch {
+//                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+//                let action = UIAlertAction(title: "OK", style: .default)
+//                alert.addAction(action)
+//                self!.present(alert, animated: true)
+//                print("ViewContro refresh error",error.localizedDescription)
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
+//        refreshControl.endRefreshing()
+//    }
     func emailVerifyRequiredAlert() {
         let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -159,17 +160,17 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     }
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return friendDataList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
-        
-        cell.nameLabel.text = friendDataList[indexPath.row].name
-        cell.dataLabel.text = String(friendDataList[indexPath.row].point ?? 0)
-        cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
-        return cell
-    }
-}
+//extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return friendDataList.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
+//
+//        cell.nameLabel.text = friendDataList[indexPath.row].name
+//        cell.dataLabel.text = String(friendDataList[indexPath.row].point ?? 0)
+//        cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
+//        return cell
+//    }
+//}
