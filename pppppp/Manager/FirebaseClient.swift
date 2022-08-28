@@ -83,7 +83,7 @@ final class FirebaseClient {
         }
         friends.sort(by: {$1.point! < $0.point!})
         for ranking in friends {
-            print("name: \(ranking.name), point: \(ranking.point)")
+            print("name: \(ranking.name), point: \(String(describing: ranking.point))")
         }
         return friends
     }
