@@ -45,6 +45,7 @@ protocol FirebaseDeleteAccount: AnyObject {
 }
 protocol FirebasePutPoint: AnyObject {
     func putPointForFirestore(point: Int)
+    func notGetPoint()
 }
 
 
@@ -81,11 +82,9 @@ final class FirebaseClient {
             friends.append(friend)
         }
         friends.sort(by: {$1.point! < $0.point!})
-
         for ranking in friends {
             print("name: \(ranking.name), point: \(ranking.point)")
         }
-        
         return friends
     }
     //友達のpointを取得して累積にして表示
@@ -174,8 +173,17 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date())])
-        self.putPoint?.putPointForFirestore(point: point)
+        
+        if point == 0 {
+            try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date())])
+            self.putPoint?.notGetPoint()
+        } else {
+            try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date())])
+            self.putPoint?.putPointForFirestore(point: point)
+        }
+        
+//        try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date())])
+//        self.putPoint?.putPointForFirestore(point: point)
     }
     //画像をfirestoreに保存
     func putIconFirestore(imageURL: String) async throws {

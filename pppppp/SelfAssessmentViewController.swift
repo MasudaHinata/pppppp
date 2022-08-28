@@ -90,4 +90,11 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    func notGetPoint() {
+        let alert = UIAlertController(title: "今日の獲得ポイントは0ptです", message: "がんばりましょう", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }

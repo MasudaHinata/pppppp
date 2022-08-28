@@ -41,13 +41,35 @@ class ProfileViewController: UIViewController {
     @IBAction func addFriend() {
         let task = Task { [weak self] in
             do {
-                try await FirebaseClient.shared.addFriend(friendId: friendId)
-                let alertController = UIAlertController(title: "友達追加", message: "友達を追加しました", preferredStyle: UIAlertController.Style.alert)
-                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
-                    self?.performSegue(withIdentifier: "toViewController", sender: nil)
-                })
-                alertController.addAction(okAction)
-                present(alertController, animated: true, completion: nil)
+//                                try await FirebaseClient.shared.addFriend(friendId: friendId)
+//                                //ここでアラート呼びたくない
+//                                let alertController = UIAlertController(title: "友達追加", message: "友達を追加しました", preferredStyle: UIAlertController.Style.alert)
+//                                let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+//                                    self?.performSegue(withIdentifier: "toViewController", sender: nil)
+//                                })
+//                                alertController.addAction(okAction)
+//                                present(alertController, animated: true, completion: nil)
+//
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                if friendId == userID {
+                    let alertController = UIAlertController(title: "エラー", message: "自分とは友達になれません", preferredStyle: UIAlertController.Style.alert)
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+                        self?.performSegue(withIdentifier: "toViewController", sender: nil)
+                    })
+                    alertController.addAction(okAction)
+                    present(alertController, animated: true, completion: nil)
+                } else {
+                    try await FirebaseClient.shared.addFriend(friendId: friendId)
+                    //ここでアラート呼びたくない
+                    let alertController = UIAlertController(title: "友達追加", message: "友達を追加しました", preferredStyle: UIAlertController.Style.alert)
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+                        self?.performSegue(withIdentifier: "toViewController", sender: nil)
+                    })
+                    alertController.addAction(okAction)
+                    present(alertController, animated: true, completion: nil)
+                }
+                
+                
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

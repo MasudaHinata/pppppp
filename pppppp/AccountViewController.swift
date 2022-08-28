@@ -79,24 +79,10 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             let task = Task {
                 do {
                     try await FirebaseClient.shared.createAccount(email: email, password: password)
-//                    var configuration = UIButton.Configuration.gray()
-//                    configuration.title = "Sign up"
-//                    configuration.baseBackgroundColor = .init(hex: "92B2D3")
-//                    configuration.cornerStyle = .capsule
-//                    configuration.imagePlacement = .trailing
-//                    configuration.imagePadding = 24
-//                    goButtonLayout.configuration = configuration
                 }
                 catch {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .default) { (action) in
-//                        var configuration = UIButton.Configuration.gray()
-//                        configuration.title = "Sign up"
-//                        configuration.baseBackgroundColor = .init(hex: "92B2D3")
-//                        configuration.cornerStyle = .capsule
-//                        configuration.imagePlacement = .trailing
-//                        configuration.imagePadding = 24
-//                        self.goButtonLayout.configuration = configuration
                     }
                     alert.addAction(action)
                     self.present(alert, animated: true)
@@ -107,6 +93,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
                 configuration.baseBackgroundColor = .init(hex: "92B2D3")
                 configuration.cornerStyle = .capsule
                 configuration.imagePlacement = .trailing
+                configuration.baseForegroundColor = .white
                 configuration.imagePadding = 24
                 self.goButtonLayout.configuration = configuration
             }

@@ -4,6 +4,7 @@ import SwiftUI
 import Kingfisher
 
 class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify ,FirebasePutPoint {
+    
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
     var refreshControl = UIRefreshControl()
@@ -41,13 +42,13 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         Scorering.shared.getPermissionHealthKit()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
         
-        friendDataList.removeAll()
+        
         let tassk = Task { [weak self] in
             do {
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.emailVerifyRequiredCheck()
                 
-                //                try await Scorering.shared.createStepPoint()
+//                try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 self!.collectionView.reloadData()
             }
@@ -144,6 +145,13 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     }
     func putPointForFirestore(point: Int) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func notGetPoint() {
+        let alert = UIAlertController(title: "今日の獲得ポイントは0ptです", message: "がんばりましょう", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
