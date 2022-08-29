@@ -5,11 +5,19 @@ import Combine
 class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClientAuthDelegate {
     
     var cancellables = Set<AnyCancellable>()
-    @IBOutlet var goButton: UIButton! {
+    @IBOutlet var loginButtonLayout: UIButton! {
         didSet {
-            goButton.layer.cornerRadius = 24
-            goButton.clipsToBounds = true
-            goButton.layer.cornerCurve = .continuous
+            loginButtonLayout.layer.cornerRadius = 24
+            loginButtonLayout.clipsToBounds = true
+            loginButtonLayout.layer.cornerCurve = .continuous
+            var configuration = UIButton.Configuration.filled()
+            configuration.title = "Sign In"
+            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.imagePlacement = .trailing
+            configuration.showsActivityIndicator = false
+            configuration.imagePadding = 24
+            configuration.cornerStyle = .capsule
+            loginButtonLayout.configuration = configuration
         }
     }
     @IBOutlet var loginLabel: UILabel!

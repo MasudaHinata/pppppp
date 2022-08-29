@@ -14,21 +14,27 @@ class ChangeNameViewController: UIViewController {
     
     @IBOutlet var changeNameTextField: UITextField! {
         didSet {
-            changeNameTextField.attributedPlaceholder = NSAttributedString(string: "Change Your Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
             changeNameTextField.layer.cornerRadius = 24
             changeNameTextField.clipsToBounds = true
             changeNameTextField.layer.cornerCurve = .continuous
         }
     }
-    @IBOutlet var changeNameButton: UIButton! {
+    @IBOutlet var changeNameButtonLayout: UIButton! {
         didSet {
-            changeNameButton.layer.cornerRadius = 24
-            changeNameButton.clipsToBounds = true
-            changeNameButton.layer.cornerCurve = .continuous
+            changeNameButtonLayout.layer.cornerRadius = 24
+            changeNameButtonLayout.clipsToBounds = true
+            changeNameButtonLayout.layer.cornerCurve = .continuous
+            var configuration = UIButton.Configuration.filled()
+            configuration.title = "setting your name"
+            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.imagePlacement = .trailing
+            configuration.showsActivityIndicator = false
+            configuration.imagePadding = 24
+            configuration.cornerStyle = .capsule
+            changeNameButtonLayout.configuration = configuration
         }
     }
     @IBAction func changeName() {
-        
         let task = Task {
             do {
                 changename = changeNameTextField.text!
@@ -51,9 +57,18 @@ class ChangeNameViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGR.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGR)
+    }
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        changeNameTextField.resignFirstResponder()
+        return true
     }
 }

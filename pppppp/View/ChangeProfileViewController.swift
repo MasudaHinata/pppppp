@@ -26,14 +26,24 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     @IBOutlet var nameTextField: UITextField! {
         didSet {
-            nameTextField.attributedPlaceholder = NSAttributedString(string: "change you name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+            nameTextField.layer.cornerRadius = 24
+            nameTextField.clipsToBounds = true
+            nameTextField.layer.cornerCurve = .continuous
         }
     }
-    @IBOutlet var change: UIButton! {
+    @IBOutlet var goButtonLayout: UIButton! {
         didSet {
-            change.layer.cornerRadius = 24
-            change.clipsToBounds = true
-            change.layer.cornerCurve = .continuous
+            var configuration = UIButton.Configuration.filled()
+            configuration.title = "Change My Profile"
+            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.imagePlacement = .trailing
+            configuration.showsActivityIndicator = false
+            configuration.imagePadding = 24
+            configuration.cornerStyle = .capsule
+            goButtonLayout.configuration = configuration
+            goButtonLayout.layer.cornerRadius = 24
+            goButtonLayout.clipsToBounds = true
+            goButtonLayout.layer.cornerCurve = .continuous
         }
     }
     @IBAction func back_page1(_ sender: Any) {
@@ -124,41 +134,27 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
-        
-        nameTextField.layer.cornerRadius = 24
-        nameTextField.clipsToBounds = true
-        nameTextField.layer.cornerCurve = .continuous
     }
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
+                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.checkIconData()
+                try await FirebaseClient.shared.checkNameData()
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
             }
             catch {
-                
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+                print("ChangeProfileView didAppear error:",error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
-    }
-    //名前を変更
-    func settingChangeName(profileName: String) {
-        if profileName == "" {
-            print("名前変更なし")
-        } else if profileName != "" {
-            Task {
-                do {
-                    try await FirebaseClient.shared.putNameFirestore(name: profileName)
-                }
-                catch {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
-                    print("ChangeProfile settingChangeName91:", error.localizedDescription)
-                }
-            }
-        }
     }
     //プロフィールを変更
     func saveProfile() {
@@ -176,6 +172,14 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                     do {
                                         let downloadUrlStr = downloadUrl.absoluteString
                                         profileName = (self.nameTextField.text!)
+                                        var configuration = UIButton.Configuration.filled()
+                                        configuration.title = "Save..."
+                                        configuration.baseBackgroundColor = .init(hex: "92B2D3")
+                                        configuration.showsActivityIndicator = true
+                                        configuration.imagePadding = 24
+                                        configuration.imagePlacement = .trailing
+                                        configuration.cornerStyle = .capsule
+                                        goButtonLayout.configuration = configuration
                                         try await FirebaseClient.shared.putIconFirestore(imageURL: downloadUrlStr)
                                         self.settingChangeName(profileName: self.profileName)
                                         
@@ -195,6 +199,14 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                         self.present(alert, animated: true)
                                         print("ChangeProfileView 134 error:", error.localizedDescription)
                                     }
+                                    var configuration = UIButton.Configuration.gray()
+                                    configuration.title = "Change My Profile"
+                                    configuration.baseBackgroundColor = .init(hex: "92B2D3")
+                                    configuration.cornerStyle = .capsule
+                                    configuration.imagePlacement = .trailing
+                                    configuration.baseForegroundColor = .white
+                                    configuration.imagePadding = 24
+                                    self.goButtonLayout.configuration = configuration
                                 }
                                 self.cancellables.insert(.init { task.cancel() })
                             } else {
@@ -213,6 +225,24 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             }
             alert.addAction(ok)
             self.present(alert, animated: true, completion: nil)
+        }
+    }
+    //名前を変更
+    func settingChangeName(profileName: String) {
+        if profileName == "" {
+        } else if profileName != "" {
+            Task {
+                do {
+                    try await FirebaseClient.shared.putNameFirestore(name: profileName)
+                }
+                catch {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
+                    print("ChangeProfile settingChangeName91:", error.localizedDescription)
+                }
+            }
         }
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {

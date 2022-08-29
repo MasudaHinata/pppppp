@@ -12,6 +12,11 @@
 		036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698B28BB9DAD0066A7DA /* DrawView.swift */; };
 		036F699028BCFB7C0066A7DA /* MyProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698F28BCFB7C0066A7DA /* MyProfileData.swift */; };
 		036F699228BCFE850066A7DA /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F699128BCFE850066A7DA /* CollectionViewController.swift */; };
+		036F699B28BD41790066A7DA /* CccccccViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F699A28BD41790066A7DA /* CccccccViewController.swift */; };
+		036F699E28BD4AF50066A7DA /* PointHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F699D28BD4AF50066A7DA /* PointHistoryViewController.swift */; };
+		036F69A128BD4B300066A7DA /* PointHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F699F28BD4B300066A7DA /* PointHistoryCollectionViewCell.swift */; };
+		036F69A228BD4B300066A7DA /* PointHistoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F69A028BD4B300066A7DA /* PointHistoryCollectionViewCell.xib */; };
+		036F69A428BD4E520066A7DA /* MyPointData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69A328BD4E520066A7DA /* MyPointData.swift */; };
 		0397BD6E28B5F18600CDFA62 /* FriendListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */; };
 		03DFB7A328B7A8390019381A /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */; };
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
@@ -58,6 +63,11 @@
 		036F698B28BB9DAD0066A7DA /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		036F698F28BCFB7C0066A7DA /* MyProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileData.swift; sourceTree = "<group>"; };
 		036F699128BCFE850066A7DA /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		036F699A28BD41790066A7DA /* CccccccViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CccccccViewController.swift; sourceTree = "<group>"; };
+		036F699D28BD4AF50066A7DA /* PointHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHistoryViewController.swift; sourceTree = "<group>"; };
+		036F699F28BD4B300066A7DA /* PointHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		036F69A028BD4B300066A7DA /* PointHistoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointHistoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		036F69A328BD4E520066A7DA /* MyPointData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPointData.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListItem.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
@@ -121,11 +131,11 @@
 				036F698328BB930B0066A7DA /* FriendDataView */,
 				036F698528BB93760066A7DA /* AuthView */,
 				9C3A353F2859CEF100404AA6 /* HealthDataViewController.swift */,
-				9C4F1C742859E6F500623C66 /* ProfileViewController.swift */,
-				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
 				9C61891728A5F35B00DE6942 /* SelfAssessmentViewController.swift */,
-				036F698028B940270066A7DA /* SentEmailViewController.swift */,
+				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
 				03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */,
+				9C4F1C742859E6F500623C66 /* ProfileViewController.swift */,
+				036F699A28BD41790066A7DA /* CccccccViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,6 +167,7 @@
 			children = (
 				9CDF759E286326A600209FD0 /* AccountViewController.swift */,
 				9CAA88EB26B1918B005517D5 /* LoginViewController.swift */,
+				036F698028B940270066A7DA /* SentEmailViewController.swift */,
 			);
 			path = AuthView;
 			sourceTree = "<group>";
@@ -188,6 +199,7 @@
 				0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */,
 				036F697E28B8EACE0066A7DA /* FriendPointDataList.swift */,
 				036F698F28BCFB7C0066A7DA /* MyProfileData.swift */,
+				036F69A328BD4E520066A7DA /* MyPointData.swift */,
 				BE0878EB26551BC2007CA984 /* Post.swift */,
 			);
 			path = Model;
@@ -233,6 +245,9 @@
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33892580D0810027620D /* Info.plist */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
+				036F699D28BD4AF50066A7DA /* PointHistoryViewController.swift */,
+				036F699F28BD4B300066A7DA /* PointHistoryCollectionViewCell.swift */,
+				036F69A028BD4B300066A7DA /* PointHistoryCollectionViewCell.xib */,
 			);
 			path = pppppp;
 			sourceTree = "<group>";
@@ -314,6 +329,7 @@
 				BEA64AED25D3EC040064F184 /* GoogleService-Info.plist in Resources */,
 				BE7F33852580D0810027620D /* Assets.xcassets in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
+				036F69A228BD4B300066A7DA /* PointHistoryCollectionViewCell.xib in Resources */,
 				BE7F33832580D07E0027620D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,8 +341,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				036F69A428BD4E520066A7DA /* MyPointData.swift in Sources */,
 				036F699228BCFE850066A7DA /* CollectionViewController.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
+				036F699B28BD41790066A7DA /* CccccccViewController.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
@@ -335,6 +353,7 @@
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
 				BE0878EC26551BC2007CA984 /* Post.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
+				036F699E28BD4AF50066A7DA /* PointHistoryViewController.swift in Sources */,
 				0397BD6E28B5F18600CDFA62 /* FriendListItem.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
 				036F699028BCFB7C0066A7DA /* MyProfileData.swift in Sources */,
@@ -351,6 +370,7 @@
 				9C61891828A5F35B00DE6942 /* SelfAssessmentViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
+				036F69A128BD4B300066A7DA /* PointHistoryCollectionViewCell.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

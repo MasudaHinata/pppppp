@@ -60,23 +60,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         refreshCtl.addTarget(self, action: #selector(FriendListViewController.refresh(sender:)), for: .valueChanged)
         
         friendDataList.removeAll()
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
-            }
-            catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.viewDidLoad()
-                }
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
-                print("friendlistViewContro viewdidload error:", error.localizedDescription)
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -85,6 +68,10 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.checkIconData()
+                try await FirebaseClient.shared.checkNameData()
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
                 friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 self.friendcollectionView.reloadData()
             }

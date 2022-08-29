@@ -8,7 +8,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     @IBOutlet var goButtonLayout: UIButton! {
         didSet {
             var configuration = UIButton.Configuration.filled()
-            configuration.title = "Sign up"
+            configuration.title = "Sign Up"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
@@ -77,7 +77,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             configuration.imagePlacement = .trailing
             configuration.cornerStyle = .capsule
             goButtonLayout.configuration = configuration
-            
             print("パスワードok")
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
