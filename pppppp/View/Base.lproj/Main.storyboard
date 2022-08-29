@@ -6,6 +6,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,14 +32,73 @@
                             <constraint firstItem="ndx-UB-OiK" firstAttribute="trailing" secondItem="1Ia-4m-9zf" secondAttribute="trailing" id="vue-el-cmH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="always" id="U5C-91-Dkl"/>
+                    <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="always" id="U5C-91-Dkl">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="bio-tB-lX8">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="w16-HL-f5u">
+                                <rect key="frame" x="302" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="sendCollectionView" destination="C6X-Qw-bEO" eventType="touchUpInside" id="HCv-uw-Tdj"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mountainView" destination="ndx-UB-OiK" id="I8o-hY-XwT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3632" y="-212"/>
+            <point key="canvasLocation" x="4363.768115942029" y="-224.33035714285714"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="ND0-ax-3qK">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a5J-O4-bxZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="CollectionViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nmd-bw-2KJ" customClass="CollectionViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RAe-ZJ-sNW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4aT-ng-gy3">
+                                <rect key="frame" x="0.0" y="270" width="414" height="626"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5ga-sj-PYu">
+                                    <size key="itemSize" width="414" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DashBoardFriendDataCell" id="VTb-hT-fVW" customClass="DashBoardFriendDataCell" customModule="pppppp" customModuleProvider="target">
+                                        <rect key="frame" x="32.5" y="0.0" width="349" height="130"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9ZH-Cv-hhZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="349" height="130"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="z1J-rD-Pwh"/>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="4aT-ng-gy3" firstAttribute="trailing" secondItem="z1J-rD-Pwh" secondAttribute="trailing" id="BQW-Ze-Kgl"/>
+                            <constraint firstAttribute="bottom" secondItem="4aT-ng-gy3" secondAttribute="bottom" id="RjV-Mn-ZeH"/>
+                            <constraint firstItem="4aT-ng-gy3" firstAttribute="top" secondItem="RAe-ZJ-sNW" secondAttribute="top" id="f6b-h8-6Ik"/>
+                            <constraint firstItem="4aT-ng-gy3" firstAttribute="leading" secondItem="z1J-rD-Pwh" secondAttribute="leading" id="vLK-YK-SRb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="4aT-ng-gy3" id="CIB-M5-6hO"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="5117" y="-443"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="KPq-9t-VNS">
@@ -345,7 +405,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFg-BV-JmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2938" y="-212"/>
+            <point key="canvasLocation" x="3667" y="-224"/>
         </scene>
         <!--Me-->
         <scene sceneID="gPQ-18-pcq">
@@ -526,7 +586,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="T6G-9T-BxG"/>
-                        <color key="backgroundColor" red="0.074509803921568626" green="0.0" blue="0.2985896468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.074509803921568626" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="T6G-9T-BxG" firstAttribute="trailing" secondItem="93e-wV-iSz" secondAttribute="trailing" constant="32" id="Zyt-oJ-idd"/>
                             <constraint firstItem="tq0-h5-5t4" firstAttribute="top" secondItem="T6G-9T-BxG" secondAttribute="top" constant="32" id="cYB-5i-aQv"/>
@@ -742,7 +802,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1A-PN-yvM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5712" y="429"/>
+            <point key="canvasLocation" x="5714" y="429"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XfS-aq-DeV">
@@ -762,7 +822,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opp-0M-dPy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2380" y="429"/>
+            <point key="canvasLocation" x="2930" y="429"/>
         </scene>
         <!--Change Name View Controller-->
         <scene sceneID="kbf-fq-jXX">
@@ -879,7 +939,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YCM-cH-zpW"/>
+        <segue reference="ycS-Sb-ePy"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.rotate" catalog="system" width="128" height="94"/>

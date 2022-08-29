@@ -110,6 +110,7 @@ final class FirebaseClient {
         }
         return pointSum
     }
+    
     //自分の名前を表示する
     func getMyNameData() async throws -> String {
         try await self.checkNameData()
@@ -181,9 +182,6 @@ final class FirebaseClient {
             try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date())])
             self.putPoint?.putPointForFirestore(point: point)
         }
-        
-//        try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date())])
-//        self.putPoint?.putPointForFirestore(point: point)
     }
     //画像をfirestoreに保存
     func putIconFirestore(imageURL: String) async throws {

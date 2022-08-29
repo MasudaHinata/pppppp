@@ -60,6 +60,11 @@
                     <constraint firstItem="voH-JH-1AQ" firstAttribute="leading" secondItem="sz8-7w-ZbX" secondAttribute="trailing" constant="16" id="hlH-Bv-HDJ"/>
                     <constraint firstItem="sz8-7w-ZbX" firstAttribute="top" secondItem="IWW-Zl-nFm" secondAttribute="top" constant="16" id="ueM-eP-eEP"/>
                 </constraints>
+                <connections>
+                    <outlet property="dataLabel" destination="bdd-P8-OhF" id="ZEk-1l-8Og"/>
+                    <outlet property="iconView" destination="sz8-7w-ZbX" id="DnJ-AN-ZiO"/>
+                    <outlet property="nameLabel" destination="voH-JH-1AQ" id="nZv-7l-Z3Q"/>
+                </connections>
             </collectionViewCellContentView>
             <size key="customSize" width="349" height="130"/>
             <connections>
