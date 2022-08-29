@@ -33,22 +33,16 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPoint = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
+        Scorering.shared.getPermissionHealthKit()
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
         
 //        collectionView.refreshControl = refreshControl
 //        refreshControl.tintColor = .white
 //        refreshControl.addTarget(self, action: #selector(ViewController.refresh(sender:)), for: .valueChanged)
         
-        Scorering.shared.getPermissionHealthKit()
-        layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
-        
-        
         let tassk = Task { [weak self] in
             do {
-                try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.emailVerifyRequiredCheck()
-                
-//                try await Scorering.shared.createStepPoint()
-                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
+                try await Scorering.shared.createStepPoint()
 //                self!.collectionView.reloadData()
             }
             catch {
@@ -68,7 +62,29 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
+        let tassk = Task { [weak self] in
+            do {
+                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.emailVerifyRequiredCheck()
+                try await FirebaseClient.shared.checkNameData()
+                try await FirebaseClient.shared.checkIconData()
+                
+                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
+                mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
+//                self!.collectionView.reloadData()
+            }
+            catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self!.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self!.present(alert, animated: true, completion: nil)
+                
+                print("ViewContro ViewAppaer error:",error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { tassk.cancel() })
         
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())

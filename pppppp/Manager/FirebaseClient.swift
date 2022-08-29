@@ -287,7 +287,7 @@ final class FirebaseClient {
     func createAccount(email: String, password: String) async throws {
         let result = try await firebaseAuth.createUser(withEmail: email, password: password)
         
-        try await result.user.sendEmailVerification(completion: { (error) in
+        result.user.sendEmailVerification(completion: { (error) in
             if error == nil {
                 self.createdAccount?.accountCreated()
             }
