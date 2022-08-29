@@ -43,7 +43,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         let tassk = Task { [weak self] in
             do {
                 try await Scorering.shared.createStepPoint()
-//                self!.collectionView.reloadData()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

@@ -21,8 +21,10 @@ class DrawView: UIView {
         for imageView in imageViews {
             imageView.removeFromSuperview()
         }
+        let largestPoint = CGFloat(friendListItems.first?.point ?? 0)
         for item in friendListItems {
-            graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(self.bounds.width * 0.9))), y: CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), imageURL: item.IconImageURL)
+            let x = CGFloat(sqrt(CGFloat(item.point!) / largestPoint) * self.bounds.width * 0.8)
+            graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), imageURL: item.IconImageURL)
         }
     }
 
