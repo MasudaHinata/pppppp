@@ -57,7 +57,6 @@ class CollectionViewController: UIViewController {
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.emailVerifyRequiredCheck()
                 friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 self.collectionView.reloadData()
             }

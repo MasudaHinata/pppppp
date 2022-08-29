@@ -98,7 +98,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="5117" y="-443"/>
+            <point key="canvasLocation" x="5099" y="-224"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="KPq-9t-VNS">
@@ -939,7 +939,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ycS-Sb-ePy"/>
+        <segue reference="UbM-Xc-XVF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.rotate" catalog="system" width="128" height="94"/>

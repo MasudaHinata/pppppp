@@ -49,7 +49,11 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
         } else {
             showAlert(title: "エラー", message: "メールアドレスの形式が間違っています")
         }
-        
+    }
+    @IBAction func LoginButton () {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,11 +124,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     }
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
-    }
-    @IBAction func LoginButton () {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
-        self.showDetailViewController(secondVC, sender: self)
     }
     func isValidEmail(_ string: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"

@@ -20,7 +20,6 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.emailVerifyRequiredCheck()
                 try await FirebaseClient.shared.checkIconData()
                 try await FirebaseClient.shared.checkNameData()
             }
@@ -34,7 +33,6 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    //自己評価
     @IBAction func goodButton(){
         let task = Task {
             do {

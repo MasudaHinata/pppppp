@@ -23,8 +23,6 @@ final class Scorering {
     var weight: Double!
     var sanitasPoint = Int()
     let UD = UserDefaults.standard
-    
-    //healthkit使用の許可
     func getPermissionHealthKit() {
         let typeOfWrite = Set([typeOfBodyMass])
         let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
@@ -36,7 +34,6 @@ final class Scorering {
             print(success)
         })
     }
-    
     func createStepPoint() async throws {
         var judge = Bool()
         if UD.object(forKey: "today") != nil {
@@ -58,6 +55,8 @@ final class Scorering {
         if judge == true {
             judge = false
             print("日付変わったから歩数のポイントを作成")
+            
+            getPermissionHealthKit()
             
             //TODO: ERRORHANDLING
             let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
@@ -111,20 +110,14 @@ final class Scorering {
             default: break
             }
             try await FirebaseClient.shared.firebasePutData(point: todayPoint)
-            
             UD.set(Date(), forKey: "today")
-            print(UD.object(forKey: "today")!)
         }
         else {
             print("今日の歩数ポイント作成済み")
         }
     }
-
     //体重を取得
     func readWeight() async throws {
-//        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
-//        let startDate = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: date))
-        
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
         let results = try await descriptor.result(for: myHealthStore)

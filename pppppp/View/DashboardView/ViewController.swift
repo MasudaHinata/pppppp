@@ -10,12 +10,12 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     var friendDataList = [FriendListItem]()
     let UD = UserDefaults.standard
     let calendar = Calendar.current
+    @IBOutlet var mountainView: DrawView!
     @IBAction func sendCollectionView() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "CollectionViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
-    @IBOutlet var mountainView: DrawView!
     @IBAction func dataputButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
@@ -23,15 +23,14 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPoint = self
-        Scorering.shared.getPermissionHealthKit()
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
         
-        let tassk = Task { [weak self] in
+        let task = Task { [weak self] in
             do {
-//                try await Scorering.shared.createStepPoint()
+                //try await Scorering.shared.createStepPoint()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -40,23 +39,19 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 }
                 alert.addAction(ok)
                 self!.present(alert, animated: true, completion: nil)
-                
                 print("ViewContro ViewDid error:",error.localizedDescription)
             }
         }
-        cancellables.insert(.init { tassk.cancel() })
+        cancellables.insert(.init { task.cancel() })
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let tassk = Task { [weak self] in
+        let task = Task { [weak self] in
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.emailVerifyRequiredCheck()
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
-                
                 friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
             }
@@ -67,11 +62,10 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 }
                 alert.addAction(ok)
                 self!.present(alert, animated: true, completion: nil)
-                
                 print("ViewContro ViewAppaer error:",error.localizedDescription)
             }
         }
-        cancellables.insert(.init { tassk.cancel() })
+        cancellables.insert(.init { task.cancel() })
         
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
@@ -84,13 +78,11 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         }
         if judge == true {
             judge = false
-            print("19時以降だから自己評価よぶ")
             var judgge = Bool()
             if UD.object(forKey: "sss") != nil {
                 let past_day = UD.object(forKey: "sss") as! Date
                 let noww = calendar.component(.day, from: Date())
                 let past = calendar.component(.day, from: past_day)
-                print(UD.object(forKey: "sss")!)
                 if noww != past {
                     judgge = true
                 } else {
@@ -99,22 +91,19 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
             } else {
                 judgge = true
                 UD.set(Date(), forKey: "sss")
-                print(UD.object(forKey: "sss")!)
             }
             if judgge == true {
                 judgge = false
-                print("日付変わったから自己評価する")
                 UD.set(Date(), forKey: "sss")
-                print(UD.object(forKey: "sss")!)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
                 self.showDetailViewController(secondVC, sender: self)
             } else {
-                print("今日はもう自己評価した")
+                print("今日はもう自己評価しました")
             }
         }
         else {
-            print("まだ19時前")
+            print("まだ19時前です")
         }
     }
     func emailVerifyRequiredAlert() {

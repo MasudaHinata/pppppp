@@ -26,18 +26,12 @@ class SentEmailViewController: UIViewController {
             emailTextField.layer.cornerCurve = .continuous
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     @IBAction func sentEmailMore() {
-        
         if let email = emailTextField.text, emailTextField.text != "" {
             let task = Task {
                 do {
                     try await FirebaseClient.shared.passwordResetting(email: email)
-                    //ここで呼ぶのやめたい
+                    //TODO: ここで呼ぶのやめたい
                     dismiss(animated: true, completion: nil)
                 }
                 catch {
@@ -55,5 +49,8 @@ class SentEmailViewController: UIViewController {
             alert.addAction(action)
             self.present(alert, animated: true)
         }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 }

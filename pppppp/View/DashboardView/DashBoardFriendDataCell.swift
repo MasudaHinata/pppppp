@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import Kingfisher
 
 class DashBoardFriendDataCell: UICollectionViewCell {
-
+    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dataLabel: UILabel!
     @IBOutlet var iconView: UIImageView! {
@@ -19,10 +18,9 @@ class DashBoardFriendDataCell: UICollectionViewCell {
             iconView.clipsToBounds = true
         }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization coder
         self.layer.cornerRadius = 32
         self.layer.cornerCurve = .continuous
         self.clipsToBounds = true

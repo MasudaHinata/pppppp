@@ -15,36 +15,15 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
     var myName: String!
-    @IBOutlet var myIconView: UIImageView!
-    @IBOutlet var myNameLabel: UILabel!
-    
-    
     var sceneChangeProfile: sceneChangeProfile!
-    @IBAction func back_page1(_ sender: Any) {
-        dismiss(animated: true, completion: {
-            self.sceneChangeProfile.scene()
-        })
-    }
-    //アルバムを開く処理を呼び出す
-    @IBAction func uploadButton(_ sender: Any) {
-        let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.delegate = self
-        present(picker, animated: true)
-        self.present(picker, animated: true, completion: nil)
-    }
-    //画像が選択された時に呼ばれる
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
-        if let selectedImage = info[.originalImage] as? UIImage {
-            myIconView.image = selectedImage
+    @IBOutlet var myNameLabel: UILabel!
+    @IBOutlet var myIconView: UIImageView! {
+        didSet {
+            myIconView.layer.cornerRadius = 43
+            myIconView.clipsToBounds = true
+            myIconView.layer.cornerCurve = .continuous
         }
-        self.dismiss(animated: true)
     }
-    //画像選択がキャンセルされた時に呼ばれる
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBOutlet var nameTextField: UITextField! {
         didSet {
             nameTextField.attributedPlaceholder = NSAttributedString(string: "change you name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
@@ -57,114 +36,21 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             change.layer.cornerCurve = .continuous
         }
     }
-    
+    @IBAction func back_page1(_ sender: Any) {
+        dismiss(animated: true, completion: {
+            self.sceneChangeProfile.scene()
+        })
+    }
+    @IBAction func uploadButton(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        present(picker, animated: true)
+        self.present(picker, animated: true, completion: nil)
+    }
     @IBAction func changeProfile() {
         saveProfile()
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        FirebaseClient.shared.deleteAccount = self
-        
-        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tapGR.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(tapGR)
-        
-        nameTextField.layer.cornerRadius = 24
-        nameTextField.clipsToBounds = true
-        nameTextField.layer.cornerCurve = .continuous
-        myIconView.layer.cornerRadius = 43
-        myIconView.clipsToBounds = true
-        myIconView.layer.cornerCurve = .continuous
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        let task = Task {
-            do {
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
-            }
-            catch {
-                
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-    }
-    //名前を変更
-    func settingChangeName(profileName: String) {
-        if profileName == "" {
-            print("名前変更なし")
-        } else if profileName != "" {
-            Task {
-                do {
-                    try await FirebaseClient.shared.putNameFirestore(name: profileName)
-                }
-                catch {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
-                    print("ChangeProfile settingChangeName91:", error.localizedDescription)
-                }
-            }
-        }
-    }
-    //プロフィールを変更
-    func saveProfile() {
-        if let selectImage = myIconView.image {
-            let imageName = "\(Date().timeIntervalSince1970).jpg"
-            let reference = Storage.storage().reference().child("posts/\(imageName)")
-            if let imageData = selectImage.jpegData(compressionQuality: 0.8) {
-                let metadata = StorageMetadata()
-                metadata.contentType = "image/jpeg"
-                reference.putData(imageData, metadata: metadata, completion:{(metadata, error) in
-                    if let _ = metadata {
-                        reference.downloadURL{ [self] (url,error) in
-                            if let downloadUrl = url {
-                                let task = Task {
-                                    do {
-                                        let downloadUrlStr = downloadUrl.absoluteString
-                                        profileName = (self.nameTextField.text!)
-                                        try await FirebaseClient.shared.putIconFirestore(imageURL: downloadUrlStr)
-                                        self.settingChangeName(profileName: self.profileName)
-                        
-                                        let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                                        let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                                            dismiss(animated: true, completion: {
-                                                self.sceneChangeProfile.scene()
-                                            })
-                                        }
-                                        alert.addAction(ok)
-                                        self.present(alert, animated: true, completion: nil)
-                                    }
-                                    catch {
-                                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                                        let action = UIAlertAction(title: "OK", style: .default)
-                                        alert.addAction(action)
-                                        self.present(alert, animated: true)
-                                        print("ChangeProfileView 134 error:", error.localizedDescription)
-                                    }
-                                }
-                                self.cancellables.insert(.init { task.cancel() })
-                            } else {
-                                print("downloadURLの取得が失敗した場合の処理")
-                            }
-                        }
-                    } else {
-                        print("storageの保存が失敗")
-                    }
-                })
-            }
-        } else {
-            print("画像が選択されてない")
-            let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            }
-            alert.addAction(ok)
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    //ログアウトする
     @IBAction func logoutButton() {
         do {
             let alert3 = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
@@ -230,6 +116,113 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FirebaseClient.shared.deleteAccount = self
+        
+        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGR.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGR)
+        
+        nameTextField.layer.cornerRadius = 24
+        nameTextField.clipsToBounds = true
+        nameTextField.layer.cornerCurve = .continuous
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        let task = Task {
+            do {
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
+            }
+            catch {
+                
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
+    //名前を変更
+    func settingChangeName(profileName: String) {
+        if profileName == "" {
+            print("名前変更なし")
+        } else if profileName != "" {
+            Task {
+                do {
+                    try await FirebaseClient.shared.putNameFirestore(name: profileName)
+                }
+                catch {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
+                    print("ChangeProfile settingChangeName91:", error.localizedDescription)
+                }
+            }
+        }
+    }
+    //プロフィールを変更
+    func saveProfile() {
+        if let selectImage = myIconView.image {
+            let imageName = "\(Date().timeIntervalSince1970).jpg"
+            let reference = Storage.storage().reference().child("posts/\(imageName)")
+            if let imageData = selectImage.jpegData(compressionQuality: 0.8) {
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpeg"
+                reference.putData(imageData, metadata: metadata, completion:{(metadata, error) in
+                    if let _ = metadata {
+                        reference.downloadURL{ [self] (url,error) in
+                            if let downloadUrl = url {
+                                let task = Task {
+                                    do {
+                                        let downloadUrlStr = downloadUrl.absoluteString
+                                        profileName = (self.nameTextField.text!)
+                                        try await FirebaseClient.shared.putIconFirestore(imageURL: downloadUrlStr)
+                                        self.settingChangeName(profileName: self.profileName)
+                                        
+                                        let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
+                                        let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
+                                            dismiss(animated: true, completion: {
+                                                self.sceneChangeProfile.scene()
+                                            })
+                                        }
+                                        alert.addAction(ok)
+                                        self.present(alert, animated: true, completion: nil)
+                                    }
+                                    catch {
+                                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                                        let action = UIAlertAction(title: "OK", style: .default)
+                                        alert.addAction(action)
+                                        self.present(alert, animated: true)
+                                        print("ChangeProfileView 134 error:", error.localizedDescription)
+                                    }
+                                }
+                                self.cancellables.insert(.init { task.cancel() })
+                            } else {
+                                print("downloadURLの取得が失敗した場合の処理")
+                            }
+                        }
+                    } else {
+                        print("storageの保存が失敗")
+                    }
+                })
+            }
+        } else {
+            print("画像が選択されてない")
+            let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            }
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            myIconView.image = selectedImage
+        }
+        self.dismiss(animated: true)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
     func accountDeleted() {
         let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)

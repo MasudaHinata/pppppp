@@ -27,12 +27,10 @@ class DrawView: UIView {
             graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), imageURL: item.IconImageURL)
         }
     }
-
     func configure(rect: CGRect, friendListItems: [FriendListItem]) {
         self.friendListItems = friendListItems
         setNeedsDisplay()
     }
-    
     func graph(vertex: CGPoint, imageURL: String) {
         let delta = min(bounds.height - vertex.y, vertex.y) * 0.55
         let deltaTop = vertex.y - delta
@@ -45,7 +43,7 @@ class DrawView: UIView {
         let point5 = CGPoint(x: vertex.x, y: vertex.y + delta)
         let point6 = CGPoint(x: 0, y: self.bounds.height - deltaBottom)
         let point7 = CGPoint(x: 0, y: self.bounds.height)
-    
+        
         let path = UIBezierPath()
         path.move(to: point1)
         path.addCurve(to: point4, controlPoint1: point2, controlPoint2: point3)
