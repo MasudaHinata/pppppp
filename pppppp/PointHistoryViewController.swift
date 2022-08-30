@@ -26,7 +26,6 @@ class PointHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
-        // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -35,7 +34,6 @@ class PointHistoryViewController: UIViewController {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
                 pointDataList = try await FirebaseClient.shared.getMyPointData()
-                try await FirebaseClient.shared.firebasePutData(point: 30)
                 self.collectionView.reloadData()
             }
             catch {
