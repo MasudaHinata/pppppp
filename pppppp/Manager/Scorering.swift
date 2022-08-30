@@ -26,13 +26,12 @@ final class Scorering {
     func getPermissionHealthKit() {
         let typeOfWrite = Set([typeOfBodyMass])
         let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
-        myHealthStore.requestAuthorization(toShare: typeOfWrite ,read: typeOfRead,completion: { (success, error) in
+        myHealthStore.requestAuthorization(toShare: typeOfWrite, read: typeOfRead) { (success, error) in
             if let error = error {
                 print("Scorering getPermission error:", error.localizedDescription)
                 return
             }
-            print(success)
-        })
+        }
     }
     func createStepPoint() async throws {
         var judge = Bool()
@@ -40,7 +39,6 @@ final class Scorering {
             let past_day = UD.object(forKey: "today") as! Date
             let now = calendar.component(.day, from: Date())
             let past = calendar.component(.day, from: past_day)
-            print(Date(),now,past)
             if now != past {
                 judge = true
             }
@@ -50,12 +48,9 @@ final class Scorering {
         } else {
             judge = true
             UD.set(Date(), forKey: "today")
-            print(UD.object(forKey: "today")!)
         }
         if judge == true {
             judge = false
-            print("日付変わったから歩数のポイントを作成")
-            
             getPermissionHealthKit()
             
             //TODO: ERRORHANDLING
@@ -69,19 +64,14 @@ final class Scorering {
             let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
             let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
             let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-            print(startDate!,endDate!)
             let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
             //１ヶ月の平均歩数を取得
             let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-            print(startDateAve!,"から",endDateAve!,"までの平均歩数は",Int(stepCountAve! / 31))
             //昨日の歩数を取得
             let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-            print(startDate!,"から",endDate!,"までの歩数は",Int(stepCount!))
-            
             var differencePoint = Int()
             var todayPoint = Int()
             differencePoint = Int(stepCount!) - Int(stepCountAve! / 30)
-            print("歩数の差は\(differencePoint)")
             
             switch differencePoint {
             case (...0): todayPoint = 0
@@ -111,10 +101,6 @@ final class Scorering {
             }
             try await FirebaseClient.shared.firebasePutData(point: todayPoint)
             UD.set(Date(), forKey: "today")
-        }
-        else {
-            print("今日の歩数ポイント作成済み")
-//            UD.removeObject(forKey: "today")
         }
     }
     //体重を取得

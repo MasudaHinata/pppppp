@@ -322,10 +322,8 @@ final class FirebaseClient {
     func login(email: String, password: String) async throws {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
         if authReault.user.isEmailVerified {
-            print("パスワードとメールアドレス一致")
             self.loginDelegate?.loginScene()
         } else {
-            print("パスワードかメールアドレスが間違っています")
             self.loginDelegate?.loginHelperAlert()
         }
     }

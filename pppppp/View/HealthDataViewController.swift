@@ -44,7 +44,7 @@ class HealthDataViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        
         Scorering.shared.getPermissionHealthKit()
         let task = Task {
             do {

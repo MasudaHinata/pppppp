@@ -42,7 +42,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     
     @IBAction func GooButton() {
         if self.isValidEmail(self.emailTextField.text!) && passwordTextField.text!.count >= 6 {
-            print("メールアドレスok")
             createAccount()
         } else if ((passwordTextField.text!.count << 6) != 0) {
             showAlert(title: "エラー", message: "パスワードは６文字以上に設定してください")
@@ -77,7 +76,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             configuration.imagePlacement = .trailing
             configuration.cornerStyle = .capsule
             goButtonLayout.configuration = configuration
-            print("パスワードok")
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
             

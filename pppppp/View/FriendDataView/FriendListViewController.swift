@@ -146,7 +146,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         let task = Task {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                print("自分のユーザーIDを取得しました")
                 let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
                 let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
                 present(activityVC, animated: true, completion: nil)
@@ -253,8 +252,9 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     //友達を削除する
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView.tag == 1 {
-            print("1")
+            //MARK: - activityGrass
         } else if collectionView.tag == 0 {
+            //MARK: - friendList
             guard let deleteFriendId = friendDataList[indexPath.row].id else { return }
             let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
             let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
@@ -277,7 +277,6 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
                 cancellables.insert(.init { task.cancel() })
             })
             let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-                print("キャンセル")
             })
             alert.addAction(delete)
             alert.addAction(cancel)

@@ -69,7 +69,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                 let task = Task { [weak self] in
                     do {
                         try await FirebaseClient.shared.logout()
-                        print("ログアウトしました")
                         let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました", preferredStyle: .alert)
                         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -90,7 +89,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                 self.cancellables.insert(.init { task.cancel() })
             })
             let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-                print("キャンセル")
             })
             alert3.addAction(delete)
             alert3.addAction(cancel)
@@ -121,7 +119,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             cancellables.insert(.init { task.cancel() })
         })
         let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-            print("キャンセル")
         })
         alert.addAction(delete)
         alert.addAction(cancel)
@@ -219,7 +216,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                 })
             }
         } else {
-            print("画像が選択されてない")
             let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             }

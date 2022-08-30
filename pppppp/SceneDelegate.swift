@@ -70,7 +70,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let url = URLContexts.first?.url {
             let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
             if let queryValue = urlComponents?.queryItems?.first?.value {
-                print("クエリ(友達のID)は\(queryValue)")
                 recievedId = queryValue
             }
         }
