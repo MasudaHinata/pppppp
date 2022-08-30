@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
+class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
     var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {

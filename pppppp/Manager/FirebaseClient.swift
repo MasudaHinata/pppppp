@@ -42,9 +42,12 @@ protocol FirebaseDeleteAccount: AnyObject {
     func faildAcccountDelete()
     func faildAcccountDeleteData()
 }
-protocol FirebasePutPoint: AnyObject {
+protocol FirebasePutPointDelegate: AnyObject {
     func putPointForFirestore(point: Int)
     func notGetPoint()
+}
+protocol FirebaseSentEmail: AnyObject {
+    func sendEmail()
 }
 
 final class FirebaseClient {
@@ -55,7 +58,9 @@ final class FirebaseClient {
     weak var notChangeDelegate: FireStoreCheckName?
     weak var createdAccount: FirebaseCreatedAccount?
     weak var deleteAccount: FirebaseDeleteAccount?
-    weak var putPoint: FirebasePutPoint?
+    weak var putPoint: FirebasePutPointDelegate?
+    weak var sentEmailDelegate: FirebaseSentEmail?
+    
     private init() {}
     
     var cancellables = Set<AnyCancellable>()
@@ -285,6 +290,7 @@ final class FirebaseClient {
     //パスワードを再設定する
     func passwordResetting(email: String) async throws{
         try await firebaseAuth.sendPasswordReset(withEmail: email)
+        self.sentEmailDelegate?.sendEmail()
     }
     //友達のFriendListから自分を削除する
     func deleteMeFromFriend() async throws  {

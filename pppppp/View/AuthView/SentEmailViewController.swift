@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class SentEmailViewController: UIViewController {
+class SentEmailViewController: UIViewController, FirebaseSentEmail {
     
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var goButtonLayout: UIButton! {
@@ -47,8 +47,6 @@ class SentEmailViewController: UIViewController {
             let task = Task {
                 do {
                     try await FirebaseClient.shared.passwordResetting(email: email)
-                    //TODO: ここで呼ぶのやめたい,アラート追加
-                    dismiss(animated: true, completion: nil)
                 }
                 catch {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -76,9 +74,20 @@ class SentEmailViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseClient.shared.sentEmailDelegate = self
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
+    }
+    func sendEmail() {
+        let alert = UIAlertController(title: "完了", message: "パスワード再設定メールを送信しました", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     @objc func dismissKeyboard() {
         self.view.endEditing(true)

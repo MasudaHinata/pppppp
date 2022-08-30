@@ -3,7 +3,7 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify ,FirebasePutPoint {
+class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify ,FirebasePutPointDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
