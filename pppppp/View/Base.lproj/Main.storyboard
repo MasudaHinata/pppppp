@@ -791,64 +791,6 @@
             </objects>
             <point key="canvasLocation" x="5714" y="429"/>
         </scene>
-        <!--Ccccccc View Controller-->
-        <scene sceneID="hjv-xw-fYQ">
-            <objects>
-                <viewController storyboardIdentifier="CccccccViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1dJ-rb-RPh" customClass="CccccccViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CQv-fT-OUp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="m2i-kk-dTR">
-                                <rect key="frame" x="142" y="78" width="131" height="32"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                                <connections>
-                                    <action selector="didSelectSegment" destination="1dJ-rb-RPh" eventType="valueChanged" id="NYx-Bp-d7N"/>
-                                </connections>
-                            </segmentedControl>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pPv-X3-cQe">
-                                <rect key="frame" x="0.0" y="159" width="414" height="737"/>
-                                <color key="backgroundColor" systemColor="systemRedColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mPd-eZ-X6o">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="E1j-SO-oHd">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="N1o-W2-Nvc">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="XbD-Rz-mXl"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="pPv-X3-cQe" firstAttribute="trailing" secondItem="XbD-Rz-mXl" secondAttribute="trailing" id="18X-6n-sQc"/>
-                            <constraint firstAttribute="bottom" secondItem="pPv-X3-cQe" secondAttribute="bottom" id="71j-V9-wd5"/>
-                            <constraint firstItem="pPv-X3-cQe" firstAttribute="top" secondItem="m2i-kk-dTR" secondAttribute="bottom" constant="50" id="BUt-7n-Z0e"/>
-                            <constraint firstItem="pPv-X3-cQe" firstAttribute="leading" secondItem="XbD-Rz-mXl" secondAttribute="leading" id="C8E-Oo-sbh"/>
-                            <constraint firstItem="m2i-kk-dTR" firstAttribute="top" secondItem="XbD-Rz-mXl" secondAttribute="top" constant="34" id="hE6-DT-i1B"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="collectionView" destination="pPv-X3-cQe" id="ipE-1q-PJx"/>
-                        <outlet property="segmentedControl" destination="m2i-kk-dTR" id="dYz-ue-X9P"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="twt-ig-U9W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4363.768115942029" y="1099.5535714285713"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XfS-aq-DeV">
             <objects>
@@ -1017,7 +959,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="5035" y="1100"/>
+            <point key="canvasLocation" x="5713" y="-224"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -1032,9 +974,6 @@
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="suit.heart" catalog="system" width="128" height="109"/>
         <image name="xmark.circle" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
