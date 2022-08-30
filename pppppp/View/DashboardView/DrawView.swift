@@ -32,7 +32,7 @@ class DrawView: UIView {
         setNeedsDisplay()
     }
     func graph(vertex: CGPoint, imageURL: String) {
-        let delta = min(bounds.height - vertex.y, vertex.y) * 0.55
+        let delta = min(bounds.height - vertex.y, vertex.y) * 0.4
         let deltaTop = vertex.y - delta
         let deltaBottom = self.bounds.height - vertex.y - delta
         
