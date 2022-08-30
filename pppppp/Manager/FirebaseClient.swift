@@ -20,10 +20,12 @@ enum FirebaseClientAuthError: Error {
 enum FirebaseClientFirestoreError: Error {
     case userDataNotFound
 }
-
+@MainActor
 protocol FirebaseClientDeleteFriendDelegate: AnyObject {
     func friendDeleted() async
 }
+
+@MainActor
 protocol FirebaseClientAuthDelegate: AnyObject {
     func loginScene()
     func loginHelperAlert()
@@ -31,6 +33,8 @@ protocol FirebaseClientAuthDelegate: AnyObject {
 protocol FirebaseEmailVarifyDelegate: AnyObject {
     func emailVerifyRequiredAlert()
 }
+
+@MainActor
 protocol FireStoreCheckNameDelegate: AnyObject {
     func notChangeName()
 }
@@ -82,13 +86,13 @@ final class FirebaseClient {
             users.append(myData)
         }
         for i in 0 ..< users.count {
-            users[i].point = try await getPointData(id: users[i].id!)
+            users[i].point = try await getPointDataSum(id: users[i].id!)
         }
         users.sort { $1.point! < $0.point! }
         return users
     }
     //idで与えられたユーザーのポイントを累積して返す
-    func getPointData(id: String) async throws -> Int {
+    func getPointDataSum(id: String) async throws -> Int {
         let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         var friends: [PointData] = []
         for friendData in snapshot.documents {
@@ -101,21 +105,10 @@ final class FirebaseClient {
         }
         return pointSum
     }
-    //自分のポイントを取得する
-    func getMyPointData() async throws -> [PointData] {
-        guard let user = Auth.auth().currentUser else {
-            try await self.userAuthCheck()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        print(userID)
-        let snapshot = try await db.collection("User").document(userID).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
-        var friends: [PointData] = []
-        for friendData in snapshot.documents {
-            friends.append(try friendData.data(as: PointData.self))
-        }
-        print(friends)
-        return friends
+    //ポイントを取得する
+    func getPointData(id: String) async throws -> [PointData] {
+        let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
+        return try snapshot.documents.map { try $0.data(as: PointData.self) }
     }
     //自分の名前を表示する
     func getMyNameData() async throws -> String {
@@ -269,11 +262,8 @@ final class FirebaseClient {
     func createAccount(email: String, password: String) async throws {
         let result = try await firebaseAuth.createUser(withEmail: email, password: password)
         
-        result.user.sendEmailVerification(completion: { (error) in
-            if error == nil {
-                self.createdAccountDelegate?.accountCreated()
-            }
-        })
+        try await result.user.sendEmailVerification()
+        self.createdAccountDelegate?.accountCreated()
     }
     //パスワードを再設定する
     func passwordResetting(email: String) async throws{

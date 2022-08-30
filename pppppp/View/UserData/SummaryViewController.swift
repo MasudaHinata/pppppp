@@ -37,30 +37,28 @@ class SummaryViewController: UIViewController {
 extension SummaryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 112
-//        return friendDataList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryCollectionViewCell", for: indexPath)  as! SummaryCollectionViewCell
 
-        cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
+//        cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
 
 
-//        let point = 0
-//        switch point {
-//        case 0 :
-//            cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
-//        case 1...25:
-//            cell.backgroundColor = UIColor(hex: "45E1FF", alpha: 0.46)
-//        case 20...50:
-//            cell.backgroundColor = UIColor(hex: "3D83BC", alpha: 0.46)
-//        case 50...75:
-//            cell.backgroundColor = UIColor(hex: "008DDC", alpha: 0.46)
-//        case 75...100:
-//            cell.backgroundColor = UIColor(hex: "1D5CAC", alpha: 0.46)
-//        default: break
-//        }
-
+        let point = 0
+        switch point {
+        case 0 :
+            cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
+        case 1...25:
+            cell.backgroundColor = UIColor(hex: "45E1FF", alpha: 0.46)
+        case 20...50:
+            cell.backgroundColor = UIColor(hex: "3D83BC", alpha: 0.46)
+        case 50...75:
+            cell.backgroundColor = UIColor(hex: "008DDC", alpha: 0.46)
+        case 75...100:
+            cell.backgroundColor = UIColor(hex: "1D5CAC", alpha: 0.46)
+        default: break
+        }
 
         return cell
     }
