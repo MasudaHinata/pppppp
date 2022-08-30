@@ -12,5 +12,4 @@ import FirebaseFirestoreSwift
 struct MyPointData: Codable {
     @DocumentID var id: String?
     var point: Int?
-    var date: Timestamp?
 }

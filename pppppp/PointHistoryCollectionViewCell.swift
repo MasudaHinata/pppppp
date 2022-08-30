@@ -10,4 +10,5 @@ import UIKit
 class PointHistoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var pointLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
 }

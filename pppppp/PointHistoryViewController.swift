@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class PointHistoryViewController: UIViewController {
-    var pointDataList = [MyProfileData]()
+    var pointDataList = [MyPointData]()
     let layout = UICollectionViewFlowLayout()
     //    var refreshControl = UIRefreshControl()
         var cancellables = Set<AnyCancellable>()
@@ -34,7 +34,8 @@ class PointHistoryViewController: UIViewController {
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                pointDataList = try await FirebaseClient.shared.getMyProfileListItem()
+                pointDataList = try await FirebaseClient.shared.getMyPointData()
+                try await FirebaseClient.shared.firebasePutData(point: 30)
                 self.collectionView.reloadData()
             }
             catch {
@@ -60,9 +61,7 @@ extension PointHistoryViewController: UICollectionViewDataSource, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PointHistoryCollectionViewCell", for: indexPath)  as! PointHistoryCollectionViewCell
 
         cell.pointLabel.text =  String(pointDataList[indexPath.row].point ?? 0)
-//        cell.nameLabel.text = pointDataList[indexPath.row].name
-//        cell.dataLabel.text = String(pointDataList[indexPath.row].point ?? 0)
-//        cell.iconView.kf.setImage(with: URL(string: pointDataList[indexPath.row].IconImageURL)!)
+        cell.dateLabel.text = pointDataList[indexPath.row].id
         return cell
     }
 }

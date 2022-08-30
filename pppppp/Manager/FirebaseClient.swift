@@ -102,30 +102,26 @@ final class FirebaseClient {
         let userID = user.uid
         let querySnapshot = try await db.collection("User").document(userID).getDocument()
         var friends: [MyProfileData] = []
-            var friend = try querySnapshot.data(as: MyProfileData.self)
-            friend.point = try await getMyPointData()
-            friends.append(friend)
+//            var friend = try querySnapshot.data(as: MyProfileData.self)
+//            friend.point = try await getMyPointData()
+//            friends.append(friend)
         return friends
     }
     //自分のポイントを取得する
-    func getMyPointData() async throws -> Int {
+    func getMyPointData() async throws -> [MyPointData] {
         guard let user = Auth.auth().currentUser else {
             try await self.userAuthCheck()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
+        print(userID)
         let snapshot = try await db.collection("User").document(userID).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         var friends: [MyPointData] = []
         for friendData in snapshot.documents {
             friends.append(try friendData.data(as: MyPointData.self))
         }
         print(friends)
-        let pointArray = friends.map { $0.point }
-        var pointSum = 0
-        for point in pointArray {
-            pointSum += point ?? 0
-        }
-        return pointSum
+        return friends
     }
     //自分の名前を表示する
     func getMyNameData() async throws -> String {
@@ -190,7 +186,7 @@ final class FirebaseClient {
             try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date())])
             self.putPoint?.notGetPoint()
         } else {
-            try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date())])
+            try await db.collection("User").document(userID).collection("HealthData").document("\(Date())").setData(["point": point, "date": Timestamp(date: Date())])
             self.putPoint?.putPointForFirestore(point: point)
         }
     }
