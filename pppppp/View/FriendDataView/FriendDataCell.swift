@@ -17,7 +17,6 @@ class FriendDataCell: UICollectionViewCell {
             iconView.layer.cornerCurve = .continuous
         }
     }
-    
     @IBOutlet var profileBackgroundView: UIView! {
         didSet {
             profileBackgroundView.layer.cornerRadius = 32
@@ -28,6 +27,5 @@ class FriendDataCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 }

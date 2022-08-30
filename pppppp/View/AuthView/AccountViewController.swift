@@ -2,13 +2,13 @@ import UIKit
 import FirebaseStorage
 import Combine
 
-class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCreatedAccount {
+class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCreatedAccountDelegate {
     
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var goButtonLayout: UIButton! {
         didSet {
             var configuration = UIButton.Configuration.filled()
-            configuration.title = "Sign up"
+            configuration.title = "Sign Up"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
@@ -41,17 +41,23 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     }
     
     @IBAction func GooButton() {
-        if self.isValidEmail(self.emailTextField.text!) {
+        if self.isValidEmail(self.emailTextField.text!) && passwordTextField.text!.count >= 6 {
             print("メールアドレスok")
             createAccount()
+        } else if ((passwordTextField.text!.count << 6) != 0) {
+            showAlert(title: "エラー", message: "パスワードは６文字以上に設定してください")
         } else {
-            showAlert(title: "メールアドレスの形式が間違っています", message: "メールアドレスを確認してください")
+            showAlert(title: "エラー", message: "メールアドレスの形式が間違っています")
         }
-        
+    }
+    @IBAction func LoginButton () {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseClient.shared.createdAccount = self
+        FirebaseClient.shared.createdAccountDelegate = self
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
@@ -71,7 +77,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
             configuration.imagePlacement = .trailing
             configuration.cornerStyle = .capsule
             goButtonLayout.configuration = configuration
-            
             print("パスワードok")
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
@@ -118,11 +123,6 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     }
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
-    }
-    @IBAction func LoginButton () {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
-        self.showDetailViewController(secondVC, sender: self)
     }
     func isValidEmail(_ string: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"

@@ -8,19 +8,18 @@
 import UIKit
 import Combine
 
-class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
+class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
     var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseClient.shared.putPoint = self
+        FirebaseClient.shared.putPointDelegate = self
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.emailVerifyRequiredCheck()
                 try await FirebaseClient.shared.checkIconData()
                 try await FirebaseClient.shared.checkNameData()
             }
@@ -34,7 +33,6 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPoint {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    //自己評価
     @IBAction func goodButton(){
         let task = Task {
             do {

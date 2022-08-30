@@ -15,12 +15,11 @@ class NotificationManager {
         notificationContent.body = body
         notificationContent.badge = NSNumber(value: 1)
         notificationContent.sound = .default
-        
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
         var datComp = DateComponents()
-        datComp.hour = 18
-        datComp.minute = 52
+        datComp.hour = 19
+        datComp.minute = 00
         let trigger = UNCalendarNotificationTrigger(dateMatching: datComp, repeats: true)
         let request = UNNotificationRequest(identifier: "ID", content: notificationContent, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error : Error?) in

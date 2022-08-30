@@ -14,39 +14,22 @@ protocol sceneChangeProfile {
 }
 
 @MainActor
-final class FriendListViewController: UIViewController, FirebaseClientDelegate, sceneChangeProfile, FireStoreCheckName {
-    func notChangeName() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ChangeNameViewController")
-        self.showDetailViewController(secondVC, sender: self)
-    }
-    
-    func scene() {
-        viewDidLoad()
-    }
-    func friendDeleted() {
-        let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func to_page2(_ sender: Any) {
-        let page2 = self.storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
-        page2.sceneChangeProfile = self
-        self.present(page2,animated: true,completion: nil)
-    }
-    
+final class FriendListViewController: UIViewController, FirebaseClientDeleteFriendDelegate, sceneChangeProfile, FireStoreCheckNameDelegate {
     var completionHandlers = [() -> Void]()
     var friendDataList = [FriendListItem]()
     var cancellables = Set<AnyCancellable>()
     var refreshCtl = UIRefreshControl()
-    @IBOutlet var myIconView: UIImageView!
     @IBOutlet var myNameLabel: UILabel!
+    @IBOutlet var myIconView: UIImageView! {
+        didSet {
+            myIconView.layer.cornerRadius = 32
+            myIconView.clipsToBounds = true
+            myIconView.layer.cornerCurve = .continuous
+        }
+    }
     @IBOutlet var friendcollectionView: UICollectionView! {
         didSet {
-            FirebaseClient.shared.delegate = self
+            FirebaseClient.shared.deletefriendDelegate = self
             friendcollectionView.delegate = self
             friendcollectionView.dataSource = self
             friendcollectionView.register(UINib(nibName: "FriendDataCell", bundle: nil), forCellWithReuseIdentifier: "frienddatacell")
@@ -59,6 +42,14 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
             profileBackgroundView.layer.cornerCurve = .continuous
         }
     }
+    @IBAction func pressedButton() {
+        showShareSheet()
+    }
+    @IBAction func to_page2(_ sender: Any) {
+        let page2 = self.storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
+        page2.sceneChangeProfile = self
+        self.present(page2,animated: true,completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,19 +59,19 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addTarget(self, action: #selector(FriendListViewController.refresh(sender:)), for: .valueChanged)
         
-        myIconView.layer.cornerRadius = 32
-        myIconView.clipsToBounds = true
-        myIconView.layer.cornerCurve = .continuous
         friendDataList.removeAll()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.emailVerifyRequiredCheck()
-                
+                try await FirebaseClient.shared.checkIconData()
+                try await FirebaseClient.shared.checkNameData()
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
-                
                 friendDataList = try await FirebaseClient.shared.getFriendProfileData()
                 self.friendcollectionView.reloadData()
             }
@@ -91,22 +82,14 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
                 }
                 alert.addAction(ok)
                 self.present(alert, animated: true, completion: nil)
-                print("friendlistViewContro viewdidload error:",error.localizedDescription)
+                print("friendlistView didAppear error:",error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
         friendcollectionView.collectionViewLayout = layout
-    }
-    
-    //リンクのシェアシート出す
-    @IBAction func pressedButton() {
-        showShareSheet()
     }
     func showShareSheet() {
         let task = Task {
@@ -146,6 +129,22 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
         }
         cancellables.insert(.init { task.cancel() })
         refreshCtl.endRefreshing()
+    }
+    func notChangeName() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ChangeNameViewController")
+        self.showDetailViewController(secondVC, sender: self)
+    }
+    
+    func scene() {
+        viewDidLoad()
+    }
+    func friendDeleted() {
+        let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 

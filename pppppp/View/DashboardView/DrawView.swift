@@ -5,20 +5,34 @@
 //  Created by hinata on 2022/08/28.
 //
 
+import Foundation
 import UIKit
 
 class DrawView: UIView {
+    
+    var paths = [UIBezierPath]()
+    var imageViews = [UIImageView]()
+    var friendListItems = [FriendListItem]()
+    
     override func draw(_ rect: CGRect) {
-        
-        graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(rect.width * 0.8))), y: CGFloat(Float.random(in: 200 ..< Float(rect.height * 0.75)))))
-        graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(rect.width * 0.9))), y: CGFloat(Float.random(in: 200 ..< Float(rect.height * 0.75)))))
-        graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(rect.width * 0.9))), y: CGFloat(Float.random(in: 200 ..< Float(rect.height * 0.75)))))
-        graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(rect.width * 0.9))), y: CGFloat(Float.random(in: 200 ..< Float(rect.height * 0.75)))))
-        graph(vertex: CGPoint(x: CGFloat(Float.random(in: 200 ..< Float(rect.width * 0.9))), y: CGFloat(Float.random(in: 200 ..< Float(rect.height * 0.75)))))
-        
+        for path in paths {
+            path.removeAllPoints()
+        }
+        for imageView in imageViews {
+            imageView.removeFromSuperview()
+        }
+        let largestPoint = CGFloat(friendListItems.first?.point ?? 0)
+        for item in friendListItems {
+            let x = CGFloat(sqrt(CGFloat(item.point!) / largestPoint) * self.bounds.width * 0.8)
+            graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), imageURL: item.IconImageURL)
+        }
     }
-    func graph(vertex: CGPoint) {
-        let delta = min(bounds.height - vertex.y, vertex.y) * 0.55
+    func configure(rect: CGRect, friendListItems: [FriendListItem]) {
+        self.friendListItems = friendListItems
+        setNeedsDisplay()
+    }
+    func graph(vertex: CGPoint, imageURL: String) {
+        let delta = min(bounds.height - vertex.y, vertex.y) * 0.4
         let deltaTop = vertex.y - delta
         let deltaBottom = self.bounds.height - vertex.y - delta
         
@@ -29,7 +43,7 @@ class DrawView: UIView {
         let point5 = CGPoint(x: vertex.x, y: vertex.y + delta)
         let point6 = CGPoint(x: 0, y: self.bounds.height - deltaBottom)
         let point7 = CGPoint(x: 0, y: self.bounds.height)
-    
+        
         let path = UIBezierPath()
         path.move(to: point1)
         path.addCurve(to: point4, controlPoint1: point2, controlPoint2: point3)
@@ -38,5 +52,16 @@ class DrawView: UIView {
         path.lineWidth = 5.0
         UIColor.init(hex: "B8E9FF", alpha: 0.25).setFill()
         path.fill()
+        
+        let imageView = UIImageView()
+        imageView.frame = CGRect(x: vertex.x - 28, y: vertex.y - 28, width: 56, height: 56)
+        imageView.kf.setImage(with: URL(string: imageURL))
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 24
+        imageView.layer.cornerCurve = .continuous
+        imageView.clipsToBounds = true
+        self.addSubview(imageView)
+        paths.append(path)
+        imageViews.append(imageView)
     }
 }
