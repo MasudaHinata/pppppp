@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-struct FriendPointDataList: Codable {
+struct PointData: Codable {
     @DocumentID var id: String?
     var point: Int?
 }

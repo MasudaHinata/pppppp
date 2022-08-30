@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class PointHistoryViewController: UIViewController {
-    var pointDataList = [MyPointData]()
+    var pointDataList = [PointData]()
     let layout = UICollectionViewFlowLayout()
     //    var refreshControl = UIRefreshControl()
         var cancellables = Set<AnyCancellable>()

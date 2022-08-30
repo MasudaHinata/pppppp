@@ -9,7 +9,7 @@ import UIKit
 
 class SummaryViewController: UIViewController {
 
-    var friendDataList = [FriendListItem]()
+    var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
 //    var refreshControl = UIRefreshControl()
 //    var cancellables = Set<AnyCancellable>()

@@ -12,7 +12,7 @@ class DrawView: UIView {
     
     var paths = [UIBezierPath]()
     var imageViews = [UIImageView]()
-    var friendListItems = [FriendListItem]()
+    var friendListItems = [UserData]()
     
     override func draw(_ rect: CGRect) {
         for path in paths {
@@ -27,7 +27,7 @@ class DrawView: UIView {
             graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), imageURL: item.IconImageURL)
         }
     }
-    func configure(rect: CGRect, friendListItems: [FriendListItem]) {
+    func configure(rect: CGRect, friendListItems: [UserData]) {
         self.friendListItems = friendListItems
         setNeedsDisplay()
     }

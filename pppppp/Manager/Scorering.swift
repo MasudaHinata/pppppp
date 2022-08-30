@@ -114,6 +114,7 @@ final class Scorering {
         }
         else {
             print("今日の歩数ポイント作成済み")
+//            UD.removeObject(forKey: "today")
         }
     }
     //体重を取得

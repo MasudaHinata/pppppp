@@ -7,19 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		036F697F28B8EACE0066A7DA /* FriendPointDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F697E28B8EACE0066A7DA /* FriendPointDataList.swift */; };
+		036F697F28B8EACE0066A7DA /* PointData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F697E28B8EACE0066A7DA /* PointData.swift */; };
 		036F698128B940270066A7DA /* SentEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698028B940270066A7DA /* SentEmailViewController.swift */; };
 		036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698B28BB9DAD0066A7DA /* DrawView.swift */; };
-		036F699028BCFB7C0066A7DA /* MyProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698F28BCFB7C0066A7DA /* MyProfileData.swift */; };
 		036F699228BCFE850066A7DA /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F699128BCFE850066A7DA /* CollectionViewController.swift */; };
 		036F699E28BD4AF50066A7DA /* PointHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F699D28BD4AF50066A7DA /* PointHistoryViewController.swift */; };
 		036F69A128BD4B300066A7DA /* PointHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F699F28BD4B300066A7DA /* PointHistoryCollectionViewCell.swift */; };
 		036F69A228BD4B300066A7DA /* PointHistoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F69A028BD4B300066A7DA /* PointHistoryCollectionViewCell.xib */; };
-		036F69A428BD4E520066A7DA /* MyPointData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69A328BD4E520066A7DA /* MyPointData.swift */; };
 		036F69E128BE1D900066A7DA /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69E028BE1D900066A7DA /* SummaryViewController.swift */; };
 		036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */; };
 		036F69E528BE1DC70066A7DA /* SummaryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */; };
-		0397BD6E28B5F18600CDFA62 /* FriendListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */; };
+		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
 		03DFB7A328B7A8390019381A /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */; };
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
 		9C1A900C283506D5004B4100 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A900B283506D5004B4100 /* FriendListViewController.swift */; };
@@ -60,19 +58,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		036F697E28B8EACE0066A7DA /* FriendPointDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPointDataList.swift; sourceTree = "<group>"; };
+		036F697E28B8EACE0066A7DA /* PointData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointData.swift; sourceTree = "<group>"; };
 		036F698028B940270066A7DA /* SentEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentEmailViewController.swift; sourceTree = "<group>"; };
 		036F698B28BB9DAD0066A7DA /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
-		036F698F28BCFB7C0066A7DA /* MyProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileData.swift; sourceTree = "<group>"; };
 		036F699128BCFE850066A7DA /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		036F699D28BD4AF50066A7DA /* PointHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHistoryViewController.swift; sourceTree = "<group>"; };
 		036F699F28BD4B300066A7DA /* PointHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		036F69A028BD4B300066A7DA /* PointHistoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointHistoryCollectionViewCell.xib; sourceTree = "<group>"; };
-		036F69A328BD4E520066A7DA /* MyPointData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPointData.swift; sourceTree = "<group>"; };
 		036F69E028BE1D900066A7DA /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryCollectionViewCell.xib; sourceTree = "<group>"; };
-		0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListItem.swift; sourceTree = "<group>"; };
+		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
 		9C1A900B283506D5004B4100 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
@@ -205,10 +201,8 @@
 		036F698828BB93F60066A7DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0397BD6D28B5F18600CDFA62 /* FriendListItem.swift */,
-				036F697E28B8EACE0066A7DA /* FriendPointDataList.swift */,
-				036F698F28BCFB7C0066A7DA /* MyProfileData.swift */,
-				036F69A328BD4E520066A7DA /* MyPointData.swift */,
+				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
+				036F697E28B8EACE0066A7DA /* PointData.swift */,
 				BE0878EB26551BC2007CA984 /* Post.swift */,
 			);
 			path = Model;
@@ -348,7 +342,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				036F69A428BD4E520066A7DA /* MyPointData.swift in Sources */,
 				036F699228BCFE850066A7DA /* CollectionViewController.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
@@ -360,9 +353,8 @@
 				BE0878EC26551BC2007CA984 /* Post.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
 				036F699E28BD4AF50066A7DA /* PointHistoryViewController.swift in Sources */,
-				0397BD6E28B5F18600CDFA62 /* FriendListItem.swift in Sources */,
+				0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
-				036F699028BCFB7C0066A7DA /* MyProfileData.swift in Sources */,
 				036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */,
 				9C1A900C283506D5004B4100 /* FriendListViewController.swift in Sources */,
 				9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */,
@@ -374,7 +366,7 @@
 				036F69E128BE1D900066A7DA /* SummaryViewController.swift in Sources */,
 				036F698128B940270066A7DA /* SentEmailViewController.swift in Sources */,
 				03DFB7A328B7A8390019381A /* ChangeNameViewController.swift in Sources */,
-				036F697F28B8EACE0066A7DA /* FriendPointDataList.swift in Sources */,
+				036F697F28B8EACE0066A7DA /* PointData.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfAssessmentViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,

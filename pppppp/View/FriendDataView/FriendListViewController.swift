@@ -16,7 +16,7 @@ protocol sceneChangeProfile {
 @MainActor
 final class FriendListViewController: UIViewController, FirebaseClientDeleteFriendDelegate, sceneChangeProfile, FireStoreCheckNameDelegate {
     var completionHandlers = [() -> Void]()
-    var friendDataList = [FriendListItem]()
+    var friendDataList = [UserData]()
     var cancellables = Set<AnyCancellable>()
     var refreshCtl = UIRefreshControl()
     @IBOutlet var myNameLabel: UILabel!
@@ -72,7 +72,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 try await FirebaseClient.shared.checkNameData()
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
-                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
+                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
             }
             catch {
@@ -114,7 +114,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     @objc func refresh(sender: UIRefreshControl) {
         let task = Task { [weak self] in
             do {
-                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
+                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self!.friendcollectionView.reloadData()
             }
             catch {
@@ -168,7 +168,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
             let task = Task {
                 do {
                     try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: deleteFriendId)
-                    friendDataList = try await FirebaseClient.shared.getFriendProfileData()
+                    friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                     self.friendcollectionView.reloadData()
                 }
                 catch {

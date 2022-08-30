@@ -10,7 +10,7 @@ import Combine
 
 class CollectionViewController: UIViewController {
 
-    var friendDataList = [FriendListItem]()
+    var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
     var refreshControl = UIRefreshControl()
     var cancellables = Set<AnyCancellable>()
@@ -28,7 +28,7 @@ class CollectionViewController: UIViewController {
         let task = Task { [weak self] in
             do {
                 guard let self = self else { return }
-                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
+                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 self.collectionView.reloadData()
             }
             catch {
@@ -57,7 +57,7 @@ class CollectionViewController: UIViewController {
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                friendDataList = try await FirebaseClient.shared.getFriendProfileData()
+                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 self.collectionView.reloadData()
             }
             catch {
