@@ -9,8 +9,8 @@ import UIKit
 import Combine
 
 class UserDataViewController: UIViewController {
-
-//    var friendDataList = [UserData]()
+    
+    //    var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
     var cancellables = Set<AnyCancellable>()
     var userDataItem: UserData?
@@ -22,6 +22,13 @@ class UserDataViewController: UIViewController {
         didSet {
             iconView.layer.cornerRadius = 24
             iconView.layer.cornerCurve = .continuous
+        }
+    }
+    @IBOutlet var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+            collectionView.register(UINib(nibName: "RecentActivitysTableViewCell", bundle: nil), forCellWithReuseIdentifier: "RecentActivitysTableViewCell")
         }
     }
     @IBOutlet var collectionView: UICollectionView! {
@@ -46,9 +53,8 @@ class UserDataViewController: UIViewController {
         layout.estimatedItemSize = CGSize(width: 17.67, height: 16.24)
         let task = Task {
             do {
-//                pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
-//                print(pointDataList)
-//                self.collectionView.reloadData()
+                pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
+                self.collectionView.reloadData()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -65,37 +71,62 @@ class UserDataViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        self.collectionView.reloadData()
         iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
         nameLabel.text = userDataItem?.name
-        pointLabel.text = String(userDataItem?.point ?? 0)
+        pointLabel.text = "\(userDataItem?.point ?? 0)pt"
     }
 }
 extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 112
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryCollectionViewCell", for: indexPath)  as! SummaryCollectionViewCell
-
-        cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: CGFloat(indexPath.row) / 112)
-//
-//        let point = 0
-//        switch point {
-//        case 0 :
-//            cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
-//        case 1...25:
-//            cell.backgroundColor = UIColor(hex: "45E1FF", alpha: 0.46)
-//        case 20...50:
-//            cell.backgroundColor = UIColor(hex: "3D83BC", alpha: 0.46)
-//        case 50...75:
-//            cell.backgroundColor = UIColor(hex: "008DDC", alpha: 0.46)
-//        case 75...100:
-//            cell.backgroundColor = UIColor(hex: "1D5CAC", alpha: 0.46)
-//        default: break
-//        }
+        
+        let weekday = Int(indexPath.row / 16) // 1行目なら0になる
+        let todayWeekday = Calendar.current.component(.weekday, from: Date()) - 1 // 1から始まるので揃えるために1引く
+        let weekdayDelta = todayWeekday - weekday  //いくつ前の曜日か
+        let weekDelta = 15 - indexPath.row % 16 //何週前か
+        
+        var dayForCell = Date()
+        dayForCell = Calendar.current.date(byAdding: .weekOfYear, value: -weekDelta, to: dayForCell)!
+        dayForCell = Calendar.current.date(byAdding: .weekday, value: -weekdayDelta, to: dayForCell)!
+        let activitiesForCell = pointDataList.filter { $0.date.getZeroTime() == dayForCell.getZeroTime() }.compactMap { $0.point }
+        if dayForCell.getZeroTime() > Date().getZeroTime() {
+            cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0)
+            return cell
+        }
+        let totalPointsForCell = activitiesForCell.reduce(0, +) // 合計
+        switch totalPointsForCell {
+        case 0 :
+            cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
+        case 1...50:
+            cell.backgroundColor = UIColor(hex: "45E1FF", alpha: 0.46)
+        case 50...100:
+            cell.backgroundColor = UIColor(hex: "3D83BC", alpha: 0.46)
+        case 100...150:
+            cell.backgroundColor = UIColor(hex: "008DDC", alpha: 0.46)
+        default:
+            cell.backgroundColor = UIColor(hex: "1D5CAC", alpha: 0.46)
+        }
         return cell
     }
 }
-
+extension Date {
+    func getZeroTime() -> Date {
+        Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self)!
+    }
+}
+extension UserDataViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        pointDataList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitysCell", for: indexPath) as! RecentActivitysTableViewCell
+        cell.pointLabel.text = String(pointDataList[indexPath.row].point ?? 0)
+        cell.dateLabel.text = pointDataList[indexPath.row].id
+        return cell
+    }
+}

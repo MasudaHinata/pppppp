@@ -11,12 +11,11 @@
 		036F698128B940270066A7DA /* SentEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698028B940270066A7DA /* SentEmailViewController.swift */; };
 		036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698B28BB9DAD0066A7DA /* DrawView.swift */; };
 		036F699228BCFE850066A7DA /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F699128BCFE850066A7DA /* CollectionViewController.swift */; };
-		036F699E28BD4AF50066A7DA /* PointHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F699D28BD4AF50066A7DA /* PointHistoryViewController.swift */; };
-		036F69A128BD4B300066A7DA /* PointHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F699F28BD4B300066A7DA /* PointHistoryCollectionViewCell.swift */; };
-		036F69A228BD4B300066A7DA /* PointHistoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F69A028BD4B300066A7DA /* PointHistoryCollectionViewCell.xib */; };
 		036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */; };
 		036F69E528BE1DC70066A7DA /* SummaryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */; };
 		036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69E628BE56E60066A7DA /* UserDataViewController.swift */; };
+		036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */; };
+		036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
 		03DFB7A328B7A8390019381A /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */; };
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
@@ -62,12 +61,11 @@
 		036F698028B940270066A7DA /* SentEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentEmailViewController.swift; sourceTree = "<group>"; };
 		036F698B28BB9DAD0066A7DA /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 		036F699128BCFE850066A7DA /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		036F699D28BD4AF50066A7DA /* PointHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHistoryViewController.swift; sourceTree = "<group>"; };
-		036F699F28BD4B300066A7DA /* PointHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		036F69A028BD4B300066A7DA /* PointHistoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PointHistoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryCollectionViewCell.xib; sourceTree = "<group>"; };
 		036F69E628BE56E60066A7DA /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
+		036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentActivitysTableViewCell.swift; sourceTree = "<group>"; };
+		036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentActivitysTableViewCell.xib; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
@@ -207,11 +205,10 @@
 			isa = PBXGroup;
 			children = (
 				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
-				036F699D28BD4AF50066A7DA /* PointHistoryViewController.swift */,
-				036F699F28BD4B300066A7DA /* PointHistoryCollectionViewCell.swift */,
-				036F69A028BD4B300066A7DA /* PointHistoryCollectionViewCell.xib */,
 				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
+				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
+				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
 			);
 			path = UserData;
 			sourceTree = "<group>";
@@ -337,8 +334,8 @@
 				9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */,
 				BEA64AED25D3EC040064F184 /* GoogleService-Info.plist in Resources */,
 				BE7F33852580D0810027620D /* Assets.xcassets in Resources */,
+				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
-				036F69A228BD4B300066A7DA /* PointHistoryCollectionViewCell.xib in Resources */,
 				BE7F33832580D07E0027620D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,10 +354,10 @@
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
 				BE7F33802580D07E0027620D /* ViewController.swift in Sources */,
 				9CDF759F286326A600209FD0 /* AccountViewController.swift in Sources */,
+				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
 				BE0878EC26551BC2007CA984 /* Post.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
-				036F699E28BD4AF50066A7DA /* PointHistoryViewController.swift in Sources */,
 				0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
 				036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */,
@@ -377,7 +374,6 @@
 				9C61891828A5F35B00DE6942 /* SelfAssessmentViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
-				036F69A128BD4B300066A7DA /* PointHistoryCollectionViewCell.swift in Sources */,
 				036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,
 			);

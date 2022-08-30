@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import Kingfisher
 
+@MainActor
 protocol sceneChangeProfile {
     func scene()
 }

@@ -22,13 +22,17 @@ class DrawView: UIView {
         for path in paths {
             path.removeAllPoints()
         }
-        for imageView in imageButtons {
-            imageView.removeFromSuperview()
-        } //0で割るからやばい
+        for button in imageButtons {
+            button.removeFromSuperview()
+        }
+        for label in pointLabels {
+            label.removeFromSuperview()
+        }
+        //0で割るからやばい
         let largestPoint = CGFloat(friendListItems.first?.point ?? 1)
         for item in friendListItems {
             let x = CGFloat(sqrt(CGFloat(item.point!) / largestPoint) * self.bounds.width * 0.8)
-            graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), item: item)
+            graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.8)))), item: item)
         }
     }
     func configure(rect: CGRect, friendListItems: [UserData]) {
@@ -58,9 +62,9 @@ class DrawView: UIView {
         path.fill()
         
         let pointLabel = UILabel()
-        pointLabel.frame = CGRect(x: vertex.x - 40, y: vertex.y - 20, width: 56, height: 56)
-        pointLabel.font = UIFont(name: "F5.6", size: 16)
-        pointLabel.text = String(item.point ?? 0)
+        pointLabel.frame = CGRect(x: vertex.x - 20, y: vertex.y + 25, width: 56, height: 24)
+        pointLabel.font = UIFont(name: "F5.6", size: 12)
+        pointLabel.text = "\(item.point ?? 0)pt"
         self.addSubview(pointLabel)
         pointLabels.append(pointLabel)
     

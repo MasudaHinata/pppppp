@@ -20,10 +20,12 @@ enum FirebaseClientAuthError: Error {
 enum FirebaseClientFirestoreError: Error {
     case userDataNotFound
 }
-
+@MainActor
 protocol FirebaseClientDeleteFriendDelegate: AnyObject {
     func friendDeleted() async
 }
+
+@MainActor
 protocol FirebaseClientAuthDelegate: AnyObject {
     func loginScene()
     func loginHelperAlert()
@@ -31,6 +33,8 @@ protocol FirebaseClientAuthDelegate: AnyObject {
 protocol FirebaseEmailVarifyDelegate: AnyObject {
     func emailVerifyRequiredAlert()
 }
+
+@MainActor
 protocol FireStoreCheckNameDelegate: AnyObject {
     func notChangeName()
 }
@@ -103,17 +107,8 @@ final class FirebaseClient {
     }
     //ポイントを取得する
     func getPointData(id: String) async throws -> [PointData] {
-        guard let user = Auth.auth().currentUser else {
-            try await self.userAuthCheck()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
         let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
-        var friends: [PointData] = []
-        for friendData in snapshot.documents {
-            friends.append(try friendData.data(as: PointData.self))
-        }
-        return friends
+        return try snapshot.documents.map { try $0.data(as: PointData.self) }
     }
     //自分の名前を表示する
     func getMyNameData() async throws -> String {
@@ -267,11 +262,8 @@ final class FirebaseClient {
     func createAccount(email: String, password: String) async throws {
         let result = try await firebaseAuth.createUser(withEmail: email, password: password)
         
-        result.user.sendEmailVerification(completion: { (error) in
-            if error == nil {
-                self.createdAccountDelegate?.accountCreated()
-            }
-        })
+        try await result.user.sendEmailVerification()
+        self.createdAccountDelegate?.accountCreated()
     }
     //パスワードを再設定する
     func passwordResetting(email: String) async throws{

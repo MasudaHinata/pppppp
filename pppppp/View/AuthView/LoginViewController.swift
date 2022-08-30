@@ -71,18 +71,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
     func loginHelperAlert() {
         let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+        present(alert, animated: true, completion: nil)
     }
     func loginScene() {
-        self.performSegue(withIdentifier: "toViewController", sender: nil)
+        performSegue(withIdentifier: "toViewController", sender: nil)
     }
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
