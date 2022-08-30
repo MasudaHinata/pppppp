@@ -25,7 +25,8 @@ class PointHistoryViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.75, height: 50)
+        layout.collectionView?.backgroundColor = UIColor.init(hex: "FFFFFF",alpha: 0.46)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

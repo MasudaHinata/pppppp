@@ -988,7 +988,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YX6-i7-2q8">
-                                <rect key="frame" x="0.0" y="284" width="414" height="612"/>
+                                <rect key="frame" x="24" y="284" width="366" height="588"/>
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dfj-iJ-ePl">
                                     <size key="itemSize" width="128" height="128"/>
@@ -1011,10 +1011,10 @@
                         <viewLayoutGuide key="safeArea" id="ziu-yi-aC7"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="YX6-i7-2q8" firstAttribute="leading" secondItem="ziu-yi-aC7" secondAttribute="leading" id="2Uv-yw-bbl"/>
-                            <constraint firstItem="ziu-yi-aC7" firstAttribute="trailing" secondItem="YX6-i7-2q8" secondAttribute="trailing" id="J7d-JE-6ZZ"/>
-                            <constraint firstItem="YX6-i7-2q8" firstAttribute="top" secondItem="ziu-yi-aC7" secondAttribute="top" constant="240" id="MBf-7q-u8x"/>
-                            <constraint firstAttribute="bottom" secondItem="YX6-i7-2q8" secondAttribute="bottom" id="WBH-j6-roM"/>
+                            <constraint firstAttribute="bottom" secondItem="YX6-i7-2q8" secondAttribute="bottom" constant="24" id="BoH-K3-Pq1"/>
+                            <constraint firstItem="YX6-i7-2q8" firstAttribute="leading" secondItem="ziu-yi-aC7" secondAttribute="leading" constant="24" id="Hkv-ot-iiY"/>
+                            <constraint firstItem="YX6-i7-2q8" firstAttribute="top" secondItem="ziu-yi-aC7" secondAttribute="top" constant="240" id="IIt-c3-4cp"/>
+                            <constraint firstItem="YX6-i7-2q8" firstAttribute="trailing" secondItem="ziu-yi-aC7" secondAttribute="trailing" constant="-24" id="bl6-ra-OSk"/>
                         </constraints>
                     </view>
                     <connections>

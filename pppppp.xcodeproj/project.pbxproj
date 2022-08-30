@@ -157,6 +157,9 @@
 				036F699128BCFE850066A7DA /* CollectionViewController.swift */,
 				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
 				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
+				036F699D28BD4AF50066A7DA /* PointHistoryViewController.swift */,
+				036F699F28BD4B300066A7DA /* PointHistoryCollectionViewCell.swift */,
+				036F69A028BD4B300066A7DA /* PointHistoryCollectionViewCell.xib */,
 				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
 			);
 			path = DashboardView;
@@ -245,9 +248,6 @@
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33892580D0810027620D /* Info.plist */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
-				036F699D28BD4AF50066A7DA /* PointHistoryViewController.swift */,
-				036F699F28BD4B300066A7DA /* PointHistoryCollectionViewCell.swift */,
-				036F69A028BD4B300066A7DA /* PointHistoryCollectionViewCell.xib */,
 			);
 			path = pppppp;
 			sourceTree = "<group>";
