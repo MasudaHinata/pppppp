@@ -3,7 +3,7 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify ,FirebasePutPointDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
@@ -25,7 +25,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         super.viewDidLoad()
         
         FirebaseClient.shared.emailVerifyDelegate = self
-        FirebaseClient.shared.putPoint = self
+        FirebaseClient.shared.putPointDelegate = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
         
         let task = Task { [weak self] in

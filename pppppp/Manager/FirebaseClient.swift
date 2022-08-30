@@ -21,23 +21,23 @@ enum FirebaseClientFirestoreError: Error {
     case userDataNotFound
 }
 
-protocol FirebaseClientDelegate: AnyObject {
+protocol FirebaseClientDeleteFriendDelegate: AnyObject {
     func friendDeleted() async
 }
 protocol FirebaseClientAuthDelegate: AnyObject {
     func loginScene()
     func loginHelperAlert()
 }
-protocol FirebaseEmailVarify: AnyObject {
+protocol FirebaseEmailVarifyDelegate: AnyObject {
     func emailVerifyRequiredAlert()
 }
-protocol FireStoreCheckName: AnyObject {
+protocol FireStoreCheckNameDelegate: AnyObject {
     func notChangeName()
 }
-protocol FirebaseCreatedAccount: AnyObject {
+protocol FirebaseCreatedAccountDelegate: AnyObject {
     func accountCreated()
 }
-protocol FirebaseDeleteAccount: AnyObject {
+protocol FirebaseDeleteAccountDelegate: AnyObject {
     func accountDeleted()
     func faildAcccountDelete()
     func faildAcccountDeleteData()
@@ -46,20 +46,20 @@ protocol FirebasePutPointDelegate: AnyObject {
     func putPointForFirestore(point: Int)
     func notGetPoint()
 }
-protocol FirebaseSentEmail: AnyObject {
+protocol FirebaseSentEmailDelegate: AnyObject {
     func sendEmail()
 }
 
 final class FirebaseClient {
     static let shared = FirebaseClient()
-    weak var delegate: FirebaseClientDelegate?
-    weak var delegateLogin: FirebaseClientAuthDelegate?
-    weak var emailVerifyDelegate: FirebaseEmailVarify?
-    weak var notChangeDelegate: FireStoreCheckName?
-    weak var createdAccount: FirebaseCreatedAccount?
-    weak var deleteAccount: FirebaseDeleteAccount?
-    weak var putPoint: FirebasePutPointDelegate?
-    weak var sentEmailDelegate: FirebaseSentEmail?
+    weak var deletefriendDelegate: FirebaseClientDeleteFriendDelegate?
+    weak var loginDelegate: FirebaseClientAuthDelegate?
+    weak var emailVerifyDelegate: FirebaseEmailVarifyDelegate?
+    weak var notChangeDelegate: FireStoreCheckNameDelegate?
+    weak var createdAccountDelegate: FirebaseCreatedAccountDelegate?
+    weak var deleteAccountDelegate: FirebaseDeleteAccountDelegate?
+    weak var putPointDelegate: FirebasePutPointDelegate?
+    weak var sentEmailDelegate: FirebaseSentEmailDelegate?
     
     private init() {}
     
@@ -183,10 +183,10 @@ final class FirebaseClient {
         
         if point == 0 {
             try await db.collection("User").document(userID).collection("HealthData").document("\(formatter.string(from: date))").setData(["point": point, "date": Timestamp(date: Date())])
-            self.putPoint?.notGetPoint()
+            self.putPointDelegate?.notGetPoint()
         } else {
             try await db.collection("User").document(userID).collection("HealthData").document("\(formatter.string(from: date))").setData(["point": point, "date": Timestamp(date: Date())])
-            self.putPoint?.putPointForFirestore(point: point)
+            self.putPointDelegate?.putPointForFirestore(point: point)
         }
     }
     //画像をfirestoreに保存
@@ -226,7 +226,7 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayRemove([deleteFriendId])])
         try await db.collection("User").document(deleteFriendId).updateData(["FriendList": FieldValue.arrayRemove([userID])])
-        await self.delegate?.friendDeleted()
+        await self.deletefriendDelegate?.friendDeleted()
     }
     //ログインできてるかとメール認証ができてるかの判定
     func userAuthCheck() async throws {
@@ -283,7 +283,7 @@ final class FirebaseClient {
         
         result.user.sendEmailVerification(completion: { (error) in
             if error == nil {
-                self.createdAccount?.accountCreated()
+                self.createdAccountDelegate?.accountCreated()
             }
         })
     }
@@ -319,7 +319,7 @@ final class FirebaseClient {
                 try await accountDeleteAuth()
             }
             catch {
-                self.deleteAccount?.faildAcccountDeleteData()
+                self.deleteAccountDelegate?.faildAcccountDeleteData()
                 print("firebaseClient accountDelete error", error.localizedDescription)
             }
         }
@@ -333,10 +333,10 @@ final class FirebaseClient {
         }
         do {
             try await user.delete()
-            self.deleteAccount?.accountDeleted()
+            self.deleteAccountDelegate?.accountDeleted()
         }
         catch {
-            self.deleteAccount?.faildAcccountDelete()
+            self.deleteAccountDelegate?.faildAcccountDelete()
         }
     }
     //ログインする
@@ -345,10 +345,10 @@ final class FirebaseClient {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
         if authReault.user.isEmailVerified {
             print("パスワードとメールアドレス一致")
-            self.delegateLogin?.loginScene()
+            self.loginDelegate?.loginScene()
         } else {
             print("パスワードかメールアドレスが間違っています")
-            self.delegateLogin?.loginHelperAlert()
+            self.loginDelegate?.loginHelperAlert()
         }
     }
     //ログアウトする

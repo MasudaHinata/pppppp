@@ -2,7 +2,7 @@ import UIKit
 import FirebaseStorage
 import Combine
 
-class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCreatedAccount {
+class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCreatedAccountDelegate {
     
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var goButtonLayout: UIButton! {
@@ -57,7 +57,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseClient.shared.createdAccount = self
+        FirebaseClient.shared.createdAccountDelegate = self
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)

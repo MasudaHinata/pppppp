@@ -61,7 +61,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseClient.shared.delegateLogin = self
+        FirebaseClient.shared.loginDelegate = self
         self.emailTextField?.delegate = self
         self.passwordTextField?.delegate = self
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))

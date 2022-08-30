@@ -13,7 +13,7 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseClient.shared.putPoint = self
+        FirebaseClient.shared.putPointDelegate = self
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

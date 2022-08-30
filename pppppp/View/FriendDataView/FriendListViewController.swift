@@ -14,7 +14,7 @@ protocol sceneChangeProfile {
 }
 
 @MainActor
-final class FriendListViewController: UIViewController, FirebaseClientDelegate, sceneChangeProfile, FireStoreCheckName {
+final class FriendListViewController: UIViewController, FirebaseClientDeleteFriendDelegate, sceneChangeProfile, FireStoreCheckNameDelegate {
     var completionHandlers = [() -> Void]()
     var friendDataList = [FriendListItem]()
     var cancellables = Set<AnyCancellable>()
@@ -29,7 +29,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDelegate, 
     }
     @IBOutlet var friendcollectionView: UICollectionView! {
         didSet {
-            FirebaseClient.shared.delegate = self
+            FirebaseClient.shared.deletefriendDelegate = self
             friendcollectionView.delegate = self
             friendcollectionView.dataSource = self
             friendcollectionView.register(UINib(nibName: "FriendDataCell", bundle: nil), forCellWithReuseIdentifier: "frienddatacell")

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class SentEmailViewController: UIViewController, FirebaseSentEmail {
+class SentEmailViewController: UIViewController, FirebaseSentEmailDelegate {
     
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var goButtonLayout: UIButton! {

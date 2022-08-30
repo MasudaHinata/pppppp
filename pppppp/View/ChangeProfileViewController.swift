@@ -10,7 +10,7 @@ import Combine
 import FirebaseStorage
 import Kingfisher
 
-class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FirebaseDeleteAccount {
+class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FirebaseDeleteAccountDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
@@ -129,7 +129,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseClient.shared.deleteAccount = self
+        FirebaseClient.shared.deleteAccountDelegate = self
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
