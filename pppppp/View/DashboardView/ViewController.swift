@@ -49,6 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         super.viewDidAppear(animated)
         let task = Task { [weak self] in
             do {
+                try await FirebaseClient.shared.getMyProfileListItem()
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()

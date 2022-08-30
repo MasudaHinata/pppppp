@@ -14,5 +14,4 @@ struct MyProfileData: Codable {
     let name: String
     let IconImageURL: String
     var point: Int?
-    var date: Timestamp?
 }
