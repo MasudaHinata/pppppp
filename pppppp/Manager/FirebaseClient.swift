@@ -68,6 +68,34 @@ final class FirebaseClient {
     let db = Firestore.firestore()
     let date = Date()
     let formatter = DateFormatter()
+    //友達リストを取得
+    func getFriendIdList() async throws -> [String] {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.userAuthCheck()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        let querySnapshot = try await db.collection("User").whereField("FriendList",arrayContains: userID).getDocuments()
+        let documents = querySnapshot.documents
+        var friendIdList = [String]()
+        for document in documents {
+            friendIdList.append(contentsOf: [document.documentID])
+        }
+        print(friendIdList)
+        return friendIdList
+    }
+//    func getFriendPrrrofileData() async throws -> [FriendListItem]{
+//        let friendList = try await getFriendIdList()
+//        print(friendList)
+//        var friends: [FriendListItem] = []
+//        for friendList in friendList {
+//            let querySnapShot = try await db.collection("User").document(friendList).getDocument()
+//            var friend = try frien.data(as: FriendListItem.self)
+////            friend.point = try await getFriendPointData(id: friend.id!)
+//            friends.append(friend)
+//        }
+//        return friends
+//    }
     //友達のデータを取得
     public func getFriendProfileData() async throws -> [FriendListItem] {
         guard let user = Auth.auth().currentUser else {
