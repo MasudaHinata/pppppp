@@ -31,8 +31,6 @@ class UserDataViewController: UIViewController {
             tableView.register(UINib(nibName: "RecentActivitysTableViewCell", bundle: nil), forCellReuseIdentifier: "RecentActivitysTableViewCell")
             tableView.backgroundView = nil
             tableView.backgroundColor = .clear
-//            tableView.layer.cornerRadius = 22
-//            tableView.layer.cornerCurve = .continuous
         }
     }
     @IBOutlet var collectionView: UICollectionView! {
@@ -43,6 +41,7 @@ class UserDataViewController: UIViewController {
             layout.minimumInteritemSpacing = 4.06
             collectionView.collectionViewLayout = layout
             collectionView.register(UINib(nibName: "SummaryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SummaryCollectionViewCell")
+            layout.estimatedItemSize = CGSize(width: 17.67, height: 16.24)
         }
     }
     @IBOutlet var profileBackgroundView: UIView! {
@@ -54,7 +53,6 @@ class UserDataViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout.estimatedItemSize = CGSize(width: 17.67, height: 16.24)
         let task = Task {
             do {
                 pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
@@ -120,7 +118,7 @@ extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDe
 }
 extension Date {
     func getZeroTime() -> Date {
-        Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self)!
+        Calendar.current.startOfDay(for: self)
     }
 }
 extension UserDataViewController: UITableViewDelegate, UITableViewDataSource {
