@@ -28,7 +28,11 @@ class UserDataViewController: UIViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
-            collectionView.register(UINib(nibName: "RecentActivitysTableViewCell", bundle: nil), forCellWithReuseIdentifier: "RecentActivitysTableViewCell")
+            tableView.register(UINib(nibName: "RecentActivitysTableViewCell", bundle: nil), forCellReuseIdentifier: "RecentActivitysTableViewCell")
+            tableView.backgroundView = nil
+            tableView.backgroundColor = .clear
+//            tableView.layer.cornerRadius = 22
+//            tableView.layer.cornerCurve = .continuous
         }
     }
     @IBOutlet var collectionView: UICollectionView! {
@@ -55,6 +59,7 @@ class UserDataViewController: UIViewController {
             do {
                 pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
                 self.collectionView.reloadData()
+                self.tableView.reloadData()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -124,7 +129,7 @@ extension UserDataViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitysCell", for: indexPath) as! RecentActivitysTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitysTableViewCell", for: indexPath) as! RecentActivitysTableViewCell
         cell.pointLabel.text = String(pointDataList[indexPath.row].point ?? 0)
         cell.dateLabel.text = pointDataList[indexPath.row].id
         return cell
