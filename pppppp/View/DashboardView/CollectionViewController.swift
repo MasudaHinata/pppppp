@@ -12,7 +12,7 @@ class CollectionViewController: UIViewController {
 
     var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
-    var refreshControl = UIRefreshControl()
+    var refreshCtl = UIRefreshControl()
     var cancellables = Set<AnyCancellable>()
 
     @IBOutlet var collectionView: UICollectionView! {
@@ -24,7 +24,7 @@ class CollectionViewController: UIViewController {
             collectionView.register(UINib(nibName: "DashBoardFriendDataCell", bundle: nil), forCellWithReuseIdentifier: "DashBoardFriendDataCell")
         }
     }
-    @objc func refresh(sender: UIRefreshControl) {
+    func refresh() {
         let task = Task { [weak self] in
             do {
                 guard let self = self else { return }
@@ -40,16 +40,16 @@ class CollectionViewController: UIViewController {
             }
         }
         cancellables.insert(.init { task.cancel() })
-        refreshControl.endRefreshing()
+        refreshCtl.endRefreshing()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
 
-        collectionView.refreshControl = refreshControl
-        refreshControl.tintColor = .white
-        refreshControl.addTarget(self, action: #selector(CollectionViewController.refresh(sender:)), for: .valueChanged)
+        refreshCtl.tintColor = .white
+        collectionView.refreshControl = refreshCtl
+        refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

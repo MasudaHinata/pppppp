@@ -15,6 +15,7 @@ class DrawView: UIView {
     
     var paths = [UIBezierPath]()
     var imageButtons = [UIButton]()
+    var pointLabels = [UILabel]()
     var friendListItems = [UserData]()
     
     override func draw(_ rect: CGRect) {
@@ -23,8 +24,8 @@ class DrawView: UIView {
         }
         for imageView in imageButtons {
             imageView.removeFromSuperview()
-        }
-        let largestPoint = CGFloat(friendListItems.first?.point ?? 0)
+        } //0で割るからやばい
+        let largestPoint = CGFloat(friendListItems.first?.point ?? 1)
         for item in friendListItems {
             let x = CGFloat(sqrt(CGFloat(item.point!) / largestPoint) * self.bounds.width * 0.8)
             graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), item: item)
@@ -56,6 +57,13 @@ class DrawView: UIView {
         UIColor.init(hex: "B8E9FF", alpha: 0.25).setFill()
         path.fill()
         
+        let pointLabel = UILabel()
+        pointLabel.frame = CGRect(x: vertex.x - 40, y: vertex.y - 20, width: 56, height: 56)
+        pointLabel.font = UIFont(name: "F5.6", size: 16)
+        pointLabel.text = String(item.point ?? 0)
+        self.addSubview(pointLabel)
+        pointLabels.append(pointLabel)
+    
         let imageButton = UIButton()
         imageButton.frame = CGRect(x: vertex.x - 28, y: vertex.y - 28, width: 56, height: 56)
         imageButton.kf.setImage(with: URL(string: item.iconImageURL), for: .normal)
@@ -65,7 +73,7 @@ class DrawView: UIView {
         imageButton.clipsToBounds = true
         imageButton.addAction(.init { button in self.delegate?.buttonSelected(item: item) }, for: .touchUpInside)
         self.addSubview(imageButton)
-        paths.append(path)
         imageButtons.append(imageButton)
+        paths.append(path)
     }
 }

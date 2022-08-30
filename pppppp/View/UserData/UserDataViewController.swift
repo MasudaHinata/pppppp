@@ -16,7 +16,8 @@ class UserDataViewController: UIViewController {
     var userDataItem: UserData?
     var pointDataList = [PointData]()
     
-    @IBOutlet var namelabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var pointLabel: UILabel!
     @IBOutlet var iconView: UIImageView! {
         didSet {
             iconView.layer.cornerRadius = 24
@@ -31,6 +32,13 @@ class UserDataViewController: UIViewController {
             layout.minimumInteritemSpacing = 4.06
             collectionView.collectionViewLayout = layout
             collectionView.register(UINib(nibName: "SummaryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SummaryCollectionViewCell")
+        }
+    }
+    @IBOutlet var profileBackgroundView: UIView! {
+        didSet {
+            profileBackgroundView.layer.cornerRadius = 40
+            profileBackgroundView.layer.masksToBounds = true
+            profileBackgroundView.layer.cornerCurve = .continuous
         }
     }
     override func viewDidLoad() {
@@ -59,7 +67,8 @@ class UserDataViewController: UIViewController {
         
 //        self.collectionView.reloadData()
         iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
-        namelabel.text = userDataItem?.name
+        nameLabel.text = userDataItem?.name
+        pointLabel.text = String(userDataItem?.point ?? 0)
     }
 }
 extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -71,7 +80,6 @@ extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryCollectionViewCell", for: indexPath)  as! SummaryCollectionViewCell
 
         cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: CGFloat(indexPath.row) / 112)
-        print(indexPath.row)
 //
 //        let point = 0
 //        switch point {
