@@ -17,6 +17,7 @@
 		036F69E128BE1D900066A7DA /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69E028BE1D900066A7DA /* SummaryViewController.swift */; };
 		036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */; };
 		036F69E528BE1DC70066A7DA /* SummaryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */; };
+		036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69E628BE56E60066A7DA /* UserDataViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
 		03DFB7A328B7A8390019381A /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */; };
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
@@ -68,6 +69,7 @@
 		036F69E028BE1D900066A7DA /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryCollectionViewCell.xib; sourceTree = "<group>"; };
+		036F69E628BE56E60066A7DA /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				036F69E028BE1D900066A7DA /* SummaryViewController.swift */,
 				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
+				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
 				036F69A128BD4B300066A7DA /* PointHistoryCollectionViewCell.swift in Sources */,
+				036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

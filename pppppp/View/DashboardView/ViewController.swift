@@ -3,8 +3,8 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate {
-    
+class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate {
+
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
     var friendDataList = [UserData]()
@@ -64,7 +64,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 self.showDetailViewController(secondVC, sender: self)
             } else {
                 print("今日はもう自己評価しました")
-//                UD.removeObject(forKey: "sss")
             }
         }
         else {
@@ -78,6 +77,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
 //                try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
+                mountainView.delegate = self
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -117,5 +117,12 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    func buttonSelected(item: UserData) {
+        print(item)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "UserDataViewController") as UserDataViewController
+        secondVC.userDataItem = item
+        self.showDetailViewController(secondVC, sender: self)
     }
 }

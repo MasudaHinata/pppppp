@@ -57,7 +57,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
-        refreshCtl.addTarget(self, action: #selector(FriendListViewController.refresh(sender:)), for: .valueChanged)
+        refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
         
         friendDataList.removeAll()
     }
@@ -111,7 +111,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         }
         cancellables.insert(.init { task.cancel() })
     }
-    @objc func refresh(sender: UIRefreshControl) {
+    func refresh() {
         let task = Task { [weak self] in
             do {
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
@@ -156,7 +156,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "frienddatacell", for: indexPath)  as! FriendDataCell
         
         cell.nameLabel.text = friendDataList[indexPath.row].name
-        cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
+        cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].iconImageURL)!)
         return cell
     }
     //友達を削除する

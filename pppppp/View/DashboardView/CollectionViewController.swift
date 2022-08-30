@@ -84,7 +84,7 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
 
         cell.nameLabel.text = friendDataList[indexPath.row].name
         cell.dataLabel.text = String(friendDataList[indexPath.row].point ?? 0)
-        cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].IconImageURL)!)
+        cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].iconImageURL)!)
         return cell
     }
 }

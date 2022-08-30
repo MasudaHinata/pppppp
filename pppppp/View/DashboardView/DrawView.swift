@@ -5,33 +5,36 @@
 //  Created by hinata on 2022/08/28.
 //
 
-import Foundation
 import UIKit
 
+protocol DrawViewDelegate: AnyObject {
+    func buttonSelected(item: UserData)
+}
 class DrawView: UIView {
+    weak var delegate: DrawViewDelegate?
     
     var paths = [UIBezierPath]()
-    var imageViews = [UIImageView]()
+    var imageButtons = [UIButton]()
     var friendListItems = [UserData]()
     
     override func draw(_ rect: CGRect) {
         for path in paths {
             path.removeAllPoints()
         }
-        for imageView in imageViews {
+        for imageView in imageButtons {
             imageView.removeFromSuperview()
         }
         let largestPoint = CGFloat(friendListItems.first?.point ?? 0)
         for item in friendListItems {
             let x = CGFloat(sqrt(CGFloat(item.point!) / largestPoint) * self.bounds.width * 0.8)
-            graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), imageURL: item.IconImageURL)
+            graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.7)))), item: item)
         }
     }
     func configure(rect: CGRect, friendListItems: [UserData]) {
         self.friendListItems = friendListItems
         setNeedsDisplay()
     }
-    func graph(vertex: CGPoint, imageURL: String) {
+    func graph(vertex: CGPoint, item: UserData) {
         let delta = min(bounds.height - vertex.y, vertex.y) * 0.4
         let deltaTop = vertex.y - delta
         let deltaBottom = self.bounds.height - vertex.y - delta
@@ -53,15 +56,16 @@ class DrawView: UIView {
         UIColor.init(hex: "B8E9FF", alpha: 0.25).setFill()
         path.fill()
         
-        let imageView = UIImageView()
-        imageView.frame = CGRect(x: vertex.x - 28, y: vertex.y - 28, width: 56, height: 56)
-        imageView.kf.setImage(with: URL(string: imageURL))
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 24
-        imageView.layer.cornerCurve = .continuous
-        imageView.clipsToBounds = true
-        self.addSubview(imageView)
+        let imageButton = UIButton()
+        imageButton.frame = CGRect(x: vertex.x - 28, y: vertex.y - 28, width: 56, height: 56)
+        imageButton.kf.setImage(with: URL(string: item.iconImageURL), for: .normal)
+        imageButton.imageView?.contentMode = .scaleAspectFill
+        imageButton.layer.cornerRadius = 24
+        imageButton.layer.cornerCurve = .continuous
+        imageButton.clipsToBounds = true
+        imageButton.addAction(.init { button in self.delegate?.buttonSelected(item: item) }, for: .touchUpInside)
+        self.addSubview(imageButton)
         paths.append(path)
-        imageViews.append(imageView)
+        imageButtons.append(imageButton)
     }
 }
