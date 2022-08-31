@@ -300,6 +300,7 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "RECENT ACTIVITIES"
+        //ヘッダーの肥大化を回避
+        return "   "
     }
 }
