@@ -95,23 +95,26 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
         friendcollectionView.isHidden = true
+        friendDataList.removeAll()
         
-//        let task = Task {
-//            do {
-////                let userID = try await FirebaseClient.shared.getUserUUID()
-////                pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
-//            }
-//            catch {
-//                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-//                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-//                    self.viewDidLoad()
-//                }
-//                alert.addAction(ok)
-//                self.present(alert, animated: true, completion: nil)
-//                print("CollectionViewContro ViewDid error:",error.localizedDescription)
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
+        let task = Task {
+            do {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                self.collectionView.reloadData()
+                self.tableView.reloadData()
+            }
+            catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+                print("CollectionViewContro ViewDid error:",error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -119,20 +122,13 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.checkIconData()
                 try await FirebaseClient.shared.checkNameData()
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
-                let userID = try await FirebaseClient.shared.getUserUUID()
-                pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
-                friendDataList.removeAll()
-                pointDataList.removeAll()
-                self.collectionView.reloadData()
                 self.friendcollectionView.reloadData()
-                self.tableView.reloadData()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
