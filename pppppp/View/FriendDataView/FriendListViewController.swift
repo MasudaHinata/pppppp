@@ -66,10 +66,10 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             tableView.backgroundColor = .clear
         }
     }
-    @IBAction func pressedButton() {
+    @IBAction func shareButtonPressed() {
         showShareSheet()
     }
-    @IBAction func to_page2(_ sender: Any) {
+    @IBAction func editButtonPressed(_ sender: Any) {
         let page2 = self.storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
         page2.sceneChangeProfile = self
         self.present(page2,animated: true,completion: nil)
