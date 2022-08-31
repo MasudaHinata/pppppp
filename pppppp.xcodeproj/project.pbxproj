@@ -16,6 +16,7 @@
 		036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69E628BE56E60066A7DA /* UserDataViewController.swift */; };
 		036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */; };
 		036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */; };
+		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
 		03DFB7A328B7A8390019381A /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */; };
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
@@ -66,6 +67,7 @@
 		036F69E628BE56E60066A7DA /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
 		036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentActivitysTableViewCell.swift; sourceTree = "<group>"; };
 		036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentActivitysTableViewCell.xib; sourceTree = "<group>"; };
+		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
 				03DFB7A228B7A8390019381A /* ChangeNameViewController.swift */,
 				9C4F1C742859E6F500623C66 /* ProfileViewController.swift */,
+				038E26AD28BF4BF1000204A4 /* SettingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
+				038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */,
 				BE7F33802580D07E0027620D /* ViewController.swift in Sources */,
 				9CDF759F286326A600209FD0 /* AccountViewController.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,

@@ -74,6 +74,11 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         page2.sceneChangeProfile = self
         self.present(page2,animated: true,completion: nil)
     }
+    @IBAction func settingButtonPressed() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "SettingViewController")
+        self.showDetailViewController(secondVC, sender: self)
+    }
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             self.activityBackgroundView.isHidden = false
@@ -86,7 +91,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.notChangeDelegate = self
-        
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
