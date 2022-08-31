@@ -11,29 +11,58 @@ import Combine
 class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
     var cancellables = Set<AnyCancellable>()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        FirebaseClient.shared.putPointDelegate = self
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let task = Task {
-            do {
-                try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.checkIconData()
-                try await FirebaseClient.shared.checkNameData()
-            }
-            catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(action)
-                self.present(alert, animated: true)
-                print("SelfViewCotro viewApe", error.localizedDescription)
-            }
+    @IBOutlet var myIconView: UIImageView! {
+        didSet {
+            myIconView.layer.cornerRadius = 32
+            myIconView.clipsToBounds = true
+            myIconView.layer.cornerCurve = .continuous
         }
-        cancellables.insert(.init { task.cancel() })
     }
-    @IBAction func goodButton(){
+    
+    @IBOutlet var myPointLabelButton: UIButton! {
+        didSet {
+            var configuration = UIButton.Configuration.filled()
+            configuration.title = "---pt"
+            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.cornerStyle = .capsule
+            myPointLabelButton.configuration = configuration
+        }
+    }
+    
+    @IBOutlet var backgroundView: UIView! {
+        didSet {
+            backgroundView.layer.cornerRadius = 40
+            backgroundView.layer.masksToBounds = true
+            backgroundView.layer.cornerCurve = .continuous
+        }
+    }
+    
+    @IBOutlet var goodButton: UIButton! {
+        didSet {
+            goodButton.layer.cornerRadius = 30
+            goodButton.layer.cornerCurve = .continuous
+            goodButton.layer.masksToBounds = true
+        }
+    }
+    
+    @IBOutlet var normalButton: UIButton! {
+        didSet {
+            normalButton.layer.cornerRadius = 30
+            normalButton.layer.cornerCurve = .continuous
+            normalButton.layer.masksToBounds = true
+        }
+    }
+    
+    @IBOutlet var badButton: UIButton! {
+        didSet {
+            badButton.layer.cornerRadius = 30
+            badButton.layer.cornerCurve = .continuous
+            badButton.layer.masksToBounds = true
+        }
+    }
+    
+    
+    @IBAction func goodButtonPressed(){
         let task = Task {
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 15)
@@ -48,7 +77,7 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    @IBAction func normalButton(){
+    @IBAction func normalButtonPressed(){
         let task = Task {
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 10)
@@ -63,7 +92,7 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    @IBAction func badButton(){
+    @IBAction func badButtonPressed(){
         let task = Task {
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 5)
@@ -74,6 +103,37 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
                 alert.addAction(action)
                 self.present(alert, animated: true)
                 print("SelfViewCotro badButton error", error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FirebaseClient.shared.putPointDelegate = self
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let task = Task {
+            do {
+                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.checkIconData()
+                try await FirebaseClient.shared.checkNameData()
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                
+                var configuration = UIButton.Configuration.filled()
+                try await configuration.title = "\(FirebaseClient.shared.getPointDataSum(id: userID))pt"
+                configuration.baseBackgroundColor = .init(hex: "92B2D3")
+                configuration.cornerStyle = .capsule
+                myPointLabelButton.configuration = configuration
+            }
+            catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self.present(alert, animated: true)
+                print("SelfViewCotro viewApe", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })

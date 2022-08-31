@@ -66,13 +66,18 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             tableView.backgroundColor = .clear
         }
     }
-    @IBAction func pressedButton() {
+    @IBAction func shareButtonPressed() {
         showShareSheet()
     }
-    @IBAction func to_page2(_ sender: Any) {
+    @IBAction func editButtonPressed(_ sender: Any) {
         let page2 = self.storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
         page2.sceneChangeProfile = self
         self.present(page2,animated: true,completion: nil)
+    }
+    @IBAction func settingButtonPressed() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "SettingViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -86,7 +91,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.notChangeDelegate = self
-        
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
@@ -146,7 +150,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         let task = Task {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                print("自分のユーザーIDを取得しました")
                 let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
                 let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
                 present(activityVC, animated: true, completion: nil)
@@ -253,8 +256,9 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     //友達を削除する
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView.tag == 1 {
-            print("1")
+            //MARK: - activityGrass
         } else if collectionView.tag == 0 {
+            //MARK: - friendList
             guard let deleteFriendId = friendDataList[indexPath.row].id else { return }
             let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
             let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
@@ -277,7 +281,6 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
                 cancellables.insert(.init { task.cancel() })
             })
             let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-                print("キャンセル")
             })
             alert.addAction(delete)
             alert.addAction(cancel)
@@ -295,8 +298,13 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitysTableViewCell", for: indexPath) as! RecentActivitysTableViewCell
-        cell.pointLabel.text = String(pointDataList[indexPath.row].point ?? 0)
+        cell.pointLabel.text = "+\(pointDataList[indexPath.row].point ?? 0)pt"
         cell.dateLabel.text = pointDataList[indexPath.row].id
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        //ヘッダーの肥大化を回避
+        return "   "
     }
 }

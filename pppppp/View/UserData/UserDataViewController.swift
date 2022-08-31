@@ -51,8 +51,12 @@ class UserDataViewController: UIViewController {
             profileBackgroundView.layer.cornerCurve = .continuous
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+   
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
+        nameLabel.text = userDataItem?.name
+        pointLabel.text = "\(userDataItem?.point ?? 0)pt"
         let task = Task {
             do {
                 pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
@@ -70,13 +74,6 @@ class UserDataViewController: UIViewController {
             }
         }
         cancellables.insert(.init { task.cancel() })
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
-        nameLabel.text = userDataItem?.name
-        pointLabel.text = "\(userDataItem?.point ?? 0)pt"
     }
 }
 extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -128,7 +125,7 @@ extension UserDataViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitysTableViewCell", for: indexPath) as! RecentActivitysTableViewCell
-        cell.pointLabel.text = String(pointDataList[indexPath.row].point ?? 0)
+        cell.pointLabel.text = "+\(pointDataList[indexPath.row].point ?? 0)pt"
         cell.dateLabel.text = pointDataList[indexPath.row].id
         return cell
     }

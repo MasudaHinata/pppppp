@@ -4,7 +4,7 @@ import SwiftUI
 import Kingfisher
 
 class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate {
-
+    
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
     var friendDataList = [UserData]()
@@ -31,9 +31,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
-        print(now)
         if now >= 19 {
             judge = true
         }
@@ -56,25 +56,22 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 judgge = true
                 UD.set(Date(), forKey: "sss")
             }
-            if judgge == true {
+            if judgge {
                 judgge = false
                 UD.set(Date(), forKey: "sss")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
-                self.showDetailViewController(secondVC, sender: self)
-            } else {
-                print("今日はもう自己評価しました")
+                secondVC.modalPresentationStyle = .overFullScreen
+                secondVC.modalTransitionStyle = .crossDissolve
+                self.present(secondVC, animated: true)
             }
-        }
-        else {
-            print("まだ19時前です")
         }
         let task = Task { [weak self] in
             do {
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
-//                try await Scorering.shared.createStepPoint()
+                try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
                 mountainView.delegate = self
@@ -82,7 +79,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self!.viewDidLoad()
+                    self!.viewDidAppear(true)
                 }
                 alert.addAction(ok)
                 self!.present(alert, animated: true, completion: nil)
@@ -90,7 +87,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
             }
         }
         cancellables.insert(.init { task.cancel() })
-        
     }
     func emailVerifyRequiredAlert() {
         let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
@@ -119,7 +115,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         }
     }
     func buttonSelected(item: UserData) {
-        print(item)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "UserDataViewController") as UserDataViewController
         secondVC.userDataItem = item

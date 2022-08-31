@@ -1,0 +1,80 @@
+//
+//  SettingViewController.swift
+//  pppppp
+//
+//  Created by hinata on 2022/08/31.
+//
+
+import UIKit
+import Combine
+
+class SettingViewController: UIViewController {
+
+    var cancellables = Set<AnyCancellable>()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    @IBAction func logoutButton() {
+        do {
+            let alert3 = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
+            let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
+                
+                let task = Task { [weak self] in
+                    do {
+                        try await FirebaseClient.shared.logout()
+                        let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                            self?.showDetailViewController(secondVC, sender: self)
+                        }
+                        alert.addAction(ok)
+                        self?.present(alert, animated: true, completion: nil)
+                    }
+                    catch {
+                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(action)
+                        self!.present(alert, animated: true)
+                        print("Change Logout error", error.localizedDescription)
+                    }
+                }
+                self.cancellables.insert(.init { task.cancel() })
+            })
+            let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+            })
+            alert3.addAction(delete)
+            alert3.addAction(cancel)
+            self.present(alert3, animated: true, completion: nil)
+        }
+    }
+    @IBAction func deleteAccount() {
+        let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
+        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
+            
+            let task = Task { [weak self] in
+                do {
+                    try await FirebaseClient.shared.accountDelete()
+                }
+                catch {
+                    print("ChangeProfile deleteAccount210:\(String(describing: error.localizedDescription))")
+                    let alert = UIAlertController(title: "エラー", message: "ログインし直してもう一度お試しください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                        self?.showDetailViewController(secondVC, sender: self)
+                    }
+                    alert.addAction(ok)
+                    self?.present(alert, animated: true, completion: nil)
+                }
+            }
+            cancellables.insert(.init { task.cancel() })
+        })
+        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+        })
+        alert.addAction(delete)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+}

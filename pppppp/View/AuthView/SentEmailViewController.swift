@@ -17,7 +17,7 @@ class SentEmailViewController: UIViewController, FirebaseSentEmailDelegate {
             goButtonLayout.clipsToBounds = true
             goButtonLayout.layer.cornerCurve = .continuous
             var configuration = UIButton.Configuration.filled()
-            configuration.title = "Sign up"
+            configuration.title = "Reset password"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false

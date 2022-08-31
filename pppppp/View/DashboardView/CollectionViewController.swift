@@ -9,12 +9,12 @@ import UIKit
 import Combine
 
 class CollectionViewController: UIViewController {
-
+    
     var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
     var refreshCtl = UIRefreshControl()
     var cancellables = Set<AnyCancellable>()
-
+    
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
@@ -42,18 +42,18 @@ class CollectionViewController: UIViewController {
         cancellables.insert(.init { task.cancel() })
         refreshCtl.endRefreshing()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
-
+    
         refreshCtl.tintColor = .white
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
@@ -78,10 +78,10 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendDataList.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
-
+        
         cell.nameLabel.text = friendDataList[indexPath.row].name
         cell.dataLabel.text = String(friendDataList[indexPath.row].point ?? 0)
         cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].iconImageURL)!)

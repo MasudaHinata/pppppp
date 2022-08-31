@@ -34,7 +34,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet var goButtonLayout: UIButton! {
         didSet {
             var configuration = UIButton.Configuration.filled()
-            configuration.title = "Change My Profile"
+            configuration.title = "Save changes"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
@@ -59,73 +59,15 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         self.present(picker, animated: true, completion: nil)
     }
     @IBAction func changeProfile() {
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "Save..."
+        configuration.baseBackgroundColor = .init(hex: "92B2D3")
+        configuration.showsActivityIndicator = true
+        configuration.imagePadding = 24
+        configuration.imagePlacement = .trailing
+        configuration.cornerStyle = .capsule
+        goButtonLayout.configuration = configuration
         saveProfile()
-    }
-    @IBAction func logoutButton() {
-        do {
-            let alert3 = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
-            let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
-                
-                let task = Task { [weak self] in
-                    do {
-                        try await FirebaseClient.shared.logout()
-                        print("ログアウトしました")
-                        let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                            self?.showDetailViewController(secondVC, sender: self)
-                        }
-                        alert.addAction(ok)
-                        self?.present(alert, animated: true, completion: nil)
-                    }
-                    catch {
-                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                        let action = UIAlertAction(title: "OK", style: .default)
-                        alert.addAction(action)
-                        self!.present(alert, animated: true)
-                        print("Change Logout error", error.localizedDescription)
-                    }
-                }
-                self.cancellables.insert(.init { task.cancel() })
-            })
-            let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-                print("キャンセル")
-            })
-            alert3.addAction(delete)
-            alert3.addAction(cancel)
-            self.present(alert3, animated: true, completion: nil)
-        }
-    }
-    //アカウントを削除する
-    @IBAction func deleteAccount() {
-        let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
-        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
-            
-            let task = Task { [weak self] in
-                do {
-                    try await FirebaseClient.shared.accountDelete()
-                }
-                catch {
-                    print("ChangeProfile deleteAccount210:\(String(describing: error.localizedDescription))")
-                    let alert = UIAlertController(title: "エラー", message: "ログインし直してもう一度お試しください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                        self?.showDetailViewController(secondVC, sender: self)
-                    }
-                    alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
-                }
-            }
-            cancellables.insert(.init { task.cancel() })
-        })
-        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-            print("キャンセル")
-        })
-        alert.addAction(delete)
-        alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,7 +98,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         }
         cancellables.insert(.init { task.cancel() })
     }
-    //プロフィールを変更
     func saveProfile() {
         if let selectImage = myIconView.image {
             let imageName = "\(Date().timeIntervalSince1970).jpg"
@@ -172,14 +113,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                     do {
                                         let downloadUrlStr = downloadUrl.absoluteString
                                         profileName = (self.nameTextField.text!)
-                                        var configuration = UIButton.Configuration.filled()
-                                        configuration.title = "Save..."
-                                        configuration.baseBackgroundColor = .init(hex: "92B2D3")
-                                        configuration.showsActivityIndicator = true
-                                        configuration.imagePadding = 24
-                                        configuration.imagePlacement = .trailing
-                                        configuration.cornerStyle = .capsule
-                                        goButtonLayout.configuration = configuration
                                         try await FirebaseClient.shared.putIconFirestore(imageURL: downloadUrlStr)
                                         self.settingChangeName(profileName: self.profileName)
                                         
@@ -200,7 +133,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                         print("ChangeProfileView 134 error:", error.localizedDescription)
                                     }
                                     var configuration = UIButton.Configuration.gray()
-                                    configuration.title = "Change My Profile"
+                                    configuration.title = "Save changes"
                                     configuration.baseBackgroundColor = .init(hex: "92B2D3")
                                     configuration.cornerStyle = .capsule
                                     configuration.imagePlacement = .trailing
@@ -219,15 +152,21 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                 })
             }
         } else {
-            print("画像が選択されてない")
             let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             }
             alert.addAction(ok)
             self.present(alert, animated: true, completion: nil)
+            var configuration = UIButton.Configuration.gray()
+            configuration.title = "Save changes"
+            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.cornerStyle = .capsule
+            configuration.imagePlacement = .trailing
+            configuration.baseForegroundColor = .white
+            configuration.imagePadding = 24
+            self.goButtonLayout.configuration = configuration
         }
     }
-    //名前を変更
     func settingChangeName(profileName: String) {
         if profileName == "" {
         } else if profileName != "" {

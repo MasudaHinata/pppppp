@@ -70,6 +70,7 @@ final class FirebaseClient {
     var cancellables = Set<AnyCancellable>()
     let firebaseAuth = Auth.auth()
     let db = Firestore.firestore()
+    let calendar = Calendar.current
     let date = Date()
     let formatter = DateFormatter()
     //友達と自分のデータを取得
@@ -93,7 +94,9 @@ final class FirebaseClient {
     }
     //idで与えられたユーザーのポイントを累積して返す
     func getPointDataSum(id: String) async throws -> Int {
-        let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
+        let startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: date))
+        
+        let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startDate!)).whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         var friends: [PointData] = []
         for friendData in snapshot.documents {
             friends.append(try friendData.data(as: PointData.self))
@@ -160,7 +163,7 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMdHHmm", options: 0, locale: Locale(identifier: "ja_JP"))
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMdHHmm", options: 0, locale: Locale(identifier: "en_US"))
         
         if point == 0 {
             try await db.collection("User").document(userID).collection("HealthData").document("\(formatter.string(from: date))").setData(["point": point, "date": Timestamp(date: Date())])
@@ -322,10 +325,8 @@ final class FirebaseClient {
     func login(email: String, password: String) async throws {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
         if authReault.user.isEmailVerified {
-            print("パスワードとメールアドレス一致")
             self.loginDelegate?.loginScene()
         } else {
-            print("パスワードかメールアドレスが間違っています")
             self.loginDelegate?.loginHelperAlert()
         }
     }
