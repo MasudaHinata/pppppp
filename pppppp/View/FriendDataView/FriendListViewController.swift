@@ -294,7 +294,7 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitysTableViewCell", for: indexPath) as! RecentActivitysTableViewCell
-        cell.pointLabel.text = String(pointDataList[indexPath.row].point ?? 0)
+        cell.pointLabel.text = "+\(pointDataList[indexPath.row].point ?? 0)pt"
         cell.dateLabel.text = pointDataList[indexPath.row].id
         return cell
     }
