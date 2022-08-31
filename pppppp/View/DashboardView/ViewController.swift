@@ -31,6 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         if now >= 19 {
@@ -60,7 +61,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 UD.set(Date(), forKey: "sss")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
-                self.showDetailViewController(secondVC, sender: self)
+                secondVC.modalPresentationStyle = .overFullScreen
+                secondVC.modalTransitionStyle = .crossDissolve
+                self.present(secondVC, animated: true)
             }
         }
         let task = Task { [weak self] in
@@ -84,7 +87,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
             }
         }
         cancellables.insert(.init { task.cancel() })
-        
     }
     func emailVerifyRequiredAlert() {
         let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
