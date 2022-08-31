@@ -408,7 +408,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="cZ6-gb-5CV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" id="gcb-Fl-OlQ">
-                        <imageReference key="image" image="suit.heart" catalog="system" symbolScale="large"/>
+                        <imageReference key="image" image="person" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="uBv-Sw-ECk">
@@ -942,7 +942,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opp-0M-dPy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2681" y="902"/>
+            <point key="canvasLocation" x="2870" y="429"/>
         </scene>
         <!--Change Name View Controller-->
         <scene sceneID="kbf-fq-jXX">
@@ -1050,15 +1050,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YCM-cH-zpW"/>
+        <segue reference="UbM-Xc-XVF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="104"/>
         <image name="arrow.triangle.2.circlepath.camera" catalog="system" width="128" height="93"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="house" catalog="system" width="128" height="104"/>
+        <image name="person" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
-        <image name="suit.heart" catalog="system" width="128" height="107"/>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

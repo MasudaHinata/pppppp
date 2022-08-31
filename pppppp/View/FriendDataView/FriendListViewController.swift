@@ -298,4 +298,8 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.dateLabel.text = pointDataList[indexPath.row].id
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "RECENT ACTIVITIES"
+    }
 }

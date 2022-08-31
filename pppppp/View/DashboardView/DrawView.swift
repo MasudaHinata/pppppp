@@ -62,9 +62,10 @@ class DrawView: UIView {
         path.fill()
         
         let pointLabel = UILabel()
-        pointLabel.frame = CGRect(x: vertex.x - 20, y: vertex.y + 25, width: 56, height: 24)
+        pointLabel.frame = CGRect(x: vertex.x - 28, y: vertex.y + 24, width: 56, height: 24)
         pointLabel.font = UIFont(name: "F5.6", size: 12)
         pointLabel.text = "\(item.point ?? 0)pt"
+        pointLabel.textAlignment = .center
         self.addSubview(pointLabel)
         pointLabels.append(pointLabel)
         
