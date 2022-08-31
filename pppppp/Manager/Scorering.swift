@@ -53,7 +53,6 @@ final class Scorering {
             judge = false
             getPermissionHealthKit()
             
-            //        TODO: ERRORHANDLING
             let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
             let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
             let periodAve = HKQuery.predicateForSamples(withStart: startDateAve, end: endDateAve)
