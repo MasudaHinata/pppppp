@@ -46,7 +46,7 @@ class CollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
-        
+    
         refreshCtl.tintColor = .white
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
