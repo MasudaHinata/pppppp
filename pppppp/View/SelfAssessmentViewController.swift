@@ -11,27 +11,12 @@ import Combine
 class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
     var cancellables = Set<AnyCancellable>()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        FirebaseClient.shared.putPointDelegate = self
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let task = Task {
-            do {
-                try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.checkIconData()
-                try await FirebaseClient.shared.checkNameData()
-            }
-            catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(action)
-                self.present(alert, animated: true)
-                print("SelfViewCotro viewApe", error.localizedDescription)
-            }
+    @IBOutlet var backgroundView: UIView! {
+        didSet {
+            backgroundView.layer.cornerRadius = 40
+            backgroundView.layer.masksToBounds = true
+            backgroundView.layer.cornerCurve = .continuous
         }
-        cancellables.insert(.init { task.cancel() })
     }
     @IBAction func goodButton(){
         let task = Task {
@@ -74,6 +59,29 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
                 alert.addAction(action)
                 self.present(alert, animated: true)
                 print("SelfViewCotro badButton error", error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FirebaseClient.shared.putPointDelegate = self
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let task = Task {
+            do {
+                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.checkIconData()
+                try await FirebaseClient.shared.checkNameData()
+            }
+            catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self.present(alert, animated: true)
+                print("SelfViewCotro viewApe", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })

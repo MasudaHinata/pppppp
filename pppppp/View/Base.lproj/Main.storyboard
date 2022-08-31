@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hdq-Kh-yzh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jqz-O8-fRh">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -824,21 +824,32 @@
                                     <action selector="goodButton" destination="jqz-O8-fRh" eventType="touchUpInside" id="fk5-iF-gVO"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5u-DN-L7j">
+                                <rect key="frame" x="24" y="288" width="366" height="334"/>
+                                <color key="backgroundColor" white="1" alpha="0.1751169217687075" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1hZ-sJ-gA7"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="4ZN-eo-K4c" firstAttribute="top" secondItem="AL1-Cx-Oo6" secondAttribute="bottom" constant="20" id="0Lg-nf-s88"/>
+                            <constraint firstItem="1hZ-sJ-gA7" firstAttribute="trailing" secondItem="l5u-DN-L7j" secondAttribute="trailing" constant="24" id="0mR-Gd-eXd"/>
                             <constraint firstItem="4ZN-eo-K4c" firstAttribute="leading" secondItem="GV8-Ez-0HZ" secondAttribute="trailing" constant="70" id="5Jd-pP-Ogb"/>
+                            <constraint firstItem="l5u-DN-L7j" firstAttribute="centerX" secondItem="ws7-kQ-A5h" secondAttribute="centerX" id="6fM-x9-WaZ"/>
                             <constraint firstItem="4ZN-eo-K4c" firstAttribute="centerY" secondItem="ws7-kQ-A5h" secondAttribute="centerY" id="DdS-Vl-caf"/>
+                            <constraint firstItem="l5u-DN-L7j" firstAttribute="leading" secondItem="1hZ-sJ-gA7" secondAttribute="leading" constant="24" id="FPH-4H-7gv"/>
                             <constraint firstItem="AL1-Cx-Oo6" firstAttribute="centerX" secondItem="ws7-kQ-A5h" secondAttribute="centerX" id="GOS-Db-3Aj"/>
+                            <constraint firstItem="l5u-DN-L7j" firstAttribute="top" secondItem="1hZ-sJ-gA7" secondAttribute="top" constant="240" id="RJb-Ru-lWn"/>
                             <constraint firstItem="lnx-HQ-Qw3" firstAttribute="centerY" secondItem="ws7-kQ-A5h" secondAttribute="centerY" id="RZn-if-ta3"/>
+                            <constraint firstItem="1hZ-sJ-gA7" firstAttribute="bottom" secondItem="l5u-DN-L7j" secondAttribute="bottom" constant="240" id="Xhh-Mq-9UJ"/>
                             <constraint firstItem="GV8-Ez-0HZ" firstAttribute="centerY" secondItem="ws7-kQ-A5h" secondAttribute="centerY" id="ZDy-Il-1Hw"/>
                             <constraint firstItem="4ZN-eo-K4c" firstAttribute="centerX" secondItem="ws7-kQ-A5h" secondAttribute="centerX" id="eBL-FA-sfz"/>
                             <constraint firstItem="lnx-HQ-Qw3" firstAttribute="leading" secondItem="4ZN-eo-K4c" secondAttribute="trailing" constant="70" id="roU-Oc-gpE"/>
+                            <constraint firstItem="l5u-DN-L7j" firstAttribute="centerY" secondItem="ws7-kQ-A5h" secondAttribute="centerY" id="xVx-zr-KTr"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="l5u-DN-L7j" id="OGX-G8-rfI"/>
                         <segue destination="hdq-Kh-yzh" kind="presentation" identifier="toooooViewController" id="YCM-cH-zpW"/>
                     </connections>
                 </viewController>
