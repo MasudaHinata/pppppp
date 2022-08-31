@@ -750,14 +750,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5r7-U6-iyM">
-                                <rect key="frame" x="168.5" y="539" width="77.5" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5r7-U6-iyM">
+                                <rect key="frame" x="168.5" y="572" width="77.5" height="35"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHy-vh-UOm">
-                                <rect key="frame" x="139" y="582" width="136" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHy-vh-UOm">
+                                <rect key="frame" x="139" y="627" width="136" height="35"/>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="DeleteAccount"/>
@@ -768,6 +768,8 @@
                         <constraints>
                             <constraint firstItem="DHy-vh-UOm" firstAttribute="centerX" secondItem="gi5-3R-GkR" secondAttribute="centerX" id="0Zs-M3-X0V"/>
                             <constraint firstItem="5r7-U6-iyM" firstAttribute="centerX" secondItem="gi5-3R-GkR" secondAttribute="centerX" id="Lqf-Hd-bSg"/>
+                            <constraint firstItem="gwX-Sp-q34" firstAttribute="bottom" secondItem="DHy-vh-UOm" secondAttribute="bottom" constant="200" id="NgN-8l-DiI"/>
+                            <constraint firstItem="DHy-vh-UOm" firstAttribute="top" secondItem="5r7-U6-iyM" secondAttribute="bottom" constant="20" id="ocT-eP-5dx"/>
                         </constraints>
                     </view>
                 </viewController>
