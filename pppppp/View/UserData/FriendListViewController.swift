@@ -70,9 +70,9 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         showShareSheet()
     }
     @IBAction func editButtonPressed(_ sender: Any) {
-        let page2 = self.storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
-        page2.sceneChangeProfile = self
-        self.present(page2,animated: true,completion: nil)
+        let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ChangeProfileViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
     @IBAction func settingButtonPressed() {
         let storyboard = UIStoryboard(name: "SettingView", bundle: nil)

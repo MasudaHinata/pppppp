@@ -46,11 +46,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             goButtonLayout.layer.cornerCurve = .continuous
         }
     }
-    @IBAction func back_page1(_ sender: Any) {
-        dismiss(animated: true, completion: {
-            self.sceneChangeProfile.scene()
-        })
-    }
     @IBAction func uploadButton(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
@@ -118,9 +113,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                         
                                         let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                                         let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                                            dismiss(animated: true, completion: {
-                                                self.sceneChangeProfile.scene()
-                                            })
+                                            self.dismiss(animated: true, completion: nil)
                                         }
                                         alert.addAction(ok)
                                         self.present(alert, animated: true, completion: nil)
@@ -196,7 +189,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     func accountDeleted() {
         let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
             let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
             self.showDetailViewController(secondVC, sender: self)
         }

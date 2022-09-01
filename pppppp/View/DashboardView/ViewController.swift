@@ -16,11 +16,11 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
-    @IBAction func dataputButton() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
-        self.showDetailViewController(secondVC, sender: self)
-    }
+//    @IBAction func dataputButton() {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
+//        self.showDetailViewController(secondVC, sender: self)
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

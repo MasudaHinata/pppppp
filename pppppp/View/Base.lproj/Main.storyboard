@@ -12,6 +12,7 @@
         <!--Dashboard-->
         <scene sceneID="Le5-1j-13Q">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController modalPresentationStyle="fullScreen" id="C6X-Qw-bEO" customClass="ViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ia-4m-9zf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -43,17 +44,15 @@
                         <outlet property="mountainView" destination="ndx-UB-OiK" id="I8o-hY-XwT"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4364" y="-224"/>
+            <point key="canvasLocation" x="4959" y="-224"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="Apd-pZ-okF">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fFg-BV-JmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="ViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Bgd-UE-uNF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" id="0XE-Bx-nSG">
-                        <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="house" catalog="system" id="0XE-Bx-nSG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="AHh-SN-Iu0">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -68,9 +67,8 @@
                         <segue destination="C6X-Qw-bEO" kind="relationship" relationship="rootViewController" id="Gxz-Gx-aWf"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fFg-BV-JmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3667" y="-224"/>
+            <point key="canvasLocation" x="4181" y="-224"/>
         </scene>
         <!--Me-->
         <scene sceneID="gPQ-18-pcq">
@@ -100,7 +98,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hlD-aD-2rz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3667" y="429"/>
+            <point key="canvasLocation" x="4180" y="429"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Yb1-Xg-nGf">
@@ -299,12 +297,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gld-Sa-Nyj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4363.768115942029" y="428.57142857142856"/>
+            <point key="canvasLocation" x="4958" y="429"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XfS-aq-DeV">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarViewController" modalPresentationStyle="fullScreen" id="hdq-Kh-yzh" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hdq-Kh-yzh" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gWF-wa-1Lx">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -319,7 +317,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opp-0M-dPy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2891" y="89"/>
+            <point key="canvasLocation" x="3268" y="88"/>
         </scene>
     </scenes>
     <resources>
