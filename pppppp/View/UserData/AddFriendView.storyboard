@@ -16,82 +16,95 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Leb-HE-572">
-                                <rect key="frame" x="338" y="44" width="61" height="43"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2i-99-U3q">
+                                <rect key="frame" x="24" y="344" width="366" height="208"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzA-A2-QDb">
+                                        <rect key="frame" x="108.5" y="140" width="149.5" height="48"/>
+                                        <color key="backgroundColor" red="0.72156862749999995" green="0.91372549020000005" blue="1" alpha="0.39926359519999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="149.5" id="JYO-JV-fue"/>
+                                            <constraint firstAttribute="height" constant="48" id="pPB-aQ-sqZ"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="ADD AS FRIEND">
+                                            <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="16"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="addFriend" destination="LYz-DZ-wCV" eventType="touchUpInside" id="Q8F-hH-3Sr"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2v5-j6-HLp">
+                                        <rect key="frame" x="161.5" y="79" width="43" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.4823529412" green="0.50980392159999999" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="0jw-O5-OD6"/>
-                                    <constraint firstAttribute="width" constant="61" id="7Uk-yK-dCa"/>
+                                    <constraint firstAttribute="bottom" secondItem="qzA-A2-QDb" secondAttribute="bottom" constant="20" id="Imh-xZ-qee"/>
+                                    <constraint firstItem="qzA-A2-QDb" firstAttribute="centerX" secondItem="h2i-99-U3q" secondAttribute="centerX" id="KrU-Fe-Ds5"/>
+                                    <constraint firstItem="qzA-A2-QDb" firstAttribute="top" secondItem="2v5-j6-HLp" secondAttribute="bottom" constant="32" id="dUH-uV-CXT"/>
+                                    <constraint firstAttribute="height" constant="208" id="vPd-SG-qqu"/>
+                                    <constraint firstItem="2v5-j6-HLp" firstAttribute="centerX" secondItem="h2i-99-U3q" secondAttribute="centerX" id="vYD-bp-kpm"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Leb-HE-572">
+                                <rect key="frame" x="8" y="44" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="0jw-O5-OD6"/>
+                                    <constraint firstAttribute="width" constant="48" id="7Uk-yK-dCa"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="">
                                     <imageReference key="image" image="xmark.circle" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" weight="bold"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" weight="light"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="backButton" destination="LYz-DZ-wCV" eventType="touchUpInside" id="Imf-U7-iCC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzA-A2-QDb">
-                                <rect key="frame" x="132.5" y="505" width="149.5" height="48"/>
-                                <color key="backgroundColor" red="0.72156862749999995" green="0.91372549020000005" blue="1" alpha="0.39926359519999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="149.5" id="JYO-JV-fue"/>
-                                    <constraint firstAttribute="height" constant="48" id="pPB-aQ-sqZ"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="ADD AS FRIEND">
-                                    <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="16"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="addFriend" destination="LYz-DZ-wCV" eventType="touchUpInside" id="Q8F-hH-3Sr"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2v5-j6-HLp">
-                                <rect key="frame" x="27" y="417.5" width="360" height="61"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="360" id="36V-76-OHZ"/>
-                                    <constraint firstAttribute="height" constant="61" id="EIh-Wu-1ff"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0TE-MI-7pn">
-                                <rect key="frame" x="107" y="209" width="200" height="200"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0TE-MI-7pn">
+                                <rect key="frame" x="167" y="304" width="80" height="79.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="d3Y-it-GQ9"/>
-                                    <constraint firstAttribute="height" constant="200" id="qmJ-9G-hc7"/>
+                                    <constraint firstAttribute="width" constant="80" id="d3Y-it-GQ9"/>
+                                    <constraint firstAttribute="height" constant="80" id="qmJ-9G-hc7"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="ultraLight"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EgC-1K-tGS"/>
-                        <color key="backgroundColor" red="0.071201466020000007" green="0.0" blue="0.29860094190000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2v5-j6-HLp" firstAttribute="top" secondItem="0TE-MI-7pn" secondAttribute="bottom" constant="8.5" id="0a2-0m-G97"/>
-                            <constraint firstItem="EgC-1K-tGS" firstAttribute="trailing" secondItem="Leb-HE-572" secondAttribute="trailing" constant="15" id="EN5-1c-NrQ"/>
-                            <constraint firstItem="2v5-j6-HLp" firstAttribute="centerY" secondItem="UgX-6g-dW2" secondAttribute="centerY" id="LNc-4T-TcL"/>
+                            <constraint firstItem="0TE-MI-7pn" firstAttribute="top" secondItem="h2i-99-U3q" secondAttribute="top" constant="-40" id="Gvt-pw-H4t"/>
                             <constraint firstItem="Leb-HE-572" firstAttribute="top" secondItem="EgC-1K-tGS" secondAttribute="top" id="QVd-by-paq"/>
-                            <constraint firstItem="qzA-A2-QDb" firstAttribute="centerX" secondItem="UgX-6g-dW2" secondAttribute="centerX" id="o1v-4J-jaS"/>
-                            <constraint firstItem="2v5-j6-HLp" firstAttribute="centerX" secondItem="UgX-6g-dW2" secondAttribute="centerX" id="v5K-5B-UAe"/>
-                            <constraint firstItem="qzA-A2-QDb" firstAttribute="top" secondItem="2v5-j6-HLp" secondAttribute="bottom" constant="26.5" id="vix-6d-Atg"/>
-                            <constraint firstItem="0TE-MI-7pn" firstAttribute="centerX" secondItem="UgX-6g-dW2" secondAttribute="centerX" id="ygG-BX-YqW"/>
+                            <constraint firstItem="h2i-99-U3q" firstAttribute="centerX" secondItem="UgX-6g-dW2" secondAttribute="centerX" id="Qee-vT-Ixk"/>
+                            <constraint firstItem="Leb-HE-572" firstAttribute="leading" secondItem="UgX-6g-dW2" secondAttribute="leading" constant="8" id="h8s-7O-X3f"/>
+                            <constraint firstItem="h2i-99-U3q" firstAttribute="centerY" secondItem="UgX-6g-dW2" secondAttribute="centerY" id="lfJ-7c-MVe"/>
+                            <constraint firstItem="0TE-MI-7pn" firstAttribute="centerX" secondItem="UgX-6g-dW2" secondAttribute="centerX" id="opE-ho-xPU"/>
+                            <constraint firstItem="h2i-99-U3q" firstAttribute="leading" secondItem="EgC-1K-tGS" secondAttribute="leading" constant="24" id="ptE-WH-g69"/>
+                            <constraint firstItem="EgC-1K-tGS" firstAttribute="trailing" secondItem="h2i-99-U3q" secondAttribute="trailing" constant="24" id="wGu-ZU-4eu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addFriendButton" destination="qzA-A2-QDb" id="H4k-dW-hwz"/>
+                        <outlet property="backgroundView" destination="h2i-99-U3q" id="sZ5-3A-MEp"/>
                         <outlet property="friendIconView" destination="0TE-MI-7pn" id="8nq-it-yZ3"/>
                         <outlet property="friendLabel" destination="2v5-j6-HLp" id="Yhs-vP-XzM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i7N-SX-kQ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2251" y="-224"/>
+            <point key="canvasLocation" x="2250.7246376811595" y="-224.33035714285714"/>
         </scene>
     </scenes>
     <resources>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="xmark.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>
