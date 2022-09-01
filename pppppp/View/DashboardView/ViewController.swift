@@ -114,7 +114,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         }
     }
     func buttonSelected(item: UserData) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "UserDataView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "UserDataViewController") as UserDataViewController
         secondVC.userDataItem = item
         self.showDetailViewController(secondVC, sender: self)

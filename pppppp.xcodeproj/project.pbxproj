@@ -24,7 +24,8 @@
 		036F69FA28C08E7F0066A7DA /* SettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F928C08E7F0066A7DA /* SettingView.storyboard */; };
 		036F69FC28C08F1C0066A7DA /* AddFriendView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69FB28C08F1C0066A7DA /* AddFriendView.storyboard */; };
 		036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */; };
-		036F6A0128C092520066A7DA /* DashBoardView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0028C092520066A7DA /* DashBoardView.storyboard */; };
+		036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0028C092520066A7DA /* DashboardView.storyboard */; };
+		036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0228C093560066A7DA /* UserDataView.storyboard */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
@@ -83,7 +84,8 @@
 		036F69F928C08E7F0066A7DA /* SettingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingView.storyboard; sourceTree = "<group>"; };
 		036F69FB28C08F1C0066A7DA /* AddFriendView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFriendView.storyboard; sourceTree = "<group>"; };
 		036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelfCheckView.storyboard; sourceTree = "<group>"; };
-		036F6A0028C092520066A7DA /* DashBoardView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashBoardView.storyboard; sourceTree = "<group>"; };
+		036F6A0028C092520066A7DA /* DashboardView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardView.storyboard; sourceTree = "<group>"; };
+		036F6A0228C093560066A7DA /* UserDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDataView.storyboard; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
@@ -158,7 +160,7 @@
 				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
 				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
 				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
-				036F6A0028C092520066A7DA /* DashBoardView.storyboard */,
+				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
 			);
 			path = DashboardView;
 			sourceTree = "<group>";
@@ -214,6 +216,7 @@
 			children = (
 				9C1A900B283506D5004B4100 /* FriendListViewController.swift */,
 				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
+				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
 				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
 				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
 				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
@@ -356,8 +359,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				036F69FA28C08E7F0066A7DA /* SettingView.storyboard in Resources */,
+				036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */,
 				036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */,
-				036F6A0128C092520066A7DA /* DashBoardView.storyboard in Resources */,
+				036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */,
 				036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */,
 				9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */,
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
