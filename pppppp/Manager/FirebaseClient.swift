@@ -191,6 +191,18 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["name": name])
     }
+    //ポイントをfirebaseに保存
+    func firebasePutSelfCheckLog(log: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.userAuthCheck()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: Locale(identifier: "en_US"))
+        
+        try await db.collection("User").document(userID).collection("SelfCheckLog").document("\(formatter.string(from: date))").setData(["log": log, "date": Timestamp(date: Date())])
+        
+    }
     //友達を追加する
     func addFriend(friendId: String) async throws {
         guard let user = Auth.auth().currentUser else {

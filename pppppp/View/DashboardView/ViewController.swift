@@ -60,7 +60,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 judgge = false
                 UD.set(Date(), forKey: "sss")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateViewController(identifier: "SelfAssessmentViewController")
+                let secondVC = storyboard.instantiateViewController(identifier: "SelfCheckViewController")
                 secondVC.modalPresentationStyle = .overFullScreen
                 secondVC.modalTransitionStyle = .crossDissolve
                 self.present(secondVC, animated: true)

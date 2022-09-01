@@ -1,5 +1,5 @@
 //
-//  SelfAssessmentViewController.swift
+//  SelfCheckViewController.swift
 //  pppppp
 //
 //  Created by 増田ひなた on 2022/08/12.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
+class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     var cancellables = Set<AnyCancellable>()
     
     @IBOutlet var myIconView: UIImageView! {
@@ -66,6 +66,7 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
         let task = Task {
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 15)
+                try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "good")
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -81,6 +82,7 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
         let task = Task {
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 10)
+                try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "normal")
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -96,6 +98,7 @@ class SelfAssessmentViewController: UIViewController, FirebasePutPointDelegate {
         let task = Task {
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 5)
+                try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "bad")
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
