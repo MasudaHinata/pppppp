@@ -12,8 +12,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     let calendar = Calendar.current
     @IBOutlet var mountainView: DrawView!
     @IBAction func sendCollectionView() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "CollectionViewController")
+        let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
     @IBAction func dataputButton() {
@@ -31,7 +31,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         if now >= 19 {
@@ -59,7 +58,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
             if judgge {
                 judgge = false
                 UD.set(Date(), forKey: "sss")
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let storyboard = UIStoryboard(name: "SelfCheckView", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "SelfCheckViewController")
                 secondVC.modalPresentationStyle = .overFullScreen
                 secondVC.modalTransitionStyle = .crossDissolve

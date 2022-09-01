@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class ProfileViewController: UIViewController {
+class AddFriendViewController: UIViewController {
     
     var friendId: String!
     var cancellables = Set<AnyCancellable>()

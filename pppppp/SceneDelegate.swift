@@ -73,8 +73,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 recievedId = queryValue
             }
         }
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let resultVC: ProfileViewController = mainStoryboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "AddFriendView", bundle: nil)
+        let resultVC: AddFriendViewController = mainStoryboard.instantiateViewController(withIdentifier: "AddFriendViewController") as! AddFriendViewController
         resultVC.friendId = recievedId
         self.window?.rootViewController = resultVC
         self.window?.makeKeyAndVisible()

@@ -75,7 +75,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         self.present(page2,animated: true,completion: nil)
     }
     @IBAction func settingButtonPressed() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "SettingView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "SettingViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
