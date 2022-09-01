@@ -15,7 +15,9 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
     var myName: String!
+    var ActivityIndicator: UIActivityIndicatorView!
     var sceneChangeProfile: sceneChangeProfile!
+    
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var myIconView: UIImageView! {
         didSet {
@@ -71,15 +73,24 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
+        
+        ActivityIndicator = UIActivityIndicatorView()
+        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        ActivityIndicator.center = self.view.center
+        ActivityIndicator.style = .large
+        ActivityIndicator.hidesWhenStopped = true
+        self.view.addSubview(ActivityIndicator)
     }
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
+                ActivityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.checkIconData()
                 try await FirebaseClient.shared.checkNameData()
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
+                ActivityIndicator.stopAnimating()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

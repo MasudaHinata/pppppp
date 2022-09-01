@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class DashboardViewController: UIViewController {
-    
+    var ActivityIndicator: UIActivityIndicatorView!
     var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
     var refreshCtl = UIRefreshControl()
@@ -50,15 +50,23 @@ class DashboardViewController: UIViewController {
         refreshCtl.tintColor = .white
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
+        ActivityIndicator = UIActivityIndicatorView()
+        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        ActivityIndicator.center = self.view.center
+        ActivityIndicator.style = .large
+        ActivityIndicator.hidesWhenStopped = true
+        self.view.addSubview(ActivityIndicator)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let task = Task {
             do {
+                ActivityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 self.collectionView.reloadData()
+                ActivityIndicator.stopAnimating()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

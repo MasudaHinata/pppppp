@@ -10,11 +10,11 @@ import Combine
 
 class UserDataViewController: UIViewController {
     
-    //    var friendDataList = [UserData]()
-    let layout = UICollectionViewFlowLayout()
     var cancellables = Set<AnyCancellable>()
     var userDataItem: UserData?
     var pointDataList = [PointData]()
+    var ActivityIndicator: UIActivityIndicatorView!
+    let layout = UICollectionViewFlowLayout()
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var pointLabel: UILabel!
@@ -51,9 +51,22 @@ class UserDataViewController: UIViewController {
             profileBackgroundView.layer.cornerCurve = .continuous
         }
     }
-   
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        ActivityIndicator = UIActivityIndicatorView()
+        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        ActivityIndicator.center = self.view.center
+        ActivityIndicator.style = .large
+        ActivityIndicator.color = .white
+        ActivityIndicator.hidesWhenStopped = true
+        self.view.addSubview(ActivityIndicator)
+    }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        ActivityIndicator.startAnimating()
         iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
         nameLabel.text = userDataItem?.name
         pointLabel.text = "\(userDataItem?.point ?? 0)pt"
@@ -62,6 +75,7 @@ class UserDataViewController: UIViewController {
                 pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
+                ActivityIndicator.stopAnimating()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

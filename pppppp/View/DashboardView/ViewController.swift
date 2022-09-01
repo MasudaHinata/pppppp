@@ -10,27 +10,31 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     var friendDataList = [UserData]()
     let UD = UserDefaults.standard
     let calendar = Calendar.current
+    var ActivityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet var mountainView: DrawView!
     @IBAction func sendCollectionView() {
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
-//    @IBAction func dataputButton() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
-//        self.showDetailViewController(secondVC, sender: self)
-//    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPointDelegate = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
+        
+        ActivityIndicator = UIActivityIndicatorView()
+        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        ActivityIndicator.center = self.view.center
+        ActivityIndicator.style = .large
+        ActivityIndicator.hidesWhenStopped = true
+        self.view.addSubview(ActivityIndicator)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        ActivityIndicator.startAnimating()
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         if now >= 19 {
@@ -74,6 +78,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
                 mountainView.delegate = self
+                ActivityIndicator.stopAnimating()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
