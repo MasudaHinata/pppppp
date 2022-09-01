@@ -1,10 +1,3 @@
-//
-//  Scorering.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/08/09.
-//
-
 import Foundation
 import HealthKit
 
@@ -82,7 +75,7 @@ final class Scorering {
             UD.set(Date(), forKey: "today")
         }
     }
-    //体重を取得
+    //体重を読み込み
     func readWeight() async throws {
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)

@@ -1,10 +1,3 @@
-//
-//  SettingViewController.swift
-//  pppppp
-//
-//  Created by hinata on 2022/08/31.
-//
-
 import UIKit
 import Combine
 

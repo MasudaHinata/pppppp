@@ -122,6 +122,40 @@ class CreateAccountViewController: UIViewController ,UITextFieldDelegate, Fireba
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
+    
+    //MARK: - Setting Delegate
+    func accountDeleted() {
+        let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func faildAcccountDelete() {
+        let alert = UIAlertController(title: "エラーログインしなおしてもう一度試してください", message: "データが全て消えている可能性があります", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func faildAcccountDeleteData() {
+        let alert = UIAlertController(title: "もう一度試してください", message: "データの削除に失敗しました", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     func isValidEmail(_ string: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)

@@ -1,10 +1,3 @@
-//
-//  UserDataViewController.swift
-//  pppppp
-//
-//  Created by hinata on 2022/08/30.
-//
-
 import UIKit
 import Combine
 
@@ -62,7 +55,6 @@ class UserDataViewController: UIViewController {
         ActivityIndicator.hidesWhenStopped = true
         self.view.addSubview(ActivityIndicator)
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

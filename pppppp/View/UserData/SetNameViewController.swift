@@ -1,10 +1,3 @@
-//
-//  SetNameViewController.swift
-//  pppppp
-//
-//  Created by hinata on 2022/08/25.
-//
-
 import UIKit
 import Combine
 

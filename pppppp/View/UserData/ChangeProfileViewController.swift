@@ -1,10 +1,3 @@
-//
-//  ChangeProfileViewController.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/08/09.
-//
-
 import UIKit
 import Combine
 import FirebaseStorage
@@ -195,6 +188,16 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextField.resignFirstResponder()
+        return true
+    }
+    
+    //MARK: - Setting Delegate
     func accountDeleted() {
         let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -226,12 +229,5 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
-    }
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
-    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        nameTextField.resignFirstResponder()
-        return true
     }
 }

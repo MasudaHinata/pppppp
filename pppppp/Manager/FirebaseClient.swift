@@ -74,7 +74,6 @@ final class FirebaseClient {
     let formatter = DateFormatter()
     
     //MARK: - FireStore Read
-    
     //UUIDをとる
     func getUserUUID() async throws -> String {
         guard let user = Auth.auth().currentUser else {
@@ -163,7 +162,6 @@ final class FirebaseClient {
     }
     
     //MARK: - FireStore Write
-    
     //UserDataをFirestoreに保存
     func setUserData() async throws {
         guard let user = Auth.auth().currentUser else {
@@ -275,7 +273,6 @@ final class FirebaseClient {
     }
     
     //MARK: - FireStore Check
-    
     //ログインできてるか・メール認証ができてるかの判定
     func userAuthCheck() async throws {
         guard let user = Auth.auth().currentUser else {
@@ -327,7 +324,6 @@ final class FirebaseClient {
     }
     
     //MARK: - Firebase Authentication
-    
     //アカウントを作成する
     func createAccount(email: String, password: String) async throws {
         let result = try await firebaseAuth.createUser(withEmail: email, password: password)

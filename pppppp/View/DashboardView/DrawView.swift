@@ -1,10 +1,3 @@
-//
-//  DrawView.swift
-//  pppppp
-//
-//  Created by hinata on 2022/08/28.
-//
-
 import UIKit
 
 protocol DrawViewDelegate: AnyObject {

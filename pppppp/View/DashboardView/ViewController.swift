@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.emailVerifyDelegate = self
@@ -91,6 +92,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
+    //MARK: - Setting Delegate
     func emailVerifyRequiredAlert() {
         let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in

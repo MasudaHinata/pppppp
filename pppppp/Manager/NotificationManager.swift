@@ -1,10 +1,3 @@
-//
-//  NotificationManager.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/08/19.
-//
-
 import Foundation
 import NotificationCenter
 

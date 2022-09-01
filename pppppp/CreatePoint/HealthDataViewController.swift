@@ -11,6 +11,7 @@ class HealthDataViewController: UIViewController {
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
     let UD = UserDefaults.standard
     let calendar = Calendar.current
+    
     @IBOutlet var weightTextField: UITextField! {
         didSet {
             weightTextField.layer.cornerRadius = 24
@@ -18,6 +19,7 @@ class HealthDataViewController: UIViewController {
             weightTextField.layer.cornerCurve = .continuous
         }
     }
+    
     @IBAction func writeWeightData() {
         guard let inputWeightText = weightTextField.text else { return }
         guard let inputWeight = Double(inputWeightText) else { return }
@@ -41,6 +43,7 @@ class HealthDataViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +65,7 @@ class HealthDataViewController: UIViewController {
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
     }
+    
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }

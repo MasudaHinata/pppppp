@@ -1,10 +1,3 @@
-//
-//  SelfCheckViewController.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/08/12.
-//
-
 import UIKit
 import Combine
 
@@ -77,6 +70,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
     @IBAction func normalButtonPressed(){
         let task = Task {
             do {
@@ -114,6 +108,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         super.viewDidLoad()
         FirebaseClient.shared.putPointDelegate = self
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let task = Task {
@@ -138,6 +133,8 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
+    //MARK: - Setting Delegate
     func putPointForFirestore(point: Int) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in

@@ -1,10 +1,3 @@
-//
-//  FriendListViewController.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/05/18.
-//
-
 import UIKit
 import Combine
 import Kingfisher
@@ -197,7 +190,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         refreshCtl.endRefreshing()
     }
     
-    //MARK: - delegate
+    //MARK: - Setting Delegate
     func notChangeName() {
         let storyboard = UIStoryboard(name: "SetNameView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "SetNameViewController")

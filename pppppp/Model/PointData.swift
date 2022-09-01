@@ -1,10 +1,3 @@
-//
-//  FriendPointDataList.swift
-//  pppppp
-//
-//  Created by hinata on 2022/08/26.
-//
-
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
