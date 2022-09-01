@@ -26,7 +26,6 @@ class HealthDataViewController: UIViewController {
             do {
                 guard let self = self else { return }
                 try await Scorering.shared.writeWeight(weight: inputWeight)
-                //FIXME: ここで呼びたくない
                 let alart = UIAlertController(title: "記録", message: "体重を記録しました", preferredStyle: .alert)
                 let action = UIAlertAction(title: "ok", style: .default)
                 alart.addAction(action)

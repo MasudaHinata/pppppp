@@ -28,7 +28,6 @@ class DrawView: UIView {
         for label in pointLabels {
             label.removeFromSuperview()
         }
-        //0で割るからやばい
         let largestPoint = CGFloat(friendListItems.first?.point ?? 1)
         for item in friendListItems {
             let x = CGFloat(sqrt(CGFloat(item.point!) / largestPoint) * self.bounds.width * 0.8)

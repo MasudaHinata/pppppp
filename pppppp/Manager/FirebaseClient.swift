@@ -80,9 +80,11 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        let querySnapshot = try await db.collection("User").whereField("FriendList",arrayContains: userID).getDocuments()
+        let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
         var users = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
         if includeMe == true {
+            try await checkIconData()
+            try await checkNameData()
             let myData = try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self)
             users.append(myData)
         }

@@ -3,7 +3,7 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         super.viewDidLoad()
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPointDelegate = self
+        FirebaseClient.shared.notChangeDelegate = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
         
         ActivityIndicator = UIActivityIndicatorView()
@@ -72,8 +73,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         let task = Task { [weak self] in
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.checkNameData()
-                try await FirebaseClient.shared.checkIconData()
                 try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
@@ -122,6 +121,11 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         let storyboard = UIStoryboard(name: "UserDataView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "UserDataViewController") as UserDataViewController
         secondVC.userDataItem = item
+        self.showDetailViewController(secondVC, sender: self)
+    }
+    func notChangeName() {
+        let storyboard = UIStoryboard(name: "SetNameView", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "SetNameViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
 }
