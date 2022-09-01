@@ -2,7 +2,7 @@ import UIKit
 import FirebaseStorage
 import Combine
 
-class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCreatedAccountDelegate {
+class CreateAccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCreatedAccountDelegate {
     
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var goButtonLayout: UIButton! {
@@ -50,7 +50,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
         }
     }
     @IBAction func LoginButton () {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
@@ -131,7 +131,7 @@ class AccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCrea
     func accountCreated() {
         let alert = UIAlertController(title: "仮登録メールを送信しました", message: "メールを確認してください", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
             let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
             self.showDetailViewController(secondVC, sender: self)
         }

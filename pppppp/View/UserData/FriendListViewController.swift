@@ -70,12 +70,12 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         showShareSheet()
     }
     @IBAction func editButtonPressed(_ sender: Any) {
-        let page2 = self.storyboard?.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
-        page2.sceneChangeProfile = self
-        self.present(page2,animated: true,completion: nil)
+        let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ChangeProfileViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
     @IBAction func settingButtonPressed() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "SettingView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "SettingViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
@@ -100,6 +100,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         let task = Task {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
@@ -125,8 +127,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.checkIconData()
                 try await FirebaseClient.shared.checkNameData()
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
             }
@@ -185,8 +185,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         refreshCtl.endRefreshing()
     }
     func notChangeName() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ChangeNameViewController")
+        let storyboard = UIStoryboard(name: "SetNameView", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "SetNameViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
     

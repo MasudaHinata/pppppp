@@ -12,15 +12,15 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     let calendar = Calendar.current
     @IBOutlet var mountainView: DrawView!
     @IBAction func sendCollectionView() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "CollectionViewController")
+        let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
-    @IBAction func dataputButton() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
-        self.showDetailViewController(secondVC, sender: self)
-    }
+//    @IBAction func dataputButton() {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
+//        self.showDetailViewController(secondVC, sender: self)
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +31,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         if now >= 19 {
@@ -59,7 +58,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
             if judgge {
                 judgge = false
                 UD.set(Date(), forKey: "sss")
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let storyboard = UIStoryboard(name: "SelfCheckView", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "SelfCheckViewController")
                 secondVC.modalPresentationStyle = .overFullScreen
                 secondVC.modalTransitionStyle = .crossDissolve
@@ -91,8 +90,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
     func emailVerifyRequiredAlert() {
         let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
             self.showDetailViewController(secondVC, sender: self)
         }
         alert.addAction(ok)
@@ -115,7 +114,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         }
     }
     func buttonSelected(item: UserData) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "UserDataView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "UserDataViewController") as UserDataViewController
         secondVC.userDataItem = item
         self.showDetailViewController(secondVC, sender: self)

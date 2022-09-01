@@ -1,5 +1,5 @@
 //
-//  CollectionViewController.swift
+//  DashboardViewController.swift
 //  pppppp
 //
 //  Created by hinata on 2022/08/29.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class CollectionViewController: UIViewController {
+class DashboardViewController: UIViewController {
     
     var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
@@ -74,7 +74,7 @@ class CollectionViewController: UIViewController {
     }
 }
 
-extension CollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendDataList.count
     }

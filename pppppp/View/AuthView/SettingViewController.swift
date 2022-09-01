@@ -23,11 +23,12 @@ class SettingViewController: UIViewController {
                 let task = Task { [weak self] in
                     do {
                         try await FirebaseClient.shared.logout()
+                        //FIXME: ここでアラート呼びたくない
                         let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました", preferredStyle: .alert)
                         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
-                            self?.showDetailViewController(secondVC, sender: self)
+                            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
+                            let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
+                            self!.showDetailViewController(secondVC, sender: self)
                         }
                         alert.addAction(ok)
                         self?.present(alert, animated: true, completion: nil)
@@ -61,8 +62,8 @@ class SettingViewController: UIViewController {
                     print("ChangeProfile deleteAccount210:\(String(describing: error.localizedDescription))")
                     let alert = UIAlertController(title: "エラー", message: "ログインし直してもう一度お試しください", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateViewController(identifier: "AccountViewController")
+                        let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
                         self?.showDetailViewController(secondVC, sender: self)
                     }
                     alert.addAction(ok)
