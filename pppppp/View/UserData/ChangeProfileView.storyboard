@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Change Profile View Controller-->
+        <scene sceneID="TBC-0o-7vi">
+            <objects>
+                <viewController storyboardIdentifier="ChangeProfileViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hwt-d6-8BX" customClass="ChangeProfileViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hpd-ge-4h6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qk-yW-ZCe">
+                                <rect key="frame" x="122" y="254" width="182" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="SfR-95-80H"/>
+                                    <constraint firstAttribute="width" constant="182" id="sVI-tE-MaD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tvi-m3-0rI">
+                                <rect key="frame" x="20" y="254" width="82" height="82"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.070588238540000001" green="0.0039215688589999999" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="UMN-ZF-OvX"/>
+                                    <constraint firstAttribute="width" constant="82" id="wAU-nO-ZW9"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="784-He-p3K">
+                                <rect key="frame" x="41" y="275" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Xz2-Dt-t3J"/>
+                                    <constraint firstAttribute="width" constant="40" id="mgJ-dA-OcX"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="camera.circle.fill" catalog="system" symbolScale="large" renderingMode="hierarchical-single"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="21" scale="small" weight="light"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="uploadButton:" destination="hwt-d6-8BX" eventType="touchUpInside" id="Z9k-LM-gEo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyL-mN-owU">
+                                <rect key="frame" x="16" y="44" width="54.5" height="38"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="back_page1:" destination="hwt-d6-8BX" eventType="touchUpInside" id="uhI-Mf-CDF"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="change your name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5xC-7x-6aS">
+                                <rect key="frame" x="32" y="356" width="350" height="48"/>
+                                <color key="backgroundColor" red="0.4823529412" green="0.50980392159999999" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="RXb-ub-IJE"/>
+                                    <constraint firstAttribute="height" constant="48" id="kPL-fI-WpC"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zx9-rs-OpS">
+                                <rect key="frame" x="32" y="424" width="350" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="2qT-bo-tsf"/>
+                                    <constraint firstAttribute="height" constant="48" id="wLl-n8-pa4"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="changeProfile" destination="hwt-d6-8BX" eventType="touchUpInside" id="Oyx-EX-349"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KNT-3O-IY0"/>
+                        <color key="backgroundColor" red="0.071201466020000007" green="0.0" blue="0.29860094190000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zx9-rs-OpS" firstAttribute="centerY" secondItem="hpd-ge-4h6" secondAttribute="centerY" id="6wv-3B-dcS"/>
+                            <constraint firstItem="5xC-7x-6aS" firstAttribute="top" secondItem="Tvi-m3-0rI" secondAttribute="bottom" constant="20" id="8jJ-EH-nUm"/>
+                            <constraint firstItem="Zx9-rs-OpS" firstAttribute="top" secondItem="5xC-7x-6aS" secondAttribute="bottom" constant="20" id="Bff-sX-fY5"/>
+                            <constraint firstItem="3qk-yW-ZCe" firstAttribute="leading" secondItem="Tvi-m3-0rI" secondAttribute="trailing" constant="20" id="J7e-Jy-a6Z"/>
+                            <constraint firstItem="AyL-mN-owU" firstAttribute="top" secondItem="KNT-3O-IY0" secondAttribute="top" id="Sw4-Wl-bvl"/>
+                            <constraint firstItem="784-He-p3K" firstAttribute="centerY" secondItem="Tvi-m3-0rI" secondAttribute="centerY" id="VBD-XC-OBE"/>
+                            <constraint firstItem="Zx9-rs-OpS" firstAttribute="centerX" secondItem="hpd-ge-4h6" secondAttribute="centerX" id="ZD6-Qe-Fvn"/>
+                            <constraint firstItem="5xC-7x-6aS" firstAttribute="centerX" secondItem="hpd-ge-4h6" secondAttribute="centerX" id="aCJ-L3-jYW"/>
+                            <constraint firstItem="Tvi-m3-0rI" firstAttribute="leading" secondItem="KNT-3O-IY0" secondAttribute="leading" constant="20" id="fNn-jT-r0z"/>
+                            <constraint firstItem="5xC-7x-6aS" firstAttribute="top" secondItem="3qk-yW-ZCe" secondAttribute="bottom" constant="20" id="fSj-1Z-t0l"/>
+                            <constraint firstItem="Zx9-rs-OpS" firstAttribute="centerX" secondItem="hpd-ge-4h6" secondAttribute="centerX" id="iCk-Ns-Wf0"/>
+                            <constraint firstItem="784-He-p3K" firstAttribute="centerX" secondItem="Tvi-m3-0rI" secondAttribute="centerX" id="ru5-uB-Kuk"/>
+                            <constraint firstItem="AyL-mN-owU" firstAttribute="leading" secondItem="KNT-3O-IY0" secondAttribute="leading" constant="16" id="upw-iK-Tm5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="goButtonLayout" destination="Zx9-rs-OpS" id="wkw-GY-KdI"/>
+                        <outlet property="myIconView" destination="Tvi-m3-0rI" id="mtP-rq-HhJ"/>
+                        <outlet property="myNameLabel" destination="3qk-yW-ZCe" id="Ecp-ZT-AM1"/>
+                        <outlet property="nameTextField" destination="5xC-7x-6aS" id="6sf-1b-YkT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UMw-1B-CVH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1557" y="429"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="xmark.circle" catalog="system" width="128" height="121"/>
+    </resources>
+</document>

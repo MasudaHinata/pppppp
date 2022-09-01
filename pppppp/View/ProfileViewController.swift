@@ -22,7 +22,9 @@ class ProfileViewController: UIViewController {
         }
     }
     @IBAction func backButton(){
-        self.performSegue(withIdentifier: "toViewController", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     override func viewDidLoad() {
@@ -31,6 +33,7 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
+                try await
                 try await friendIconView.kf.setImage(with: FirebaseClient.shared.getFriendData(friendId: friendId!))
                 try await friendLabel.text = FirebaseClient.shared.getFriendNameData(friendId: friendId)
             }
@@ -46,9 +49,12 @@ class ProfileViewController: UIViewController {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 if friendId == userID {
+                    //FIXME: ここでアラート呼びたくない
                     let alertController = UIAlertController(title: "エラー", message: "自分とは友達になれません", preferredStyle: UIAlertController.Style.alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
-                        self?.performSegue(withIdentifier: "toViewController", sender: nil)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+                        self!.showDetailViewController(secondVC, sender: self)
                     })
                     alertController.addAction(okAction)
                     present(alertController, animated: true, completion: nil)
@@ -57,7 +63,9 @@ class ProfileViewController: UIViewController {
                     //FIXME: ここでアラート呼びたくない
                     let alertController = UIAlertController(title: "友達追加", message: "友達を追加しました", preferredStyle: UIAlertController.Style.alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
-                        self?.performSegue(withIdentifier: "toViewController", sender: nil)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+                        self!.showDetailViewController(secondVC, sender: self)
                     })
                     alertController.addAction(okAction)
                     present(alertController, animated: true, completion: nil)

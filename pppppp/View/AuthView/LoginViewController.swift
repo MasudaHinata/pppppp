@@ -55,8 +55,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
         }
     }
     @IBAction func sentEmailMore() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "SentEmailViewController")
+        let storyboard = UIStoryboard(name: "ResetPasswordView", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ResetPasswordViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
     override func viewDidLoad() {
@@ -74,7 +74,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
         present(alert, animated: true, completion: nil)
     }
     func loginScene() {
-        performSegue(withIdentifier: "toViewController", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

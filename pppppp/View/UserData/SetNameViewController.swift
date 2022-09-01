@@ -1,5 +1,5 @@
 //
-//  ChangeNameViewController.swift
+//  SetNameViewController.swift
 //  pppppp
 //
 //  Created by hinata on 2022/08/25.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class ChangeNameViewController: UIViewController {
+class SetNameViewController: UIViewController {
     var changename = ""
     var cancellables = Set<AnyCancellable>()
     

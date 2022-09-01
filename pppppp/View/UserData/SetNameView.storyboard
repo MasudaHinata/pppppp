@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Set Name View Controller-->
+        <scene sceneID="Swb-SO-bg5">
+            <objects>
+                <viewController storyboardIdentifier="SetNameViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hP6-qC-sR1" customClass="SetNameViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R4E-cZ-njX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="change your name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wym-Ve-gTt">
+                                <rect key="frame" x="32" y="356" width="350" height="48"/>
+                                <color key="backgroundColor" red="0.4823529412" green="0.50980392159999999" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="8EO-kC-SE6"/>
+                                    <constraint firstAttribute="height" constant="48" id="cZ0-TX-Pge"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3v-fU-epH">
+                                <rect key="frame" x="32" y="424" width="350" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="aHz-rU-qcj"/>
+                                    <constraint firstAttribute="height" constant="48" id="fWF-HE-WUu"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="changeName" destination="hP6-qC-sR1" eventType="touchUpInside" id="7XC-Rn-W2J"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iqh-9R-1y7"/>
+                        <color key="backgroundColor" red="0.074509803920000006" green="0.0" blue="0.2985896468" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Wym-Ve-gTt" firstAttribute="centerX" secondItem="R4E-cZ-njX" secondAttribute="centerX" id="c2H-el-RZE"/>
+                            <constraint firstItem="Y3v-fU-epH" firstAttribute="centerX" secondItem="R4E-cZ-njX" secondAttribute="centerX" id="nd7-Xg-OPT"/>
+                            <constraint firstItem="Y3v-fU-epH" firstAttribute="top" secondItem="Wym-Ve-gTt" secondAttribute="bottom" constant="20" id="pqu-W5-P1r"/>
+                            <constraint firstItem="Y3v-fU-epH" firstAttribute="centerY" secondItem="R4E-cZ-njX" secondAttribute="centerY" id="xOf-pj-y2J"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="changeNameButtonLayout" destination="Y3v-fU-epH" id="jq0-iN-sjB"/>
+                        <outlet property="changeNameTextField" destination="Wym-Ve-gTt" id="6b9-4V-pJ3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DFD-XF-fie" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-58" y="96"/>
+        </scene>
+    </scenes>
+</document>

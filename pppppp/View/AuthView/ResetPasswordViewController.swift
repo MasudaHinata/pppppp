@@ -1,5 +1,5 @@
 //
-//  SentEmailViewController.swift
+//  ResetPasswordViewController.swift
 //  pppppp
 //
 //  Created by hinata on 2022/08/27.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class SentEmailViewController: UIViewController, FirebaseSentEmailDelegate {
+class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
     
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var goButtonLayout: UIButton! {
