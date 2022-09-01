@@ -86,8 +86,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             do {
                 ActivityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.checkIconData()
-                try await FirebaseClient.shared.checkNameData()
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
                 ActivityIndicator.stopAnimating()

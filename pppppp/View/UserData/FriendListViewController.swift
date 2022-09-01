@@ -16,12 +16,14 @@ protocol sceneChangeProfile {
 
 @MainActor
 final class FriendListViewController: UIViewController, FirebaseClientDeleteFriendDelegate, sceneChangeProfile, FireStoreCheckNameDelegate {
+    
     var completionHandlers = [() -> Void]()
     var friendDataList = [UserData]()
     var pointDataList = [PointData]()
     let layout = UICollectionViewFlowLayout()
     var cancellables = Set<AnyCancellable>()
     var refreshCtl = UIRefreshControl()
+    
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var activityBackgroundView: UIView!
     @IBOutlet var myIconView: UIImageView! {
@@ -31,6 +33,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             myIconView.layer.cornerCurve = .continuous
         }
     }
+    
     @IBOutlet var friendcollectionView: UICollectionView! {
         didSet {
             FirebaseClient.shared.deletefriendDelegate = self
@@ -39,6 +42,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             friendcollectionView.register(UINib(nibName: "FriendDataCell", bundle: nil), forCellWithReuseIdentifier: "frienddatacell")
         }
     }
+    
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
@@ -50,6 +54,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             layout.estimatedItemSize = CGSize(width: 17.67, height: 16.24)
         }
     }
+    
     @IBOutlet var profileBackgroundView: UIView! {
         didSet {
             profileBackgroundView.layer.cornerRadius = 40
@@ -57,6 +62,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             profileBackgroundView.layer.cornerCurve = .continuous
         }
     }
+    
     @IBOutlet var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -66,19 +72,23 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             tableView.backgroundColor = .clear
         }
     }
+    
     @IBAction func shareButtonPressed() {
         showShareSheet()
     }
+    
     @IBAction func editButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "ChangeProfileViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
+    
     @IBAction func settingButtonPressed() {
         let storyboard = UIStoryboard(name: "SettingView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "SettingViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
+    
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             self.activityBackgroundView.isHidden = false
@@ -88,6 +98,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             self.friendcollectionView.isHidden = false
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.notChangeDelegate = self
@@ -118,6 +129,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -125,8 +137,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.checkIconData()
-                try await FirebaseClient.shared.checkNameData()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
             }
@@ -146,6 +156,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
         friendcollectionView.collectionViewLayout = layout
     }
+    
     func showShareSheet() {
         let task = Task {
             do {
@@ -165,6 +176,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
     func refresh() {
         let task = Task { [weak self] in
             do {
@@ -184,6 +196,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         cancellables.insert(.init { task.cancel() })
         refreshCtl.endRefreshing()
     }
+    
+    //MARK: - delegate
     func notChangeName() {
         let storyboard = UIStoryboard(name: "SetNameView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "SetNameViewController")

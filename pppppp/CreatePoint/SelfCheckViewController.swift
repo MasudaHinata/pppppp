@@ -61,11 +61,10 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         }
     }
     
-    
     @IBAction func goodButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 15)
+                try await FirebaseClient.shared.firebasePutData(point: 9)
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "good")
             }
             catch {
@@ -81,7 +80,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     @IBAction func normalButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 10)
+                try await FirebaseClient.shared.firebasePutData(point: 7)
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "normal")
             }
             catch {
@@ -120,8 +119,6 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.checkIconData()
-                try await FirebaseClient.shared.checkNameData()
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 
