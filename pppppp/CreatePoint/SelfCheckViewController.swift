@@ -1,10 +1,3 @@
-//
-//  SelfCheckViewController.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/08/12.
-//
-
 import UIKit
 import Combine
 
@@ -61,11 +54,10 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         }
     }
     
-    
     @IBAction func goodButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 15)
+                try await FirebaseClient.shared.firebasePutData(point: 10)
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "good")
             }
             catch {
@@ -78,10 +70,11 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
     @IBAction func normalButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 10)
+                try await FirebaseClient.shared.firebasePutData(point: 7)
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "normal")
             }
             catch {
@@ -115,13 +108,12 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         super.viewDidLoad()
         FirebaseClient.shared.putPointDelegate = self
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.checkIconData()
-                try await FirebaseClient.shared.checkNameData()
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 
@@ -141,6 +133,8 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
+    //MARK: - Setting Delegate
     func putPointForFirestore(point: Int) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in

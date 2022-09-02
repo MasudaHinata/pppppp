@@ -12,7 +12,6 @@
         <!--Dashboard-->
         <scene sceneID="Le5-1j-13Q">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController modalPresentationStyle="fullScreen" id="C6X-Qw-bEO" customClass="ViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ia-4m-9zf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -44,13 +43,13 @@
                         <outlet property="mountainView" destination="ndx-UB-OiK" id="I8o-hY-XwT"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4959" y="-224"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="Apd-pZ-okF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fFg-BV-JmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="ViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="Bgd-UE-uNF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Dashboard" image="house" catalog="system" id="0XE-Bx-nSG"/>
                     <toolbarItems/>
@@ -67,6 +66,7 @@
                         <segue destination="C6X-Qw-bEO" kind="relationship" relationship="rootViewController" id="Gxz-Gx-aWf"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fFg-BV-JmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4181" y="-224"/>
         </scene>

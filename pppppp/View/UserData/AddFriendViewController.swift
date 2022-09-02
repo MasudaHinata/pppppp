@@ -16,9 +16,16 @@ class AddFriendViewController: UIViewController {
     }
     @IBOutlet var friendIconView: UIImageView! {
         didSet {
-            friendIconView.layer.cornerRadius = 88
+            friendIconView.layer.cornerRadius = 34
             friendIconView.clipsToBounds = true
             friendIconView.layer.cornerCurve = .continuous
+        }
+    }
+    @IBOutlet var backgroundView: UIView! {
+        didSet {
+            backgroundView.layer.cornerRadius = 40
+            backgroundView.layer.masksToBounds = true
+            backgroundView.layer.cornerCurve = .continuous
         }
     }
     @IBAction func backButton(){
@@ -33,7 +40,6 @@ class AddFriendViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
-                try await
                 try await friendIconView.kf.setImage(with: FirebaseClient.shared.getFriendData(friendId: friendId!))
                 try await friendLabel.text = FirebaseClient.shared.getFriendNameData(friendId: friendId)
             }

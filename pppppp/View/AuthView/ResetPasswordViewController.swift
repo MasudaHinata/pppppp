@@ -1,10 +1,3 @@
-//
-//  ResetPasswordViewController.swift
-//  pppppp
-//
-//  Created by hinata on 2022/08/27.
-//
-
 import UIKit
 import Combine
 
@@ -72,6 +65,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
             self.present(alert, animated: true)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.sentEmailDelegate = self
@@ -79,6 +73,16 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
     }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        return true
+    }
+    
+    //MARK: - Setting Delegate
     func sendEmail() {
         let alert = UIAlertController(title: "完了", message: "パスワード再設定メールを送信しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -88,12 +92,5 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
-    }
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
-    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        return true
     }
 }

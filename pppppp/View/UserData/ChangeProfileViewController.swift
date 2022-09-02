@@ -1,21 +1,16 @@
-//
-//  ChangeProfileViewController.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/08/09.
-//
-
 import UIKit
 import Combine
 import FirebaseStorage
 import Kingfisher
 
-class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, FirebaseDeleteAccountDelegate {
+class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
     var myName: String!
+    var ActivityIndicator: UIActivityIndicatorView!
     var sceneChangeProfile: sceneChangeProfile!
+    
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var myIconView: UIImageView! {
         didSet {
@@ -66,20 +61,26 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseClient.shared.deleteAccountDelegate = self
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
+        
+        ActivityIndicator = UIActivityIndicatorView()
+        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        ActivityIndicator.center = self.view.center
+        ActivityIndicator.style = .large
+        ActivityIndicator.hidesWhenStopped = true
+        self.view.addSubview(ActivityIndicator)
     }
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
+                ActivityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.checkIconData()
-                try await FirebaseClient.shared.checkNameData()
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
+                ActivityIndicator.stopAnimating()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -186,38 +187,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    func accountDeleted() {
-        let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
-            self.showDetailViewController(secondVC, sender: self)
-        }
-        alert.addAction(ok)
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    func faildAcccountDelete() {
-        let alert = UIAlertController(title: "エラーログインしなおしてもう一度試してください", message: "データが全て消えている可能性があります", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
-            self.showDetailViewController(secondVC, sender: self)
-        }
-        alert.addAction(ok)
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    func faildAcccountDeleteData() {
-        let alert = UIAlertController(title: "もう一度試してください", message: "データの削除に失敗しました", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(ok)
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
+    
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }

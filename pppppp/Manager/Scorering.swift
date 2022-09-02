@@ -1,10 +1,3 @@
-//
-//  Scorering.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/08/09.
-//
-
 import Foundation
 import HealthKit
 
@@ -70,19 +63,17 @@ final class Scorering {
             let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
             var differencePoint = Int()
             var todayPoint = 0
-            differencePoint = Int(stepCount!) - Int(stepCountAve! / 30)
-            
+            differencePoint = Int(stepCount ?? 0) - Int(stepCountAve ?? 0 / 30)
             switch differencePoint {
-            case (-1000..<200): todayPoint = 3
-            case (200...): todayPoint = Int(differencePoint / 200)
+            case (-1000..<600): todayPoint = 3
+            case (600...): todayPoint = Int(differencePoint / 150)
             default: break
             }
-            
             try await FirebaseClient.shared.firebasePutData(point: todayPoint)
             UD.set(Date(), forKey: "today")
         }
     }
-    //体重を取得
+    //体重を読み込み
     func readWeight() async throws {
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)

@@ -1,10 +1,3 @@
-//
-//  DrawView.swift
-//  pppppp
-//
-//  Created by hinata on 2022/08/28.
-//
-
 import UIKit
 
 protocol DrawViewDelegate: AnyObject {
@@ -28,10 +21,20 @@ class DrawView: UIView {
         for label in pointLabels {
             label.removeFromSuperview()
         }
-        //0で割るからやばい
-        let largestPoint = CGFloat(friendListItems.first?.point ?? 1)
+        var largestPoint = CGFloat(friendListItems.first?.point ?? 1)
+        if friendListItems.first?.point == 0 {
+            largestPoint = CGFloat(friendListItems.first?.point ?? 1) + 0.1
+        } else if friendListItems.first?.point != 0 {
+            largestPoint = CGFloat(friendListItems.first?.point ?? 1)
+        }
         for item in friendListItems {
-            let x = CGFloat(sqrt(CGFloat(item.point!) / largestPoint) * self.bounds.width * 0.8)
+            var itemPoint = CGFloat()
+            if item.point == 0 {
+                itemPoint = CGFloat(Float(item.point!) + 0.1)
+            } else {
+                itemPoint = CGFloat(Float(item.point!))
+            }
+            let x = CGFloat(sqrt(itemPoint / largestPoint) * self.bounds.width * 0.8)
             graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.8)))), item: item)
         }
     }

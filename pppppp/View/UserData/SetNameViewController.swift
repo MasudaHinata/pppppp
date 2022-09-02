@@ -1,10 +1,3 @@
-//
-//  SetNameViewController.swift
-//  pppppp
-//
-//  Created by hinata on 2022/08/25.
-//
-
 import UIKit
 import Combine
 
@@ -42,7 +35,9 @@ class SetNameViewController: UIViewController {
                 try await FirebaseClient.shared.putNameFirestore(name: changename)
                     let alert = UIAlertController(title: "完了", message: "名前を設定しました", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        self.performSegue(withIdentifier: "fromChangeNameToVIew", sender: nil)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+                        self.showDetailViewController(secondVC, sender: self)
                     }
                     alert.addAction(ok)
                     present(alert, animated: true, completion: nil)

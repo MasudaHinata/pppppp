@@ -3,34 +3,40 @@ import UIKit
 import SwiftUI
 import Kingfisher
 
-class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()
     var friendDataList = [UserData]()
     let UD = UserDefaults.standard
     let calendar = Calendar.current
+    var ActivityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet var mountainView: DrawView!
     @IBAction func sendCollectionView() {
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
-//    @IBAction func dataputButton() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
-//        self.showDetailViewController(secondVC, sender: self)
-//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPointDelegate = self
+        FirebaseClient.shared.notChangeDelegate = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
+        
+        ActivityIndicator = UIActivityIndicatorView()
+        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        ActivityIndicator.center = self.view.center
+        ActivityIndicator.style = .large
+        ActivityIndicator.hidesWhenStopped = true
+        self.view.addSubview(ActivityIndicator)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        ActivityIndicator.startAnimating()
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         if now >= 19 {
@@ -68,12 +74,11 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         let task = Task { [weak self] in
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await FirebaseClient.shared.checkNameData()
-                try await FirebaseClient.shared.checkIconData()
                 try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
                 mountainView.delegate = self
+                ActivityIndicator.stopAnimating()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -87,6 +92,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
+    //MARK: - Setting Delegate
     func emailVerifyRequiredAlert() {
         let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -117,6 +124,11 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         let storyboard = UIStoryboard(name: "UserDataView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "UserDataViewController") as UserDataViewController
         secondVC.userDataItem = item
+        self.showDetailViewController(secondVC, sender: self)
+    }
+    func notChangeName() {
+        let storyboard = UIStoryboard(name: "SetNameView", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "SetNameViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
 }

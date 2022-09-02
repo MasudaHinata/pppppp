@@ -5,6 +5,7 @@ import Combine
 class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClientAuthDelegate {
     
     var cancellables = Set<AnyCancellable>()
+    @IBOutlet var loginLabel: UILabel!
     @IBOutlet var loginButtonLayout: UIButton! {
         didSet {
             loginButtonLayout.layer.cornerRadius = 24
@@ -20,7 +21,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
             loginButtonLayout.configuration = configuration
         }
     }
-    @IBOutlet var loginLabel: UILabel!
+    
     @IBOutlet var emailTextField: UITextField! {
         didSet {
             emailTextField.layer.cornerRadius = 24
@@ -28,6 +29,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
             emailTextField.layer.cornerCurve = .continuous
         }
     }
+    
     @IBOutlet var passwordTextField: UITextField! {
         didSet {
             passwordTextField.layer.cornerRadius = 24
@@ -35,6 +37,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
             passwordTextField.layer.cornerCurve = .continuous
         }
     }
+    
     @IBAction func goButtonPressed() {
         if passwordTextField.text == "" {
             showAlert(title: "エラー", message: "パスワードか入力されていません")
@@ -54,11 +57,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
             cancellables.insert(.init { task.cancel() })
         }
     }
+    
     @IBAction func sentEmailMore() {
         let storyboard = UIStoryboard(name: "ResetPasswordView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "ResetPasswordViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.loginDelegate = self
@@ -68,6 +73,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
     }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
+    }
+    
+    //MARK: - Setting Delegate
     func loginHelperAlert() {
         let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -83,13 +99,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         present(alert, animated: true)
-    }
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
-    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        return true
     }
 }

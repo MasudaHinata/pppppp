@@ -176,7 +176,6 @@
 				036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */,
 				038E26AD28BF4BF1000204A4 /* SettingViewController.swift */,
 				036F69F928C08E7F0066A7DA /* SettingView.storyboard */,
-				036F69FF28C091590066A7DA /* CreatePoint */,
 			);
 			path = AuthView;
 			sourceTree = "<group>";
@@ -276,6 +275,7 @@
 				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
 				036F698228BB92C00066A7DA /* View */,
+				036F69FF28C091590066A7DA /* CreatePoint */,
 				036F698828BB93F60066A7DA /* Model */,
 				036F698628BB93AE0066A7DA /* Manager */,
 				036F698728BB93DA0066A7DA /* Helper */,
