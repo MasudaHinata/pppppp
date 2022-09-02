@@ -53,6 +53,10 @@ protocol FirebaseSentEmailDelegate: AnyObject {
     func sendEmail()
 }
 
+protocol FirebaseAddFriendDelegate: AnyObject {
+    func addFriends()
+}
+
 final class FirebaseClient {
     static let shared = FirebaseClient()
     weak var deletefriendDelegate: FirebaseClientDeleteFriendDelegate?
@@ -63,6 +67,7 @@ final class FirebaseClient {
     weak var deleteAccountDelegate: FirebaseDeleteAccountDelegate?
     weak var putPointDelegate: FirebasePutPointDelegate?
     weak var sentEmailDelegate: FirebaseSentEmailDelegate?
+    weak var addFriendDelegate: FirebaseAddFriendDelegate?
     private init() {}
     
     let firebaseAuth = Auth.auth()
@@ -101,12 +106,9 @@ final class FirebaseClient {
             print(users.count)
             if users.count == 1 {
                 print("friendなし")
-                
             } else if users.count >= 1 {
                 print("friendあり")
-                
             }
-            
             users[i].point = try await getPointDataSum(id: users[i].id!)
         }
         users.sort { $1.point! < $0.point! }
@@ -232,6 +234,7 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayUnion([friendId])])
         try await db.collection("User").document(friendId).updateData(["FriendList": FieldValue.arrayUnion([userID])])
+        self.addFriendDelegate?.addFriends()
     }
     //友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {

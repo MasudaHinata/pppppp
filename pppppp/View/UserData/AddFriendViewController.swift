@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class AddFriendViewController: UIViewController {
+class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
     
     var friendId: String!
     var cancellables = Set<AnyCancellable>()
@@ -36,6 +36,7 @@ class AddFriendViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseClient.shared.addFriendDelegate = self
     }
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
@@ -55,7 +56,6 @@ class AddFriendViewController: UIViewController {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 if friendId == userID {
-                    //FIXME: ここでアラート呼びたくない
                     let alertController = UIAlertController(title: "エラー", message: "自分とは友達になれません", preferredStyle: UIAlertController.Style.alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -66,15 +66,6 @@ class AddFriendViewController: UIViewController {
                     present(alertController, animated: true, completion: nil)
                 } else {
                     try await FirebaseClient.shared.addFriend(friendId: friendId)
-                    //FIXME: ここでアラート呼びたくない
-                    let alertController = UIAlertController(title: "友達追加", message: "友達を追加しました", preferredStyle: UIAlertController.Style.alert)
-                    let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-                        self!.showDetailViewController(secondVC, sender: self)
-                    })
-                    alertController.addAction(okAction)
-                    present(alertController, animated: true, completion: nil)
                 }
             }
             catch {
@@ -86,5 +77,19 @@ class AddFriendViewController: UIViewController {
             }
         }
         cancellables.insert(.init { task.cancel() })
+    }
+    
+    //MARK: - Setting Delegate
+    func addFriends() {
+        let alert = UIAlertController(title: "友達追加", message: "友達を追加しました", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

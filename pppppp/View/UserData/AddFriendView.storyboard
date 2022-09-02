@@ -32,7 +32,7 @@
                                             <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="16"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="addFriend" destination="LYz-DZ-wCV" eventType="touchUpInside" id="Q8F-hH-3Sr"/>
+                                            <action selector="addFriend" destination="LYz-DZ-wCV" eventType="touchUpInside" id="j9o-JF-eBE"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2v5-j6-HLp">
