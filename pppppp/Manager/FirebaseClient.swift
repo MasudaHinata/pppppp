@@ -246,8 +246,7 @@ final class FirebaseClient {
         }
         let userID = user.uid
         let querySnapshot = try await db.collection("User").whereField("FriendList",arrayContains: userID).getDocuments()
-        let documents = querySnapshot.documents
-        for document in documents {
+        for document in querySnapshot.documents {
             try await db.collection("User").document(document.documentID).updateData(["FriendList": FieldValue.arrayRemove([userID])])
         }
     }
