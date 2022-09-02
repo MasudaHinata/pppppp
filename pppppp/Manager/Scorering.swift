@@ -63,7 +63,7 @@ final class Scorering {
             let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
             var differencePoint = Int()
             var todayPoint = 0
-            differencePoint = Int(stepCount!) - Int(stepCountAve! / 30)
+            differencePoint = Int(stepCount ?? 0) - Int(stepCountAve ?? 0 / 30)
             switch differencePoint {
             case (-1000..<600): todayPoint = 3
             case (600...): todayPoint = Int(differencePoint / 150)
