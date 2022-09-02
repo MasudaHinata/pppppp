@@ -104,8 +104,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         let task = Task {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
@@ -130,6 +128,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.userAuthCheck()
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
             }

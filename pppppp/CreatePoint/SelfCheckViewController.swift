@@ -57,7 +57,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     @IBAction func goodButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 9)
+                try await FirebaseClient.shared.firebasePutData(point: 10)
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "good")
             }
             catch {

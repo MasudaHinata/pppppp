@@ -181,7 +181,6 @@ final class FirebaseClient {
         formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMdHHmm", options: 0, locale: Locale(identifier: "en_US"))
         
         if point == 0 {
-            try await db.collection("User").document(userID).collection("HealthData").document("\(formatter.string(from: date))").setData(["point": point, "date": Timestamp(date: Date())])
             self.putPointDelegate?.notGetPoint()
         } else {
             try await db.collection("User").document(userID).collection("HealthData").document("\(formatter.string(from: date))").setData(["point": point, "date": Timestamp(date: Date())])
@@ -214,7 +213,6 @@ final class FirebaseClient {
         }
         let userID = user.uid
         formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: Locale(identifier: "en_US"))
-        
         try await db.collection("User").document(userID).collection("SelfCheckLog").document("\(formatter.string(from: date))").setData(["log": log, "date": Timestamp(date: Date())])
     }
     //友達を追加する
