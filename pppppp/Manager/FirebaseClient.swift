@@ -1,7 +1,6 @@
 import Foundation
 import Combine
 import FirebaseAuth
-import FirebaseStorage
 import FirebaseFirestore
 
 //MARK: - error
@@ -66,12 +65,12 @@ final class FirebaseClient {
     weak var sentEmailDelegate: FirebaseSentEmailDelegate?
     private init() {}
     
-    var cancellables = Set<AnyCancellable>()
     let firebaseAuth = Auth.auth()
     let db = Firestore.firestore()
     let calendar = Calendar.current
-    let date = Date()
     let formatter = DateFormatter()
+    let date = Date()
+    var cancellables = Set<AnyCancellable>()
     
     //MARK: - FireStore Read
     //UUIDをとる
@@ -99,6 +98,15 @@ final class FirebaseClient {
             users.append(myData)
         }
         for i in 0 ..< users.count {
+            print(users.count)
+            if users.count == 1 {
+                print("friendなし")
+                
+            } else if users.count >= 1 {
+                print("friendあり")
+                
+            }
+            
             users[i].point = try await getPointDataSum(id: users[i].id!)
         }
         users.sort { $1.point! < $0.point! }

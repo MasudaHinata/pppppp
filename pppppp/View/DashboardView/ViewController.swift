@@ -48,8 +48,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
         if judge == true {
             judge = false
             var judgge = Bool()
-            if UD.object(forKey: "sss") != nil {
-                let past_day = UD.object(forKey: "sss") as! Date
+            if UD.object(forKey: "selfCheckJudge") != nil {
+                let past_day = UD.object(forKey: "selfCheckJudge") as! Date
                 let noww = calendar.component(.day, from: Date())
                 let past = calendar.component(.day, from: past_day)
                 if noww != past {
@@ -59,11 +59,11 @@ class ViewController: UIViewController, UITextFieldDelegate, FirebaseEmailVarify
                 }
             } else {
                 judgge = true
-                UD.set(Date(), forKey: "sss")
+                UD.set(Date(), forKey: "selfCheckJudge")
             }
             if judgge {
                 judgge = false
-                UD.set(Date(), forKey: "sss")
+                UD.set(Date(), forKey: "selfCheckJudge")
                 let storyboard = UIStoryboard(name: "SelfCheckView", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "SelfCheckViewController")
                 secondVC.modalPresentationStyle = .overFullScreen
