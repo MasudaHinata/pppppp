@@ -102,8 +102,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             do {
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
                 try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
-                let title = try await FirebaseClient.shared.getMyNameData()
-                self.navigationItem.title = title
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 self.collectionView.reloadData()
