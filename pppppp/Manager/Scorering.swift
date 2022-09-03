@@ -16,16 +16,17 @@ final class Scorering {
     var weight: Double!
     var sanitasPoint = Int()
     let UD = UserDefaults.standard
+    
     func getPermissionHealthKit() {
-        let typeOfWrite = Set([typeOfBodyMass])
-        let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfHeight])
-        myHealthStore.requestAuthorization(toShare: typeOfWrite, read: typeOfRead) { (success, error) in
+        let typeOfRead = Set([typeOfStepCount])
+        myHealthStore.requestAuthorization(toShare: nil, read: typeOfRead) { (success, error) in
             if let error = error {
                 print("Scorering getPermission error:", error.localizedDescription)
                 return
             }
         }
     }
+    
     func createStepPoint() async throws {
         var judge = Bool()
         if UD.object(forKey: "today") != nil {
@@ -72,21 +73,5 @@ final class Scorering {
             try await FirebaseClient.shared.firebasePutData(point: todayPoint)
             UD.set(Date(), forKey: "today")
         }
-    }
-    //体重を読み込み
-    func readWeight() async throws {
-        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
-        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
-        let results = try await descriptor.result(for: myHealthStore)
-        let doubleValues = results.map {
-            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
-        }
-        print(doubleValues)
-    }
-    //体重を書き込み
-    func writeWeight(weight: Double) async throws {
-        let myWeight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
-        let myWeightData = HKQuantitySample(type: typeOfBodyMass, quantity: myWeight, start: Date(),end: Date())
-        try await self.myHealthStore.save(myWeightData)
     }
 }

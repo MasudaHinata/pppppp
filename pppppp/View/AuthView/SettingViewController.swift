@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 class SettingViewController: UIViewController, FirebaseDeleteAccountDelegate  {
-
+    
     var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -10,39 +10,38 @@ class SettingViewController: UIViewController, FirebaseDeleteAccountDelegate  {
         FirebaseClient.shared.deleteAccountDelegate = self
     }
     @IBAction func logoutButton() {
-        do {
-            let alert3 = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
-            let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
-                
-                let task = Task { [weak self] in
-                    do {
-                        try await FirebaseClient.shared.logout()
-                        //FIXME: ここでアラート呼びたくない
-                        let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
-                            let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
-                            self!.showDetailViewController(secondVC, sender: self)
-                        }
-                        alert.addAction(ok)
-                        self?.present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
+        let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
+            
+            let task = Task { [weak self] in
+                do {
+                    try await FirebaseClient.shared.logout()
+                    //FIXME: ここでアラート呼びたくない
+                    let alert = UIAlertController(title: "ログアウトしました", message: "ありがとうございました", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
+                        self!.showDetailViewController(secondVC, sender: self)
                     }
-                    catch {
-                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                        let action = UIAlertAction(title: "OK", style: .default)
-                        alert.addAction(action)
-                        self!.present(alert, animated: true)
-                        print("Change Logout error", error.localizedDescription)
-                    }
+                    alert.addAction(ok)
+                    self?.present(alert, animated: true, completion: nil)
                 }
-                self.cancellables.insert(.init { task.cancel() })
-            })
-            let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-            })
-            alert3.addAction(delete)
-            alert3.addAction(cancel)
-            self.present(alert3, animated: true, completion: nil)
-        }
+                catch {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self!.present(alert, animated: true)
+                    print("Change Logout error", error.localizedDescription)
+                }
+            }
+            self.cancellables.insert(.init { task.cancel() })
+        })
+        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+        })
+        alert.addAction(delete)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     @IBAction func deleteAccount() {
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)

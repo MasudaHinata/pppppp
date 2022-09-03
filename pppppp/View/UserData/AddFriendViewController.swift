@@ -5,6 +5,7 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
     
     var friendId: String!
     var cancellables = Set<AnyCancellable>()
+    
     @IBOutlet var friendLabel: UILabel!
     @IBOutlet var addFriendButton: UIButton! {
         didSet {
@@ -28,27 +29,10 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
             backgroundView.layer.cornerCurve = .continuous
         }
     }
-    @IBAction func backButton(){
+    @IBAction func backButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
         self.showDetailViewController(secondVC, sender: self)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        FirebaseClient.shared.addFriendDelegate = self
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        let task = Task {
-            do {
-                try await friendIconView.kf.setImage(with: FirebaseClient.shared.getFriendData(friendId: friendId!))
-                try await friendLabel.text = FirebaseClient.shared.getFriendNameData(friendId: friendId)
-            }
-            catch {
-                
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
     }
     //友達を追加する
     @IBAction func addFriend() {
@@ -74,6 +58,23 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
                 alert.addAction(action)
                 self!.present(alert, animated: true)
                 print("profileViewContro addFriend error:", error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FirebaseClient.shared.addFriendDelegate = self
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        let task = Task {
+            do {
+                try await friendIconView.kf.setImage(with: FirebaseClient.shared.getFriendData(friendId: friendId!))
+                try await friendLabel.text = FirebaseClient.shared.getFriendNameData(friendId: friendId)
+            }
+            catch {
+                
             }
         }
         cancellables.insert(.init { task.cancel() })

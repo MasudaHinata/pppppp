@@ -3,12 +3,7 @@ import Combine
 import Kingfisher
 
 @MainActor
-protocol sceneChangeProfile {
-    func scene()
-}
-
-@MainActor
-final class FriendListViewController: UIViewController, FirebaseClientDeleteFriendDelegate, sceneChangeProfile, FireStoreCheckNameDelegate {
+final class FriendListViewController: UIViewController, FirebaseClientDeleteFriendDelegate , FireStoreCheckNameDelegate {
     
     var completionHandlers = [() -> Void]()
     var friendDataList = [UserData]()

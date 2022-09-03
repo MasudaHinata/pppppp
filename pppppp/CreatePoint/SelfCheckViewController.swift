@@ -2,6 +2,7 @@ import UIKit
 import Combine
 
 class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
+    
     var cancellables = Set<AnyCancellable>()
     
     @IBOutlet var myIconView: UIImageView! {

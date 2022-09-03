@@ -5,6 +5,7 @@ import Combine
 class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClientAuthDelegate {
     
     var cancellables = Set<AnyCancellable>()
+    
     @IBOutlet var loginLabel: UILabel!
     @IBOutlet var loginButtonLayout: UIButton! {
         didSet {
@@ -77,6 +78,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
+    
     @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()

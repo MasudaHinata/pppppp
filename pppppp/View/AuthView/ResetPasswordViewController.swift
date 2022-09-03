@@ -4,6 +4,7 @@ import Combine
 class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
     
     var cancellables = Set<AnyCancellable>()
+    
     @IBOutlet var goButtonLayout: UIButton! {
         didSet {
             goButtonLayout.layer.cornerRadius = 24
@@ -19,6 +20,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
             goButtonLayout.configuration = configuration
         }
     }
+    
     @IBOutlet var emailTextField: UITextField! {
         didSet {
             emailTextField.layer.cornerRadius = 24
@@ -26,6 +28,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
             emailTextField.layer.cornerCurve = .continuous
         }
     }
+    
     @IBAction func sentEmail() {
         if let email = emailTextField.text, emailTextField.text != "" {
             var configuration = UIButton.Configuration.filled()
@@ -77,6 +80,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
+    
     @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         return true

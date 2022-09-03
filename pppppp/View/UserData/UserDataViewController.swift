@@ -82,6 +82,8 @@ class UserDataViewController: UIViewController {
         cancellables.insert(.init { task.cancel() })
     }
 }
+
+//MARK: - Crealte Calender Grass
 extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 112
@@ -90,7 +92,7 @@ extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryCollectionViewCell", for: indexPath)  as! SummaryCollectionViewCell
         
-        let weekday = Int(indexPath.row / 16) // 1行目なら0になる
+        let weekday = Int(indexPath.row / 16) // 1行目は0
         let todayWeekday = Calendar.current.component(.weekday, from: Date()) - 1 // 1から始まるので揃えるために1引く
         let weekdayDelta = todayWeekday - weekday  //いくつ前の曜日か
         let weekDelta = 15 - indexPath.row % 16 //何週前か
@@ -124,6 +126,8 @@ extension Date {
         Calendar.current.startOfDay(for: self)
     }
 }
+
+//MARK: - Setting TableView
 extension UserDataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         pointDataList.count

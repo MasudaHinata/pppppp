@@ -49,11 +49,13 @@ class CreateAccountViewController: UIViewController ,UITextFieldDelegate, Fireba
             showAlert(title: "エラー", message: "メールアドレスの形式が間違っています")
         }
     }
+    
     @IBAction func LoginButton () {
         let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.createdAccountDelegate = self
@@ -107,18 +109,21 @@ class CreateAccountViewController: UIViewController ,UITextFieldDelegate, Fireba
             showAlert(title: "パスワードが一致しません", message: "パスワードを確認してください")
         }
     }
+    
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         self.present(alert, animated: true)
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         password2TextField.resignFirstResponder()
         return true
     }
+    
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }

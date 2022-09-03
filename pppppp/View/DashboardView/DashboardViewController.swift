@@ -1,10 +1,3 @@
-//
-//  DashboardViewController.swift
-//  pppppp
-//
-//  Created by hinata on 2022/08/29.
-//
-
 import UIKit
 import Combine
 
@@ -24,29 +17,11 @@ class DashboardViewController: UIViewController {
             collectionView.register(UINib(nibName: "DashBoardFriendDataCell", bundle: nil), forCellWithReuseIdentifier: "DashBoardFriendDataCell")
         }
     }
-    func refresh() {
-        let task = Task { [weak self] in
-            do {
-                guard let self = self else { return }
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-                self.collectionView.reloadData()
-            }
-            catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(action)
-                self!.present(alert, animated: true)
-                print("ViewContro refresh error",error.localizedDescription)
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-        refreshCtl.endRefreshing()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
-    
+        
         refreshCtl.tintColor = .white
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
@@ -80,8 +55,28 @@ class DashboardViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
+    //引っ張ってcollectionViewの更新する
+    func refresh() {
+        let task = Task { [weak self] in
+            do {
+                guard let self = self else { return }
+                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
+                self.collectionView.reloadData()
+            }
+            catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(action)
+                self!.present(alert, animated: true)
+                print("ViewContro refresh error",error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+        refreshCtl.endRefreshing()
+    }
 }
 
+//MARK: - Setting collectionView
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendDataList.count

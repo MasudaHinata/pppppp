@@ -2,6 +2,7 @@ import UIKit
 import Combine
 
 class SetNameViewController: UIViewController {
+    
     var changename = ""
     var cancellables = Set<AnyCancellable>()
     
@@ -32,7 +33,7 @@ class SetNameViewController: UIViewController {
             do {
                 changename = changeNameTextField.text!
                 if changename != "" {
-                try await FirebaseClient.shared.putNameFirestore(name: changename)
+                    try await FirebaseClient.shared.putNameFirestore(name: changename)
                     let alert = UIAlertController(title: "完了", message: "名前を設定しました", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)

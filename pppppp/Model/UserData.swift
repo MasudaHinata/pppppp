@@ -7,6 +7,7 @@ struct UserData: Codable {
     let name: String
     let iconImageURL: String
     var point: Int?
+    
     enum CodingKeys: String, CodingKey {
         case id
         case name

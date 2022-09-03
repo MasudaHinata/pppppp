@@ -9,7 +9,6 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     var profileName: String = ""
     var myName: String!
     var ActivityIndicator: UIActivityIndicatorView!
-    var sceneChangeProfile: sceneChangeProfile!
     
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var myIconView: UIImageView! {
@@ -19,6 +18,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             myIconView.layer.cornerCurve = .continuous
         }
     }
+    
     @IBOutlet var nameTextField: UITextField! {
         didSet {
             nameTextField.layer.cornerRadius = 24
@@ -26,6 +26,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             nameTextField.layer.cornerCurve = .continuous
         }
     }
+    
     @IBOutlet var goButtonLayout: UIButton! {
         didSet {
             var configuration = UIButton.Configuration.filled()
@@ -41,6 +42,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             goButtonLayout.layer.cornerCurve = .continuous
         }
     }
+    
     @IBAction func uploadButton(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
@@ -48,6 +50,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         present(picker, animated: true)
         self.present(picker, animated: true, completion: nil)
     }
+    
     @IBAction func changeProfile() {
         var configuration = UIButton.Configuration.filled()
         configuration.title = "Save..."
@@ -59,6 +62,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         goButtonLayout.configuration = configuration
         saveProfile()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,6 +77,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         ActivityIndicator.hidesWhenStopped = true
         self.view.addSubview(ActivityIndicator)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
@@ -94,6 +99,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
     func saveProfile() {
         if let selectImage = myIconView.image {
             let imageName = "\(Date().timeIntervalSince1970).jpg"
@@ -161,6 +167,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             self.goButtonLayout.configuration = configuration
         }
     }
+    
     func settingChangeName(profileName: String) {
         if profileName == "" {
         } else if profileName != "" {
@@ -178,12 +185,14 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
             }
         }
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
         if let selectedImage = info[.originalImage] as? UIImage {
             myIconView.image = selectedImage
         }
         self.dismiss(animated: true)
     }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -191,6 +200,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
+    
     @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
         return true

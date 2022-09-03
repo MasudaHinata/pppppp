@@ -103,11 +103,8 @@ final class FirebaseClient {
             users.append(myData)
         }
         for i in 0 ..< users.count {
-            print(users.count)
             if users.count == 1 {
                 print("friendなし")
-            } else if users.count >= 1 {
-                print("friendあり")
             }
             users[i].point = try await getPointDataSum(id: users[i].id!)
         }
