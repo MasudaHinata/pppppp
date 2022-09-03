@@ -89,6 +89,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         FirebaseClient.shared.notChangeDelegate = self
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
@@ -96,8 +97,13 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         friendcollectionView.isHidden = true
         friendDataList.removeAll()
         
+        
         let task = Task {
             do {
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
+                let title = try await FirebaseClient.shared.getMyNameData()
+                self.navigationItem.title = title
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 self.collectionView.reloadData()
@@ -123,8 +129,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
             }

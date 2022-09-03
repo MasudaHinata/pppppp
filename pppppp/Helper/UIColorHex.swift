@@ -1,11 +1,5 @@
-//
-//  UIColorHex.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/06/30.
-//
-
 import UIKit
+
 extension UIColor {
     convenience init(hex: String, alpha: CGFloat = 1.0) {
         let v = Int("000000" + hex, radix: 16) ?? 0

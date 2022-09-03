@@ -101,6 +101,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func saveProfile() {
+        //FIXME: FirebaseClientに移行したい
         if let selectImage = myIconView.image {
             let imageName = "\(Date().timeIntervalSince1970).jpg"
             let reference = Storage.storage().reference().child("posts/\(imageName)")
@@ -121,6 +122,7 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
                                         let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                                         let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                                             self.dismiss(animated: true, completion: nil)
+                                            //TODO: 閉じたらFriendListViewController更新
                                         }
                                         alert.addAction(ok)
                                         self.present(alert, animated: true, completion: nil)

@@ -1,10 +1,3 @@
-//
-//  LoginHelper.swift
-//  pppppp
-//
-//  Created by 増田ひなた on 2022/07/24.
-//
-
 import Foundation
 import UIKit
 

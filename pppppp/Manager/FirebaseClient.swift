@@ -38,10 +38,11 @@ protocol FirebaseCreatedAccountDelegate: AnyObject {
     func accountCreated()
 }
 
-protocol FirebaseDeleteAccountDelegate: AnyObject {
+protocol SetttingAccountDelegate: AnyObject {
     func accountDeleted()
     func faildAcccountDelete()
     func faildAcccountDeleteData()
+    func logoutCompleted()
 }
 
 protocol FirebasePutPointDelegate: AnyObject {
@@ -64,7 +65,7 @@ final class FirebaseClient {
     weak var emailVerifyDelegate: FirebaseEmailVarifyDelegate?
     weak var notChangeDelegate: FireStoreCheckNameDelegate?
     weak var createdAccountDelegate: FirebaseCreatedAccountDelegate?
-    weak var deleteAccountDelegate: FirebaseDeleteAccountDelegate?
+    weak var SettingAccountDelegate: SetttingAccountDelegate?
     weak var putPointDelegate: FirebasePutPointDelegate?
     weak var sentEmailDelegate: FirebaseSentEmailDelegate?
     weak var addFriendDelegate: FirebaseAddFriendDelegate?
@@ -270,7 +271,7 @@ final class FirebaseClient {
                 try await accountDeleteAuth()
             }
             catch {
-                self.deleteAccountDelegate?.faildAcccountDeleteData()
+                self.SettingAccountDelegate?.faildAcccountDeleteData()
                 print("firebaseClient accountDelete error", error.localizedDescription)
             }
         }
@@ -359,16 +360,17 @@ final class FirebaseClient {
         }
         do {
             try await user.delete()
-            self.deleteAccountDelegate?.accountDeleted()
+            self.SettingAccountDelegate?.accountDeleted()
         }
         catch {
-            self.deleteAccountDelegate?.faildAcccountDelete()
+            self.SettingAccountDelegate?.faildAcccountDelete()
         }
     }
     //ログアウトする
     func logout() async throws {
         do {
             try firebaseAuth.signOut()
+            self.SettingAccountDelegate?.logoutCompleted()
         } catch let signOutError as NSError {
             print("FirebaseClient logout error:", signOutError)
         }
