@@ -1,4 +1,4 @@
-import Firebase
+import Foundation
 import FirebaseFirestoreSwift
 
 struct UserData: Codable {
