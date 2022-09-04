@@ -120,7 +120,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
