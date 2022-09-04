@@ -115,9 +115,8 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                
                 var configuration = UIButton.Configuration.filled()
                 try await configuration.title = "\(FirebaseClient.shared.getPointDataSum(id: userID))pt"
                 configuration.baseBackgroundColor = .init(hex: "92B2D3")

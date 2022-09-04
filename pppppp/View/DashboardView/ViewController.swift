@@ -31,6 +31,23 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         ActivityIndicator.style = .large
         ActivityIndicator.hidesWhenStopped = true
         self.view.addSubview(ActivityIndicator)
+        
+        let task = Task { [weak self] in
+            do {
+                try await FirebaseClient.shared.checkNameData()
+                try await FirebaseClient.shared.checkIconData()
+            }
+            catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self!.viewDidAppear(true)
+                }
+                alert.addAction(ok)
+                self!.present(alert, animated: true, completion: nil)
+                print("ViewContro ViewDid error:",error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,6 +91,8 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         let task = Task { [weak self] in
             do {
                 try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.checkNameData()
+                try await FirebaseClient.shared.checkIconData()
                 try await Scorering.shared.createStepPoint()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)

@@ -93,15 +93,27 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         FirebaseClient.shared.notChangeDelegate = self
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
-        refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
+        refreshCtl.addAction(.init { _ in self.refreshCollectionView() }, for: .valueChanged)
         friendcollectionView.isHidden = true
-        friendDataList.removeAll()
         
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
+        friendcollectionView.collectionViewLayout = layout
+        
+        friendDataList.removeAll()
+        pointDataList.removeAll()
         
         let task = Task {
             do {
+                try await FirebaseClient.shared.checkNameData()
+                try await FirebaseClient.shared.checkIconData()
                 let userID = try await FirebaseClient.shared.getUserUUID()
+                FirebaseClient.shared.checkUserDefaults()
+                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+                myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
+                self.friendcollectionView.reloadData()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
             }
@@ -124,11 +136,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                //FIXME: ViewDidLoadで呼びたい
-                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
-                self.friendcollectionView.reloadData()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -141,10 +148,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             }
         }
         cancellables.insert(.init { task.cancel() })
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
-        friendcollectionView.collectionViewLayout = layout
     }
     
     func showShareSheet() {
@@ -167,9 +170,10 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         cancellables.insert(.init { task.cancel() })
     }
     
-    func refresh() {
+    func refreshCollectionView() {
         let task = Task { [weak self] in
             do {
+                friendDataList.removeAll()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self!.friendcollectionView.reloadData()
             }
@@ -320,21 +324,8 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension FriendListViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        let task = Task {
-            do {
-                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-            }
-            catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.viewDidLoad()
-                }
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
-                print("FriendListViewContro extension error:",error.localizedDescription)
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
+        myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+        print(UserDefaults.standard.object(forKey: "IconImageURL"))
+        myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
     }
 }
