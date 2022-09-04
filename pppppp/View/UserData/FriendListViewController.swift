@@ -125,8 +125,9 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.userAuthCheck()
+                //FIXME: ViewDidLoadで呼びたい
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
+                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
             }

@@ -234,15 +234,6 @@ final class FirebaseClient {
             })
         }
     }
-    //画像をfirestoreに保存
-    func putIconFirestore(imageURL: String) async throws {
-        guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        try await db.collection("User").document(userID).updateData(["IconImageURL": imageURL])
-    }
     //名前をfirestoreに保存
     func putNameFirestore(name: String) async throws {
         guard let user = Auth.auth().currentUser else {
@@ -251,6 +242,7 @@ final class FirebaseClient {
         }
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["name": name])
+        UserDefaults.standard.set(name, forKey: "name")
     }
     //自己評価をfirebaseに保存
     func firebasePutSelfCheckLog(log: String) async throws {
@@ -363,7 +355,7 @@ final class FirebaseClient {
             return
         }
         guard querySnapshot.data()!["IconImageURL"] != nil else {
-            try await putIconFirestore(imageURL: "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
+            try await db.collection("User").document(userID).updateData(["IconImageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"])
             return
         }
     }

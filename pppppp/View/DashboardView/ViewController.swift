@@ -35,6 +35,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         ActivityIndicator.startAnimating()
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())

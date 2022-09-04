@@ -119,7 +119,8 @@ class ChangeProfileViewController: UIViewController {
                             }
                         }
                         cancellables.insert(.init { task.cancel() })
-                    }                    
+                    }
+                    //FIXME: ここで呼びたくない
                     let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                         self.dismiss(animated: true, completion: nil)
@@ -153,24 +154,6 @@ class ChangeProfileViewController: UIViewController {
         configuration.baseForegroundColor = .white
         configuration.imagePadding = 24
         self.goButtonLayout.configuration = configuration
-    }
-    
-    func settingChangeName(profileName: String) {
-        if profileName == "" {
-        } else if profileName != "" {
-            Task {
-                do {
-                    try await FirebaseClient.shared.putNameFirestore(name: profileName)
-                }
-                catch {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
-                    print("ChangeProfile settingChangeName91:", error.localizedDescription)
-                }
-            }
-        }
     }
     
     @objc func dismissKeyboard() {
