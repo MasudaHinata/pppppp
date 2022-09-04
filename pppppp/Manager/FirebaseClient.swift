@@ -180,6 +180,7 @@ final class FirebaseClient {
         }
         let userID = user.uid
         try await db.collection("User").document(userID).setData(["name": "名称未設定", "IconImageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"])
+        UserDefaults.standard.set("名称未設定", forKey: "name")
     }
     //ポイントをFirestoreに保存
     func firebasePutData(point: Int) async throws {

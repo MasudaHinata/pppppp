@@ -326,10 +326,15 @@ extension FriendListViewController: UIAdaptivePresentationControllerDelegate {
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
             }
             catch {
-                
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+                print("FriendListViewContro extension error:",error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
-        print(UserDefaults.standard.object(forKey: "name") ?? "名称未設定")
     }
 }
