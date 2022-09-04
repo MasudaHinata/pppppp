@@ -1,7 +1,6 @@
 import Combine
 import UIKit
 import SwiftUI
-import Kingfisher
 
 class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
