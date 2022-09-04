@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Dashboard-->
+        <!--Sanitas-->
         <scene sceneID="Le5-1j-13Q">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="C6X-Qw-bEO" customClass="ViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,7 +31,7 @@
                             <constraint firstItem="ndx-UB-OiK" firstAttribute="trailing" secondItem="1Ia-4m-9zf" secondAttribute="trailing" id="vue-el-cmH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Dashboard" largeTitleDisplayMode="always" id="U5C-91-Dkl">
+                    <navigationItem key="navigationItem" title="Sanitas" largeTitleDisplayMode="always" id="U5C-91-Dkl">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.triangle.2.circlepath" catalog="system" id="C3T-rf-C43">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -177,7 +177,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rol-Tk-v1L">
-                                <rect key="frame" x="0.0" y="344" width="414" height="469"/>
+                                <rect key="frame" x="0.0" y="352" width="414" height="461"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UoR-4d-fU7">
@@ -189,10 +189,10 @@
                                 <cells/>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fs0-XW-cFx">
-                                <rect key="frame" x="0.0" y="344" width="414" height="469"/>
+                                <rect key="frame" x="0.0" y="352" width="414" height="461"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rKH-0b-ZpV">
-                                        <rect key="frame" x="0.0" y="190.5" width="414" height="278.5"/>
+                                        <rect key="frame" x="0.0" y="190.5" width="414" height="270.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUMMARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2C-nh-MwO">
@@ -244,7 +244,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="366-Eq-7Z9">
-                                <rect key="frame" x="24" y="305" width="366" height="32"/>
+                                <rect key="frame" x="24" y="313" width="366" height="32"/>
                                 <segments>
                                     <segment title="Activity"/>
                                     <segment title="FriendList"/>
@@ -264,7 +264,7 @@
                             <constraint firstItem="ldU-sy-YlS" firstAttribute="bottom" secondItem="fs0-XW-cFx" secondAttribute="bottom" id="CJO-Ph-6PT"/>
                             <constraint firstItem="Vwq-ko-SxC" firstAttribute="leading" secondItem="ldU-sy-YlS" secondAttribute="leading" constant="24" id="HWg-Or-YPh"/>
                             <constraint firstItem="fs0-XW-cFx" firstAttribute="leading" secondItem="ldU-sy-YlS" secondAttribute="leading" id="LYI-rM-5aQ"/>
-                            <constraint firstItem="366-Eq-7Z9" firstAttribute="top" secondItem="fSB-ZY-ZIb" secondAttribute="bottom" constant="8" id="Nvj-bt-36h"/>
+                            <constraint firstItem="366-Eq-7Z9" firstAttribute="top" secondItem="fSB-ZY-ZIb" secondAttribute="bottom" constant="16" id="Nvj-bt-36h"/>
                             <constraint firstItem="fs0-XW-cFx" firstAttribute="trailing" secondItem="ldU-sy-YlS" secondAttribute="trailing" id="Sjz-On-QLc"/>
                             <constraint firstItem="ldU-sy-YlS" firstAttribute="trailing" secondItem="366-Eq-7Z9" secondAttribute="trailing" constant="24" id="TYa-Q2-3Qc"/>
                             <constraint firstItem="ldU-sy-YlS" firstAttribute="trailing" secondItem="fSB-ZY-ZIb" secondAttribute="trailing" constant="16" id="cjl-3D-FVf"/>
