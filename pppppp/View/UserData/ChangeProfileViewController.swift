@@ -82,8 +82,8 @@ class ChangeProfileViewController: UIViewController {
             do {
                 ActivityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
+                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
                 try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
                 ActivityIndicator.stopAnimating()
             }
             catch {
