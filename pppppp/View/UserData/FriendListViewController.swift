@@ -66,10 +66,14 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
+//        let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
+//        let nextView = storyboard.instantiateViewController(identifier: "ChangeProfileViewController") as! ChangeProfileViewController
+//        nextView.presentationController?.delegate = self
+//        present(nextView, animated: true, completion: nil)
         let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
-        let nextView = storyboard.instantiateViewController(identifier: "ChangeProfileViewController") as! ChangeProfileViewController
-        nextView.presentationController?.delegate = self
-        present(nextView, animated: true, completion: nil)
+        let modalViewController = storyboard.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
+        modalViewController.presentationController?.delegate = self
+        present(modalViewController, animated: true, completion: nil)
     }
     
     @IBAction func settingButtonPressed() {
@@ -322,8 +326,8 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension FriendListViewController: UIAdaptivePresentationControllerDelegate {
-    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-        myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-    }
+  func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+      myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+      myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+  }
 }

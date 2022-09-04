@@ -75,9 +75,7 @@ class ChangeProfileViewController: UIViewController {
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
         self.nameTextField.delegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        
         myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
         myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
         let task = Task {
@@ -98,6 +96,7 @@ class ChangeProfileViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
+
     
     func saveProfile() {
         if let selectImage = myIconView.image {
@@ -109,28 +108,17 @@ class ChangeProfileViewController: UIViewController {
                         try await FirebaseClient.shared.putNameFirestore(name: profileName)
                         //FIXME: ここで呼びたくない
                         let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                            self.dismiss(animated: true, completion: nil)
-                        }
+                        let ok = UIAlertAction(title: "OK", style: .default)
                         alert.addAction(ok)
                         self.present(alert, animated: true, completion: nil)
                     } else {
                         try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
                         //FIXME: ここで呼びたくない
                         let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                            self.dismiss(animated: true, completion: nil)
-                        }
+                        let ok = UIAlertAction(title: "OK", style: .default)
                         alert.addAction(ok)
                         self.present(alert, animated: true, completion: nil)
                     }
-//                    //FIXME: ここで呼びたくない
-//                    let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-//                    let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-//                        self.dismiss(animated: true, completion: nil)
-//                    }
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
                 }
                 catch {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -140,14 +128,7 @@ class ChangeProfileViewController: UIViewController {
                     print("ChangeProfile putFirebaseStorage error:", error.localizedDescription)
                 }
             }
-            self.cancellables.insert(.init { task.cancel() })
-            //FIXME: ここで呼びたくない
-            let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                self.dismiss(animated: true, completion: nil)
-            }
-            alert.addAction(ok)
-            self.present(alert, animated: true, completion: nil)
+            cancellables.insert(.init { task.cancel() })
         } else {
             let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -191,12 +172,12 @@ extension ChangeProfileViewController: UITextFieldDelegate {
     }
 }
 
-extension ChangeProfileViewController {
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag, completion: completion)
-        guard let presentationController = presentationController else {
-            return
-        }
-        presentationController.delegate?.presentationControllerDidDismiss?(presentationController)
-    }
-}
+//extension ChangeProfileViewController {
+//    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+//        super.dismiss(animated: flag, completion: completion)
+//        guard let presentationController = presentationController else {
+//            return
+//        }
+//        presentationController.delegate?.presentationControllerDidDismiss?(presentationController)
+//    }
+//}
