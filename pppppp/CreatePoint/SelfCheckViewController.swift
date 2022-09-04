@@ -108,10 +108,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.putPointDelegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
@@ -135,7 +132,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    
+   
     //MARK: - Setting Delegate
     func putPointForFirestore(point: Int) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
