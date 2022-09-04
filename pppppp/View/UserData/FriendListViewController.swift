@@ -108,7 +108,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                FirebaseClient.shared.checkUserDefaults()
                 myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
@@ -325,7 +324,6 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
 extension FriendListViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-        print(UserDefaults.standard.object(forKey: "IconImageURL"))
         myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
     }
 }
