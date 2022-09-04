@@ -83,7 +83,7 @@ class UserDataViewController: UIViewController {
     }
 }
 
-//MARK: - Crealte Calender Grass
+//MARK: - extension
 extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 112
@@ -109,11 +109,11 @@ extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDe
         switch totalPointsForCell {
         case 0 :
             cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
-        case 1...50:
+        case 1...30:
             cell.backgroundColor = UIColor(hex: "45E1FF", alpha: 0.46)
-        case 50...100:
+        case 30...70:
             cell.backgroundColor = UIColor(hex: "3D83BC", alpha: 0.46)
-        case 100...150:
+        case 70...100:
             cell.backgroundColor = UIColor(hex: "008DDC", alpha: 0.46)
         default:
             cell.backgroundColor = UIColor(hex: "1D5CAC", alpha: 0.46)
@@ -127,7 +127,6 @@ extension Date {
     }
 }
 
-//MARK: - Setting TableView
 extension UserDataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         pointDataList.count

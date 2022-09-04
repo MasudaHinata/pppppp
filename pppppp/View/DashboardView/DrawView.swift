@@ -34,7 +34,8 @@ class DrawView: UIView {
             } else {
                 itemPoint = CGFloat(Float(item.point!))
             }
-            let x = CGFloat(sqrt(itemPoint / largestPoint) * self.bounds.width * 0.8)
+            //TODO: 大差がついた時に見た目を良くする計算を考える
+            let x = CGFloat(itemPoint / largestPoint * self.bounds.width * 0.8)
             graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.8)))), item: item)
         }
     }

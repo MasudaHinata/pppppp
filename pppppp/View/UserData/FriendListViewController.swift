@@ -89,12 +89,14 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         FirebaseClient.shared.notChangeDelegate = self
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
         friendcollectionView.isHidden = true
         friendDataList.removeAll()
+        
         
         let task = Task {
             do {
@@ -204,6 +206,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     }
 }
 
+//MARK: - extension
 extension FriendListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
@@ -293,6 +296,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
         
     }
 }
+
 extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         pointDataList.count

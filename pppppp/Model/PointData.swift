@@ -1,5 +1,4 @@
 import Foundation
-import Firebase
 import FirebaseFirestoreSwift
 
 struct PointData: Codable {
