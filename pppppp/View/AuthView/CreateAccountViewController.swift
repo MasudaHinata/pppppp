@@ -2,7 +2,7 @@ import UIKit
 import FirebaseStorage
 import Combine
 
-class CreateAccountViewController: UIViewController ,UITextFieldDelegate, FirebaseCreatedAccountDelegate {
+class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDelegate {
     
     var cancellables = Set<AnyCancellable>()
     @IBOutlet var goButtonLayout: UIButton! {
@@ -117,13 +117,6 @@ class CreateAccountViewController: UIViewController ,UITextFieldDelegate, Fireba
         self.present(alert, animated: true)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        password2TextField.resignFirstResponder()
-        return true
-    }
-    
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
@@ -148,3 +141,14 @@ class CreateAccountViewController: UIViewController ,UITextFieldDelegate, Fireba
         }
     }
 }
+
+//MARK: - extension
+extension CreateAccountViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        password2TextField.resignFirstResponder()
+        return true
+    }
+}
+

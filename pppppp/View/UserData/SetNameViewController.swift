@@ -59,11 +59,17 @@ class SetNameViewController: UIViewController {
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
+        self.changeNameTextField.delegate = self
     }
+    
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
-    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+}
+
+//MARK: - extension
+extension SetNameViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         changeNameTextField.resignFirstResponder()
         return true
     }

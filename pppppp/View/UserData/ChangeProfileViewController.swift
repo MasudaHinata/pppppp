@@ -3,7 +3,7 @@ import Combine
 import FirebaseStorage
 import Kingfisher
 
-class ChangeProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ChangeProfileViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
@@ -66,16 +66,17 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tapGR.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(tapGR)
-        
         ActivityIndicator = UIActivityIndicatorView()
         ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         ActivityIndicator.center = self.view.center
         ActivityIndicator.style = .large
         ActivityIndicator.hidesWhenStopped = true
         self.view.addSubview(ActivityIndicator)
+        
+        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGR.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGR)
+        self.nameTextField.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -188,6 +189,13 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+}
+
+//MARK: - extension
+extension ChangeProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
         if let selectedImage = info[.originalImage] as? UIImage {
             myIconView.image = selectedImage
@@ -198,12 +206,10 @@ class ChangeProfileViewController: UIViewController, UIImagePickerControllerDele
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    @objc func dismissKeyboard() {
-        self.view.endEditing(true)
-    }
-    
-    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+}
+
+extension ChangeProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
         return true
     }

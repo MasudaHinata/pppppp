@@ -72,18 +72,15 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.sentEmailDelegate = self
+        
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
+        self.emailTextField?.delegate = self
     }
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
-    }
-    
-    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        return true
     }
     
     //MARK: - Setting Delegate
@@ -96,5 +93,13 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+//MARK: - extension
+extension ResetPasswordViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        return true
     }
 }

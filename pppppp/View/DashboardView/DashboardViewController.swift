@@ -76,7 +76,7 @@ class DashboardViewController: UIViewController {
     }
 }
 
-//MARK: - Setting collectionView
+//MARK: - extension
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return friendDataList.count

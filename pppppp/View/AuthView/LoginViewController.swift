@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 @MainActor
-class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClientAuthDelegate {
+class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     
     var cancellables = Set<AnyCancellable>()
     
@@ -68,21 +68,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.loginDelegate = self
-        self.emailTextField?.delegate = self
-        self.passwordTextField?.delegate = self
+        
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
+        self.emailTextField?.delegate = self
+        self.passwordTextField?.delegate = self
     }
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
-    }
-    
-    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        return true
     }
     
     //MARK: - Setting Delegate
@@ -101,5 +96,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate ,FirebaseClient
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         present(alert, animated: true)
+    }
+}
+
+//MARK: - extension
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
     }
 }

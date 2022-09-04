@@ -83,7 +83,7 @@ class UserDataViewController: UIViewController {
     }
 }
 
-//MARK: - Crealte Calender Grass
+//MARK: - extension
 extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 112
@@ -127,7 +127,6 @@ extension Date {
     }
 }
 
-//MARK: - Setting TableView
 extension UserDataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         pointDataList.count
