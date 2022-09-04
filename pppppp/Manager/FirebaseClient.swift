@@ -2,6 +2,8 @@ import Foundation
 import Combine
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
+import UIKit
 
 //MARK: - error
 enum FirebaseClientAuthError: Error {
@@ -193,6 +195,43 @@ final class FirebaseClient {
         } else {
             try await db.collection("User").document(userID).collection("HealthData").document("\(formatter.string(from: date))").setData(["point": point, "date": Timestamp(date: Date())])
             self.putPointDelegate?.putPointForFirestore(point: point)
+        }
+    }
+    //画像をfirestore,firebaseStorageに保存
+    func putFirebaseStorage(selectImage: UIImage) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.userAuthCheck()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        
+        let imageName = "\(Date().timeIntervalSince1970).jpg"
+        let reference = Storage.storage().reference().child("posts/\(imageName)")
+        if let imageData = selectImage.jpegData(compressionQuality: 0.8) {
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            reference.putData(imageData, metadata: metadata, completion:{(metadata, error) in
+                if let _ = metadata {
+                    reference.downloadURL { [self] (url,error) in
+                        if let downloadUrl = url {
+                            let task = Task { [weak self] in
+                                do {
+                                    let downloadUrlStr = downloadUrl.absoluteString
+                                    try await self!.db.collection("User").document(userID).updateData(["IconImageURL": downloadUrlStr])
+                                }
+                                catch {
+                                    
+                                }
+                            }
+                            self.cancellables.insert(.init { task.cancel() })
+                        } else {
+                            print("downloadURLの取得が失敗した場合の処理")
+                        }
+                    }
+                } else {
+                    print("storageの保存が失敗")
+                }
+            })
         }
     }
     //画像をfirestoreに保存
