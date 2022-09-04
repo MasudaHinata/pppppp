@@ -67,8 +67,9 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     
     @IBAction func editButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ChangeProfileViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let nextView = storyboard.instantiateViewController(identifier: "ChangeProfileViewController") as! ChangeProfileViewController
+        nextView.presentationController?.delegate = self
+        present(nextView, animated: true, completion: nil)
     }
     
     @IBAction func settingButtonPressed() {
@@ -89,7 +90,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         FirebaseClient.shared.notChangeDelegate = self
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
@@ -239,11 +239,11 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
             switch totalPointsForCell {
             case 0 :
                 cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
-            case 1...50:
+            case 1...30:
                 cell.backgroundColor = UIColor(hex: "45E1FF", alpha: 0.46)
-            case 50...100:
+            case 30...70:
                 cell.backgroundColor = UIColor(hex: "3D83BC", alpha: 0.46)
-            case 100...150:
+            case 70...100:
                 cell.backgroundColor = UIColor(hex: "008DDC", alpha: 0.46)
             default:
                 cell.backgroundColor = UIColor(hex: "1D5CAC", alpha: 0.46)
@@ -315,5 +315,21 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         //ヘッダーの肥大化を回避
         return "   "
+    }
+}
+
+extension FriendListViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        let task = Task {
+            do {
+                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+            }
+            catch {
+                
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+        print(UserDefaults.standard.object(forKey: "name") ?? "名称未設定")
     }
 }

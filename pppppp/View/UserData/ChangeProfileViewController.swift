@@ -124,8 +124,6 @@ class ChangeProfileViewController: UIViewController {
                     let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
                         self.dismiss(animated: true, completion: nil)
-                        //TODO: 閉じたらFriendListViewController更新
-                        
                     }
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
@@ -179,5 +177,15 @@ extension ChangeProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
         return true
+    }
+}
+
+extension ChangeProfileViewController {
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+        guard let presentationController = presentationController else {
+            return
+        }
+        presentationController.delegate?.presentationControllerDidDismiss?(presentationController)
     }
 }
