@@ -220,6 +220,7 @@ final class FirebaseClient {
                                     let downloadUrlStr = downloadUrl.absoluteString
                                     try await self!.db.collection("User").document(userID).updateData(["IconImageURL": downloadUrlStr])
                                     UserDefaults.standard.set(downloadUrlStr, forKey: "IconImageURL")
+                                    print(UserDefaults.standard.object(forKey: "IconImageURL"))
                                 }
                                 catch {
                                     
@@ -347,7 +348,9 @@ final class FirebaseClient {
             self.notChangeDelegate?.notChangeName()
         }
         if UserDefaults.standard.object(forKey: "name") == nil {
-            UserDefaults.standard.set("名称未設定", forKey: "name")
+            let querySnapShot = try await db.collection("User").document(userID).getDocument()
+            let data = querySnapShot.data()!["name"]!
+            UserDefaults.standard.set(data, forKey: "name")
         }
     }
     //アイコンがあるかどうかの判定
@@ -368,7 +371,9 @@ final class FirebaseClient {
             return
         }
         if UserDefaults.standard.object(forKey: "IconImageURL") == nil {
-            UserDefaults.standard.set("https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11", forKey: "IconImageURL")
+           let querySnapShot = try await db.collection("User").document(userID).getDocument()
+            let data = querySnapShot.data()!["IconImageURL"]!
+            UserDefaults.standard.set(data, forKey: "IconImageURL")
         }
     }
     
