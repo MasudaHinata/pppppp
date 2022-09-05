@@ -113,6 +113,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 //FIXME: 並列処理にしたい
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                pointDataList.reverse()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
                 self.collectionView.reloadData()
@@ -309,10 +310,11 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitysTableViewCell", for: indexPath) as! RecentActivitysTableViewCell
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd HH:mm"
+        dateFormatter.dateFormat = "MM/dd"
         let dataStr = dateFormatter.string(from: pointDataList[indexPath.row].date)
         cell.pointLabel.text = "+\(pointDataList[indexPath.row].point ?? 0)pt"
         cell.dateLabel.text = dataStr
+        cell.activityLabel.text = pointDataList[indexPath.row].activity ?? ""
         return cell
     }
     

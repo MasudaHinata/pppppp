@@ -52,8 +52,8 @@
                                             <constraint firstAttribute="width" constant="96" id="emn-Un-IgE"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO5-2g-eea">
-                                        <rect key="frame" x="264" y="64" width="110" height="0.0"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO5-2g-eea">
+                                        <rect key="frame" x="256" y="64" width="110" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="110" id="Bs3-3v-Kan"/>
                                         </constraints>
@@ -77,7 +77,7 @@
                                     <constraint firstAttribute="bottom" secondItem="zN3-6Y-4Ki" secondAttribute="bottom" constant="16" id="7Qs-bD-dQg"/>
                                     <constraint firstItem="zN3-6Y-4Ki" firstAttribute="leading" secondItem="2Ds-zJ-VQB" secondAttribute="leading" constant="16" id="ChC-qx-iBU"/>
                                     <constraint firstItem="zN3-6Y-4Ki" firstAttribute="top" secondItem="2Ds-zJ-VQB" secondAttribute="top" constant="16" id="JHE-a6-49U"/>
-                                    <constraint firstAttribute="trailing" secondItem="fO5-2g-eea" secondAttribute="trailing" constant="8" id="Jt8-iW-mHZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="fO5-2g-eea" secondAttribute="trailing" constant="16" id="Jt8-iW-mHZ"/>
                                     <constraint firstItem="lUz-qN-ait" firstAttribute="centerY" secondItem="2Ds-zJ-VQB" secondAttribute="centerY" id="N5E-7V-8Kb"/>
                                     <constraint firstItem="fO5-2g-eea" firstAttribute="centerY" secondItem="2Ds-zJ-VQB" secondAttribute="centerY" id="SqC-cu-BSE"/>
                                 </constraints>

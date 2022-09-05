@@ -109,7 +109,9 @@ class ChangeProfileViewController: UIViewController {
                         try await FirebaseClient.shared.putNameFirestore(name: profileName)
                         //FIXME: ここで呼びたくない
                         let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default)
+                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                            self.myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+                        }
                         alert.addAction(ok)
                         self.present(alert, animated: true, completion: nil)
                     } else {
