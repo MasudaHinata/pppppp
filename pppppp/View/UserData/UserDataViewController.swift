@@ -136,11 +136,12 @@ extension UserDataViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitysTableViewCell", for: indexPath) as! RecentActivitysTableViewCell
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd HH:mm"
+        dateFormatter.dateFormat = "MM/dd"
         let dataStr = dateFormatter.string(from: pointDataList[indexPath.row].date)
         
         cell.pointLabel.text = "+\(pointDataList[indexPath.row].point ?? 0)pt"
         cell.dateLabel.text = dataStr
+        cell.activityLabel.text = pointDataList[indexPath.row].activity ?? ""
         return cell
     }
 }
