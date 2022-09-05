@@ -100,8 +100,8 @@ final class FirebaseClient {
         let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
         var users = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
         if includeMe == true {
-            try await checkIconData()
-            try await checkNameData()
+            async let checkNameDataResult = try await FirebaseClient.shared.checkNameData()
+            async let checkIconDataResult = try await FirebaseClient.shared.checkIconData()
             let myData = try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self)
             users.append(myData)
         }
@@ -263,6 +263,7 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
+        //FIXME: 並列処理にしたい
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayUnion([friendId])])
         try await db.collection("User").document(friendId).updateData(["FriendList": FieldValue.arrayUnion([userID])])
         self.addFriendDelegate?.addFriends()
@@ -274,6 +275,7 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
+        //FIXME: 並列処理にしたい
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayRemove([deleteFriendId])])
         try await db.collection("User").document(deleteFriendId).updateData(["FriendList": FieldValue.arrayRemove([userID])])
         await self.deletefriendDelegate?.friendDeleted()
@@ -347,6 +349,7 @@ final class FirebaseClient {
         if UserDefaults.standard.object(forKey: "name") == nil {
             UserDefaults.standard.set("名称未設定", forKey: "name")
         }
+        print("aaa")
     }
     //アイコンがあるかどうかの判定
     func checkIconData() async throws {
@@ -368,6 +371,7 @@ final class FirebaseClient {
         if UserDefaults.standard.object(forKey: "IconImageURL") == nil {
             UserDefaults.standard.set("https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11", forKey: "IconImageURL")
         }
+        print("iii")
     }
     
     //MARK: - Firebase Authentication

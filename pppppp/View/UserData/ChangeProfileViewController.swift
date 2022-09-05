@@ -104,6 +104,7 @@ class ChangeProfileViewController: UIViewController {
                 do {
                     profileName = (self.nameTextField.text!)
                     if profileName != "" {
+                        //FIXME: 並列処理にしたい
                         try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
                         try await FirebaseClient.shared.putNameFirestore(name: profileName)
                         //FIXME: ここで呼びたくない
@@ -128,7 +129,7 @@ class ChangeProfileViewController: UIViewController {
                     print("ChangeProfile putFirebaseStorage error:", error.localizedDescription)
                 }
             }
-            cancellables.insert(.init { task.cancel() })
+            self.cancellables.insert(.init { task.cancel() })
         } else {
             let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -171,13 +172,3 @@ extension ChangeProfileViewController: UITextFieldDelegate {
         return true
     }
 }
-
-//extension ChangeProfileViewController {
-//    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-//        super.dismiss(animated: flag, completion: completion)
-//        guard let presentationController = presentationController else {
-//            return
-//        }
-//        presentationController.delegate?.presentationControllerDidDismiss?(presentationController)
-//    }
-//}

@@ -11,8 +11,8 @@ class NotificationManager {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
         var datComp = DateComponents()
-        datComp.hour = 14
-        datComp.minute = 31
+        datComp.hour = 19
+        datComp.minute = 00
         let trigger = UNCalendarNotificationTrigger(dateMatching: datComp, repeats: true)
         let request = UNNotificationRequest(identifier: "ID", content: notificationContent, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error : Error?) in

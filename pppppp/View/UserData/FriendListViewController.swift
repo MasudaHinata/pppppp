@@ -66,10 +66,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
-//        let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
-//        let nextView = storyboard.instantiateViewController(identifier: "ChangeProfileViewController") as! ChangeProfileViewController
-//        nextView.presentationController?.delegate = self
-//        present(nextView, animated: true, completion: nil)
         let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
         let modalViewController = storyboard.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
         modalViewController.presentationController?.delegate = self
@@ -109,11 +105,13 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         
         let task = Task {
             do {
-                try await FirebaseClient.shared.checkNameData()
-                try await FirebaseClient.shared.checkIconData()
+                async let checkNameDataResult = try await FirebaseClient.shared.checkNameData()
+                async let checkIconDataResult = try await FirebaseClient.shared.checkIconData()
                 let userID = try await FirebaseClient.shared.getUserUUID()
+                
                 myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+                //FIXME: 並列処理にしたい
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
@@ -176,7 +174,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     func refreshCollectionView() {
         let task = Task { [weak self] in
             do {
-                friendDataList.removeAll()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self!.friendcollectionView.reloadData()
             }
