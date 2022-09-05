@@ -65,6 +65,7 @@ class UserDataViewController: UIViewController {
         let task = Task {
             do {
                 pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
+                pointDataList.reverse()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
                 ActivityIndicator.stopAnimating()

@@ -220,7 +220,6 @@ final class FirebaseClient {
                                     let downloadUrlStr = downloadUrl.absoluteString
                                     try await self!.db.collection("User").document(userID).updateData(["IconImageURL": downloadUrlStr])
                                     UserDefaults.standard.set(downloadUrlStr, forKey: "IconImageURL")
-                                    print(UserDefaults.standard.object(forKey: "IconImageURL"))
                                 }
                                 catch {
                                     

@@ -113,6 +113,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 //FIXME: 並列処理にしたい
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                pointDataList.reverse()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
                 self.collectionView.reloadData()
