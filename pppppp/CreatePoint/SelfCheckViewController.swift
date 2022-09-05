@@ -58,7 +58,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     @IBAction func goodButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 10)
+                try await FirebaseClient.shared.firebasePutData(point: 10, activity: "SelfCheck")
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "good")
             }
             catch {
@@ -75,7 +75,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     @IBAction func normalButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 7)
+                try await FirebaseClient.shared.firebasePutData(point: 7, activity: "SelfCheck")
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "normal")
             }
             catch {
@@ -91,7 +91,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     @IBAction func badButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 5)
+                try await FirebaseClient.shared.firebasePutData(point: 5, activity: "SelfCheck")
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "bad")
             }
             catch {
@@ -111,8 +111,9 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                async let checkNameDataResult = try await FirebaseClient.shared.checkNameData()
-                async let checkIconDataResult = try await FirebaseClient.shared.checkIconData()
+                //FIXME: 並列処理にしたい
+                try await FirebaseClient.shared.checkNameData()
+                try await FirebaseClient.shared.checkIconData()
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 var configuration = UIButton.Configuration.filled()

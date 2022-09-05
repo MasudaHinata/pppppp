@@ -185,7 +185,7 @@ final class FirebaseClient {
         
     }
     //ポイントをFirestoreに保存
-    func firebasePutData(point: Int) async throws {
+    func firebasePutData(point: Int, activity: String) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
@@ -194,7 +194,7 @@ final class FirebaseClient {
         if point == 0 {
             self.putPointDelegate?.notGetPoint()
         } else {
-            try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date())])
+            try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date()), "activity": activity])
             self.putPointDelegate?.putPointForFirestore(point: point)
         }
     }
@@ -349,7 +349,6 @@ final class FirebaseClient {
         if UserDefaults.standard.object(forKey: "name") == nil {
             UserDefaults.standard.set("名称未設定", forKey: "name")
         }
-        print("aaa")
     }
     //アイコンがあるかどうかの判定
     func checkIconData() async throws {
@@ -371,7 +370,6 @@ final class FirebaseClient {
         if UserDefaults.standard.object(forKey: "IconImageURL") == nil {
             UserDefaults.standard.set("https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11", forKey: "IconImageURL")
         }
-        print("iii")
     }
     
     //MARK: - Firebase Authentication

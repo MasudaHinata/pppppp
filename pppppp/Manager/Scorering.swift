@@ -70,7 +70,7 @@ final class Scorering {
             case (600...): todayPoint = Int(differencePoint / 150)
             default: break
             }
-            try await FirebaseClient.shared.firebasePutData(point: todayPoint)
+            try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
             UD.set(Date(), forKey: "today")
         }
     }
