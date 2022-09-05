@@ -67,8 +67,9 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     
     @IBAction func editButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ChangeProfileViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let modalViewController = storyboard.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
+        modalViewController.presentationController?.delegate = self
+        present(modalViewController, animated: true, completion: nil)
     }
     
     @IBAction func settingButtonPressed() {
@@ -89,19 +90,31 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         FirebaseClient.shared.notChangeDelegate = self
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
-        refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
+        refreshCtl.addAction(.init { _ in self.refreshCollectionView() }, for: .valueChanged)
         friendcollectionView.isHidden = true
-        friendDataList.removeAll()
         
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
+        friendcollectionView.collectionViewLayout = layout
+        
+        friendDataList.removeAll()
+        pointDataList.removeAll()
         
         let task = Task {
             do {
+                async let checkNameDataResult = try await FirebaseClient.shared.checkNameData()
+                async let checkIconDataResult = try await FirebaseClient.shared.checkIconData()
                 let userID = try await FirebaseClient.shared.getUserUUID()
+                
+                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+                myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+                //FIXME: 並列処理にしたい
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
+                self.friendcollectionView.reloadData()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
             }
@@ -120,15 +133,10 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
-                self.friendcollectionView.reloadData()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -141,10 +149,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             }
         }
         cancellables.insert(.init { task.cancel() })
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
-        friendcollectionView.collectionViewLayout = layout
     }
     
     func showShareSheet() {
@@ -167,7 +171,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         cancellables.insert(.init { task.cancel() })
     }
     
-    func refresh() {
+    func refreshCollectionView() {
         let task = Task { [weak self] in
             do {
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
@@ -239,11 +243,11 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
             switch totalPointsForCell {
             case 0 :
                 cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
-            case 1...50:
+            case 1...30:
                 cell.backgroundColor = UIColor(hex: "45E1FF", alpha: 0.46)
-            case 50...100:
+            case 30...70:
                 cell.backgroundColor = UIColor(hex: "3D83BC", alpha: 0.46)
-            case 100...150:
+            case 70...100:
                 cell.backgroundColor = UIColor(hex: "008DDC", alpha: 0.46)
             default:
                 cell.backgroundColor = UIColor(hex: "1D5CAC", alpha: 0.46)
@@ -304,8 +308,11 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitysTableViewCell", for: indexPath) as! RecentActivitysTableViewCell
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd HH:mm"
+        let dataStr = dateFormatter.string(from: pointDataList[indexPath.row].date)
         cell.pointLabel.text = "+\(pointDataList[indexPath.row].point ?? 0)pt"
-        cell.dateLabel.text = pointDataList[indexPath.row].id
+        cell.dateLabel.text = dataStr
         return cell
     }
     
@@ -313,4 +320,11 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
         //ヘッダーの肥大化を回避
         return "   "
     }
+}
+
+extension FriendListViewController: UIAdaptivePresentationControllerDelegate {
+  func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+      myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+      myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+  }
 }

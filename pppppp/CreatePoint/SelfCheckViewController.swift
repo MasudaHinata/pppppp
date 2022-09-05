@@ -108,16 +108,13 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.putPointDelegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
+                async let checkNameDataResult = try await FirebaseClient.shared.checkNameData()
+                async let checkIconDataResult = try await FirebaseClient.shared.checkIconData()
+                myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                
                 var configuration = UIButton.Configuration.filled()
                 try await configuration.title = "\(FirebaseClient.shared.getPointDataSum(id: userID))pt"
                 configuration.baseBackgroundColor = .init(hex: "92B2D3")
@@ -134,7 +131,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    
+   
     //MARK: - Setting Delegate
     func putPointForFirestore(point: Int) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)

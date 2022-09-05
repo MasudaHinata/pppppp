@@ -11,7 +11,7 @@ class ChangeProfileViewController: UIViewController {
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var myIconView: UIImageView! {
         didSet {
-            myIconView.layer.cornerRadius = 43
+            myIconView.layer.cornerRadius = 41
             myIconView.clipsToBounds = true
             myIconView.layer.cornerCurve = .continuous
         }
@@ -75,15 +75,13 @@ class ChangeProfileViewController: UIViewController {
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
         self.nameTextField.delegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        
+        myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+        myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
         let task = Task {
             do {
                 ActivityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
-                try await myIconView.kf.setImage(with: FirebaseClient.shared.getMyIconData())
-                try await myNameLabel.text = FirebaseClient.shared.getMyNameData()
                 ActivityIndicator.stopAnimating()
             }
             catch {
@@ -98,36 +96,30 @@ class ChangeProfileViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
+
     
     func saveProfile() {
         if let selectImage = myIconView.image {
             let task = Task {
                 do {
-                    try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
                     profileName = (self.nameTextField.text!)
                     if profileName != "" {
-                        let task = Task {
-                            do {
-                                try await FirebaseClient.shared.putNameFirestore(name: profileName)
-                            }
-                            catch {
-                                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                                let action = UIAlertAction(title: "OK", style: .default)
-                                alert.addAction(action)
-                                self.present(alert, animated: true)
-                                print("ChangeProfile putNameFirestore error:", error.localizedDescription)
-                            }
-                        }
-                        cancellables.insert(.init { task.cancel() })
-                    }                    
-                    let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { [self] (action) in
-                        self.dismiss(animated: true, completion: nil)
-                        //TODO: 閉じたらFriendListViewController更新
-                        
+                        //FIXME: 並列処理にしたい
+                        try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
+                        try await FirebaseClient.shared.putNameFirestore(name: profileName)
+                        //FIXME: ここで呼びたくない
+                        let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
+                        //FIXME: ここで呼びたくない
+                        let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: nil)
                     }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
                 }
                 catch {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -153,24 +145,6 @@ class ChangeProfileViewController: UIViewController {
         configuration.baseForegroundColor = .white
         configuration.imagePadding = 24
         self.goButtonLayout.configuration = configuration
-    }
-    
-    func settingChangeName(profileName: String) {
-        if profileName == "" {
-        } else if profileName != "" {
-            Task {
-                do {
-                    try await FirebaseClient.shared.putNameFirestore(name: profileName)
-                }
-                catch {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
-                    print("ChangeProfile settingChangeName91:", error.localizedDescription)
-                }
-            }
-        }
     }
     
     @objc func dismissKeyboard() {
