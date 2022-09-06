@@ -10,6 +10,7 @@ class DrawView: UIView {
     var imageButtons = [UIButton]()
     var pointLabels = [UILabel]()
     var friendListItems = [UserData]()
+//    var pointDataLists = [PointData]()
     
     override func draw(_ rect: CGRect) {
         for path in paths {
@@ -21,12 +22,15 @@ class DrawView: UIView {
         for label in pointLabels {
             label.removeFromSuperview()
         }
+        
+        //MARK: - x軸の計算
         var largestPoint = CGFloat(friendListItems.first?.point ?? 1)
         if friendListItems.first?.point == 0 {
             largestPoint = CGFloat(friendListItems.first?.point ?? 1) + 0.1
         } else if friendListItems.first?.point != 0 {
             largestPoint = CGFloat(friendListItems.first?.point ?? 1)
         }
+        
         for item in friendListItems {
             var itemPoint = CGFloat()
             if item.point == 0 {
@@ -34,6 +38,18 @@ class DrawView: UIView {
             } else {
                 itemPoint = CGFloat(Float(item.point!))
             }
+            
+//            //MARK:  y軸の計算
+//            Task {
+//                do {
+//                    pointDataLists = try await FirebaseClient.shared.getPointData(id: item.id ?? "")
+//                    print(pointDataLists.last?.date ?? "",item.name)
+//                }
+//                catch {
+//                    print(error.localizedDescription)
+//                }
+//            }
+        
             //TODO: 大差がついた時に見た目を良くする計算を考える
             let x = CGFloat(itemPoint / largestPoint * self.bounds.width * 0.8)
             let y = CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.8)))
