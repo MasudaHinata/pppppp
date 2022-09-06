@@ -70,9 +70,10 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
-                //FIXME: 並行処理にしたい
-                try await friendIconView.kf.setImage(with: FirebaseClient.shared.getFriendData(friendId: friendId!))
-                try await friendLabel.text = FirebaseClient.shared.getFriendNameData(friendId: friendId)
+                async let setFriendIconImage = friendIconView.kf.setImage(with: FirebaseClient.shared.getFriendData(friendId: friendId!))
+                async let setFriendName = FirebaseClient.shared.getFriendNameData(friendId: friendId)
+                let set = try await (setFriendIconImage,setFriendName)
+                friendLabel.text = set.1
             }
             catch {
                 
