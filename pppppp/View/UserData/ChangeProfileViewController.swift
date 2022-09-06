@@ -87,7 +87,7 @@ class ChangeProfileViewController: UIViewController {
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.viewDidLoad()
+                    self.dismiss(animated: true, completion: nil)
                 }
                 alert.addAction(ok)
                 self.present(alert, animated: true, completion: nil)
@@ -97,7 +97,6 @@ class ChangeProfileViewController: UIViewController {
         cancellables.insert(.init { task.cancel() })
     }
 
-    
     func saveProfile() {
         if let selectImage = myIconView.image {
             let task = Task {

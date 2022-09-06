@@ -34,9 +34,11 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         
         let task = Task { [weak self] in
             do {
+                ActivityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
+                ActivityIndicator.stopAnimating()
                 mountainView.delegate = self
             }
             catch {
@@ -54,7 +56,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ActivityIndicator.startAnimating()
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         if now >= 19 {
@@ -91,7 +92,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         }
         
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
-        ActivityIndicator.stopAnimating()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
             let task = Task { [weak self] in
                 do {

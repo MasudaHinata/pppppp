@@ -100,6 +100,9 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
         friendcollectionView.collectionViewLayout = layout
         
+        myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+        myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+        
         friendDataList.removeAll()
         pointDataList.removeAll()
         
@@ -109,9 +112,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                
-                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-                myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 //FIXME: 並列処理にしたい
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 pointDataList.reverse()
@@ -127,7 +127,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 }
                 alert.addAction(ok)
                 self.present(alert, animated: true, completion: nil)
-                print("CollectionViewContro ViewDid error:",error.localizedDescription)
+                print("FriendListViewContro ViewDid error:",error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
