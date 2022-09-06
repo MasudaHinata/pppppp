@@ -38,21 +38,9 @@ class DrawView: UIView {
             } else {
                 itemPoint = CGFloat(Float(item.point!))
             }
-            
-//            //MARK:  y軸の計算
-//            Task {
-//                do {
-//                    pointDataLists = try await FirebaseClient.shared.getPointData(id: item.id ?? "")
-//                    print(pointDataLists.last?.date ?? "",item.name)
-//                }
-//                catch {
-//                    print(error.localizedDescription)
-//                }
-//            }
-        
             //TODO: 大差がついた時に見た目を良くする計算を考える
             let x = CGFloat(itemPoint / largestPoint * self.bounds.width * 0.8)
-            let y = CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.8)))
+            let y = CGFloat(Float.random(in: 300 ..< Float(self.bounds.height * 0.8)))
             graph(vertex: CGPoint(x: x, y: y), item: item)
         }
     }
