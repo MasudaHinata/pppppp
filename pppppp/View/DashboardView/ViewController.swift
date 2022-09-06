@@ -24,6 +24,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         FirebaseClient.shared.putPointDelegate = self
         FirebaseClient.shared.notChangeDelegate = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
+        NotificationManager.dailyNotification(title: "おはようございます", body: "アプリを開いて歩数ポイントを獲得しましょう！")
         
         ActivityIndicator = UIActivityIndicatorView()
         ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
