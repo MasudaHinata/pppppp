@@ -100,8 +100,9 @@ final class FirebaseClient {
         let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
         var users = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
         if includeMe == true {
-            async let checkNameDataResult = try await FirebaseClient.shared.checkNameData()
-            async let checkIconDataResult = try await FirebaseClient.shared.checkIconData()
+            //FIXME: 並列処理にしたい
+            try await FirebaseClient.shared.checkNameData()
+            try await FirebaseClient.shared.checkIconData()
             let myData = try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self)
             users.append(myData)
         }

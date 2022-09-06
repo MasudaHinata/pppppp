@@ -105,8 +105,9 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         
         let task = Task {
             do {
-                async let checkNameDataResult = try await FirebaseClient.shared.checkNameData()
-                async let checkIconDataResult = try await FirebaseClient.shared.checkIconData()
+                //FIXME: 並列処理にしたい
+                try await FirebaseClient.shared.checkNameData()
+                try await FirebaseClient.shared.checkIconData()
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 
                 myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String

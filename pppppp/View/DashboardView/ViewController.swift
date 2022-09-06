@@ -31,11 +31,29 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         ActivityIndicator.style = .large
         ActivityIndicator.hidesWhenStopped = true
         self.view.addSubview(ActivityIndicator)
+        
+        let task = Task { [weak self] in
+            do {
+                try await FirebaseClient.shared.userAuthCheck()
+                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
+                mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
+                mountainView.delegate = self
+            }
+            catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self?.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self!.present(alert, animated: true, completion: nil)
+                print("ViewContro ViewDid error:",error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         ActivityIndicator.startAnimating()
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
@@ -71,26 +89,27 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 self.present(secondVC, animated: true)
             }
         }
-        let task = Task { [weak self] in
-            do {
-                try await FirebaseClient.shared.userAuthCheck()
-                try await Scorering.shared.createStepPoint()
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-                mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
-                mountainView.delegate = self
-                ActivityIndicator.stopAnimating()
-            }
-            catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self!.viewDidAppear(true)
+        
+        mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
+        ActivityIndicator.stopAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+            let task = Task { [weak self] in
+                do {
+                    try await FirebaseClient.shared.userAuthCheck()
+                    try await Scorering.shared.createStepPoint()
+                    self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
+                    mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
                 }
-                alert.addAction(ok)
-                self!.present(alert, animated: true, completion: nil)
-                print("ViewContro ViewAppaer error:",error.localizedDescription)
+                catch {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self!.present(alert, animated: true, completion: nil)
+                    print("ViewContro ViewAppear error:",error.localizedDescription)
+                }
             }
+            self.cancellables.insert(.init { task.cancel() })
         }
-        cancellables.insert(.init { task.cancel() })
     }
     
     //MARK: - Setting Delegate
