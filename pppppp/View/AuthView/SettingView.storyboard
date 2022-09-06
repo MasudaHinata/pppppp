@@ -16,17 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WY1-Oo-7Uf">
-                                <rect key="frame" x="172.5" y="580" width="69.5" height="31"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
-                                <connections>
-                                    <action selector="logoutButton" destination="hPF-NO-teZ" eventType="touchUpInside" id="SWe-kn-8DP"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKJ-b3-s25">
-                                <rect key="frame" x="147.5" y="631" width="119" height="31"/>
+                                <rect key="frame" x="131" y="642" width="152" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="PID-ey-iFj"/>
+                                    <constraint firstAttribute="width" constant="152" id="by3-TW-3El"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="DeleteAccount"/>
@@ -34,20 +29,48 @@
                                     <action selector="deleteAccount" destination="hPF-NO-teZ" eventType="touchUpInside" id="aOt-Nx-UJV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhW-ib-xFo">
+                                <rect key="frame" x="131" y="694" width="152" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="152" id="MLF-3w-Xe7"/>
+                                    <constraint firstAttribute="height" constant="32" id="NnI-sj-yrf"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="SentFeedback"/>
+                                <connections>
+                                    <action selector="sceneGoogleForm" destination="hPF-NO-teZ" eventType="touchUpInside" id="Ubv-b2-bej"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rm5-xE-aWy">
+                                <rect key="frame" x="131" y="590" width="152" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="152" id="X36-CP-SAg"/>
+                                    <constraint firstAttribute="height" constant="32" id="j51-9S-Kjb"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButton" destination="hPF-NO-teZ" eventType="touchUpInside" id="MKU-G4-VQS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hrq-yP-Y2a"/>
                         <color key="backgroundColor" red="0.074509803920000006" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="cKJ-b3-s25" firstAttribute="top" secondItem="WY1-Oo-7Uf" secondAttribute="bottom" constant="20" id="Lml-kx-Dum"/>
-                            <constraint firstItem="hrq-yP-Y2a" firstAttribute="bottom" secondItem="cKJ-b3-s25" secondAttribute="bottom" constant="200" id="fjl-eM-OK2"/>
-                            <constraint firstItem="cKJ-b3-s25" firstAttribute="centerX" secondItem="Oo8-Nn-8l5" secondAttribute="centerX" id="kIX-R9-GLD"/>
-                            <constraint firstItem="WY1-Oo-7Uf" firstAttribute="centerX" secondItem="Oo8-Nn-8l5" secondAttribute="centerX" id="uwV-of-Fy8"/>
+                            <constraint firstItem="IhW-ib-xFo" firstAttribute="centerX" secondItem="Oo8-Nn-8l5" secondAttribute="centerX" id="2M2-3N-aNJ"/>
+                            <constraint firstItem="IhW-ib-xFo" firstAttribute="top" secondItem="cKJ-b3-s25" secondAttribute="bottom" constant="20" id="Gi2-CT-0SZ"/>
+                            <constraint firstItem="hrq-yP-Y2a" firstAttribute="bottom" secondItem="IhW-ib-xFo" secondAttribute="bottom" constant="136" id="Kgk-uB-Ico"/>
+                            <constraint firstItem="cKJ-b3-s25" firstAttribute="top" secondItem="rm5-xE-aWy" secondAttribute="bottom" constant="20" id="PEI-9b-21B"/>
+                            <constraint firstItem="cKJ-b3-s25" firstAttribute="centerX" secondItem="Oo8-Nn-8l5" secondAttribute="centerX" id="XcI-x8-ZtJ"/>
+                            <constraint firstItem="rm5-xE-aWy" firstAttribute="centerX" secondItem="Oo8-Nn-8l5" secondAttribute="centerX" id="bjg-3F-1Ll"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfp-GC-Waq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2075" y="429"/>
+            <point key="canvasLocation" x="2073.913043478261" y="428.57142857142856"/>
         </scene>
     </scenes>
     <resources>

@@ -1,5 +1,6 @@
 import UIKit
 import Combine
+import SafariServices
 
 class SettingViewController: UIViewController, SetttingAccountDelegate  {
     
@@ -61,6 +62,12 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func sceneGoogleForm() {
+        guard let url = URL(string: "https://forms.gle/McVkxngftm1xocvGA") else { return }
+        let safariController = SFSafariViewController(url: url)
+        present(safariController, animated: true, completion: nil)
     }
     
     //MARK: - Setting Delegate
