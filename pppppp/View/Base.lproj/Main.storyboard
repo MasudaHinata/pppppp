@@ -44,7 +44,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sanitas" largeTitleDisplayMode="always" id="U5C-91-Dkl">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.triangle.2.circlepath" catalog="system" id="C3T-rf-C43">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="list.bullet.rectangle.portrait" catalog="system" id="C3T-rf-C43">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="sendCollectionView" destination="C6X-Qw-bEO" id="Aw2-vc-wwK"/>
@@ -334,9 +334,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="101"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="106"/>
+        <image name="list.bullet.rectangle.portrait" catalog="system" width="115" height="128"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
