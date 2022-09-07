@@ -10,7 +10,9 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     let UD = UserDefaults.standard
     let calendar = Calendar.current
     var ActivityIndicator: UIActivityIndicatorView!
+    var flag: Bool!
     
+    @IBOutlet var noFriendView: UIView!
     @IBOutlet var mountainView: DrawView!
     @IBAction func sendCollectionView() {
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
@@ -24,7 +26,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         FirebaseClient.shared.putPointDelegate = self
         FirebaseClient.shared.notChangeDelegate = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
-//        NotificationManager.dailyNotification(title: "おはようございます", body: "アプリを開いて歩数ポイントを獲得しましょう！")
         
         ActivityIndicator = UIActivityIndicatorView()
         ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
@@ -32,31 +33,12 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         ActivityIndicator.style = .large
         ActivityIndicator.hidesWhenStopped = true
         self.view.addSubview(ActivityIndicator)
-        
-        let task = Task { [weak self] in
-            do {
-                ActivityIndicator.startAnimating()
-                try await FirebaseClient.shared.userAuthCheck()
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-                mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
-                ActivityIndicator.stopAnimating()
-                mountainView.delegate = self
-            }
-            catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self?.viewDidLoad()
-                }
-                alert.addAction(ok)
-                self!.present(alert, animated: true, completion: nil)
-                print("ViewContro ViewDid error:",error.localizedDescription)
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
+        mountainView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        ActivityIndicator.startAnimating()
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         if now >= 19 {
@@ -91,15 +73,29 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 self.present(secondVC, animated: true)
             }
         }
-        
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
+        if friendDataList.count == 1 {
+            print("friendなし")
+            flag = false
+            noFriendView.backgroundColor = UIColor.init(hex: "85A0C5")
+            noFriendView.alpha = 0.5
+        }
+//        ActivityIndicator.stopAnimating()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
             let task = Task { [weak self] in
                 do {
+//                    ActivityIndicator.startAnimating()
                     try await FirebaseClient.shared.userAuthCheck()
                     try await Scorering.shared.createStepPoint()
                     self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                     mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
+                    if friendDataList.count == 1 {
+                        print("friendなし")
+                        flag = false
+                        noFriendView.backgroundColor = UIColor.init(hex: "85A0C5")
+                        noFriendView.alpha = 0.5
+                    }
+                    ActivityIndicator.stopAnimating()
                 }
                 catch {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

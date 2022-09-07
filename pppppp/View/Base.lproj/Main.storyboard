@@ -19,7 +19,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndx-UB-OiK" customClass="DrawView" customModule="pppppp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8K-Wk-ggZ">
+                                        <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="t8K-Wk-ggZ" secondAttribute="trailing" constant="87" id="UbF-gH-Vzt"/>
+                                    <constraint firstItem="t8K-Wk-ggZ" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="top" constant="384" id="Xi7-9e-Cif"/>
+                                    <constraint firstAttribute="bottom" secondItem="t8K-Wk-ggZ" secondAttribute="bottom" constant="384" id="ZjA-HZ-ogW"/>
+                                    <constraint firstItem="t8K-Wk-ggZ" firstAttribute="leading" secondItem="ndx-UB-OiK" secondAttribute="leading" constant="87" id="aUU-ym-jse"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yZS-7u-8PC"/>
@@ -41,6 +53,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mountainView" destination="ndx-UB-OiK" id="I8o-hY-XwT"/>
+                        <outlet property="noFriendView" destination="t8K-Wk-ggZ" id="ncv-vF-xMT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
