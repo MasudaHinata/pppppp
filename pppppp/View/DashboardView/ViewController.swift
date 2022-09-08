@@ -12,7 +12,14 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     var ActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var noFriendView: UIView!
+    @IBOutlet var noFriendLabel: UILabel!
+    @IBOutlet var noFriendButtonLayout: UIButton!
     @IBOutlet var mountainView: DrawView!
+    
+    @IBAction func noFriendButton() {
+        showShareSheet()
+    }
+    
     @IBAction func sendCollectionView() {
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
@@ -103,7 +110,26 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
             }
         }
         self.cancellables.insert(.init { task.cancel() })
-        
+    }
+    
+    func showShareSheet() {
+        let task = Task {
+            do {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
+                let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
+                present(activityVC, animated: true, completion: nil)
+            } catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+                print("FriendListViewContro showShareSheet:",error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
     }
     
     //MARK: - Setting Delegate
