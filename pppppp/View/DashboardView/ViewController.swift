@@ -10,7 +10,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     let UD = UserDefaults.standard
     let calendar = Calendar.current
     var ActivityIndicator: UIActivityIndicatorView!
-    var flag: Bool!
     
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var mountainView: DrawView!
@@ -73,40 +72,38 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 self.present(secondVC, animated: true)
             }
         }
+        
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
             print("friendなし")
-            flag = false
             noFriendView.backgroundColor = UIColor.init(hex: "85A0C5")
-            noFriendView.alpha = 0.5
+            noFriendView.layer.cornerRadius = 20
+            noFriendView.layer.cornerCurve = .continuous
         }
-//        ActivityIndicator.stopAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
-            let task = Task { [weak self] in
-                do {
-//                    ActivityIndicator.startAnimating()
-                    try await FirebaseClient.shared.userAuthCheck()
-                    try await Scorering.shared.createStepPoint()
-                    self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-                    mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
-                    if friendDataList.count == 1 {
-                        print("friendなし")
-                        flag = false
-                        noFriendView.backgroundColor = UIColor.init(hex: "85A0C5")
-                        noFriendView.alpha = 0.5
-                    }
+        let task = Task { [weak self] in
+            do {
+                try await FirebaseClient.shared.userAuthCheck()
+                try await Scorering.shared.createStepPoint()
+                self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
+                mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
+                if friendDataList.count == 1 {
+                    print("friendなし")
+                    noFriendView.backgroundColor = UIColor.init(hex: "85A0C5")
+                    noFriendView.layer.cornerRadius = 20
+                    noFriendView.layer.cornerCurve = .continuous
                     ActivityIndicator.stopAnimating()
                 }
-                catch {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self!.present(alert, animated: true, completion: nil)
-                    print("ViewContro ViewAppear error:",error.localizedDescription)
-                }
             }
-            self.cancellables.insert(.init { task.cancel() })
+            catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default)
+                alert.addAction(ok)
+                self!.present(alert, animated: true, completion: nil)
+                print("ViewContro ViewAppear error:",error.localizedDescription)
+            }
         }
+        self.cancellables.insert(.init { task.cancel() })
+        
     }
     
     //MARK: - Setting Delegate
