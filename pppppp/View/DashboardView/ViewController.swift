@@ -97,7 +97,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
             do {
                 try await FirebaseClient.shared.userAuthCheck()
                 try await Scorering.shared.createStepPoint()
-                self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
+                self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
                 if friendDataList.count == 1 {
                     print("friendなし")

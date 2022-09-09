@@ -111,28 +111,28 @@ final class FirebaseClient {
             users.append(myData)
         }
         for i in 0 ..< users.count {
-            users[i].point = try await getPointDataSum(id: users[i].id!)
+            users[i].point = try await getPointDataSum(id: users[i].id!, accumulationType: true)
         }
         users.sort { $1.point! < $0.point! }
         return users
     }
     //idで与えられたユーザーの累積ポイントを返す
-    func getPointDataSum(id: String) async throws -> Int {
-        //        今日までの一週間
-        let startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: date))
-        let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startDate!)).whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
-        
-        //        月曜からの一週間
-        //        var aaa = Date()
-        //        let am = calendar.startOfDay(for: Date())
-        //        let weekNumber = calendar.component(.weekday, from: am)
-        //        if weekNumber == 1 {
-        //            aaa = calendar.date(byAdding: .day, value: -6, to: am)!
-        //        } else {
-        //            aaa = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
-        //        }
-        //        let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: aaa)).whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
-        
+    func getPointDataSum(id: String, accumulationType: Bool) async throws -> Int {
+        var startDate = Date()
+        if accumulationType == true {
+            //今日までの一週間
+            startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: date))!
+        } else if accumulationType == false {
+            //月曜からの一週間
+            let am = calendar.startOfDay(for: Date())
+            let weekNumber = calendar.component(.weekday, from: am)
+            if weekNumber == 1 {
+                startDate = calendar.date(byAdding: .day, value: -6, to: am)!
+            } else {
+                startDate = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
+            }
+        }
+        let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startDate)).whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         var friends: [PointData] = []
         for friendData in snapshot.documents {
             friends.append(try friendData.data(as: PointData.self))
