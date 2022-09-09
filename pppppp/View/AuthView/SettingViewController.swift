@@ -6,10 +6,16 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
     
     var cancellables = Set<AnyCancellable>()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        FirebaseClient.shared.SettingAccountDelegate = self
+    @IBOutlet var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.register(UINib(nibName: "SelectAccumulationTypeTableViewCell", bundle: nil), forCellReuseIdentifier: "SelectAccumulationTypeTableViewCell")
+            tableView.backgroundView = nil
+            tableView.backgroundColor = .clear
+        }
     }
+    
     @IBAction func logoutButton() {
         let alert = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
@@ -70,6 +76,11 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         present(safariController, animated: true, completion: nil)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FirebaseClient.shared.SettingAccountDelegate = self
+    }
+    
     //MARK: - Setting Delegate
     func accountDeleted() {
         let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
@@ -114,5 +125,67 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+//MARK: - extension
+extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SelectAccumulationTypeTableViewCell", for: indexPath) as! SelectAccumulationTypeTableViewCell
+        
+        let cellBackgroundView = UIView()
+        cellBackgroundView.backgroundColor = UIColor.init(hex: "969696", alpha: 0.5)
+        cell.selectedBackgroundView = cellBackgroundView
+        
+        if indexPath.row == 0 {
+            cell.selectLabel.text = "今日までの一週間"
+        } else if indexPath.row == 1 {
+            cell.selectLabel.text = "月曜始まり"
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        /* //FIXME: チェックマークが出ない
+        let cell = tableView.cellForRow(at:indexPath)
+        cell?.accessoryType = .checkmark
+         */
+        
+        if indexPath.row == 0 {
+            UserDefaults.standard.set("今日までの一週間", forKey: "accumulationType")
+            let alert = UIAlertController(title: "完了", message: "ポイントの累積タイプを変更しました", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+                self.showDetailViewController(secondVC, sender: self)
+            }
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        } else if indexPath.row == 1 {
+            UserDefaults.standard.set("月曜始まり", forKey: "accumulationType")
+            let alert = UIAlertController(title: "完了", message: "ポイントの累積タイプを変更しました", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+                self.showDetailViewController(secondVC, sender: self)
+            }
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
+        print(UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間")
+        
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Select accumulation type"
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
 }
