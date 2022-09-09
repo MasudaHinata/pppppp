@@ -19,6 +19,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
             configuration.baseBackgroundColor = .clear
             configuration.showsActivityIndicator = false
             noFriendButtonLayout.configuration = configuration
+            noFriendButtonLayout.titleColor(for: .disabled)
         }
     }
     @IBOutlet var mountainView: DrawView!
@@ -101,8 +102,8 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 if friendDataList.count == 1 {
                     print("friendなし")
                     noFriendDesign()
-                    ActivityIndicator.stopAnimating()
                 }
+                ActivityIndicator.stopAnimating()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

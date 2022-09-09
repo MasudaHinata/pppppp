@@ -222,6 +222,7 @@ final class FirebaseClient {
                                     let downloadUrlStr = downloadUrl.absoluteString
                                     try await self!.db.collection("User").document(userID).updateData(["IconImageURL": downloadUrlStr])
                                     UserDefaults.standard.set(downloadUrlStr, forKey: "IconImageURL")
+                                    print("アイコン")
                                 }
                                 catch {
                                     
@@ -247,6 +248,7 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["name": name])
         UserDefaults.standard.set(name, forKey: "name")
+        print("名前")
     }
     //自己評価をfirebaseに保存
     func firebasePutSelfCheckLog(log: String) async throws {
