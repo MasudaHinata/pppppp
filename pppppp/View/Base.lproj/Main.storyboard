@@ -36,7 +36,7 @@
                                                     <color key="baseForegroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="noFriendButton" destination="C6X-Qw-bEO" eventType="touchUpOutside" id="CwX-Th-kip"/>
+                                                    <action selector="noFriendButton" destination="C6X-Qw-bEO" eventType="touchUpInside" id="ERD-Vi-Shi"/>
                                                 </connections>
                                             </button>
                                         </subviews>
