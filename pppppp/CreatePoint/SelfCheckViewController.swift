@@ -117,7 +117,8 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 var configuration = UIButton.Configuration.filled()
-                try await configuration.title = "\(FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: true))pt"
+                let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+                try await configuration.title = "\(FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))pt"
                 configuration.baseBackgroundColor = .init(hex: "92B2D3")
                 configuration.cornerStyle = .capsule
                 myPointLabelButton.configuration = configuration

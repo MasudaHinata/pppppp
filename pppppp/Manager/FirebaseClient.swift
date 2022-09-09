@@ -110,19 +110,21 @@ final class FirebaseClient {
             let myData = try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self)
             users.append(myData)
         }
+
         for i in 0 ..< users.count {
-            users[i].point = try await getPointDataSum(id: users[i].id!, accumulationType: true)
+            let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+            users[i].point = try await getPointDataSum(id: users[i].id!, accumulationType: type as! String)
         }
         users.sort { $1.point! < $0.point! }
         return users
     }
     //idで与えられたユーザーの累積ポイントを返す
-    func getPointDataSum(id: String, accumulationType: Bool) async throws -> Int {
+    func getPointDataSum(id: String, accumulationType: String) async throws -> Int {
         var startDate = Date()
-        if accumulationType == true {
+        if accumulationType == "今日までの一週間" {
             //今日までの一週間
             startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: date))!
-        } else if accumulationType == false {
+        } else if accumulationType == "月曜始まり" {
             //月曜からの一週間
             let am = calendar.startOfDay(for: Date())
             let weekNumber = calendar.component(.weekday, from: am)
@@ -132,6 +134,7 @@ final class FirebaseClient {
                 startDate = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
             }
         }
+        
         let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startDate)).whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         var friends: [PointData] = []
         for friendData in snapshot.documents {
