@@ -91,19 +91,47 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
             print("friendなし")
-            noFriendDesign()
+            noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
+            noFriendView.layer.cornerRadius = 20
+            noFriendView.layer.cornerCurve = .continuous
+            var configuration = UIButton.Configuration.filled()
+            configuration.title = "Add Friend"
+            configuration.baseBackgroundColor = UIColor.init(hex: "B8E9FF", alpha: 0.4)
+            configuration.imagePlacement = .trailing
+            configuration.showsActivityIndicator = false
+            configuration.imagePadding = 24
+            noFriendButtonLayout.layer.borderWidth = 4.0
+            noFriendButtonLayout.layer.borderColor = UIColor.white.cgColor
+            noFriendButtonLayout.layer.cornerRadius = 12.0
+            noFriendButtonLayout.layer.cornerCurve = .continuous
+            noFriendLabel.textColor = UIColor.white
+            noFriendButtonLayout.configuration = configuration
         }
         let task = Task { [weak self] in
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                try await Scorering.shared.createStepPoint()
                 self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
                 if friendDataList.count == 1 {
                     print("friendなし")
-                    noFriendDesign()
+                    noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
+                    noFriendView.layer.cornerRadius = 20
+                    noFriendView.layer.cornerCurve = .continuous
+                    var configuration = UIButton.Configuration.filled()
+                    configuration.title = "Add Friend"
+                    configuration.baseBackgroundColor = UIColor.init(hex: "B8E9FF", alpha: 0.4)
+                    configuration.imagePlacement = .trailing
+                    configuration.showsActivityIndicator = false
+                    configuration.imagePadding = 24
+                    noFriendButtonLayout.layer.borderWidth = 4.0
+                    noFriendButtonLayout.layer.borderColor = UIColor.white.cgColor
+                    noFriendButtonLayout.layer.cornerRadius = 12.0
+                    noFriendButtonLayout.layer.cornerCurve = .continuous
+                    noFriendLabel.textColor = UIColor.white
+                    noFriendButtonLayout.configuration = configuration
                 }
                 ActivityIndicator.stopAnimating()
+                try await Scorering.shared.createStepPoint()
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -118,24 +146,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         self.cancellables.insert(.init { task.cancel() })
     }
     
-    func noFriendDesign() {
-        noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
-        noFriendView.layer.cornerRadius = 20
-        noFriendView.layer.cornerCurve = .continuous
-        var configuration = UIButton.Configuration.filled()
-        configuration.title = "Add Friend"
-        configuration.baseBackgroundColor = UIColor.init(hex: "B8E9FF", alpha: 0.4)
-        configuration.imagePlacement = .trailing
-        configuration.showsActivityIndicator = false
-        configuration.imagePadding = 24
-        noFriendButtonLayout.layer.borderWidth = 4.0
-        noFriendButtonLayout.layer.borderColor = UIColor.white.cgColor
-        noFriendButtonLayout.layer.cornerRadius = 12.0
-        noFriendButtonLayout.layer.cornerCurve = .continuous
-        noFriendLabel.textColor = UIColor.white
-        noFriendButtonLayout.configuration = configuration
-    }
-    
+   
     func showShareSheet() {
         let task = Task {
             do {
