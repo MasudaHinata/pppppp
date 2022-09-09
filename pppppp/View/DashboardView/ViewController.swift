@@ -103,7 +103,9 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self!.viewDidAppear(true)
+                }
                 alert.addAction(ok)
                 self!.present(alert, animated: true, completion: nil)
                 print("ViewContro ViewAppear error:",error.localizedDescription)
