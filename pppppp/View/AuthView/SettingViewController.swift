@@ -6,10 +6,6 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
     
     var cancellables = Set<AnyCancellable>()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        FirebaseClient.shared.SettingAccountDelegate = self
-    }
     @IBAction func logoutButton() {
         let alert = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
@@ -68,6 +64,11 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         guard let url = URL(string: "https://forms.gle/McVkxngftm1xocvGA") else { return }
         let safariController = SFSafariViewController(url: url)
         present(safariController, animated: true, completion: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FirebaseClient.shared.SettingAccountDelegate = self
     }
     
     //MARK: - Setting Delegate
