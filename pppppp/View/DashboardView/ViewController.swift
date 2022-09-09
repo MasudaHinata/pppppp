@@ -122,7 +122,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         noFriendView.layer.cornerRadius = 20
         noFriendView.layer.cornerCurve = .continuous
         var configuration = UIButton.Configuration.filled()
-        configuration.title = "Add Friend!"
+        configuration.title = "Add Friend"
         configuration.baseBackgroundColor = UIColor.init(hex: "B8E9FF", alpha: 0.4)
         configuration.imagePlacement = .trailing
         configuration.showsActivityIndicator = false
