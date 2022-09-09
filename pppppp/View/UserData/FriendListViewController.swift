@@ -100,9 +100,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
         friendcollectionView.collectionViewLayout = layout
         
-        myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-        myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-        
         friendDataList.removeAll()
         pointDataList.removeAll()
         
@@ -111,6 +108,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 //FIXME: 並列処理にしたい
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
+                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+                myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
             
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 //FIXME: 並列処理にしたい

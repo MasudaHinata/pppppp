@@ -157,8 +157,24 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 0 {
             UserDefaults.standard.set("今日までの一週間", forKey: "accumulationType")
+            let alert = UIAlertController(title: "完了", message: "ポイントの累積タイプを変更しました", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+                self.showDetailViewController(secondVC, sender: self)
+            }
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
         } else if indexPath.row == 1 {
             UserDefaults.standard.set("月曜始まり", forKey: "accumulationType")
+            let alert = UIAlertController(title: "完了", message: "ポイントの累積タイプを変更しました", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+                self.showDetailViewController(secondVC, sender: self)
+            }
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
         }
         print(UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間")
         
