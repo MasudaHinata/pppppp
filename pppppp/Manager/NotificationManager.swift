@@ -12,7 +12,7 @@ class NotificationManager {
         
         var datComp = DateComponents()
         datComp.hour = 19
-        datComp.minute = 00
+        datComp.minute = 57
         let trigger = UNCalendarNotificationTrigger(dateMatching: datComp, repeats: true)
         let request = UNNotificationRequest(identifier: "ID", content: notificationContent, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error : Error?) in

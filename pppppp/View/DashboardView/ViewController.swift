@@ -11,7 +11,23 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     let calendar = Calendar.current
     var ActivityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet var noFriendView: UIView!
+    @IBOutlet var noFriendLabel: UILabel!
+    @IBOutlet var noFriendButtonLayout: UIButton! {
+        didSet {
+            var configuration = UIButton.Configuration.filled()
+            configuration.baseBackgroundColor = .clear
+            configuration.showsActivityIndicator = false
+            noFriendButtonLayout.configuration = configuration
+            noFriendButtonLayout.titleColor(for: .disabled)
+        }
+    }
     @IBOutlet var mountainView: DrawView!
+    
+    @IBAction func noFriendButton() {
+        showShareSheet()
+    }
+    
     @IBAction func sendCollectionView() {
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
@@ -31,31 +47,12 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         ActivityIndicator.style = .large
         ActivityIndicator.hidesWhenStopped = true
         self.view.addSubview(ActivityIndicator)
-        
-        let task = Task { [weak self] in
-            do {
-                ActivityIndicator.startAnimating()
-                try await FirebaseClient.shared.userAuthCheck()
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-                mountainView.configure(rect: self!.view.bounds, friendListItems: friendDataList)
-                ActivityIndicator.stopAnimating()
-                mountainView.delegate = self
-            }
-            catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self?.viewDidLoad()
-                }
-                alert.addAction(ok)
-                self!.present(alert, animated: true, completion: nil)
-                print("ViewContro ViewDid error:",error.localizedDescription)
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
+        mountainView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        ActivityIndicator.startAnimating()
         var judge = Bool()
         let now = calendar.component(.hour, from: Date())
         if now >= 19 {
@@ -92,24 +89,71 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         }
         
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
-            let task = Task { [weak self] in
-                do {
-                    try await FirebaseClient.shared.userAuthCheck()
-                    try await Scorering.shared.createStepPoint()
-                    self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-                    mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
-                }
-                catch {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self!.present(alert, animated: true, completion: nil)
-                    print("ViewContro ViewAppear error:",error.localizedDescription)
-                }
-            }
-            self.cancellables.insert(.init { task.cancel() })
+        if friendDataList.count == 1 {
+            print("friendなし")
+            noFriendDesign()
         }
+        let task = Task { [weak self] in
+            do {
+                try await FirebaseClient.shared.userAuthCheck()
+                try await Scorering.shared.createStepPoint()
+                self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
+                mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
+                if friendDataList.count == 1 {
+                    print("friendなし")
+                    noFriendDesign()
+                }
+                ActivityIndicator.stopAnimating()
+            }
+            catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self!.viewDidAppear(true)
+                }
+                alert.addAction(ok)
+                self!.present(alert, animated: true, completion: nil)
+                print("ViewContro ViewAppear error:",error.localizedDescription)
+            }
+        }
+        self.cancellables.insert(.init { task.cancel() })
+    }
+    
+    func noFriendDesign() {
+        noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
+        noFriendView.layer.cornerRadius = 20
+        noFriendView.layer.cornerCurve = .continuous
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "Add Friend"
+        configuration.baseBackgroundColor = UIColor.init(hex: "B8E9FF", alpha: 0.4)
+        configuration.imagePlacement = .trailing
+        configuration.showsActivityIndicator = false
+        configuration.imagePadding = 24
+        noFriendButtonLayout.layer.borderWidth = 4.0
+        noFriendButtonLayout.layer.borderColor = UIColor.white.cgColor
+        noFriendButtonLayout.layer.cornerRadius = 12.0
+        noFriendButtonLayout.layer.cornerCurve = .continuous
+        noFriendLabel.textColor = UIColor.white
+        noFriendButtonLayout.configuration = configuration
+    }
+    
+    func showShareSheet() {
+        let task = Task {
+            do {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
+                let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
+                present(activityVC, animated: true, completion: nil)
+            } catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.viewDidLoad()
+                }
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+                print("FriendListViewContro showShareSheet:",error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
     }
     
     //MARK: - Setting Delegate

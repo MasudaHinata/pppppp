@@ -156,9 +156,9 @@
 				BE7F337F2580D07E0027620D /* ViewController.swift */,
 				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
 				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
+				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
 				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
 				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
-				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
 			);
 			path = DashboardView;
 			sourceTree = "<group>";

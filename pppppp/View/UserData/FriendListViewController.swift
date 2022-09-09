@@ -111,6 +111,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 //FIXME: 並列処理にしたい
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
+            
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 //FIXME: 並列処理にしたい
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)

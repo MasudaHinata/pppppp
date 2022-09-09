@@ -106,7 +106,10 @@ class ChangeProfileViewController: UIViewController {
                         //FIXME: 並列処理にしたい
                         try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
                         try await FirebaseClient.shared.putNameFirestore(name: profileName)
-                        //FIXME: ここで呼びたくない
+//                        async let putImage: () = FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
+//                        async let putName: () = FirebaseClient.shared.putNameFirestore(name: profileName)
+//                        let set = try await (putImage, putName)
+//                        print(set)
                         let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
                         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                             self.myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String

@@ -46,29 +46,38 @@ final class Scorering {
         if judge == true {
             judge = false
             getPermissionHealthKit()
-            
+            //期間の指定
             let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
             let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
             let periodAve = HKQuery.predicateForSamples(withStart: startDateAve, end: endDateAve)
             let stepsTodayAve = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodAve)
             let sumOfStepsQueryAve = HKStatisticsQueryDescriptor(predicate: stepsTodayAve, options: .cumulativeSum)
-            
             let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: date))
             let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
             let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
             let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
             let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-            //１ヶ月の平均歩数を取得
+            
             let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-            //昨日の歩数を取得
-            let stepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+            let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+            
             var differencePoint = Int()
             var todayPoint = 0
-            differencePoint = Int(stepCount ?? 0) - Int(stepCountAve ?? 0 / 30)
-            switch differencePoint {
-            case (-1000..<600): todayPoint = 3
-            case (600...): todayPoint = Int(differencePoint / 150)
-            default: break
+            differencePoint = Int(yesterdayStepCount ?? 0) - Int(stepCountAve ?? 0 / 30)
+            
+            if Int(stepCountAve ?? 0 / 30) <= 7999 {
+                switch differencePoint {
+                case (120...15000): todayPoint = Int(differencePoint / 120)
+                case (12000...): todayPoint = 100
+                default: break
+                }
+            } else if Int(stepCountAve ?? 0 / 30) >= 8000 {
+                switch differencePoint {
+                case (Int(7500 - (stepCountAve ?? 0))..<1600): todayPoint = 15
+                case (1600...10000): todayPoint = Int(differencePoint / 100)
+                case (10000...): todayPoint = 100
+                default: break
+                }
             }
             try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
             UD.set(Date(), forKey: "today")

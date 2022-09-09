@@ -10,6 +10,7 @@ class DrawView: UIView {
     var imageButtons = [UIButton]()
     var pointLabels = [UILabel]()
     var friendListItems = [UserData]()
+//    var pointDataLists = [PointData]()
     
     override func draw(_ rect: CGRect) {
         for path in paths {
@@ -21,12 +22,15 @@ class DrawView: UIView {
         for label in pointLabels {
             label.removeFromSuperview()
         }
+        
+        //MARK: - x軸の計算
         var largestPoint = CGFloat(friendListItems.first?.point ?? 1)
         if friendListItems.first?.point == 0 {
             largestPoint = CGFloat(friendListItems.first?.point ?? 1) + 0.1
         } else if friendListItems.first?.point != 0 {
             largestPoint = CGFloat(friendListItems.first?.point ?? 1)
         }
+        
         for item in friendListItems {
             var itemPoint = CGFloat()
             if item.point == 0 {
@@ -36,7 +40,8 @@ class DrawView: UIView {
             }
             //TODO: 大差がついた時に見た目を良くする計算を考える
             let x = CGFloat(itemPoint / largestPoint * self.bounds.width * 0.8)
-            graph(vertex: CGPoint(x: x, y:CGFloat(Float.random(in: 350 ..< Float(self.bounds.height * 0.8)))), item: item)
+            let y = CGFloat(Float.random(in: 300 ..< Float(self.bounds.height * 0.8)))
+            graph(vertex: CGPoint(x: x, y: y), item: item)
         }
     }
     func configure(rect: CGRect, friendListItems: [UserData]) {
