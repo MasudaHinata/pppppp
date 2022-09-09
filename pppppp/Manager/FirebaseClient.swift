@@ -103,9 +103,9 @@ final class FirebaseClient {
             //FIXME: 並列処理にしたい
             try await FirebaseClient.shared.checkNameData()
             try await FirebaseClient.shared.checkIconData()
-//            async let checkName: () = FirebaseClient.shared.checkNameData()
-//            async let checkIconImageURL: () = FirebaseClient.shared.checkIconData()
-//            let set = try await (checkName,checkIconImageURL)
+            //            async let checkName: () = FirebaseClient.shared.checkNameData()
+            //            async let checkIconImageURL: () = FirebaseClient.shared.checkIconData()
+            //            let set = try await (checkName,checkIconImageURL)
             
             let myData = try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self)
             users.append(myData)
@@ -118,8 +118,21 @@ final class FirebaseClient {
     }
     //idで与えられたユーザーの累積ポイントを返す
     func getPointDataSum(id: String) async throws -> Int {
+        //        今日までの一週間
         let startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: date))
         let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startDate!)).whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
+        
+        //        月曜からの一週間
+        //        var aaa = Date()
+        //        let am = calendar.startOfDay(for: Date())
+        //        let weekNumber = calendar.component(.weekday, from: am)
+        //        if weekNumber == 1 {
+        //            aaa = calendar.date(byAdding: .day, value: -6, to: am)!
+        //        } else {
+        //            aaa = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
+        //        }
+        //        let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: aaa)).whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
+        
         var friends: [PointData] = []
         for friendData in snapshot.documents {
             friends.append(try friendData.data(as: PointData.self))
@@ -374,7 +387,7 @@ final class FirebaseClient {
             return
         }
         if UserDefaults.standard.object(forKey: "IconImageURL") == nil {
-           let querySnapShot = try await db.collection("User").document(userID).getDocument()
+            let querySnapShot = try await db.collection("User").document(userID).getDocument()
             let data = querySnapShot.data()!["IconImageURL"]!
             UserDefaults.standard.set(data, forKey: "IconImageURL")
         }
