@@ -11,6 +11,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     let calendar = Calendar.current
     var ActivityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet var stepsLabel: UILabel!
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var noFriendLabel: UILabel!
     @IBOutlet var noFriendButtonLayout: UIButton! {
@@ -75,6 +76,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         }
         let task = Task { [weak self] in
             do {
+                stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps())) steps"
                 try await FirebaseClient.shared.userAuthCheck()
                 let now = calendar.component(.hour, from: Date())
                 if now >= 19 {
@@ -125,7 +127,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         self.cancellables.insert(.init { task.cancel() })
     }
     
-   
     func showShareSheet() {
         let task = Task {
             do {

@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="F5.6-Regular.otf">
+            <string>F5.6-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Sanitas-->
         <scene sceneID="Le5-1j-13Q">
@@ -52,11 +57,22 @@
                                             <constraint firstItem="cqh-HD-xJI" firstAttribute="leading" secondItem="t8K-Wk-ggZ" secondAttribute="leading" id="w35-7G-Ldn"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lg3-2E-pJe">
+                                        <rect key="frame" x="398" y="148" width="0.0" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="DWQ-5I-vlI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="F5.6-Regular" family="F5.6" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerY" secondItem="ndx-UB-OiK" secondAttribute="centerY" id="5IY-wm-fKz"/>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerX" secondItem="ndx-UB-OiK" secondAttribute="centerX" id="McC-zI-ABK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lg3-2E-pJe" secondAttribute="trailing" constant="16" id="tnB-EX-1dO"/>
+                                    <constraint firstItem="Lg3-2E-pJe" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="top" constant="148" id="yH3-CF-1sO"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -82,11 +98,12 @@
                         <outlet property="noFriendButtonLayout" destination="AtT-8W-G7w" id="ZOP-VB-Wyp"/>
                         <outlet property="noFriendLabel" destination="cqh-HD-xJI" id="2Pn-8w-zKo"/>
                         <outlet property="noFriendView" destination="t8K-Wk-ggZ" id="ncv-vF-xMT"/>
+                        <outlet property="stepsLabel" destination="Lg3-2E-pJe" id="kIr-qk-Mfh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4959" y="-224"/>
+            <point key="canvasLocation" x="4957.971014492754" y="-224.33035714285714"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="Apd-pZ-okF">

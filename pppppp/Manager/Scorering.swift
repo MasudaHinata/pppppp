@@ -23,19 +23,29 @@ final class Scorering {
             if let error = error {
                 print("Scorering getPermission error:", error.localizedDescription)
                 return
-//            } else if success {
-//                print("success")
-//                let task = Task {
-//                    do {
-//                        try await self.createStepPoint()
-//                    }
-//                    catch {
-//                        print("getpermission error: \(error.localizedDescription)")
-//                    }
-//                }
+                //            } else if success {
+                //                print("success")
+                //                let task = Task {
+                //                    do {
+                //                        try await self.createStepPoint()
+                //                    }
+                //                    catch {
+                //                        print("getpermission error: \(error.localizedDescription)")
+                //                    }
+                //                }
                 //                cancellables.insert(.init { task.cancel() })
             }
         }
+    }
+    
+    func getTodaySteps() async throws -> Double {
+        getPermissionHealthKit()
+        let startDate = calendar.startOfDay(for: Date())
+        let period = HKQuery.predicateForSamples(withStart: startDate, end: Date())
+        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+        let todayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        return todayStepCount!
     }
     
     func createStepPoint() async throws {
