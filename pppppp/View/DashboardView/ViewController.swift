@@ -54,44 +54,9 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         ActivityIndicator.startAnimating()
-        var judge = Bool()
-        let now = calendar.component(.hour, from: Date())
-        if now >= 19 {
-            judge = true
-        }
-        else {
-            judge = false
-        }
-        if judge == true {
-            judge = false
-            var judgge = Bool()
-            if UD.object(forKey: "selfCheckJudge") != nil {
-                let past_day = UD.object(forKey: "selfCheckJudge") as! Date
-                let noww = calendar.component(.day, from: Date())
-                let past = calendar.component(.day, from: past_day)
-                if noww != past {
-                    judgge = true
-                } else {
-                    judgge = false
-                }
-            } else {
-                judgge = true
-                UD.set(Date(), forKey: "selfCheckJudge")
-            }
-            if judgge {
-                judgge = false
-                UD.set(Date(), forKey: "selfCheckJudge")
-                let storyboard = UIStoryboard(name: "SelfCheckView", bundle: nil)
-                let secondVC = storyboard.instantiateViewController(identifier: "SelfCheckViewController")
-                secondVC.modalPresentationStyle = .overFullScreen
-                secondVC.modalTransitionStyle = .crossDissolve
-                self.present(secondVC, animated: true)
-            }
-        }
-        
+
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
-            print("friendなし")
             noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
             noFriendView.layer.cornerRadius = 20
             noFriendView.layer.cornerCurve = .continuous
@@ -111,10 +76,20 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         let task = Task { [weak self] in
             do {
                 try await FirebaseClient.shared.userAuthCheck()
+                let now = calendar.component(.hour, from: Date())
+                if now >= 19 {
+                    let selfCheckJudge = try await FirebaseClient.shared.checkSelfCheck()
+                    if selfCheckJudge == true {
+                        let storyboard = UIStoryboard(name: "SelfCheckView", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "SelfCheckViewController")
+                        secondVC.modalPresentationStyle = .overFullScreen
+                        secondVC.modalTransitionStyle = .crossDissolve
+                        self!.present(secondVC, animated: true)
+                    }
+                }
                 self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
                 if friendDataList.count == 1 {
-                    print("friendなし")
                     noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
                     noFriendView.layer.cornerRadius = 20
                     noFriendView.layer.cornerCurve = .continuous
@@ -132,7 +107,10 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                     noFriendButtonLayout.configuration = configuration
                 }
                 ActivityIndicator.stopAnimating()
-                try await Scorering.shared.createStepPoint()
+                let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
+                if createStepPointJudge == true {
+                    try await Scorering.shared.createStepPoint()
+                }
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -189,7 +167,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         }
     }
     func notGetPoint() {
-        let alert = UIAlertController(title: "今日の獲得ポイントは0ptです", message: "がんばりましょう", preferredStyle: .alert)
+        let alert = UIAlertController(title: "今日の獲得ポイントは0ptです", message: "頑張りましょう", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
