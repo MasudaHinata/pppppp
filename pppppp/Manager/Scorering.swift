@@ -1,6 +1,8 @@
 import Foundation
 import HealthKit
+import Combine
 
+var cancellables = Set<AnyCancellable>()
 let myHealthStore = HKHealthStore()
 var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
 var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
@@ -23,11 +25,23 @@ final class Scorering {
             if let error = error {
                 print("Scorering getPermission error:", error.localizedDescription)
                 return
+//            } else if success {
+//                print("success")
+//                let task = Task {
+//                    do {
+//                        try await self.createStepPoint()
+//                    }
+//                    catch {
+//                        print("getpermission error: \(error.localizedDescription)")
+//                    }
+//                }
+//                cancellables.insert(.init { task.cancel() })
             }
         }
     }
     
     func createStepPoint() async throws {
+        
         var judge = Bool()
         if UD.object(forKey: "today") != nil {
             let past_day = UD.object(forKey: "today") as! Date
@@ -45,7 +59,6 @@ final class Scorering {
         }
         if judge == true {
             judge = false
-            getPermissionHealthKit()
             //期間の指定
             let endDateAve = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: date))
             let startDateAve = calendar.date(byAdding: .day, value: -32, to: calendar.startOfDay(for: date))
@@ -58,6 +71,7 @@ final class Scorering {
             let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
             let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
             
+            getPermissionHealthKit()
             let stepCountAve = try await sumOfStepsQueryAve.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
             let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
             

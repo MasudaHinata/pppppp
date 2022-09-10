@@ -36,6 +36,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPointDelegate = self
         FirebaseClient.shared.notChangeDelegate = self
