@@ -210,6 +210,7 @@ final class FirebaseClient {
         }
         let userID = user.uid
         if point == 0 {
+            try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date()), "activity": activity])
             self.putPointDelegate?.notGetPoint()
         } else {
             try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date()), "activity": activity])
@@ -394,6 +395,39 @@ final class FirebaseClient {
             let data = querySnapShot.data()!["IconImageURL"]!
             UserDefaults.standard.set(data, forKey: "IconImageURL")
         }
+    }
+    
+    func checkCreateStepPoint() async throws -> Bool {
+        let judge: Bool!
+        guard let user = Auth.auth().currentUser else {
+            try await  self.userAuthCheck()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        let startDate = calendar.startOfDay(for: Date())
+        let snapshot = try await db.collection("User").document(userID).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startDate)).whereField("activity", isEqualTo: "Steps").getDocuments()
+        guard snapshot.documents != [] else {
+            judge = true
+            return judge
+        }
+        judge = false
+        return judge
+    }
+    func checkSelfCheck() async throws -> Bool {
+        let judge: Bool!
+        guard let user = Auth.auth().currentUser else {
+            try await  self.userAuthCheck()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        let startDate = calendar.startOfDay(for: Date())
+        let snapshot = try await db.collection("User").document(userID).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startDate)).whereField("activity", isEqualTo: "SelfCheck").getDocuments()
+        guard snapshot.documents != [] else {
+            judge = true
+            return judge
+        }
+        judge = false
+        return judge
     }
     
     //MARK: - Firebase Authentication
