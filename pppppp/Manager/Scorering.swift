@@ -15,8 +15,6 @@ final class Scorering {
     let myHealthStore = HKHealthStore()
     let calendar = Calendar.current
     let date = Date()
-    var weight: Double!
-    var sanitasPoint = Int()
     let UD = UserDefaults.standard
     
     func getPermissionHealthKit() {
