@@ -77,7 +77,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         ActivityIndicator.startAnimating()
-
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
             noFriendView.backgroundColor = UIColor.init(hex: "443FA3")

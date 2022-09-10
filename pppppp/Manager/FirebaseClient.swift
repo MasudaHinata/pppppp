@@ -471,6 +471,8 @@ final class FirebaseClient {
     func logout() async throws {
         do {
             try firebaseAuth.signOut()
+            let appDomain = Bundle.main.bundleIdentifier
+            UserDefaults.standard.removePersistentDomain(forName: appDomain!)
             self.SettingAccountDelegate?.logoutCompleted()
         } catch let signOutError as NSError {
             print("FirebaseClient logout error:", signOutError)

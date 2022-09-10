@@ -45,7 +45,7 @@ final class Scorering {
         let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
         let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
         let todayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        return todayStepCount!
+        return todayStepCount ?? 0
     }
     
     func createStepPoint() async throws {
