@@ -86,12 +86,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sanitas" largeTitleDisplayMode="always" id="U5C-91-Dkl">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="list.bullet.rectangle.portrait" catalog="system" id="C3T-rf-C43">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="sendCollectionView" destination="C6X-Qw-bEO" id="Aw2-vc-wwK"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="list.bullet.rectangle.portrait" catalog="system" id="C3T-rf-C43">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="sendCollectionView" destination="C6X-Qw-bEO" id="Aw2-vc-wwK"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="arrow.clockwise" catalog="system" id="jcf-kH-ABd">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="reloadButton" destination="C6X-Qw-bEO" id="RNI-ge-YVa"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="mountainView" destination="ndx-UB-OiK" id="I8o-hY-XwT"/>
@@ -379,6 +387,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="list.bullet.rectangle.portrait" catalog="system" width="115" height="128"/>

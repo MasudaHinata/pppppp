@@ -35,6 +35,28 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         self.showDetailViewController(secondVC, sender: self)
     }
     
+    @IBAction func reloadButton() {
+        let task = Task { [weak self] in
+            do {
+                ActivityIndicator.startAnimating()
+                stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps())) steps"
+                self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
+                mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
+                ActivityIndicator.stopAnimating()
+            }
+            catch {
+                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self!.viewDidAppear(true)
+                }
+                alert.addAction(ok)
+                self!.present(alert, animated: true, completion: nil)
+                print("ViewContro reloadButton error:",error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
