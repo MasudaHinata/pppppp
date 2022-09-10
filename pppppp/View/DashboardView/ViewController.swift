@@ -57,7 +57,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
 
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
-            print("friendなし")
             noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
             noFriendView.layer.cornerRadius = 20
             noFriendView.layer.cornerCurve = .continuous
@@ -91,7 +90,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
                 if friendDataList.count == 1 {
-                    print("friendなし")
                     noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
                     noFriendView.layer.cornerRadius = 20
                     noFriendView.layer.cornerCurve = .continuous
