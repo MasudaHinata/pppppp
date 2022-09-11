@@ -48,10 +48,7 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
                     try await FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }
                 catch {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
+                    showAlert(title: "エラー", message: "\(error.localizedDescription)")
                     print("LoginView goButtonPressed error:", error.localizedDescription)
                 }
             }
@@ -80,22 +77,24 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
         self.view.endEditing(true)
     }
     
-    //MARK: - Setting Delegate
-    func loginHelperAlert() {
-        let alert = UIAlertController(title: "パスワードかメールアドレスが間違っています", message: "パスワードかメールアドレスを確認してください", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    func loginScene() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-        self.showDetailViewController(secondVC, sender: self)
-    }
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         present(alert, animated: true)
+    }
+    
+    //MARK: - Setting Delegate
+    func loginHelperAlert(message: String) {
+        let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func loginScene() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
 }
 

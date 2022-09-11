@@ -25,7 +25,7 @@ protocol FirebaseClientDeleteFriendDelegate: AnyObject {
 @MainActor
 protocol FirebaseClientAuthDelegate: AnyObject {
     func loginScene()
-    func loginHelperAlert()
+    func loginHelperAlert(message: String)
 }
 protocol FirebaseEmailVarifyDelegate: AnyObject {
     func emailVerifyRequiredAlert()
@@ -434,6 +434,7 @@ final class FirebaseClient {
         try await result.user.sendEmailVerification()
         self.createdAccountDelegate?.accountCreated()
     }
+    
     //ログインする
     @MainActor
     func login(email: String, password: String) async throws {
@@ -441,9 +442,11 @@ final class FirebaseClient {
         if authReault.user.isEmailVerified {
             self.loginDelegate?.loginScene()
         } else {
-            self.loginDelegate?.loginHelperAlert()
+            let message = "パスワードかメールアドレスが間違っています。"
+            self.loginDelegate?.loginHelperAlert(message: message)
         }
     }
+    
     //パスワードを再設定する
     func passwordResetting(email: String) async throws{
         try await firebaseAuth.sendPasswordReset(withEmail: email)
