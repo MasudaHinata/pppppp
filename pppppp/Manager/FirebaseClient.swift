@@ -429,7 +429,6 @@ final class FirebaseClient {
     //アカウントを作成する
     func createAccount(email: String, password: String) async throws {
         let result = try await firebaseAuth.createUser(withEmail: email, password: password)
-        
         try await result.user.sendEmailVerification()
         self.createdAccountDelegate?.accountCreated()
     }
