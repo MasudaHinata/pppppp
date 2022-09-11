@@ -5,6 +5,7 @@ import Combine
 class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     
     var cancellables = Set<AnyCancellable>()
+    var loginEmailAdress: String?
     
     @IBOutlet var loginLabel: UILabel!
     @IBOutlet var loginButtonLayout: UIButton! {
@@ -25,6 +26,7 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     
     @IBOutlet var emailTextField: UITextField! {
         didSet {
+            emailTextField.text = loginEmailAdress
             emailTextField.layer.cornerRadius = 24
             emailTextField.clipsToBounds = true
             emailTextField.layer.cornerCurve = .continuous
