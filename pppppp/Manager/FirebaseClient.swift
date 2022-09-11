@@ -372,6 +372,7 @@ final class FirebaseClient {
             let data = querySnapShot.data()!["name"]!
             UserDefaults.standard.set(data, forKey: "name")
         }
+        print("name")
     }
     //アイコンがあるかどうかの判定
     func checkIconData() async throws {
@@ -395,6 +396,7 @@ final class FirebaseClient {
             let data = querySnapShot.data()!["IconImageURL"]!
             UserDefaults.standard.set(data, forKey: "IconImageURL")
         }
+        print("Icon")
     }
     
     func checkCreateStepPoint() async throws -> Bool {
