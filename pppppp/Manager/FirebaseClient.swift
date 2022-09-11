@@ -173,10 +173,8 @@ final class FirebaseClient {
     }
     //友達の名前を取得する
     func getFriendNameData(friendId: String) async throws -> String {
-        print("getFriendNameData開始")
         let querySnapShot = try await db.collection("User").document(friendId).getDocument()
         let data = querySnapShot.data()!["name"]!
-        print("getFriendNameData完了")
         return data as! String
     }
     //友達のアイコンを取得する
@@ -285,7 +283,6 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        //FIXME: 並列処理にしたい
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayUnion([friendId])])
         try await db.collection("User").document(friendId).updateData(["FriendList": FieldValue.arrayUnion([userID])])
         self.addFriendDelegate?.addFriends()
@@ -297,7 +294,6 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        //FIXME: 並列処理にしたい
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayRemove([deleteFriendId])])
         try await db.collection("User").document(deleteFriendId).updateData(["FriendList": FieldValue.arrayRemove([userID])])
         await self.deletefriendDelegate?.friendDeleted()
