@@ -12,6 +12,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     var ActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var stepsLabel: UILabel!
+    @IBOutlet var todayPoint: UILabel!
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var noFriendLabel: UILabel!
     @IBOutlet var noFriendButtonLayout: UIButton! {
@@ -109,11 +110,10 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                         self!.present(secondVC, animated: true)
                     }
                 }
-                
-                let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
-                if createStepPointJudge == true {
-                    try await Scorering.shared.createStepPoint()
-                }
+//                let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
+//                if createStepPointJudge == true {
+//                    try await Scorering.shared.createStepPoint()
+//                }
                 
                 self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
@@ -136,6 +136,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 }
                 ActivityIndicator.stopAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
+                todayPoint.text = "\(Int(try await FirebaseClient.shared.getTodayPoint()))  pt"
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

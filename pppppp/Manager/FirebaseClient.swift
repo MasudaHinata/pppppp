@@ -146,6 +146,26 @@ final class FirebaseClient {
         let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         return try snapshot.documents.map { try $0.data(as: PointData.self) }
     }
+    //自分の今日のポイントを取得する
+    func getTodayPoint() async throws -> Int {
+        guard let user = Auth.auth().currentUser else {
+            try await self.userAuthCheck()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        let startDate = calendar.startOfDay(for: Date())
+        let snapshot = try await db.collection("User").document(userID).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startDate)).getDocuments()
+        var friends: [PointData] = []
+        for friendData in snapshot.documents {
+            friends.append(try friendData.data(as: PointData.self))
+        }
+        let pointArray = friends.map { $0.point }
+        var pointSum = 0
+        for point in pointArray {
+            pointSum += point ?? 0
+        }
+        return pointSum
+    }
     //自分の名前を取得する
     func getMyNameData() async throws -> String {
         guard let user = Auth.auth().currentUser else {

@@ -70,11 +70,22 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQt-cO-5FO">
+                                        <rect key="frame" x="398" y="180" width="0.0" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="uWJ-o3-e3T"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="F5.6-Regular" family="F5.6" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerY" secondItem="ndx-UB-OiK" secondAttribute="centerY" id="5IY-wm-fKz"/>
+                                    <constraint firstItem="hQt-cO-5FO" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="top" constant="180" id="76R-dz-emy"/>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerX" secondItem="ndx-UB-OiK" secondAttribute="centerX" id="McC-zI-ABK"/>
+                                    <constraint firstAttribute="trailing" secondItem="hQt-cO-5FO" secondAttribute="trailing" constant="16" id="p5V-ag-FWm"/>
                                     <constraint firstAttribute="trailing" secondItem="Lg3-2E-pJe" secondAttribute="trailing" constant="16" id="tnB-EX-1dO"/>
                                     <constraint firstItem="Lg3-2E-pJe" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="top" constant="148" id="yH3-CF-1sO"/>
                                 </constraints>
@@ -111,6 +122,7 @@
                         <outlet property="noFriendLabel" destination="cqh-HD-xJI" id="2Pn-8w-zKo"/>
                         <outlet property="noFriendView" destination="t8K-Wk-ggZ" id="ncv-vF-xMT"/>
                         <outlet property="stepsLabel" destination="Lg3-2E-pJe" id="kIr-qk-Mfh"/>
+                        <outlet property="todayPoint" destination="hQt-cO-5FO" id="bNG-yh-WZm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
