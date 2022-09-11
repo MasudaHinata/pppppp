@@ -103,28 +103,20 @@ class ChangeProfileViewController: UIViewController {
                 do {
                     profileName = (self.nameTextField.text!)
                     if profileName != "" {
-                        //FIXME: 並列処理にしたい
-                        try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
-                        try await FirebaseClient.shared.putNameFirestore(name: profileName)
-//                        async let putImage: () = FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
-//                        async let putName: () = FirebaseClient.shared.putNameFirestore(name: profileName)
-//                        let set = try await (putImage, putName)
-//                        print(set)
-                    
-                        let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                            self.myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-                        }
-                        alert.addAction(ok)
-                        self.present(alert, animated: true, completion: nil)
+                        //FIXME: ２つの処理が終わったらアラートを呼びたい
+                        async let putImage: () = FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
+                        async let putName: () = FirebaseClient.shared.putNameFirestore(name: profileName)
+                        let set = try await (putImage, putName)
                     } else {
                         try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
-                        //FIXME: ここで呼びたくない
-                        let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default)
-                        alert.addAction(ok)
-                        self.present(alert, animated: true, completion: nil)
                     }
+                    print("alert")
+                    let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
                 }
                 catch {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

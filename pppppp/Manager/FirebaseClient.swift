@@ -100,13 +100,8 @@ final class FirebaseClient {
         let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
         var users = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
         if includeMe == true {
-            //FIXME: 並列処理にしたい
             try await FirebaseClient.shared.checkNameData()
             try await FirebaseClient.shared.checkIconData()
-            //            async let checkName: () = FirebaseClient.shared.checkNameData()
-            //            async let checkIconImageURL: () = FirebaseClient.shared.checkIconData()
-            //            let set = try await (checkName,checkIconImageURL)
-            
             let myData = try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self)
             users.append(myData)
         }
@@ -178,14 +173,18 @@ final class FirebaseClient {
     }
     //友達の名前を取得する
     func getFriendNameData(friendId: String) async throws -> String {
+        print("getFriendNameData開始")
         let querySnapShot = try await db.collection("User").document(friendId).getDocument()
         let data = querySnapShot.data()!["name"]!
+        print("getFriendNameData完了")
         return data as! String
     }
     //友達のアイコンを取得する
-    func getFriendData(friendId: String) async throws -> URL {
+    func getFriendIconData(friendId: String) async throws -> URL {
+        print("getFriendIconData開始")
         let querySnapShot = try await db.collection("User").document(friendId).getDocument()
         let url = URL(string: querySnapShot.data()!["IconImageURL"]! as! String)!
+        print("getFriendIconData完了")
         return url
     }
     
@@ -219,6 +218,7 @@ final class FirebaseClient {
     }
     //画像をfirestore,firebaseStorageに保存
     func putFirebaseStorage(selectImage: UIImage) async throws {
+        print("アイコン保存開始")
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
@@ -239,7 +239,7 @@ final class FirebaseClient {
                                     let downloadUrlStr = downloadUrl.absoluteString
                                     try await self!.db.collection("User").document(userID).updateData(["IconImageURL": downloadUrlStr])
                                     UserDefaults.standard.set(downloadUrlStr, forKey: "IconImageURL")
-                                    print("アイコン")
+                                    print("アイコン保存完了")
                                 }
                                 catch {
                                     
@@ -258,6 +258,7 @@ final class FirebaseClient {
     }
     //名前をfirestoreに保存
     func putNameFirestore(name: String) async throws {
+        print("名前保存開始")
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
@@ -265,7 +266,7 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["name": name])
         UserDefaults.standard.set(name, forKey: "name")
-        print("名前")
+        print("名前保存完了")
     }
     //自己評価をfirebaseに保存
     func firebasePutSelfCheckLog(log: String) async throws {
@@ -372,7 +373,6 @@ final class FirebaseClient {
             let data = querySnapShot.data()!["name"]!
             UserDefaults.standard.set(data, forKey: "name")
         }
-        print("name")
     }
     //アイコンがあるかどうかの判定
     func checkIconData() async throws {
@@ -396,7 +396,6 @@ final class FirebaseClient {
             let data = querySnapShot.data()!["IconImageURL"]!
             UserDefaults.standard.set(data, forKey: "IconImageURL")
         }
-        print("Icon")
     }
     
     func checkCreateStepPoint() async throws -> Bool {

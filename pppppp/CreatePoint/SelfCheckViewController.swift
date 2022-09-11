@@ -111,7 +111,6 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         let task = Task {
             do {
                 try await FirebaseClient.shared.userAuthCheck()
-                //FIXME: 並列処理にしたい
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))

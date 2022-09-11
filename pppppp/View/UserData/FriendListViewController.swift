@@ -105,7 +105,6 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
         
         let task = Task {
             do {
-                //FIXME: 並列処理にしたい
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
                 myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
@@ -113,9 +112,9 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
             
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 //FIXME: 並列処理にしたい
+                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 pointDataList.reverse()
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
