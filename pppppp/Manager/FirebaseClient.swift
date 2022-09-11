@@ -273,8 +273,7 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: Locale(identifier: "en_US"))
-        try await db.collection("User").document(userID).collection("SelfCheckLog").document("\(formatter.string(from: date))").setData(["log": log, "date": Timestamp(date: Date())])
+        try await db.collection("User").document(userID).collection("SelfCheckLog").document().setData(["log": log, "date": Timestamp(date: Date())])
     }
     //友達を追加する
     func addFriend(friendId: String) async throws {

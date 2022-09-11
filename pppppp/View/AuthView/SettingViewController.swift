@@ -83,6 +83,8 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
     
     //MARK: - Setting Delegate
     func accountDeleted() {
+        let appDomain = Bundle.main.bundleIdentifier
+        UserDefaults.standard.removePersistentDomain(forName: appDomain!)
         let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
@@ -95,6 +97,8 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         }
     }
     func faildAcccountDelete() {
+        let appDomain = Bundle.main.bundleIdentifier
+        UserDefaults.standard.removePersistentDomain(forName: appDomain!)
         let alert = UIAlertController(title: "ログインしなおしてもう一度試してください", message: "データが全て消えている可能性があります", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
