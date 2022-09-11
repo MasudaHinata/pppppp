@@ -118,7 +118,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                     noFriendView.layer.cornerCurve = .continuous
                     var configuration = UIButton.Configuration.filled()
                     configuration.title = "Add Friend"
-                    configuration.baseBackgroundColor = UIColor.init(hex: "B8E9FF", alpha: 0.4)
+                    configuration.baseBackgroundColor = UIColor.init(hex: "443FA3")
                     configuration.imagePlacement = .trailing
                     configuration.showsActivityIndicator = false
                     configuration.imagePadding = 24
@@ -126,8 +126,8 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                     noFriendButtonLayout.layer.borderColor = UIColor.white.cgColor
                     noFriendButtonLayout.layer.cornerRadius = 12.0
                     noFriendButtonLayout.layer.cornerCurve = .continuous
-                    noFriendLabel.textColor = UIColor.white
                     noFriendButtonLayout.configuration = configuration
+                    noFriendLabel.textColor = UIColor.white
                 }
                 ActivityIndicator.stopAnimating()
                 let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
