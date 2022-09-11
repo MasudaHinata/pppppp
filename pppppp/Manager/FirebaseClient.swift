@@ -25,7 +25,6 @@ protocol FirebaseClientDeleteFriendDelegate: AnyObject {
 @MainActor
 protocol FirebaseClientAuthDelegate: AnyObject {
     func loginScene()
-    func loginHelperAlert(message: String)
 }
 protocol FirebaseEmailVarifyDelegate: AnyObject {
     func emailVerifyRequiredAlert()
@@ -441,9 +440,6 @@ final class FirebaseClient {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
         if authReault.user.isEmailVerified {
             self.loginDelegate?.loginScene()
-        } else {
-            let message = "パスワードかメールアドレスが間違っています。"
-            self.loginDelegate?.loginHelperAlert(message: message)
         }
     }
     

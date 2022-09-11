@@ -48,8 +48,17 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
                     try await FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }
                 catch {
-                    showAlert(title: "エラー", message: "\(error.localizedDescription)")
+                    //TODO: エラーコードでアラートを判別
                     print("LoginView goButtonPressed error:", error.localizedDescription)
+                    if error.localizedDescription == "The email address is badly formatted." {
+                        showAlert(title: "エラー", message: "メールアドレスの形式が間違っています")
+                    }  else if  error.localizedDescription == "There is no user record corresponding to this identifier. The user may have been deleted." {
+                        showAlert(title: "エラー", message: "アカウントが存在しません")
+                    }else if error.localizedDescription == "The password is invalid or the user does not have a password." {
+                        showAlert(title: "エラー", message: "パスワードが間違っているか無効です")
+                    } else {
+                        showAlert(title: "エラー", message: "\(error.localizedDescription)")
+                    }
                 }
             }
             cancellables.insert(.init { task.cancel() })
@@ -85,12 +94,6 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     }
     
     //MARK: - Setting Delegate
-    func loginHelperAlert(message: String) {
-        let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    
     func loginScene() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
