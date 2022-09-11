@@ -97,7 +97,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         }
         let task = Task { [weak self] in
             do {
-                stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps())) steps"
                 try await FirebaseClient.shared.userAuthCheck()
                 let now = calendar.component(.hour, from: Date())
                 if now >= 19 {
@@ -110,6 +109,12 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                         self!.present(secondVC, animated: true)
                     }
                 }
+                
+                let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
+                if createStepPointJudge == true {
+                    try await Scorering.shared.createStepPoint()
+                }
+                
                 self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
                 if friendDataList.count == 1 {
@@ -118,7 +123,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                     noFriendView.layer.cornerCurve = .continuous
                     var configuration = UIButton.Configuration.filled()
                     configuration.title = "Add Friend"
-                    configuration.baseBackgroundColor = UIColor.init(hex: "B8E9FF", alpha: 0.4)
+                    configuration.baseBackgroundColor = UIColor.init(hex: "443FA3")
                     configuration.imagePlacement = .trailing
                     configuration.showsActivityIndicator = false
                     configuration.imagePadding = 24
@@ -126,14 +131,11 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                     noFriendButtonLayout.layer.borderColor = UIColor.white.cgColor
                     noFriendButtonLayout.layer.cornerRadius = 12.0
                     noFriendButtonLayout.layer.cornerCurve = .continuous
-                    noFriendLabel.textColor = UIColor.white
                     noFriendButtonLayout.configuration = configuration
+                    noFriendLabel.textColor = UIColor.white
                 }
                 ActivityIndicator.stopAnimating()
-                let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
-                if createStepPointJudge == true {
-                    try await Scorering.shared.createStepPoint()
-                }
+                stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)

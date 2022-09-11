@@ -70,16 +70,11 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
-                //FIXME: 並列処理にしたい
-                friendIconView.kf.setImage(with: try await FirebaseClient.shared.getFriendData(friendId: friendId!))
+                friendIconView.kf.setImage(with: try await FirebaseClient.shared.getFriendIconData(friendId: friendId!))
                 friendLabel.text = try await  FirebaseClient.shared.getFriendNameData(friendId: friendId)
-//                async let setFriendIconImage = friendIconView.kf.setImage(with: FirebaseClient.shared.getFriendData(friendId: friendId!))
-//                async let setFriendName = FirebaseClient.shared.getFriendNameData(friendId: friendId)
-//                let set = try await (setFriendIconImage,setFriendName)
-//                friendLabel.text = set.1
             }
             catch {
-                
+                print("AddFriendView ViewAppear error:", error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
