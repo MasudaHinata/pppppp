@@ -25,19 +25,16 @@ class ChangeProfileViewController: UIViewController {
         }
     }
     
-    @IBOutlet var goButtonLayout: UIButton! {
+    @IBOutlet var changeProfileLayout: UIButton! {
         didSet {
             var configuration = UIButton.Configuration.filled()
-            configuration.title = "Save changes"
+            configuration.title = "Save Change"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
             configuration.imagePadding = 24
             configuration.cornerStyle = .capsule
-            goButtonLayout.configuration = configuration
-            goButtonLayout.layer.cornerRadius = 24
-            goButtonLayout.clipsToBounds = true
-            goButtonLayout.layer.cornerCurve = .continuous
+            changeProfileLayout.configuration = configuration
         }
     }
     
@@ -50,15 +47,56 @@ class ChangeProfileViewController: UIViewController {
     }
     
     @IBAction func changeProfile() {
-        var configuration = UIButton.Configuration.filled()
-        configuration.title = "Save..."
-        configuration.baseBackgroundColor = .init(hex: "92B2D3")
-        configuration.showsActivityIndicator = true
-        configuration.imagePadding = 24
-        configuration.imagePlacement = .trailing
-        configuration.cornerStyle = .capsule
-        goButtonLayout.configuration = configuration
-        saveProfile()
+        if let selectImage = myIconView.image {
+            let task = Task {
+                do {
+                    var configuration = UIButton.Configuration.filled()
+                    configuration.title = "Save Change..."
+                    configuration.baseBackgroundColor = .init(hex: "92B2D3")
+                    configuration.showsActivityIndicator = true
+                    configuration.imagePadding = 24
+                    configuration.imagePlacement = .trailing
+                    configuration.cornerStyle = .capsule
+                    changeProfileLayout.configuration = configuration
+                    profileName = (self.nameTextField.text!)
+                    if profileName != "" {
+                        async let putImage: () = FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
+                        async let putName: () = FirebaseClient.shared.putNameFirestore(name: profileName)
+                        let _ = try await (putName,putImage)
+                    } else {
+                        try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
+                    }
+                    let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        var configuration = UIButton.Configuration.gray()
+                        configuration.title = "Save Change"
+                        configuration.baseBackgroundColor = .init(hex: "92B2D3")
+                        configuration.cornerStyle = .capsule
+                        configuration.imagePlacement = .trailing
+                        configuration.baseForegroundColor = .white
+                        configuration.imagePadding = 24
+                        self.changeProfileLayout.configuration = configuration
+                        self.myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
+                catch {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
+                    print("ChangeProfile putFirebaseStorage error:", error.localizedDescription)
+                }
+            }
+            self.cancellables.insert(.init { task.cancel() })
+        } else {
+            let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            }
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     override func viewDidLoad() {
@@ -95,52 +133,6 @@ class ChangeProfileViewController: UIViewController {
             }
         }
         cancellables.insert(.init { task.cancel() })
-    }
-    
-    func saveProfile() {
-        if let selectImage = myIconView.image {
-            let task = Task {
-                do {
-                    profileName = (self.nameTextField.text!)
-                    if profileName != "" {
-                        //FIXME: ２つの処理が終わったらアラートを呼びたい
-                        try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
-                        try await FirebaseClient.shared.putNameFirestore(name: profileName)
-                    } else {
-                        try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
-                    }
-                    print("alert")
-                    let alert = UIAlertController(title: "完了", message: "変更しました", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        self.myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-                    }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
-                }
-                catch {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
-                    print("ChangeProfile putFirebaseStorage error:", error.localizedDescription)
-                }
-            }
-            self.cancellables.insert(.init { task.cancel() })
-        } else {
-            let alert = UIAlertController(title: "エラー", message: "画像を選択してください", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            }
-            alert.addAction(ok)
-            self.present(alert, animated: true, completion: nil)
-        }
-        var configuration = UIButton.Configuration.gray()
-        configuration.title = "Save changes"
-        configuration.baseBackgroundColor = .init(hex: "92B2D3")
-        configuration.cornerStyle = .capsule
-        configuration.imagePlacement = .trailing
-        configuration.baseForegroundColor = .white
-        configuration.imagePadding = 24
-        self.goButtonLayout.configuration = configuration
     }
     
     @objc func dismissKeyboard() {
