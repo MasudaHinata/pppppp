@@ -260,7 +260,7 @@ final class FirebaseClient {
                                     print("アイコン保存完了")
                                 }
                                 catch {
-                                    
+
                                 }
                             }
                             self.cancellables.insert(.init { task.cancel() })
@@ -272,6 +272,7 @@ final class FirebaseClient {
                     print("storageの保存が失敗")
                 }
             })
+            print("275")
         }
     }
     //名前をfirestoreに保存

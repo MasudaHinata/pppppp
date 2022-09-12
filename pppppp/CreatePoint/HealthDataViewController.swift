@@ -13,9 +13,26 @@ class HealthDataViewController: UIViewController{
     
     @IBOutlet var weightTextField: UITextField! {
         didSet {
-//            weightTextField.layer.cornerRadius = 24
-//            weightTextField.clipsToBounds = true
-//            weightTextField.layer.cornerCurve = .continuous
+            weightTextField.layer.cornerRadius = 24
+            weightTextField.clipsToBounds = true
+            weightTextField.layer.cornerCurve = .continuous
+        }
+    }
+    
+    @IBOutlet var backgroundView: UIView! {
+        didSet {
+            backgroundView.layer.cornerRadius = 36
+            backgroundView.clipsToBounds = true
+            backgroundView.layer.cornerCurve = .continuous
+            backgroundView.backgroundColor = UIColor.init(hex: "443FA3")
+        }
+    }
+    
+    @IBOutlet var writeWeightDataLayout: UIButton! {
+        didSet {
+            writeWeightDataLayout.layer.cornerRadius = 16
+            writeWeightDataLayout.clipsToBounds = true
+            writeWeightDataLayout.layer.cornerCurve = .continuous
         }
     }
     

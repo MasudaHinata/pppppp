@@ -104,9 +104,8 @@ class ChangeProfileViewController: UIViewController {
                     profileName = (self.nameTextField.text!)
                     if profileName != "" {
                         //FIXME: ２つの処理が終わったらアラートを呼びたい
-                        async let putImage: () = FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
-                        async let putName: () = FirebaseClient.shared.putNameFirestore(name: profileName)
-                        let set = try await (putImage, putName)
+                        try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
+                        try await FirebaseClient.shared.putNameFirestore(name: profileName)
                     } else {
                         try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
                     }

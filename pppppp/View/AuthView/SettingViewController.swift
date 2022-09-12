@@ -156,10 +156,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /* //FIXME: チェックマークが出ない
+        //FIXME: チェックマークが出ない
         let cell = tableView.cellForRow(at:indexPath)
         cell?.accessoryType = .checkmark
-         */
         
         if indexPath.row == 0 {
             UserDefaults.standard.set("今日までの一週間", forKey: "accumulationType")
