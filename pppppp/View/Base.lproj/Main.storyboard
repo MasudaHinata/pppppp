@@ -54,7 +54,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQt-cO-5FO">
-                                        <rect key="frame" x="374" y="180" width="0.0" height="32"/>
+                                        <rect key="frame" x="358" y="180" width="0.0" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="uWJ-o3-e3T"/>
                                         </constraints>
@@ -85,7 +85,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Hoz-mt-a2s" secondAttribute="bottom" constant="88" id="HPX-ND-ogn"/>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerX" secondItem="ndx-UB-OiK" secondAttribute="centerX" id="McC-zI-ABK"/>
                                     <constraint firstAttribute="trailing" secondItem="Hoz-mt-a2s" secondAttribute="trailing" constant="16" id="f6A-gO-DA4"/>
-                                    <constraint firstAttribute="trailing" secondItem="hQt-cO-5FO" secondAttribute="trailing" constant="40" id="p5V-ag-FWm"/>
+                                    <constraint firstAttribute="trailing" secondItem="hQt-cO-5FO" secondAttribute="trailing" constant="56" id="p5V-ag-FWm"/>
                                     <constraint firstAttribute="trailing" secondItem="Lg3-2E-pJe" secondAttribute="trailing" constant="16" id="tnB-EX-1dO"/>
                                     <constraint firstItem="Lg3-2E-pJe" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="top" constant="148" id="yH3-CF-1sO"/>
                                 </constraints>
