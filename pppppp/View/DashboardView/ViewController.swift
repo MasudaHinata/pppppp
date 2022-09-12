@@ -21,7 +21,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
             configuration.baseBackgroundColor = .clear
             configuration.showsActivityIndicator = false
             noFriendButtonLayout.configuration = configuration
-            noFriendButtonLayout.titleColor(for: .disabled)
         }
     }
     @IBOutlet var mountainView: DrawView!
@@ -30,9 +29,15 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         showShareSheet()
     }
     
-    @IBAction func sendCollectionView() {
+    @IBAction func sceneCollectionView() {
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
         let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
+        self.showDetailViewController(secondVC, sender: self)
+    }
+    
+    @IBAction func sceneHealthDataView() {
+        let storyboard = UIStoryboard(name: "HealthDataView", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
         self.showDetailViewController(secondVC, sender: self)
     }
     
@@ -60,7 +65,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPointDelegate = self
         FirebaseClient.shared.notChangeDelegate = self
