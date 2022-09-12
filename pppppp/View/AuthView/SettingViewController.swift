@@ -185,9 +185,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             }
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
-        }
-        print(UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間")
-        
+        }        
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
