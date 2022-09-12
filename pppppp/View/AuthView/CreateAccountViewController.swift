@@ -58,7 +58,7 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
                 }
                 catch {
                     print("Account checkPassword error:",error.localizedDescription)
-                    //TODO: エラーコードでエラー処理をする
+                    //TODO: エラーコードでアラートを判別
                     if error.localizedDescription == "An email address must be provided." {
                         showAlert(title: "エラー", message: "メールアドレスを入力してください")
                     } else if error.localizedDescription == "The email address is badly formatted." {

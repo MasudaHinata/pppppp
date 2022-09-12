@@ -19,24 +19,15 @@ final class Scorering {
     
     //HealthKitの許可を求める
     func getPermissionHealthKit() {
+        //TODO: 許可されてるかどうかを判定する
         myHealthStore.requestAuthorization(toShare: typeOfWrite, read: typeOfRead) { (success, error) in
             if let error = error {
                 print("Scorering getPermission error:", error.localizedDescription)
                 return
-                //            } else if success {
-                //                print("success")
-                //                let task = Task {
-                //                    do {
-                //                        try await self.createStepPoint()
-                //                    }
-                //                    catch {
-                //                        print("getpermission error: \(error.localizedDescription)")
-                //                    }
-                //                }
-                //                cancellables.insert(.init { task.cancel() })
             }
         }
     }
+    
     //今日の歩数を取得
     func getTodaySteps() async throws -> Double {
         getPermissionHealthKit()
@@ -47,6 +38,7 @@ final class Scorering {
         let todayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         return todayStepCount ?? 0
     }
+    
     //歩数ポイントを作成
     func createStepPoint() async throws {
         getPermissionHealthKit()
@@ -82,19 +74,7 @@ final class Scorering {
             default: break
             }
         }
-        
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
-    }
-
-    //体重を読み込み
-    func readWeight() async throws {
-        getPermissionHealthKit()
-        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
-        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
-        let results = try await descriptor.result(for: myHealthStore)
-        let doubleValues = results.map {
-            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
-        }
     }
     
     //体重をHealthKitに書き込み
@@ -104,4 +84,15 @@ final class Scorering {
         let myWeightData = HKQuantitySample(type: typeOfBodyMass, quantity: myWeight, start: Date(),end: Date())
         try await self.myHealthStore.save(myWeightData)
     }
+    
+    //    //体重を読み込み
+    //    func readWeight() async throws {
+    //        getPermissionHealthKit()
+    //        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
+    //        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
+    //        let results = try await descriptor.result(for: myHealthStore)
+    //        let doubleValues = results.map {
+    //            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
+    //        }
+    //    }
 }
