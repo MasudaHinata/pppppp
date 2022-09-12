@@ -148,14 +148,15 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectedBackgroundView = cellBackgroundView
         cell.accessoryType = .none
         
+        let accumulationType = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
         if indexPath.row == 0 {
             cell.selectLabel.text = "今日までの一週間"
-            if UserDefaults.standard.object(forKey: "accumulationType") as! String == "今日までの一週間" {
+            if accumulationType as! String == "今日までの一週間" {
                 cell.accessoryType = .checkmark
             }
         } else if indexPath.row == 1 {
             cell.selectLabel.text = "月曜始まり"
-            if UserDefaults.standard.object(forKey: "accumulationType") as! String == "月曜始まり" {
+            if accumulationType as! String == "月曜始まり" {
                 cell.accessoryType = .checkmark
             }
         }
@@ -185,7 +186,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             }
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
-        }        
+        }
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
