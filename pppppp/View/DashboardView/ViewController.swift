@@ -137,9 +137,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 ActivityIndicator.stopAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
                 todayPoint.text = "\(Int(try await FirebaseClient.shared.getTodayPoint()))  pt"
-                
-            
-                
             }
             catch {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
