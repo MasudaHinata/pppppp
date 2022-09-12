@@ -10,7 +10,6 @@ class DrawView: UIView {
     var imageButtons = [UIButton]()
     var pointLabels = [UILabel]()
     var friendListItems = [UserData]()
-//    var pointDataLists = [PointData]()
     
     override func draw(_ rect: CGRect) {
         for path in paths {
