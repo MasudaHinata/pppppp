@@ -15,19 +15,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     @IBOutlet var todayPoint: UILabel!
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var noFriendLabel: UILabel!
-    @IBOutlet var noFriendButtonLayout: UIButton! {
-        didSet {
-            var configuration = UIButton.Configuration.filled()
-            configuration.baseBackgroundColor = .clear
-            configuration.showsActivityIndicator = false
-            noFriendButtonLayout.configuration = configuration
-        }
-    }
     @IBOutlet var mountainView: DrawView!
-    
-    @IBAction func noFriendButton() {
-        showShareSheet()
-    }
     
     @IBAction func sceneCollectionView() {
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
@@ -87,18 +75,17 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
             noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
             noFriendView.layer.cornerRadius = 20
             noFriendView.layer.cornerCurve = .continuous
-            var configuration = UIButton.Configuration.filled()
-            configuration.title = "Add Friend"
-            configuration.baseBackgroundColor = UIColor.init(hex: "B8E9FF", alpha: 0.4)
-            configuration.imagePlacement = .trailing
-            configuration.showsActivityIndicator = false
-            configuration.imagePadding = 24
-            noFriendButtonLayout.layer.borderWidth = 4.0
-            noFriendButtonLayout.layer.borderColor = UIColor.white.cgColor
-            noFriendButtonLayout.layer.cornerRadius = 12.0
-            noFriendButtonLayout.layer.cornerCurve = .continuous
             noFriendLabel.textColor = UIColor.white
-            noFriendButtonLayout.configuration = configuration
+            let button = UIButton()
+            button.frame = CGRect(x: self.view.frame.width / 3, y: self.view.frame.height / 1.9, width: 128, height: 56)
+            button.setTitle("Add Freind!", for:UIControl.State.normal)
+            button.titleLabel?.font =  UIFont.systemFont(ofSize: 20, weight: .semibold)
+            button.setTitleColor(UIColor.white, for: .normal)
+            button.layer.borderColor = CGColor.init(red: 255, green: 255, blue: 255, alpha: 1)
+            button.layer.borderWidth = 4
+            button.layer.cornerRadius = 25
+            button.addTarget(self, action: #selector(self.tapButton(_:)), for: .touchUpInside)
+            self.view.addSubview(button)
         }
         let task = Task { [weak self] in
             do {
@@ -125,18 +112,17 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                     noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
                     noFriendView.layer.cornerRadius = 20
                     noFriendView.layer.cornerCurve = .continuous
-                    var configuration = UIButton.Configuration.filled()
-                    configuration.title = "Add Friend"
-                    configuration.baseBackgroundColor = UIColor.init(hex: "443FA3")
-                    configuration.imagePlacement = .trailing
-                    configuration.showsActivityIndicator = false
-                    configuration.imagePadding = 24
-                    noFriendButtonLayout.layer.borderWidth = 4.0
-                    noFriendButtonLayout.layer.borderColor = UIColor.white.cgColor
-                    noFriendButtonLayout.layer.cornerRadius = 12.0
-                    noFriendButtonLayout.layer.cornerCurve = .continuous
-                    noFriendButtonLayout.configuration = configuration
                     noFriendLabel.textColor = UIColor.white
+                    let button = UIButton()
+                    button.frame = CGRect(x: self!.view.frame.width / 3, y: self!.view.frame.height / 1.9, width: 128, height: 56)
+                    button.setTitle("Add Freind!", for:UIControl.State.normal)
+                    button.titleLabel?.font =  UIFont.systemFont(ofSize: 20, weight: .semibold)
+                    button.setTitleColor(UIColor.white, for: .normal)
+                    button.layer.borderColor = CGColor.init(red: 255, green: 255, blue: 255, alpha: 1)
+                    button.layer.borderWidth = 4
+                    button.layer.cornerRadius = 25
+                    button.addTarget(self, action: #selector(self?.tapButton(_:)), for: .touchUpInside)
+                    self!.view.addSubview(button)
                 }
                 ActivityIndicator.stopAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
@@ -155,7 +141,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
         self.cancellables.insert(.init { task.cancel() })
     }
     
-    func showShareSheet() {
+    @objc func tapButton(_ sender: UIButton) {
         let task = Task {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
