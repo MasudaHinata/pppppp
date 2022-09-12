@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21169.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -53,15 +53,8 @@
                                     <action selector="goButtonPressed" destination="j38-ue-eF5" eventType="touchUpInside" id="YNB-os-ETd"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQ2-9i-BUs">
-                                <rect key="frame" x="32" y="560" width="350" height="48"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="8w4-Ar-va3"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" alpha="0.64999997615814209" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZV-NE-UkS">
-                                <rect key="frame" x="109.5" y="628" width="195" height="41"/>
+                                <rect key="frame" x="109.5" y="560" width="195" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="CX3-NT-Ury"/>
                                 </constraints>
@@ -82,24 +75,20 @@
                             <constraint firstItem="1iO-s8-HTc" firstAttribute="centerX" secondItem="Wev-PF-J9D" secondAttribute="centerX" id="9Pp-Pw-W6I"/>
                             <constraint firstItem="jTm-R9-yn1" firstAttribute="leading" secondItem="dar-mQ-isV" secondAttribute="leading" constant="32" id="9XI-Sj-7LX"/>
                             <constraint firstItem="WcI-WB-yXS" firstAttribute="centerX" secondItem="Wev-PF-J9D" secondAttribute="centerX" id="AnK-ER-jcO"/>
-                            <constraint firstItem="nZV-NE-UkS" firstAttribute="top" secondItem="qQ2-9i-BUs" secondAttribute="bottom" constant="20" id="Biz-SG-GaK"/>
-                            <constraint firstItem="dar-mQ-isV" firstAttribute="trailing" secondItem="qQ2-9i-BUs" secondAttribute="trailing" constant="32" id="FDs-cy-An8"/>
                             <constraint firstItem="dar-mQ-isV" firstAttribute="trailing" secondItem="jTm-R9-yn1" secondAttribute="trailing" constant="32" id="Kly-XN-EcL"/>
                             <constraint firstItem="WcI-WB-yXS" firstAttribute="top" secondItem="1iO-s8-HTc" secondAttribute="bottom" constant="25" id="MOL-EH-Wen"/>
                             <constraint firstItem="jTm-R9-yn1" firstAttribute="top" secondItem="WcI-WB-yXS" secondAttribute="bottom" constant="25" id="S7y-BH-Tqg"/>
                             <constraint firstItem="nZV-NE-UkS" firstAttribute="centerX" secondItem="Wev-PF-J9D" secondAttribute="centerX" id="SqE-xO-OxR"/>
                             <constraint firstItem="Ilx-46-FQq" firstAttribute="leading" secondItem="dar-mQ-isV" secondAttribute="leading" constant="32" id="VUk-ge-uc2"/>
-                            <constraint firstItem="qQ2-9i-BUs" firstAttribute="leading" secondItem="dar-mQ-isV" secondAttribute="leading" constant="32" id="VWD-bP-2eW"/>
                             <constraint firstItem="Ilx-46-FQq" firstAttribute="centerX" secondItem="Wev-PF-J9D" secondAttribute="centerX" id="Vvm-Yi-s1c"/>
+                            <constraint firstItem="nZV-NE-UkS" firstAttribute="top" secondItem="Ilx-46-FQq" secondAttribute="bottom" constant="20" id="cX3-Yl-SPc"/>
                             <constraint firstItem="Ilx-46-FQq" firstAttribute="top" secondItem="jTm-R9-yn1" secondAttribute="bottom" constant="20" id="gkf-yv-h0K"/>
                             <constraint firstItem="WcI-WB-yXS" firstAttribute="leading" secondItem="dar-mQ-isV" secondAttribute="leading" constant="32" id="pvN-9h-RF2"/>
                             <constraint firstItem="dar-mQ-isV" firstAttribute="trailing" secondItem="Ilx-46-FQq" secondAttribute="trailing" constant="32" id="tWs-yo-I7O"/>
                             <constraint firstItem="jTm-R9-yn1" firstAttribute="centerY" secondItem="Wev-PF-J9D" secondAttribute="centerY" id="xAE-2U-cpB"/>
-                            <constraint firstItem="qQ2-9i-BUs" firstAttribute="top" secondItem="Ilx-46-FQq" secondAttribute="bottom" constant="20" id="xyk-ck-hAe"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="buttonView" destination="qQ2-9i-BUs" id="vA6-UF-cCc"/>
                         <outlet property="emailTextField" destination="WcI-WB-yXS" id="iuy-T2-rqd"/>
                         <outlet property="loginButtonLayout" destination="Ilx-46-FQq" id="fo0-f9-B9R"/>
                         <outlet property="loginLabel" destination="1iO-s8-HTc" id="iD2-wN-wKi"/>
@@ -111,9 +100,4 @@
             <point key="canvasLocation" x="1579.7101449275362" y="-224.33035714285714"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

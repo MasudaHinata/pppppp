@@ -1,6 +1,6 @@
 import UIKit
 import Combine
-import AuthenticationServices
+//import AuthenticationServices
 
 @MainActor
 class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
@@ -8,19 +8,16 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     var cancellables = Set<AnyCancellable>()
     var loginEmailAdress: String?
     
-    @IBOutlet var buttonView: UIView!
+//    @IBOutlet var buttonView: UIView!
     @IBOutlet var loginLabel: UILabel!
     @IBOutlet var loginButtonLayout: UIButton! {
         didSet {
-            loginButtonLayout.layer.cornerRadius = 24
-            loginButtonLayout.clipsToBounds = true
-            loginButtonLayout.layer.cornerCurve = .continuous
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Sign In"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
-            configuration.imagePadding = 24
+            configuration.imagePadding = 16
             configuration.cornerStyle = .capsule
             loginButtonLayout.configuration = configuration
         }
@@ -77,12 +74,10 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        buttonView.addSubview(signinButton)
-        signinButton.fitConstraintsContentView(view: buttonView)
+//        buttonView.addSubview(signinButton)
+//        signinButton.fitConstraintsContentView(view: buttonView)
         
         FirebaseClient.shared.loginDelegate = self
-        
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
@@ -101,30 +96,30 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
         present(alert, animated: true)
     }
     
-    private lazy var signinButton: ASAuthorizationAppleIDButton = {
-        let button = ASAuthorizationAppleIDButton(
-            type: .default,
-            style: .white
-        )
-        button.addTarget(
-            self,
-            action: #selector(handleSignin),
-            for: .touchUpInside
-        )
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.bounds = CGRect(x: 0, y: 0, width: 240, height: 48)
-        return button
-    }()
-    
-    @objc private func handleSignin() {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.email]
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
-    }
+//    private lazy var signinButton: ASAuthorizationAppleIDButton = {
+//        let button = ASAuthorizationAppleIDButton(
+//            type: .default,
+//            style: .white
+//        )
+//        button.addTarget(
+//            self,
+//            action: #selector(handleSignin),
+//            for: .touchUpInside
+//        )
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.bounds = CGRect(x: 0, y: 0, width: 240, height: 48)
+//        return button
+//    }()
+//
+//    @objc private func handleSignin() {
+//        let appleIDProvider = ASAuthorizationAppleIDProvider()
+//        let request = appleIDProvider.createRequest()
+//        request.requestedScopes = [.email]
+//        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+//        authorizationController.delegate = self
+//        authorizationController.presentationContextProvider = self
+//        authorizationController.performRequests()
+//    }
     
     //MARK: - Setting Delegate
     func loginScene() {
@@ -143,44 +138,47 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
-extension LoginViewController: ASAuthorizationControllerDelegate {
-    func authorizationController(
-        controller: ASAuthorizationController,
-        didCompleteWithAuthorization authorization: ASAuthorization
-    ) {
-        // AppleIDログイン完了時にはしる処理。サーバにAuth情報を保存したりする。
-    }
-    
-    func authorizationController(
-        controller: ASAuthorizationController,
-        didCompleteWithError error: Error
-    ) {
-        let alert = UIAlertController(
-            title: "Error",
-            message: error.localizedDescription,
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(
-            title: "OK",
-            style: .default)
-        )
-    }
-}
-
-extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return self.view.window!
-    }
-}
-extension UIView {
-    func fitConstraintsContentView(view: UIView? = nil) {
-        if let contentView = view == nil ? subviews.first : view {
-            NSLayoutConstraint.activate([
-                contentView.topAnchor.constraint(equalTo: self.topAnchor),
-                contentView.leftAnchor.constraint(equalTo: self.leftAnchor),
-                contentView.rightAnchor.constraint(equalTo: self.rightAnchor),
-                contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-            ])
-        }
-    }
-}
+//extension LoginViewController: ASAuthorizationControllerDelegate {
+//    func authorizationController(
+//        controller: ASAuthorizationController,
+//        didCompleteWithAuthorization authorization: ASAuthorization
+//    ) {
+//        // AppleIDログイン完了時にはしる処理。サーバにAuth情報を保存したりする。
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+//        self.showDetailViewController(secondVC, sender: self)
+//    }
+//
+//    func authorizationController(
+//        controller: ASAuthorizationController,
+//        didCompleteWithError error: Error
+//    ) {
+//        let alert = UIAlertController(
+//            title: "Error",
+//            message: error.localizedDescription,
+//            preferredStyle: .alert
+//        )
+//        alert.addAction(UIAlertAction(
+//            title: "OK",
+//            style: .default)
+//        )
+//    }
+//}
+//
+//extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+//    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+//        return self.view.window!
+//    }
+//}
+//extension UIView {
+//    func fitConstraintsContentView(view: UIView? = nil) {
+//        if let contentView = view == nil ? subviews.first : view {
+//            NSLayoutConstraint.activate([
+//                contentView.topAnchor.constraint(equalTo: self.topAnchor),
+//                contentView.leftAnchor.constraint(equalTo: self.leftAnchor),
+//                contentView.rightAnchor.constraint(equalTo: self.rightAnchor),
+//                contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+//            ])
+//        }
+//    }
+//}
