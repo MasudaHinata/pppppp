@@ -21,6 +21,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
             
             let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     try await FirebaseClient.shared.logout()
                 }
@@ -28,7 +29,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .default)
                     alert.addAction(action)
-                    self!.present(alert, animated: true)
+                    self.present(alert, animated: true)
                     print("Change Logout error", error.localizedDescription)
                 }
             }
@@ -46,6 +47,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
             
             let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     try await FirebaseClient.shared.accountDelete()
                 }
@@ -55,10 +57,10 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
                         let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
-                        self?.showDetailViewController(secondVC, sender: self)
+                        self.showDetailViewController(secondVC, sender: self)
                     }
                     alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             cancellables.insert(.init { task.cancel() })

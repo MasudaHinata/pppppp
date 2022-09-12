@@ -253,8 +253,9 @@ final class FirebaseClient {
                         if let downloadUrl = url {
                             let task = Task { [weak self] in
                                 do {
+                                    guard let self = self else { return }
                                     let downloadUrlStr = downloadUrl.absoluteString
-                                    try await self!.db.collection("User").document(userID).updateData(["IconImageURL": downloadUrlStr])
+                                    try await self.db.collection("User").document(userID).updateData(["IconImageURL": downloadUrlStr])
                                     UserDefaults.standard.set(downloadUrlStr, forKey: "IconImageURL")
                                     print("アイコン保存完了")
                                 }

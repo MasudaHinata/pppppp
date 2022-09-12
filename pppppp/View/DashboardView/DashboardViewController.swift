@@ -44,13 +44,20 @@ class DashboardViewController: UIViewController {
                 ActivityIndicator.stopAnimating()
             }
             catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.viewDidLoad()
-                }
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
                 print("CollectionViewContro ViewDid error:",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.viewDidLoad()
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -58,17 +65,26 @@ class DashboardViewController: UIViewController {
     //引っ張ってcollectionViewの更新する
     func refresh() {
         let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
-                guard let self = self else { return }
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 self.collectionView.reloadData()
             }
             catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(action)
-                self!.present(alert, animated: true)
                 print("ViewContro refresh error",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.viewDidLoad()
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
         cancellables.insert(.init { task.cancel() })

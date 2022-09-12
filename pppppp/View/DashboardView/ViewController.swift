@@ -31,21 +31,29 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     
     @IBAction func reloadButton() {
         let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 ActivityIndicator.startAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps())) steps"
-                self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-                mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
+                self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
+                mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 ActivityIndicator.stopAnimating()
             }
             catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self!.viewDidAppear(true)
-                }
-                alert.addAction(ok)
-                self!.present(alert, animated: true, completion: nil)
                 print("ViewContro reloadButton error:",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.viewDidAppear(true)
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -88,6 +96,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
             self.view.addSubview(button)
         }
         let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.userAuthCheck()
                 let now = calendar.component(.hour, from: Date())
@@ -98,7 +107,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                         let secondVC = storyboard.instantiateViewController(identifier: "SelfCheckViewController")
                         secondVC.modalPresentationStyle = .overFullScreen
                         secondVC.modalTransitionStyle = .crossDissolve
-                        self!.present(secondVC, animated: true)
+                        self.present(secondVC, animated: true)
                     }
                 }
                 let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
@@ -106,36 +115,44 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                     try await Scorering.shared.createStepPoint()
                 }
                 
-                self!.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-                mountainView.configure(rect: self!.view.bounds, friendListItems: self!.friendDataList)
+                self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
+                mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 if friendDataList.count == 1 {
                     noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
                     noFriendView.layer.cornerRadius = 20
                     noFriendView.layer.cornerCurve = .continuous
                     noFriendLabel.textColor = UIColor.white
                     let button = UIButton()
-                    button.frame = CGRect(x: self!.view.frame.width / 3, y: self!.view.frame.height / 1.9, width: 128, height: 56)
+                    button.frame = CGRect(x: self.view.frame.width / 3, y: self.view.frame.height / 1.9, width: 128, height: 56)
                     button.setTitle("Add Freind!", for:UIControl.State.normal)
                     button.titleLabel?.font =  UIFont.systemFont(ofSize: 20, weight: .semibold)
                     button.setTitleColor(UIColor.white, for: .normal)
                     button.layer.borderColor = CGColor.init(red: 255, green: 255, blue: 255, alpha: 1)
                     button.layer.borderWidth = 4
                     button.layer.cornerRadius = 25
-                    button.addTarget(self, action: #selector(self?.tapButton(_:)), for: .touchUpInside)
-                    self!.view.addSubview(button)
+                    button.addTarget(self, action: #selector(self.tapButton(_:)), for: .touchUpInside)
+                    self.view.addSubview(button)
                 }
                 ActivityIndicator.stopAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
                 todayPoint.text = "\(Int(try await FirebaseClient.shared.getTodayPoint()))  pt"
             }
             catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self!.viewDidAppear(true)
-                }
-                alert.addAction(ok)
-                self!.present(alert, animated: true, completion: nil)
                 print("ViewContro ViewAppear error:",error.localizedDescription)
+                if error.localizedDescription == "Authorization not determined" {
+                } else if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.viewDidAppear(true)
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
         self.cancellables.insert(.init { task.cancel() })
@@ -149,13 +166,20 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
                 present(activityVC, animated: true, completion: nil)
             } catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.viewDidLoad()
-                }
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
                 print("FriendListViewContro showShareSheet:",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.viewDidAppear(true)
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
         cancellables.insert(.init { task.cancel() })

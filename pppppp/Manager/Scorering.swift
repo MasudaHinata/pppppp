@@ -2,11 +2,9 @@ import Foundation
 import HealthKit
 import Combine
 
-var cancellables = Set<AnyCancellable>()
-let myHealthStore = HKHealthStore()
 var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
 var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
-var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
+//var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
 
 final class Scorering {
     static let shared = Scorering()
@@ -14,11 +12,14 @@ final class Scorering {
     
     let myHealthStore = HKHealthStore()
     let calendar = Calendar.current
-    let UD = UserDefaults.standard
+    var cancellables = Set<AnyCancellable>()
     
+    let typeOfWrite = Set([typeOfBodyMass])
+    let typeOfRead = Set([typeOfBodyMass, typeOfStepCount])
+    
+    //HealthKitの許可を求める
     func getPermissionHealthKit() {
-        let typeOfRead = Set([typeOfStepCount])
-        myHealthStore.requestAuthorization(toShare: nil, read: typeOfRead) { (success, error) in
+        myHealthStore.requestAuthorization(toShare: typeOfWrite, read: typeOfRead) { (success, error) in
             if let error = error {
                 print("Scorering getPermission error:", error.localizedDescription)
                 return
@@ -36,7 +37,7 @@ final class Scorering {
             }
         }
     }
-    
+    //今日の歩数を取得
     func getTodaySteps() async throws -> Double {
         getPermissionHealthKit()
         let startDate = calendar.startOfDay(for: Date())
@@ -46,7 +47,7 @@ final class Scorering {
         let todayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         return todayStepCount ?? 0
     }
-    
+    //歩数ポイントを作成
     func createStepPoint() async throws {
         getPermissionHealthKit()
         let endDateMonth = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
@@ -83,5 +84,24 @@ final class Scorering {
         }
         
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
+    }
+
+    //体重を読み込み
+    func readWeight() async throws {
+        getPermissionHealthKit()
+        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
+        let results = try await descriptor.result(for: myHealthStore)
+        let doubleValues = results.map {
+            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
+        }
+    }
+    
+    //体重をHealthKitに書き込み
+    func writeWeight(weight: Double) async throws {
+        getPermissionHealthKit()
+        let myWeight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
+        let myWeightData = HKQuantitySample(type: typeOfBodyMass, quantity: myWeight, start: Date(),end: Date())
+        try await self.myHealthStore.save(myWeightData)
     }
 }
