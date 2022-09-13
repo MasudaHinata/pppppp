@@ -10,6 +10,7 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     var cancellables = Set<AnyCancellable>()
     var loginEmailAdress: String?
     
+    @IBOutlet var AppleLoginButtonView: UIView!
     @IBOutlet var loginLabel: UILabel!
     @IBOutlet var loginButtonLayout: UIButton! {
         didSet {
@@ -19,7 +20,6 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
             configuration.imagePadding = 16
-            configuration.cornerStyle = .capsule
             loginButtonLayout.configuration = configuration
         }
     }
@@ -27,7 +27,7 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     @IBOutlet var emailTextField: UITextField! {
         didSet {
             emailTextField.text = loginEmailAdress
-            emailTextField.layer.cornerRadius = 24
+            emailTextField.layer.cornerRadius = 8
             emailTextField.clipsToBounds = true
             emailTextField.layer.cornerCurve = .continuous
         }
@@ -35,7 +35,7 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     
     @IBOutlet var passwordTextField: UITextField! {
         didSet {
-            passwordTextField.layer.cornerRadius = 24
+            passwordTextField.layer.cornerRadius = 8
             passwordTextField.clipsToBounds = true
             passwordTextField.layer.cornerCurve = .continuous
         }
@@ -76,8 +76,8 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        buttonView.addSubview(signinButton)
-        signinButton.fitConstraintsContentView(view: buttonView)
+        AppleLoginButtonView.addSubview(signinButton)
+        signinButton.fitConstraintsContentView(view: AppleLoginButtonView)
         
         FirebaseClient.shared.loginDelegate = self
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -98,7 +98,7 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
         present(alert, animated: true)
     }
     
-    @IBOutlet var buttonView: UIView!
+    //MARK: - AppleLogin
     // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
     private func randomNonceString(length: Int = 32) -> String {
       precondition(length > 0)
@@ -130,9 +130,9 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
           }
         }
       }
-
       return result
     }
+    
     @available(iOS 13, *)
     private func sha256(_ input: String) -> String {
       let inputData = Data(input.utf8)
@@ -143,10 +143,8 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
 
       return hashString
     }
-
-    // Unhashed nonce.
+    
     fileprivate var currentNonce: String?
-
     @available(iOS 13, *)
     func startSignInWithAppleFlow() {
       let nonce = randomNonceString()
@@ -205,6 +203,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
+//MARK: - AppleLogin
 @available(iOS 13.0, *)
 extension LoginViewController: ASAuthorizationControllerDelegate {
 

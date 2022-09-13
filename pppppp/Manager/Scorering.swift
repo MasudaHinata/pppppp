@@ -62,15 +62,15 @@ final class Scorering {
         var todayPoint = 0
         if Int(monthStepCountAve) <= 7999 {
             switch differenceStep {
-            case (120...15000): todayPoint = Int(differenceStep / 120)
-            case (12000...): todayPoint = 100
+            case (120...9600): todayPoint = Int(differenceStep / 120)
+            case (9600...): todayPoint = 80
             default: break
             }
         } else if Int(monthStepCountAve) >= 8000 {
             switch differenceStep {
             case (Int(7500 - monthStepCountAve)..<1600): todayPoint = 15
-            case (1600...10000): todayPoint = Int(differenceStep / 100)
-            case (10000...): todayPoint = 100
+            case (1600...8000): todayPoint = Int(differenceStep / 100)
+            case (8000...): todayPoint = 80
             default: break
             }
         }

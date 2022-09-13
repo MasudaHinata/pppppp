@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iO-s8-HTc">
-                                <rect key="frame" x="166.5" y="287" width="81" height="39"/>
+                                <rect key="frame" x="166.5" y="292" width="81" height="39"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                 <color key="textColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your EmailAddress" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WcI-WB-yXS">
-                                <rect key="frame" x="32" y="351" width="350" height="48"/>
+                                <rect key="frame" x="32" y="356" width="350" height="48"/>
                                 <color key="backgroundColor" red="0.4823529412" green="0.50980392159999999" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="GbS-Ah-mjC"/>
@@ -87,7 +87,7 @@
                             <constraint firstItem="7jv-G8-ghH" firstAttribute="top" secondItem="Ilx-46-FQq" secondAttribute="bottom" constant="20" id="ER6-5U-hIN"/>
                             <constraint firstItem="dar-mQ-isV" firstAttribute="trailing" secondItem="jTm-R9-yn1" secondAttribute="trailing" constant="32" id="Kly-XN-EcL"/>
                             <constraint firstItem="WcI-WB-yXS" firstAttribute="top" secondItem="1iO-s8-HTc" secondAttribute="bottom" constant="25" id="MOL-EH-Wen"/>
-                            <constraint firstItem="jTm-R9-yn1" firstAttribute="top" secondItem="WcI-WB-yXS" secondAttribute="bottom" constant="25" id="S7y-BH-Tqg"/>
+                            <constraint firstItem="jTm-R9-yn1" firstAttribute="top" secondItem="WcI-WB-yXS" secondAttribute="bottom" constant="20" id="S7y-BH-Tqg"/>
                             <constraint firstItem="nZV-NE-UkS" firstAttribute="centerX" secondItem="Wev-PF-J9D" secondAttribute="centerX" id="SqE-xO-OxR"/>
                             <constraint firstItem="dar-mQ-isV" firstAttribute="trailing" secondItem="7jv-G8-ghH" secondAttribute="trailing" constant="32" id="UUI-hZ-jNa"/>
                             <constraint firstItem="Ilx-46-FQq" firstAttribute="leading" secondItem="dar-mQ-isV" secondAttribute="leading" constant="32" id="VUk-ge-uc2"/>
@@ -99,7 +99,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="buttonView" destination="7jv-G8-ghH" id="Akn-tJ-vTe"/>
+                        <outlet property="AppleLoginButtonView" destination="7jv-G8-ghH" id="Akn-tJ-vTe"/>
                         <outlet property="emailTextField" destination="WcI-WB-yXS" id="iuy-T2-rqd"/>
                         <outlet property="loginButtonLayout" destination="Ilx-46-FQq" id="fo0-f9-B9R"/>
                         <outlet property="loginLabel" destination="1iO-s8-HTc" id="iD2-wN-wKi"/>
