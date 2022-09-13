@@ -54,7 +54,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQt-cO-5FO">
-                                        <rect key="frame" x="358" y="180" width="0.0" height="32"/>
+                                        <rect key="frame" x="398" y="180" width="0.0" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="uWJ-o3-e3T"/>
                                         </constraints>
@@ -82,10 +82,10 @@
                                 <constraints>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerY" secondItem="ndx-UB-OiK" secondAttribute="centerY" id="5IY-wm-fKz"/>
                                     <constraint firstItem="hQt-cO-5FO" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="top" constant="180" id="76R-dz-emy"/>
-                                    <constraint firstAttribute="bottom" secondItem="Hoz-mt-a2s" secondAttribute="bottom" constant="88" id="HPX-ND-ogn"/>
+                                    <constraint firstAttribute="bottom" secondItem="Hoz-mt-a2s" secondAttribute="bottom" constant="88" id="APg-uN-e4V"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hoz-mt-a2s" secondAttribute="trailing" constant="16" id="EDr-VX-UVO"/>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerX" secondItem="ndx-UB-OiK" secondAttribute="centerX" id="McC-zI-ABK"/>
-                                    <constraint firstAttribute="trailing" secondItem="Hoz-mt-a2s" secondAttribute="trailing" constant="16" id="f6A-gO-DA4"/>
-                                    <constraint firstAttribute="trailing" secondItem="hQt-cO-5FO" secondAttribute="trailing" constant="56" id="p5V-ag-FWm"/>
+                                    <constraint firstAttribute="trailing" secondItem="hQt-cO-5FO" secondAttribute="trailing" constant="16" id="p5V-ag-FWm"/>
                                     <constraint firstAttribute="trailing" secondItem="Lg3-2E-pJe" secondAttribute="trailing" constant="16" id="tnB-EX-1dO"/>
                                     <constraint firstItem="Lg3-2E-pJe" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="top" constant="148" id="yH3-CF-1sO"/>
                                 </constraints>
@@ -120,8 +120,8 @@
                         <outlet property="mountainView" destination="ndx-UB-OiK" id="I8o-hY-XwT"/>
                         <outlet property="noFriendLabel" destination="cqh-HD-xJI" id="2Pn-8w-zKo"/>
                         <outlet property="noFriendView" destination="t8K-Wk-ggZ" id="ncv-vF-xMT"/>
-                        <outlet property="stepsLabel" destination="Lg3-2E-pJe" id="kIr-qk-Mfh"/>
-                        <outlet property="todayPoint" destination="hQt-cO-5FO" id="bNG-yh-WZm"/>
+                        <outlet property="stepsLabel" destination="Lg3-2E-pJe" id="o3f-BT-blv"/>
+                        <outlet property="totalPointLabel" destination="hQt-cO-5FO" id="h3K-rL-IvK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

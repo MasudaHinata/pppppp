@@ -12,7 +12,8 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     var ActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var stepsLabel: UILabel!
-    @IBOutlet var todayPoint: UILabel!
+    @IBOutlet var todayPointLabel: UILabel!
+    @IBOutlet var totalPointLabel: UILabel!
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var noFriendLabel: UILabel!
     @IBOutlet var mountainView: DrawView!
@@ -135,7 +136,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 }
                 ActivityIndicator.stopAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
-                todayPoint.text = "\(Int(try await FirebaseClient.shared.getTodayPoint()))  pt"
+                totalPointLabel.text = "Total  \(Int(try await FirebaseClient.shared.getTotalPoint()))  pt"
             }
             catch {
                 print("ViewContro ViewAppear error:",error.localizedDescription)
