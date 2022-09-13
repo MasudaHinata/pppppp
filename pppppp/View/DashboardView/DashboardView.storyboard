@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kmn-5t-LmO">
-                                <rect key="frame" x="0.0" y="16" width="414" height="846"/>
+                                <rect key="frame" x="0.0" y="32" width="414" height="830"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eHZ-SY-BGL">
                                     <size key="itemSize" width="128" height="128"/>
@@ -43,7 +43,7 @@
                             <constraint firstItem="1UF-Ca-TIR" firstAttribute="trailing" secondItem="kmn-5t-LmO" secondAttribute="trailing" id="DJR-rJ-WyD"/>
                             <constraint firstItem="kmn-5t-LmO" firstAttribute="leading" secondItem="1UF-Ca-TIR" secondAttribute="leading" id="HlA-2x-yML"/>
                             <constraint firstItem="1UF-Ca-TIR" firstAttribute="bottom" secondItem="kmn-5t-LmO" secondAttribute="bottom" id="sNJ-jn-Pzz"/>
-                            <constraint firstItem="kmn-5t-LmO" firstAttribute="top" secondItem="HSS-ki-FmB" secondAttribute="top" constant="16" id="t9f-Oj-vEL"/>
+                            <constraint firstItem="kmn-5t-LmO" firstAttribute="top" secondItem="HSS-ki-FmB" secondAttribute="top" constant="32" id="t9f-Oj-vEL"/>
                         </constraints>
                     </view>
                     <connections>
