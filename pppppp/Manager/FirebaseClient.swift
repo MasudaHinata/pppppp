@@ -146,15 +146,14 @@ final class FirebaseClient {
         let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         return try snapshot.documents.map { try $0.data(as: PointData.self) }
     }
-    //自分の今日のポイントを取得する
-    func getTodayPoint() async throws -> Int {
+    //自分の今までのポイントを取得する
+    func getTotalPoint() async throws -> Int{
         guard let user = Auth.auth().currentUser else {
             try await self.userAuthCheck()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        let startDate = calendar.startOfDay(for: Date())
-        let snapshot = try await db.collection("User").document(userID).collection("HealthData").whereField("date", isGreaterThanOrEqualTo: Timestamp(date: startDate)).getDocuments()
+        let snapshot = try await db.collection("User").document(userID).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         var friends: [PointData] = []
         for friendData in snapshot.documents {
             friends.append(try friendData.data(as: PointData.self))
@@ -235,7 +234,6 @@ final class FirebaseClient {
     }
     //画像をfirestore,firebaseStorageに保存
     func putFirebaseStorage(selectImage: UIImage) async throws {
-        print("アイコン保存開始")
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
@@ -247,35 +245,15 @@ final class FirebaseClient {
         if let imageData = selectImage.jpegData(compressionQuality: 0.8) {
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
-            reference.putData(imageData, metadata: metadata, completion:{(metadata, error) in
-                if let _ = metadata {
-                    reference.downloadURL { [self] (url,error) in
-                        if let downloadUrl = url {
-                            let task = Task { [weak self] in
-                                do {
-                                    let downloadUrlStr = downloadUrl.absoluteString
-                                    try await self!.db.collection("User").document(userID).updateData(["IconImageURL": downloadUrlStr])
-                                    UserDefaults.standard.set(downloadUrlStr, forKey: "IconImageURL")
-                                    print("アイコン保存完了")
-                                }
-                                catch {
-                                    
-                                }
-                            }
-                            self.cancellables.insert(.init { task.cancel() })
-                        } else {
-                            print("downloadURLの取得が失敗した場合の処理")
-                        }
-                    }
-                } else {
-                    print("storageの保存が失敗")
-                }
-            })
+            try await reference.putDataAsync(imageData, metadata: metadata)
+            let downloadUrl: URL = try await reference.downloadURL()
+            let downloadUrlStr = downloadUrl.absoluteString
+            try await self.db.collection("User").document(userID).updateData(["IconImageURL": downloadUrlStr])
+            UserDefaults.standard.set(downloadUrlStr, forKey: "IconImageURL")
         }
     }
     //名前をfirestoreに保存
     func putNameFirestore(name: String) async throws {
-        print("名前保存開始")
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
@@ -283,7 +261,6 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["name": name])
         UserDefaults.standard.set(name, forKey: "name")
-        print("名前保存完了")
     }
     //自己評価をfirebaseに保存
     func firebasePutSelfCheckLog(log: String) async throws {

@@ -55,11 +55,11 @@
                                     <action selector="logoutButton" destination="hPF-NO-teZ" eventType="touchUpInside" id="MKU-G4-VQS"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8Q4-5E-osd">
-                                <rect key="frame" x="16" y="92" width="382" height="200"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LOT-lE-mHP">
+                                <rect key="frame" x="16" y="92" width="382" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="HOL-rT-TdE"/>
+                                    <constraint firstAttribute="height" constant="128" id="g3u-xR-tsM"/>
                                 </constraints>
                             </tableView>
                         </subviews>
@@ -68,17 +68,17 @@
                         <constraints>
                             <constraint firstItem="IhW-ib-xFo" firstAttribute="centerX" secondItem="Oo8-Nn-8l5" secondAttribute="centerX" id="2M2-3N-aNJ"/>
                             <constraint firstItem="IhW-ib-xFo" firstAttribute="top" secondItem="cKJ-b3-s25" secondAttribute="bottom" constant="20" id="Gi2-CT-0SZ"/>
+                            <constraint firstItem="hrq-yP-Y2a" firstAttribute="trailing" secondItem="LOT-lE-mHP" secondAttribute="trailing" constant="16" id="Hk6-hd-8SO"/>
+                            <constraint firstItem="LOT-lE-mHP" firstAttribute="leading" secondItem="hrq-yP-Y2a" secondAttribute="leading" constant="16" id="HmU-el-ivu"/>
                             <constraint firstItem="hrq-yP-Y2a" firstAttribute="bottom" secondItem="IhW-ib-xFo" secondAttribute="bottom" constant="136" id="Kgk-uB-Ico"/>
                             <constraint firstItem="cKJ-b3-s25" firstAttribute="top" secondItem="rm5-xE-aWy" secondAttribute="bottom" constant="20" id="PEI-9b-21B"/>
                             <constraint firstItem="cKJ-b3-s25" firstAttribute="centerX" secondItem="Oo8-Nn-8l5" secondAttribute="centerX" id="XcI-x8-ZtJ"/>
-                            <constraint firstItem="hrq-yP-Y2a" firstAttribute="trailing" secondItem="8Q4-5E-osd" secondAttribute="trailing" constant="16" id="YNp-rs-yHl"/>
-                            <constraint firstItem="8Q4-5E-osd" firstAttribute="leading" secondItem="hrq-yP-Y2a" secondAttribute="leading" constant="16" id="ZMK-d2-b2D"/>
                             <constraint firstItem="rm5-xE-aWy" firstAttribute="centerX" secondItem="Oo8-Nn-8l5" secondAttribute="centerX" id="bjg-3F-1Ll"/>
-                            <constraint firstItem="8Q4-5E-osd" firstAttribute="top" secondItem="hrq-yP-Y2a" secondAttribute="top" constant="48" id="fC3-Pr-iH8"/>
+                            <constraint firstItem="LOT-lE-mHP" firstAttribute="top" secondItem="hrq-yP-Y2a" secondAttribute="top" constant="48" id="rAf-94-TIm"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="8Q4-5E-osd" id="Qzl-7I-1ju"/>
+                        <outlet property="tableView" destination="LOT-lE-mHP" id="h6I-4W-L1t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfp-GC-Waq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -87,6 +87,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

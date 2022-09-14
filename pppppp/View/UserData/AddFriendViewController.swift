@@ -37,6 +37,7 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
     //友達を追加する
     @IBAction func addFriend() {
         let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 if friendId == userID {
@@ -44,7 +45,7 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
                     let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-                        self!.showDetailViewController(secondVC, sender: self)
+                        self.showDetailViewController(secondVC, sender: self)
                     })
                     alertController.addAction(okAction)
                     present(alertController, animated: true, completion: nil)
@@ -56,7 +57,7 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
                 let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default)
                 alert.addAction(action)
-                self!.present(alert, animated: true)
+                self.present(alert, animated: true)
                 print("profileViewContro addFriend error:", error.localizedDescription)
             }
         }

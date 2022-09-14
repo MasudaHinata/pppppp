@@ -93,7 +93,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="goButtonLayout" destination="Zx9-rs-OpS" id="wkw-GY-KdI"/>
+                        <outlet property="changeProfileLayout" destination="Zx9-rs-OpS" id="wkw-GY-KdI"/>
                         <outlet property="myIconView" destination="Tvi-m3-0rI" id="mtP-rq-HhJ"/>
                         <outlet property="myNameLabel" destination="3qk-yW-ZCe" id="Ecp-ZT-AM1"/>
                         <outlet property="nameTextField" destination="5xC-7x-6aS" id="6sf-1b-YkT"/>

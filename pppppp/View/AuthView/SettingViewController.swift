@@ -21,6 +21,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
             
             let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     try await FirebaseClient.shared.logout()
                 }
@@ -28,7 +29,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                     let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .default)
                     alert.addAction(action)
-                    self!.present(alert, animated: true)
+                    self.present(alert, animated: true)
                     print("Change Logout error", error.localizedDescription)
                 }
             }
@@ -46,6 +47,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
             
             let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     try await FirebaseClient.shared.accountDelete()
                 }
@@ -55,10 +57,10 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
                         let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
-                        self?.showDetailViewController(secondVC, sender: self)
+                        self.showDetailViewController(secondVC, sender: self)
                     }
                     alert.addAction(ok)
-                    self?.present(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             cancellables.insert(.init { task.cancel() })
@@ -140,28 +142,32 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectAccumulationTypeTableViewCell", for: indexPath) as! SelectAccumulationTypeTableViewCell
-        
+
         let cellBackgroundView = UIView()
         cellBackgroundView.backgroundColor = UIColor.init(hex: "969696", alpha: 0.5)
         cell.selectedBackgroundView = cellBackgroundView
+        cell.accessoryType = .none
         
+        let accumulationType = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
         if indexPath.row == 0 {
             cell.selectLabel.text = "今日までの一週間"
+            if accumulationType as! String == "今日までの一週間" {
+                cell.accessoryType = .checkmark
+            }
         } else if indexPath.row == 1 {
             cell.selectLabel.text = "月曜始まり"
+            if accumulationType as! String == "月曜始まり" {
+                cell.accessoryType = .checkmark
+            }
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /* //FIXME: チェックマークが出ない
-        let cell = tableView.cellForRow(at:indexPath)
-        cell?.accessoryType = .checkmark
-         */
-        
         if indexPath.row == 0 {
             UserDefaults.standard.set("今日までの一週間", forKey: "accumulationType")
-            let alert = UIAlertController(title: "完了", message: "ポイントの累積タイプを変更しました", preferredStyle: .alert)
+            tableView.reloadData()
+            let alert = UIAlertController(title: "ポイントの累積タイプを変更しました", message: "今日までの一週間", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
@@ -171,7 +177,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             present(alert, animated: true, completion: nil)
         } else if indexPath.row == 1 {
             UserDefaults.standard.set("月曜始まり", forKey: "accumulationType")
-            let alert = UIAlertController(title: "完了", message: "ポイントの累積タイプを変更しました", preferredStyle: .alert)
+            tableView.reloadData()
+            let alert = UIAlertController(title: "ポイントの累積タイプを変更しました", message: "月曜始まり", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
@@ -180,8 +187,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
         }
-        print(UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間")
-        
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 

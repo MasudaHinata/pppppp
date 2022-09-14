@@ -34,28 +34,11 @@
                                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AtT-8W-G7w">
-                                                <rect key="frame" x="40" y="128" width="128" height="56"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="56" id="JwT-N5-KsW"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button">
-                                                    <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="24"/>
-                                                    <color key="baseForegroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="noFriendButton" destination="C6X-Qw-bEO" eventType="touchUpInside" id="ERD-Vi-Shi"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="AtT-8W-G7w" secondAttribute="bottom" constant="24" id="7h1-eA-CA7"/>
                                             <constraint firstAttribute="width" constant="208" id="E82-BK-Uys"/>
-                                            <constraint firstItem="AtT-8W-G7w" firstAttribute="leading" secondItem="t8K-Wk-ggZ" secondAttribute="leading" constant="40" id="GNd-ii-BWh"/>
                                             <constraint firstAttribute="height" constant="208" id="Wz9-Sx-u29"/>
-                                            <constraint firstAttribute="trailing" secondItem="AtT-8W-G7w" secondAttribute="trailing" constant="40" id="neY-iB-17u"/>
                                             <constraint firstAttribute="trailing" secondItem="cqh-HD-xJI" secondAttribute="trailing" id="q61-eX-OX1"/>
                                             <constraint firstItem="cqh-HD-xJI" firstAttribute="top" secondItem="t8K-Wk-ggZ" secondAttribute="top" constant="40" id="rBh-3d-OK2"/>
                                             <constraint firstItem="cqh-HD-xJI" firstAttribute="leading" secondItem="t8K-Wk-ggZ" secondAttribute="leading" id="w35-7G-Ldn"/>
@@ -79,11 +62,28 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoz-mt-a2s">
+                                        <rect key="frame" x="318" y="728" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="EUg-cn-222"/>
+                                            <constraint firstAttribute="width" constant="80" id="MxT-DX-5Vw"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="48"/>
+                                            <color key="baseForegroundColor" red="0.52156862745098043" green="0.62745098039215685" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="sceneHealthDataView" destination="C6X-Qw-bEO" eventType="touchUpInside" id="89c-NB-1B1"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerY" secondItem="ndx-UB-OiK" secondAttribute="centerY" id="5IY-wm-fKz"/>
                                     <constraint firstItem="hQt-cO-5FO" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="top" constant="180" id="76R-dz-emy"/>
+                                    <constraint firstAttribute="bottom" secondItem="Hoz-mt-a2s" secondAttribute="bottom" constant="88" id="APg-uN-e4V"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hoz-mt-a2s" secondAttribute="trailing" constant="16" id="EDr-VX-UVO"/>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerX" secondItem="ndx-UB-OiK" secondAttribute="centerX" id="McC-zI-ABK"/>
                                     <constraint firstAttribute="trailing" secondItem="hQt-cO-5FO" secondAttribute="trailing" constant="16" id="p5V-ag-FWm"/>
                                     <constraint firstAttribute="trailing" secondItem="Lg3-2E-pJe" secondAttribute="trailing" constant="16" id="tnB-EX-1dO"/>
@@ -105,7 +105,7 @@
                             <barButtonItem title="Item" image="list.bullet.rectangle.portrait" catalog="system" id="C3T-rf-C43">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <action selector="sendCollectionView" destination="C6X-Qw-bEO" id="Aw2-vc-wwK"/>
+                                    <action selector="sceneCollectionView" destination="C6X-Qw-bEO" id="Aw2-vc-wwK"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="arrow.clockwise" catalog="system" id="jcf-kH-ABd">
@@ -118,11 +118,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mountainView" destination="ndx-UB-OiK" id="I8o-hY-XwT"/>
-                        <outlet property="noFriendButtonLayout" destination="AtT-8W-G7w" id="ZOP-VB-Wyp"/>
                         <outlet property="noFriendLabel" destination="cqh-HD-xJI" id="2Pn-8w-zKo"/>
                         <outlet property="noFriendView" destination="t8K-Wk-ggZ" id="ncv-vF-xMT"/>
-                        <outlet property="stepsLabel" destination="Lg3-2E-pJe" id="kIr-qk-Mfh"/>
-                        <outlet property="todayPoint" destination="hQt-cO-5FO" id="bNG-yh-WZm"/>
+                        <outlet property="stepsLabel" destination="Lg3-2E-pJe" id="o3f-BT-blv"/>
+                        <outlet property="totalPointLabel" destination="hQt-cO-5FO" id="h3K-rL-IvK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -277,8 +276,8 @@
                                         <rect key="frame" x="0.0" y="190.5" width="414" height="270.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUMMARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2C-nh-MwO">
-                                        <rect key="frame" x="24" y="0.0" width="75" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CALENDER GRASS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2C-nh-MwO">
+                                        <rect key="frame" x="24" y="0.0" width="129" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="0.72999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -409,6 +408,7 @@
         <image name="list.bullet.rectangle.portrait" catalog="system" width="115" height="128"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
