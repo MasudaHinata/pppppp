@@ -445,7 +445,6 @@ final class FirebaseClient {
         return judge
     }
     
-    
     //MARK: - Firebase Authentication
     //Email アカウントを作成する
     func createAccount(email: String, password: String) async throws {

@@ -69,15 +69,15 @@ class HealthDataViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let task = Task {
-            do {
-                try await Scorering.shared.readWeight()
-            }
-            catch {
-                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
+//        let task = Task {
+//            do {
+//                try await Scorering.shared.readWeight()
+//            }
+//            catch {
+//                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false

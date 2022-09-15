@@ -104,6 +104,7 @@ final class Scorering {
         //            var buf = ""
         //            for sample in samples {
         //                let s = sample.quantity
+        //                print("\(String(describing: sample))")
         //                buf.append("\(sample.startDate) \(String(describing: s))\n")
         //            }
         //            print(buf)
