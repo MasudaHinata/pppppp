@@ -197,10 +197,8 @@ final class FirebaseClient {
     }
     //友達のアイコンを取得する
     func getFriendIconData(friendId: String) async throws -> URL {
-        print("getFriendIconData開始")
         let querySnapShot = try await db.collection("User").document(friendId).getDocument()
         let url = URL(string: querySnapShot.data()!["IconImageURL"]! as! String)!
-        print("getFriendIconData完了")
         return url
     }
     

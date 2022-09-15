@@ -68,11 +68,12 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
         super.viewDidLoad()
         FirebaseClient.shared.addFriendDelegate = self
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
-                friendIconView.kf.setImage(with: try await FirebaseClient.shared.getFriendIconData(friendId: friendId!))
                 friendLabel.text = try await  FirebaseClient.shared.getFriendNameData(friendId: friendId)
+                friendIconView.kf.setImage(with: try await FirebaseClient.shared.getFriendIconData(friendId: friendId!))
             }
             catch {
                 print("AddFriendView ViewAppear error:", error.localizedDescription)
@@ -83,7 +84,7 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
     
     //MARK: - Setting Delegate
     func addFriends() {
-        let alert = UIAlertController(title: "友達追加", message: "友達を追加しました", preferredStyle: .alert)
+        let alert = UIAlertController(title: "完了", message: "友達を追加しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
@@ -94,4 +95,17 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+//    func notFoundFriends() {
+//        let alert = UIAlertController(title: "エラー", message: "アカウントが存在しません", preferredStyle: .alert)
+//        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+//            self.showDetailViewController(secondVC, sender: self)
+//        }
+//        alert.addAction(ok)
+//        DispatchQueue.main.async {
+//            self.present(alert, animated: true, completion: nil)
+//        }
+//    }
 }
