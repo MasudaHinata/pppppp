@@ -18,14 +18,9 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     @IBOutlet var mountainView: DrawView!
     
     @IBAction func sceneCollectionView() {
-        //TODO: navigationControllerにtitleつける
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
-        let nextView = storyboard.instantiateViewController(identifier: "DashboardViewController")
-        let nav = UINavigationController(rootViewController: nextView)
-        present(nav,animated: true,completion: nil)
-//        let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
-//        let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
-//        self.showDetailViewController(secondVC, sender: self)
+        let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     @IBAction func sceneHealthDataView() {
