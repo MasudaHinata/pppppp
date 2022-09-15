@@ -3,7 +3,7 @@ import UIKit
 import HealthKit
 
 class HealthDataViewController: UIViewController{
-
+    
     var cancellables = Set<AnyCancellable>()
     let calendar = Calendar.current
     let myHealthStore = Scorering.shared.myHealthStore
@@ -69,6 +69,16 @@ class HealthDataViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let task = Task {
+//            do {
+//                try await Scorering.shared.readWeight()
+//            }
+//            catch {
+//                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
+        
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)

@@ -85,14 +85,17 @@ final class Scorering {
         try await self.myHealthStore.save(myWeightData)
     }
     
-    //    //体重を読み込み
-    //    func readWeight() async throws {
-    //        getPermissionHealthKit()
-    //        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
-    //        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
-    //        let results = try await descriptor.result(for: myHealthStore)
-    //        let doubleValues = results.map {
-    //            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
-    //        }
-    //    }
+    //体重を読み込み
+    func readWeight() async throws {
+        getPermissionHealthKit()
+        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付も取得する
+        
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
+        let results = try await descriptor.result(for: myHealthStore)
+        let doubleValues = results.map {
+            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
+            
+        }
+        print(doubleValues)
+    }
 }
