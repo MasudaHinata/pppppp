@@ -170,10 +170,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellBackgroundView = UIView()
+        cellBackgroundView.backgroundColor = UIColor.init(hex: "969696", alpha: 0.5)
         if (tableView.tag == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SelectAccumulationTypeTableViewCell", for: indexPath) as! SelectAccumulationTypeTableViewCell
-            let cellBackgroundView = UIView()
-            cellBackgroundView.backgroundColor = UIColor.init(hex: "969696", alpha: 0.5)
             cell.selectedBackgroundView = cellBackgroundView
             cell.accessoryType = .none
 
@@ -192,8 +192,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if (tableView.tag == 1) {
             let accountCell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AccountTableViewCell
-            let cellBackgroundView = UIView()
-            cellBackgroundView.backgroundColor = UIColor.init(hex: "969696", alpha: 0.5)
+            accountCell.selectedBackgroundView = cellBackgroundView
             accountCell.settingAccountLabel.textColor = .systemPink
             if indexPath.row == 0 {
                 accountCell.settingAccountLabel.text = "サインアウト"
@@ -203,6 +202,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             return accountCell
         } else if (tableView.tag == 2) {
             let feedbackCell = tableView.dequeueReusableCell(withIdentifier: "FeedbackTableViewCell", for: indexPath) as! FeedbackTableViewCell
+            feedbackCell.selectedBackgroundView = cellBackgroundView
             if indexPath.row == 0 {
                 feedbackCell.FeedbackLabel.text = "フィードバックを送る"
             }

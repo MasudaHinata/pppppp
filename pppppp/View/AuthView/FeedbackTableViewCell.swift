@@ -1,10 +1,3 @@
-//
-//  FeedbackTableViewCell.swift
-//  pppppp
-//
-//  Created by hinata on 2022/09/15.
-//
-
 import UIKit
 
 class FeedbackTableViewCell: UITableViewCell {
