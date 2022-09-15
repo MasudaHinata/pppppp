@@ -166,8 +166,10 @@
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69E828BE60190066A7DA /* UserData */,
 				03C7E79B28D2F3810069A46E /* AddFriendView */,
-				036F69FF28C091590066A7DA /* CreatePoint */,
 				036F698528BB93760066A7DA /* AuthView */,
+				036F69FF28C091590066A7DA /* CreatePoint */,
+				03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */,
+				03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,8 +202,6 @@
 				03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */,
 				03C7E7B128D322660069A46E /* AccountTableViewCell.swift */,
 				03C7E7B228D322660069A46E /* AccountTableViewCell.xib */,
-				03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */,
-				03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */,
 			);
 			path = AuthView;
 			sourceTree = "<group>";

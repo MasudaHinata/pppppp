@@ -136,6 +136,8 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 ActivityIndicator.stopAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
                 totalPointLabel.text = "Total  \(Int(try await FirebaseClient.shared.getTotalPoint()))  pt"
+                let permission = try await FirebaseClient.shared.checkStepsPermission()
+                print(permission)
             }
             catch {
                 print("ViewContro ViewAppear error:",error.localizedDescription)
