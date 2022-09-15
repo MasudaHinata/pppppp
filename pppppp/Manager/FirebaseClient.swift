@@ -423,14 +423,14 @@ final class FirebaseClient {
     }
     
     //MARK: - Firebase Authentication
-    //アカウントを作成する
+    //Email アカウントを作成する
     func createAccount(email: String, password: String) async throws {
         let result = try await firebaseAuth.createUser(withEmail: email, password: password)
         try await result.user.sendEmailVerification()
         self.createdAccountDelegate?.accountCreated()
     }
     
-    //ログインする
+    //Email ログインする
     @MainActor
     func login(email: String, password: String) async throws {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
@@ -439,11 +439,27 @@ final class FirebaseClient {
         }
     }
     
-    //パスワードを再設定する
+    //Email パスワードを再設定する
     func passwordResetting(email: String) async throws{
         try await firebaseAuth.sendPasswordReset(withEmail: email)
         self.sentEmailDelegate?.sendEmail()
     }
+    
+    //Appleログイン
+    //TODO: LoginViewControllerから移行
+    
+    //ログアウトする
+    func logout() async throws {
+        do {
+            try firebaseAuth.signOut()
+            let appDomain = Bundle.main.bundleIdentifier
+            UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+            self.SettingAccountDelegate?.logoutCompleted()
+        } catch let signOutError as NSError {
+            print("FirebaseClient logout error:", signOutError)
+        }
+    }
+    
     //アカウントを削除
     func accountDeleteAuth() async throws {
         guard let user = Auth.auth().currentUser else {
@@ -456,17 +472,6 @@ final class FirebaseClient {
         }
         catch {
             self.SettingAccountDelegate?.faildAcccountDelete()
-        }
-    }
-    //ログアウトする
-    func logout() async throws {
-        do {
-            try firebaseAuth.signOut()
-            let appDomain = Bundle.main.bundleIdentifier
-            UserDefaults.standard.removePersistentDomain(forName: appDomain!)
-            self.SettingAccountDelegate?.logoutCompleted()
-        } catch let signOutError as NSError {
-            print("FirebaseClient logout error:", signOutError)
         }
     }
 }

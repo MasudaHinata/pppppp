@@ -12,7 +12,6 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     var ActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var stepsLabel: UILabel!
-    @IBOutlet var todayPointLabel: UILabel!
     @IBOutlet var totalPointLabel: UILabel!
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var noFriendLabel: UILabel!
