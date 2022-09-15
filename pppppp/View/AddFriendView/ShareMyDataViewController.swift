@@ -12,7 +12,7 @@ class ShareMyDataViewController: UIViewController {
         super.viewDidLoad()
         let task = Task {
             do {
-                try await generateQR(uiImage: myProfileImageView)
+                try await makeQRcode(uiImage: myProfileImageView)
             } catch {
                 print("ShareMyDataViewController 21:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
@@ -34,7 +34,7 @@ class ShareMyDataViewController: UIViewController {
     }
     
     //QRコードを生成する
-    func generateQR(uiImage: UIImageView) async throws {
+    func makeQRcode(uiImage: UIImageView) async throws {
         let userID = try await FirebaseClient.shared.getUserUUID()
         let myProfileURL = "sanitas-ios-dev://?id=\(userID)"
         let url = myProfileURL
