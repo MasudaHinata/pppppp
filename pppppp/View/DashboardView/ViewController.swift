@@ -12,16 +12,20 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     var ActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var stepsLabel: UILabel!
-    @IBOutlet var todayPointLabel: UILabel!
     @IBOutlet var totalPointLabel: UILabel!
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var noFriendLabel: UILabel!
     @IBOutlet var mountainView: DrawView!
     
     @IBAction func sceneCollectionView() {
+        //TODO: navigationControllerにtitleつける
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let nextView = storyboard.instantiateViewController(identifier: "DashboardViewController")
+        let nav = UINavigationController(rootViewController: nextView)
+        present(nav,animated: true,completion: nil)
+//        let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
+//        let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
+//        self.showDetailViewController(secondVC, sender: self)
     }
     
     @IBAction func sceneHealthDataView() {
