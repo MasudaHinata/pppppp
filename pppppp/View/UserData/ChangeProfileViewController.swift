@@ -19,7 +19,7 @@ class ChangeProfileViewController: UIViewController {
     
     @IBOutlet var nameTextField: UITextField! {
         didSet {
-            nameTextField.layer.cornerRadius = 24
+            nameTextField.layer.cornerRadius = 8
             nameTextField.clipsToBounds = true
             nameTextField.layer.cornerCurve = .continuous
         }
@@ -33,7 +33,6 @@ class ChangeProfileViewController: UIViewController {
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
             configuration.imagePadding = 24
-            configuration.cornerStyle = .capsule
             changeProfileLayout.configuration = configuration
         }
     }
@@ -56,7 +55,6 @@ class ChangeProfileViewController: UIViewController {
                     configuration.showsActivityIndicator = true
                     configuration.imagePadding = 24
                     configuration.imagePlacement = .trailing
-                    configuration.cornerStyle = .capsule
                     changeProfileLayout.configuration = configuration
                     profileName = (self.nameTextField.text!)
                     if profileName != "" {
@@ -71,7 +69,6 @@ class ChangeProfileViewController: UIViewController {
                         var configuration = UIButton.Configuration.gray()
                         configuration.title = "Save Change"
                         configuration.baseBackgroundColor = .init(hex: "92B2D3")
-                        configuration.cornerStyle = .capsule
                         configuration.imagePlacement = .trailing
                         configuration.baseForegroundColor = .white
                         configuration.imagePadding = 24

@@ -51,7 +51,6 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
             configuration.showsActivityIndicator = true
             configuration.imagePadding = 24
             configuration.imagePlacement = .trailing
-            configuration.cornerStyle = .capsule
             goButtonLayout.configuration = configuration
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
@@ -78,7 +77,6 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
                 var configuration = UIButton.Configuration.gray()
                 configuration.title = "Sign up"
                 configuration.baseBackgroundColor = .init(hex: "92B2D3")
-                configuration.cornerStyle = .capsule
                 configuration.imagePlacement = .trailing
                 configuration.baseForegroundColor = .white
                 configuration.imagePadding = 24

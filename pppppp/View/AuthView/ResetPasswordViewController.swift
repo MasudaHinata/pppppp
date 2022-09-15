@@ -7,23 +7,19 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
     
     @IBOutlet var goButtonLayout: UIButton! {
         didSet {
-            goButtonLayout.layer.cornerRadius = 24
-            goButtonLayout.clipsToBounds = true
-            goButtonLayout.layer.cornerCurve = .continuous
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Reset password"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
             configuration.imagePadding = 24
-            configuration.cornerStyle = .capsule
             goButtonLayout.configuration = configuration
         }
     }
     
     @IBOutlet var emailTextField: UITextField! {
         didSet {
-            emailTextField.layer.cornerRadius = 24
+            emailTextField.layer.cornerRadius = 8
             emailTextField.clipsToBounds = true
             emailTextField.layer.cornerCurve = .continuous
         }
@@ -37,7 +33,6 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
             configuration.showsActivityIndicator = true
             configuration.imagePadding = 24
             configuration.imagePlacement = .trailing
-            configuration.cornerStyle = .capsule
             goButtonLayout.configuration = configuration
             
             let task = Task {
@@ -54,7 +49,6 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
                 var configuration = UIButton.Configuration.gray()
                 configuration.title = "Reset password"
                 configuration.baseBackgroundColor = .init(hex: "92B2D3")
-                configuration.cornerStyle = .capsule
                 configuration.imagePlacement = .trailing
                 configuration.baseForegroundColor = .white
                 configuration.imagePadding = 24
