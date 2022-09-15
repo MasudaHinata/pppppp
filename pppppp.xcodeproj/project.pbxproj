@@ -30,6 +30,8 @@
 		036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0228C093560066A7DA /* UserDataView.storyboard */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
+		03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */; };
+		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */; };
@@ -93,6 +95,8 @@
 		036F6A0228C093560066A7DA /* UserDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDataView.storyboard; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareMyDataView.storyboard; sourceTree = "<group>"; };
+		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccumulationTypeTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectAccumulationTypeTableViewCell.xib; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69E828BE60190066A7DA /* UserData */,
+				03C7E79B28D2F3810069A46E /* AddFriendView */,
 				036F698528BB93760066A7DA /* AuthView */,
 			);
 			path = View;
@@ -230,8 +235,6 @@
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
 				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
 				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
-				9C4F1C742859E6F500623C66 /* AddFriendViewController.swift */,
-				036F69FB28C08F1C0066A7DA /* AddFriendView.storyboard */,
 				03DFB7A228B7A8390019381A /* SetNameViewController.swift */,
 				036F69F528C08C0F0066A7DA /* SetNameView.storyboard */,
 				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
@@ -249,6 +252,17 @@
 				035CE51F28CF1E61001F89BB /* HealthDataView.storyboard */,
 			);
 			path = CreatePoint;
+			sourceTree = "<group>";
+		};
+		03C7E79B28D2F3810069A46E /* AddFriendView */ = {
+			isa = PBXGroup;
+			children = (
+				9C4F1C742859E6F500623C66 /* AddFriendViewController.swift */,
+				036F69FB28C08F1C0066A7DA /* AddFriendView.storyboard */,
+				03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */,
+				03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */,
+			);
+			path = AddFriendView;
 			sourceTree = "<group>";
 		};
 		BE2F95D02588CCF5004DC436 /* Frameworks */ = {
@@ -368,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				036F69FA28C08E7F0066A7DA /* SettingView.storyboard in Resources */,
+				03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */,
 				036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */,
 				03FB125B28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib in Resources */,
 				036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */,
@@ -422,6 +437,7 @@
 				9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
 				03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */,
+				03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */,
 				036F697F28B8EACE0066A7DA /* PointData.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
