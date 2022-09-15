@@ -1,10 +1,3 @@
-//
-//  ShareMyDataViewController.swift
-//  pppppp
-//
-//  Created by hinata on 2022/09/15.
-//
-
 import UIKit
 import Combine
 
