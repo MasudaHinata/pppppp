@@ -8,6 +8,8 @@
 import UIKit
 
 class AccountTableViewCell: UITableViewCell {
+    
+    @IBOutlet var settingAccountLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

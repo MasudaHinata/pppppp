@@ -6,17 +6,38 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
     
     var cancellables = Set<AnyCancellable>()
     
-    @IBOutlet var tableView: UITableView! {
+    @IBOutlet var accumulationTypetableView: UITableView! {
         didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.register(UINib(nibName: "SelectAccumulationTypeTableViewCell", bundle: nil), forCellReuseIdentifier: "SelectAccumulationTypeTableViewCell")
-            tableView.backgroundView = nil
-            tableView.backgroundColor = .clear
+            accumulationTypetableView.delegate = self
+            accumulationTypetableView.dataSource = self
+            accumulationTypetableView.register(UINib(nibName: "SelectAccumulationTypeTableViewCell", bundle: nil), forCellReuseIdentifier: "SelectAccumulationTypeTableViewCell")
+            accumulationTypetableView.backgroundView = nil
+            accumulationTypetableView.backgroundColor = .clear
         }
     }
     
-    @IBAction func logoutButton() {
+    @IBOutlet var accountTableView: UITableView! {
+        didSet {
+            accountTableView.delegate = self
+            accountTableView.dataSource = self
+            accountTableView.register(UINib(nibName: "AccountTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountTableViewCell")
+            accountTableView.backgroundView = nil
+            accountTableView.backgroundColor = .clear
+        }
+    }
+
+    @IBAction func sceneGoogleForm() {
+        guard let url = URL(string: "https://forms.gle/McVkxngftm1xocvGA") else { return }
+        let safariController = SFSafariViewController(url: url)
+        present(safariController, animated: true, completion: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        FirebaseClient.shared.SettingAccountDelegate = self
+    }
+    
+    func logoutButton() {
         let alert = UIAlertController(title: "注意", message: "ログアウトしますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "ログアウト", style: .destructive, handler: { [self] (action) -> Void in
             
@@ -42,7 +63,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         self.present(alert, animated: true, completion: nil)
         
     }
-    @IBAction func deleteAccount() {
+    func deleteAccount() {
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
             
@@ -70,17 +91,6 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func sceneGoogleForm() {
-        guard let url = URL(string: "https://forms.gle/McVkxngftm1xocvGA") else { return }
-        let safariController = SFSafariViewController(url: url)
-        present(safariController, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        FirebaseClient.shared.SettingAccountDelegate = self
     }
     
     //MARK: - Setting Delegate
@@ -137,64 +147,108 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
 //MARK: - Setting TableView
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        if (tableView.tag == 0) {
+            return 2
+        } else if (tableView.tag == 1) {
+            return 2
+        } else {
+            fatalError("collectionView Tag Invalid")
+        }
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SelectAccumulationTypeTableViewCell", for: indexPath) as! SelectAccumulationTypeTableViewCell
 
-        let cellBackgroundView = UIView()
-        cellBackgroundView.backgroundColor = UIColor.init(hex: "969696", alpha: 0.5)
-        cell.selectedBackgroundView = cellBackgroundView
-        cell.accessoryType = .none
-        
-        let accumulationType = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
-        if indexPath.row == 0 {
-            cell.selectLabel.text = "今日までの一週間"
-            if accumulationType as! String == "今日までの一週間" {
-                cell.accessoryType = .checkmark
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (tableView.tag == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SelectAccumulationTypeTableViewCell", for: indexPath) as! SelectAccumulationTypeTableViewCell
+            let cellBackgroundView = UIView()
+            cellBackgroundView.backgroundColor = UIColor.init(hex: "969696", alpha: 0.5)
+            cell.selectedBackgroundView = cellBackgroundView
+            cell.accessoryType = .none
+
+            let accumulationType = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+            if indexPath.row == 0 {
+                cell.selectLabel.text = "今日までの一週間"
+                if accumulationType as! String == "今日までの一週間" {
+                    cell.accessoryType = .checkmark
+                }
+            } else if indexPath.row == 1 {
+                cell.selectLabel.text = "月曜始まり"
+                if accumulationType as! String == "月曜始まり" {
+                    cell.accessoryType = .checkmark
+                }
             }
-        } else if indexPath.row == 1 {
-            cell.selectLabel.text = "月曜始まり"
-            if accumulationType as! String == "月曜始まり" {
-                cell.accessoryType = .checkmark
+            return cell
+        } else if (tableView.tag == 1) {
+            let accountCell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AccountTableViewCell
+            let cellBackgroundView = UIView()
+            cellBackgroundView.backgroundColor = UIColor.init(hex: "969696", alpha: 0.5)
+            accountCell.settingAccountLabel.textColor = .systemPink
+            if indexPath.row == 0 {
+                accountCell.settingAccountLabel.text = "サインアウト"
+            } else if indexPath.row == 1 {
+                accountCell.settingAccountLabel.text = "アカウント削除"
             }
+            return accountCell
+        } else {
+            fatalError("collectionView Tag Invalid")
         }
-        return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            UserDefaults.standard.set("今日までの一週間", forKey: "accumulationType")
-            tableView.reloadData()
-            let alert = UIAlertController(title: "ポイントの累積タイプを変更しました", message: "今日までの一週間", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-                self.showDetailViewController(secondVC, sender: self)
+        if (tableView.tag == 0) {
+            
+            if indexPath.row == 0 {
+                UserDefaults.standard.set("今日までの一週間", forKey: "accumulationType")
+                tableView.reloadData()
+                let alert = UIAlertController(title: "ポイントの累積タイプを変更しました", message: "今日までの一週間", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+                    self.showDetailViewController(secondVC, sender: self)
+                }
+                alert.addAction(ok)
+                present(alert, animated: true, completion: nil)
+            } else if indexPath.row == 1 {
+                UserDefaults.standard.set("月曜始まり", forKey: "accumulationType")
+                tableView.reloadData()
+                let alert = UIAlertController(title: "ポイントの累積タイプを変更しました", message: "月曜始まり", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+                    self.showDetailViewController(secondVC, sender: self)
+                }
+                alert.addAction(ok)
+                present(alert, animated: true, completion: nil)
             }
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
-        } else if indexPath.row == 1 {
-            UserDefaults.standard.set("月曜始まり", forKey: "accumulationType")
-            tableView.reloadData()
-            let alert = UIAlertController(title: "ポイントの累積タイプを変更しました", message: "月曜始まり", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-                self.showDetailViewController(secondVC, sender: self)
+            tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        } else if (tableView.tag == 1) {
+            if indexPath.row == 0 {
+                logoutButton()
+            } else if indexPath.row == 1 {
+                deleteAccount()
             }
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        } else {
+            fatalError("collectionView Tag Invalid")
         }
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Select accumulation type"
+        if (tableView.tag == 0) {
+            return "Select accumulation type"
+        } else if (tableView.tag == 1) {
+            return "Account"
+        } else {
+            fatalError("collectionView Tag Invalid")
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        if (tableView.tag == 0) {
+            return 30
+        } else if (tableView.tag == 1) {
+            return 30
+        } else {
+            fatalError("collectionView Tag Invalid")
+        }
     }
 }
