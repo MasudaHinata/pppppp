@@ -79,11 +79,18 @@ class ChangeProfileViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
                 catch {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
                     print("ChangeProfile putFirebaseStorage error:", error.localizedDescription)
+                    if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                        let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
             }
             self.cancellables.insert(.init { task.cancel() })
@@ -120,13 +127,20 @@ class ChangeProfileViewController: UIViewController {
                 ActivityIndicator.stopAnimating()
             }
             catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.dismiss(animated: true, completion: nil)
+                print("ChangeProfileView didLoad error:",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
                 }
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
-                print("ChangeProfileView didAppear error:",error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })

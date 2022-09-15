@@ -51,11 +51,18 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                     try await FirebaseClient.shared.logout()
                 }
                 catch {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
                     print("Change Logout error", error.localizedDescription)
+                    if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                        let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
             }
             self.cancellables.insert(.init { task.cancel() })
@@ -78,6 +85,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                     try await FirebaseClient.shared.accountDelete()
                 }
                 catch {
+                    //TODO: error処理
                     print("ChangeProfile deleteAccount error:\(String(describing: error.localizedDescription))")
                     let alert = UIAlertController(title: "エラー", message: "ログインし直してもう一度お試しください", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in

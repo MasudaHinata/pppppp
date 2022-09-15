@@ -177,9 +177,7 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 print("FriendListViewContro showShareSheet:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        self.viewDidAppear(true)
-                    }
+                    let ok = UIAlertAction(title: "OK", style: .default)
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
                 } else {
