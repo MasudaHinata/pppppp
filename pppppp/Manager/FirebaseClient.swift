@@ -433,8 +433,6 @@ final class FirebaseClient {
         let querySnapshot = try await db.collection("User").document(userID).getDocument()
         
         guard querySnapshot.data()!["keepStepsJudge"] != nil else {
-            print(querySnapshot.data()!["keepStepsJudge"])
-//            try await db.collection("User").document(userID).updateData(["keepStepsJudge": ""])
             judge = "dataNotFound"
             return judge
         }
@@ -444,7 +442,6 @@ final class FirebaseClient {
         } else if querySnapshot.data()!["keepStepsJudge"] as! String == "allowed" {
             judge = "allowed"
         }
-        print(judge)
         return judge
     }
     
