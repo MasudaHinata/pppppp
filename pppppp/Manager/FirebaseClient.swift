@@ -57,6 +57,7 @@ protocol FirebaseSentEmailDelegate: AnyObject {
 
 protocol FirebaseAddFriendDelegate: AnyObject {
     func addFriends()
+    func friendNotFound()
 }
 
 final class FirebaseClient {
@@ -192,8 +193,13 @@ final class FirebaseClient {
     //友達の名前を取得する
     func getFriendNameData(friendId: String) async throws -> String {
         let querySnapShot = try await db.collection("User").document(friendId).getDocument()
-        let data = querySnapShot.data()!["name"]!
-        return data as! String
+        var data: String!
+        if querySnapShot.data() == nil {
+            throw FirebaseClientFirestoreError.userDataNotFound
+        } else {
+            data = querySnapShot.data()!["name"]! as? String
+        }
+        return data!
     }
     //友達のアイコンを取得する
     func getFriendIconData(friendId: String) async throws -> URL {
