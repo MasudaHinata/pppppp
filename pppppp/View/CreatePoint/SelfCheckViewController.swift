@@ -58,7 +58,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     @IBAction func goodButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 10, activity: "SelfCheck")
+                try await FirebaseClient.shared.firebasePutData(point: 7, activity: "SelfCheck")
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "good")
             }
             catch {
@@ -75,7 +75,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     @IBAction func normalButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 7, activity: "SelfCheck")
+                try await FirebaseClient.shared.firebasePutData(point: 5, activity: "SelfCheck")
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "normal")
             }
             catch {
@@ -91,7 +91,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     @IBAction func badButtonPressed(){
         let task = Task {
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 5, activity: "SelfCheck")
+                try await FirebaseClient.shared.firebasePutData(point: 3, activity: "SelfCheck")
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "bad")
             }
             catch {

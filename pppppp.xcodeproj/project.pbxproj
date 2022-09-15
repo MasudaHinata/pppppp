@@ -34,6 +34,8 @@
 		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
 		03C7E7B328D322660069A46E /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7B128D322660069A46E /* AccountTableViewCell.swift */; };
 		03C7E7B428D322660069A46E /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7B228D322660069A46E /* AccountTableViewCell.xib */; };
+		03C7E7B728D32BB70069A46E /* FeedbackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */; };
+		03C7E7B828D32BB70069A46E /* FeedbackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */; };
@@ -101,6 +103,8 @@
 		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
 		03C7E7B128D322660069A46E /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		03C7E7B228D322660069A46E /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
+		03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewCell.swift; sourceTree = "<group>"; };
+		03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackTableViewCell.xib; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccumulationTypeTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectAccumulationTypeTableViewCell.xib; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 				03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */,
 				03C7E7B128D322660069A46E /* AccountTableViewCell.swift */,
 				03C7E7B228D322660069A46E /* AccountTableViewCell.xib */,
+				03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */,
+				03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */,
 			);
 			path = AuthView;
 			sourceTree = "<group>";
@@ -405,6 +411,7 @@
 				BEA64AED25D3EC040064F184 /* GoogleService-Info.plist in Resources */,
 				BE7F33852580D0810027620D /* Assets.xcassets in Resources */,
 				036F69FC28C08F1C0066A7DA /* AddFriendView.storyboard in Resources */,
+				03C7E7B828D32BB70069A46E /* FeedbackTableViewCell.xib in Resources */,
 				036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
 				036F69F828C08D140066A7DA /* ChangeProfileView.storyboard in Resources */,
@@ -449,6 +456,7 @@
 				036F697F28B8EACE0066A7DA /* PointData.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
+				03C7E7B728D32BB70069A46E /* FeedbackTableViewCell.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
 				036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,

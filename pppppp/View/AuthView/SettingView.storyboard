@@ -16,19 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhW-ib-xFo">
-                                <rect key="frame" x="131" y="694" width="152" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="152" id="MLF-3w-Xe7"/>
-                                    <constraint firstAttribute="height" constant="32" id="NnI-sj-yrf"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Feedback"/>
-                                <connections>
-                                    <action selector="sceneGoogleForm" destination="hPF-NO-teZ" eventType="touchUpInside" id="Ubv-b2-bej"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LOT-lE-mHP">
                                 <rect key="frame" x="16" y="92" width="382" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -43,16 +30,24 @@
                                     <constraint firstAttribute="height" constant="128" id="hEV-dV-cKZ"/>
                                 </constraints>
                             </tableView>
+                            <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CeB-fC-kF2">
+                                <rect key="frame" x="16" y="396" width="382" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="u4Z-qX-IHJ"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hrq-yP-Y2a"/>
                         <color key="backgroundColor" red="0.074509803920000006" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="IhW-ib-xFo" firstAttribute="centerX" secondItem="Oo8-Nn-8l5" secondAttribute="centerX" id="2M2-3N-aNJ"/>
                             <constraint firstItem="NlC-XF-2YB" firstAttribute="leading" secondItem="hrq-yP-Y2a" secondAttribute="leading" constant="16" id="GbQ-Ub-z9Y"/>
                             <constraint firstItem="hrq-yP-Y2a" firstAttribute="trailing" secondItem="LOT-lE-mHP" secondAttribute="trailing" constant="16" id="Hk6-hd-8SO"/>
                             <constraint firstItem="LOT-lE-mHP" firstAttribute="leading" secondItem="hrq-yP-Y2a" secondAttribute="leading" constant="16" id="HmU-el-ivu"/>
-                            <constraint firstItem="hrq-yP-Y2a" firstAttribute="bottom" secondItem="IhW-ib-xFo" secondAttribute="bottom" constant="136" id="Kgk-uB-Ico"/>
+                            <constraint firstItem="hrq-yP-Y2a" firstAttribute="trailing" secondItem="CeB-fC-kF2" secondAttribute="trailing" constant="16" id="Ltr-iz-FXr"/>
                             <constraint firstItem="hrq-yP-Y2a" firstAttribute="trailing" secondItem="NlC-XF-2YB" secondAttribute="trailing" constant="16" id="VI6-5t-ra7"/>
+                            <constraint firstItem="CeB-fC-kF2" firstAttribute="leading" secondItem="hrq-yP-Y2a" secondAttribute="leading" constant="16" id="c3y-lw-Zjv"/>
+                            <constraint firstItem="CeB-fC-kF2" firstAttribute="top" secondItem="NlC-XF-2YB" secondAttribute="bottom" constant="24" id="ce6-sX-DUx"/>
                             <constraint firstItem="LOT-lE-mHP" firstAttribute="top" secondItem="hrq-yP-Y2a" secondAttribute="top" constant="48" id="rAf-94-TIm"/>
                             <constraint firstItem="NlC-XF-2YB" firstAttribute="top" secondItem="LOT-lE-mHP" secondAttribute="bottom" constant="24" id="tRk-qg-Oj2"/>
                         </constraints>
@@ -60,60 +55,17 @@
                     <connections>
                         <outlet property="accountTableView" destination="NlC-XF-2YB" id="Rdn-Fu-OFd"/>
                         <outlet property="accumulationTypetableView" destination="LOT-lE-mHP" id="8aO-Si-d0o"/>
+                        <outlet property="feedbackTableView" destination="CeB-fC-kF2" id="cXL-Uq-RjM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfp-GC-Waq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2073.913043478261" y="428.57142857142856"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="cpW-W8-c4y">
-            <objects>
-                <viewController id="5r7-i0-bq5" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="d39-QC-2YW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rm5-xE-aWy">
-                                <rect key="frame" x="102" y="632" width="152" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="152" id="X36-CP-SAg"/>
-                                    <constraint firstAttribute="height" constant="32" id="j51-9S-Kjb"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Logout"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKJ-b3-s25">
-                                <rect key="frame" x="175" y="719" width="152" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="PID-ey-iFj"/>
-                                    <constraint firstAttribute="width" constant="152" id="by3-TW-3El"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="systemPinkColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="DeleteAccount"/>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="GB7-es-Bk4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="cKJ-b3-s25" firstAttribute="centerX" secondItem="d39-QC-2YW" secondAttribute="centerX" constant="44" id="God-2x-PnK"/>
-                            <constraint firstItem="rm5-xE-aWy" firstAttribute="centerX" secondItem="d39-QC-2YW" secondAttribute="centerX" constant="-29" id="LO0-qQ-anX"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8d6-Hf-yeB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2760" y="388"/>
-        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

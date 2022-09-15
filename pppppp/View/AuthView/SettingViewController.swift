@@ -25,11 +25,15 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
             accountTableView.backgroundColor = .clear
         }
     }
-
-    @IBAction func sceneGoogleForm() {
-        guard let url = URL(string: "https://forms.gle/McVkxngftm1xocvGA") else { return }
-        let safariController = SFSafariViewController(url: url)
-        present(safariController, animated: true, completion: nil)
+    
+    @IBOutlet var feedbackTableView: UITableView! {
+        didSet {
+            feedbackTableView.delegate = self
+            feedbackTableView.dataSource = self
+            feedbackTableView.register(UINib(nibName: "FeedbackTableViewCell", bundle: nil), forCellReuseIdentifier: "FeedbackTableViewCell")
+            feedbackTableView.backgroundView = nil
+            feedbackTableView.backgroundColor = .clear
+        }
     }
     
     override func viewDidLoad() {
@@ -63,6 +67,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         self.present(alert, animated: true, completion: nil)
         
     }
+    
     func deleteAccount() {
         let alert = UIAlertController(title: "注意", message: "アカウントを削除しますか？", preferredStyle: .alert)
         let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
@@ -91,6 +96,12 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func sceneGoogleForm() {
+        guard let url = URL(string: "https://forms.gle/McVkxngftm1xocvGA") else { return }
+        let safariController = SFSafariViewController(url: url)
+        present(safariController, animated: true, completion: nil)
     }
     
     //MARK: - Setting Delegate
@@ -151,6 +162,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             return 2
         } else if (tableView.tag == 1) {
             return 2
+        } else if (tableView.tag == 2) {
+            return 1
         } else {
             fatalError("collectionView Tag Invalid")
         }
@@ -188,6 +201,12 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 accountCell.settingAccountLabel.text = "アカウント削除"
             }
             return accountCell
+        } else if (tableView.tag == 2) {
+            let feedbackCell = tableView.dequeueReusableCell(withIdentifier: "FeedbackTableViewCell", for: indexPath) as! FeedbackTableViewCell
+            if indexPath.row == 0 {
+                feedbackCell.FeedbackLabel.text = "フィードバックを送る"
+            }
+            return feedbackCell
         } else {
             fatalError("collectionView Tag Invalid")
         }
@@ -219,24 +238,32 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 alert.addAction(ok)
                 present(alert, animated: true, completion: nil)
             }
-            tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+//            tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         } else if (tableView.tag == 1) {
             if indexPath.row == 0 {
                 logoutButton()
             } else if indexPath.row == 1 {
                 deleteAccount()
             }
-            tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+//            tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        } else if (tableView.tag == 2) {
+            if indexPath.row == 0 {
+                sceneGoogleForm()
+            }
+//            tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         } else {
             fatalError("collectionView Tag Invalid")
         }
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (tableView.tag == 0) {
-            return "Select accumulation type"
+            return "point accumulation type"
         } else if (tableView.tag == 1) {
-            return "Account"
+            return "account"
+        } else if (tableView.tag == 2) {
+            return "feedback"
         } else {
             fatalError("collectionView Tag Invalid")
         }
@@ -246,6 +273,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         if (tableView.tag == 0) {
             return 30
         } else if (tableView.tag == 1) {
+            return 30
+        } else if (tableView.tag == 2) {
             return 30
         } else {
             fatalError("collectionView Tag Invalid")
