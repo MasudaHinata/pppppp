@@ -54,11 +54,20 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
                 }
             }
             catch {
-                let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default)
-                alert.addAction(action)
-                self.present(alert, animated: true)
-                print("profileViewContro addFriend error:", error.localizedDescription)
+                print("AddFriendViewContro addFriend error:", error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.viewDidAppear(true)
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -68,14 +77,30 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
         super.viewDidLoad()
         FirebaseClient.shared.addFriendDelegate = self
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         let task = Task {
             do {
-                friendIconView.kf.setImage(with: try await FirebaseClient.shared.getFriendIconData(friendId: friendId!))
                 friendLabel.text = try await  FirebaseClient.shared.getFriendNameData(friendId: friendId)
+                friendIconView.kf.setImage(with: try await FirebaseClient.shared.getFriendIconData(friendId: friendId!))
             }
             catch {
                 print("AddFriendView ViewAppear error:", error.localizedDescription)
+                if error.localizedDescription == "The operation couldn’t be completed. (pppppp.FirebaseClientFirestoreError error 0.)" {
+                    let alert = UIAlertController(title: "エラー", message: "アカウントが存在しません", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+                        self.showDetailViewController(secondVC, sender: self)
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
+                }
             }
         }
         cancellables.insert(.init { task.cancel() })
@@ -83,7 +108,20 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
     
     //MARK: - Setting Delegate
     func addFriends() {
-        let alert = UIAlertController(title: "友達追加", message: "友達を追加しました", preferredStyle: .alert)
+        let alert = UIAlertController(title: "完了", message: "友達を追加しました", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func friendNotFound() {
+        let alert = UIAlertController(title: "エラー", message: "アカウントが存在しません", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")

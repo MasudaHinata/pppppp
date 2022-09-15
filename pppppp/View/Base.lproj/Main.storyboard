@@ -63,7 +63,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoz-mt-a2s">
-                                        <rect key="frame" x="318" y="728" width="80" height="80"/>
+                                        <rect key="frame" x="318" y="725" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="EUg-cn-222"/>
                                             <constraint firstAttribute="width" constant="80" id="MxT-DX-5Vw"/>
@@ -81,13 +81,13 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerY" secondItem="ndx-UB-OiK" secondAttribute="centerY" id="5IY-wm-fKz"/>
-                                    <constraint firstItem="hQt-cO-5FO" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="top" constant="180" id="76R-dz-emy"/>
-                                    <constraint firstAttribute="bottom" secondItem="Hoz-mt-a2s" secondAttribute="bottom" constant="88" id="APg-uN-e4V"/>
+                                    <constraint firstItem="hQt-cO-5FO" firstAttribute="top" secondItem="Lg3-2E-pJe" secondAttribute="bottom" id="76R-dz-emy"/>
                                     <constraint firstAttribute="trailing" secondItem="Hoz-mt-a2s" secondAttribute="trailing" constant="16" id="EDr-VX-UVO"/>
                                     <constraint firstItem="t8K-Wk-ggZ" firstAttribute="centerX" secondItem="ndx-UB-OiK" secondAttribute="centerX" id="McC-zI-ABK"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Hoz-mt-a2s" secondAttribute="bottom" id="Nd2-gX-dMt"/>
                                     <constraint firstAttribute="trailing" secondItem="hQt-cO-5FO" secondAttribute="trailing" constant="16" id="p5V-ag-FWm"/>
                                     <constraint firstAttribute="trailing" secondItem="Lg3-2E-pJe" secondAttribute="trailing" constant="16" id="tnB-EX-1dO"/>
-                                    <constraint firstItem="Lg3-2E-pJe" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="top" constant="148" id="yH3-CF-1sO"/>
+                                    <constraint firstItem="Lg3-2E-pJe" firstAttribute="top" secondItem="ndx-UB-OiK" secondAttribute="topMargin" id="y9H-Ys-WPl"/>
                                 </constraints>
                             </view>
                         </subviews>

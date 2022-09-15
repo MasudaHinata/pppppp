@@ -85,14 +85,30 @@ final class Scorering {
         try await self.myHealthStore.save(myWeightData)
     }
     
-    //    //体重を読み込み
-    //    func readWeight() async throws {
-    //        getPermissionHealthKit()
-    //        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？)
-    //        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
-    //        let results = try await descriptor.result(for: myHealthStore)
-    //        let doubleValues = results.map {
-    //            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
-    //        }
-    //    }
+    //体重を読み込み
+    func readWeight() async throws {
+        getPermissionHealthKit()
+        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重をWeightDataに入れたい
+        
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
+        let results = try await descriptor.result(for: myHealthStore)
+        let doubleValues = results.map {
+            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
+        }
+        print(doubleValues)
+        
+        
+        //        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
+        //            let samples = results as! [HKQuantitySample]
+        //
+        //            var buf = ""
+        //            for sample in samples {
+        //                let s = sample.quantity
+        //                print("\(String(describing: sample))")
+        //                buf.append("\(sample.startDate) \(String(describing: s))\n")
+        //            }
+        //            print(buf)
+        //        }
+        //        myHealthStore.execute(query)
+    }
 }

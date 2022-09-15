@@ -51,7 +51,6 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
             configuration.showsActivityIndicator = true
             configuration.imagePadding = 24
             configuration.imagePlacement = .trailing
-            configuration.cornerStyle = .capsule
             goButtonLayout.configuration = configuration
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
@@ -78,7 +77,6 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
                 var configuration = UIButton.Configuration.gray()
                 configuration.title = "Sign up"
                 configuration.baseBackgroundColor = .init(hex: "92B2D3")
-                configuration.cornerStyle = .capsule
                 configuration.imagePlacement = .trailing
                 configuration.baseForegroundColor = .white
                 configuration.imagePadding = 24
@@ -119,6 +117,7 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
     }
     
     //MARK: - AppleLogin
+    //TODO: FirebaseClientに移行
     // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
     private func randomNonceString(length: Int = 32) -> String {
       precondition(length > 0)
@@ -181,31 +180,16 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
     }
         
     private lazy var signinButton: ASAuthorizationAppleIDButton = {
-        let button = ASAuthorizationAppleIDButton(
-            type: .default,
-            style: .white
-        )
-        button.addTarget(
-            self,
-            action: #selector(handleSignin),
-            for: .touchUpInside
-        )
+        let button = ASAuthorizationAppleIDButton(type: .default, style: .white)
+        button.addTarget(self, action: #selector(handleSignin), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.bounds = CGRect(x: 0, y: 0, width: 240, height: 48)
-        startSignInWithAppleFlow()
         return button
     }()
 
     @objc private func handleSignin() {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.email]
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
+        startSignInWithAppleFlow()
     }
-    
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)

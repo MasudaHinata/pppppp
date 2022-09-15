@@ -162,29 +162,15 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     }
         
     private lazy var signinButton: ASAuthorizationAppleIDButton = {
-        let button = ASAuthorizationAppleIDButton(
-            type: .default,
-            style: .white
-        )
-        button.addTarget(
-            self,
-            action: #selector(handleSignin),
-            for: .touchUpInside
-        )
+        let button = ASAuthorizationAppleIDButton(type: .default, style: .white)
+        button.addTarget(self, action: #selector(handleSignin), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.bounds = CGRect(x: 0, y: 0, width: 240, height: 48)
-        startSignInWithAppleFlow()
         return button
     }()
 
     @objc private func handleSignin() {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.email]
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
+        startSignInWithAppleFlow()
     }
     
     //MARK: - Setting Delegate

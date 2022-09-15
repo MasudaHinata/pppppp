@@ -8,11 +8,12 @@ class SetNameViewController: UIViewController {
     
     @IBOutlet var changeNameTextField: UITextField! {
         didSet {
-            changeNameTextField.layer.cornerRadius = 24
+            changeNameTextField.layer.cornerRadius = 8
             changeNameTextField.clipsToBounds = true
             changeNameTextField.layer.cornerCurve = .continuous
         }
     }
+    
     @IBOutlet var changeNameButtonLayout: UIButton! {
         didSet {
             changeNameButtonLayout.layer.cornerRadius = 24
@@ -24,10 +25,10 @@ class SetNameViewController: UIViewController {
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
             configuration.imagePadding = 24
-            configuration.cornerStyle = .capsule
             changeNameButtonLayout.configuration = configuration
         }
     }
+    
     @IBAction func changeName() {
         let task = Task {
             do {
@@ -53,6 +54,7 @@ class SetNameViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,7 +69,7 @@ class SetNameViewController: UIViewController {
     }
 }
 
-//MARK: - extension
+//MARK: - UITextFieldDelegate
 extension SetNameViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         changeNameTextField.resignFirstResponder()

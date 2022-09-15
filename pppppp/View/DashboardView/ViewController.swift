@@ -136,6 +136,14 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
                 ActivityIndicator.stopAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
                 totalPointLabel.text = "Total  \(Int(try await FirebaseClient.shared.getTotalPoint()))  pt"
+                
+//                let permission = try await FirebaseClient.shared.checkStepsPermission()
+//                print(permission)
+//                if permission == "dataNotFound" {
+//                    let storyboard = UIStoryboard(name: "StepPermissionView", bundle: nil)
+//                    let secondVC = storyboard.instantiateViewController(identifier: "StepPermissionViewController")
+//                    self.showDetailViewController(secondVC, sender: self)
+//                }
             }
             catch {
                 print("ViewContro ViewAppear error:",error.localizedDescription)

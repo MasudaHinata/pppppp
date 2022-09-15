@@ -57,6 +57,7 @@ protocol FirebaseSentEmailDelegate: AnyObject {
 
 protocol FirebaseAddFriendDelegate: AnyObject {
     func addFriends()
+    func friendNotFound()
 }
 
 final class FirebaseClient {
@@ -192,15 +193,18 @@ final class FirebaseClient {
     //友達の名前を取得する
     func getFriendNameData(friendId: String) async throws -> String {
         let querySnapShot = try await db.collection("User").document(friendId).getDocument()
-        let data = querySnapShot.data()!["name"]!
-        return data as! String
+        var data: String!
+        if querySnapShot.data() == nil {
+            throw FirebaseClientFirestoreError.userDataNotFound
+        } else {
+            data = querySnapShot.data()!["name"]! as? String
+        }
+        return data!
     }
     //友達のアイコンを取得する
     func getFriendIconData(friendId: String) async throws -> URL {
-        print("getFriendIconData開始")
         let querySnapShot = try await db.collection("User").document(friendId).getDocument()
         let url = URL(string: querySnapShot.data()!["IconImageURL"]! as! String)!
-        print("getFriendIconData完了")
         return url
     }
     
@@ -388,7 +392,7 @@ final class FirebaseClient {
             UserDefaults.standard.set(data, forKey: "IconImageURL")
         }
     }
-    
+    //今日の歩数ポイントがあるかどうかの判定
     func checkCreateStepPoint() async throws -> Bool {
         let judge: Bool!
         guard let user = Auth.auth().currentUser else {
@@ -405,6 +409,7 @@ final class FirebaseClient {
         judge = false
         return judge
     }
+    //今日の自己評価をしたかどうかの判定
     func checkSelfCheck() async throws -> Bool {
         let judge: Bool!
         guard let user = Auth.auth().currentUser else {
@@ -421,7 +426,29 @@ final class FirebaseClient {
         judge = false
         return judge
     }
-    
+    //デバッグ用の歩数保存許可の判定
+//    func checkStepsPermission() async throws -> String {
+//        var judge: String!
+//        guard let user = Auth.auth().currentUser else {
+//            try await  self.userAuthCheck()
+//            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+//        }
+//        let userID = user.uid
+//        let querySnapshot = try await db.collection("User").document(userID).getDocument()
+//
+//        guard querySnapshot.data()!["keepStepsJudge"] != nil else {
+//            judge = "dataNotFound"
+//            return judge
+//        }
+//        if querySnapshot.data()!["keepStepsJudge"] as! String == "notAllowed" {
+//            print(querySnapshot.data()!["keepStepsJudge"])
+//            judge = "notAllowed"
+//        } else if querySnapshot.data()!["keepStepsJudge"] as! String == "allowed" {
+//            judge = "allowed"
+//        }
+//        return judge
+//    }
+//
     //MARK: - Firebase Authentication
     //Email アカウントを作成する
     func createAccount(email: String, password: String) async throws {

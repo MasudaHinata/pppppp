@@ -36,6 +36,9 @@
 		03C7E7B428D322660069A46E /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7B228D322660069A46E /* AccountTableViewCell.xib */; };
 		03C7E7B728D32BB70069A46E /* FeedbackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */; };
 		03C7E7B828D32BB70069A46E /* FeedbackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */; };
+		03C7E7BA28D342E40069A46E /* StepPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7B928D342E40069A46E /* StepPermissionViewController.swift */; };
+		03C7E7BC28D342F80069A46E /* StepPermissionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7BB28D342F80069A46E /* StepPermissionView.storyboard */; };
+		03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7BD28D34E320069A46E /* WeightData.swift */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */; };
@@ -105,6 +108,9 @@
 		03C7E7B228D322660069A46E /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 		03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewCell.swift; sourceTree = "<group>"; };
 		03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackTableViewCell.xib; sourceTree = "<group>"; };
+		03C7E7B928D342E40069A46E /* StepPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepPermissionViewController.swift; sourceTree = "<group>"; };
+		03C7E7BB28D342F80069A46E /* StepPermissionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StepPermissionView.storyboard; sourceTree = "<group>"; };
+		03C7E7BD28D34E320069A46E /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccumulationTypeTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectAccumulationTypeTableViewCell.xib; sourceTree = "<group>"; };
@@ -166,8 +172,10 @@
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69E828BE60190066A7DA /* UserData */,
 				03C7E79B28D2F3810069A46E /* AddFriendView */,
-				036F69FF28C091590066A7DA /* CreatePoint */,
 				036F698528BB93760066A7DA /* AuthView */,
+				036F69FF28C091590066A7DA /* CreatePoint */,
+				03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */,
+				03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,8 +208,6 @@
 				03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */,
 				03C7E7B128D322660069A46E /* AccountTableViewCell.swift */,
 				03C7E7B228D322660069A46E /* AccountTableViewCell.xib */,
-				03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */,
-				03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */,
 			);
 			path = AuthView;
 			sourceTree = "<group>";
@@ -232,6 +238,7 @@
 			children = (
 				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
 				036F697E28B8EACE0066A7DA /* PointData.swift */,
+				03C7E7BD28D34E320069A46E /* WeightData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,6 +270,8 @@
 				036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */,
 				035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */,
 				035CE51F28CF1E61001F89BB /* HealthDataView.storyboard */,
+				03C7E7B928D342E40069A46E /* StepPermissionViewController.swift */,
+				03C7E7BB28D342F80069A46E /* StepPermissionView.storyboard */,
 			);
 			path = CreatePoint;
 			sourceTree = "<group>";
@@ -414,6 +423,7 @@
 				03C7E7B828D32BB70069A46E /* FeedbackTableViewCell.xib in Resources */,
 				036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
+				03C7E7BC28D342F80069A46E /* StepPermissionView.storyboard in Resources */,
 				036F69F828C08D140066A7DA /* ChangeProfileView.storyboard in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
 				BE7F33832580D07E0027620D /* Main.storyboard in Resources */,
@@ -430,6 +440,7 @@
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
+				03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				035CE51E28CF1E53001F89BB /* HealthDataViewController.swift in Sources */,
 				03C7E7B328D322660069A46E /* AccountTableViewCell.swift in Sources */,
@@ -458,6 +469,7 @@
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				03C7E7B728D32BB70069A46E /* FeedbackTableViewCell.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
+				03C7E7BA28D342E40069A46E /* StepPermissionViewController.swift in Sources */,
 				036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,
 			);
