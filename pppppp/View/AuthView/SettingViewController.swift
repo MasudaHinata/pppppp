@@ -193,10 +193,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         } else if (tableView.tag == 1) {
             let accountCell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AccountTableViewCell
             accountCell.selectedBackgroundView = cellBackgroundView
-            accountCell.settingAccountLabel.textColor = .systemPink
             if indexPath.row == 0 {
                 accountCell.settingAccountLabel.text = "サインアウト"
             } else if indexPath.row == 1 {
+                accountCell.settingAccountLabel.textColor = .red
                 accountCell.settingAccountLabel.text = "アカウント削除"
             }
             return accountCell
