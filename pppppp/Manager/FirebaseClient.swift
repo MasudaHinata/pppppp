@@ -445,7 +445,8 @@ final class FirebaseClient {
         self.sentEmailDelegate?.sendEmail()
     }
     
-    
+    //Appleログイン
+    //TODO: LoginViewControllerから移行
     
     //ログアウトする
     func logout() async throws {

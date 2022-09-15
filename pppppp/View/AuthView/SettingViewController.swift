@@ -134,7 +134,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
     }
 }
 
-//MARK: - extension
+//MARK: - Setting TableView
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2

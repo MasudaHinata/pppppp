@@ -99,6 +99,7 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     }
     
     //MARK: - AppleLogin
+    //TODO: FirebaseClientに移行
     // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
     private func randomNonceString(length: Int = 32) -> String {
       precondition(length > 0)
