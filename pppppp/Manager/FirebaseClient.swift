@@ -427,28 +427,28 @@ final class FirebaseClient {
         return judge
     }
     //デバッグ用の歩数保存許可の判定
-    func checkStepsPermission() async throws -> String {
-        var judge: String!
-        guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        let querySnapshot = try await db.collection("User").document(userID).getDocument()
-        
-        guard querySnapshot.data()!["keepStepsJudge"] != nil else {
-            judge = "dataNotFound"
-            return judge
-        }
-        if querySnapshot.data()!["keepStepsJudge"] as! String == "notAllowed" {
-            print(querySnapshot.data()!["keepStepsJudge"])
-            judge = "notAllowed"
-        } else if querySnapshot.data()!["keepStepsJudge"] as! String == "allowed" {
-            judge = "allowed"
-        }
-        return judge
-    }
-    
+//    func checkStepsPermission() async throws -> String {
+//        var judge: String!
+//        guard let user = Auth.auth().currentUser else {
+//            try await  self.userAuthCheck()
+//            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+//        }
+//        let userID = user.uid
+//        let querySnapshot = try await db.collection("User").document(userID).getDocument()
+//
+//        guard querySnapshot.data()!["keepStepsJudge"] != nil else {
+//            judge = "dataNotFound"
+//            return judge
+//        }
+//        if querySnapshot.data()!["keepStepsJudge"] as! String == "notAllowed" {
+//            print(querySnapshot.data()!["keepStepsJudge"])
+//            judge = "notAllowed"
+//        } else if querySnapshot.data()!["keepStepsJudge"] as! String == "allowed" {
+//            judge = "allowed"
+//        }
+//        return judge
+//    }
+//
     //MARK: - Firebase Authentication
     //Email アカウントを作成する
     func createAccount(email: String, password: String) async throws {
