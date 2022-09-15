@@ -4,6 +4,7 @@ import Combine
 class ShareMyDataViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
+    var myProfileQRCode: UIImage!
     
     @IBOutlet var myProfileImageView: UIImageView!
     
@@ -11,7 +12,7 @@ class ShareMyDataViewController: UIViewController {
         super.viewDidLoad()
         let task = Task {
             do {
-                try await setURL()
+                try await generateQR(uiImage: myProfileImageView)
             } catch {
                 print("ShareMyDataViewController 21:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
@@ -32,16 +33,11 @@ class ShareMyDataViewController: UIViewController {
         cancellables.insert(.init { task.cancel() })
     }
     
-    //URLを設定する
-    func setURL() async throws {
+    //QRコードを生成する
+    func generateQR(uiImage: UIImageView) async throws {
         let userID = try await FirebaseClient.shared.getUserUUID()
         let myProfileURL = "sanitas-ios-dev://?id=\(userID)"
-        generateQR(url: myProfileURL, uiImage: myProfileImageView)
-    }
-    
-    //QRコードを生成する
-    func generateQR(url: String, uiImage: UIImageView){
-        let url = url
+        let url = myProfileURL
         let data = url.data(using: .utf8)!
         let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])!
         let sizeTransform = CGAffineTransform(scaleX: 1, y: 1)
