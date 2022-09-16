@@ -30,6 +30,11 @@
 		036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0228C093560066A7DA /* UserDataView.storyboard */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
+		03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */; };
+		03A1E0B928D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */; };
+		03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */; };
+		03A1E0BD28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */; };
+		03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */; };
 		03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */; };
 		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
 		03C7E7B328D322660069A46E /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7B128D322660069A46E /* AccountTableViewCell.swift */; };
@@ -106,6 +111,11 @@
 		036F6A0228C093560066A7DA /* UserDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDataView.storyboard; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDataViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDataViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareMyDataView.storyboard; sourceTree = "<group>"; };
 		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
 		03C7E7B128D322660069A46E /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
@@ -196,6 +206,7 @@
 				03C7E7C528D49DB10069A46E /* SanitasView.storyboard */,
 				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
 				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
+				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
 				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
 				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
 				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
@@ -254,7 +265,11 @@
 			children = (
 				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
 				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
+				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
+				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
 				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
+				03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */,
+				03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */,
 				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
 				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
@@ -462,6 +477,7 @@
 			files = (
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
+				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
 				03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
@@ -472,12 +488,14 @@
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
 				9CDF759F286326A600209FD0 /* CreateAccountViewController.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
+				03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */,
 				03FB125A28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift in Sources */,
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
 				0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
 				036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */,
+				03A1E0BD28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift in Sources */,
 				9C1A900C283506D5004B4100 /* ProfileViewController.swift in Sources */,
 				03C7E7C228D453ED0069A46E /* InitialScreenViewController.swift in Sources */,
 				9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */,
@@ -490,9 +508,11 @@
 				03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */,
 				036F697F28B8EACE0066A7DA /* PointData.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */,
+				03A1E0B928D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				03C7E7B728D32BB70069A46E /* FeedbackTableViewCell.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
+				03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */,
 				03C7E7BA28D342E40069A46E /* StepPermissionViewController.swift in Sources */,
 				036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,
