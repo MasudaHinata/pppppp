@@ -2,7 +2,7 @@ import Combine
 import UIKit
 import SwiftUI
 
-class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
+class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var friendIdList = [String]()

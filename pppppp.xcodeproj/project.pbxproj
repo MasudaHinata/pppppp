@@ -74,7 +74,7 @@
 		BE0BF72825B5C73A005646AE /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */; };
 		BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337B2580D07E0027620D /* AppDelegate.swift */; };
 		BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337D2580D07E0027620D /* SceneDelegate.swift */; };
-		BE7F33802580D07E0027620D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337F2580D07E0027620D /* ViewController.swift */; };
+		BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337F2580D07E0027620D /* SanitasViewController.swift */; };
 		BE7F33832580D07E0027620D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE7F33812580D07E0027620D /* Main.storyboard */; };
 		BE7F33852580D0810027620D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE7F33842580D0810027620D /* Assets.xcassets */; };
 		BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE7F33862580D0810027620D /* LaunchScreen.storyboard */; };
@@ -143,7 +143,7 @@
 		BE7F33782580D07E0027620D /* pppppp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pppppp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE7F337B2580D07E0027620D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE7F337D2580D07E0027620D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE7F337F2580D07E0027620D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BE7F337F2580D07E0027620D /* SanitasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanitasViewController.swift; sourceTree = "<group>"; };
 		BE7F33822580D07E0027620D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE7F33842580D0810027620D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE7F33872580D0810027620D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69E828BE60190066A7DA /* UserData */,
-				03C7E79B28D2F3810069A46E /* AddFriendView */,
+				03C7E79B28D2F3810069A46E /* FriendsView */,
 				036F698528BB93760066A7DA /* AuthView */,
 				036F69FF28C091590066A7DA /* CreatePoint */,
 				03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */,
@@ -191,7 +191,7 @@
 		036F698428BB932D0066A7DA /* DashboardView */ = {
 			isa = PBXGroup;
 			children = (
-				BE7F337F2580D07E0027620D /* ViewController.swift */,
+				BE7F337F2580D07E0027620D /* SanitasViewController.swift */,
 				03C7E7C528D49DB10069A46E /* SanitasView.storyboard */,
 				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
 				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
@@ -258,8 +258,6 @@
 				9C1A900B283506D5004B4100 /* FriendListViewController.swift */,
 				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
 				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
-				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
-				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
 				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
 				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
@@ -285,15 +283,17 @@
 			path = CreatePoint;
 			sourceTree = "<group>";
 		};
-		03C7E79B28D2F3810069A46E /* AddFriendView */ = {
+		03C7E79B28D2F3810069A46E /* FriendsView */ = {
 			isa = PBXGroup;
 			children = (
+				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
+				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
 				9C4F1C742859E6F500623C66 /* AddFriendViewController.swift */,
 				036F69FB28C08F1C0066A7DA /* AddFriendView.storyboard */,
 				03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */,
 				03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */,
 			);
-			path = AddFriendView;
+			path = FriendsView;
 			sourceTree = "<group>";
 		};
 		BE2F95D02588CCF5004DC436 /* Frameworks */ = {
@@ -457,7 +457,7 @@
 				03C7E7B328D322660069A46E /* AccountTableViewCell.swift in Sources */,
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
 				038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */,
-				BE7F33802580D07E0027620D /* ViewController.swift in Sources */,
+				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
 				9CDF759F286326A600209FD0 /* CreateAccountViewController.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				03FB125A28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift in Sources */,

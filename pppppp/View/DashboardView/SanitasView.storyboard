@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="15Z-bF-3hS">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="15Z-bF-3hS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21169.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +17,7 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -31,16 +30,16 @@
         <!--Sanitas-->
         <scene sceneID="7al-gg-gOW">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="i61-BL-DWj" customClass="ViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="i61-BL-DWj" customClass="SanitasViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vvX-uT-WQU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HiD-Bi-t46" customClass="DrawView" customModule="pppppp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3C1-sz-PHZ">
-                                        <rect key="frame" x="103" y="344" width="208" height="208"/>
+                                        <rect key="frame" x="196" y="196" width="208" height="208"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0F-e3-FzW">
                                                 <rect key="frame" x="0.0" y="40" width="208" height="29"/>
@@ -59,7 +58,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eP0-Am-MI3">
-                                        <rect key="frame" x="398" y="148" width="0.0" height="32"/>
+                                        <rect key="frame" x="584" y="104" width="0.0" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="zuC-nL-a0y"/>
                                         </constraints>
@@ -68,7 +67,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="My8-Gj-YST">
-                                        <rect key="frame" x="398" y="180" width="0.0" height="32"/>
+                                        <rect key="frame" x="584" y="136" width="0.0" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="Xpx-vO-5b8"/>
                                         </constraints>
@@ -77,7 +76,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiJ-cJ-cvx">
-                                        <rect key="frame" x="318" y="774" width="80" height="80"/>
+                                        <rect key="frame" x="504" y="512" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="4P2-dM-tsc"/>
                                             <constraint firstAttribute="width" constant="80" id="AhU-we-Cm0"/>
@@ -167,10 +166,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
-        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
+        <image name="house" catalog="system" width="128" height="104"/>
         <image name="list.bullet.rectangle.portrait" catalog="system" width="115" height="128"/>
-        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
