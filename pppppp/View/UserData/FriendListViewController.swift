@@ -74,8 +74,8 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
     
     @IBAction func sceneSettingView() {
         let storyboard = UIStoryboard(name: "SettingView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "SettingViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let settingVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(settingVC ?? UIViewController(), sender: self)
     }
     
     @IBAction func scneShareMyDataView() {
