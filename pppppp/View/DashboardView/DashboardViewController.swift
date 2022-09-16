@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 class DashboardViewController: UIViewController {
-    var ActivityIndicator: UIActivityIndicatorView!
+    var activityIndicator: UIActivityIndicatorView!
     var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
     var refreshCtl = UIRefreshControl()
@@ -26,23 +26,23 @@ class DashboardViewController: UIViewController {
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
         
-        ActivityIndicator = UIActivityIndicatorView()
-        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        ActivityIndicator.center = self.view.center
-        ActivityIndicator.style = .large
-        ActivityIndicator.hidesWhenStopped = true
-        self.view.addSubview(ActivityIndicator)
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .large
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let task = Task {
             do {
-                ActivityIndicator.startAnimating()
+                activityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 self.collectionView.reloadData()
-                ActivityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
             }
             catch {
                 print("CollectionViewContro ViewDid error:",error.localizedDescription)

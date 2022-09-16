@@ -6,7 +6,7 @@ class ChangeProfileViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
     var myName: String!
-    var ActivityIndicator: UIActivityIndicatorView!
+    var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var myIconView: UIImageView! {
@@ -106,12 +106,12 @@ class ChangeProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ActivityIndicator = UIActivityIndicatorView()
-        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        ActivityIndicator.center = self.view.center
-        ActivityIndicator.style = .large
-        ActivityIndicator.hidesWhenStopped = true
-        self.view.addSubview(ActivityIndicator)
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .large
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -122,9 +122,9 @@ class ChangeProfileViewController: UIViewController {
         myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
         let task = Task {
             do {
-                ActivityIndicator.startAnimating()
+                activityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
-                ActivityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
             }
             catch {
                 print("ChangeProfileView didLoad error:",error.localizedDescription)

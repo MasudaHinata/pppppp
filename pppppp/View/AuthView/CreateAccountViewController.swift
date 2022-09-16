@@ -43,7 +43,7 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
         }
     }
     
-    @IBAction func GooButton() {
+    @IBAction func createAccountButton() {
         if passwordTextField.text == password2TextField.text {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Creating Account..."

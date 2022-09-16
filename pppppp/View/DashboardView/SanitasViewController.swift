@@ -9,7 +9,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
     var friendDataList = [UserData]()
     let UD = UserDefaults.standard
     let calendar = Calendar.current
-    var ActivityIndicator: UIActivityIndicatorView!
+    var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var stepsLabel: UILabel!
     @IBOutlet var totalPointLabel: UILabel!
@@ -33,11 +33,11 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                ActivityIndicator.startAnimating()
+                activityIndicator.startAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps())) steps"
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
-                ActivityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
             }
             catch {
                 print("ViewContro reloadButton error:",error.localizedDescription)
@@ -66,18 +66,18 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
         FirebaseClient.shared.notChangeDelegate = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
         
-        ActivityIndicator = UIActivityIndicatorView()
-        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
-        ActivityIndicator.center = self.view.center
-        ActivityIndicator.style = .large
-        ActivityIndicator.hidesWhenStopped = true
-        self.view.addSubview(ActivityIndicator)
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .large
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         mountainView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ActivityIndicator.startAnimating()
+        activityIndicator.startAnimating()
         //初期画面
         let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
         if judge == false {
@@ -140,7 +140,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
                     button.addTarget(self, action: #selector(self.tapButton(_:)), for: .touchUpInside)
                     self.view.addSubview(button)
                 }
-                ActivityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
                 totalPointLabel.text = "Total  \(Int(try await FirebaseClient.shared.getTotalPoint()))  pt"
             }

@@ -6,7 +6,7 @@ class UserDataViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     var userDataItem: UserData?
     var pointDataList = [PointData]()
-    var ActivityIndicator: UIActivityIndicatorView!
+    var activityIndicator: UIActivityIndicatorView!
     let layout = UICollectionViewFlowLayout()
     
     @IBOutlet var nameLabel: UILabel!
@@ -47,18 +47,18 @@ class UserDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ActivityIndicator = UIActivityIndicatorView()
-        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        ActivityIndicator.center = self.view.center
-        ActivityIndicator.style = .large
-        ActivityIndicator.color = .white
-        ActivityIndicator.hidesWhenStopped = true
-        self.view.addSubview(ActivityIndicator)
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .large
+        activityIndicator.color = .white
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ActivityIndicator.startAnimating()
+        activityIndicator.startAnimating()
         iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
         nameLabel.text = userDataItem?.name
         pointLabel.text = "\(userDataItem?.point ?? 0)pt"
@@ -68,7 +68,7 @@ class UserDataViewController: UIViewController {
                 pointDataList.reverse()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
-                ActivityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
             }
             catch {
                 print("CollectionViewContro ViewDid error:",error.localizedDescription)
