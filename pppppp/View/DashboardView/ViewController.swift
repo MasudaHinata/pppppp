@@ -78,6 +78,13 @@ class ViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePut
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         ActivityIndicator.startAnimating()
+        //初期画面
+        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
+        if judge == false {
+            let storyboard = UIStoryboard(name: "InitialScreenView", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "InitialScreenViewController")
+            self.showDetailViewController(secondVC, sender: self)
+        }
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
             noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
