@@ -4,16 +4,29 @@ import Combine
 class ShareMyDataViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
-    var myProfileQRCode: UIImage!
+    var qrCodeView = UIView()
+    var qrCodeImageView = UIImageView()
     
-    @IBOutlet var myProfileImageView: UIImageView!
+    @IBOutlet var showMyQRCodeLayout: UIButton! {
+        didSet {
+            showMyQRCodeLayout.tintColor = UIColor.init(hex: "000000", alpha: 0.3)
+        }
+    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBAction func showMyQRCode() {
+        qrCodeView = UIView(frame: CGRect(x: 16, y: 240, width: 360, height: 360))
+        qrCodeView.backgroundColor = UIColor.init(hex: "FFFFFF", alpha: 0.32)
+        qrCodeView.layer.cornerRadius = 72
+        qrCodeView.layer.cornerCurve = .continuous
+        qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 288, width: 264, height: 264))
+        
+        self.view.addSubview(qrCodeView)
+        self.view.addSubview(qrCodeImageView)
+        
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await makeQRcode(uiImage: myProfileImageView)
+                try await makeQRcode(uiImage: qrCodeImageView)
             } catch {
                 print("ShareMyDataViewController 21:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
@@ -32,6 +45,12 @@ class ShareMyDataViewController: UIViewController {
             }
         }
         cancellables.insert(.init { task.cancel() })
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
     
     //QRコードを生成する
@@ -45,3 +64,26 @@ class ShareMyDataViewController: UIViewController {
         uiImage.image = UIImage(ciImage:qr.outputImage!.transformed(by: sizeTransform))
     }
 }
+//        let task = Task { [weak self] in
+//            guard let self = self else { return }
+//            do {
+//                let userID = try await FirebaseClient.shared.getUserUUID()
+//                let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
+//                let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
+//                present(activityVC, animated: true, completion: nil)
+//            } catch {
+//                print("SanitasViewContro showShareSheet:",error.localizedDescription)
+//                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+//                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+//                    let ok = UIAlertAction(title: "OK", style: .default)
+//                    alert.addAction(ok)
+//                    self.present(alert, animated: true, completion: nil)
+//                } else {
+//                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+//                    let ok = UIAlertAction(title: "OK", style: .default)
+//                    alert.addAction(ok)
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
