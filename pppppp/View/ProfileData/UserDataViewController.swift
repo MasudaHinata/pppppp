@@ -62,7 +62,8 @@ class UserDataViewController: UIViewController {
         iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
         nameLabel.text = userDataItem?.name
         pointLabel.text = "\(userDataItem?.point ?? 0)pt"
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
                 pointDataList.reverse()

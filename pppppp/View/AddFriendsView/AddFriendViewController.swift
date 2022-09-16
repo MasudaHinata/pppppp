@@ -79,7 +79,8 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 friendLabel.text = try await  FirebaseClient.shared.getFriendNameData(friendId: friendId)
                 friendIconView.kf.setImage(with: try await FirebaseClient.shared.getFriendIconData(friendId: friendId!))

@@ -60,7 +60,8 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             guard let deleteFriendId = friendDataList[indexPath.row].id else { return }
             let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
             let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
-                let task = Task {
+                let task = Task { [weak self] in
+                    guard let self = self else { return }
                     do {
                         try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: deleteFriendId)
                         friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)

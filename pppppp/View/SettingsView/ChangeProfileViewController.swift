@@ -47,7 +47,8 @@ class ChangeProfileViewController: UIViewController {
     
     @IBAction func changeProfile() {
         if let selectImage = myIconView.image {
-            let task = Task {
+            let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     var configuration = UIButton.Configuration.filled()
                     configuration.title = "Save Change..."
@@ -120,7 +121,8 @@ class ChangeProfileViewController: UIViewController {
         
         myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
         myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 activityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()

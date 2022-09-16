@@ -55,7 +55,8 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
             
-            let task = Task {
+            let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     try await FirebaseClient.shared.createAccount(email: email, password: password)
                 }

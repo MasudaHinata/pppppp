@@ -109,7 +109,8 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         friendDataList.removeAll()
         pointDataList.removeAll()
         
-        let task = Task {
+        let task = Task {  [weak self] in
+            guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
@@ -172,7 +173,8 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     }
     
     func showShareSheet() {
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!

@@ -316,7 +316,8 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 try? await deleteMeFromFriend()
                 try await db.collection("User").document(userID).delete()

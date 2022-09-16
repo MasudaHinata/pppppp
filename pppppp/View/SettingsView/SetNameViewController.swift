@@ -30,7 +30,8 @@ class SetNameViewController: UIViewController {
     }
     
     @IBAction func changeName() {
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 changename = changeNameTextField.text!
                 if changename != "" {

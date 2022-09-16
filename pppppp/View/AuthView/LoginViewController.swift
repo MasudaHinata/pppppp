@@ -45,7 +45,8 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
         if passwordTextField.text == "" {
             showAlert(title: "エラー", message: "パスワードか入力されていません")
         } else {
-            let task = Task {
+            let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     try await FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }

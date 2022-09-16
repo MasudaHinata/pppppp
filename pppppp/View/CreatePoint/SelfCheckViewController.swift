@@ -56,7 +56,8 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     }
     
     @IBAction func goodButtonPressed(){
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 7, activity: "SelfCheck")
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "good")
@@ -80,7 +81,8 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     }
     
     @IBAction func normalButtonPressed(){
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 5, activity: "SelfCheck")
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "normal")
@@ -103,7 +105,8 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         cancellables.insert(.init { task.cancel() })
     }
     @IBAction func badButtonPressed(){
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 3, activity: "SelfCheck")
                 try await FirebaseClient.shared.firebasePutSelfCheckLog(log: "bad")
@@ -129,7 +132,8 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.putPointDelegate = self
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.userAuthCheck()
                 try await FirebaseClient.shared.checkNameData()

@@ -35,7 +35,8 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
             configuration.imagePlacement = .trailing
             goButtonLayout.configuration = configuration
             
-            let task = Task {
+            let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     try await FirebaseClient.shared.passwordResetting(email: email)
                 }

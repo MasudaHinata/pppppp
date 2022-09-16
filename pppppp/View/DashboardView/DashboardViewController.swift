@@ -36,7 +36,8 @@ class DashboardViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 activityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()

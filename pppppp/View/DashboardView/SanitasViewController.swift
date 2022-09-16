@@ -166,7 +166,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
     }
     
     @objc func tapButton(_ sender: UIButton) {
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!

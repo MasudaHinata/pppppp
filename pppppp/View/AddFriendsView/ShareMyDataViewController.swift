@@ -10,7 +10,8 @@ class ShareMyDataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 try await makeQRcode(uiImage: myProfileImageView)
             } catch {
