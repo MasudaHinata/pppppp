@@ -65,8 +65,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 let alert = UIAlertController(title: "ポイントの累積タイプを変更しました", message: "今日までの一週間", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-                    self.showDetailViewController(secondVC, sender: self)
+                    let secondVC = storyboard.instantiateInitialViewController()
+                    self.showDetailViewController(secondVC!, sender: self)
                 }
                 alert.addAction(ok)
                 present(alert, animated: true, completion: nil)
@@ -76,8 +76,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 let alert = UIAlertController(title: "ポイントの累積タイプを変更しました", message: "月曜始まり", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-                    self.showDetailViewController(secondVC, sender: self)
+                    let secondVC = storyboard.instantiateInitialViewController()
+                    self.showDetailViewController(secondVC!, sender: self)
                 }
                 alert.addAction(ok)
                 present(alert, animated: true, completion: nil)

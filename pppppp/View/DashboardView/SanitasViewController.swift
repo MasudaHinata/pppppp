@@ -19,14 +19,14 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
     
     @IBAction func sceneCollectionView() {
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "DashboardViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let secondVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(secondVC!, sender: self)
     }
     
     @IBAction func sceneHealthDataView() {
         let storyboard = UIStoryboard(name: "HealthDataView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "HealthDataViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let secondVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(secondVC!, sender: self)
     }
     
     @IBAction func reloadButton() {
@@ -82,8 +82,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
         let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
         if judge == false {
             let storyboard = UIStoryboard(name: "InitialScreenView", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "InitialScreenViewController")
-            self.showDetailViewController(secondVC, sender: self)
+            let secondVC = storyboard.instantiateInitialViewController()
+            self.showDetailViewController(secondVC!, sender: self)
         }
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
@@ -143,14 +143,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
                 ActivityIndicator.stopAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
                 totalPointLabel.text = "Total  \(Int(try await FirebaseClient.shared.getTotalPoint()))  pt"
-                
-//                let permission = try await FirebaseClient.shared.checkStepsPermission()
-//                print(permission)
-//                if permission == "dataNotFound" {
-//                    let storyboard = UIStoryboard(name: "StepPermissionView", bundle: nil)
-//                    let secondVC = storyboard.instantiateViewController(identifier: "StepPermissionViewController")
-//                    self.showDetailViewController(secondVC, sender: self)
-//                }
             }
             catch {
                 print("ViewContro ViewAppear error:",error.localizedDescription)
@@ -203,8 +195,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
         let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "CreateAccountViewController")
-            self.showDetailViewController(secondVC, sender: self)
+            let secondVC = storyboard.instantiateInitialViewController()
+            self.showDetailViewController(secondVC!, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
@@ -227,13 +219,13 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
     }
     func buttonSelected(item: UserData) {
         let storyboard = UIStoryboard(name: "UserDataView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "UserDataViewController") as UserDataViewController
+        let secondVC = storyboard.instantiateInitialViewController() as! UserDataViewController
         secondVC.userDataItem = item
         self.showDetailViewController(secondVC, sender: self)
     }
     func notChangeName() {
         let storyboard = UIStoryboard(name: "SetNameView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "SetNameViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let secondVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(secondVC!, sender: self)
     }
 }

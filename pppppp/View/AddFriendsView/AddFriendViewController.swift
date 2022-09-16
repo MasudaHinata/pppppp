@@ -31,8 +31,8 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
     }
     @IBAction func backButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let secondVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(secondVC!, sender: self)
     }
     //友達を追加する
     @IBAction func addFriend() {
@@ -44,8 +44,8 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
                     let alertController = UIAlertController(title: "エラー", message: "自分とは友達になれません", preferredStyle: UIAlertController.Style.alert)
                     let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-                        self.showDetailViewController(secondVC, sender: self)
+                        let secondVC = storyboard.instantiateInitialViewController()
+                        self.showDetailViewController(secondVC!, sender: self)
                     })
                     alertController.addAction(okAction)
                     present(alertController, animated: true, completion: nil)
@@ -90,8 +90,8 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
                     let alert = UIAlertController(title: "エラー", message: "アカウントが存在しません", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-                        self.showDetailViewController(secondVC, sender: self)
+                        let secondVC = storyboard.instantiateInitialViewController()
+                        self.showDetailViewController(secondVC!, sender: self)
                     }
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
@@ -118,8 +118,8 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
         let alert = UIAlertController(title: "完了", message: "友達を追加しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-            self.showDetailViewController(secondVC, sender: self)
+            let secondVC = storyboard.instantiateInitialViewController()
+            self.showDetailViewController(secondVC!, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
@@ -131,8 +131,8 @@ class AddFriendViewController: UIViewController, FirebaseAddFriendDelegate {
         let alert = UIAlertController(title: "エラー", message: "アカウントが存在しません", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-            self.showDetailViewController(secondVC, sender: self)
+            let secondVC = storyboard.instantiateInitialViewController()
+            self.showDetailViewController(secondVC!, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {

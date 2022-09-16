@@ -67,7 +67,7 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     
     @IBAction func editButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
-        let modalViewController = storyboard.instantiateViewController(withIdentifier: "ChangeProfileViewController") as! ChangeProfileViewController
+        let modalViewController = storyboard.instantiateInitialViewController() as! ChangeProfileViewController
         modalViewController.presentationController?.delegate = self
         present(modalViewController, animated: true, completion: nil)
     }
@@ -80,8 +80,8 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     
     @IBAction func scneShareMyDataView() {
         let storyboard = UIStoryboard(name: "ShareMyDataView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ShareMyDataViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let secondVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(secondVC!, sender: self)
     }
     
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
@@ -229,8 +229,8 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     //MARK: - Setting Delegate
     func notChangeName() {
         let storyboard = UIStoryboard(name: "SetNameView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "SetNameViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let secondVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(secondVC!, sender: self)
     }
     
     func scene() {

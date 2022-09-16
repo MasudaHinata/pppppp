@@ -22,9 +22,9 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
         
-//        refreshCtl.tintColor = .white
-//        collectionView.refreshControl = refreshCtl
-//        refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
+        refreshCtl.tintColor = .white
+        collectionView.refreshControl = refreshCtl
+        refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
         
         ActivityIndicator = UIActivityIndicatorView()
         ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)

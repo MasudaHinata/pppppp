@@ -166,8 +166,8 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-            self.showDetailViewController(secondVC, sender: self)
+            let secondVC = storyboard.instantiateInitialViewController()
+            self.showDetailViewController(secondVC!, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
