@@ -126,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmV-Ga-qZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4957.971014492754" y="-224.33035714285714"/>
+            <point key="canvasLocation" x="5358" y="-224"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="Apd-pZ-okF">
@@ -149,7 +149,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFg-BV-JmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4181" y="-224"/>
+            <point key="canvasLocation" x="4681" y="-224"/>
         </scene>
         <!--Me-->
         <scene sceneID="gPQ-18-pcq">
@@ -179,7 +179,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hlD-aD-2rz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4180" y="429"/>
+            <point key="canvasLocation" x="4680" y="430"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Yb1-Xg-nGf">
@@ -386,7 +386,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gld-Sa-Nyj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4957.971014492754" y="428.57142857142856"/>
+            <point key="canvasLocation" x="5458" y="430"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XfS-aq-DeV">
@@ -402,11 +402,22 @@
                     <connections>
                         <segue destination="Bgd-UE-uNF" kind="relationship" relationship="viewControllers" id="xC6-Hj-HGP"/>
                         <segue destination="cZ6-gb-5CV" kind="relationship" relationship="viewControllers" id="fol-VR-iUn"/>
+                        <segue destination="wNc-sj-BlU" kind="relationship" relationship="viewControllers" id="hUH-Bn-fpd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opp-0M-dPy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3268" y="88"/>
+        </scene>
+        <!--SanitasView-->
+        <scene sceneID="VCw-WE-ig7">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SanitasViewController" storyboardName="SanitasView" id="wNc-sj-BlU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Fya-pX-cOK"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4he-fG-6IB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3275" y="620"/>
         </scene>
     </scenes>
     <resources>
