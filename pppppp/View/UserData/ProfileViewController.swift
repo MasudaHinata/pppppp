@@ -3,7 +3,7 @@ import Combine
 import Kingfisher
 
 @MainActor
-final class FriendListViewController: UIViewController, FirebaseClientDeleteFriendDelegate , FireStoreCheckNameDelegate {
+final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendDelegate , FireStoreCheckNameDelegate {
     
     var completionHandlers = [() -> Void]()
     var friendDataList = [UserData]()
@@ -125,7 +125,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 self.tableView.reloadData()
             }
             catch {
-                print("FriendListViewContro ViewDid error:",error.localizedDescription)
+                print("ProfileViewContro ViewDid error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -152,7 +152,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 try await FirebaseClient.shared.userAuthCheck()
             }
             catch {
-                print("friendlistView didAppear error:",error.localizedDescription)
+                print("ProfileViewContro didAppear error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -179,7 +179,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
                 let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
                 present(activityVC, animated: true, completion: nil)
             } catch {
-                print("FriendListViewContro showShareSheet:",error.localizedDescription)
+                print("ProfileViewController showShareSheet:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -246,7 +246,7 @@ final class FriendListViewController: UIViewController, FirebaseClientDeleteFrie
 }
 
 //MARK: - extension
-extension FriendListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
             return 112
@@ -313,7 +313,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
                         self.friendcollectionView.reloadData()
                     }
                     catch {
-                        print("FriendListViewContro collectionview error:",error.localizedDescription)
+                        print("ProfileViewController collectionview error:",error.localizedDescription)
                         if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                             let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
                             let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -343,7 +343,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     }
 }
 
-extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         pointDataList.count
     }
@@ -368,7 +368,7 @@ extension FriendListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension FriendListViewController: UIAdaptivePresentationControllerDelegate {
+extension ProfileViewController: UIAdaptivePresentationControllerDelegate {
   func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
       myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
       myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))

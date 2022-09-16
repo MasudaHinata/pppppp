@@ -181,7 +181,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
                 let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
                 present(activityVC, animated: true, completion: nil)
             } catch {
-                print("FriendListViewContro showShareSheet:",error.localizedDescription)
+                print("SanitasViewContro showShareSheet:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default)
