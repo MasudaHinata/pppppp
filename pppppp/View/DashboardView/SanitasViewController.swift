@@ -87,20 +87,9 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
         }
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
-            noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
-            noFriendView.layer.cornerRadius = 20
-            noFriendView.layer.cornerCurve = .continuous
-            noFriendLabel.textColor = UIColor.white
-            let button = UIButton()
-            button.frame = CGRect(x: self.view.frame.width / 3, y: self.view.frame.height / 1.9, width: 128, height: 56)
-            button.setTitle("Add Freind!", for:UIControl.State.normal)
-            button.titleLabel?.font =  UIFont.systemFont(ofSize: 20, weight: .semibold)
-            button.setTitleColor(UIColor.white, for: .normal)
-            button.layer.borderColor = CGColor.init(red: 255, green: 255, blue: 255, alpha: 1)
-            button.layer.borderWidth = 4
-            button.layer.cornerRadius = 25
-            button.addTarget(self, action: #selector(self.tapButton(_:)), for: .touchUpInside)
-            self.view.addSubview(button)
+            let storyboard = UIStoryboard(name: "AddFriendView", bundle: nil)
+            let secondVC = storyboard.instantiateInitialViewController()
+            self.showDetailViewController(secondVC!, sender: self)
         }
         let task = Task { [weak self] in
             guard let self = self else { return }
@@ -125,20 +114,9 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 if friendDataList.count == 1 {
-                    noFriendView.backgroundColor = UIColor.init(hex: "443FA3")
-                    noFriendView.layer.cornerRadius = 20
-                    noFriendView.layer.cornerCurve = .continuous
-                    noFriendLabel.textColor = UIColor.white
-                    let button = UIButton()
-                    button.frame = CGRect(x: self.view.frame.width / 3, y: self.view.frame.height / 1.9, width: 128, height: 56)
-                    button.setTitle("Add Freind!", for:UIControl.State.normal)
-                    button.titleLabel?.font =  UIFont.systemFont(ofSize: 20, weight: .semibold)
-                    button.setTitleColor(UIColor.white, for: .normal)
-                    button.layer.borderColor = CGColor.init(red: 255, green: 255, blue: 255, alpha: 1)
-                    button.layer.borderWidth = 4
-                    button.layer.cornerRadius = 25
-                    button.addTarget(self, action: #selector(self.tapButton(_:)), for: .touchUpInside)
-                    self.view.addSubview(button)
+                    let storyboard = UIStoryboard(name: "AddFriendView", bundle: nil)
+                    let secondVC = storyboard.instantiateInitialViewController()
+                    self.showDetailViewController(secondVC!, sender: self)
                 }
                 activityIndicator.stopAnimating()
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
@@ -163,32 +141,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
             }
         }
         self.cancellables.insert(.init { task.cancel() })
-    }
-    
-    @objc func tapButton(_ sender: UIButton) {
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                let userID = try await FirebaseClient.shared.getUserUUID()
-                let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
-                let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
-                present(activityVC, animated: true, completion: nil)
-            } catch {
-                print("SanitasViewContro showShareSheet:",error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
-                } else {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
     }
     
     //MARK: - Setting Delegate
