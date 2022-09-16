@@ -20,45 +20,31 @@
                                 <rect key="frame" x="-33" y="63" width="520" height="507"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HR6-au-lWA">
-                                <rect key="frame" x="94" y="498" width="202" height="48"/>
+                                <rect key="frame" x="94" y="506" width="202" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsS-q9-5ve">
-                                <rect key="frame" x="160" y="546" width="70" height="48"/>
+                                <rect key="frame" x="160" y="554" width="70" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Started !" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPc-RC-B96">
-                                <rect key="frame" x="77" y="594" width="236" height="48"/>
+                                <rect key="frame" x="77" y="602" width="236" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ast-0b-UwW">
-                                <rect key="frame" x="40" y="698" width="138" height="72"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="k3g-5N-Fy8"/>
-                                    <constraint firstAttribute="width" constant="138" id="xMz-Xf-aVL"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Link" cornerStyle="capsule">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="linkButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Tqk-py-TXo"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bk9-rt-Jp9">
-                                <rect key="frame" x="212" y="698" width="138" height="72"/>
+                                <rect key="frame" x="95" y="706" width="200" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="DGQ-vS-8in"/>
-                                    <constraint firstAttribute="width" constant="138" id="s4i-lX-k57"/>
+                                    <constraint firstAttribute="height" constant="64" id="DGQ-vS-8in"/>
+                                    <constraint firstAttribute="width" constant="200" id="s4i-lX-k57"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="QRCode" cornerStyle="capsule">
+                                <buttonConfiguration key="configuration" style="filled" title="Add Friend" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -73,20 +59,17 @@
                             <constraint firstItem="fPc-RC-B96" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="J44-fp-TAv"/>
                             <constraint firstItem="WsS-q9-5ve" firstAttribute="top" secondItem="HR6-au-lWA" secondAttribute="bottom" id="L4I-b7-vcz"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="H4C-zg-WFA" secondAttribute="bottom" constant="240" id="OtR-5j-gQQ"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ast-0b-UwW" secondAttribute="bottom" constant="40" id="P0E-fw-kgv"/>
                             <constraint firstItem="HR6-au-lWA" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="SPu-s2-rIN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Bk9-rt-Jp9" secondAttribute="bottom" constant="40" id="TIS-4d-gMr"/>
-                            <constraint firstItem="ast-0b-UwW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="U7R-MN-GZO"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Bk9-rt-Jp9" secondAttribute="trailing" constant="40" id="Vj9-am-dzN"/>
+                            <constraint firstItem="Bk9-rt-Jp9" firstAttribute="top" secondItem="fPc-RC-B96" secondAttribute="bottom" constant="56" id="WJZ-Dp-76C"/>
                             <constraint firstItem="fPc-RC-B96" firstAttribute="top" secondItem="WsS-q9-5ve" secondAttribute="bottom" id="Zih-oI-hxG"/>
                             <constraint firstItem="H4C-zg-WFA" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="-33" id="bSI-mI-wby"/>
                             <constraint firstItem="H4C-zg-WFA" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="cvU-Kd-1Jw"/>
-                            <constraint firstItem="ast-0b-UwW" firstAttribute="top" secondItem="fPc-RC-B96" secondAttribute="bottom" constant="56" id="g7D-6M-KwY"/>
                             <constraint firstItem="WsS-q9-5ve" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uI1-jY-Fn3"/>
+                            <constraint firstItem="Bk9-rt-Jp9" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uXr-ya-bW5"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="linkButtonLayout" destination="ast-0b-UwW" id="0NL-hx-Qib"/>
                         <outlet property="qrCodeButtonLayout" destination="Bk9-rt-Jp9" id="wV1-yL-wdr"/>
                     </connections>
                 </viewController>
