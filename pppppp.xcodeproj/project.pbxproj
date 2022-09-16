@@ -178,13 +178,11 @@
 			children = (
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
-				036F69E828BE60190066A7DA /* UserData */,
-				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
-				03C7E79B28D2F3810069A46E /* FriendsView */,
-				036F698528BB93760066A7DA /* AuthView */,
+				036F69E828BE60190066A7DA /* ProfileData */,
 				036F69FF28C091590066A7DA /* CreatePoint */,
-				03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */,
-				03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */,
+				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
+				03C7E79B28D2F3810069A46E /* AddFriendsView */,
+				036F698528BB93760066A7DA /* AuthView */,
 				03C7E7C128D453ED0069A46E /* InitialScreenViewController.swift */,
 				03C7E7C328D454030069A46E /* InitialScreenView.storyboard */,
 			);
@@ -251,7 +249,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		036F69E828BE60190066A7DA /* UserData */ = {
+		036F69E828BE60190066A7DA /* ProfileData */ = {
 			isa = PBXGroup;
 			children = (
 				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
@@ -262,8 +260,10 @@
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
 				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
 				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
+				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
+				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
 			);
-			path = UserData;
+			path = ProfileData;
 			sourceTree = "<group>";
 		};
 		036F69FF28C091590066A7DA /* CreatePoint */ = {
@@ -279,17 +279,15 @@
 			path = CreatePoint;
 			sourceTree = "<group>";
 		};
-		03C7E79B28D2F3810069A46E /* FriendsView */ = {
+		03C7E79B28D2F3810069A46E /* AddFriendsView */ = {
 			isa = PBXGroup;
 			children = (
-				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
-				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
 				9C4F1C742859E6F500623C66 /* AddFriendViewController.swift */,
 				036F69FB28C08F1C0066A7DA /* AddFriendView.storyboard */,
 				03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */,
 				03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */,
 			);
-			path = FriendsView;
+			path = AddFriendsView;
 			sourceTree = "<group>";
 		};
 		9CFBA12328D4B3CD003EBFB3 /* SettingsView */ = {
@@ -303,6 +301,8 @@
 				036F69F928C08E7F0066A7DA /* SettingView.storyboard */,
 				03FB125828CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift */,
 				03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */,
+				03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */,
+				03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
