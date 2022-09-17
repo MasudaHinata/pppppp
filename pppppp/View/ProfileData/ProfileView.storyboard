@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c5j-BZ-eWt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c5j-BZ-eWt">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21169.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,7 +19,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="KRT-mh-ibA">
-                        <rect key="frame" x="0.0" y="44" width="390" height="96"/>
+                        <rect key="frame" x="0.0" y="47" width="390" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,7 +49,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="56r-BS-u0q">
-                                <rect key="frame" x="16" y="169" width="358" height="128"/>
+                                <rect key="frame" x="16" y="172" width="358" height="128"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iSb-Ii-EMn">
                                         <rect key="frame" x="16" y="16" width="96" height="96"/>
@@ -65,26 +65,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9s-DU-hnG">
-                                        <rect key="frame" x="255" y="73.666666666666657" width="87" height="34.333333333333343"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" imagePlacement="leading" title="Share" cornerStyle="capsule">
-                                            <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="medium" renderingMode="hierarchical-single">
-                                                <hierarchicalColors>
-                                                    <color red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <color systemColor="secondaryLabelColor"/>
-                                                    <color systemColor="tertiaryLabelColor"/>
-                                                </hierarchicalColors>
-                                            </imageReference>
-                                            <color key="baseForegroundColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="baseBackgroundColor" red="0.4823529412" green="0.50980392159999999" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="shareButtonPressed" destination="n68-DN-VhL" eventType="touchUpInside" id="ouu-A1-1fV"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taJ-vF-fMd">
-                                        <rect key="frame" x="262" y="19.999999999999996" width="80" height="34.666666666666657"/>
+                                        <rect key="frame" x="262" y="46.666666666666657" width="80" height="34.666666666666657"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" imagePlacement="leading" title="Edit" imagePadding="9" cornerStyle="capsule">
                                             <imageReference key="image" image="pencil" catalog="system" symbolScale="medium" renderingMode="hierarchical-single">
@@ -107,17 +89,15 @@
                                     <constraint firstItem="iSb-Ii-EMn" firstAttribute="leading" secondItem="56r-BS-u0q" secondAttribute="leading" constant="16" id="5Ii-CY-d9L"/>
                                     <constraint firstItem="iSb-Ii-EMn" firstAttribute="top" secondItem="56r-BS-u0q" secondAttribute="top" constant="16" id="93g-Uf-XdG"/>
                                     <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="56r-BS-u0q" secondAttribute="centerY" id="Egf-fN-RnF"/>
+                                    <constraint firstItem="taJ-vF-fMd" firstAttribute="centerY" secondItem="56r-BS-u0q" secondAttribute="centerY" id="Hc6-Lj-ba8"/>
                                     <constraint firstAttribute="bottom" secondItem="iSb-Ii-EMn" secondAttribute="bottom" constant="16" id="JHX-Zm-Ycf"/>
-                                    <constraint firstItem="taJ-vF-fMd" firstAttribute="top" secondItem="56r-BS-u0q" secondAttribute="top" constant="20" id="JL2-gN-4Rq"/>
-                                    <constraint firstAttribute="trailing" secondItem="d9s-DU-hnG" secondAttribute="trailing" constant="16" id="MQL-Ud-nI0"/>
                                     <constraint firstItem="qIj-nq-XZN" firstAttribute="leading" secondItem="iSb-Ii-EMn" secondAttribute="trailing" constant="8" symbolic="YES" id="Vib-4s-8XC"/>
                                     <constraint firstItem="qIj-nq-XZN" firstAttribute="centerY" secondItem="56r-BS-u0q" secondAttribute="centerY" id="gBg-wx-M9y"/>
-                                    <constraint firstAttribute="bottom" secondItem="d9s-DU-hnG" secondAttribute="bottom" constant="20" id="kc4-4g-QKF"/>
                                     <constraint firstAttribute="trailing" secondItem="taJ-vF-fMd" secondAttribute="trailing" constant="16" id="zLH-Xg-qx5"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ENr-7I-fkB">
-                                <rect key="frame" x="0.0" y="352" width="390" height="409"/>
+                                <rect key="frame" x="0.0" y="355" width="390" height="406"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vj1-VL-8NM">
@@ -129,10 +109,10 @@
                                 <cells/>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gji-DF-TMj">
-                                <rect key="frame" x="0.0" y="352" width="390" height="409"/>
+                                <rect key="frame" x="0.0" y="355" width="390" height="406"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="J3b-i7-ahx">
-                                        <rect key="frame" x="0.0" y="190.66666666666663" width="390" height="218.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="190.66666666666663" width="390" height="215.33333333333337"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CALENDER GRASS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPb-GB-oHC">
@@ -178,13 +158,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biy-FX-q0t">
-                                <rect key="frame" x="24" y="148" width="22" height="17"/>
+                                <rect key="frame" x="24" y="151" width="22" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="0.72999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CQd-fR-N3q">
-                                <rect key="frame" x="24" y="313" width="342" height="32"/>
+                                <rect key="frame" x="24" y="316" width="342" height="32"/>
                                 <segments>
                                     <segment title="Activity"/>
                                     <segment title="FriendList"/>
@@ -253,7 +233,6 @@
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="114"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -12,7 +12,7 @@ class OnboardingViewController1: UIViewController {
         //TODO: push遷移にする
         let storyboard = UIStoryboard(name: "OnboardingView2", bundle: nil)
         let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC, sender: self)
+        self.showDetailViewController(secondVC!, sender: self)
     }
     
     override func viewDidLoad() {
