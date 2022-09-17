@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f6e-Vo-WJE">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Onboarding View Controller3-->
+        <scene sceneID="1yR-YB-nFi">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="f6e-Vo-WJE" customClass="OnboardingViewController3" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6qx-zZ-TX1">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="morflax-studio-18" translatesAutoresizingMaskIntoConstraints="NO" id="jVk-hM-wdn">
+                                <rect key="frame" x="-33" y="63" width="520" height="507"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Oy-Bi-1j8">
+                                <rect key="frame" x="16" y="522" width="240" height="48"/>
+                                <string key="text">運動・歩数を
+</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMn-tQ-toU">
+                                <rect key="frame" x="16" y="570" width="363" height="48"/>
+                                <string key="text">増やしてポイントを
+</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="集めよう" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQY-mH-XKG">
+                                <rect key="frame" x="16" y="618" width="161" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUx-mH-y87">
+                                <rect key="frame" x="270" y="706" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="8th-hL-EnA"/>
+                                    <constraint firstAttribute="height" constant="64" id="O81-ov-sUJ"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="arrow.right" catalog="system" cornerStyle="capsule">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="nextButton" destination="f6e-Vo-WJE" eventType="touchUpInside" id="ZRc-kK-vNC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ff-gf-RZq">
+                                <rect key="frame" x="56" y="706" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="1Ki-Iv-0DQ"/>
+                                    <constraint firstAttribute="height" constant="64" id="mLe-bz-EwD"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="arrow.left" catalog="system" cornerStyle="capsule"/>
+                                <connections>
+                                    <action selector="backButton" destination="f6e-Vo-WJE" eventType="touchUpInside" id="hkb-sR-FTR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="e61-av-5UV"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="hQY-mH-XKG" firstAttribute="top" secondItem="JMn-tQ-toU" secondAttribute="bottom" id="6fR-Or-lTp"/>
+                            <constraint firstItem="0Ff-gf-RZq" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="56" id="Aih-GM-CUV"/>
+                            <constraint firstItem="hQY-mH-XKG" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="16" id="Cs8-0E-Ruq"/>
+                            <constraint firstItem="1Oy-Bi-1j8" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="16" id="KPf-RS-7s8"/>
+                            <constraint firstItem="e61-av-5UV" firstAttribute="bottom" secondItem="dUx-mH-y87" secondAttribute="bottom" constant="40" id="Lu7-4E-dkg"/>
+                            <constraint firstItem="jVk-hM-wdn" firstAttribute="leading" secondItem="6qx-zZ-TX1" secondAttribute="leading" constant="-33" id="Whz-5y-WNZ"/>
+                            <constraint firstItem="e61-av-5UV" firstAttribute="bottom" secondItem="0Ff-gf-RZq" secondAttribute="bottom" constant="40" id="cfq-wk-UVl"/>
+                            <constraint firstItem="dUx-mH-y87" firstAttribute="top" secondItem="hQY-mH-XKG" secondAttribute="bottom" constant="40" id="fEb-G2-d5v"/>
+                            <constraint firstAttribute="trailing" secondItem="jVk-hM-wdn" secondAttribute="trailing" constant="-97" id="iDm-lf-Qzl"/>
+                            <constraint firstItem="e61-av-5UV" firstAttribute="trailing" secondItem="dUx-mH-y87" secondAttribute="trailing" constant="56" id="mEW-TY-jfY"/>
+                            <constraint firstItem="jVk-hM-wdn" firstAttribute="top" secondItem="e61-av-5UV" secondAttribute="top" constant="16" id="pGF-3q-eCz"/>
+                            <constraint firstItem="JMn-tQ-toU" firstAttribute="top" secondItem="1Oy-Bi-1j8" secondAttribute="bottom" id="pof-im-nt3"/>
+                            <constraint firstItem="e61-av-5UV" firstAttribute="bottom" secondItem="jVk-hM-wdn" secondAttribute="bottom" constant="240" id="r4V-0g-hHU"/>
+                            <constraint firstItem="JMn-tQ-toU" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="16" id="red-Rd-a6y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButtonLayout" destination="0Ff-gf-RZq" id="SRk-Yc-oWj"/>
+                        <outlet property="nextButtonLayout" destination="dUx-mH-y87" id="oHA-xI-4Rk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1gW-z7-4Uj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="49.230769230769226" y="-2.1327014218009479"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
+        <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="morflax-studio-18" width="1605" height="1374"/>
+    </resources>
+</document>
