@@ -71,6 +71,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             }
         }
     }
+    
     private func doInit(deviceInput: AVCaptureDeviceInput) {
         if !session.canAddInput(deviceInput) { return }
         session.addInput(deviceInput)
@@ -87,15 +88,16 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         previewLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         previewLayer.videoGravity = .resizeAspectFill
         caputureView.layer.addSublayer(previewLayer)
-        
         session.startRunning()
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        
         for metadata in metadataObjects as! [AVMetadataMachineReadableCodeObject] {
             guard let value = metadata.stringValue else { return }
-            print(value)
+            if let url = URL(string: value) {
+                self.session.stopRunning()
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
     }
     
