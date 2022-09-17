@@ -10,8 +10,6 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     var flag = Bool()
     var cancellables = Set<AnyCancellable>()
     private let session = AVCaptureSession()
-    var picker: UIImagePickerController!
-    var detector: CIDetector!
     
     @IBOutlet weak var caputureView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
