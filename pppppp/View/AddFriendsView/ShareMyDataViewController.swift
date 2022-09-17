@@ -21,6 +21,10 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     @IBOutlet var settingLightLayout: UIButton! {
         didSet {
             settingLightLayout.setImage(UIImage(systemName: "flashlight.off.fill"), for: .normal)
+            var configuration = UIButton.Configuration.filled()
+            configuration.baseBackgroundColor = .init(hex: "000000", alpha: 0.39)
+            configuration.cornerStyle = .capsule
+            settingLightLayout.configuration = configuration
         }
     }
     

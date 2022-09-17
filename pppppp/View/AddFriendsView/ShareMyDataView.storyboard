@@ -39,7 +39,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5iP-pf-8Mi">
-                                <rect key="frame" x="24" y="842" width="24" height="14"/>
+                                <rect key="frame" x="56" y="760" width="56" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="bVL-SQ-ghd"/>
+                                    <constraint firstAttribute="height" constant="56" id="kS1-xc-X8v"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain"/>
                                 <connections>
@@ -50,11 +54,11 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="5iP-pf-8Mi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="3kW-ZX-eGz"/>
+                            <constraint firstItem="5iP-pf-8Mi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="56" id="3kW-ZX-eGz"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="bcq-l2-IAg" secondAttribute="bottom" id="9lO-dp-3ng"/>
                             <constraint firstItem="bcq-l2-IAg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="GlX-F0-Xh8"/>
                             <constraint firstItem="FQF-Xb-Gd3" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="LOL-U6-jw6"/>
-                            <constraint firstAttribute="bottom" secondItem="5iP-pf-8Mi" secondAttribute="bottom" constant="40" id="YGT-Ks-f9V"/>
+                            <constraint firstAttribute="bottom" secondItem="5iP-pf-8Mi" secondAttribute="bottom" constant="80" id="YGT-Ks-f9V"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bcq-l2-IAg" secondAttribute="trailing" id="beu-Nc-10b"/>
                             <constraint firstItem="zbe-UI-CKp" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="cjI-v6-fDV"/>
                             <constraint firstItem="bcq-l2-IAg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fDo-Z7-mfF"/>
