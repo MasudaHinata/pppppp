@@ -1,11 +1,62 @@
 import UIKit
 import Combine
+import AVFoundation
 
-class ShareMyDataViewController: UIViewController {
+class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var qrCodeView = UIView()
     var qrCodeImageView = UIImageView()
+    private let session = AVCaptureSession()
+    
+    @IBOutlet weak var caputureView: UIView!
+    @IBOutlet weak var textLavel: UILabel!
+    
+    private func initDeviceCamera() {
+        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back)
+        
+        let devices = discoverySession.devices
+        if let backCamera = devices.first {
+            do {
+                let deviceInput = try AVCaptureDeviceInput(device: backCamera)
+                doInit(deviceInput: deviceInput)
+            } catch {
+                print("Error occured while creating video device input: \(error)")
+            }
+        }
+    }
+    private func doInit(deviceInput: AVCaptureDeviceInput) {
+        if !session.canAddInput(deviceInput) { return }
+        session.addInput(deviceInput)
+        let metadataOutput = AVCaptureMetadataOutput()
+        
+        if !session.canAddOutput(metadataOutput) { return }
+        session.addOutput(metadataOutput)
+        
+        metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        metadataOutput.metadataObjectTypes = [.qr]
+        
+        // カメラを起動
+        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        previewLayer.frame = view.bounds
+        previewLayer.videoGravity = .resizeAspectFill
+        caputureView.layer.addSublayer(previewLayer)
+        
+        session.startRunning()
+    }
+    
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        
+        for metadata in metadataObjects as! [AVMetadataMachineReadableCodeObject] {
+            // QRのtype： metadata.type
+            // QRの中身： metadata.stringValue
+            guard let value = metadata.stringValue else { return }
+            print(value)
+//            session.stopRunning()
+            textLavel.text = value
+            caputureView.isHidden = true
+        }
+    }
     
     @IBOutlet var showMyQRCodeLayout: UIButton! {
         didSet {
@@ -50,7 +101,7 @@ class ShareMyDataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initDeviceCamera()
     }
     
     //QRコードを生成する
@@ -64,6 +115,7 @@ class ShareMyDataViewController: UIViewController {
         uiImage.image = UIImage(ciImage:qr.outputImage!.transformed(by: sizeTransform))
     }
 }
+
 //        let task = Task { [weak self] in
 //            guard let self = self else { return }
 //            do {
