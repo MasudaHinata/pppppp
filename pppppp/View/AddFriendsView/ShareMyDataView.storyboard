@@ -17,8 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQF-Xb-Gd3">
-                                <rect key="frame" x="110.5" y="564" width="193" height="34"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcq-l2-IAg">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQF-Xb-Gd3">
+                                <rect key="frame" x="110" y="431" width="193" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="qrcode" catalog="system" title="Show My QRCode" imagePadding="6" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
@@ -27,33 +32,19 @@
                                     <action selector="showMyQRCode" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fdo-kw-nyX"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcq-l2-IAg">
-                                <rect key="frame" x="0.0" y="48" width="414" height="416"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rK-Pc-MTu">
-                                <rect key="frame" x="10" y="497" width="371" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="FQF-Xb-Gd3" firstAttribute="top" secondItem="bcq-l2-IAg" secondAttribute="bottom" constant="100" id="9Yk-Li-VNH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="bcq-l2-IAg" secondAttribute="bottom" id="9lO-dp-3ng"/>
                             <constraint firstItem="bcq-l2-IAg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="GlX-F0-Xh8"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="FQF-Xb-Gd3" secondAttribute="bottom" constant="264" id="ZcB-hZ-4iy"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bcq-l2-IAg" secondAttribute="trailing" id="beu-Nc-10b"/>
                             <constraint firstItem="bcq-l2-IAg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fDo-Z7-mfF"/>
-                            <constraint firstItem="FQF-Xb-Gd3" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="m6L-ey-SFo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="caputureView" destination="bcq-l2-IAg" id="oPL-lQ-pOL"/>
                         <outlet property="showMyQRCodeLayout" destination="FQF-Xb-Gd3" id="Ezh-RP-Hkz"/>
-                        <outlet property="textLavel" destination="9rK-Pc-MTu" id="cIB-5e-qi3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

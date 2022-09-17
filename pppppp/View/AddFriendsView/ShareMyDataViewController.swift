@@ -10,53 +10,6 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     private let session = AVCaptureSession()
     
     @IBOutlet weak var caputureView: UIView!
-    @IBOutlet weak var textLavel: UILabel!
-    
-    private func initDeviceCamera() {
-        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back)
-        
-        let devices = discoverySession.devices
-        if let backCamera = devices.first {
-            do {
-                let deviceInput = try AVCaptureDeviceInput(device: backCamera)
-                doInit(deviceInput: deviceInput)
-            } catch {
-                print("Error occured while creating video device input: \(error)")
-            }
-        }
-    }
-    private func doInit(deviceInput: AVCaptureDeviceInput) {
-        if !session.canAddInput(deviceInput) { return }
-        session.addInput(deviceInput)
-        let metadataOutput = AVCaptureMetadataOutput()
-        
-        if !session.canAddOutput(metadataOutput) { return }
-        session.addOutput(metadataOutput)
-        
-        metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        metadataOutput.metadataObjectTypes = [.qr]
-        
-        // カメラを起動
-        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-        previewLayer.frame = view.bounds
-        previewLayer.videoGravity = .resizeAspectFill
-        caputureView.layer.addSublayer(previewLayer)
-        
-        session.startRunning()
-    }
-    
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        
-        for metadata in metadataObjects as! [AVMetadataMachineReadableCodeObject] {
-            // QRのtype： metadata.type
-            // QRの中身： metadata.stringValue
-            guard let value = metadata.stringValue else { return }
-            print(value)
-//            session.stopRunning()
-            textLavel.text = value
-            caputureView.isHidden = true
-        }
-    }
     
     @IBOutlet var showMyQRCodeLayout: UIButton! {
         didSet {
@@ -101,10 +54,52 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initDeviceCamera()
     }
+    //MARK: - QRCode読み取り
+    private func initDeviceCamera() {
+        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back)
+        
+        let devices = discoverySession.devices
+        if let backCamera = devices.first {
+            do {
+                let deviceInput = try AVCaptureDeviceInput(device: backCamera)
+                doInit(deviceInput: deviceInput)
+            } catch {
+                print("Error occured while creating video device input: \(error)")
+            }
+        }
+    }
+    private func doInit(deviceInput: AVCaptureDeviceInput) {
+        if !session.canAddInput(deviceInput) { return }
+        session.addInput(deviceInput)
+        let metadataOutput = AVCaptureMetadataOutput()
+        
+        if !session.canAddOutput(metadataOutput) { return }
+        session.addOutput(metadataOutput)
+        
+        metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        metadataOutput.metadataObjectTypes = [.qr]
+        
+        // カメラを起動
+        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        previewLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        previewLayer.videoGravity = .resizeAspectFill
+        caputureView.layer.addSublayer(previewLayer)
+        
+        session.startRunning()
+    }
     
-    //QRコードを生成する
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        
+        for metadata in metadataObjects as! [AVMetadataMachineReadableCodeObject] {
+            guard let value = metadata.stringValue else { return }
+            print(value)
+        }
+    }
+    
+    //MARK: - QRCode生成
     func makeQRcode(uiImage: UIImageView) async throws {
         let userID = try await FirebaseClient.shared.getUserUUID()
         let myProfileURL = "sanitas-ios-dev://?id=\(userID)"
