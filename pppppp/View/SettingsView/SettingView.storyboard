@@ -18,51 +18,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LOT-lE-mHP">
-                                <rect key="frame" x="8" y="108" width="398" height="128"/>
+                                <rect key="frame" x="8" y="108" width="398" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="g3u-xR-tsM"/>
-                                </constraints>
-                            </tableView>
-                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="NlC-XF-2YB">
-                                <rect key="frame" x="8" y="252" width="398" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="hEV-dV-cKZ"/>
-                                </constraints>
-                            </tableView>
-                            <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CeB-fC-kF2">
-                                <rect key="frame" x="8" y="396" width="398" height="100"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="u4Z-qX-IHJ"/>
-                                </constraints>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hrq-yP-Y2a"/>
                         <color key="backgroundColor" red="0.074509803920000006" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="NlC-XF-2YB" firstAttribute="leading" secondItem="hrq-yP-Y2a" secondAttribute="leading" constant="8" id="GbQ-Ub-z9Y"/>
+                            <constraint firstItem="hrq-yP-Y2a" firstAttribute="bottom" secondItem="LOT-lE-mHP" secondAttribute="bottom" id="5Ta-4s-kvm"/>
                             <constraint firstItem="hrq-yP-Y2a" firstAttribute="trailing" secondItem="LOT-lE-mHP" secondAttribute="trailing" constant="8" id="Hk6-hd-8SO"/>
                             <constraint firstItem="LOT-lE-mHP" firstAttribute="leading" secondItem="hrq-yP-Y2a" secondAttribute="leading" constant="8" id="HmU-el-ivu"/>
-                            <constraint firstItem="hrq-yP-Y2a" firstAttribute="trailing" secondItem="CeB-fC-kF2" secondAttribute="trailing" constant="8" id="Ltr-iz-FXr"/>
-                            <constraint firstItem="hrq-yP-Y2a" firstAttribute="trailing" secondItem="NlC-XF-2YB" secondAttribute="trailing" constant="8" id="VI6-5t-ra7"/>
-                            <constraint firstItem="CeB-fC-kF2" firstAttribute="leading" secondItem="hrq-yP-Y2a" secondAttribute="leading" constant="8" id="c3y-lw-Zjv"/>
-                            <constraint firstItem="CeB-fC-kF2" firstAttribute="top" secondItem="NlC-XF-2YB" secondAttribute="bottom" constant="16" id="ce6-sX-DUx"/>
                             <constraint firstItem="LOT-lE-mHP" firstAttribute="top" secondItem="hrq-yP-Y2a" secondAttribute="top" constant="16" id="rAf-94-TIm"/>
-                            <constraint firstItem="NlC-XF-2YB" firstAttribute="top" secondItem="LOT-lE-mHP" secondAttribute="bottom" constant="16" id="tRk-qg-Oj2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" largeTitleDisplayMode="always" id="i2D-Va-fcb"/>
                     <connections>
-                        <outlet property="accountTableView" destination="NlC-XF-2YB" id="Rdn-Fu-OFd"/>
-                        <outlet property="accumulationTypetableView" destination="LOT-lE-mHP" id="8aO-Si-d0o"/>
-                        <outlet property="feedbackTableView" destination="CeB-fC-kF2" id="cXL-Uq-RjM"/>
+                        <outlet property="accumulationTypetableView" destination="LOT-lE-mHP" id="V2Z-rh-QM7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vfp-GC-Waq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2503" y="429"/>
+            <point key="canvasLocation" x="2502.898550724638" y="428.57142857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Yv3-1W-sm7">
