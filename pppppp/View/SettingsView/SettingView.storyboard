@@ -18,21 +18,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LOT-lE-mHP">
-                                <rect key="frame" x="8" y="140" width="398" height="128"/>
+                                <rect key="frame" x="8" y="108" width="398" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="g3u-xR-tsM"/>
                                 </constraints>
                             </tableView>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="NlC-XF-2YB">
-                                <rect key="frame" x="8" y="284" width="398" height="128"/>
+                                <rect key="frame" x="8" y="252" width="398" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="hEV-dV-cKZ"/>
                                 </constraints>
                             </tableView>
                             <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CeB-fC-kF2">
-                                <rect key="frame" x="8" y="428" width="398" height="100"/>
+                                <rect key="frame" x="8" y="396" width="398" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="u4Z-qX-IHJ"/>
@@ -49,7 +49,7 @@
                             <constraint firstItem="hrq-yP-Y2a" firstAttribute="trailing" secondItem="NlC-XF-2YB" secondAttribute="trailing" constant="8" id="VI6-5t-ra7"/>
                             <constraint firstItem="CeB-fC-kF2" firstAttribute="leading" secondItem="hrq-yP-Y2a" secondAttribute="leading" constant="8" id="c3y-lw-Zjv"/>
                             <constraint firstItem="CeB-fC-kF2" firstAttribute="top" secondItem="NlC-XF-2YB" secondAttribute="bottom" constant="16" id="ce6-sX-DUx"/>
-                            <constraint firstItem="LOT-lE-mHP" firstAttribute="top" secondItem="hrq-yP-Y2a" secondAttribute="top" constant="48" id="rAf-94-TIm"/>
+                            <constraint firstItem="LOT-lE-mHP" firstAttribute="top" secondItem="hrq-yP-Y2a" secondAttribute="top" constant="16" id="rAf-94-TIm"/>
                             <constraint firstItem="NlC-XF-2YB" firstAttribute="top" secondItem="LOT-lE-mHP" secondAttribute="bottom" constant="16" id="tRk-qg-Oj2"/>
                         </constraints>
                     </view>
