@@ -45,7 +45,8 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
         if passwordTextField.text == "" {
             showAlert(title: "エラー", message: "パスワードか入力されていません")
         } else {
-            let task = Task {
+            let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     try await FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }
@@ -69,8 +70,8 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     
     @IBAction func sentEmailMore() {
         let storyboard = UIStoryboard(name: "ResetPasswordView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ResetPasswordViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let secondVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(secondVC!, sender: self)
     }
     
     override func viewDidLoad() {
@@ -176,8 +177,8 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
     //MARK: - Setting Delegate
     func loginScene() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let secondVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(secondVC!, sender: self)
     }
 }
 
@@ -223,8 +224,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         // User is signed in to Firebase with Apple.
         // ...
           let storyboard = UIStoryboard(name: "Main", bundle: nil)
-          let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-          self.showDetailViewController(secondVC, sender: self)
+          let secondVC = storyboard.instantiateInitialViewController()
+          self.showDetailViewController(secondVC!, sender: self)
       }
     }
   }

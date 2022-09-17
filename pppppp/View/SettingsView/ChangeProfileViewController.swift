@@ -6,7 +6,7 @@ class ChangeProfileViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
     var myName: String!
-    var ActivityIndicator: UIActivityIndicatorView!
+    var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var myIconView: UIImageView! {
@@ -47,7 +47,8 @@ class ChangeProfileViewController: UIViewController {
     
     @IBAction func changeProfile() {
         if let selectImage = myIconView.image {
-            let task = Task {
+            let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     var configuration = UIButton.Configuration.filled()
                     configuration.title = "Save Change..."
@@ -106,12 +107,12 @@ class ChangeProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ActivityIndicator = UIActivityIndicatorView()
-        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        ActivityIndicator.center = self.view.center
-        ActivityIndicator.style = .large
-        ActivityIndicator.hidesWhenStopped = true
-        self.view.addSubview(ActivityIndicator)
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .large
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -120,11 +121,12 @@ class ChangeProfileViewController: UIViewController {
         
         myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
         myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
-                ActivityIndicator.startAnimating()
+                activityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
-                ActivityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
             }
             catch {
                 print("ChangeProfileView didLoad error:",error.localizedDescription)
@@ -152,19 +154,6 @@ class ChangeProfileViewController: UIViewController {
 }
 
 //MARK: - extension
-extension ChangeProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
-        if let selectedImage = info[.originalImage] as? UIImage {
-            myIconView.image = selectedImage
-        }
-        self.dismiss(animated: true)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
-}
-
 extension ChangeProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()

@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 class DashboardViewController: UIViewController {
-    var ActivityIndicator: UIActivityIndicatorView!
+    var activityIndicator: UIActivityIndicatorView!
     var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
     var refreshCtl = UIRefreshControl()
@@ -22,27 +22,28 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
         
-//        refreshCtl.tintColor = .white
-//        collectionView.refreshControl = refreshCtl
-//        refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
+        refreshCtl.tintColor = .white
+        collectionView.refreshControl = refreshCtl
+        refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
         
-        ActivityIndicator = UIActivityIndicatorView()
-        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        ActivityIndicator.center = self.view.center
-        ActivityIndicator.style = .large
-        ActivityIndicator.hidesWhenStopped = true
-        self.view.addSubview(ActivityIndicator)
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .large
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
-                ActivityIndicator.startAnimating()
+                activityIndicator.startAnimating()
                 try await FirebaseClient.shared.userAuthCheck()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 self.collectionView.reloadData()
-                ActivityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
             }
             catch {
                 print("CollectionViewContro ViewDid error:",error.localizedDescription)
@@ -92,20 +93,3 @@ class DashboardViewController: UIViewController {
         refreshCtl.endRefreshing()
     }
 }
-
-//MARK: - extension
-extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return friendDataList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
-        
-        cell.nameLabel.text = friendDataList[indexPath.row].name
-        cell.dataLabel.text = String(friendDataList[indexPath.row].point ?? 0)
-        cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].iconImageURL)!)
-        return cell
-    }
-}
-

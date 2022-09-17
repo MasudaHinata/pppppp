@@ -30,7 +30,8 @@ class SetNameViewController: UIViewController {
     }
     
     @IBAction func changeName() {
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 changename = changeNameTextField.text!
                 if changename != "" {
@@ -38,8 +39,8 @@ class SetNameViewController: UIViewController {
                     let alert = UIAlertController(title: "完了", message: "名前を設定しました", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-                        self.showDetailViewController(secondVC, sender: self)
+                        let secondVC = storyboard.instantiateInitialViewController()
+                        self.showDetailViewController(secondVC!, sender: self)
                     }
                     alert.addAction(ok)
                     present(alert, animated: true, completion: nil)

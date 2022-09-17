@@ -1,13 +1,14 @@
 import UIKit
 import Combine
 
-class UserDataViewController: UIViewController {
+class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var userDataItem: UserData?
     var pointDataList = [PointData]()
-    var ActivityIndicator: UIActivityIndicatorView!
+    var activityIndicator: UIActivityIndicatorView!
     let layout = UICollectionViewFlowLayout()
+    var flag: Bool!
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var pointLabel: UILabel!
@@ -17,6 +18,9 @@ class UserDataViewController: UIViewController {
             iconView.layer.cornerCurve = .continuous
         }
     }
+    
+    @IBOutlet var deleteFriendButtonLayout: UIButton!
+    
     @IBOutlet var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -26,6 +30,7 @@ class UserDataViewController: UIViewController {
             tableView.backgroundColor = .clear
         }
     }
+    
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
@@ -37,38 +42,114 @@ class UserDataViewController: UIViewController {
             layout.estimatedItemSize = CGSize(width: 17.67, height: 16.24)
         }
     }
-    @IBOutlet var profileBackgroundView: UIView! {
-        didSet {
-            profileBackgroundView.layer.cornerRadius = 40
-            profileBackgroundView.layer.masksToBounds = true
-            profileBackgroundView.layer.cornerCurve = .continuous
+    
+   
+    
+    @IBAction func deleteFriendButton() {
+        if flag {
+            let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
+            let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
+                let task = Task { [weak self] in
+                    guard let self = self else { return }
+                    do {
+                        guard let friendID = userDataItem?.id else { return }
+                        try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: friendID)
+                    }
+                    catch {
+                        print("CollectionViewContro viewDid error:",error.localizedDescription)
+                        if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                            let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                            let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                                self.viewDidLoad()
+                            }
+                            alert.addAction(ok)
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                            let ok = UIAlertAction(title: "OK", style: .default)
+                            alert.addAction(ok)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                }
+                self.cancellables.insert(.init { task.cancel() })
+            })
+            let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+            })
+            alert.addAction(delete)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
+        } else if flag == false {
+            let storyboard = UIStoryboard(name: "SettingView", bundle: nil)
+            let secondVC = storyboard.instantiateInitialViewController()
+            self.showDetailViewController(secondVC!, sender: self)
         }
     }
+    
+    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseClient.shared.deletefriendDelegate = self
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .large
+        activityIndicator.color = .white
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         
-        ActivityIndicator = UIActivityIndicatorView()
-        ActivityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        ActivityIndicator.center = self.view.center
-        ActivityIndicator.style = .large
-        ActivityIndicator.color = .white
-        ActivityIndicator.hidesWhenStopped = true
-        self.view.addSubview(ActivityIndicator)
+        let task = Task { [weak self] in
+            guard let self = self else { return }
+            do {
+                guard let friendID = userDataItem?.id else { return }
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                if friendID == userID {
+                    flag = false
+                    deleteFriendButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
+                    deleteFriendButtonLayout.setTitleColor(.white, for: .normal)
+                    deleteFriendButtonLayout.setTitle("Setting", for: .normal)
+                } else {
+                    flag = true
+                    deleteFriendButtonLayout.tintColor = UIColor.systemPink
+                    deleteFriendButtonLayout.setTitle("Delete This User From Friend", for: .normal)
+                }
+            }
+            catch {
+                print("CollectionViewContro viewDid error:",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.viewDidLoad()
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+        self.cancellables.insert(.init { task.cancel() })
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        ActivityIndicator.startAnimating()
+        activityIndicator.startAnimating()
         iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
         nameLabel.text = userDataItem?.name
         pointLabel.text = "\(userDataItem?.point ?? 0)pt"
-        let task = Task {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
                 pointDataList.reverse()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
-                ActivityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
             }
             catch {
                 print("CollectionViewContro ViewDid error:",error.localizedDescription)
@@ -89,74 +170,25 @@ class UserDataViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
+
+    //MARK: - Setting Delegate
+    func friendDeleted() async {
+        let alert = UIAlertController(title: "完了", message: "友達を削除しました", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateInitialViewController()
+            self.showDetailViewController(secondVC!, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 //MARK: - extension
-extension UserDataViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 112
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryCollectionViewCell", for: indexPath)  as! SummaryCollectionViewCell
-        
-        let weekday = Int(indexPath.row / 16) // 1行目は0
-        let todayWeekday = Calendar.current.component(.weekday, from: Date()) - 1 // 1から始まるので揃えるために1引く
-        let weekdayDelta = todayWeekday - weekday  //いくつ前の曜日か
-        let weekDelta = 15 - indexPath.row % 16 //何週前か
-        
-        var dayForCell = Date()
-        dayForCell = Calendar.current.date(byAdding: .weekOfYear, value: -weekDelta, to: dayForCell)!
-        dayForCell = Calendar.current.date(byAdding: .weekday, value: -weekdayDelta, to: dayForCell)!
-        let activitiesForCell = pointDataList.filter { $0.date.getZeroTime() == dayForCell.getZeroTime() }.compactMap { $0.point }
-        if dayForCell.getZeroTime() > Date().getZeroTime() {
-            cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0)
-            return cell
-        }
-        let totalPointsForCell = activitiesForCell.reduce(0, +) // 合計
-        switch totalPointsForCell {
-        case 0 :
-            cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
-        case 1...30:
-            cell.backgroundColor = UIColor(hex: "45E1FF", alpha: 0.46)
-        case 30...70:
-            cell.backgroundColor = UIColor(hex: "3D83BC", alpha: 0.46)
-        case 70...100:
-            cell.backgroundColor = UIColor(hex: "008DDC", alpha: 0.46)
-        default:
-            cell.backgroundColor = UIColor(hex: "1D5CAC", alpha: 0.46)
-        }
-        return cell
-    }
-}
 extension Date {
     func getZeroTime() -> Date {
         Calendar.current.startOfDay(for: self)
-    }
-}
-
-extension UserDataViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        pointDataList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitysTableViewCell", for: indexPath) as! RecentActivitysTableViewCell
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd"
-        let dataStr = dateFormatter.string(from: pointDataList[indexPath.row].date)
-        
-        cell.pointLabel.text = "+\(pointDataList[indexPath.row].point ?? 0)pt"
-        cell.dateLabel.text = dataStr
-        cell.activityLabel.text = pointDataList[indexPath.row].activity ?? ""
-        return cell
-    }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        //ヘッダーの肥大化を回避
-        return "  "
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 4
     }
 }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1sg-Pi-Aeb">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Onboarding View Controller1-->
+        <scene sceneID="sc8-KA-Wo5">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="1sg-Pi-Aeb" customClass="OnboardingViewController1" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Iud-yC-ACo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="morflax-studio-18" translatesAutoresizingMaskIntoConstraints="NO" id="5dK-WI-bA7">
+                                <rect key="frame" x="-33" y="64" width="544" height="558"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="友達と" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzw-zM-QV5">
+                                <rect key="frame" x="16" y="574" width="120" height="48"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="健康に関する" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNy-6u-mGD">
+                                <rect key="frame" x="16" y="622" width="242" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoK-BG-4t0">
+                                <rect key="frame" x="310" y="758" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="Chl-6k-czv"/>
+                                    <constraint firstAttribute="width" constant="64" id="TQp-PD-mVM"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="arrow.right" catalog="system" cornerStyle="capsule">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="nextButton" destination="1sg-Pi-Aeb" eventType="touchUpInside" id="bWk-Ka-iDo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="努力ポイントを共有" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJM-cp-9Z3">
+                                <rect key="frame" x="16" y="670" width="363" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tGI-rv-4XK"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="gNy-6u-mGD" firstAttribute="leading" secondItem="tGI-rv-4XK" secondAttribute="leading" constant="16" id="7id-ft-kKS"/>
+                            <constraint firstItem="IJM-cp-9Z3" firstAttribute="leading" secondItem="tGI-rv-4XK" secondAttribute="leading" constant="16" id="7wf-S1-f7y"/>
+                            <constraint firstItem="gNy-6u-mGD" firstAttribute="top" secondItem="jzw-zM-QV5" secondAttribute="bottom" id="AEd-vn-mJB"/>
+                            <constraint firstItem="tGI-rv-4XK" firstAttribute="trailing" secondItem="yoK-BG-4t0" secondAttribute="trailing" constant="40" id="Af0-LP-ZlG"/>
+                            <constraint firstItem="5dK-WI-bA7" firstAttribute="leading" secondItem="Iud-yC-ACo" secondAttribute="leading" constant="-33" id="DOh-bo-bg4"/>
+                            <constraint firstItem="tGI-rv-4XK" firstAttribute="bottom" secondItem="yoK-BG-4t0" secondAttribute="bottom" constant="40" id="Go0-cv-wIY"/>
+                            <constraint firstItem="tGI-rv-4XK" firstAttribute="bottom" secondItem="5dK-WI-bA7" secondAttribute="bottom" constant="240" id="R2c-cg-UmE"/>
+                            <constraint firstAttribute="trailing" secondItem="5dK-WI-bA7" secondAttribute="trailing" constant="-97" id="bf4-yl-8nd"/>
+                            <constraint firstItem="5dK-WI-bA7" firstAttribute="top" secondItem="tGI-rv-4XK" secondAttribute="top" constant="16" id="k7F-pI-ZS8"/>
+                            <constraint firstItem="jzw-zM-QV5" firstAttribute="leading" secondItem="tGI-rv-4XK" secondAttribute="leading" constant="16" id="lJY-yt-HKK"/>
+                            <constraint firstItem="IJM-cp-9Z3" firstAttribute="top" secondItem="gNy-6u-mGD" secondAttribute="bottom" id="m5v-NT-5s3"/>
+                            <constraint firstItem="yoK-BG-4t0" firstAttribute="top" secondItem="IJM-cp-9Z3" secondAttribute="bottom" constant="40" id="q4A-Yq-gzZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nextButtonLayout" destination="yoK-BG-4t0" id="97q-21-Nod"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Md4-pZ-ZGX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="49.230769230769226" y="-2.1327014218009479"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="morflax-studio-18" width="1605" height="1374"/>
+    </resources>
+</document>

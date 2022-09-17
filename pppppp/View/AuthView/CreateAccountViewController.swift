@@ -43,7 +43,7 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
         }
     }
     
-    @IBAction func GooButton() {
+    @IBAction func createAccountButton() {
         if passwordTextField.text == password2TextField.text {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Creating Account..."
@@ -55,7 +55,8 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
             
-            let task = Task {
+            let task = Task { [weak self] in
+                guard let self = self else { return }
                 do {
                     try await FirebaseClient.shared.createAccount(email: email, password: password)
                 }
@@ -90,8 +91,8 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
     
     @IBAction func LoginButton () {
         let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController")
-        self.showDetailViewController(secondVC, sender: self)
+        let secondVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(secondVC!, sender: self)
     }
     
     override func viewDidLoad() {
@@ -200,9 +201,9 @@ class CreateAccountViewController: UIViewController, FirebaseCreatedAccountDeleg
         let alert = UIAlertController(title: "仮登録メールを送信しました", message: "メールを確認してください", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController
-            secondVC!.loginEmailAdress = self.emailTextField.text
-            self.showDetailViewController(secondVC!, sender: self)
+            let secondVC = storyboard.instantiateInitialViewController() as! LoginViewController
+            secondVC.loginEmailAdress = self.emailTextField.text
+            self.showDetailViewController(secondVC, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
@@ -254,8 +255,8 @@ extension CreateAccountViewController: ASAuthorizationControllerDelegate {
         // User is signed in to Firebase with Apple.
         // ...
           let storyboard = UIStoryboard(name: "Main", bundle: nil)
-          let secondVC = storyboard.instantiateViewController(identifier: "TabBarViewController")
-          self.showDetailViewController(secondVC, sender: self)
+          let secondVC = storyboard.instantiateInitialViewController()
+          self.showDetailViewController(secondVC!, sender: self)
       }
     }
   }

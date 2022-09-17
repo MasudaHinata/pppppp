@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0318016828D4D32A004C7002 /* AddFriendView.storyboard */; };
+		0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318016A28D4D344004C7002 /* AddFriendViewController.swift */; };
+		034367FE28D609BA000BA656 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034367FD28D609BA000BA656 /* OnboardingView2.storyboard */; };
+		0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034367FF28D609D0000BA656 /* OnboardingViewController2.swift */; };
+		0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680128D60A13000BA656 /* OnboardingViewController3.swift */; };
+		0343680428D60A1D000BA656 /* OnboardingView3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343680328D60A1D000BA656 /* OnboardingView3.storyboard */; };
+		0343680628D60D82000BA656 /* OnboardingView4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343680528D60D82000BA656 /* OnboardingView4.storyboard */; };
+		0343680828D60D93000BA656 /* OnboardingViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680728D60D93000BA656 /* OnboardingViewController4.swift */; };
 		035CE51E28CF1E53001F89BB /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */; };
 		035CE52028CF1E61001F89BB /* HealthDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 035CE51F28CF1E61001F89BB /* HealthDataView.storyboard */; };
 		036F697F28B8EACE0066A7DA /* PointData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F697E28B8EACE0066A7DA /* PointData.swift */; };
@@ -24,23 +32,28 @@
 		036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F528C08C0F0066A7DA /* SetNameView.storyboard */; };
 		036F69F828C08D140066A7DA /* ChangeProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F728C08D140066A7DA /* ChangeProfileView.storyboard */; };
 		036F69FA28C08E7F0066A7DA /* SettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F928C08E7F0066A7DA /* SettingView.storyboard */; };
-		036F69FC28C08F1C0066A7DA /* AddFriendView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69FB28C08F1C0066A7DA /* AddFriendView.storyboard */; };
+		036F69FC28C08F1C0066A7DA /* FriendProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69FB28C08F1C0066A7DA /* FriendProfileView.storyboard */; };
 		036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */; };
 		036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0028C092520066A7DA /* DashboardView.storyboard */; };
 		036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0228C093560066A7DA /* UserDataView.storyboard */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
+		03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */; };
+		03A1E0B928D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */; };
+		03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */; };
+		03A1E0BD28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */; };
+		03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */; };
+		03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */; };
+		03A1E0C328D4C52000B5B9C3 /* SettingViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C228D4C52000B5B9C3 /* SettingViewController+CollectionViewDelegate.swift */; };
 		03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */; };
 		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
 		03C7E7B328D322660069A46E /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7B128D322660069A46E /* AccountTableViewCell.swift */; };
 		03C7E7B428D322660069A46E /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7B228D322660069A46E /* AccountTableViewCell.xib */; };
 		03C7E7B728D32BB70069A46E /* FeedbackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */; };
 		03C7E7B828D32BB70069A46E /* FeedbackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */; };
-		03C7E7BA28D342E40069A46E /* StepPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7B928D342E40069A46E /* StepPermissionViewController.swift */; };
-		03C7E7BC28D342F80069A46E /* StepPermissionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7BB28D342F80069A46E /* StepPermissionView.storyboard */; };
 		03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7BD28D34E320069A46E /* WeightData.swift */; };
-		03C7E7C228D453ED0069A46E /* InitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7C128D453ED0069A46E /* InitialScreenViewController.swift */; };
-		03C7E7C428D454030069A46E /* InitialScreenView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C328D454030069A46E /* InitialScreenView.storyboard */; };
+		03C7E7C228D453ED0069A46E /* OnboardingViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */; };
+		03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C328D454030069A46E /* OnboardingView1.storyboard */; };
 		03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C528D49DB10069A46E /* SanitasView.storyboard */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift */; };
@@ -48,7 +61,7 @@
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
 		9C1A900C283506D5004B4100 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A900B283506D5004B4100 /* ProfileViewController.swift */; };
 		9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2BE4402885108300431FEC /* FirebaseClient.swift */; };
-		9C4F1C752859E6F500623C66 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F1C742859E6F500623C66 /* AddFriendViewController.swift */; };
+		9C4F1C752859E6F500623C66 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F1C742859E6F500623C66 /* FriendProfileViewController.swift */; };
 		9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */; };
 		9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69903E286C6517009D5BF5 /* FriendDataCell.swift */; };
 		9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C69903F286C6517009D5BF5 /* FriendDataCell.xib */; };
@@ -83,6 +96,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0318016828D4D32A004C7002 /* AddFriendView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFriendView.storyboard; sourceTree = "<group>"; };
+		0318016A28D4D344004C7002 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		034367FD28D609BA000BA656 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
+		034367FF28D609D0000BA656 /* OnboardingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController2.swift; sourceTree = "<group>"; };
+		0343680128D60A13000BA656 /* OnboardingViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController3.swift; sourceTree = "<group>"; };
+		0343680328D60A1D000BA656 /* OnboardingView3.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView3.storyboard; sourceTree = "<group>"; };
+		0343680528D60D82000BA656 /* OnboardingView4.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView4.storyboard; sourceTree = "<group>"; };
+		0343680728D60D93000BA656 /* OnboardingViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController4.swift; sourceTree = "<group>"; };
 		035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
 		035CE51F28CF1E61001F89BB /* HealthDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HealthDataView.storyboard; sourceTree = "<group>"; };
 		036F697E28B8EACE0066A7DA /* PointData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointData.swift; sourceTree = "<group>"; };
@@ -100,23 +121,28 @@
 		036F69F528C08C0F0066A7DA /* SetNameView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetNameView.storyboard; sourceTree = "<group>"; };
 		036F69F728C08D140066A7DA /* ChangeProfileView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangeProfileView.storyboard; sourceTree = "<group>"; };
 		036F69F928C08E7F0066A7DA /* SettingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingView.storyboard; sourceTree = "<group>"; };
-		036F69FB28C08F1C0066A7DA /* AddFriendView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFriendView.storyboard; sourceTree = "<group>"; };
+		036F69FB28C08F1C0066A7DA /* FriendProfileView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendProfileView.storyboard; sourceTree = "<group>"; };
 		036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelfCheckView.storyboard; sourceTree = "<group>"; };
 		036F6A0028C092520066A7DA /* DashboardView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardView.storyboard; sourceTree = "<group>"; };
 		036F6A0228C093560066A7DA /* UserDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDataView.storyboard; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDataViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDataViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeProfileViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
+		03A1E0C228D4C52000B5B9C3 /* SettingViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareMyDataView.storyboard; sourceTree = "<group>"; };
 		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
 		03C7E7B128D322660069A46E /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		03C7E7B228D322660069A46E /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 		03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewCell.swift; sourceTree = "<group>"; };
 		03C7E7B628D32BB70069A46E /* FeedbackTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackTableViewCell.xib; sourceTree = "<group>"; };
-		03C7E7B928D342E40069A46E /* StepPermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepPermissionViewController.swift; sourceTree = "<group>"; };
-		03C7E7BB28D342F80069A46E /* StepPermissionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StepPermissionView.storyboard; sourceTree = "<group>"; };
 		03C7E7BD28D34E320069A46E /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
-		03C7E7C128D453ED0069A46E /* InitialScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewController.swift; sourceTree = "<group>"; };
-		03C7E7C328D454030069A46E /* InitialScreenView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InitialScreenView.storyboard; sourceTree = "<group>"; };
+		03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController1.swift; sourceTree = "<group>"; };
+		03C7E7C328D454030069A46E /* OnboardingView1.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView1.storyboard; sourceTree = "<group>"; };
 		03C7E7C528D49DB10069A46E /* SanitasView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SanitasView.storyboard; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAccumulationTypeTableViewCell.swift; sourceTree = "<group>"; };
@@ -124,7 +150,7 @@
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
 		9C1A900B283506D5004B4100 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9C2BE4402885108300431FEC /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
-		9C4F1C742859E6F500623C66 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		9C4F1C742859E6F500623C66 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
 		9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckViewController.swift; sourceTree = "<group>"; };
 		9C69903E286C6517009D5BF5 /* FriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDataCell.swift; sourceTree = "<group>"; };
 		9C69903F286C6517009D5BF5 /* FriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendDataCell.xib; sourceTree = "<group>"; };
@@ -173,18 +199,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		034367FC28D60539000BA656 /* OnboardingView */ = {
+			isa = PBXGroup;
+			children = (
+				03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */,
+				03C7E7C328D454030069A46E /* OnboardingView1.storyboard */,
+				034367FF28D609D0000BA656 /* OnboardingViewController2.swift */,
+				034367FD28D609BA000BA656 /* OnboardingView2.storyboard */,
+				0343680128D60A13000BA656 /* OnboardingViewController3.swift */,
+				0343680328D60A1D000BA656 /* OnboardingView3.storyboard */,
+				0343680728D60D93000BA656 /* OnboardingViewController4.swift */,
+				0343680528D60D82000BA656 /* OnboardingView4.storyboard */,
+			);
+			path = OnboardingView;
+			sourceTree = "<group>";
+		};
 		036F698228BB92C00066A7DA /* View */ = {
 			isa = PBXGroup;
 			children = (
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
-				036F69E828BE60190066A7DA /* ProfileData */,
 				036F69FF28C091590066A7DA /* CreatePoint */,
-				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
+				036F69E828BE60190066A7DA /* ProfileData */,
 				03C7E79B28D2F3810069A46E /* AddFriendsView */,
+				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
+				034367FC28D60539000BA656 /* OnboardingView */,
 				036F698528BB93760066A7DA /* AuthView */,
-				03C7E7C128D453ED0069A46E /* InitialScreenViewController.swift */,
-				03C7E7C328D454030069A46E /* InitialScreenView.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +236,7 @@
 				03C7E7C528D49DB10069A46E /* SanitasView.storyboard */,
 				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
 				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
+				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
 				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
 				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
 				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
@@ -254,8 +295,12 @@
 			children = (
 				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
 				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
+				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
+				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
 				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
 				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
+				03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */,
+				03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */,
 				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
 				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
@@ -273,8 +318,6 @@
 				036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */,
 				035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */,
 				035CE51F28CF1E61001F89BB /* HealthDataView.storyboard */,
-				03C7E7B928D342E40069A46E /* StepPermissionViewController.swift */,
-				03C7E7BB28D342F80069A46E /* StepPermissionView.storyboard */,
 			);
 			path = CreatePoint;
 			sourceTree = "<group>";
@@ -282,8 +325,10 @@
 		03C7E79B28D2F3810069A46E /* AddFriendsView */ = {
 			isa = PBXGroup;
 			children = (
-				9C4F1C742859E6F500623C66 /* AddFriendViewController.swift */,
-				036F69FB28C08F1C0066A7DA /* AddFriendView.storyboard */,
+				0318016A28D4D344004C7002 /* AddFriendViewController.swift */,
+				0318016828D4D32A004C7002 /* AddFriendView.storyboard */,
+				9C4F1C742859E6F500623C66 /* FriendProfileViewController.swift */,
+				036F69FB28C08F1C0066A7DA /* FriendProfileView.storyboard */,
 				03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */,
 				03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */,
 			);
@@ -295,10 +340,12 @@
 			children = (
 				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
 				036F69F728C08D140066A7DA /* ChangeProfileView.storyboard */,
+				03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */,
 				03DFB7A228B7A8390019381A /* SetNameViewController.swift */,
 				036F69F528C08C0F0066A7DA /* SetNameView.storyboard */,
 				038E26AD28BF4BF1000204A4 /* SettingViewController.swift */,
 				036F69F928C08E7F0066A7DA /* SettingView.storyboard */,
+				03A1E0C228D4C52000B5B9C3 /* SettingViewController+CollectionViewDelegate.swift */,
 				03FB125828CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift */,
 				03FB125928CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.xib */,
 				03C7E7B528D32BB70069A46E /* FeedbackTableViewCell.swift */,
@@ -429,6 +476,7 @@
 				036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */,
 				036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */,
 				036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */,
+				0343680628D60D82000BA656 /* OnboardingView4.storyboard in Resources */,
 				035CE52028CF1E61001F89BB /* HealthDataView.storyboard in Resources */,
 				9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */,
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
@@ -437,15 +485,17 @@
 				036F69F028C0868C0066A7DA /* CreateAccountView.storyboard in Resources */,
 				036F69F228C089B40066A7DA /* LoginView.storyboard in Resources */,
 				9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */,
+				034367FE28D609BA000BA656 /* OnboardingView2.storyboard in Resources */,
 				03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */,
 				BEA64AED25D3EC040064F184 /* GoogleService-Info.plist in Resources */,
 				BE7F33852580D0810027620D /* Assets.xcassets in Resources */,
-				036F69FC28C08F1C0066A7DA /* AddFriendView.storyboard in Resources */,
+				036F69FC28C08F1C0066A7DA /* FriendProfileView.storyboard in Resources */,
+				0343680428D60A1D000BA656 /* OnboardingView3.storyboard in Resources */,
+				0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */,
 				03C7E7B828D32BB70069A46E /* FeedbackTableViewCell.xib in Resources */,
 				036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */,
-				03C7E7C428D454030069A46E /* InitialScreenView.storyboard in Resources */,
+				03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
-				03C7E7BC28D342F80069A46E /* StepPermissionView.storyboard in Resources */,
 				036F69F828C08D140066A7DA /* ChangeProfileView.storyboard in Resources */,
 				9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
@@ -462,9 +512,12 @@
 			files = (
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
+				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
+				0343680828D60D93000BA656 /* OnboardingViewController4.swift in Sources */,
 				03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
+				0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */,
 				035CE51E28CF1E53001F89BB /* HealthDataViewController.swift in Sources */,
 				03C7E7B328D322660069A46E /* AccountTableViewCell.swift in Sources */,
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
@@ -472,28 +525,35 @@
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
 				9CDF759F286326A600209FD0 /* CreateAccountViewController.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
+				03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */,
 				03FB125A28CB50BA00AB4F99 /* SelectAccumulationTypeTableViewCell.swift in Sources */,
+				0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */,
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
 				0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
 				036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */,
+				03A1E0BD28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift in Sources */,
 				9C1A900C283506D5004B4100 /* ProfileViewController.swift in Sources */,
-				03C7E7C228D453ED0069A46E /* InitialScreenViewController.swift in Sources */,
+				03C7E7C228D453ED0069A46E /* OnboardingViewController1.swift in Sources */,
 				9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */,
 				9CAA88EC26B1918B005517D5 /* LoginViewController.swift in Sources */,
-				9C4F1C752859E6F500623C66 /* AddFriendViewController.swift in Sources */,
+				9C4F1C752859E6F500623C66 /* FriendProfileViewController.swift in Sources */,
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
 				9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */,
+				03A1E0C328D4C52000B5B9C3 /* SettingViewController+CollectionViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
 				03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */,
+				03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */,
+				0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */,
 				036F697F28B8EACE0066A7DA /* PointData.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */,
+				03A1E0B928D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				03C7E7B728D32BB70069A46E /* FeedbackTableViewCell.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
-				03C7E7BA28D342E40069A46E /* StepPermissionViewController.swift in Sources */,
+				03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */,
 				036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,
 			);
