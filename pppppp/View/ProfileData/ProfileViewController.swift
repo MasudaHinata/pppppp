@@ -43,14 +43,6 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         }
     }
     
-    @IBOutlet var profileBackgroundView: UIView! {
-        didSet {
-            profileBackgroundView.layer.cornerRadius = 40
-            profileBackgroundView.layer.masksToBounds = true
-            profileBackgroundView.layer.cornerCurve = .continuous
-        }
-    }
-    
     @IBOutlet var tableView: UITableView! {
         didSet {
             tableView.delegate = self

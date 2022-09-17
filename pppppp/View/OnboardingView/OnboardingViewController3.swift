@@ -21,7 +21,7 @@ class OnboardingViewController3: UIViewController {
     }
     
     @IBAction func nextButton() {
-        let storyboard = UIStoryboard(name: "AddFriendView", bundle: nil)
+        let storyboard = UIStoryboard(name: "SanitasView", bundle: nil)
         let secondVC = storyboard.instantiateInitialViewController()
         self.showDetailViewController(secondVC!, sender: self)
     }

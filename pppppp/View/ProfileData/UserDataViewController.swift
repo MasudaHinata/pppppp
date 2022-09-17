@@ -17,6 +17,7 @@ class UserDataViewController: UIViewController {
             iconView.layer.cornerCurve = .continuous
         }
     }
+    
     @IBOutlet var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -26,6 +27,7 @@ class UserDataViewController: UIViewController {
             tableView.backgroundColor = .clear
         }
     }
+    
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
@@ -37,13 +39,7 @@ class UserDataViewController: UIViewController {
             layout.estimatedItemSize = CGSize(width: 17.67, height: 16.24)
         }
     }
-    @IBOutlet var profileBackgroundView: UIView! {
-        didSet {
-            profileBackgroundView.layer.cornerRadius = 40
-            profileBackgroundView.layer.masksToBounds = true
-            profileBackgroundView.layer.cornerCurve = .continuous
-        }
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
