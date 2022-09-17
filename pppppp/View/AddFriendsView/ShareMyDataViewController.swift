@@ -4,14 +4,17 @@ import AVFoundation
 
 class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
-    var cancellables = Set<AnyCancellable>()
     var qrCodeView = UIView()
     var qrCodeImageView = UIImageView()
     var dismissButton = UIButton()
     var flag = Bool()
+    var cancellables = Set<AnyCancellable>()
     private let session = AVCaptureSession()
+    var picker: UIImagePickerController!
+    var detector: CIDetector!
     
     @IBOutlet weak var caputureView: UIView!
+    @IBOutlet weak var photoImageView: UIImageView!
     
     @IBOutlet var showMyQRCodeLayout: UIButton! {
         didSet {
@@ -44,6 +47,10 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             albumButtonLayout.configuration = configuration
         }
     }
+    
+    @IBAction func albumButton() {
+    }
+    
     
     @IBAction func settingLight() {
         if settingLightLayout.currentImage == UIImage(systemName: "flashlight.off.fill") {
@@ -204,9 +211,4 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         qrCodeImageView.isHidden = true
         dismissButton.isHidden = true
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
-
