@@ -1,8 +1,6 @@
 import UIKit
 
-class SelectAccumulationTypeTableViewCell: UITableViewCell {
-
-    @IBOutlet var selectLabel: UILabel!
+class SettingTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()

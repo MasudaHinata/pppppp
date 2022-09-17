@@ -10,35 +10,15 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
     let accountItems = ["サインアウト", "アカウント削除"]
     let feedbackItems = ["フィードバックを送る"]
     
-    @IBOutlet var accumulationTypetableView: UITableView! {
+    @IBOutlet var settingTableView: UITableView! {
         didSet {
-            accumulationTypetableView.delegate = self
-            accumulationTypetableView.dataSource = self
-            accumulationTypetableView.register(UINib(nibName: "SelectAccumulationTypeTableViewCell", bundle: nil), forCellReuseIdentifier: "SelectAccumulationTypeTableViewCell")
-            accumulationTypetableView.backgroundView = nil
-            accumulationTypetableView.backgroundColor = .clear
+            settingTableView.delegate = self
+            settingTableView.dataSource = self
+            settingTableView.register(UINib(nibName: "SettingTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingTableViewCell")
+            settingTableView.backgroundView = nil
+            settingTableView.backgroundColor = .clear
         }
     }
-    
-//    @IBOutlet var accountTableView: UITableView! {
-//        didSet {
-//            accountTableView.delegate = self
-//            accountTableView.dataSource = self
-//            accountTableView.register(UINib(nibName: "AccountTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountTableViewCell")
-//            accountTableView.backgroundView = nil
-//            accountTableView.backgroundColor = .clear
-//        }
-//    }
-//
-//    @IBOutlet var feedbackTableView: UITableView! {
-//        didSet {
-//            feedbackTableView.delegate = self
-//            feedbackTableView.dataSource = self
-//            feedbackTableView.register(UINib(nibName: "FeedbackTableViewCell", bundle: nil), forCellReuseIdentifier: "FeedbackTableViewCell")
-//            feedbackTableView.backgroundView = nil
-//            feedbackTableView.backgroundColor = .clear
-//        }
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
