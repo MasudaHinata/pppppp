@@ -5,6 +5,10 @@ import SafariServices
 class SettingViewController: UIViewController, SetttingAccountDelegate  {
     
     var cancellables = Set<AnyCancellable>()
+    let settingSection = ["Select Accumulation Type", "Account", "Feedback"]
+    let accumulationTypeItems = ["今日までの一週間", "月曜始まり"]
+    let accountItems = ["サインアウト", "アカウント削除"]
+    let feedbackItems = ["フィードバックを送る"]
     
     @IBOutlet var accumulationTypetableView: UITableView! {
         didSet {
@@ -16,25 +20,25 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         }
     }
     
-    @IBOutlet var accountTableView: UITableView! {
-        didSet {
-            accountTableView.delegate = self
-            accountTableView.dataSource = self
-            accountTableView.register(UINib(nibName: "AccountTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountTableViewCell")
-            accountTableView.backgroundView = nil
-            accountTableView.backgroundColor = .clear
-        }
-    }
-    
-    @IBOutlet var feedbackTableView: UITableView! {
-        didSet {
-            feedbackTableView.delegate = self
-            feedbackTableView.dataSource = self
-            feedbackTableView.register(UINib(nibName: "FeedbackTableViewCell", bundle: nil), forCellReuseIdentifier: "FeedbackTableViewCell")
-            feedbackTableView.backgroundView = nil
-            feedbackTableView.backgroundColor = .clear
-        }
-    }
+//    @IBOutlet var accountTableView: UITableView! {
+//        didSet {
+//            accountTableView.delegate = self
+//            accountTableView.dataSource = self
+//            accountTableView.register(UINib(nibName: "AccountTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountTableViewCell")
+//            accountTableView.backgroundView = nil
+//            accountTableView.backgroundColor = .clear
+//        }
+//    }
+//
+//    @IBOutlet var feedbackTableView: UITableView! {
+//        didSet {
+//            feedbackTableView.delegate = self
+//            feedbackTableView.dataSource = self
+//            feedbackTableView.register(UINib(nibName: "FeedbackTableViewCell", bundle: nil), forCellReuseIdentifier: "FeedbackTableViewCell")
+//            feedbackTableView.backgroundView = nil
+//            feedbackTableView.backgroundColor = .clear
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

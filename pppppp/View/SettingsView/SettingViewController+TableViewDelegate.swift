@@ -1,64 +1,72 @@
 import UIKit
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (tableView.tag == 0) {
-            return 2
-        } else if (tableView.tag == 1) {
-            return 2
-        } else if (tableView.tag == 2) {
-            return 1
-        } else {
-            fatalError("collectionView Tag Invalid")
-        }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return settingSection.count
     }
 
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return settingSection[section]
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 24
+        } else if section == 1 {
+            return 24
+        } else if section == 2 {
+            return 24
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return accumulationTypeItems.count
+        } else if section == 1 {
+            return accountItems.count
+        } else if section == 2 {
+            return feedbackItems.count
+        } else {
+            return 0
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SelectAccumulationTypeTableViewCell", for: indexPath) as! SelectAccumulationTypeTableViewCell
+        
         let cellBackgroundView = UIView()
         cellBackgroundView.backgroundColor = UIColor.init(hex: "969696", alpha: 0.5)
-        if (tableView.tag == 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SelectAccumulationTypeTableViewCell", for: indexPath) as! SelectAccumulationTypeTableViewCell
-            cell.selectedBackgroundView = cellBackgroundView
+        cell.selectedBackgroundView = cellBackgroundView
+        
+        if indexPath.section == 0 {
             cell.accessoryType = .none
-
             let accumulationType = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
             if indexPath.row == 0 {
-                cell.selectLabel.text = "今日までの一週間"
                 if accumulationType as! String == "今日までの一週間" {
                     cell.accessoryType = .checkmark
                 }
             } else if indexPath.row == 1 {
-                cell.selectLabel.text = "月曜始まり"
                 if accumulationType as! String == "月曜始まり" {
                     cell.accessoryType = .checkmark
                 }
             }
-            return cell
-        } else if (tableView.tag == 1) {
-            let accountCell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AccountTableViewCell
-            accountCell.selectedBackgroundView = cellBackgroundView
-            if indexPath.row == 0 {
-                accountCell.settingAccountLabel.text = "サインアウト"
-            } else if indexPath.row == 1 {
-                accountCell.settingAccountLabel.textColor = .red
-                accountCell.settingAccountLabel.text = "アカウント削除"
-            }
-            return accountCell
-        } else if (tableView.tag == 2) {
-            let feedbackCell = tableView.dequeueReusableCell(withIdentifier: "FeedbackTableViewCell", for: indexPath) as! FeedbackTableViewCell
-            feedbackCell.selectedBackgroundView = cellBackgroundView
-            if indexPath.row == 0 {
-                feedbackCell.FeedbackLabel.text = "フィードバックを送る"
-            }
-            return feedbackCell
-        } else {
-            fatalError("collectionView Tag Invalid")
+            cell.textLabel?.text = "\(accumulationTypeItems[indexPath.row])"
+        } else if indexPath.section == 1 {
+            //TODO: アカウント削除だけ赤色にする(サインアウトも赤くなってる)
+            cell.textLabel?.textColor = .red
+            cell.textLabel?.text = "\(accountItems[indexPath.row])"
+        } else if indexPath.section == 2 {
+            cell.textLabel?.text = "\(feedbackItems[indexPath.row])"
         }
+        
+        return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (tableView.tag == 0) {
-            
+        if indexPath.section == 0 {
             if indexPath.row == 0 {
                 UserDefaults.standard.set("今日までの一週間", forKey: "accumulationType")
                 tableView.reloadData()
@@ -82,43 +90,17 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 alert.addAction(ok)
                 present(alert, animated: true, completion: nil)
             }
-        } else if (tableView.tag == 1) {
+        } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 logoutButton()
             } else if indexPath.row == 1 {
                 deleteAccount()
             }
-        } else if (tableView.tag == 2) {
+        } else if indexPath.section == 2 {
             if indexPath.row == 0 {
                 sceneGoogleForm()
             }
-        } else {
-            fatalError("collectionView Tag Invalid")
         }
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (tableView.tag == 0) {
-            return "point accumulation type"
-        } else if (tableView.tag == 1) {
-            return "account"
-        } else if (tableView.tag == 2) {
-            return "feedback"
-        } else {
-            fatalError("collectionView Tag Invalid")
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if (tableView.tag == 0) {
-            return 30
-        } else if (tableView.tag == 1) {
-            return 30
-        } else if (tableView.tag == 2) {
-            return 30
-        } else {
-            fatalError("collectionView Tag Invalid")
-        }
     }
 }
