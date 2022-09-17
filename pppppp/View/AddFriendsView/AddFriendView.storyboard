@@ -48,7 +48,7 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="qrCodeButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="2AU-Y6-Xic"/>
+                                    <action selector="addFriendButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="2AU-Y6-Xic"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -78,7 +78,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="qrCodeButtonLayout" destination="Bk9-rt-Jp9" id="wV1-yL-wdr"/>
+                        <outlet property="addFriendButtonLayout" destination="Bk9-rt-Jp9" id="wV1-yL-wdr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

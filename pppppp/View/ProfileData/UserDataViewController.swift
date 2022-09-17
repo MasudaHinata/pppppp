@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class UserDataViewController: UIViewController {
+class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var userDataItem: UserData?
@@ -17,6 +17,8 @@ class UserDataViewController: UIViewController {
             iconView.layer.cornerCurve = .continuous
         }
     }
+    
+    @IBOutlet var deleteFriendButtonLayout: UIButton!
     
     @IBOutlet var tableView: UITableView! {
         didSet {
@@ -39,10 +41,52 @@ class UserDataViewController: UIViewController {
             layout.estimatedItemSize = CGSize(width: 17.67, height: 16.24)
         }
     }
+    
+    @IBAction func deleteFriendButton() {
+        guard let friendID = userDataItem?.id else { return }
+        let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
+        let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
+            let task = Task { [weak self] in
+                guard let self = self else { return }
+                do {
+                    let userID = try await FirebaseClient.shared.getUserUUID()
+                    if friendID == userID {
+                        let storyboard = UIStoryboard(name: "SettingView", bundle: nil)
+                        let secondVC = storyboard.instantiateInitialViewController()
+                        self.showDetailViewController(secondVC!, sender: self)
+                    } else {
+                        try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: friendID)
+                    }
+                }
+                catch {
+                    print("CollectionViewContro deleteFriend error:",error.localizedDescription)
+                    if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                        let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                            self.viewDidLoad()
+                        }
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+            cancellables.insert(.init { task.cancel() })
+        })
+        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
+        })
+        alert.addAction(delete)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        FirebaseClient.shared.deletefriendDelegate = self
         activityIndicator = UIActivityIndicatorView()
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         activityIndicator.center = self.view.center
@@ -50,6 +94,38 @@ class UserDataViewController: UIViewController {
         activityIndicator.color = .white
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
+        
+        let task = Task { [weak self] in
+            guard let self = self else { return }
+            do {
+                guard let friendID = userDataItem?.id else { return }
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                if friendID == userID {
+                    deleteFriendButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
+                    deleteFriendButtonLayout.setTitleColor(.white, for: .normal)
+                    deleteFriendButtonLayout.setTitle("Setting", for: .normal)
+                } else {
+                    deleteFriendButtonLayout.tintColor = UIColor.systemPink
+                    deleteFriendButtonLayout.setTitle("Delete This User From Friend", for: .normal)
+                }
+            }
+            catch {
+                print("CollectionViewContro viewDid error:",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.viewDidLoad()
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,6 +161,20 @@ class UserDataViewController: UIViewController {
             }
         }
         cancellables.insert(.init { task.cancel() })
+    }
+
+    //MARK: - Setting Delegate
+    func friendDeleted() async {
+        let alert = UIAlertController(title: "完了", message: "友達を削除しました", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateInitialViewController()
+            self.showDetailViewController(secondVC!, sender: self)
+        }
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 

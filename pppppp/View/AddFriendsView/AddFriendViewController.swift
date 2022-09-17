@@ -5,13 +5,13 @@ class AddFriendViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
 
-    @IBOutlet var qrCodeButtonLayout: UIButton! {
+    @IBOutlet var addFriendButtonLayout: UIButton! {
         didSet {
-            qrCodeButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
+            addFriendButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
         }
     }
 
-    @IBAction func qrCodeButton() {
+    @IBAction func addFriendButton() {
         let storyboard = UIStoryboard(name: "ShareMyDataView", bundle: nil)
         let secondVC = storyboard.instantiateInitialViewController()
         self.showDetailViewController(secondVC!, sender: self)
