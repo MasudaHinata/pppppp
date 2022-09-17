@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoK-BG-4t0">
-                                <rect key="frame" x="294" y="758" width="64" height="64"/>
+                                <rect key="frame" x="310" y="758" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="Chl-6k-czv"/>
                                     <constraint firstAttribute="width" constant="64" id="TQp-PD-mVM"/>
@@ -58,7 +58,7 @@
                             <constraint firstItem="gNy-6u-mGD" firstAttribute="leading" secondItem="tGI-rv-4XK" secondAttribute="leading" constant="16" id="7id-ft-kKS"/>
                             <constraint firstItem="IJM-cp-9Z3" firstAttribute="leading" secondItem="tGI-rv-4XK" secondAttribute="leading" constant="16" id="7wf-S1-f7y"/>
                             <constraint firstItem="gNy-6u-mGD" firstAttribute="top" secondItem="jzw-zM-QV5" secondAttribute="bottom" id="AEd-vn-mJB"/>
-                            <constraint firstItem="tGI-rv-4XK" firstAttribute="trailing" secondItem="yoK-BG-4t0" secondAttribute="trailing" constant="56" id="Af0-LP-ZlG"/>
+                            <constraint firstItem="tGI-rv-4XK" firstAttribute="trailing" secondItem="yoK-BG-4t0" secondAttribute="trailing" constant="40" id="Af0-LP-ZlG"/>
                             <constraint firstItem="5dK-WI-bA7" firstAttribute="leading" secondItem="Iud-yC-ACo" secondAttribute="leading" constant="-33" id="DOh-bo-bg4"/>
                             <constraint firstItem="tGI-rv-4XK" firstAttribute="bottom" secondItem="yoK-BG-4t0" secondAttribute="bottom" constant="40" id="Go0-cv-wIY"/>
                             <constraint firstItem="tGI-rv-4XK" firstAttribute="bottom" secondItem="5dK-WI-bA7" secondAttribute="bottom" constant="240" id="R2c-cg-UmE"/>

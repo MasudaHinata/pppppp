@@ -1,6 +1,13 @@
+//
+//  OnboardingViewController4.swift
+//  pppppp
+//
+//  Created by hinata on 2022/09/17.
+//
+
 import UIKit
 
-class OnboardingViewController3: UIViewController {
+class OnboardingViewController4: UIViewController {
     
     @IBOutlet var backButtonLayout: UIButton! {
         didSet {
@@ -8,24 +15,25 @@ class OnboardingViewController3: UIViewController {
         }
     }
     
-    @IBOutlet var nextButtonLayout: UIButton! {
+    @IBOutlet var startButtonLayout: UIButton! {
         didSet {
-            nextButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
+            startButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
         }
     }
     
     @IBAction func backButton() {
-        let storyboard = UIStoryboard(name: "OnboardingView2", bundle: nil)
+        let storyboard = UIStoryboard(name: "OnboardingView3", bundle: nil)
         let secondVC = storyboard.instantiateInitialViewController()
         self.showDetailViewController(secondVC!, sender: self)
     }
     
-    @IBAction func nextButton() {
+    @IBAction func startButton() {
         let storyboard = UIStoryboard(name: "AddFriendView", bundle: nil)
         let secondVC = storyboard.instantiateInitialViewController()
         self.showDetailViewController(secondVC!, sender: self)
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
