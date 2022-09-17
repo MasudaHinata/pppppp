@@ -87,6 +87,7 @@
                             <constraint firstAttribute="trailing" secondItem="xBN-vf-RxM" secondAttribute="trailing" constant="-97" id="zuG-dq-Ibt"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="LtX-hF-weW"/>
                     <connections>
                         <outlet property="backButtonLayout" destination="FHt-Zd-pG3" id="0O3-cR-8vi"/>
                         <outlet property="nextButtonLayout" destination="cH1-5l-5wP" id="NiS-7m-jb4"/>
@@ -94,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qRm-PU-b9H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="49.230769230769226" y="-2.1327014218009479"/>
+            <point key="canvasLocation" x="80" y="-505"/>
         </scene>
     </scenes>
     <resources>
