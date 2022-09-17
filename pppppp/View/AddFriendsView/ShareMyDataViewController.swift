@@ -7,6 +7,8 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     var cancellables = Set<AnyCancellable>()
     var qrCodeView = UIView()
     var qrCodeImageView = UIImageView()
+    var dismissButton = UIButton()
+    var flag = Bool()
     
     private let session = AVCaptureSession()
     
@@ -14,7 +16,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     @IBOutlet var showMyQRCodeLayout: UIButton! {
         didSet {
-            showMyQRCodeLayout.tintColor = UIColor.init(hex: "000000", alpha: 0.3)
+            showMyQRCodeLayout.tintColor = UIColor.init(hex: "000000", alpha: 0.39)
         }
     }
     
@@ -25,6 +27,16 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             configuration.baseBackgroundColor = .init(hex: "000000", alpha: 0.39)
             configuration.cornerStyle = .capsule
             settingLightLayout.configuration = configuration
+        }
+    }
+    
+    @IBOutlet var albumButtonLayout: UIButton! {
+        didSet {
+            albumButtonLayout.setImage(UIImage(systemName: "photo"), for: .normal)
+            var configuration = UIButton.Configuration.filled()
+            configuration.baseBackgroundColor = .init(hex: "000000", alpha: 0.39)
+            configuration.cornerStyle = .capsule
+            albumButtonLayout.configuration = configuration
         }
     }
     
@@ -39,14 +51,28 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     }
     
     @IBAction func showMyQRCode() {
+        flag = false
         qrCodeView = UIView(frame: CGRect(x: 16, y: 240, width: 360, height: 360))
         qrCodeView.backgroundColor = UIColor.init(hex: "FFFFFF", alpha: 0.32)
         qrCodeView.layer.cornerRadius = 72
         qrCodeView.layer.cornerCurve = .continuous
         qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 288, width: 264, height: 264))
         
+        //TODO: 他のところ触ったら閉じるようにする
+        dismissButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
+        dismissButton.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 108)
+        dismissButton.backgroundColor = UIColor.init(hex: "000000", alpha: 0.39)
+        dismissButton.layer.cornerRadius = 28.0
+        dismissButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        dismissButton.tintColor = UIColor.init(hex: "FFFFFF")
+        dismissButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickDismissButton(sender:)), for: .touchUpInside)
+        
+        qrCodeView.isHidden = false
+        qrCodeImageView.isHidden = false
+        dismissButton.isHidden = false
         self.view.addSubview(qrCodeView)
         self.view.addSubview(qrCodeImageView)
+        self.view.addSubview(dismissButton)
         
         let task = Task { [weak self] in
             guard let self = self else { return }
@@ -141,6 +167,16 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
                 print("Torch could not be used")
             }
         }
+    }
+    
+    @objc func onClickDismissButton(sender: UIButton) {
+        qrCodeView.isHidden = true
+        qrCodeImageView.isHidden = true
+        dismissButton.isHidden = true
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 }
 
