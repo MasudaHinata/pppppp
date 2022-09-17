@@ -21,9 +21,15 @@
                                 <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQF-Xb-Gd3">
-                                <rect key="frame" x="110" y="431" width="193" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScanQRCode" translatesAutoresizingMaskIntoConstraints="NO" id="zbe-UI-CKp">
+                                <rect key="frame" x="119" y="360" width="176" height="176"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="176" id="17p-0H-0gO"/>
+                                    <constraint firstAttribute="height" constant="176" id="bvI-db-OFz"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQF-Xb-Gd3">
+                                <rect key="frame" x="110.5" y="622" width="193" height="34"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="qrcode" catalog="system" title="Show My QRCode" imagePadding="6" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
@@ -32,27 +38,33 @@
                                     <action selector="showMyQRCode" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fdo-kw-nyX"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScanQRCode" translatesAutoresizingMaskIntoConstraints="NO" id="zbe-UI-CKp">
-                                <rect key="frame" x="119" y="248" width="176" height="176"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="176" id="17p-0H-0gO"/>
-                                    <constraint firstAttribute="height" constant="176" id="bvI-db-OFz"/>
-                                </constraints>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5iP-pf-8Mi">
+                                <rect key="frame" x="24" y="842" width="24" height="14"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="settingLight" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Ixr-wl-cFp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="5iP-pf-8Mi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="3kW-ZX-eGz"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="bcq-l2-IAg" secondAttribute="bottom" id="9lO-dp-3ng"/>
                             <constraint firstItem="bcq-l2-IAg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="GlX-F0-Xh8"/>
+                            <constraint firstItem="FQF-Xb-Gd3" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="LOL-U6-jw6"/>
+                            <constraint firstAttribute="bottom" secondItem="5iP-pf-8Mi" secondAttribute="bottom" constant="40" id="YGT-Ks-f9V"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bcq-l2-IAg" secondAttribute="trailing" id="beu-Nc-10b"/>
-                            <constraint firstItem="zbe-UI-CKp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="200" id="czn-IK-5D8"/>
+                            <constraint firstItem="zbe-UI-CKp" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="cjI-v6-fDV"/>
                             <constraint firstItem="bcq-l2-IAg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fDo-Z7-mfF"/>
                             <constraint firstItem="zbe-UI-CKp" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="lPV-Qv-DGR"/>
+                            <constraint firstAttribute="bottom" secondItem="FQF-Xb-Gd3" secondAttribute="bottom" constant="240" id="sUz-hf-bSq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="caputureView" destination="bcq-l2-IAg" id="oPL-lQ-pOL"/>
+                        <outlet property="settingLightLayout" destination="5iP-pf-8Mi" id="fFS-PT-4Mj"/>
                         <outlet property="showMyQRCodeLayout" destination="FQF-Xb-Gd3" id="Ezh-RP-Hkz"/>
                     </connections>
                 </viewController>

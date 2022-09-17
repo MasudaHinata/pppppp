@@ -7,6 +7,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     var cancellables = Set<AnyCancellable>()
     var qrCodeView = UIView()
     var qrCodeImageView = UIImageView()
+    
     private let session = AVCaptureSession()
     
     @IBOutlet weak var caputureView: UIView!
@@ -14,6 +15,22 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     @IBOutlet var showMyQRCodeLayout: UIButton! {
         didSet {
             showMyQRCodeLayout.tintColor = UIColor.init(hex: "000000", alpha: 0.3)
+        }
+    }
+    
+    @IBOutlet var settingLightLayout: UIButton! {
+        didSet {
+            settingLightLayout.setImage(UIImage(systemName: "flashlight.off.fill"), for: .normal)
+        }
+    }
+    
+    @IBAction func settingLight() {
+        if settingLightLayout.currentImage == UIImage(systemName: "flashlight.off.fill") {
+            ledFlash(true)
+            settingLightLayout.setImage(UIImage(systemName: "flashlight.on.fill"), for: .normal)
+        } else if settingLightLayout.currentImage == UIImage(systemName: "flashlight.on.fill") {
+            ledFlash(false)
+            settingLightLayout.setImage(UIImage(systemName: "flashlight.off.fill"), for: .normal)
         }
     }
     
@@ -76,14 +93,10 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         if !session.canAddInput(deviceInput) { return }
         session.addInput(deviceInput)
         let metadataOutput = AVCaptureMetadataOutput()
-        
         if !session.canAddOutput(metadataOutput) { return }
         session.addOutput(metadataOutput)
-        
         metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         metadataOutput.metadataObjectTypes = [.qr]
-        
-        // カメラを起動
         let previewLayer = AVCaptureVideoPreviewLayer(session: session)
         previewLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         previewLayer.videoGravity = .resizeAspectFill
@@ -110,6 +123,20 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])!
         let sizeTransform = CGAffineTransform(scaleX: 1, y: 1)
         uiImage.image = UIImage(ciImage:qr.outputImage!.transformed(by: sizeTransform))
+    }
+    
+    //MARK: - ライトのオンオフ
+    func ledFlash(_ flg: Bool) {
+        guard let avDevice = AVCaptureDevice.default(for: .video) else { return }
+        if avDevice.hasTorch {
+            do {
+                try avDevice.lockForConfiguration()
+                avDevice.torchMode = flg ? .on : .off
+                avDevice.unlockForConfiguration()
+            } catch {
+                print("Torch could not be used")
+            }
+        }
     }
 }
 
