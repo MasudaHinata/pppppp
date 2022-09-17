@@ -9,7 +9,6 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     var qrCodeImageView = UIImageView()
     var dismissButton = UIButton()
     var flag = Bool()
-    
     private let session = AVCaptureSession()
     
     @IBOutlet weak var caputureView: UIView!
@@ -17,6 +16,12 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     @IBOutlet var showMyQRCodeLayout: UIButton! {
         didSet {
             showMyQRCodeLayout.tintColor = UIColor.init(hex: "000000", alpha: 0.39)
+        }
+    }
+    
+    @IBOutlet var shareLinkLayout: UIButton! {
+        didSet {
+            shareLinkLayout .tintColor = UIColor.init(hex: "000000", alpha: 0.39)
         }
     }
     
@@ -50,30 +55,34 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         }
     }
     
+    @IBAction func shareLink() {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
+            do {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
+                let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
+                present(activityVC, animated: true, completion: nil)
+            } catch {
+                print("SanitasViewContro showShareSheet:",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+        
+    }
+    
     @IBAction func showMyQRCode() {
-        flag = false
-        qrCodeView = UIView(frame: CGRect(x: 16, y: 240, width: 360, height: 360))
-        qrCodeView.backgroundColor = UIColor.init(hex: "FFFFFF", alpha: 0.32)
-        qrCodeView.layer.cornerRadius = 72
-        qrCodeView.layer.cornerCurve = .continuous
-        qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 288, width: 264, height: 264))
-        
-        //TODO: 他のところ触ったら閉じるようにする
-        dismissButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
-        dismissButton.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 108)
-        dismissButton.backgroundColor = UIColor.init(hex: "000000", alpha: 0.39)
-        dismissButton.layer.cornerRadius = 28.0
-        dismissButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        dismissButton.tintColor = UIColor.init(hex: "FFFFFF")
-        dismissButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickDismissButton(sender:)), for: .touchUpInside)
-        
-        qrCodeView.isHidden = false
-        qrCodeImageView.isHidden = false
-        dismissButton.isHidden = false
-        self.view.addSubview(qrCodeView)
-        self.view.addSubview(qrCodeImageView)
-        self.view.addSubview(dismissButton)
-        
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
@@ -97,11 +106,32 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         }
         cancellables.insert(.init { task.cancel() })
         
+        flag = false
+        qrCodeView = UIView(frame: CGRect(x: 16, y: 240, width: 360, height: 360))
+        qrCodeView.backgroundColor = UIColor.init(hex: "FFFFFF")
+        qrCodeView.layer.cornerRadius = 72
+        qrCodeView.layer.cornerCurve = .continuous
+        qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 288, width: 264, height: 264))
+        
+        //TODO: 他のところ触ったら閉じるようにする
+        dismissButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
+        dismissButton.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 108)
+        dismissButton.backgroundColor = UIColor.init(hex: "000000", alpha: 0.39)
+        dismissButton.layer.cornerRadius = 28.0
+        dismissButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        dismissButton.tintColor = UIColor.init(hex: "FFFFFF")
+        dismissButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickDismissButton(sender:)), for: .touchUpInside)
+        
+        qrCodeView.isHidden = false
+        qrCodeImageView.isHidden = false
+        dismissButton.isHidden = false
+        self.view.addSubview(qrCodeView)
+        self.view.addSubview(qrCodeImageView)
+        self.view.addSubview(dismissButton)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initDeviceCamera()
     }
     //MARK: - QRCode読み取り
@@ -180,26 +210,3 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     }
 }
 
-//        let task = Task { [weak self] in
-//            guard let self = self else { return }
-//            do {
-//                let userID = try await FirebaseClient.shared.getUserUUID()
-//                let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
-//                let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
-//                present(activityVC, animated: true, completion: nil)
-//            } catch {
-//                print("SanitasViewContro showShareSheet:",error.localizedDescription)
-//                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-//                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-//                    let ok = UIAlertAction(title: "OK", style: .default)
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                } else {
-//                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-//                    let ok = UIAlertAction(title: "OK", style: .default)
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })

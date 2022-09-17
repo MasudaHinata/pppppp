@@ -48,7 +48,7 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="qrCodeButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kLV-Dq-dFv"/>
+                                    <action selector="qrCodeButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="2AU-Y6-Xic"/>
                                 </connections>
                             </button>
                         </subviews>
