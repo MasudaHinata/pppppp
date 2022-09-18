@@ -77,13 +77,23 @@ final class Scorering {
 //        }
         
         //TODO: スコアリングいい感じにする
-        let differenceStep = 3000
-        var todayPoint = 0
+//        let differenceStep = 2000
+//        var todayPoint = 0
+//        if differenceStep > 0 {
+//            todayPoint = Int(25 / (1.2 + exp(-Double(differenceStep) * 0.0003)))
+//        } else {
+//            todayPoint = 0
+//        }
         
-        if differenceStep > 0 {
-            todayPoint = Int(30 / (1.0 + exp(-Double(differenceStep) * 0.0003)))
-        } else {
-            todayPoint = 0
+        let differenceStep = [200, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 10000, 13000, 15000, 20000]
+        var todayPoint = [Int]()
+        
+        for dif in differenceStep {
+            if dif > 0 {
+                todayPoint.append(Int(6 / (0.2 + exp(-Double(dif) * 0.0003))))
+            } else {
+                todayPoint.append(0)
+            }
         }
         
         print(todayPoint)
