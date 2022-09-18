@@ -15,6 +15,9 @@
 		0343680428D60A1D000BA656 /* OnboardingView3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343680328D60A1D000BA656 /* OnboardingView3.storyboard */; };
 		0343680628D60D82000BA656 /* OnboardingView4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343680528D60D82000BA656 /* OnboardingView4.storyboard */; };
 		0343680828D60D93000BA656 /* OnboardingViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680728D60D93000BA656 /* OnboardingViewController4.swift */; };
+		0343680E28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680D28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift */; };
+		0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */; };
+		0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */; };
 		035CE51E28CF1E53001F89BB /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */; };
 		035CE52028CF1E61001F89BB /* HealthDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 035CE51F28CF1E61001F89BB /* HealthDataView.storyboard */; };
 		036F697F28B8EACE0066A7DA /* PointData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F697E28B8EACE0066A7DA /* PointData.swift */; };
@@ -100,6 +103,9 @@
 		0343680328D60A1D000BA656 /* OnboardingView3.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView3.storyboard; sourceTree = "<group>"; };
 		0343680528D60D82000BA656 /* OnboardingView4.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView4.storyboard; sourceTree = "<group>"; };
 		0343680728D60D93000BA656 /* OnboardingViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController4.swift; sourceTree = "<group>"; };
+		0343680D28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthDataViewController+UIPickerDelegate.swift"; sourceTree = "<group>"; };
+		0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
+		0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseTableViewCell.xib; sourceTree = "<group>"; };
 		035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
 		035CE51F28CF1E61001F89BB /* HealthDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HealthDataView.storyboard; sourceTree = "<group>"; };
 		036F697E28B8EACE0066A7DA /* PointData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointData.swift; sourceTree = "<group>"; };
@@ -227,8 +233,8 @@
 				BE7F337F2580D07E0027620D /* SanitasViewController.swift */,
 				03C7E7C528D49DB10069A46E /* SanitasView.storyboard */,
 				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
-				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
 				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
+				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
 				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
 				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
 				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
@@ -284,13 +290,13 @@
 			isa = PBXGroup;
 			children = (
 				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
-				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
 				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
 				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
+				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
 				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
-				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
 				03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */,
 				03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */,
+				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
 				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
 				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
@@ -307,7 +313,10 @@
 				9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */,
 				036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */,
 				035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */,
+				0343680D28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift */,
 				035CE51F28CF1E61001F89BB /* HealthDataView.storyboard */,
+				0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */,
+				0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */,
 			);
 			path = CreatePoint;
 			sourceTree = "<group>";
@@ -329,13 +338,13 @@
 			isa = PBXGroup;
 			children = (
 				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
-				036F69F728C08D140066A7DA /* ChangeProfileView.storyboard */,
 				03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */,
+				036F69F728C08D140066A7DA /* ChangeProfileView.storyboard */,
 				03DFB7A228B7A8390019381A /* SetNameViewController.swift */,
 				036F69F528C08C0F0066A7DA /* SetNameView.storyboard */,
 				038E26AD28BF4BF1000204A4 /* SettingViewController.swift */,
-				036F69F928C08E7F0066A7DA /* SettingView.storyboard */,
 				03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */,
+				036F69F928C08E7F0066A7DA /* SettingView.storyboard */,
 				03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */,
 				03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */,
 			);
@@ -484,6 +493,7 @@
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
 				036F69F828C08D140066A7DA /* ChangeProfileView.storyboard in Resources */,
 				9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */,
+				0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
 				BE7F33832580D07E0027620D /* Main.storyboard in Resources */,
 			);
@@ -499,6 +509,7 @@
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
+				0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
 				0343680828D60D93000BA656 /* OnboardingViewController4.swift in Sources */,
 				03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */,
@@ -512,6 +523,7 @@
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */,
 				03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */,
+				0343680E28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift in Sources */,
 				0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */,
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,

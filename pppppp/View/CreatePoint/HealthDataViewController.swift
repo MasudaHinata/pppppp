@@ -6,10 +6,25 @@ class HealthDataViewController: UIViewController{
     
     var cancellables = Set<AnyCancellable>()
     let calendar = Calendar.current
+    
     let myHealthStore = Scorering.shared.myHealthStore
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
+    
+    var exerciseTypePicker = UIPickerView()
+    let exerciseTypeList = ["筋トレ", "運動を選択してください", "ランニング", "テニス"]
+    
+    @IBOutlet var exerciseTextField: UITextField!
+    
+    @IBOutlet var enterExerciseBackgroundView: UIView! {
+        didSet {
+            enterExerciseBackgroundView.layer.cornerRadius = 36
+            enterExerciseBackgroundView.clipsToBounds = true
+            enterExerciseBackgroundView.layer.cornerCurve = .continuous
+            enterExerciseBackgroundView.backgroundColor = UIColor.init(hex: "443FA3")
+        }
+    }
     
     @IBOutlet var weightTextField: UITextField! {
         didSet {
@@ -19,12 +34,12 @@ class HealthDataViewController: UIViewController{
         }
     }
     
-    @IBOutlet var backgroundView: UIView! {
+    @IBOutlet var enterWeightbackgroundView: UIView! {
         didSet {
-            backgroundView.layer.cornerRadius = 36
-            backgroundView.clipsToBounds = true
-            backgroundView.layer.cornerCurve = .continuous
-            backgroundView.backgroundColor = UIColor.init(hex: "443FA3")
+            enterWeightbackgroundView.layer.cornerRadius = 36
+            enterWeightbackgroundView.clipsToBounds = true
+            enterWeightbackgroundView.layer.cornerCurve = .continuous
+            enterWeightbackgroundView.backgroundColor = UIColor.init(hex: "443FA3")
         }
     }
     
@@ -82,9 +97,48 @@ class HealthDataViewController: UIViewController{
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
+        let spacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        toolbar.setItems([spacelItem, doneItem], animated: true)
+        
+        exerciseTypePicker.delegate = self
+        exerciseTypePicker.dataSource = self
+        exerciseTypePicker.selectRow(1, inComponent: 0, animated: false)
+        exerciseTextField.inputView = exerciseTypePicker
+        exerciseTextField.inputAccessoryView = toolbar
     }
+    
+    @objc func done() {
+        exerciseTextField.endEditing(true)
+        exerciseTextField.text = "\(exerciseTypeList[exerciseTypePicker.selectedRow(inComponent: 0)])"
+       }
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
+}
+
+extension HealthDataViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    //UIPickerViewの列の数
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    //UIPickerViewの選択肢の数
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return exerciseTypeList.count
+    }
+    
+    //UIPickerViewの要素をセット
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return exerciseTypeList[row]
+    }
+    
+    //UIPickerViewの要素が選択されたときの処理
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        exerciseTextField.text = exerciseTypeList[row]
+    }
+
 }

@@ -75,17 +75,44 @@
                                     <constraint firstItem="loL-8f-2LO" firstAttribute="top" secondItem="GYI-q8-w9F" secondAttribute="bottom" constant="16" id="xu1-gX-maV"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KeS-i4-HXz">
+                                <rect key="frame" x="24" y="312" width="366" height="176"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lk2-8I-7hf">
+                                        <rect key="frame" x="34" y="41" width="64" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Exercise" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHm-pG-F5y">
+                                        <rect key="frame" x="134" y="34" width="212" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.23999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="176" id="gHv-PC-Hqt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SVz-Sw-HEj"/>
                         <color key="backgroundColor" red="0.074509803920000006" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bMI-by-4Vb" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="1hF-RT-8nW"/>
+                            <constraint firstItem="KeS-i4-HXz" firstAttribute="top" secondItem="bMI-by-4Vb" secondAttribute="bottom" constant="48" id="Q53-vI-4Ve"/>
                             <constraint firstItem="bMI-by-4Vb" firstAttribute="top" secondItem="SVz-Sw-HEj" secondAttribute="top" constant="40" id="WXa-aj-mat"/>
+                            <constraint firstItem="KeS-i4-HXz" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="cZv-r3-xM7"/>
                             <constraint firstItem="SVz-Sw-HEj" firstAttribute="trailing" secondItem="bMI-by-4Vb" secondAttribute="trailing" constant="24" id="kAK-Tb-vKy"/>
+                            <constraint firstItem="SVz-Sw-HEj" firstAttribute="trailing" secondItem="KeS-i4-HXz" secondAttribute="trailing" constant="24" id="pU0-so-2r8"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backgroundView" destination="bMI-by-4Vb" id="thh-5Q-6ge"/>
+                        <outlet property="enterExerciseBackgroundView" destination="KeS-i4-HXz" id="RS9-c6-ytn"/>
+                        <outlet property="enterWeightbackgroundView" destination="bMI-by-4Vb" id="thh-5Q-6ge"/>
+                        <outlet property="exerciseTextField" destination="aHm-pG-F5y" id="zSb-BR-ciM"/>
                         <outlet property="weightTextField" destination="loL-8f-2LO" id="NVM-Kf-t6S"/>
                         <outlet property="writeWeightDataLayout" destination="62u-dQ-csJ" id="Llv-0f-qwV"/>
                     </connections>
