@@ -14,16 +14,32 @@ class OnboardingViewController2: UIViewController {
         }
     }
     
-    @IBAction func backButton() {
-        let storyboard = UIStoryboard(name: "OnboardingView1", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC!, sender: self)
+    @IBAction func backButton(_ sender: Any) {
+        //TODO: push遷移にする
+        let storyBoard = UIStoryboard(name: "OnboardingView1", bundle: nil)
+        let viewController = storyBoard.instantiateInitialViewController()
+        let navigationController = UINavigationController(rootViewController: viewController!)
+        navigationController.modalPresentationStyle = .fullScreen
+        let transition = CATransition()
+        transition.duration = 0.2
+        transition.type = .push
+        transition.subtype = .fromLeft
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(navigationController, animated: false, completion: nil)
     }
     
-    @IBAction func nextButton() {
-        let storyboard = UIStoryboard(name: "OnboardingView3", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC!, sender: self)
+    @IBAction func nextButton(_ sender: Any) {
+        //TODO: push遷移にする
+        let storyBoard = UIStoryboard(name: "OnboardingView3", bundle: nil)
+        let viewController = storyBoard.instantiateInitialViewController()
+        let navigationController = UINavigationController(rootViewController: viewController!)
+        navigationController.modalPresentationStyle = .fullScreen
+        let transition = CATransition()
+        transition.duration = 0.2
+        transition.type = .push
+        transition.subtype = .fromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(navigationController, animated: false, completion: nil)
     }
 
     override func viewDidLoad() {

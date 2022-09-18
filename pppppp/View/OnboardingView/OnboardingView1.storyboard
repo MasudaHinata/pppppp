@@ -42,7 +42,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="nextButton" destination="1sg-Pi-Aeb" eventType="touchUpInside" id="bWk-Ka-iDo"/>
+                                    <action selector="nextButton:" destination="1sg-Pi-Aeb" eventType="touchUpInside" id="v3P-IF-0bj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="努力ポイントを共有" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJM-cp-9Z3">

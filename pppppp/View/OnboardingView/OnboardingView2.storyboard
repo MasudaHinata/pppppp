@@ -52,7 +52,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="nextButton" destination="UOt-zi-CBt" eventType="touchUpInside" id="ci4-U4-zhb"/>
+                                    <action selector="nextButton:" destination="UOt-zi-CBt" eventType="touchUpInside" id="Rri-MU-WkZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHt-Zd-pG3">
@@ -64,7 +64,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="arrow.left" catalog="system" cornerStyle="capsule"/>
                                 <connections>
-                                    <action selector="backButton" destination="UOt-zi-CBt" eventType="touchUpInside" id="1s1-cf-22A"/>
+                                    <action selector="backButton:" destination="UOt-zi-CBt" eventType="touchUpInside" id="kim-dg-9GP"/>
                                 </connections>
                             </button>
                         </subviews>

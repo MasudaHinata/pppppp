@@ -42,7 +42,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="nextButton" destination="f6e-Vo-WJE" eventType="touchUpInside" id="ZRc-kK-vNC"/>
+                                    <action selector="nextButton:" destination="f6e-Vo-WJE" eventType="touchUpInside" id="Mfh-MT-TSV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ff-gf-RZq">
@@ -54,7 +54,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="arrow.left" catalog="system" cornerStyle="capsule"/>
                                 <connections>
-                                    <action selector="backButton" destination="f6e-Vo-WJE" eventType="touchUpInside" id="hkb-sR-FTR"/>
+                                    <action selector="backButton:" destination="f6e-Vo-WJE" eventType="touchUpInside" id="l7q-F4-yGi"/>
                                 </connections>
                             </button>
                         </subviews>
