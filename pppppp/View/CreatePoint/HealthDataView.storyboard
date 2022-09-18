@@ -78,23 +78,43 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KeS-i4-HXz">
                                 <rect key="frame" x="24" y="312" width="366" height="176"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lk2-8I-7hf">
-                                        <rect key="frame" x="34" y="41" width="64" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Exercise &amp; Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lk2-8I-7hf">
+                                        <rect key="frame" x="24" y="24" width="169" height="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Exercise" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHm-pG-F5y">
-                                        <rect key="frame" x="134" y="34" width="212" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Exercise" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHm-pG-F5y">
+                                        <rect key="frame" x="24" y="60" width="200" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.23999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="4KA-xL-L6I"/>
+                                            <constraint firstAttribute="height" constant="40" id="4eT-93-w6T"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exercise Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ln2-JN-rZO">
+                                        <rect key="frame" x="24" y="116" width="200" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.23999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="GL4-uj-u4N"/>
+                                            <constraint firstAttribute="height" constant="40" id="tKN-h0-HS5"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Lk2-8I-7hf" firstAttribute="leading" secondItem="KeS-i4-HXz" secondAttribute="leading" constant="24" id="3hd-O3-c2f"/>
+                                    <constraint firstItem="ln2-JN-rZO" firstAttribute="top" secondItem="aHm-pG-F5y" secondAttribute="bottom" constant="16" id="DuO-TP-5lP"/>
+                                    <constraint firstItem="Lk2-8I-7hf" firstAttribute="top" secondItem="KeS-i4-HXz" secondAttribute="top" constant="24" id="Li3-Bq-qES"/>
+                                    <constraint firstItem="ln2-JN-rZO" firstAttribute="leading" secondItem="KeS-i4-HXz" secondAttribute="leading" constant="24" id="Pvn-I0-Key"/>
                                     <constraint firstAttribute="height" constant="176" id="gHv-PC-Hqt"/>
+                                    <constraint firstItem="aHm-pG-F5y" firstAttribute="top" secondItem="Lk2-8I-7hf" secondAttribute="bottom" constant="16" id="hXn-sw-Z2W"/>
+                                    <constraint firstItem="aHm-pG-F5y" firstAttribute="leading" secondItem="KeS-i4-HXz" secondAttribute="leading" constant="24" id="mDT-Oi-Q5H"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -112,7 +132,8 @@
                     <connections>
                         <outlet property="enterExerciseBackgroundView" destination="KeS-i4-HXz" id="RS9-c6-ytn"/>
                         <outlet property="enterWeightbackgroundView" destination="bMI-by-4Vb" id="thh-5Q-6ge"/>
-                        <outlet property="exerciseTextField" destination="aHm-pG-F5y" id="zSb-BR-ciM"/>
+                        <outlet property="exerciseTimeTextField" destination="ln2-JN-rZO" id="eUJ-zs-PF7"/>
+                        <outlet property="selectExerciseTextField" destination="aHm-pG-F5y" id="zSb-BR-ciM"/>
                         <outlet property="weightTextField" destination="loL-8f-2LO" id="NVM-Kf-t6S"/>
                         <outlet property="writeWeightDataLayout" destination="62u-dQ-csJ" id="Llv-0f-qwV"/>
                     </connections>

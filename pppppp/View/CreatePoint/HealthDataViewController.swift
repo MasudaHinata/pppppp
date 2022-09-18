@@ -15,7 +15,21 @@ class HealthDataViewController: UIViewController{
     var exerciseTypePicker = UIPickerView()
     let exerciseTypeList = ["筋トレ", "運動を選択してください", "ランニング", "テニス"]
     
-    @IBOutlet var exerciseTextField: UITextField!
+    @IBOutlet var selectExerciseTextField: UITextField! {
+        didSet {
+            selectExerciseTextField.layer.cornerRadius = 16
+            selectExerciseTextField.clipsToBounds = true
+            selectExerciseTextField.layer.cornerCurve = .continuous
+        }
+    }
+    
+    @IBOutlet var exerciseTimeTextField: UITextField! {
+        didSet {
+            exerciseTimeTextField.layer.cornerRadius = 16
+            exerciseTimeTextField.clipsToBounds = true
+            exerciseTimeTextField.layer.cornerCurve = .continuous
+        }
+    }
     
     @IBOutlet var enterExerciseBackgroundView: UIView! {
         didSet {
@@ -84,15 +98,6 @@ class HealthDataViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let task = Task {
-//            do {
-//                try await Scorering.shared.readWeight()
-//            }
-//            catch {
-//                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -106,39 +111,26 @@ class HealthDataViewController: UIViewController{
         exerciseTypePicker.delegate = self
         exerciseTypePicker.dataSource = self
         exerciseTypePicker.selectRow(1, inComponent: 0, animated: false)
-        exerciseTextField.inputView = exerciseTypePicker
-        exerciseTextField.inputAccessoryView = toolbar
+        selectExerciseTextField.inputView = exerciseTypePicker
+        selectExerciseTextField.inputAccessoryView = toolbar
+        
+//        let task = Task {
+//            do {
+//                try await Scorering.shared.readWeight()
+//            }
+//            catch {
+//                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
     }
     
     @objc func done() {
-        exerciseTextField.endEditing(true)
-        exerciseTextField.text = "\(exerciseTypeList[exerciseTypePicker.selectedRow(inComponent: 0)])"
+        selectExerciseTextField.endEditing(true)
+        selectExerciseTextField.text = "\(exerciseTypeList[exerciseTypePicker.selectedRow(inComponent: 0)])"
        }
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
-}
-
-extension HealthDataViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    //UIPickerViewの列の数
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    //UIPickerViewの選択肢の数
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return exerciseTypeList.count
-    }
-    
-    //UIPickerViewの要素をセット
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return exerciseTypeList[row]
-    }
-    
-    //UIPickerViewの要素が選択されたときの処理
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        exerciseTextField.text = exerciseTypeList[row]
-    }
-
 }
