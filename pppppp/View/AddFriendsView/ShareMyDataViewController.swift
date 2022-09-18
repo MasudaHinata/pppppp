@@ -196,7 +196,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         let url = myProfileURL
         let data = url.data(using: .utf8)!
         let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])!
-        let sizeTransform = CGAffineTransform(scaleX: 1, y: 1)
+        let sizeTransform = CGAffineTransform(scaleX: 10, y: 1)
         uiImage.image = UIImage(ciImage:qr.outputImage!.transformed(by: sizeTransform))
     }
     
