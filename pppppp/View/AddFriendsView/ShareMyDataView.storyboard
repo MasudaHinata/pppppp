@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,7 +25,7 @@
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="xBB-zr-QgO" secondAttribute="trailing" id="CxG-yy-wYB"/>
                                     <constraint firstItem="xBB-zr-QgO" firstAttribute="leading" secondItem="bcq-l2-IAg" secondAttribute="leading" id="EUV-Ms-6j9"/>
@@ -36,7 +35,6 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fy-dV-ESd">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" red="0.60784313725490191" green="0.27058823529411763" blue="0.96078431372549022" alpha="0.37819019039735097" colorSpace="calibratedRGB"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScanQRCode" translatesAutoresizingMaskIntoConstraints="NO" id="zbe-UI-CKp">
                                 <rect key="frame" x="89" y="274" width="236" height="236"/>
@@ -117,6 +115,7 @@
                     <connections>
                         <outlet property="albumButtonLayout" destination="xU5-xE-ref" id="BwB-Jo-S9V"/>
                         <outlet property="caputureView" destination="bcq-l2-IAg" id="oPL-lQ-pOL"/>
+                        <outlet property="gradationFilterView" destination="5fy-dV-ESd" id="fMh-yo-XiY"/>
                         <outlet property="photoImageView" destination="xBB-zr-QgO" id="KkW-fp-sFs"/>
                         <outlet property="settingLightLayout" destination="5iP-pf-8Mi" id="fFS-PT-4Mj"/>
                         <outlet property="shareLinkLayout" destination="urc-n8-HmE" id="VgP-IZ-Vg7"/>
@@ -132,8 +131,5 @@
         <image name="ScanQRCode" width="546" height="513"/>
         <image name="link" catalog="system" width="128" height="124"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

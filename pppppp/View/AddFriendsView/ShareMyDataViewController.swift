@@ -14,6 +14,16 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     @IBOutlet weak var caputureView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
     
+    @IBOutlet var gradationFilterView: UIView! {
+        didSet {
+            gradationFilterView.backgroundColor = .clear
+            let gradientLayer: CAGradientLayer = CAGradientLayer()
+            gradientLayer.frame.size = gradationFilterView.frame.size
+            gradientLayer.colors = [UIColor.init(hex: "6E3722", alpha: 0.75).cgColor, UIColor.init(hex: "4A0061",alpha: 0.75).cgColor]
+            gradationFilterView.layer.addSublayer(gradientLayer)
+        }
+    }
+    
     @IBOutlet var showMyQRCodeLayout: UIButton! {
         didSet {
             showMyQRCodeLayout.tintColor = UIColor.init(hex: "000000", alpha: 0.39)
