@@ -34,6 +34,10 @@
                                     <constraint firstItem="xBB-zr-QgO" firstAttribute="top" secondItem="bcq-l2-IAg" secondAttribute="top" id="zhc-V9-Imh"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fy-dV-ESd">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.60784313725490191" green="0.27058823529411763" blue="0.96078431372549022" alpha="0.37819019039735097" colorSpace="calibratedRGB"/>
+                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScanQRCode" translatesAutoresizingMaskIntoConstraints="NO" id="zbe-UI-CKp">
                                 <rect key="frame" x="89" y="274" width="236" height="236"/>
                                 <constraints>
@@ -89,9 +93,13 @@
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="5iP-pf-8Mi" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="56" id="3kW-ZX-eGz"/>
+                            <constraint firstItem="5fy-dV-ESd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="5Wc-aJ-YcR"/>
+                            <constraint firstItem="5fy-dV-ESd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6Jo-LQ-gAN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="bcq-l2-IAg" secondAttribute="bottom" id="9lO-dp-3ng"/>
                             <constraint firstAttribute="bottom" secondItem="xU5-xE-ref" secondAttribute="bottom" constant="80" id="ApO-a1-wM2"/>
                             <constraint firstItem="bcq-l2-IAg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="GlX-F0-Xh8"/>
+                            <constraint firstItem="5fy-dV-ESd" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Nty-RS-eZw"/>
+                            <constraint firstAttribute="bottom" secondItem="5fy-dV-ESd" secondAttribute="bottom" id="Xc0-DZ-xql"/>
                             <constraint firstAttribute="bottom" secondItem="5iP-pf-8Mi" secondAttribute="bottom" constant="80" id="YGT-Ks-f9V"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="xU5-xE-ref" secondAttribute="trailing" constant="56" id="bat-kl-mbn"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bcq-l2-IAg" secondAttribute="trailing" id="beu-Nc-10b"/>

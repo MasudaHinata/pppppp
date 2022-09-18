@@ -78,13 +78,13 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         activityIndicator.startAnimating()
-//        //初期画面
-//        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
-//        if judge == false {
-//            let storyboard = UIStoryboard(name: "OnboardingView1", bundle: nil)
-//            let secondVC = storyboard.instantiateInitialViewController()
-//            self.showDetailViewController(secondVC!, sender: self)
-//        }
+        //        //初期画面
+        //        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
+        //        if judge == false {
+        //            let storyboard = UIStoryboard(name: "OnboardingView1", bundle: nil)
+        //            let secondVC = storyboard.instantiateInitialViewController()
+        //            self.showDetailViewController(secondVC!, sender: self)
+        //        }
         
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
@@ -107,10 +107,10 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
                         self.present(secondVC, animated: true)
                     }
                 }
-//                let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
-//                if createStepPointJudge == true {
+                let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
+                if createStepPointJudge == true {
                     try await Scorering.shared.createStepPoint()
-//                }
+                }
                 
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)

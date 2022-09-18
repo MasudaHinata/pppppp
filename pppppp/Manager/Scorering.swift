@@ -59,6 +59,8 @@ final class Scorering {
         
         let monthStepCountAve = (monthStepCountSum ?? 0) / 30
         let differenceStep = Int(yesterdayStepCount ?? 0) - Int(monthStepCountAve)
+        var todayPoint = 0
+        
         if Int(monthStepCountAve) <= 7999 {
             switch differenceStep {
             case (120...9600): todayPoint = Int(differenceStep / 120)
