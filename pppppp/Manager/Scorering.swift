@@ -42,63 +42,55 @@ final class Scorering {
     //歩数ポイントを作成
     func createStepPoint() async throws {
         getPermissionHealthKit()
-//        let endDateMonth = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
-//        let startDateMonth = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: Date()))
-//        let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
-//        let stepsTodayMonth = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodMonth)
-//        let sumOfStepsQueryMonth = HKStatisticsQueryDescriptor(predicate: stepsTodayMonth, options: .cumulativeSum)
-//
-//        let endDate = calendar.date(byAdding: .day, value: -0, to: calendar.startOfDay(for: Date()))
-//        let startDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
-//        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-//        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-//        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-//
-//        let monthStepCountSum = try await sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-//        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-//
-//        let monthStepCountAve = (monthStepCountSum ?? 0) / 30
-//        let differenceStep = Int(yesterdayStepCount ?? 0) - Int(monthStepCountAve)
-//        var todayPoint = 0
-//
-//        if Int(monthStepCountAve) <= 7999 {
-//            switch differenceStep {
-//            case (120...9600): todayPoint = Int(differenceStep / 120)
-//            case (9600...): todayPoint = 80
-//            default: break
-//            }
-//        } else if Int(monthStepCountAve) >= 8000 {
-//            switch differenceStep {
-//            case (Int(7500 - monthStepCountAve)..<1600): todayPoint = 15
-//            case (1600...8000): todayPoint = Int(differenceStep / 100)
-//            case (8000...): todayPoint = 80
-//            default: break
-//            }
-//        }
+        //        let endDateMonth = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
+        //        let startDateMonth = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: Date()))
+        //        let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
+        //        let stepsTodayMonth = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodMonth)
+        //        let sumOfStepsQueryMonth = HKStatisticsQueryDescriptor(predicate: stepsTodayMonth, options: .cumulativeSum)
+        //
+        //        let endDate = calendar.date(byAdding: .day, value: -0, to: calendar.startOfDay(for: Date()))
+        //        let startDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
+        //        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        //        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+        //        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+        //
+        //        let monthStepCountSum = try await sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        //        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        //
+        //        let monthStepCountAve = (monthStepCountSum ?? 0) / 30
+        //        let differenceStep = Int(yesterdayStepCount ?? 0) - Int(monthStepCountAve)
+        //        var stepDifPoint = Int()
+        //                var stepAvePoint = Int()
+        //
+        //        if differenceStep <= 0 {
+        //            stepDifPoint = 0
+        //        } else if differenceStep < 1001 {
+        //            stepDifPoint = Int(0.6 / (0.1 + exp(-Double(differenceStep) * 0.005)))
+        //        } else {
+        //            stepDifPoint = Int(6 / (0.2 + exp(-Double(differenceStep) * 0.0003)))
+        //        }
+        //
+        //        if monthStepCountAve <= 0 {
+        //            stepAvePoint = 0
+        //        } else {
+        //            stepAvePoint = Int(0.3 / (0.03 + exp(-Double(monthStepCountAve) * 0.0005)))
+        //        }
+        //        let todayPoint = stepDifPoint + stepAvePoint
+        //        print(stepDifPoint, "+", stepAvePoint, "=", todayPoint)
+        //        try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
         
-        //TODO: スコアリングいい感じにする
-//        let differenceStep = 2000
-//        var todayPoint = 0
-//        if differenceStep > 0 {
-//            todayPoint = Int(25 / (1.2 + exp(-Double(differenceStep) * 0.0003)))
-//        } else {
-//            todayPoint = 0
-//        }
-        
-        let differenceStep = [200, 500, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 10000, 13000, 15000, 20000]
-        var todayPoint = [Int]()
-        
-        for dif in differenceStep {
-            if dif > 0 {
-                todayPoint.append(Int(6 / (0.2 + exp(-Double(dif) * 0.0003))))
+        var stepAvePoint = [Int]()
+        let monthStepCountAve = [4000, 6000, 7000, 8000, 10000, 15000, 20000]
+        for monthStepCountAve  in monthStepCountAve {
+            if monthStepCountAve <= 6000 {
+                stepAvePoint.append(0)
             } else {
-                todayPoint.append(0)
+                stepAvePoint.append(Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004))))
             }
         }
+        print(stepAvePoint)
         
-        print(todayPoint)
-        
-//        try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
+        //        try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
     }
     
     //体重をHealthKitに書き込み
