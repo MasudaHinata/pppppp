@@ -42,6 +42,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectedBackgroundView = cellBackgroundView
         
         if indexPath.section == 0 {
+            cell.textLabel?.textColor = .white
             cell.accessoryType = .none
             let accumulationType = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
             if indexPath.row == 0 {

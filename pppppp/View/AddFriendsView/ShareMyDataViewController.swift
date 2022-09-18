@@ -4,13 +4,13 @@ import AVFoundation
 
 class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
-    var qrCodeView = UIView()
-    var qrCodeImageView = UIImageView()
-    var dismissButton = UIButton()
     var flag = Bool()
     var cancellables = Set<AnyCancellable>()
     private let session = AVCaptureSession()
     
+    var qrCodeView = UIView()
+    var qrCodeImageView = UIImageView()
+    var dismissButton = UIButton()
     @IBOutlet weak var caputureView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
     
@@ -59,60 +59,13 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     @IBAction func albumButton() {
     }
     
-    
-    @IBAction func settingLight() {
-        if settingLightLayout.currentImage == UIImage(systemName: "flashlight.off.fill") {
-            ledFlash(true)
-            settingLightLayout.setImage(UIImage(systemName: "flashlight.on.fill"), for: .normal)
-            var configuration = UIButton.Configuration.filled()
-            configuration.baseBackgroundColor = .init(hex: "FFFFFF")
-            configuration.baseForegroundColor = .init(hex: "000000")
-            configuration.cornerStyle = .capsule
-            settingLightLayout.configuration = configuration
-        } else if settingLightLayout.currentImage == UIImage(systemName: "flashlight.on.fill") {
-            ledFlash(false)
-            settingLightLayout.setImage(UIImage(systemName: "flashlight.off.fill"), for: .normal)
-            var configuration = UIButton.Configuration.filled()
-            configuration.baseBackgroundColor = .init(hex: "000000", alpha: 0.39)
-            configuration.cornerStyle = .capsule
-            settingLightLayout.configuration = configuration
-        }
-    }
-    
-    @IBAction func shareLink() {
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                let userID = try await FirebaseClient.shared.getUserUUID()
-                let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
-                let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
-                present(activityVC, animated: true, completion: nil)
-            } catch {
-                print("SanitasViewContro showShareSheet:",error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
-                } else {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-        
-    }
-    
     @IBAction func showMyQRCode() {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
                 try await makeQRcode(uiImage: qrCodeImageView)
             } catch {
-                print("ShareMyDataViewController 21:",error.localizedDescription)
+                print("ShareMyDataViewController showMyQRCode error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -152,6 +105,51 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         self.view.addSubview(qrCodeView)
         self.view.addSubview(qrCodeImageView)
         self.view.addSubview(dismissButton)
+    }
+    
+    @IBAction func shareLink() {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
+            do {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
+                let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
+                present(activityVC, animated: true, completion: nil)
+            } catch {
+                print("ShareMyDataViewContro shareLink error:",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
+    
+    @IBAction func settingLight() {
+        if settingLightLayout.currentImage == UIImage(systemName: "flashlight.off.fill") {
+            ledFlash(true)
+            settingLightLayout.setImage(UIImage(systemName: "flashlight.on.fill"), for: .normal)
+            var configuration = UIButton.Configuration.filled()
+            configuration.baseBackgroundColor = .init(hex: "FFFFFF")
+            configuration.baseForegroundColor = .init(hex: "000000")
+            configuration.cornerStyle = .capsule
+            settingLightLayout.configuration = configuration
+        } else if settingLightLayout.currentImage == UIImage(systemName: "flashlight.on.fill") {
+            ledFlash(false)
+            settingLightLayout.setImage(UIImage(systemName: "flashlight.off.fill"), for: .normal)
+            var configuration = UIButton.Configuration.filled()
+            configuration.baseBackgroundColor = .init(hex: "000000", alpha: 0.39)
+            configuration.cornerStyle = .capsule
+            settingLightLayout.configuration = configuration
+        }
     }
     
     override func viewDidLoad() {
@@ -223,6 +221,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         }
     }
     
+    //MARK: - dismissButtonが押された時の処理
     @objc func onClickDismissButton(sender: UIButton) {
         qrCodeView.isHidden = true
         qrCodeImageView.isHidden = true

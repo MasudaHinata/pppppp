@@ -5,7 +5,7 @@ import SafariServices
 class SettingViewController: UIViewController, SetttingAccountDelegate  {
     
     var cancellables = Set<AnyCancellable>()
-    let settingSection = ["Select Accumulation Type", "Account", "Feedback"]
+    let settingSection = ["Accumulation Type", "Account", "Feedback"]
     let accumulationTypeItems = ["今日までの一週間", "月曜始まり"]
     let accountItems = ["サインアウト", "アカウント削除"]
     let feedbackItems = ["フィードバックを送る"]
