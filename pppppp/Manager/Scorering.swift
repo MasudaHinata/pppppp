@@ -59,7 +59,6 @@ final class Scorering {
         
         let monthStepCountAve = (monthStepCountSum ?? 0) / 30
         let differenceStep = Int(yesterdayStepCount ?? 0) - Int(monthStepCountAve)
-        var todayPoint = 0
         if Int(monthStepCountAve) <= 7999 {
             switch differenceStep {
             case (120...9600): todayPoint = Int(differenceStep / 120)
@@ -74,6 +73,14 @@ final class Scorering {
             default: break
             }
         }
+        
+        //TODO: スコアリングいい感じにする
+        //        let differenceStep = -3000
+        //        var todayPoint = 0
+        //
+        //        todayPoint = Int(50 / (1.0 + exp(-Double(differenceStep) * 0.0003)))
+        //        print(todayPoint)
+        
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
     }
     

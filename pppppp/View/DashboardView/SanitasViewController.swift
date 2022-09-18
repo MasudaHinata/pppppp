@@ -107,10 +107,10 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
                         self.present(secondVC, animated: true)
                     }
                 }
-                let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
-                if createStepPointJudge == true {
+//                let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
+//                if createStepPointJudge == true {
                     try await Scorering.shared.createStepPoint()
-                }
+//                }
                 
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
