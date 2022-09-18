@@ -19,7 +19,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             gradationFilterView.backgroundColor = .clear
             let gradientLayer: CAGradientLayer = CAGradientLayer()
             gradientLayer.frame.size = gradationFilterView.frame.size
-            gradientLayer.colors = [UIColor.init(hex: "6E3722", alpha: 0.75).cgColor, UIColor.init(hex: "4A0061",alpha: 0.75).cgColor]
+            gradientLayer.colors = [UIColor.init(hex: "4A0061", alpha: 0.7).cgColor, UIColor.init(hex: "0045F5",alpha: 0.7).cgColor]
             gradationFilterView.layer.addSublayer(gradientLayer)
         }
     }
@@ -196,7 +196,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         let url = myProfileURL
         let data = url.data(using: .utf8)!
         let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])!
-        let sizeTransform = CGAffineTransform(scaleX: 10, y: 1)
+        let sizeTransform = CGAffineTransform(scaleX: 10, y: 10)
         uiImage.image = UIImage(ciImage:qr.outputImage!.transformed(by: sizeTransform))
     }
     
