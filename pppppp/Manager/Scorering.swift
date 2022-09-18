@@ -17,7 +17,7 @@ final class Scorering {
     let typeOfWrite = Set([typeOfBodyMass])
     let typeOfRead = Set([typeOfBodyMass, typeOfStepCount])
     
-    //HealthKitの許可を求める
+    //MARK: - HealthKitの許可を求める
     func getPermissionHealthKit() {
         //TODO: 許可されてるかどうかを判定する
         myHealthStore.requestAuthorization(toShare: typeOfWrite, read: typeOfRead) { (success, error) in
@@ -28,7 +28,7 @@ final class Scorering {
         }
     }
     
-    //今日の歩数を取得
+    //MARK: - 今日の歩数を取得
     func getTodaySteps() async throws -> Double {
         getPermissionHealthKit()
         let startDate = calendar.startOfDay(for: Date())
@@ -39,61 +39,51 @@ final class Scorering {
         return todayStepCount ?? 0
     }
     
-    //歩数ポイントを作成
+    //MARK: - 歩数ポイントを作成
     func createStepPoint() async throws {
         getPermissionHealthKit()
-        //        let endDateMonth = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
-        //        let startDateMonth = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: Date()))
-        //        let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
-        //        let stepsTodayMonth = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodMonth)
-        //        let sumOfStepsQueryMonth = HKStatisticsQueryDescriptor(predicate: stepsTodayMonth, options: .cumulativeSum)
-        //
-        //        let endDate = calendar.date(byAdding: .day, value: -0, to: calendar.startOfDay(for: Date()))
-        //        let startDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
-        //        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        //        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-        //        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        //
-        //        let monthStepCountSum = try await sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        //        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        //
-        //        let monthStepCountAve = (monthStepCountSum ?? 0) / 30
-        //        let differenceStep = Int(yesterdayStepCount ?? 0) - Int(monthStepCountAve)
-        //        var stepDifPoint = Int()
-        //                var stepAvePoint = Int()
-        //
-        //        if differenceStep <= 0 {
-        //            stepDifPoint = 0
-        //        } else if differenceStep < 1001 {
-        //            stepDifPoint = Int(0.6 / (0.1 + exp(-Double(differenceStep) * 0.005)))
-        //        } else {
-        //            stepDifPoint = Int(6 / (0.2 + exp(-Double(differenceStep) * 0.0003)))
-        //        }
-        //
-        //        if monthStepCountAve <= 0 {
-        //            stepAvePoint = 0
-        //        } else {
-        //            stepAvePoint = Int(0.3 / (0.03 + exp(-Double(monthStepCountAve) * 0.0005)))
-        //        }
-        //        let todayPoint = stepDifPoint + stepAvePoint
-        //        print(stepDifPoint, "+", stepAvePoint, "=", todayPoint)
-        //        try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
+        let endDateMonth = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
+        let startDateMonth = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: Date()))
+        let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
+        let stepsTodayMonth = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodMonth)
+        let sumOfStepsQueryMonth = HKStatisticsQueryDescriptor(predicate: stepsTodayMonth, options: .cumulativeSum)
         
-        var stepAvePoint = [Int]()
-        let monthStepCountAve = [4000, 6000, 7000, 8000, 10000, 15000, 20000]
-        for monthStepCountAve  in monthStepCountAve {
-            if monthStepCountAve <= 6000 {
-                stepAvePoint.append(0)
-            } else {
-                stepAvePoint.append(Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004))))
-            }
+        let endDate = calendar.date(byAdding: .day, value: -0, to: calendar.startOfDay(for: Date()))
+        let startDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
+        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+        
+        let monthStepCountSum = try await sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        
+        let monthStepCountAve = (monthStepCountSum ?? 0) / 30
+        let differenceStep = Int(yesterdayStepCount ?? 0) - Int(monthStepCountAve)
+        var stepDifPoint = Int()
+        var stepAvePoint = Int()
+        
+        //先月との歩数差のポイント
+        if differenceStep <= 0 {
+            stepDifPoint = 0
+        } else if differenceStep < 1001 {
+            stepDifPoint = Int(0.6 / (0.1 + exp(-Double(differenceStep) * 0.005)))
+        } else {
+            stepDifPoint = Int(6 / (0.2 + exp(-Double(differenceStep) * 0.0003)))
         }
-        print(stepAvePoint)
         
-        //        try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
+        //平均歩数のポイント
+        if monthStepCountAve <= 6000 {
+            stepAvePoint = 0
+        } else {
+            stepAvePoint = Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004)))
+        }
+        
+        let todayPoint = stepDifPoint + stepAvePoint
+        print(stepDifPoint, "+", stepAvePoint, "=", todayPoint)
+        try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
     }
     
-    //体重をHealthKitに書き込み
+    //MARK: - 体重をHealthKitに書き込み
     func writeWeight(weight: Double) async throws {
         getPermissionHealthKit()
         let myWeight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
@@ -101,7 +91,7 @@ final class Scorering {
         try await self.myHealthStore.save(myWeightData)
     }
     
-    //体重を読み込み
+    //MARK: - 体重を読み込み
     func readWeight() async throws {
         getPermissionHealthKit()
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重をWeightDataに入れたい
