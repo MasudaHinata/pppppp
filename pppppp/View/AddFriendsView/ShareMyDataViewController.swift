@@ -19,7 +19,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             gradationFilterView.backgroundColor = .clear
             let gradientLayer: CAGradientLayer = CAGradientLayer()
             gradientLayer.frame.size = gradationFilterView.frame.size
-            gradientLayer.colors = [UIColor.init(hex: "6E3722", alpha: 0.75).cgColor, UIColor.init(hex: "4A0061",alpha: 0.75).cgColor]
+            gradientLayer.colors = [UIColor.init(hex: "4A0061", alpha: 0.6).cgColor, UIColor.init(hex: "0045F5",alpha: 0.6).cgColor]
             gradationFilterView.layer.addSublayer(gradientLayer)
         }
     }
@@ -64,9 +64,18 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         if settingLightLayout.currentImage == UIImage(systemName: "flashlight.off.fill") {
             ledFlash(true)
             settingLightLayout.setImage(UIImage(systemName: "flashlight.on.fill"), for: .normal)
+            var configuration = UIButton.Configuration.filled()
+            configuration.baseBackgroundColor = .init(hex: "FFFFFF")
+            configuration.baseForegroundColor = .init(hex: "000000")
+            configuration.cornerStyle = .capsule
+            settingLightLayout.configuration = configuration
         } else if settingLightLayout.currentImage == UIImage(systemName: "flashlight.on.fill") {
             ledFlash(false)
             settingLightLayout.setImage(UIImage(systemName: "flashlight.off.fill"), for: .normal)
+            var configuration = UIButton.Configuration.filled()
+            configuration.baseBackgroundColor = .init(hex: "000000", alpha: 0.39)
+            configuration.cornerStyle = .capsule
+            settingLightLayout.configuration = configuration
         }
     }
     
@@ -196,7 +205,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         let url = myProfileURL
         let data = url.data(using: .utf8)!
         let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])!
-        let sizeTransform = CGAffineTransform(scaleX: 1, y: 1)
+        let sizeTransform = CGAffineTransform(scaleX: 10, y: 10)
         uiImage.image = UIImage(ciImage:qr.outputImage!.transformed(by: sizeTransform))
     }
     

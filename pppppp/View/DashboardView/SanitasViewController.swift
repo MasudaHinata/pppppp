@@ -99,7 +99,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
                 let now = calendar.component(.hour, from: Date())
                 if now >= 19 {
                     let selfCheckJudge = try await FirebaseClient.shared.checkSelfCheck()
-                    if selfCheckJudge == true {
+                    if selfCheckJudge {
                         let storyboard = UIStoryboard(name: "SelfCheckView", bundle: nil)
                         let secondVC = storyboard.instantiateViewController(identifier: "SelfCheckViewController")
                         secondVC.modalPresentationStyle = .overFullScreen
@@ -108,7 +108,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
                     }
                 }
                 let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
-                if createStepPointJudge == true {
+                if createStepPointJudge {
                     try await Scorering.shared.createStepPoint()
                 }
                 

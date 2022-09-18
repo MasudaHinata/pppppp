@@ -17,7 +17,7 @@ final class Scorering {
     let typeOfWrite = Set([typeOfBodyMass])
     let typeOfRead = Set([typeOfBodyMass, typeOfStepCount])
     
-    //HealthKitの許可を求める
+    //MARK: - HealthKitの許可を求める
     func getPermissionHealthKit() {
         //TODO: 許可されてるかどうかを判定する
         myHealthStore.requestAuthorization(toShare: typeOfWrite, read: typeOfRead) { (success, error) in
@@ -28,7 +28,7 @@ final class Scorering {
         }
     }
     
-    //今日の歩数を取得
+    //MARK: - 今日の歩数を取得
     func getTodaySteps() async throws -> Double {
         getPermissionHealthKit()
         let startDate = calendar.startOfDay(for: Date())
@@ -39,7 +39,7 @@ final class Scorering {
         return todayStepCount ?? 0
     }
     
-    //歩数ポイントを作成
+    //MARK: - 歩数ポイントを作成
     func createStepPoint() async throws {
         getPermissionHealthKit()
         let endDateMonth = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
@@ -59,34 +59,31 @@ final class Scorering {
         
         let monthStepCountAve = (monthStepCountSum ?? 0) / 30
         let differenceStep = Int(yesterdayStepCount ?? 0) - Int(monthStepCountAve)
-        var todayPoint = 0
+        var stepDifPoint = Int()
+        var stepAvePoint = Int()
         
-        if Int(monthStepCountAve) <= 7999 {
-            switch differenceStep {
-            case (120...9600): todayPoint = Int(differenceStep / 120)
-            case (9600...): todayPoint = 80
-            default: break
-            }
-        } else if Int(monthStepCountAve) >= 8000 {
-            switch differenceStep {
-            case (Int(7500 - monthStepCountAve)..<1600): todayPoint = 15
-            case (1600...8000): todayPoint = Int(differenceStep / 100)
-            case (8000...): todayPoint = 80
-            default: break
-            }
+        //先月との歩数差のポイント
+        if differenceStep <= 0 {
+            stepDifPoint = 0
+        } else if differenceStep < 1001 {
+            stepDifPoint = Int(0.6 / (0.1 + exp(-Double(differenceStep) * 0.005)))
+        } else {
+            stepDifPoint = Int(6 / (0.2 + exp(-Double(differenceStep) * 0.0003)))
         }
         
-        //TODO: スコアリングいい感じにする
-        //        let differenceStep = -3000
-        //        var todayPoint = 0
-        //
-        //        todayPoint = Int(50 / (1.0 + exp(-Double(differenceStep) * 0.0003)))
-        //        print(todayPoint)
+        //平均歩数のポイント
+        if monthStepCountAve <= 6000 {
+            stepAvePoint = 0
+        } else {
+            stepAvePoint = Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004)))
+        }
         
+        let todayPoint = stepDifPoint + stepAvePoint
+        print(stepDifPoint, "+", stepAvePoint, "=", todayPoint)
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
     }
     
-    //体重をHealthKitに書き込み
+    //MARK: - 体重をHealthKitに書き込み
     func writeWeight(weight: Double) async throws {
         getPermissionHealthKit()
         let myWeight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
@@ -94,7 +91,7 @@ final class Scorering {
         try await self.myHealthStore.save(myWeightData)
     }
     
-    //体重を読み込み
+    ///MARK: - 体重を読み込み
     func readWeight() async throws {
         getPermissionHealthKit()
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重をWeightDataに入れたい
