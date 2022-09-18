@@ -99,7 +99,7 @@ final class FirebaseClient {
         let userID = user.uid
         let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
         var users = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
-        if includeMe == true {
+        if includeMe {
             try await FirebaseClient.shared.checkNameData()
             try await FirebaseClient.shared.checkIconData()
             let myData = try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self)

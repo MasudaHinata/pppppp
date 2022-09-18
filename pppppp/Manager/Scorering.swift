@@ -91,7 +91,7 @@ final class Scorering {
         try await self.myHealthStore.save(myWeightData)
     }
     
-    //MARK: - 体重を読み込み
+    ///MARK: - 体重を読み込み
     func readWeight() async throws {
         getPermissionHealthKit()
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重をWeightDataに入れたい
