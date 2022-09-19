@@ -120,9 +120,16 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gm2-Du-s8z">
+                                        <rect key="frame" x="219" y="126" width="29" height="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="bbS-71-7GY" firstAttribute="leading" secondItem="9Xv-kx-Zoh" secondAttribute="leading" constant="24" id="0vS-9s-6Wv"/>
+                                    <constraint firstItem="Gm2-Du-s8z" firstAttribute="centerY" secondItem="xTX-mp-TUU" secondAttribute="centerY" id="VKI-EK-5fd"/>
                                     <constraint firstItem="xTX-mp-TUU" firstAttribute="leading" secondItem="9Xv-kx-Zoh" secondAttribute="leading" constant="24" id="WEj-oz-Mw6"/>
                                     <constraint firstItem="bbS-71-7GY" firstAttribute="top" secondItem="9Xv-kx-Zoh" secondAttribute="top" constant="24" id="Zyl-eN-MmN"/>
                                     <constraint firstItem="xTX-mp-TUU" firstAttribute="top" secondItem="NoX-SH-DcP" secondAttribute="bottom" constant="16" id="ebR-tA-P01"/>
@@ -130,6 +137,7 @@
                                     <constraint firstItem="jCv-IG-eh2" firstAttribute="top" secondItem="9Xv-kx-Zoh" secondAttribute="top" constant="87" id="hTH-B0-8He"/>
                                     <constraint firstItem="NoX-SH-DcP" firstAttribute="top" secondItem="bbS-71-7GY" secondAttribute="bottom" constant="16" id="oMp-kd-ZDq"/>
                                     <constraint firstItem="NoX-SH-DcP" firstAttribute="leading" secondItem="9Xv-kx-Zoh" secondAttribute="leading" constant="24" id="tM3-tT-DcE"/>
+                                    <constraint firstItem="xTX-mp-TUU" firstAttribute="trailing" secondItem="Gm2-Du-s8z" secondAttribute="trailing" constant="8" id="wCN-n5-BNC"/>
                                     <constraint firstAttribute="trailing" secondItem="jCv-IG-eh2" secondAttribute="trailing" constant="16" id="xIa-R0-EdU"/>
                                 </constraints>
                             </view>
