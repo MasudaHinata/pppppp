@@ -8,6 +8,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     var cancellables = Set<AnyCancellable>()
     private let session = AVCaptureSession()
     
+    
     var qrCodeView = UIView()
     var qrCodeImageView = UIImageView()
     var dismissButton = UIButton()
@@ -202,6 +203,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     }
     
     func ReadQRcodeFromAlbum(image: UIImage) {
+        
     }
     
     //MARK: - QRCode生成
@@ -241,13 +243,23 @@ extension ShareMyDataViewController: UIImagePickerControllerDelegate, UINavigati
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
         if let selectedImage = info[.originalImage] as? UIImage {
-            QRCodeFromAlbumView.image = selectedImage
+            guard let ciimg = CIImage(image: selectedImage) else {
+                print("画像変換に失敗")
+                return
+            }
+            let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: nil)
+            guard let results = detector!.features(in: ciimg) as? [CIQRCodeFeature] else {
+                print("画像認識に失敗")
+                return
+            }
+            for a in results {
+                UIApplication.shared.open(URL(string: a.messageString!)!, options: [:], completionHandler: nil)
+            }
+            self.dismiss(animated: true)
         }
-        self.dismiss(animated: true)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
+        
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
-
