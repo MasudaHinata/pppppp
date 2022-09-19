@@ -83,9 +83,38 @@ final class Scorering {
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
     }
     
-    //MARK: - 入力した運動からポイントを作成
+//    let exerciseTypeList = ["軽いジョギング", "ランニング", "運動を選択してください", "筋トレ(軽・中等度)", "筋トレ(強等度)", "サイクリング", "テニス(ダブルス)", "テニス(シングルス)", "水泳(ゆっくりとした背泳ぎ・平泳ぎ)", "水泳(クロール・普通の速さ)", "水泳(クロール・速い)", "野球"]
+    
+    //MARK: - 入力した運動と時間からポイントを作成
     func createExercisePoint(exercise: String, time:Int) {
-        
+        var metz = Int()
+        switch exercise {
+        case "軽いジョギング":
+            metz = Int(6.0)
+        case "ランニング":
+            metz = Int(4.5)
+        case "筋トレ(軽・中等度)":
+            metz = Int(3.5)
+        case "筋トレ(強等度)":
+            metz = Int(6.0)
+        case "サイクリング":
+            metz = Int(4.5)
+        case "テニス(ダブルス)":
+            metz = Int(4.5)
+        case "テニス(シングルス)":
+            metz = Int(7.3)
+        case "水泳(ゆっくりとした背泳ぎ・平泳ぎ)":
+            metz = Int(5.0)
+        case "水泳(クロール・普通の速さ)":
+            metz = Int(8.3)
+        case "水泳(クロール・速い)":
+            metz = Int(10)
+        case "野球":
+            metz = Int(4.5)
+        default:
+            print("err")
+        }
+        print(metz)
         
         
         

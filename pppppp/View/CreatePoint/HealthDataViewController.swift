@@ -14,8 +14,9 @@ class HealthDataViewController: UIViewController{
     
     var exerciseTypePicker = UIPickerView()
     var exerciseTimePicker = UIPickerView()
-    let exerciseTypeList = ["軽いジョギング", "ランニング","軽い筋トレ", "運動を選択してください", "テニス(ダブルス)", "テニス(シングルス)", "水泳", "サイクリング", "バレーボール", "野球"]
-    let exerciseTimeList: [Int] = Array(0...59)
+    let exerciseTypeList = ["軽いジョギング", "ランニング", "運動を選択してください", "筋トレ(軽・中等度)", "筋トレ(強等度)", "サイクリング", "テニス(ダブルス)", "テニス(シングルス)", "水泳(ゆっくりとした背泳ぎ・平泳ぎ)", "水泳(クロール・普通の速さ)", "水泳(クロール・速い)", "野球"]
+    
+    let exerciseTimeList: [Int] = Array(0...120)
     
     @IBOutlet var enterExerciseBackgroundView: UIView! {
         didSet {
@@ -75,6 +76,23 @@ class HealthDataViewController: UIViewController{
         }
     }
     
+    @IBAction func recordExerciseButton() {
+        
+        if selectExerciseTextField.text != "", selectExerciseTextField.text != "運動を選択してください", exerciseTimeTextField.text != "", exerciseTimeTextField.text != "0" {
+            print(selectExerciseTextField.text, exerciseTimeTextField.text, "分")
+        } else if selectExerciseTextField.text == "" || selectExerciseTextField.text == "運動を選択してください" {
+            let alart = UIAlertController(title: "エラー", message: "運動を選択してください", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ok", style: .default)
+            alart.addAction(action)
+            self.present(alart, animated: true)
+        } else if exerciseTimeTextField.text == "" || exerciseTimeTextField.text == "0" {
+            let alart = UIAlertController(title: "エラー", message: "時間を選択してください", preferredStyle: .alert)
+            let action = UIAlertAction(title: "ok", style: .default)
+            alart.addAction(action)
+            self.present(alart, animated: true)
+        }
+    }
+    
     @IBAction func writeWeightDataButton() {
         guard let inputWeightText = weightTextField.text else { return }
         guard let inputWeight = Double(inputWeightText) else { return }
@@ -122,7 +140,7 @@ class HealthDataViewController: UIViewController{
         exerciseTypeToolbar.setItems([exerciseTypeSpacelItem, exerciseTypeDoneItem], animated: true)
         exerciseTypePicker.delegate = self
         exerciseTypePicker.dataSource = self
-        exerciseTypePicker.selectRow(3, inComponent: 0, animated: false)
+        exerciseTypePicker.selectRow(2, inComponent: 0, animated: false)
         selectExerciseTextField.inputView = exerciseTypePicker
         selectExerciseTextField.inputAccessoryView = exerciseTypeToolbar
         
@@ -136,15 +154,15 @@ class HealthDataViewController: UIViewController{
         exerciseTimeTextField.inputView = exerciseTimePicker
         exerciseTimeTextField.inputAccessoryView = exerciseTimeToolbar
         
-//        let task = Task {
-//            do {
-//                try await Scorering.shared.readWeight()
-//            }
-//            catch {
-//                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
+        //        let task = Task {
+        //            do {
+        //                try await Scorering.shared.readWeight()
+        //            }
+        //            catch {
+        //                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
+        //            }
+        //        }
+        //        cancellables.insert(.init { task.cancel() })
     }
     
     @objc func selectExerciseDone() {
