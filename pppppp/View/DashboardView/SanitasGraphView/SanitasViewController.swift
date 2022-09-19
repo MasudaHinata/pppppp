@@ -136,7 +136,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
     func emailVerifyRequiredAlert() {
         let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "FirstView", bundle: nil)
+            let storyboard = UIStoryboard(name: "SignInWithAppleView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             self.showDetailViewController(secondVC!, sender: self)
         }

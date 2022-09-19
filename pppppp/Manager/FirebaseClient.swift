@@ -35,9 +35,9 @@ protocol FireStoreCheckNameDelegate: AnyObject {
     func notChangeName()
 }
 
-protocol FirebaseCreatedAccountDelegate: AnyObject {
-    func accountCreated()
-}
+//protocol FirebaseCreatedAccountDelegate: AnyObject {
+//    func accountCreated()
+//}
 
 protocol SetttingAccountDelegate: AnyObject {
     func accountDeleted()
@@ -429,13 +429,13 @@ final class FirebaseClient {
     }
     
     //MARK: - Firebase Authentication
-    //Email アカウントを作成する
-    func emailSignUp(email: String, password: String) async throws {
-        let result = try await firebaseAuth.createUser(withEmail: email, password: password)
-        try await result.user.sendEmailVerification()
-        self.createdAccountDelegate?.accountCreated()
-    }
-    
+//    //Email アカウントを作成する
+//    func emailSignUp(email: String, password: String) async throws {
+//        let result = try await firebaseAuth.createUser(withEmail: email, password: password)
+//        try await result.user.sendEmailVerification()
+//        self.createdAccountDelegate?.accountCreated()
+//    }
+
     //Email ログインする
     @MainActor
     func emailSignIn(email: String, password: String) async throws {
@@ -452,7 +452,7 @@ final class FirebaseClient {
     }
     
     //Appleログイン
-    //TODO: EmailSignInViewControllerから移行
+    //TODO: SignInWithAppleViewControllerから移行
     
     //ログアウトする
     func logout() async throws {

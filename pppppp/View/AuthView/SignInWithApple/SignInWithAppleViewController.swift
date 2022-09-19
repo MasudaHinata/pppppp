@@ -3,25 +3,12 @@ import AuthenticationServices
 import CryptoKit
 import Firebase
 
-class FirstViewController: UIViewController {
+class SignInWithAppleViewController: UIViewController {
     
     @IBOutlet var AppleLoginButtonView: UIView!
     
-    @IBOutlet var sceneEmailSignUpButtonLayout: UIButton!
-//    {
-//        didSet {
-//            var configuration = UIButton.Configuration.filled()
-//            configuration.title = "Sign in with Email(Beta User Only)"
-//            configuration.image = UIImage(systemName: "envelope.fill")
-//            configuration.imagePadding = 8
-//            configuration.baseBackgroundColor = .init(hex: "92B2D3")
-//            sceneEmailSignUpButtonLayout.configuration = configuration
-//            //            sceneEmailSignUpButtonLayout.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-//        }
-//    }
-    
-    @IBAction func sceneEmailSignUpButton() {
-        let storyboard = UIStoryboard(name: "EmailSignUpView", bundle: nil)
+    @IBAction func sceneEmailSignInButton() {
+        let storyboard = UIStoryboard(name: "EmailSignInView", bundle: nil)
         let settingVC = storyboard.instantiateInitialViewController()
         self.showDetailViewController(settingVC!, sender: self)
     }
@@ -107,7 +94,7 @@ class FirstViewController: UIViewController {
 }
 
 //MARK: - Sign In With Apple
-extension FirstViewController: ASAuthorizationControllerDelegate {
+extension SignInWithAppleViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
@@ -150,7 +137,7 @@ extension FirstViewController: ASAuthorizationControllerDelegate {
     }
     
 }
-extension FirstViewController: ASAuthorizationControllerPresentationContextProviding {
+extension SignInWithAppleViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }

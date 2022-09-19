@@ -39,8 +39,7 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
         if passwordTextField.text == "" {
             showAlert(title: "エラー", message: "パスワードか入力されていません")
         } else {
-            let task = Task { [weak self] in
-                guard let self = self else { return }
+            let task = Task {
                 do {
                     try await FirebaseClient.shared.emailSignIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }
