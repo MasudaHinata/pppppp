@@ -64,11 +64,3 @@ class SetNameViewController: UIViewController {
         self.view.endEditing(true)
     }
 }
-
-//MARK: - UITextFieldDelegate
-extension SetNameViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        changeNameTextField.resignFirstResponder()
-        return true
-    }
-}

@@ -146,11 +146,3 @@ class ChangeProfileViewController: UIViewController {
         self.view.endEditing(true)
     }
 }
-
-//MARK: - extension
-extension ChangeProfileViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        nameTextField.resignFirstResponder()
-        return true
-    }
-}
