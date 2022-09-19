@@ -131,7 +131,7 @@ class HealthDataViewController: UIViewController{
         
         let exerciseTimeToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
         let exerciseTimeSpacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let exerciseTimeDoneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(selectExerciseDone))
+        let exerciseTimeDoneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(exerciseTimeDone))
         exerciseTimeToolbar.setItems([exerciseTimeSpacelItem, exerciseTimeDoneItem], animated: true)
         exerciseTimePicker.delegate = self
         exerciseTimePicker.dataSource = self
@@ -153,6 +153,11 @@ class HealthDataViewController: UIViewController{
     @objc func selectExerciseDone() {
         selectExerciseTextField.endEditing(true)
         selectExerciseTextField.text = "\(exerciseTypeList[exerciseTypePicker.selectedRow(inComponent: 0)])"
+    }
+    
+    @objc func exerciseTimeDone() {
+        exerciseTimeTextField.endEditing(true)
+        exerciseTimeTextField.text = "\(exerciseTimeList[exerciseTimePicker.selectedRow(inComponent: 0)])"
     }
     
     @objc func dismissKeyboard() {
