@@ -48,17 +48,11 @@ class DashboardViewController: UIViewController {
             catch {
                 print("CollectionViewContro ViewDid error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
                         self.viewDidLoad()
-                    }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    })
                 } else {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
                 }
             }
         }
@@ -75,17 +69,11 @@ class DashboardViewController: UIViewController {
             catch {
                 print("ViewContro refresh error",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
                         self.viewDidLoad()
-                    }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    })
                 } else {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
                 }
             }
         }

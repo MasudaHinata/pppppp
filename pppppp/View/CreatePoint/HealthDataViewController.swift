@@ -103,15 +103,9 @@ class HealthDataViewController: UIViewController{
             catch {
                 print("HealthData writeWeight error:", error.localizedDescription)
                 if error.localizedDescription == "Not authorized" {
-                    let alert = UIAlertController(title: "エラー", message: "設定からHealthKitの許可をオンにしてください", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "設定からHealthKitの許可をオンにしてください", handler: { (_) in })
                 } else {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
                 }
             }
         }
