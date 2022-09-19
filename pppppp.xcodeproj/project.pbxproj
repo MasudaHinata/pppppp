@@ -21,7 +21,6 @@
 		0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */; };
 		0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681C28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift */; };
 		0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */; };
-		0343682128D80797000BA656 /* EmailSignUpViewController+UITextFieldDelegate .swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343682028D80797000BA656 /* EmailSignUpViewController+UITextFieldDelegate .swift */; };
 		0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */; };
 		0343682728D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */; };
 		035CE51E28CF1E53001F89BB /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */; };
@@ -35,7 +34,6 @@
 		036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69E628BE56E60066A7DA /* UserDataViewController.swift */; };
 		036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */; };
 		036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */; };
-		036F69F028C0868C0066A7DA /* EmailSignUpView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69EF28C0868C0066A7DA /* EmailSignUpView.storyboard */; };
 		036F69F228C089B40066A7DA /* EmailSignInView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F128C089B40066A7DA /* EmailSignInView.storyboard */; };
 		036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */; };
 		036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F528C08C0F0066A7DA /* SetNameView.storyboard */; };
@@ -85,7 +83,6 @@
 		9CAA88EC26B1918B005517D5 /* EmailSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */; };
 		9CB2AB9A28A116120050562C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9CB2AB9928A116120050562C /* Kingfisher */; };
 		9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD49C2628AEAD5E000CDEDF /* NotificationManager.swift */; };
-		9CDF759F286326A600209FD0 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF759E286326A600209FD0 /* EmailSignUpViewController.swift */; };
 		9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B88288C384100FFE94C /* CoverWindow.swift */; };
 		9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */; };
 		9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B8C288C548D00FFE94C /* LoginHelper.swift */; };
@@ -116,7 +113,6 @@
 		0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeProfileViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		0343681C28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetNameViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResetPasswordViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
-		0343682028D80797000BA656 /* EmailSignUpViewController+UITextFieldDelegate .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailSignUpViewController+UITextFieldDelegate .swift"; sourceTree = "<group>"; };
 		0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailSignInViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareMyDataViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
 		035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
@@ -130,7 +126,6 @@
 		036F69E628BE56E60066A7DA /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
 		036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentActivitysTableViewCell.swift; sourceTree = "<group>"; };
 		036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentActivitysTableViewCell.xib; sourceTree = "<group>"; };
-		036F69EF28C0868C0066A7DA /* EmailSignUpView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailSignUpView.storyboard; sourceTree = "<group>"; };
 		036F69F128C089B40066A7DA /* EmailSignInView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailSignInView.storyboard; sourceTree = "<group>"; };
 		036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResetPasswordView.storyboard; sourceTree = "<group>"; };
 		036F69F528C08C0F0066A7DA /* SetNameView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetNameView.storyboard; sourceTree = "<group>"; };
@@ -173,7 +168,6 @@
 		9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardFriendDataCell.xib; sourceTree = "<group>"; };
 		9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInViewController.swift; sourceTree = "<group>"; };
 		9CD49C2628AEAD5E000CDEDF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		9CDF759E286326A600209FD0 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		9CE63B88288C384100FFE94C /* CoverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverWindow.swift; sourceTree = "<group>"; };
 		9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHelper.swift; sourceTree = "<group>"; };
 		9CE63B8C288C548D00FFE94C /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
@@ -230,7 +224,6 @@
 				0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */,
 				0343681C28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift */,
 				0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */,
-				0343682028D80797000BA656 /* EmailSignUpViewController+UITextFieldDelegate .swift */,
 				0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */,
 			);
 			path = UITextFieldDelegate;
@@ -378,8 +371,6 @@
 		03A45B7228D8A5C40059B617 /* SignInWithEmail */ = {
 			isa = PBXGroup;
 			children = (
-				9CDF759E286326A600209FD0 /* EmailSignUpViewController.swift */,
-				036F69EF28C0868C0066A7DA /* EmailSignUpView.storyboard */,
 				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
 				036F69F128C089B40066A7DA /* EmailSignInView.storyboard */,
 				036F698028B940270066A7DA /* ResetPasswordViewController.swift */,
@@ -554,7 +545,6 @@
 				9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */,
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
 				036F69E528BE1DC70066A7DA /* SummaryCollectionViewCell.xib in Resources */,
-				036F69F028C0868C0066A7DA /* EmailSignUpView.storyboard in Resources */,
 				036F69F228C089B40066A7DA /* EmailSignInView.storyboard in Resources */,
 				9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */,
 				034367FE28D609BA000BA656 /* OnboardingView2.storyboard in Resources */,
@@ -595,14 +585,12 @@
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
 				038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */,
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
-				9CDF759F286326A600209FD0 /* EmailSignUpViewController.swift in Sources */,
 				0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
 				03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */,
 				03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */,
 				0343680E28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift in Sources */,
-				0343682128D80797000BA656 /* EmailSignUpViewController+UITextFieldDelegate .swift in Sources */,
 				0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */,
 				0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */,
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
