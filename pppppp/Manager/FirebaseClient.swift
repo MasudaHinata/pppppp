@@ -62,7 +62,6 @@ final class FirebaseClient {
     weak var loginDelegate: FirebaseClientAuthDelegate?
     weak var emailVerifyDelegate: FirebaseEmailVarifyDelegate?
     weak var notChangeDelegate: FireStoreCheckNameDelegate?
-    weak var createdAccountDelegate: FirebaseCreatedAccountDelegate?
     weak var SettingAccountDelegate: SetttingAccountDelegate?
     weak var putPointDelegate: FirebasePutPointDelegate?
     weak var sentEmailDelegate: FirebaseSentEmailDelegate?
