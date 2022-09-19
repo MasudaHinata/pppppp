@@ -97,12 +97,3 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
         self.showDetailViewController(secondVC!, sender: self)
     }
 }
-
-//MARK: - extension
-extension EmailSignInViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        return true
-    }
-}

@@ -123,13 +123,3 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
         }
     }
 }
-
-//MARK: - Setting UITextFieldDelegate
-extension EmailSignUpViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        password2TextField.resignFirstResponder()
-        return true
-    }
-}
