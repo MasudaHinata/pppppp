@@ -122,21 +122,21 @@ class HealthDataViewController: UIViewController{
         selectExerciseTextField.inputView = exerciseTypePicker
         selectExerciseTextField.inputAccessoryView = toolbar
         
-//        let task = Task {
-//            do {
-//                try await Scorering.shared.readWeight()
-//            }
-//            catch {
-//                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
+        let task = Task {
+            do {
+                try await Scorering.shared.readWeight()
+            }
+            catch {
+                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
     }
     
     @objc func done() {
         selectExerciseTextField.endEditing(true)
         selectExerciseTextField.text = "\(exerciseTypeList[exerciseTypePicker.selectedRow(inComponent: 0)])"
-       }
+    }
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)

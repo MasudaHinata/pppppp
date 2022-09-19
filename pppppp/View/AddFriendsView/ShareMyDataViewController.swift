@@ -1,6 +1,7 @@
 import UIKit
 import Combine
 import AVFoundation
+import AVKit
 
 class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -12,6 +13,12 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     var qrCodeImageView = UIImageView()
     var dismissButton = UIButton()
     @IBOutlet weak var caputureView: UIView!
+    
+    @IBOutlet var alertButtonLayout: UIButton! {
+        didSet {
+            alertButtonLayout.tintColor = UIColor.init(hex: "000000")
+        }
+    }
     
     @IBOutlet var gradationFilterView: UIView! {
         didSet {
@@ -52,6 +59,12 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             configuration.baseBackgroundColor = .init(hex: "000000", alpha: 0.39)
             configuration.cornerStyle = .capsule
             albumButtonLayout.configuration = configuration
+        }
+    }
+    
+    @IBAction func alertButton() {
+        if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
+           UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
@@ -158,8 +171,21 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        alertButtonLayout.isHidden = true
+        useCameraPermission()
         initDeviceCamera()
     }
+    
+    //MARK: カメラの許可
+    func useCameraPermission() {
+        AVCaptureDevice.requestAccess(for: .video) { [self] (res) in
+            if res == false {
+                print("許可なし")
+                alertButtonLayout.isHidden = false
+            }
+        }
+    }
+    
     //MARK: - QRCode読み取り
     private func initDeviceCamera() {
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back)
@@ -198,10 +224,6 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
-    }
-    
-    func ReadQRcodeFromAlbum(image: UIImage) {
-        
     }
     
     //MARK: - QRCode生成
