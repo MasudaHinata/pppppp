@@ -15,6 +15,15 @@ class HealthDataViewController: UIViewController{
     var exerciseTypePicker = UIPickerView()
     let exerciseTypeList = ["筋トレ", "運動を選択してください", "ランニング", "テニス"]
     
+    @IBOutlet var enterExerciseBackgroundView: UIView! {
+        didSet {
+            enterExerciseBackgroundView.layer.cornerRadius = 36
+            enterExerciseBackgroundView.clipsToBounds = true
+            enterExerciseBackgroundView.layer.cornerCurve = .continuous
+            enterExerciseBackgroundView.backgroundColor = UIColor.init(hex: "443FA3")
+        }
+    }
+    
     @IBOutlet var selectExerciseTextField: UITextField! {
         didSet {
             selectExerciseTextField.layer.cornerRadius = 16
@@ -31,20 +40,11 @@ class HealthDataViewController: UIViewController{
         }
     }
     
-    @IBOutlet var enterExerciseBackgroundView: UIView! {
+    @IBOutlet var saveExerciseButtonLayout: UIButton! {
         didSet {
-            enterExerciseBackgroundView.layer.cornerRadius = 36
-            enterExerciseBackgroundView.clipsToBounds = true
-            enterExerciseBackgroundView.layer.cornerCurve = .continuous
-            enterExerciseBackgroundView.backgroundColor = UIColor.init(hex: "443FA3")
-        }
-    }
-    
-    @IBOutlet var weightTextField: UITextField! {
-        didSet {
-            weightTextField.layer.cornerRadius = 24
-            weightTextField.clipsToBounds = true
-            weightTextField.layer.cornerCurve = .continuous
+            saveExerciseButtonLayout.layer.cornerRadius = 16
+            saveExerciseButtonLayout.clipsToBounds = true
+            saveExerciseButtonLayout.layer.cornerCurve = .continuous
         }
     }
     
@@ -57,15 +57,23 @@ class HealthDataViewController: UIViewController{
         }
     }
     
-    @IBOutlet var writeWeightDataLayout: UIButton! {
+    @IBOutlet var weightTextField: UITextField! {
         didSet {
-            writeWeightDataLayout.layer.cornerRadius = 16
-            writeWeightDataLayout.clipsToBounds = true
-            writeWeightDataLayout.layer.cornerCurve = .continuous
+            weightTextField.layer.cornerRadius = 24
+            weightTextField.clipsToBounds = true
+            weightTextField.layer.cornerCurve = .continuous
         }
     }
     
-    @IBAction func writeWeightData() {
+    @IBOutlet var writeWeightDataButtonLayout: UIButton! {
+        didSet {
+            writeWeightDataButtonLayout.layer.cornerRadius = 16
+            writeWeightDataButtonLayout.clipsToBounds = true
+            writeWeightDataButtonLayout.layer.cornerCurve = .continuous
+        }
+    }
+    
+    @IBAction func writeWeightDataButton() {
         guard let inputWeightText = weightTextField.text else { return }
         guard let inputWeight = Double(inputWeightText) else { return }
         

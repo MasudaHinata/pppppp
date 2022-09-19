@@ -8,8 +8,8 @@ class LoginHelper {
     var viewController: UIViewController?
     
     func showAccountViewController() {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
-        let accountVC: CreateAccountViewController = mainStoryboard.instantiateViewController(withIdentifier: "CreateAccountViewController") as! CreateAccountViewController
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "FirstView", bundle: nil)
+        let accountVC: FirstViewController = mainStoryboard.instantiateInitialViewController() as! FirstViewController
         viewController?.present(accountVC, animated: true, completion: nil)
     }
 }

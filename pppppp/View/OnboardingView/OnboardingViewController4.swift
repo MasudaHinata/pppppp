@@ -1,10 +1,3 @@
-//
-//  OnboardingViewController4.swift
-//  pppppp
-//
-//  Created by hinata on 2022/09/17.
-//
-
 import UIKit
 
 class OnboardingViewController4: UIViewController {

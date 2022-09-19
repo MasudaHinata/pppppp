@@ -73,7 +73,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                     print("ChangeProfile deleteAccount error:\(String(describing: error.localizedDescription))")
                     let alert = UIAlertController(title: "エラー", message: "ログインし直してもう一度お試しください", preferredStyle: .alert)
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
+                        let storyboard = UIStoryboard(name: "FirstView", bundle: nil)
                         let secondVC = storyboard.instantiateInitialViewController()
                         self.showDetailViewController(secondVC!, sender: self)
                     }
@@ -102,7 +102,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
         let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
+            let storyboard = UIStoryboard(name: "FirstView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             self.showDetailViewController(secondVC!, sender: self)
         }
@@ -111,12 +111,13 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
     func faildAcccountDelete() {
         let appDomain = Bundle.main.bundleIdentifier
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
         let alert = UIAlertController(title: "ログインしなおしてもう一度試してください", message: "データが全て消えている可能性があります", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
+            let storyboard = UIStoryboard(name: "FirstView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             self.showDetailViewController(secondVC!, sender: self)
         }
@@ -125,6 +126,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
     func faildAcccountDeleteData() {
         let alert = UIAlertController(title: "もう一度試してください", message: "データの削除に失敗しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default)
@@ -133,10 +135,11 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
     func logoutCompleted() {
         let alert = UIAlertController(title: "完了", message: "ログアウトしました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "CreateAccountView", bundle: nil)
+            let storyboard = UIStoryboard(name: "FirstView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             self.showDetailViewController(secondVC!, sender: self)
         }

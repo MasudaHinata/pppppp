@@ -30,9 +30,7 @@ class ChangeProfileViewController: UIViewController {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Save Change"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
-            configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
-            configuration.imagePadding = 24
             changeProfileLayout.configuration = configuration
         }
     }
@@ -54,8 +52,6 @@ class ChangeProfileViewController: UIViewController {
                     configuration.title = "Save Change..."
                     configuration.baseBackgroundColor = .init(hex: "92B2D3")
                     configuration.showsActivityIndicator = true
-                    configuration.imagePadding = 24
-                    configuration.imagePlacement = .trailing
                     changeProfileLayout.configuration = configuration
                     profileName = (self.nameTextField.text!)
                     if profileName != "" {
@@ -70,9 +66,7 @@ class ChangeProfileViewController: UIViewController {
                         var configuration = UIButton.Configuration.gray()
                         configuration.title = "Save Change"
                         configuration.baseBackgroundColor = .init(hex: "92B2D3")
-                        configuration.imagePlacement = .trailing
                         configuration.baseForegroundColor = .white
-                        configuration.imagePadding = 24
                         self.changeProfileLayout.configuration = configuration
                         self.myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
                     }
@@ -150,13 +144,5 @@ class ChangeProfileViewController: UIViewController {
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
-    }
-}
-
-//MARK: - extension
-extension ChangeProfileViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        nameTextField.resignFirstResponder()
-        return true
     }
 }

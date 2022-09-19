@@ -47,8 +47,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62u-dQ-csJ">
-                                        <rect key="frame" x="286" y="87" width="64" height="32"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62u-dQ-csJ">
+                                        <rect key="frame" x="296" y="87" width="54" height="32"/>
                                         <color key="backgroundColor" red="0.52156862745098043" green="0.62745098039215685" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="yk7-uR-pLh"/>
@@ -59,7 +59,7 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="writeWeightData" destination="9Dv-30-eAN" eventType="touchUpInside" id="wVA-BB-966"/>
+                                            <action selector="writeWeightDataButton" destination="9Dv-30-eAN" eventType="touchUpInside" id="wVA-BB-966"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -85,10 +85,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Exercise" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHm-pG-F5y">
-                                        <rect key="frame" x="24" y="60" width="200" height="40"/>
+                                        <rect key="frame" x="24" y="60" width="232" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.23999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="4KA-xL-L6I"/>
+                                            <constraint firstAttribute="width" constant="232" id="4KA-xL-L6I"/>
                                             <constraint firstAttribute="height" constant="40" id="4eT-93-w6T"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -96,22 +96,36 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exercise Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ln2-JN-rZO">
-                                        <rect key="frame" x="24" y="116" width="200" height="40"/>
+                                        <rect key="frame" x="24" y="116" width="232" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.23999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="GL4-uj-u4N"/>
+                                            <constraint firstAttribute="width" constant="232" id="GL4-uj-u4N"/>
                                             <constraint firstAttribute="height" constant="40" id="tKN-h0-HS5"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lq6-Ue-TMc">
+                                        <rect key="frame" x="296" y="88" width="54" height="32"/>
+                                        <color key="backgroundColor" red="0.52156862749999999" green="0.62745098040000002" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="7Nt-mW-W8J"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Add">
+                                            <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Lq6-Ue-TMc" secondAttribute="trailing" constant="16" id="3EY-Oj-YSS"/>
                                     <constraint firstItem="Lk2-8I-7hf" firstAttribute="leading" secondItem="KeS-i4-HXz" secondAttribute="leading" constant="24" id="3hd-O3-c2f"/>
                                     <constraint firstItem="ln2-JN-rZO" firstAttribute="top" secondItem="aHm-pG-F5y" secondAttribute="bottom" constant="16" id="DuO-TP-5lP"/>
                                     <constraint firstItem="Lk2-8I-7hf" firstAttribute="top" secondItem="KeS-i4-HXz" secondAttribute="top" constant="24" id="Li3-Bq-qES"/>
                                     <constraint firstItem="ln2-JN-rZO" firstAttribute="leading" secondItem="KeS-i4-HXz" secondAttribute="leading" constant="24" id="Pvn-I0-Key"/>
+                                    <constraint firstItem="Lq6-Ue-TMc" firstAttribute="top" secondItem="KeS-i4-HXz" secondAttribute="top" constant="88" id="f4r-2Z-NFs"/>
                                     <constraint firstAttribute="height" constant="176" id="gHv-PC-Hqt"/>
                                     <constraint firstItem="aHm-pG-F5y" firstAttribute="top" secondItem="Lk2-8I-7hf" secondAttribute="bottom" constant="16" id="hXn-sw-Z2W"/>
                                     <constraint firstItem="aHm-pG-F5y" firstAttribute="leading" secondItem="KeS-i4-HXz" secondAttribute="leading" constant="24" id="mDT-Oi-Q5H"/>
@@ -133,9 +147,10 @@
                         <outlet property="enterExerciseBackgroundView" destination="KeS-i4-HXz" id="RS9-c6-ytn"/>
                         <outlet property="enterWeightbackgroundView" destination="bMI-by-4Vb" id="thh-5Q-6ge"/>
                         <outlet property="exerciseTimeTextField" destination="ln2-JN-rZO" id="eUJ-zs-PF7"/>
+                        <outlet property="saveExerciseButtonLayout" destination="Lq6-Ue-TMc" id="HaI-OA-sih"/>
                         <outlet property="selectExerciseTextField" destination="aHm-pG-F5y" id="zSb-BR-ciM"/>
                         <outlet property="weightTextField" destination="loL-8f-2LO" id="NVM-Kf-t6S"/>
-                        <outlet property="writeWeightDataLayout" destination="62u-dQ-csJ" id="Llv-0f-qwV"/>
+                        <outlet property="writeWeightDataButtonLayout" destination="62u-dQ-csJ" id="Llv-0f-qwV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSU-1W-kfG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

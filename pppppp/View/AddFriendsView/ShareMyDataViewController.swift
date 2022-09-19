@@ -12,7 +12,6 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     var qrCodeImageView = UIImageView()
     var dismissButton = UIButton()
     @IBOutlet weak var caputureView: UIView!
-    @IBOutlet weak var photoImageView: UIImageView!
     
     @IBOutlet var gradationFilterView: UIView! {
         didSet {
@@ -56,7 +55,12 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         }
     }
     
-    @IBAction func albumButton() {
+    @IBAction func openAlbumButton(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        present(picker, animated: true)
+        self.present(picker, animated: true, completion: nil)
     }
     
     @IBAction func showMyQRCode() {
@@ -194,6 +198,10 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
+    }
+    
+    func ReadQRcodeFromAlbum(image: UIImage) {
+        
     }
     
     //MARK: - QRCode生成
