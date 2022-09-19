@@ -13,8 +13,6 @@
 		0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034367FF28D609D0000BA656 /* OnboardingViewController2.swift */; };
 		0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680128D60A13000BA656 /* OnboardingViewController3.swift */; };
 		0343680428D60A1D000BA656 /* OnboardingView3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343680328D60A1D000BA656 /* OnboardingView3.storyboard */; };
-		0343680628D60D82000BA656 /* OnboardingView4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343680528D60D82000BA656 /* OnboardingView4.storyboard */; };
-		0343680828D60D93000BA656 /* OnboardingViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680728D60D93000BA656 /* OnboardingViewController4.swift */; };
 		0343680E28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680D28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift */; };
 		0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */; };
 		0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */; };
@@ -110,8 +108,6 @@
 		034367FF28D609D0000BA656 /* OnboardingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController2.swift; sourceTree = "<group>"; };
 		0343680128D60A13000BA656 /* OnboardingViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController3.swift; sourceTree = "<group>"; };
 		0343680328D60A1D000BA656 /* OnboardingView3.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView3.storyboard; sourceTree = "<group>"; };
-		0343680528D60D82000BA656 /* OnboardingView4.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView4.storyboard; sourceTree = "<group>"; };
-		0343680728D60D93000BA656 /* OnboardingViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController4.swift; sourceTree = "<group>"; };
 		0343680D28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthDataViewController+UIPickerDelegate.swift"; sourceTree = "<group>"; };
 		0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseTableViewCell.xib; sourceTree = "<group>"; };
@@ -224,8 +220,6 @@
 				034367FD28D609BA000BA656 /* OnboardingView2.storyboard */,
 				0343680128D60A13000BA656 /* OnboardingViewController3.swift */,
 				0343680328D60A1D000BA656 /* OnboardingView3.storyboard */,
-				0343680728D60D93000BA656 /* OnboardingViewController4.swift */,
-				0343680528D60D82000BA656 /* OnboardingView4.storyboard */,
 			);
 			path = OnboardingView;
 			sourceTree = "<group>";
@@ -508,7 +502,6 @@
 				036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */,
 				036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */,
 				036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */,
-				0343680628D60D82000BA656 /* OnboardingView4.storyboard in Resources */,
 				035CE52028CF1E61001F89BB /* HealthDataView.storyboard in Resources */,
 				9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */,
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
@@ -547,7 +540,6 @@
 				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
 				0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
-				0343680828D60D93000BA656 /* OnboardingViewController4.swift in Sources */,
 				03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */,
