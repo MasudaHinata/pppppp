@@ -14,7 +14,7 @@ class HealthDataViewController: UIViewController{
     
     var exerciseTypePicker = UIPickerView()
     var exerciseTimePicker = UIPickerView()
-    let exerciseTypeList = ["筋トレ", "運動を選択してください", "ランニング", "テニス"]
+    let exerciseTypeList = ["軽いジョギング", "ランニング","軽い筋トレ", "運動を選択してください", "テニス(ダブルス)", "テニス(シングルス)", "水泳", "サイクリング", "バレーボール", "野球"]
     let exerciseTimeList: [Int] = Array(0...59)
     
     @IBOutlet var enterExerciseBackgroundView: UIView! {
@@ -122,7 +122,7 @@ class HealthDataViewController: UIViewController{
         exerciseTypeToolbar.setItems([exerciseTypeSpacelItem, exerciseTypeDoneItem], animated: true)
         exerciseTypePicker.delegate = self
         exerciseTypePicker.dataSource = self
-        exerciseTypePicker.selectRow(1, inComponent: 0, animated: false)
+        exerciseTypePicker.selectRow(3, inComponent: 0, animated: false)
         selectExerciseTextField.inputView = exerciseTypePicker
         selectExerciseTextField.inputAccessoryView = exerciseTypeToolbar
         
