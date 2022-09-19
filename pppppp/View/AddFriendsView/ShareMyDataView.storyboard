@@ -76,13 +76,6 @@
                                     <action selector="showMyQRCode" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fdo-kw-nyX"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nzz-ZI-p4X">
-                                <rect key="frame" x="87" y="328" width="240" height="240"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="xkl-hl-AyQ"/>
-                                    <constraint firstAttribute="width" constant="240" id="zlb-ze-m7L"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
@@ -92,7 +85,6 @@
                             <constraint firstItem="5fy-dV-ESd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6Jo-LQ-gAN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="bcq-l2-IAg" secondAttribute="bottom" id="9lO-dp-3ng"/>
                             <constraint firstAttribute="bottom" secondItem="xU5-xE-ref" secondAttribute="bottom" constant="80" id="ApO-a1-wM2"/>
-                            <constraint firstItem="Nzz-ZI-p4X" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="GV3-Nq-vya"/>
                             <constraint firstItem="bcq-l2-IAg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="GlX-F0-Xh8"/>
                             <constraint firstItem="5fy-dV-ESd" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Nty-RS-eZw"/>
                             <constraint firstAttribute="bottom" secondItem="5fy-dV-ESd" secondAttribute="bottom" id="Xc0-DZ-xql"/>
@@ -105,14 +97,12 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="FQF-Xb-Gd3" secondAttribute="trailing" constant="88" id="l4y-qs-mUo"/>
                             <constraint firstItem="zbe-UI-CKp" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="lPV-Qv-DGR"/>
                             <constraint firstAttribute="bottom" secondItem="urc-n8-HmE" secondAttribute="bottom" constant="200" id="nSA-7Y-ugQ"/>
-                            <constraint firstItem="Nzz-ZI-p4X" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="tz0-a8-T0Z"/>
                             <constraint firstItem="urc-n8-HmE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="88" id="ubn-ad-CYU"/>
                             <constraint firstItem="FQF-Xb-Gd3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="88" id="xWg-bn-TMi"/>
                             <constraint firstAttribute="bottom" secondItem="FQF-Xb-Gd3" secondAttribute="bottom" constant="256" id="zhb-Qt-eeA"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="QRCodeFromAlbumView" destination="Nzz-ZI-p4X" id="ccj-gv-v6U"/>
                         <outlet property="albumButtonLayout" destination="xU5-xE-ref" id="BwB-Jo-S9V"/>
                         <outlet property="caputureView" destination="bcq-l2-IAg" id="oPL-lQ-pOL"/>
                         <outlet property="gradationFilterView" destination="5fy-dV-ESd" id="fMh-yo-XiY"/>
