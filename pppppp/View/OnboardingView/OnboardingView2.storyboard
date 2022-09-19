@@ -16,8 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="morflax-studio-18" translatesAutoresizingMaskIntoConstraints="NO" id="xBN-vf-RxM">
-                                <rect key="frame" x="-33" y="63" width="520" height="507"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradation" translatesAutoresizingMaskIntoConstraints="NO" id="RLV-jW-ZVI">
+                                <rect key="frame" x="0.0" y="400" width="390" height="444"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="444" id="zdu-st-UuI"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccs-qe-bNr">
                                 <rect key="frame" x="16" y="522" width="240" height="48"/>
@@ -67,24 +70,30 @@
                                     <action selector="backButton:" destination="UOt-zi-CBt" eventType="touchUpInside" id="kim-dg-9GP"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding2" translatesAutoresizingMaskIntoConstraints="NO" id="xBN-vf-RxM">
+                                <rect key="frame" x="-127" y="35" width="621" height="707"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pjo-t4-ZnU"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="yDb-M8-rQH" firstAttribute="top" secondItem="ZHe-oB-JIA" secondAttribute="bottom" id="3lr-aE-tIY"/>
+                            <constraint firstAttribute="bottom" secondItem="RLV-jW-ZVI" secondAttribute="bottom" id="ADM-a1-Nc2"/>
                             <constraint firstItem="ZHe-oB-JIA" firstAttribute="top" secondItem="Ccs-qe-bNr" secondAttribute="bottom" id="Ad4-3W-uqC"/>
                             <constraint firstItem="pjo-t4-ZnU" firstAttribute="bottom" secondItem="FHt-Zd-pG3" secondAttribute="bottom" constant="40" id="Baj-sO-TV3"/>
                             <constraint firstItem="pjo-t4-ZnU" firstAttribute="trailing" secondItem="cH1-5l-5wP" secondAttribute="trailing" constant="40" id="J3J-vb-SHK"/>
-                            <constraint firstItem="xBN-vf-RxM" firstAttribute="top" secondItem="pjo-t4-ZnU" secondAttribute="top" constant="16" id="ZNb-QX-h4L"/>
+                            <constraint firstItem="pjo-t4-ZnU" firstAttribute="bottom" secondItem="xBN-vf-RxM" secondAttribute="bottom" constant="68" id="b1G-88-wde"/>
                             <constraint firstItem="Ccs-qe-bNr" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="16" id="dYH-MM-z1Y"/>
                             <constraint firstItem="yDb-M8-rQH" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="16" id="eJz-If-oLs"/>
-                            <constraint firstItem="pjo-t4-ZnU" firstAttribute="bottom" secondItem="xBN-vf-RxM" secondAttribute="bottom" constant="240" id="eSV-2e-wno"/>
+                            <constraint firstItem="xBN-vf-RxM" firstAttribute="leading" secondItem="leq-bj-Sje" secondAttribute="leading" constant="-127" id="esb-n3-OCg"/>
                             <constraint firstItem="pjo-t4-ZnU" firstAttribute="bottom" secondItem="cH1-5l-5wP" secondAttribute="bottom" constant="40" id="gTO-0T-bRZ"/>
+                            <constraint firstAttribute="trailing" secondItem="xBN-vf-RxM" secondAttribute="trailing" constant="-104" id="knb-Or-kvh"/>
+                            <constraint firstItem="RLV-jW-ZVI" firstAttribute="leading" secondItem="leq-bj-Sje" secondAttribute="leading" id="lGv-JO-ArT"/>
+                            <constraint firstAttribute="trailing" secondItem="RLV-jW-ZVI" secondAttribute="trailing" id="pPj-a6-FGI"/>
+                            <constraint firstItem="xBN-vf-RxM" firstAttribute="top" secondItem="leq-bj-Sje" secondAttribute="top" constant="35" id="pVJ-58-QJz"/>
                             <constraint firstItem="ZHe-oB-JIA" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="16" id="rU3-NI-Fi1"/>
                             <constraint firstItem="FHt-Zd-pG3" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="40" id="rVc-bb-ThU"/>
                             <constraint firstItem="cH1-5l-5wP" firstAttribute="top" secondItem="yDb-M8-rQH" secondAttribute="bottom" constant="40" id="s3M-Dj-t6i"/>
-                            <constraint firstItem="xBN-vf-RxM" firstAttribute="leading" secondItem="leq-bj-Sje" secondAttribute="leading" constant="-33" id="tJW-p7-KUx"/>
-                            <constraint firstAttribute="trailing" secondItem="xBN-vf-RxM" secondAttribute="trailing" constant="-97" id="zuG-dq-Ibt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LtX-hF-weW"/>
@@ -101,6 +110,7 @@
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
-        <image name="morflax-studio-18" width="1605" height="1374"/>
+        <image name="gradation" width="390" height="437"/>
+        <image name="onboarding2" width="1404" height="1428"/>
     </resources>
 </document>

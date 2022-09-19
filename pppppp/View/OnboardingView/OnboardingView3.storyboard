@@ -16,8 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="morflax-studio-18" translatesAutoresizingMaskIntoConstraints="NO" id="jVk-hM-wdn">
-                                <rect key="frame" x="-33" y="63" width="520" height="507"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradation" translatesAutoresizingMaskIntoConstraints="NO" id="I01-Sg-sL2">
+                                <rect key="frame" x="0.0" y="400" width="390" height="444"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="444" id="iFK-Us-uGx"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="毎日アプリを開いて" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMn-tQ-toU">
                                 <rect key="frame" x="16" y="562" width="363" height="48"/>
@@ -57,22 +60,28 @@
                                     <action selector="backButton:" destination="f6e-Vo-WJE" eventType="touchUpInside" id="l7q-F4-yGi"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding3" translatesAutoresizingMaskIntoConstraints="NO" id="jVk-hM-wdn">
+                                <rect key="frame" x="-71" y="-147" width="694" height="845"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="e61-av-5UV"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="dUx-mH-y87" firstAttribute="top" secondItem="jVk-hM-wdn" secondAttribute="bottom" constant="8" symbolic="YES" id="1sr-aj-hki"/>
+                            <constraint firstAttribute="bottom" secondItem="I01-Sg-sL2" secondAttribute="bottom" id="6Eh-CT-cCO"/>
                             <constraint firstItem="hQY-mH-XKG" firstAttribute="top" secondItem="JMn-tQ-toU" secondAttribute="bottom" id="6fR-Or-lTp"/>
                             <constraint firstItem="0Ff-gf-RZq" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="40" id="Aih-GM-CUV"/>
+                            <constraint firstAttribute="trailing" secondItem="jVk-hM-wdn" secondAttribute="trailing" constant="-233" id="CdH-9u-eDN"/>
                             <constraint firstItem="hQY-mH-XKG" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="16" id="Cs8-0E-Ruq"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="bottom" secondItem="dUx-mH-y87" secondAttribute="bottom" constant="40" id="Lu7-4E-dkg"/>
-                            <constraint firstItem="jVk-hM-wdn" firstAttribute="leading" secondItem="6qx-zZ-TX1" secondAttribute="leading" constant="-33" id="Whz-5y-WNZ"/>
+                            <constraint firstItem="jVk-hM-wdn" firstAttribute="top" secondItem="6qx-zZ-TX1" secondAttribute="top" constant="-147" id="aSH-3m-XqI"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="bottom" secondItem="0Ff-gf-RZq" secondAttribute="bottom" constant="40" id="cfq-wk-UVl"/>
                             <constraint firstItem="dUx-mH-y87" firstAttribute="top" secondItem="hQY-mH-XKG" secondAttribute="bottom" constant="48" id="fEb-G2-d5v"/>
-                            <constraint firstAttribute="trailing" secondItem="jVk-hM-wdn" secondAttribute="trailing" constant="-97" id="iDm-lf-Qzl"/>
+                            <constraint firstItem="jVk-hM-wdn" firstAttribute="leading" secondItem="6qx-zZ-TX1" secondAttribute="leading" constant="-71" id="kQz-Py-CoC"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="trailing" secondItem="dUx-mH-y87" secondAttribute="trailing" constant="40" id="mEW-TY-jfY"/>
-                            <constraint firstItem="jVk-hM-wdn" firstAttribute="top" secondItem="e61-av-5UV" secondAttribute="top" constant="16" id="pGF-3q-eCz"/>
-                            <constraint firstItem="e61-av-5UV" firstAttribute="bottom" secondItem="jVk-hM-wdn" secondAttribute="bottom" constant="240" id="r4V-0g-hHU"/>
                             <constraint firstItem="JMn-tQ-toU" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="16" id="red-Rd-a6y"/>
+                            <constraint firstItem="e61-av-5UV" firstAttribute="trailing" secondItem="I01-Sg-sL2" secondAttribute="trailing" id="xFj-Cn-pys"/>
+                            <constraint firstItem="I01-Sg-sL2" firstAttribute="leading" secondItem="6qx-zZ-TX1" secondAttribute="leading" id="xSL-m9-E1B"/>
                         </constraints>
                     </view>
                     <connections>
@@ -88,6 +97,7 @@
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
-        <image name="morflax-studio-18" width="1605" height="1374"/>
+        <image name="gradation" width="390" height="437"/>
+        <image name="onboarding3" width="500" height="571"/>
     </resources>
 </document>
