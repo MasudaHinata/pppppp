@@ -12,7 +12,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     var qrCodeImageView = UIImageView()
     var dismissButton = UIButton()
     @IBOutlet weak var caputureView: UIView!
-    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var QRCodeFromAlbumView: UIImageView!
     
     @IBOutlet var gradationFilterView: UIView! {
         didSet {
@@ -56,7 +56,12 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         }
     }
     
-    @IBAction func albumButton() {
+    @IBAction func openAlbumButton(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        present(picker, animated: true)
+        self.present(picker, animated: true, completion: nil)
     }
     
     @IBAction func showMyQRCode() {
@@ -196,6 +201,9 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         }
     }
     
+    func ReadQRcodeFromAlbum(image: UIImage) {
+    }
+    
     //MARK: - QRCode生成
     func makeQRcode(uiImage: UIImageView) async throws {
         let userID = try await FirebaseClient.shared.getUserUUID()
@@ -228,3 +236,18 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         dismissButton.isHidden = true
     }
 }
+
+extension ShareMyDataViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])  {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            QRCodeFromAlbumView.image = selectedImage
+        }
+        self.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
