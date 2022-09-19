@@ -76,6 +76,16 @@
                                     <action selector="showMyQRCode" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fdo-kw-nyX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Kd-65-Gbj">
+                                <rect key="frame" x="48" y="375" width="318" height="34"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="exclamationmark.triangle.fill" catalog="system" title="カメラの許可をしてください" imagePadding="8" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="alertButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Fq2-AN-eoJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
@@ -84,8 +94,10 @@
                             <constraint firstItem="5fy-dV-ESd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="5Wc-aJ-YcR"/>
                             <constraint firstItem="5fy-dV-ESd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6Jo-LQ-gAN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="bcq-l2-IAg" secondAttribute="bottom" id="9lO-dp-3ng"/>
+                            <constraint firstItem="1Kd-65-Gbj" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="-56" id="AEP-iM-2xd"/>
                             <constraint firstAttribute="bottom" secondItem="xU5-xE-ref" secondAttribute="bottom" constant="80" id="ApO-a1-wM2"/>
                             <constraint firstItem="bcq-l2-IAg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="GlX-F0-Xh8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="1Kd-65-Gbj" secondAttribute="trailing" constant="48" id="MLn-0U-5AZ"/>
                             <constraint firstItem="5fy-dV-ESd" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Nty-RS-eZw"/>
                             <constraint firstAttribute="bottom" secondItem="5fy-dV-ESd" secondAttribute="bottom" id="Xc0-DZ-xql"/>
                             <constraint firstAttribute="bottom" secondItem="5iP-pf-8Mi" secondAttribute="bottom" constant="80" id="YGT-Ks-f9V"/>
@@ -97,6 +109,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="FQF-Xb-Gd3" secondAttribute="trailing" constant="88" id="l4y-qs-mUo"/>
                             <constraint firstItem="zbe-UI-CKp" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="lPV-Qv-DGR"/>
                             <constraint firstAttribute="bottom" secondItem="urc-n8-HmE" secondAttribute="bottom" constant="200" id="nSA-7Y-ugQ"/>
+                            <constraint firstItem="1Kd-65-Gbj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="48" id="skv-Fb-FwT"/>
                             <constraint firstItem="urc-n8-HmE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="88" id="ubn-ad-CYU"/>
                             <constraint firstItem="FQF-Xb-Gd3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="88" id="xWg-bn-TMi"/>
                             <constraint firstAttribute="bottom" secondItem="FQF-Xb-Gd3" secondAttribute="bottom" constant="256" id="zhb-Qt-eeA"/>
@@ -104,6 +117,7 @@
                     </view>
                     <connections>
                         <outlet property="albumButtonLayout" destination="xU5-xE-ref" id="BwB-Jo-S9V"/>
+                        <outlet property="alertButtonLayout" destination="1Kd-65-Gbj" id="I7M-h8-pmb"/>
                         <outlet property="caputureView" destination="bcq-l2-IAg" id="oPL-lQ-pOL"/>
                         <outlet property="gradationFilterView" destination="5fy-dV-ESd" id="fMh-yo-XiY"/>
                         <outlet property="settingLightLayout" destination="5iP-pf-8Mi" id="fFS-PT-4Mj"/>
@@ -118,6 +132,7 @@
     </scenes>
     <resources>
         <image name="ScanQRCode" width="546" height="513"/>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="109"/>
         <image name="link" catalog="system" width="128" height="124"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>
     </resources>

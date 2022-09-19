@@ -81,7 +81,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>ライブラリを開きます</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string></string>
@@ -89,6 +89,6 @@
 	<key> item1</key>
 	<string>F5.6-Regular.otf</string>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>QRCodeを読み込みます</string>
 </dict>
 </plist>
