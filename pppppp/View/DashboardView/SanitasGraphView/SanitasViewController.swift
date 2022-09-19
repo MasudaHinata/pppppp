@@ -4,15 +4,16 @@ import SwiftUI
 
 class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
+    var activityIndicator: UIActivityIndicatorView!
     var cancellables = Set<AnyCancellable>()
+    let calendar = Calendar.current
+    var startDate = Date()
+    let dateFormatter = DateFormatter()
     var friendIdList = [String]()
     var friendDataList = [UserData]()
-    let UD = UserDefaults.standard
-    let calendar = Calendar.current
-    var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var stepsLabel: UILabel!
-    @IBOutlet var totalPointLabel: UILabel!
+    @IBOutlet var weekPointLabel: UILabel!
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var noFriendLabel: UILabel!
     @IBOutlet var mountainView: DrawView!
@@ -114,8 +115,23 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
                     self.showDetailViewController(secondVC!, sender: self)
                 }
                 activityIndicator.stopAnimating()
+                
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+                if type as! String == "今日までの一週間" {
+                    startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: Date()))!
+                } else if type as! String == "月曜始まり" {
+                    let am = calendar.startOfDay(for: Date())
+                    let weekNumber = calendar.component(.weekday, from: am)
+                    if weekNumber == 1 {
+                        startDate = calendar.date(byAdding: .day, value: -6, to: am)!
+                    } else {
+                        startDate = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
+                    }
+                }
+                dateFormatter.dateFormat = "MM/dd(E)"
+                weekPointLabel.text = "\(dateFormatter.string(from: startDate))  〜  Today  \(try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))  pt"
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
-                totalPointLabel.text = "Total  \(Int(try await FirebaseClient.shared.getTotalPoint()))  pt"
             }
             catch {
                 print("ViewContro ViewAppear error:",error.localizedDescription)

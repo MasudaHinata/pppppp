@@ -44,7 +44,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eP0-Am-MI3">
-                                        <rect key="frame" x="374" y="151" width="0.0" height="32"/>
+                                        <rect key="frame" x="374" y="183" width="0.0" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="zuC-nL-a0y"/>
                                         </constraints>
@@ -53,7 +53,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="My8-Gj-YST">
-                                        <rect key="frame" x="374" y="183" width="0.0" height="32"/>
+                                        <rect key="frame" x="374" y="151" width="0.0" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="Xpx-vO-5b8"/>
                                         </constraints>
@@ -80,11 +80,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="3C1-sz-PHZ" firstAttribute="centerY" secondItem="HiD-Bi-t46" secondAttribute="centerY" id="5xt-uQ-aqy"/>
-                                    <constraint firstItem="My8-Gj-YST" firstAttribute="top" secondItem="eP0-Am-MI3" secondAttribute="bottom" id="C1d-H0-xt5"/>
+                                    <constraint firstItem="eP0-Am-MI3" firstAttribute="top" secondItem="My8-Gj-YST" secondAttribute="bottom" id="B7h-1w-nfD"/>
+                                    <constraint firstItem="My8-Gj-YST" firstAttribute="top" secondItem="HiD-Bi-t46" secondAttribute="topMargin" id="Baw-OP-Jha"/>
                                     <constraint firstAttribute="trailing" secondItem="eP0-Am-MI3" secondAttribute="trailing" constant="16" id="CKO-Uq-agk"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="IiJ-cJ-cvx" secondAttribute="bottom" id="WlB-4y-Lho"/>
                                     <constraint firstAttribute="trailing" secondItem="My8-Gj-YST" secondAttribute="trailing" constant="16" id="YXn-ga-pFb"/>
-                                    <constraint firstItem="eP0-Am-MI3" firstAttribute="top" secondItem="HiD-Bi-t46" secondAttribute="topMargin" id="bao-oy-CJw"/>
                                     <constraint firstItem="3C1-sz-PHZ" firstAttribute="centerX" secondItem="HiD-Bi-t46" secondAttribute="centerX" id="mSQ-Fk-trD"/>
                                     <constraint firstAttribute="trailing" secondItem="IiJ-cJ-cvx" secondAttribute="trailing" constant="16" id="xBb-gm-MaU"/>
                                 </constraints>
@@ -120,12 +120,12 @@
                         <outlet property="noFriendLabel" destination="c0F-e3-FzW" id="9xF-3q-ijz"/>
                         <outlet property="noFriendView" destination="3C1-sz-PHZ" id="rrp-tA-PrC"/>
                         <outlet property="stepsLabel" destination="eP0-Am-MI3" id="MHD-XT-8M3"/>
-                        <outlet property="totalPointLabel" destination="My8-Gj-YST" id="QDd-I6-sZM"/>
+                        <outlet property="weekPointLabel" destination="My8-Gj-YST" id="QDd-I6-sZM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfD-TN-END" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5559" y="-224"/>
+            <point key="canvasLocation" x="5558.4615384615381" y="-224.64454976303315"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="kN5-2v-FA3">
