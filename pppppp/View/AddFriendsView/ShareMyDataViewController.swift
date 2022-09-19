@@ -64,7 +64,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     @IBAction func alertButton() {
         if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
-           UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     

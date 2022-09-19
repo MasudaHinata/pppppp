@@ -1,13 +1,13 @@
 import UIKit
 
 class OnboardingViewController1: UIViewController {
-
+    
     @IBOutlet var nextButtonLayout: UIButton! {
         didSet {
             nextButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
         }
     }
-
+    
     @IBAction private func nextButton(_ sender: Any) {
         //TODO: push遷移にする
         let storyBoard = UIStoryboard(name: "OnboardingView2", bundle: nil)

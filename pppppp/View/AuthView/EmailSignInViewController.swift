@@ -6,7 +6,7 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var loginEmailAdress: String?
-
+    
     @IBOutlet var loginLabel: UILabel!
     @IBOutlet var loginButtonLayout: UIButton! {
         didSet {
@@ -70,7 +70,7 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         FirebaseClient.shared.loginDelegate = self
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false

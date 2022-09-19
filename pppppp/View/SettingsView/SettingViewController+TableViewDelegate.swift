@@ -1,11 +1,11 @@
 import UIKit
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return settingSection.count
     }
-
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return settingSection[section]
     }

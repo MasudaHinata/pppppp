@@ -104,7 +104,7 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
                 try await FirebaseClient.shared.checkIconData()
                 myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-            
+                
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
@@ -191,8 +191,8 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
 
 //MARK: - extension
 extension ProfileViewController: UIAdaptivePresentationControllerDelegate {
-  func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-      myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-      myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-  }
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+        myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+    }
 }

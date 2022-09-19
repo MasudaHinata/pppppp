@@ -41,9 +41,9 @@ class OnboardingViewController2: UIViewController {
         view.window!.layer.add(transition, forKey: kCATransition)
         present(navigationController, animated: false, completion: nil)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 }

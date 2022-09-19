@@ -43,7 +43,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
         }
     }
     
-   
+    
     
     @IBAction func deleteFriendButton() {
         if flag {
@@ -81,8 +81,8 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
     }
     
     
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.deletefriendDelegate = self
@@ -152,7 +152,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
         }
         cancellables.insert(.init { task.cancel() })
     }
-
+    
     //MARK: - Setting Delegate
     func friendDeleted() async {
         let alert = UIAlertController(title: "完了", message: "友達を削除しました", preferredStyle: .alert)
