@@ -16,15 +16,10 @@ class SetNameViewController: UIViewController {
     
     @IBOutlet var changeNameButtonLayout: UIButton! {
         didSet {
-            changeNameButtonLayout.layer.cornerRadius = 24
-            changeNameButtonLayout.clipsToBounds = true
-            changeNameButtonLayout.layer.cornerCurve = .continuous
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Set your name"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
-            configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
-            configuration.imagePadding = 24
             changeNameButtonLayout.configuration = configuration
         }
     }

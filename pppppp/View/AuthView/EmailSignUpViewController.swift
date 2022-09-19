@@ -8,15 +8,12 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
     
     var cancellables = Set<AnyCancellable>()
     
-    @IBOutlet var AppleLoginButtonView: UIView!
     @IBOutlet var createAccountButtonLayout: UIButton! {
         didSet {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Sign Up"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
-            configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
-            configuration.imagePadding = 24
             createAccountButtonLayout.configuration = configuration
         }
     }
@@ -49,8 +46,6 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
             configuration.title = "Creating Account..."
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
             configuration.showsActivityIndicator = true
-            configuration.imagePadding = 24
-            configuration.imagePlacement = .trailing
             createAccountButtonLayout.configuration = configuration
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
@@ -78,9 +73,7 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
                 var configuration = UIButton.Configuration.gray()
                 configuration.title = "Sign up"
                 configuration.baseBackgroundColor = .init(hex: "92B2D3")
-                configuration.imagePlacement = .trailing
                 configuration.baseForegroundColor = .white
-                configuration.imagePadding = 24
                 self.createAccountButtonLayout.configuration = configuration
             }
             cancellables.insert(.init { task.cancel() })
@@ -98,9 +91,6 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AppleLoginButtonView.addSubview(signinButton)
-        signinButton.fitConstraintsContentView(view: AppleLoginButtonView)
-        
         FirebaseClient.shared.createdAccountDelegate = self
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -115,79 +105,6 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         self.present(alert, animated: true)
-    }
-    
-    //MARK: - Sign In With Apple
-    //TODO: FirebaseClientに移行
-    // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
-    private func randomNonceString(length: Int = 32) -> String {
-        precondition(length > 0)
-        let charset: [Character] =
-        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-        var result = ""
-        var remainingLength = length
-        
-        while remainingLength > 0 {
-            let randoms: [UInt8] = (0 ..< 16).map { _ in
-                var random: UInt8 = 0
-                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-                if errorCode != errSecSuccess {
-                    fatalError(
-                        "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-                    )
-                }
-                return random
-            }
-            
-            randoms.forEach { random in
-                if remainingLength == 0 {
-                    return
-                }
-                
-                if random < charset.count {
-                    result.append(charset[Int(random)])
-                    remainingLength -= 1
-                }
-            }
-        }
-        return result
-    }
-    
-    private func sha256(_ input: String) -> String {
-        let inputData = Data(input.utf8)
-        let hashedData = SHA256.hash(data: inputData)
-        let hashString = hashedData.compactMap {
-            String(format: "%02x", $0)
-        }.joined()
-        
-        return hashString
-    }
-    
-    fileprivate var currentNonce: String?
-    func startSignInWithAppleFlow() {
-        let nonce = randomNonceString()
-        currentNonce = nonce
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        request.nonce = sha256(nonce)
-        
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
-    }
-    
-    private lazy var signinButton: ASAuthorizationAppleIDButton = {
-        let button = ASAuthorizationAppleIDButton(type: .default, style: .white)
-        button.addTarget(self, action: #selector(handleSignin), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.bounds = CGRect(x: 0, y: 0, width: 240, height: 48)
-        return button
-    }()
-    
-    @objc private func handleSignin() {
-        startSignInWithAppleFlow()
     }
     
     @objc func dismissKeyboard() {
@@ -217,48 +134,5 @@ extension EmailSignUpViewController: UITextFieldDelegate {
         passwordTextField.resignFirstResponder()
         password2TextField.resignFirstResponder()
         return true
-    }
-}
-
-//MARK: - Sign In With Apple
-extension EmailSignUpViewController: ASAuthorizationControllerDelegate {
-    
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            guard let nonce = currentNonce else {
-                fatalError("Invalid state: A login callback was received, but no login request was sent.")
-            }
-            guard let appleIDToken = appleIDCredential.identityToken else {
-                print("Unable to fetch identity token")
-                return
-            }
-            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
-                return
-            }
-            let credential = OAuthProvider.credential(withProviderID: "apple.com",
-                                                      idToken: idTokenString,
-                                                      rawNonce: nonce)
-            Auth.auth().signIn(with: credential) { (authResult, error) in
-                if (error != nil) {
-                    print(error!.localizedDescription)
-                    return
-                }
-                // User is signed in to Firebase with Apple.
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateInitialViewController()
-                self.showDetailViewController(secondVC!, sender: self)
-            }
-        }
-    }
-    
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print("Sign in with Apple errored: \(error)")
-    }
-    
-}
-extension EmailSignUpViewController: ASAuthorizationControllerPresentationContextProviding {
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return self.view.window!
     }
 }

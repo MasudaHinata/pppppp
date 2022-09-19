@@ -7,16 +7,22 @@ class FirstViewController: UIViewController {
     
     @IBOutlet var AppleLoginButtonView: UIView!
     
-    @IBOutlet var EmailSignInButtonLayout: UIButton! {
+    @IBOutlet var sceneEmailSignUpButtonLayout: UIButton! {
         didSet {
             var configuration = UIButton.Configuration.filled()
-            configuration.title = "Sign Up"
+            configuration.title = "Sign in with Email"
+            configuration.image = UIImage(systemName: "envelope.fill")
+            configuration.imagePadding = 8
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
-            configuration.imagePlacement = .trailing
-            configuration.showsActivityIndicator = false
-            configuration.imagePadding = 24
-            EmailSignInButtonLayout.configuration = configuration
+            sceneEmailSignUpButtonLayout.configuration = configuration
+//            sceneEmailSignUpButtonLayout.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         }
+    }
+    
+    @IBAction func sceneEmailSignUpButton() {
+        let storyboard = UIStoryboard(name: "EmailSignUpView", bundle: nil)
+        let settingVC = storyboard.instantiateInitialViewController()
+        self.showDetailViewController(settingVC!, sender: self)
     }
 
     override func viewDidLoad() {

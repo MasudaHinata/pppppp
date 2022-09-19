@@ -10,9 +10,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Reset password"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
-            configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
-            configuration.imagePadding = 24
             goButtonLayout.configuration = configuration
         }
     }
@@ -31,8 +29,6 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
             configuration.title = "Sent Email..."
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
             configuration.showsActivityIndicator = true
-            configuration.imagePadding = 24
-            configuration.imagePlacement = .trailing
             goButtonLayout.configuration = configuration
             
             let task = Task { [weak self] in
@@ -57,9 +53,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
                 var configuration = UIButton.Configuration.gray()
                 configuration.title = "Reset password"
                 configuration.baseBackgroundColor = .init(hex: "92B2D3")
-                configuration.imagePlacement = .trailing
                 configuration.baseForegroundColor = .white
-                configuration.imagePadding = 24
                 self.goButtonLayout.configuration = configuration
             }
             cancellables.insert(.init { task.cancel() })

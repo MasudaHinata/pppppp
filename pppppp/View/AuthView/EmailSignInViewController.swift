@@ -17,9 +17,7 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Sign In"
             configuration.baseBackgroundColor = .init(hex: "92B2D3")
-            configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
-            configuration.imagePadding = 16
             loginButtonLayout.configuration = configuration
         }
     }
