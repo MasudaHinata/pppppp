@@ -56,15 +56,14 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
                     print("Account checkPassword error:",error.localizedDescription)
                     //TODO: エラーコードでアラートを判別
                     if error.localizedDescription == "An email address must be provided." {
-                        showAlert(title: "エラー", message: "メールアドレスを入力してください")
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "メールアドレスを入力してください", handler: { (_) in })
                     } else if error.localizedDescription == "The email address is badly formatted." {
-                        showAlert(title: "エラー", message: "メールアドレスの形式が間違っています")
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "メールアドレスの形式が間違っています", handler: { (_) in })
                     } else if error.localizedDescription == "The password must be 6 characters long or more." {
-                        showAlert(title: "エラー", message: "パスワードは６文字以上に設定してください")
-                    } else if error.localizedDescription == "The email address is already in use by another account." {
-                        showAlert(title: "エラー", message: "このメールアドレスは登録済みです")
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "パスワードは６文字以上に設定してください", handler: { (_) in })
+                    } else if error.localizedDescription == "The email address is already in use by another account." {                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "このメールアドレスは登録済みです", handler: { (_) in })
                     } else {
-                        showAlert(title: "エラー", message: "\(error.localizedDescription)")
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
                     }
                 }
                 var configuration = UIButton.Configuration.gray()
@@ -75,7 +74,7 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
             }
             cancellables.insert(.init { task.cancel() })
         } else if passwordTextField.text != password2TextField.text {
-            showAlert(title: "エラー", message: "パスワードが一致しません")
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "パスワードが一致しません", handler: { (_) in })
         }
     }
     
@@ -95,13 +94,6 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
         self.password2TextField.delegate = self
-    }
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(action)
-        self.present(alert, animated: true)
     }
     
     @objc func dismissKeyboard() {
