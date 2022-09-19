@@ -58,8 +58,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             //TODO: アカウント削除だけ赤色にする(サインアウトも赤くなってる)
             cell.textLabel?.textColor = .red
+            cell.accessoryType = .none
             cell.textLabel?.text = "\(accountItems[indexPath.row])"
         } else if indexPath.section == 2 {
+            cell.accessoryType = .none
             cell.textLabel?.text = "\(feedbackItems[indexPath.row])"
         }
         
