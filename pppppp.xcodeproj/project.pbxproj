@@ -241,8 +241,8 @@
 			children = (
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
-				036F69FF28C091590066A7DA /* CreatePoint */,
-				036F69E828BE60190066A7DA /* ProfileData */,
+				036F69FF28C091590066A7DA /* CreatePointView */,
+				036F69E828BE60190066A7DA /* Friend&MeDataView */,
 				03C7E79B28D2F3810069A46E /* AddFriendsView */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,
@@ -255,14 +255,8 @@
 		036F698428BB932D0066A7DA /* DashboardView */ = {
 			isa = PBXGroup;
 			children = (
-				BE7F337F2580D07E0027620D /* SanitasViewController.swift */,
-				03C7E7C528D49DB10069A46E /* SanitasView.storyboard */,
-				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
-				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
-				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
-				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
-				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
-				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
+				03A45B6D28D8A43E0059B617 /* SanitasGraphView */,
+				03A45B6E28D8A4510059B617 /* SanitasCollectionView */,
 			);
 			path = DashboardView;
 			sourceTree = "<group>";
@@ -314,13 +308,9 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		036F69E828BE60190066A7DA /* ProfileData */ = {
+		036F69E828BE60190066A7DA /* Friend&MeDataView */ = {
 			isa = PBXGroup;
 			children = (
-				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
-				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
-				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
-				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
 				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
 				03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */,
 				03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */,
@@ -329,13 +319,13 @@
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
 				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
 				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
-				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
-				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
+				03A45B7128D8A4EA0059B617 /* FriendDataView */,
+				03A45B6F28D8A4860059B617 /* MyDataView */,
 			);
-			path = ProfileData;
+			path = "Friend&MeDataView";
 			sourceTree = "<group>";
 		};
-		036F69FF28C091590066A7DA /* CreatePoint */ = {
+		036F69FF28C091590066A7DA /* CreatePointView */ = {
 			isa = PBXGroup;
 			children = (
 				9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */,
@@ -346,7 +336,49 @@
 				0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */,
 				0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */,
 			);
-			path = CreatePoint;
+			path = CreatePointView;
+			sourceTree = "<group>";
+		};
+		03A45B6D28D8A43E0059B617 /* SanitasGraphView */ = {
+			isa = PBXGroup;
+			children = (
+				BE7F337F2580D07E0027620D /* SanitasViewController.swift */,
+				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
+				03C7E7C528D49DB10069A46E /* SanitasView.storyboard */,
+			);
+			path = SanitasGraphView;
+			sourceTree = "<group>";
+		};
+		03A45B6E28D8A4510059B617 /* SanitasCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
+				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
+				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
+				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
+				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
+			);
+			path = SanitasCollectionView;
+			sourceTree = "<group>";
+		};
+		03A45B6F28D8A4860059B617 /* MyDataView */ = {
+			isa = PBXGroup;
+			children = (
+				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
+				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
+				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
+				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
+			);
+			path = MyDataView;
+			sourceTree = "<group>";
+		};
+		03A45B7128D8A4EA0059B617 /* FriendDataView */ = {
+			isa = PBXGroup;
+			children = (
+				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
+				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
+			);
+			path = FriendDataView;
 			sourceTree = "<group>";
 		};
 		03C7E79B28D2F3810069A46E /* AddFriendsView */ = {
