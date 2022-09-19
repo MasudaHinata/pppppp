@@ -31,20 +31,13 @@ class SetNameViewController: UIViewController {
                 changename = changeNameTextField.text!
                 if changename != "" {
                     try await FirebaseClient.shared.putNameFirestore(name: changename)
-                    let alert = UIAlertController(title: "完了", message: "名前を設定しました", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    ShowAlertHelper.okAlert(vc: self, title: "完了", message: "名前を設定しました", handler: { (_) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let secondVC = storyboard.instantiateInitialViewController()
                         self.showDetailViewController(secondVC!, sender: self)
-                    }
-                    alert.addAction(ok)
-                    present(alert, animated: true, completion: nil)
+                    })
                 } else {
-                    let alert = UIAlertController(title: "エラー", message: "名前を入力してください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    }
-                    alert.addAction(ok)
-                    present(alert, animated: true, completion: nil)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "名前を入力してください", handler: { (_) in })
                 }
             }
         }

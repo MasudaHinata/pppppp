@@ -95,10 +95,7 @@ class HealthDataViewController: UIViewController{
             guard let self = self else { return }
             do {
                 try await Scorering.shared.writeWeight(weight: inputWeight)
-                let alart = UIAlertController(title: "完了", message: "体重を記録しました", preferredStyle: .alert)
-                let action = UIAlertAction(title: "ok", style: .default)
-                alart.addAction(action)
-                self.present(alart, animated: true)
+                ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました", handler: { (_) in })
             }
             catch {
                 print("HealthData writeWeight error:", error.localizedDescription)
