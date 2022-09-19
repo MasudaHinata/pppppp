@@ -265,12 +265,6 @@
 			children = (
 				03A45B7328D8A5D90059B617 /* SignInWithApple */,
 				03A45B7228D8A5C40059B617 /* SignInWithEmail */,
-				9CDF759E286326A600209FD0 /* EmailSignUpViewController.swift */,
-				036F69EF28C0868C0066A7DA /* EmailSignUpView.storyboard */,
-				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
-				036F69F128C089B40066A7DA /* EmailSignInView.storyboard */,
-				036F698028B940270066A7DA /* ResetPasswordViewController.swift */,
-				036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */,
 			);
 			path = AuthView;
 			sourceTree = "<group>";
@@ -384,6 +378,12 @@
 		03A45B7228D8A5C40059B617 /* SignInWithEmail */ = {
 			isa = PBXGroup;
 			children = (
+				9CDF759E286326A600209FD0 /* EmailSignUpViewController.swift */,
+				036F69EF28C0868C0066A7DA /* EmailSignUpView.storyboard */,
+				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
+				036F69F128C089B40066A7DA /* EmailSignInView.storyboard */,
+				036F698028B940270066A7DA /* ResetPasswordViewController.swift */,
+				036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */,
 			);
 			path = SignInWithEmail;
 			sourceTree = "<group>";

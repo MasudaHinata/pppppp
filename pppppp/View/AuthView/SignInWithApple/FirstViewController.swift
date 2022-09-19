@@ -7,17 +7,18 @@ class FirstViewController: UIViewController {
     
     @IBOutlet var AppleLoginButtonView: UIView!
     
-    @IBOutlet var sceneEmailSignUpButtonLayout: UIButton! {
-        didSet {
-            var configuration = UIButton.Configuration.filled()
-            configuration.title = "Sign in with Email"
-            configuration.image = UIImage(systemName: "envelope.fill")
-            configuration.imagePadding = 8
-            configuration.baseBackgroundColor = .init(hex: "92B2D3")
-            sceneEmailSignUpButtonLayout.configuration = configuration
-            //            sceneEmailSignUpButtonLayout.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        }
-    }
+    @IBOutlet var sceneEmailSignUpButtonLayout: UIButton!
+//    {
+//        didSet {
+//            var configuration = UIButton.Configuration.filled()
+//            configuration.title = "Sign in with Email(Beta User Only)"
+//            configuration.image = UIImage(systemName: "envelope.fill")
+//            configuration.imagePadding = 8
+//            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+//            sceneEmailSignUpButtonLayout.configuration = configuration
+//            //            sceneEmailSignUpButtonLayout.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+//        }
+//    }
     
     @IBAction func sceneEmailSignUpButton() {
         let storyboard = UIStoryboard(name: "EmailSignUpView", bundle: nil)
