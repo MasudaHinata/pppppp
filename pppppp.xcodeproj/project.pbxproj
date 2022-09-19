@@ -241,7 +241,6 @@
 			children = (
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
-				036F69FF28C091590066A7DA /* CreatePointView */,
 				036F69E828BE60190066A7DA /* Friend&MeDataView */,
 				03C7E79B28D2F3810069A46E /* AddFriendsView */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
@@ -264,8 +263,8 @@
 		036F698528BB93760066A7DA /* AuthView */ = {
 			isa = PBXGroup;
 			children = (
-				0343681528D7ED5C000BA656 /* FirstViewController.swift */,
-				0343681728D7ED68000BA656 /* FirstView.storyboard */,
+				03A45B7328D8A5D90059B617 /* SignInWithApple */,
+				03A45B7228D8A5C40059B617 /* SignInWithEmail */,
 				9CDF759E286326A600209FD0 /* EmailSignUpViewController.swift */,
 				036F69EF28C0868C0066A7DA /* EmailSignUpView.storyboard */,
 				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
@@ -319,6 +318,7 @@
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
 				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
 				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
+				036F69FF28C091590066A7DA /* CreatePointView */,
 				03A45B7128D8A4EA0059B617 /* FriendDataView */,
 				03A45B6F28D8A4860059B617 /* MyDataView */,
 			);
@@ -379,6 +379,22 @@
 				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
 			);
 			path = FriendDataView;
+			sourceTree = "<group>";
+		};
+		03A45B7228D8A5C40059B617 /* SignInWithEmail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SignInWithEmail;
+			sourceTree = "<group>";
+		};
+		03A45B7328D8A5D90059B617 /* SignInWithApple */ = {
+			isa = PBXGroup;
+			children = (
+				0343681528D7ED5C000BA656 /* FirstViewController.swift */,
+				0343681728D7ED68000BA656 /* FirstView.storyboard */,
+			);
+			path = SignInWithApple;
 			sourceTree = "<group>";
 		};
 		03C7E79B28D2F3810069A46E /* AddFriendsView */ = {
