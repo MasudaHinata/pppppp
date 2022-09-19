@@ -79,17 +79,11 @@ class HealthDataViewController: UIViewController{
     @IBAction func recordExerciseButton() {
         
         if selectExerciseTextField.text != "", selectExerciseTextField.text != "運動を選択してください", exerciseTimeTextField.text != "", exerciseTimeTextField.text != "0" {
-            print(selectExerciseTextField.text, exerciseTimeTextField.text, "分")
+//            print(selectExerciseTextField.text, exerciseTimeTextField.text, "分")
         } else if selectExerciseTextField.text == "" || selectExerciseTextField.text == "運動を選択してください" {
-            let alart = UIAlertController(title: "エラー", message: "運動を選択してください", preferredStyle: .alert)
-            let action = UIAlertAction(title: "ok", style: .default)
-            alart.addAction(action)
-            self.present(alart, animated: true)
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "運動を選択してください", handler: { (_) in })
         } else if exerciseTimeTextField.text == "" || exerciseTimeTextField.text == "0" {
-            let alart = UIAlertController(title: "エラー", message: "時間を選択してください", preferredStyle: .alert)
-            let action = UIAlertAction(title: "ok", style: .default)
-            alart.addAction(action)
-            self.present(alart, animated: true)
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "時間を選択してください", handler: { (_) in })
         }
     }
     

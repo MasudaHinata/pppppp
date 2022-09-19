@@ -56,6 +56,7 @@
 		03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */; };
 		03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */; };
 		03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */; };
+		03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */; };
 		03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */; };
 		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
 		03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7BD28D34E320069A46E /* WeightData.swift */; };
@@ -152,6 +153,7 @@
 		03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDataViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeProfileViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertHelper.swift; sourceTree = "<group>"; };
 		03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareMyDataView.storyboard; sourceTree = "<group>"; };
 		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
 		03C7E7BD28D34E320069A46E /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */,
 				9CE63B8C288C548D00FFE94C /* LoginHelper.swift */,
 				9CE63B88288C384100FFE94C /* CoverWindow.swift */,
+				03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */,
 				036F697F28B8EACE0066A7DA /* PointData.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */,
+				03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */,
 				03A1E0B928D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
