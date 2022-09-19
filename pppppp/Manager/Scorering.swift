@@ -83,6 +83,14 @@ final class Scorering {
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
     }
     
+    //MARK: - 入力した運動からポイントを作成
+    func createExercisePoint(exercise: String, time:Int) {
+        
+        
+        
+        
+    }
+    
     //MARK: - 体重をHealthKitに書き込み
     func writeWeight(weight: Double) async throws {
         getPermissionHealthKit()
@@ -91,7 +99,7 @@ final class Scorering {
         try await self.myHealthStore.save(myWeightData)
     }
     
-    ///MARK: - 体重を読み込み
+    //MARK: - 体重を読み込み
     func readWeight() async throws {
         getPermissionHealthKit()
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重をWeightDataに入れたい
@@ -102,7 +110,6 @@ final class Scorering {
             $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
         }
         print(doubleValues)
-        
         
         //        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
         //            let samples = results as! [HKQuantitySample]
