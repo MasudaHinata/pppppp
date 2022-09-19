@@ -9,7 +9,7 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
     var cancellables = Set<AnyCancellable>()
     
     @IBOutlet var AppleLoginButtonView: UIView!
-    @IBOutlet var goButtonLayout: UIButton! {
+    @IBOutlet var createAccountButtonLayout: UIButton! {
         didSet {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Sign Up"
@@ -17,7 +17,7 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
             configuration.imagePlacement = .trailing
             configuration.showsActivityIndicator = false
             configuration.imagePadding = 24
-            goButtonLayout.configuration = configuration
+            createAccountButtonLayout.configuration = configuration
         }
     }
     
@@ -51,7 +51,7 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
             configuration.showsActivityIndicator = true
             configuration.imagePadding = 24
             configuration.imagePlacement = .trailing
-            goButtonLayout.configuration = configuration
+            createAccountButtonLayout.configuration = configuration
             let email = self.emailTextField.text!
             let password = self.passwordTextField.text!
             
@@ -81,7 +81,7 @@ class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegat
                 configuration.imagePlacement = .trailing
                 configuration.baseForegroundColor = .white
                 configuration.imagePadding = 24
-                self.goButtonLayout.configuration = configuration
+                self.createAccountButtonLayout.configuration = configuration
             }
             cancellables.insert(.init { task.cancel() })
         } else if passwordTextField.text != password2TextField.text {

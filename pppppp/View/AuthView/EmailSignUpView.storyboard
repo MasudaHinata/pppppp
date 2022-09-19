@@ -118,8 +118,8 @@
                     <navigationItem key="navigationItem" id="N7C-jz-tf7"/>
                     <connections>
                         <outlet property="AppleLoginButtonView" destination="cdz-cJ-JBb" id="g07-h4-0b1"/>
+                        <outlet property="createAccountButtonLayout" destination="g4p-yo-Q14" id="wy9-i8-nqz"/>
                         <outlet property="emailTextField" destination="viI-Lp-ve1" id="Pei-8I-VJc"/>
-                        <outlet property="goButtonLayout" destination="g4p-yo-Q14" id="wy9-i8-nqz"/>
                         <outlet property="password2TextField" destination="nAy-nv-GZX" id="e1l-Sm-rgR"/>
                         <outlet property="passwordTextField" destination="i3i-Hb-tJ6" id="lrC-RP-uyH"/>
                     </connections>
