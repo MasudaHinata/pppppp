@@ -430,7 +430,7 @@ final class FirebaseClient {
     
     //MARK: - Firebase Authentication
     //Email アカウントを作成する
-    func createAccount(email: String, password: String) async throws {
+    func emailSignUp(email: String, password: String) async throws {
         let result = try await firebaseAuth.createUser(withEmail: email, password: password)
         try await result.user.sendEmailVerification()
         self.createdAccountDelegate?.accountCreated()
@@ -438,7 +438,7 @@ final class FirebaseClient {
     
     //Email ログインする
     @MainActor
-    func login(email: String, password: String) async throws {
+    func emailSignIn(email: String, password: String) async throws {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
         if authReault.user.isEmailVerified {
             self.loginDelegate?.loginScene()
@@ -452,7 +452,7 @@ final class FirebaseClient {
     }
     
     //Appleログイン
-    //TODO: LoginViewControllerから移行
+    //TODO: EmailSignInViewControllerから移行
     
     //ログアウトする
     func logout() async throws {

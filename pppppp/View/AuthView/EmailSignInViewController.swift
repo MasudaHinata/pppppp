@@ -5,7 +5,7 @@ import CryptoKit
 import Firebase
 
 @MainActor
-class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
+class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
     
     var cancellables = Set<AnyCancellable>()
     var loginEmailAdress: String?
@@ -48,11 +48,11 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
             let task = Task { [weak self] in
                 guard let self = self else { return }
                 do {
-                    try await FirebaseClient.shared.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
+                    try await FirebaseClient.shared.emailSignIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }
                 catch {
                     //TODO: エラーコードでアラートを判別
-                    print("LoginView goButtonPressed error:", error.localizedDescription)
+                    print("EmailSignInView goButtonPressed error:", error.localizedDescription)
                     if error.localizedDescription == "The email address is badly formatted." {
                         showAlert(title: "エラー", message: "メールアドレスの形式が間違っています")
                     }  else if  error.localizedDescription == "There is no user record corresponding to this identifier. The user may have been deleted." {
@@ -183,7 +183,7 @@ class LoginViewController: UIViewController, FirebaseClientAuthDelegate {
 }
 
 //MARK: - extension
-extension LoginViewController: UITextFieldDelegate {
+extension EmailSignInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
@@ -193,7 +193,7 @@ extension LoginViewController: UITextFieldDelegate {
 
 //MARK: - AppleLogin
 @available(iOS 13.0, *)
-extension LoginViewController: ASAuthorizationControllerDelegate {
+extension EmailSignInViewController: ASAuthorizationControllerDelegate {
 
   func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
     if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
@@ -236,7 +236,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
   }
 
 }
-extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+extension EmailSignInViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
     }
