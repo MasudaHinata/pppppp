@@ -111,32 +111,32 @@ class HealthDataViewController: UIViewController{
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
         
-//        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
-//        let spacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-//        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
-//        toolbar.setItems([spacelItem, doneItem], animated: true)
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
+        let spacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        toolbar.setItems([spacelItem, doneItem], animated: true)
         
-//        exerciseTypePicker.delegate = self
-//        exerciseTypePicker.dataSource = self
-//        exerciseTypePicker.selectRow(1, inComponent: 0, animated: false)
-//        selectExerciseTextField.inputView = exerciseTypePicker
-//        selectExerciseTextField.inputAccessoryView = toolbar
+        exerciseTypePicker.delegate = self
+        exerciseTypePicker.dataSource = self
+        exerciseTypePicker.selectRow(1, inComponent: 0, animated: false)
+        selectExerciseTextField.inputView = exerciseTypePicker
+        selectExerciseTextField.inputAccessoryView = toolbar
         
-//        let task = Task {
-//            do {
-//                try await Scorering.shared.readWeight()
-//            }
-//            catch {
-//                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
+        let task = Task {
+            do {
+                try await Scorering.shared.readWeight()
+            }
+            catch {
+                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
     }
     
-//    @objc func done() {
-//        selectExerciseTextField.endEditing(true)
-//        selectExerciseTextField.text = "\(exerciseTypeList[exerciseTypePicker.selectedRow(inComponent: 0)])"
-//    }
+    @objc func done() {
+        selectExerciseTextField.endEditing(true)
+        selectExerciseTextField.text = "\(exerciseTypeList[exerciseTypePicker.selectedRow(inComponent: 0)])"
+    }
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
