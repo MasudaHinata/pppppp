@@ -17,20 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SanitasIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Qqn-NF-m7a">
-                                <rect key="frame" x="75" y="254" width="240" height="240"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="0EU-NM-suL"/>
-                                    <constraint firstAttribute="width" constant="240" id="8ny-Gh-Dtf"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sanitas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1m-0j-XsQ">
-                                <rect key="frame" x="117" y="348" width="157" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FMb-IX-akA">
                                 <rect key="frame" x="32" y="714" width="326" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -49,14 +35,19 @@
                                     <action selector="sceneEmailSignUpButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="OBr-sl-oAM"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="morflax-studio-18" translatesAutoresizingMaskIntoConstraints="NO" id="Qqn-NF-m7a">
+                                <rect key="frame" x="-77" y="-58" width="634" height="884"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="Qqn-NF-m7a" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="2E4-SN-9dW"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="FMb-IX-akA" secondAttribute="trailing" constant="32" id="D2j-yU-t6i"/>
+                            <constraint firstAttribute="trailing" secondItem="Qqn-NF-m7a" secondAttribute="trailing" constant="-167" id="IER-Jx-xtS"/>
                             <constraint firstItem="FMb-IX-akA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="32" id="Lm3-Kv-drU"/>
-                            <constraint firstItem="Qqn-NF-m7a" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" constant="-48" id="WL8-TY-3op"/>
+                            <constraint firstItem="Qqn-NF-m7a" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="-58" id="TVI-rz-wUg"/>
+                            <constraint firstItem="Qqn-NF-m7a" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="-77" id="Tzg-d7-Nog"/>
+                            <constraint firstAttribute="bottom" secondItem="Qqn-NF-m7a" secondAttribute="bottom" constant="18" id="gYD-cC-Nhb"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="FMb-IX-akA" secondAttribute="bottom" constant="48" id="qSH-gE-wn0"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="6GM-5e-cT7" secondAttribute="trailing" constant="32" id="t7c-Mm-rTZ"/>
                             <constraint firstItem="FMb-IX-akA" firstAttribute="top" secondItem="6GM-5e-cT7" secondAttribute="bottom" constant="24" id="xAn-rI-KsE"/>
@@ -74,7 +65,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SanitasIcon" width="829" height="807"/>
+        <image name="morflax-studio-18" width="1605" height="1374"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

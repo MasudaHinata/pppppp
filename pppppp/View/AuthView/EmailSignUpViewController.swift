@@ -1,8 +1,5 @@
 import UIKit
 import Combine
-import AuthenticationServices
-import CryptoKit
-import Firebase
 
 class EmailSignUpViewController: UIViewController, FirebaseCreatedAccountDelegate {
     
