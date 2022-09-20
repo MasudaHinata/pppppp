@@ -158,6 +158,7 @@ final class Scorering {
         } else {
             exercisePoint = Int(12 / (0.6 + exp(-exercise * 0.2)))
         }
+        //TODO: delegateを読んでアラート
         try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: "\(exercizeName),\(Int(time))min")
         
 //        //MARK: - ExercisePoint debug
