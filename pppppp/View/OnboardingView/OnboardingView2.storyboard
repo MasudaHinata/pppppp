@@ -16,6 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboardingImage2" translatesAutoresizingMaskIntoConstraints="NO" id="xBN-vf-RxM">
+                                <rect key="frame" x="-181" y="-91" width="797" height="935"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradation" translatesAutoresizingMaskIntoConstraints="NO" id="RLV-jW-ZVI">
                                 <rect key="frame" x="0.0" y="400" width="390" height="444"/>
                                 <constraints>
@@ -70,9 +73,6 @@
                                     <action selector="backButton:" destination="UOt-zi-CBt" eventType="touchUpInside" id="kim-dg-9GP"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboardingImage2" translatesAutoresizingMaskIntoConstraints="NO" id="xBN-vf-RxM">
-                                <rect key="frame" x="-181" y="-91" width="797" height="935"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pjo-t4-ZnU"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>

@@ -16,6 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onboardingImage3" translatesAutoresizingMaskIntoConstraints="NO" id="jVk-hM-wdn">
+                                <rect key="frame" x="-164" y="-299" width="965" height="1089"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradation" translatesAutoresizingMaskIntoConstraints="NO" id="I01-Sg-sL2">
                                 <rect key="frame" x="0.0" y="400" width="390" height="444"/>
                                 <constraints>
@@ -23,13 +27,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="毎日アプリを開いて" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMn-tQ-toU">
-                                <rect key="frame" x="16" y="562" width="363" height="48"/>
+                                <rect key="frame" x="16" y="586" width="363" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ポイントを獲得" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQY-mH-XKG">
-                                <rect key="frame" x="16" y="610" width="282" height="48"/>
+                                <rect key="frame" x="16" y="634" width="282" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -60,10 +64,6 @@
                                     <action selector="backButton:" destination="f6e-Vo-WJE" eventType="touchUpInside" id="l7q-F4-yGi"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onboardingImage3" translatesAutoresizingMaskIntoConstraints="NO" id="jVk-hM-wdn">
-                                <rect key="frame" x="-164" y="-299" width="965" height="1089"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="e61-av-5UV"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -74,7 +74,7 @@
                             <constraint firstItem="hQY-mH-XKG" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="16" id="Cs8-0E-Ruq"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="bottom" secondItem="dUx-mH-y87" secondAttribute="bottom" constant="40" id="Lu7-4E-dkg"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="bottom" secondItem="0Ff-gf-RZq" secondAttribute="bottom" constant="40" id="cfq-wk-UVl"/>
-                            <constraint firstItem="dUx-mH-y87" firstAttribute="top" secondItem="hQY-mH-XKG" secondAttribute="bottom" constant="48" id="fEb-G2-d5v"/>
+                            <constraint firstItem="dUx-mH-y87" firstAttribute="top" secondItem="hQY-mH-XKG" secondAttribute="bottom" constant="24" id="fEb-G2-d5v"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="trailing" secondItem="dUx-mH-y87" secondAttribute="trailing" constant="40" id="mEW-TY-jfY"/>
                             <constraint firstItem="JMn-tQ-toU" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="16" id="red-Rd-a6y"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="trailing" secondItem="I01-Sg-sL2" secondAttribute="trailing" id="xFj-Cn-pys"/>
