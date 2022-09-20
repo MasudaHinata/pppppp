@@ -2,15 +2,28 @@ import UIKit
 import AuthenticationServices
 import CryptoKit
 import Firebase
+import SafariServices
 
 class SignInWithAppleViewController: UIViewController {
     
     @IBOutlet var AppleLoginButtonView: UIView!
     
+    @IBOutlet var privacyPolicyButtonLayout: UIButton! {
+        didSet {
+            privacyPolicyButtonLayout.tintColor = UIColor.init(hex: "FFFFFF", alpha: 0.48)
+        }
+    }
+    
     @IBAction func sceneEmailSignInButton() {
         let storyboard = UIStoryboard(name: "EmailSignInView", bundle: nil)
         let settingVC = storyboard.instantiateInitialViewController()
         self.showDetailViewController(settingVC!, sender: self)
+    }
+    
+    @IBAction func privacyPolicyButton() {
+        guard let url = URL(string: "https://sanitas.dev/privacy_policy") else { return }
+        let safariController = SFSafariViewController(url: url)
+        present(safariController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
