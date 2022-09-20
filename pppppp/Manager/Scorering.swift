@@ -81,8 +81,36 @@ final class Scorering {
         let todayPoint = stepDifPoint + stepAvePoint
         print(stepDifPoint, "+", stepAvePoint, "=", todayPoint)
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
+        
+        //MARK: - 歩数ポイント Debug
+//        //先月との歩数差のポイント
+//        let differenceStep = [200, 500, 1000, 2000, 3000, 4000, 5000, 6000, 8000, 10000, 13000, 20000]
+//        var stepDifPoint = [Int]()
+//
+//        for differenceStep in differenceStep {
+//            if differenceStep <= 0 {
+//                stepDifPoint.append(0)
+//            } else if differenceStep < 1001 {
+//                stepDifPoint.append(Int(0.6 / (0.1 + exp(-Double(differenceStep) * 0.005))))
+//            } else {
+//                stepDifPoint.append(Int(6 / (0.2 + exp(-Double(differenceStep) * 0.0003))))
+//            }
+//        }
+//        print(stepDifPoint)
+//        //平均歩数のポイント
+//        let monthStepCountAve = [4000, 6000, 7000, 8000, 10000, 15000, 20000]
+//        var stepAvePoint = [Int]()
+//
+//        for monthStepCountAve  in monthStepCountAve {
+//            if monthStepCountAve <= 6000 {
+//                stepAvePoint.append(0)
+//            } else {
+//                stepAvePoint.append(Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004))))
+//            }
+//        }
+//        print(stepAvePoint)
     }
-
+    
     //MARK: - 入力した運動と時間からポイントを作成
     func createExercisePoint(exercise: String, time: Float) {
         var metz = Float()
@@ -110,9 +138,22 @@ final class Scorering {
         case "野球":
             metz = 4.5
         default:
-            print("err")
+            print("")
         }
-        print(metz, "metz", time, "分", time / 60, "時間", "exercise", metz * (time / 60))
+//        print(metz, "metz", time, "分", time / 60, "時間", "exercise", metz * (time / 60))
+        
+        
+        //MARK: - ExercisePoint debug
+        let exercise: [Double] = [0.5, 1, 5, 10, 12, 15, 18, 20]
+        var exercisePoint = [Int]()
+        for exercise  in exercise {
+            if exercise <= 1 {
+                exercisePoint.append(Int(1.26 / (0.14 + exp(-exercise * 5))))
+            } else {
+                exercisePoint.append(Int(12 / (0.6 + exp(-exercise * 0.2))))
+            }
+        }
+        print(exercisePoint)
     }
     
     //MARK: - 体重をHealthKitに書き込み
