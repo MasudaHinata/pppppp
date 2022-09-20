@@ -95,11 +95,11 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         cancellables.insert(.init { task.cancel() })
         
         flag = false
-        qrCodeView = UIView(frame: CGRect(x: 16, y: 240, width: 360, height: 360))
+        qrCodeView = UIView(frame: CGRect(x: 16, y: 224, width: 360, height: 360))
         qrCodeView.backgroundColor = UIColor.init(hex: "FFFFFF")
         qrCodeView.layer.cornerRadius = 72
         qrCodeView.layer.cornerCurve = .continuous
-        qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 288, width: 264, height: 264))
+        qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 272, width: 264, height: 264))
         
         //TODO: 他のところ触ったら閉じるようにする
         dismissButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
