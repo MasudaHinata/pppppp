@@ -91,7 +91,7 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         friendcollectionView.isHidden = true
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: self.view.frame.width, height: 64)
+        layout.itemSize = CGSize(width: self.view.frame.width, height: 56)
         friendcollectionView.collectionViewLayout = layout
         
         friendDataList.removeAll()
