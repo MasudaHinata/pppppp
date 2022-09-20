@@ -72,9 +72,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        Scorering.shared.createExercisePoint(exercise: "" , time: 0)
-        
         activityIndicator.startAnimating()
         //初期画面
         let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false

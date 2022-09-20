@@ -112,48 +112,64 @@ final class Scorering {
     }
     
     //MARK: - 入力した運動と時間からポイントを作成
-    func createExercisePoint(exercise: String, time: Float) {
+    func createExercisePoint(exercisesName: String, time: Float) async throws {
         var metz = Float()
-        switch exercise {
+        var exercizeName = exercisesName
+        switch exercizeName {
         case "軽いジョギング":
             metz = 6.0
+            exercizeName = "ジョギング"
         case "ランニング":
             metz = 4.5
         case "筋トレ(軽・中等度)":
             metz = 3.5
+            exercizeName = "筋トレ"
         case "筋トレ(強等度)":
             metz = 6.0
+            exercizeName = "筋トレ"
         case "サイクリング":
             metz = 4.5
         case "テニス(ダブルス)":
             metz = 4.5
+            exercizeName = "テニス"
         case "テニス(シングルス)":
             metz = 7.3
+            exercizeName = "テニス"
         case "水泳(ゆっくりとした背泳ぎ・平泳ぎ)":
             metz = 5.0
+            exercizeName = "水泳"
         case "水泳(クロール・普通の速さ)":
             metz = 8.3
+            exercizeName = "水泳"
         case "水泳(クロール・速い)":
             metz = 10
+            exercizeName = "水泳"
         case "野球":
             metz = 4.5
         default:
-            print("")
+            print("error")
         }
-//        print(metz, "metz", time, "分", time / 60, "時間", "exercise", metz * (time / 60))
         
-        
-        //MARK: - ExercisePoint debug
-        let exercise: [Double] = [0.5, 1, 5, 10, 12, 15, 18, 20]
-        var exercisePoint = [Int]()
-        for exercise  in exercise {
-            if exercise <= 1 {
-                exercisePoint.append(Int(1.26 / (0.14 + exp(-exercise * 5))))
-            } else {
-                exercisePoint.append(Int(12 / (0.6 + exp(-exercise * 0.2))))
-            }
+        var exercisePoint = Int()
+        let exercise = metz * (time / 60)
+        if exercise <= 1 {
+            exercisePoint = Int(1.26 / (0.14 + exp(-exercise * 5)))
+        } else {
+            exercisePoint = Int(12 / (0.6 + exp(-exercise * 0.2)))
         }
-        print(exercisePoint)
+        try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: "\(exercizeName),\(Int(time))min")
+        
+//        //MARK: - ExercisePoint debug
+//        let exercise: [Double] = [0.5, 1, 5, 10, 12, 15, 18, 20]
+//        var exercisePoint = [Int]()
+//        for exercise  in exercise {
+//            if exercise <= 1 {
+//                exercisePoint.append(Int(1.26 / (0.14 + exp(-exercise * 5))))
+//            } else {
+//                exercisePoint.append(Int(12 / (0.6 + exp(-exercise * 0.2))))
+//            }
+//        }
+//        print(exercisePoint) //[5, 8, 12, 16, 17, 18, 19, 19]
     }
     
     //MARK: - 体重をHealthKitに書き込み
