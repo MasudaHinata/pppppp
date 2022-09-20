@@ -11,7 +11,6 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     var qrCodeView = UIView()
     var qrCodeImageView = UIImageView()
-    var qrCodeSanitasIconView = UIImageView()
     var dismissButton = UIButton()
     @IBOutlet weak var caputureView: UIView!
     

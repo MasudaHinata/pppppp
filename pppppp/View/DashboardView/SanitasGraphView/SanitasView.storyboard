@@ -127,11 +127,11 @@
             </objects>
             <point key="canvasLocation" x="5558.4615384615381" y="-224.64454976303315"/>
         </scene>
-        <!--Dashboard-->
+        <!--Home-->
         <scene sceneID="kN5-2v-FA3">
             <objects>
                 <navigationController storyboardIdentifier="SanitasViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="15Z-bF-3hS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="house" catalog="system" id="lZL-rk-5lx"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="lZL-rk-5lx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="mvE-xG-BBF">
                         <rect key="frame" x="0.0" y="47" width="390" height="96"/>
