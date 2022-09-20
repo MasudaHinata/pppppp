@@ -9,7 +9,6 @@ class OnboardingViewController1: UIViewController {
     }
     
     @IBAction private func nextButton(_ sender: Any) {
-        //TODO: push遷移にする
         let storyBoard = UIStoryboard(name: "OnboardingView2", bundle: nil)
         let viewController = storyBoard.instantiateInitialViewController()
         let navigationController = UINavigationController(rootViewController: viewController!)
