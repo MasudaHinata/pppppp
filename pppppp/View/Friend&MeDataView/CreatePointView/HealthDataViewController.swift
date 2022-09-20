@@ -80,7 +80,7 @@ class HealthDataViewController: UIViewController{
         
         if selectExerciseTextField.text != "", selectExerciseTextField.text != "運動を選択してください", exerciseTimeTextField.text != "", exerciseTimeTextField.text != "0" {
             //...
-            Scorering.shared.createExercisePoint(exercise: selectExerciseTextField.text! , time: Int(exerciseTimeTextField.text!)!)
+            Scorering.shared.createExercisePoint(exercise: selectExerciseTextField.text! , time: Float(exerciseTimeTextField.text!)!)
         } else if selectExerciseTextField.text == "" || selectExerciseTextField.text == "運動を選択してください" {
             ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "運動を選択してください", handler: { (_) in })
         } else if exerciseTimeTextField.text == "" || exerciseTimeTextField.text == "0" {

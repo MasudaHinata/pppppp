@@ -84,7 +84,7 @@ final class Scorering {
     }
 
     //MARK: - 入力した運動と時間からポイントを作成
-    func createExercisePoint(exercise: String, time: Int) {
+    func createExercisePoint(exercise: String, time: Float) {
         var metz = Float()
         switch exercise {
         case "軽いジョギング":
@@ -112,10 +112,7 @@ final class Scorering {
         default:
             print("err")
         }
-        print(metz)
-        print(time, "分", time / 60, "時間")
-//        print("exercise", metz * (Int(exactly: time)! / 60))
-        
+        print(metz, "metz", time, "分", time / 60, "時間", "exercise", metz * (time / 60))
     }
     
     //MARK: - 体重をHealthKitに書き込み
