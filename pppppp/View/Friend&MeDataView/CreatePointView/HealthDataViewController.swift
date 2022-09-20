@@ -80,6 +80,7 @@ class HealthDataViewController: UIViewController{
         
         if selectExerciseTextField.text != "", selectExerciseTextField.text != "運動を選択してください", exerciseTimeTextField.text != "", exerciseTimeTextField.text != "0" {
             //...
+            Scorering.shared.createExercisePoint(exercise: selectExerciseTextField.text! , time: Int(exerciseTimeTextField.text!)!)
         } else if selectExerciseTextField.text == "" || selectExerciseTextField.text == "運動を選択してください" {
             ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "運動を選択してください", handler: { (_) in })
         } else if exerciseTimeTextField.text == "" || exerciseTimeTextField.text == "0" {
@@ -116,38 +117,38 @@ class HealthDataViewController: UIViewController{
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
 
-//        exerciseTypePicker.tag = 0
-//        exerciseTimePicker.tag = 1
-//
-//        let exerciseTypeToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
-//        let exerciseTypeSpacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-//        let exerciseTypeDoneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(selectExerciseDone))
-//        exerciseTypeToolbar.setItems([exerciseTypeSpacelItem, exerciseTypeDoneItem], animated: true)
-//        exerciseTypePicker.delegate = self
-//        exerciseTypePicker.dataSource = self
-//        exerciseTypePicker.selectRow(2, inComponent: 0, animated: false)
-//        selectExerciseTextField.inputView = exerciseTypePicker
-//        selectExerciseTextField.inputAccessoryView = exerciseTypeToolbar
-//
-//        let exerciseTimeToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
-//        let exerciseTimeSpacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-//        let exerciseTimeDoneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(exerciseTimeDone))
-//        exerciseTimeToolbar.setItems([exerciseTimeSpacelItem, exerciseTimeDoneItem], animated: true)
-//        exerciseTimePicker.delegate = self
-//        exerciseTimePicker.dataSource = self
-//        exerciseTimePicker.selectRow(0, inComponent: 0, animated: false)
-//        exerciseTimeTextField.inputView = exerciseTimePicker
-//        exerciseTimeTextField.inputAccessoryView = exerciseTimeToolbar
+        exerciseTypePicker.tag = 0
+        exerciseTimePicker.tag = 1
+
+        let exerciseTypeToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
+        let exerciseTypeSpacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let exerciseTypeDoneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(selectExerciseDone))
+        exerciseTypeToolbar.setItems([exerciseTypeSpacelItem, exerciseTypeDoneItem], animated: true)
+        exerciseTypePicker.delegate = self
+        exerciseTypePicker.dataSource = self
+        exerciseTypePicker.selectRow(2, inComponent: 0, animated: false)
+        selectExerciseTextField.inputView = exerciseTypePicker
+        selectExerciseTextField.inputAccessoryView = exerciseTypeToolbar
+
+        let exerciseTimeToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
+        let exerciseTimeSpacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let exerciseTimeDoneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(exerciseTimeDone))
+        exerciseTimeToolbar.setItems([exerciseTimeSpacelItem, exerciseTimeDoneItem], animated: true)
+        exerciseTimePicker.delegate = self
+        exerciseTimePicker.dataSource = self
+        exerciseTimePicker.selectRow(0, inComponent: 0, animated: false)
+        exerciseTimeTextField.inputView = exerciseTimePicker
+        exerciseTimeTextField.inputAccessoryView = exerciseTimeToolbar
         
-        //        let task = Task {
-        //            do {
-        //                try await Scorering.shared.readWeight()
-        //            }
-        //            catch {
-        //                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
-        //            }
-        //        }
-        //        cancellables.insert(.init { task.cancel() })
+                let task = Task {
+                    do {
+                        try await Scorering.shared.readWeight()
+                    }
+                    catch {
+                        print("HealthDataViewContr ViewDid error:", error.localizedDescription)
+                    }
+                }
+                cancellables.insert(.init { task.cancel() })
     }
     
     @objc func selectExerciseDone() {
