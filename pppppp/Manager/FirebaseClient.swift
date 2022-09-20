@@ -35,10 +35,6 @@ protocol FireStoreCheckNameDelegate: AnyObject {
     func notChangeName()
 }
 
-protocol FirebaseCreatedAccountDelegate: AnyObject {
-    func accountCreated()
-}
-
 protocol SetttingAccountDelegate: AnyObject {
     func accountDeleted()
     func faildAcccountDelete()
@@ -66,7 +62,6 @@ final class FirebaseClient {
     weak var loginDelegate: FirebaseClientAuthDelegate?
     weak var emailVerifyDelegate: FirebaseEmailVarifyDelegate?
     weak var notChangeDelegate: FireStoreCheckNameDelegate?
-    weak var createdAccountDelegate: FirebaseCreatedAccountDelegate?
     weak var SettingAccountDelegate: SetttingAccountDelegate?
     weak var putPointDelegate: FirebasePutPointDelegate?
     weak var sentEmailDelegate: FirebaseSentEmailDelegate?
@@ -105,7 +100,7 @@ final class FirebaseClient {
             let myData = try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self)
             users.append(myData)
         }
-
+        
         for i in 0 ..< users.count {
             let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
             users[i].point = try await getPointDataSum(id: users[i].id!, accumulationType: type as! String)
@@ -429,13 +424,6 @@ final class FirebaseClient {
     }
     
     //MARK: - Firebase Authentication
-    //Email アカウントを作成する
-    func emailSignUp(email: String, password: String) async throws {
-        let result = try await firebaseAuth.createUser(withEmail: email, password: password)
-        try await result.user.sendEmailVerification()
-        self.createdAccountDelegate?.accountCreated()
-    }
-    
     //Email ログインする
     @MainActor
     func emailSignIn(email: String, password: String) async throws {
@@ -452,7 +440,7 @@ final class FirebaseClient {
     }
     
     //Appleログイン
-    //TODO: EmailSignInViewControllerから移行
+    //TODO: SignInWithAppleViewControllerから移行
     
     //ログアウトする
     func logout() async throws {

@@ -80,7 +80,97 @@ final class Scorering {
         
         let todayPoint = stepDifPoint + stepAvePoint
         print(stepDifPoint, "+", stepAvePoint, "=", todayPoint)
+        //TODO: Delegateをよんでalertをだそう
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
+        
+        //MARK: - 歩数ポイント Debug
+//        //先月との歩数差のポイント
+//        let differenceStep = [200, 500, 1000, 2000, 3000, 4000, 5000, 6000, 8000, 10000, 13000, 20000]
+//        var stepDifPoint = [Int]()
+//
+//        for differenceStep in differenceStep {
+//            if differenceStep <= 0 {
+//                stepDifPoint.append(0)
+//            } else if differenceStep < 1001 {
+//                stepDifPoint.append(Int(0.6 / (0.1 + exp(-Double(differenceStep) * 0.005))))
+//            } else {
+//                stepDifPoint.append(Int(6 / (0.2 + exp(-Double(differenceStep) * 0.0003))))
+//            }
+//        }
+//        print(stepDifPoint)
+//        //平均歩数のポイント
+//        let monthStepCountAve = [4000, 6000, 7000, 8000, 10000, 15000, 20000]
+//        var stepAvePoint = [Int]()
+//
+//        for monthStepCountAve  in monthStepCountAve {
+//            if monthStepCountAve <= 6000 {
+//                stepAvePoint.append(0)
+//            } else {
+//                stepAvePoint.append(Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004))))
+//            }
+//        }
+//        print(stepAvePoint)
+    }
+    
+    //MARK: - 入力した運動と時間からポイントを作成
+    func createExercisePoint(exercisesName: String, time: Float) async throws {
+        var metz = Float()
+        var exercizeName = exercisesName
+        switch exercizeName {
+        case "軽いジョギング":
+            metz = 6.0
+            exercizeName = "ジョギング"
+        case "ランニング":
+            metz = 4.5
+        case "筋トレ(軽・中等度)":
+            metz = 3.5
+            exercizeName = "筋トレ"
+        case "筋トレ(強等度)":
+            metz = 6.0
+            exercizeName = "筋トレ"
+        case "サイクリング":
+            metz = 4.5
+        case "テニス(ダブルス)":
+            metz = 4.5
+            exercizeName = "テニス"
+        case "テニス(シングルス)":
+            metz = 7.3
+            exercizeName = "テニス"
+        case "水泳(ゆっくりとした背泳ぎ・平泳ぎ)":
+            metz = 5.0
+            exercizeName = "水泳"
+        case "水泳(クロール・普通の速さ)":
+            metz = 8.3
+            exercizeName = "水泳"
+        case "水泳(クロール・速い)":
+            metz = 10
+            exercizeName = "水泳"
+        case "野球":
+            metz = 4.5
+        default:
+            print("error")
+        }
+        
+        var exercisePoint = Int()
+        let exercise = metz * (time / 60)
+        if exercise <= 1 {
+            exercisePoint = Int(1.26 / (0.14 + exp(-exercise * 5)))
+        } else {
+            exercisePoint = Int(12 / (0.6 + exp(-exercise * 0.2)))
+        }
+        try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: "\(exercizeName),\(Int(time))min")
+        
+//        //MARK: - ExercisePoint debug
+//        let exercise: [Double] = [0.5, 1, 5, 10, 12, 15, 18, 20]
+//        var exercisePoint = [Int]()
+//        for exercise  in exercise {
+//            if exercise <= 1 {
+//                exercisePoint.append(Int(1.26 / (0.14 + exp(-exercise * 5))))
+//            } else {
+//                exercisePoint.append(Int(12 / (0.6 + exp(-exercise * 0.2))))
+//            }
+//        }
+//        print(exercisePoint) //[5, 8, 12, 16, 17, 18, 19, 19]
     }
     
     //MARK: - 体重をHealthKitに書き込み
@@ -91,7 +181,7 @@ final class Scorering {
         try await self.myHealthStore.save(myWeightData)
     }
     
-    ///MARK: - 体重を読み込み
+    //MARK: - 体重を読み込み
     func readWeight() async throws {
         getPermissionHealthKit()
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重をWeightDataに入れたい
@@ -102,7 +192,6 @@ final class Scorering {
             $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
         }
         print(doubleValues)
-        
         
         //        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
         //            let samples = results as! [HKQuantitySample]

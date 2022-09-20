@@ -17,6 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addFriendBackground" translatesAutoresizingMaskIntoConstraints="NO" id="xAJ-bP-qe0">
+                                <rect key="frame" x="-59" y="-114" width="534" height="1164"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addFriendGradationBackground" translatesAutoresizingMaskIntoConstraints="NO" id="aNt-9z-eNH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2i-99-U3q">
                                 <rect key="frame" x="24" y="344" width="366" height="208"/>
                                 <subviews>
@@ -43,7 +50,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.4823529412" green="0.50980392159999999" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.24705882352941178" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="qzA-A2-QDb" secondAttribute="bottom" constant="20" id="Imh-xZ-qee"/>
                                     <constraint firstItem="qzA-A2-QDb" firstAttribute="centerX" secondItem="h2i-99-U3q" secondAttribute="centerX" id="KrU-Fe-Ds5"/>
@@ -82,13 +89,18 @@
                         <viewLayoutGuide key="safeArea" id="EgC-1K-tGS"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="top" secondItem="Leb-HE-572" secondAttribute="bottom" id="06a-Is-ZiU"/>
+                            <constraint firstAttribute="bottom" secondItem="aNt-9z-eNH" secondAttribute="bottom" id="5E1-6k-3RG"/>
                             <constraint firstItem="0TE-MI-7pn" firstAttribute="top" secondItem="h2i-99-U3q" secondAttribute="top" constant="-40" id="Gvt-pw-H4t"/>
                             <constraint firstItem="Leb-HE-572" firstAttribute="top" secondItem="EgC-1K-tGS" secondAttribute="top" id="QVd-by-paq"/>
                             <constraint firstItem="h2i-99-U3q" firstAttribute="centerX" secondItem="UgX-6g-dW2" secondAttribute="centerX" id="Qee-vT-Ixk"/>
+                            <constraint firstItem="aNt-9z-eNH" firstAttribute="top" secondItem="UgX-6g-dW2" secondAttribute="top" id="URJ-8j-K6X"/>
                             <constraint firstItem="Leb-HE-572" firstAttribute="leading" secondItem="UgX-6g-dW2" secondAttribute="leading" constant="8" id="h8s-7O-X3f"/>
+                            <constraint firstItem="aNt-9z-eNH" firstAttribute="leading" secondItem="EgC-1K-tGS" secondAttribute="leading" id="jye-GA-Tdu"/>
                             <constraint firstItem="h2i-99-U3q" firstAttribute="centerY" secondItem="UgX-6g-dW2" secondAttribute="centerY" id="lfJ-7c-MVe"/>
                             <constraint firstItem="0TE-MI-7pn" firstAttribute="centerX" secondItem="UgX-6g-dW2" secondAttribute="centerX" id="opE-ho-xPU"/>
                             <constraint firstItem="h2i-99-U3q" firstAttribute="leading" secondItem="EgC-1K-tGS" secondAttribute="leading" constant="24" id="ptE-WH-g69"/>
+                            <constraint firstItem="aNt-9z-eNH" firstAttribute="trailing" secondItem="EgC-1K-tGS" secondAttribute="trailing" id="qMF-eA-m3s"/>
                             <constraint firstItem="EgC-1K-tGS" firstAttribute="trailing" secondItem="h2i-99-U3q" secondAttribute="trailing" constant="24" id="wGu-ZU-4eu"/>
                         </constraints>
                     </view>
@@ -105,6 +117,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addFriendBackground" width="1401" height="2175"/>
+        <image name="addFriendGradationBackground" width="390" height="843"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
     </resources>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sign In With Apple View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SignInWithAppleViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="SignInWithAppleViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FMb-IX-akA">
+                                <rect key="frame" x="32" y="690" width="326" height="48"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="gmm-3u-05W"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 2" translatesAutoresizingMaskIntoConstraints="NO" id="Qqn-NF-m7a">
+                                <rect key="frame" x="-39" y="255" width="468" height="334"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="334" id="zB4-Bx-Eqk"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sanitas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pak-yg-FHv">
+                                <rect key="frame" x="132" y="213" width="126" height="42"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="32"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlK-eS-eaB">
+                                <rect key="frame" x="38" y="754" width="314" height="33.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="envelope.fill" catalog="system" title="Sign in with Email(Beta User Only)" imagePadding="8">
+                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
+                                    <color key="baseForegroundColor" white="1" alpha="0.47999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="sceneEmailSignInButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="QpR-5k-I4Q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdW-pE-xMT">
+                                <rect key="frame" x="254" y="790" width="104" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="104" id="MvX-DO-Nj5"/>
+                                    <constraint firstAttribute="height" constant="20" id="pGI-8d-RDk"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Privacy Policy">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="privacyPolicyButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="zY8-pR-APc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="FMb-IX-akA" secondAttribute="trailing" constant="32" id="D2j-yU-t6i"/>
+                            <constraint firstItem="Qqn-NF-m7a" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Ge3-Sq-5Mf"/>
+                            <constraint firstItem="FMb-IX-akA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="32" id="Lm3-Kv-drU"/>
+                            <constraint firstItem="Pak-yg-FHv" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="NXd-J3-d9f"/>
+                            <constraint firstItem="xlK-eS-eaB" firstAttribute="top" secondItem="FMb-IX-akA" secondAttribute="bottom" constant="16" id="WUE-tG-M9E"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zdW-pE-xMT" secondAttribute="trailing" constant="32" id="aAS-ye-iln"/>
+                            <constraint firstItem="xlK-eS-eaB" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="adP-cx-dgB"/>
+                            <constraint firstItem="Qqn-NF-m7a" firstAttribute="top" secondItem="Pak-yg-FHv" secondAttribute="bottom" id="dIp-bU-cn4"/>
+                            <constraint firstAttribute="trailing" secondItem="Qqn-NF-m7a" secondAttribute="trailing" constant="-39" id="eKT-sY-jKc"/>
+                            <constraint firstItem="Qqn-NF-m7a" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="-39" id="pGk-Yz-EZp"/>
+                            <constraint firstItem="zdW-pE-xMT" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="qFT-SQ-ntl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="FMb-IX-akA" secondAttribute="bottom" constant="72" id="qSH-gE-wn0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="AppleLoginButtonView" destination="FMb-IX-akA" id="Em4-Ub-oXn"/>
+                        <outlet property="privacyPolicyButtonLayout" destination="zdW-pE-xMT" id="uOM-3T-MyZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="49.230769230769226" y="-2.1327014218009479"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Group 2" width="1474" height="826"/>
+        <image name="envelope.fill" catalog="system" width="128" height="93"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -41,14 +41,11 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 if friendId == userID {
-                    let alertController = UIAlertController(title: "エラー", message: "自分とは友達になれません", preferredStyle: UIAlertController.Style.alert)
-                    let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{(action: UIAlertAction!) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "自分とは友達になれません", handler: { (_) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let secondVC = storyboard.instantiateInitialViewController()
                         self.showDetailViewController(secondVC!, sender: self)
                     })
-                    alertController.addAction(okAction)
-                    present(alertController, animated: true, completion: nil)
                 } else {
                     try await FirebaseClient.shared.addFriend(friendId: friendId)
                 }
@@ -56,17 +53,11 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
             catch {
                 print("FriendProfileViewContro addFriend error:", error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
                         self.viewDidAppear(true)
-                    }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    })
                 } else {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
                 }
             }
         }
@@ -88,26 +79,17 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
             catch {
                 print("FriendProfileViewContro ViewAppear error:", error.localizedDescription)
                 if error.localizedDescription == "The operation couldn’t be completed. (pppppp.FirebaseClientFirestoreError error 0.)" {
-                    let alert = UIAlertController(title: "エラー", message: "アカウントが存在しません", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "アカウントが存在しません", handler: { (_) in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let secondVC = storyboard.instantiateInitialViewController()
                         self.showDetailViewController(secondVC!, sender: self)
-                    }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    })
                 } else if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
                         self.dismiss(animated: true, completion: nil)
-                    }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    })
                 } else {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(action)
-                    self.present(alert, animated: true)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
                 }
             }
         }

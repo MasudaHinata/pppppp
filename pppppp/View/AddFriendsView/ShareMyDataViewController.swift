@@ -64,7 +64,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     @IBAction func alertButton() {
         if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
-           UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
@@ -84,29 +84,23 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             } catch {
                 print("ShareMyDataViewController showMyQRCode error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
                         self.viewDidLoad()
-                    }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    })
                 } else {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message:"\(error.localizedDescription)", handler: { (_) in })
                 }
             }
         }
         cancellables.insert(.init { task.cancel() })
         
         flag = false
-        qrCodeView = UIView(frame: CGRect(x: 16, y: 240, width: 360, height: 360))
+        qrCodeView = UIView(frame: CGRect(x: 24, y: 196, width: 344, height: 344))
         qrCodeView.backgroundColor = UIColor.init(hex: "FFFFFF")
-        qrCodeView.layer.cornerRadius = 72
+        qrCodeView.layer.cornerRadius = 64
         qrCodeView.layer.cornerCurve = .continuous
-        qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 288, width: 264, height: 264))
-        
+        qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 236, width: 264, height: 264))
+
         //TODO: 他のところ触ったら閉じるようにする
         dismissButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
         dismissButton.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 108)
@@ -135,15 +129,9 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             } catch {
                 print("ShareMyDataViewContro shareLink error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in })
                 } else {
-                    let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default)
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message:"\(error.localizedDescription)", handler: { (_) in })
                 }
             }
         }
@@ -178,10 +166,13 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     //MARK: カメラの許可
     func useCameraPermission() {
-        AVCaptureDevice.requestAccess(for: .video) { [self] (res) in
+        AVCaptureDevice.requestAccess(for: .video) { [weak self] (res) in
+            guard let self = self else { return }
             if res == false {
                 print("許可なし")
-                alertButtonLayout.isHidden = false
+                DispatchQueue.main.async {
+                    self.alertButtonLayout.isHidden = false
+                }
             }
         }
     }

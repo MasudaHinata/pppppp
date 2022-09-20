@@ -37,15 +37,9 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                 catch {
                     print("Change Logout error", error.localizedDescription)
                     if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                        let alert = UIAlertController(title: "エラー", message: "インターネット接続を確認してください", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default)
-                        alert.addAction(ok)
-                        self.present(alert, animated: true, completion: nil)
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in })
                     } else {
-                        let alert = UIAlertController(title: "エラー", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                        let ok = UIAlertAction(title: "OK", style: .default)
-                        alert.addAction(ok)
-                        self.present(alert, animated: true, completion: nil)
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
                     }
                 }
             }
@@ -71,14 +65,11 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                 catch {
                     //TODO: error処理
                     print("ChangeProfile deleteAccount error:\(String(describing: error.localizedDescription))")
-                    let alert = UIAlertController(title: "エラー", message: "ログインし直してもう一度お試しください", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                        let storyboard = UIStoryboard(name: "FirstView", bundle: nil)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "ログインし直してもう一度お試しください", handler: { (_) in
+                        let storyboard = UIStoryboard(name: "SignInWithAppleView", bundle: nil)
                         let secondVC = storyboard.instantiateInitialViewController()
                         self.showDetailViewController(secondVC!, sender: self)
-                    }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    })
                 }
             }
             cancellables.insert(.init { task.cancel() })
@@ -102,7 +93,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
         let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "FirstView", bundle: nil)
+            let storyboard = UIStoryboard(name: "SignInWithAppleView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             self.showDetailViewController(secondVC!, sender: self)
         }
@@ -117,7 +108,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
         let alert = UIAlertController(title: "ログインしなおしてもう一度試してください", message: "データが全て消えている可能性があります", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "FirstView", bundle: nil)
+            let storyboard = UIStoryboard(name: "SignInWithAppleView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             self.showDetailViewController(secondVC!, sender: self)
         }
@@ -139,7 +130,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
     func logoutCompleted() {
         let alert = UIAlertController(title: "完了", message: "ログアウトしました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "FirstView", bundle: nil)
+            let storyboard = UIStoryboard(name: "SignInWithAppleView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             self.showDetailViewController(secondVC!, sender: self)
         }

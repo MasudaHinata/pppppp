@@ -16,9 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="morflax-studio-18" translatesAutoresizingMaskIntoConstraints="NO" id="H4C-zg-WFA">
-                                <rect key="frame" x="-33" y="107" width="520" height="463"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HR6-au-lWA">
                                 <rect key="frame" x="94" y="506" width="202" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
@@ -51,22 +48,27 @@
                                     <action selector="addFriendButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="2AU-Y6-Xic"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 2" translatesAutoresizingMaskIntoConstraints="NO" id="H4C-zg-WFA">
+                                <rect key="frame" x="-49" y="73" width="488" height="425"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="425" id="ZBc-Zu-axu"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="H4C-zg-WFA" secondAttribute="trailing" constant="-97" id="05a-f1-wSJ"/>
                             <constraint firstItem="fPc-RC-B96" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="J44-fp-TAv"/>
                             <constraint firstItem="WsS-q9-5ve" firstAttribute="top" secondItem="HR6-au-lWA" secondAttribute="bottom" id="L4I-b7-vcz"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="H4C-zg-WFA" secondAttribute="bottom" constant="240" id="OtR-5j-gQQ"/>
                             <constraint firstItem="HR6-au-lWA" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="SPu-s2-rIN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Bk9-rt-Jp9" secondAttribute="bottom" constant="40" id="TIS-4d-gMr"/>
                             <constraint firstItem="Bk9-rt-Jp9" firstAttribute="top" secondItem="fPc-RC-B96" secondAttribute="bottom" constant="56" id="WJZ-Dp-76C"/>
+                            <constraint firstItem="H4C-zg-WFA" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="-49" id="XLA-eY-RLN"/>
                             <constraint firstItem="fPc-RC-B96" firstAttribute="top" secondItem="WsS-q9-5ve" secondAttribute="bottom" id="Zih-oI-hxG"/>
-                            <constraint firstItem="H4C-zg-WFA" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="-33" id="bSI-mI-wby"/>
-                            <constraint firstItem="H4C-zg-WFA" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="cvU-Kd-1Jw"/>
+                            <constraint firstAttribute="trailing" secondItem="H4C-zg-WFA" secondAttribute="trailing" constant="-49" id="dGR-oE-oeG"/>
                             <constraint firstItem="WsS-q9-5ve" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uI1-jY-Fn3"/>
                             <constraint firstItem="Bk9-rt-Jp9" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uXr-ya-bW5"/>
+                            <constraint firstItem="H4C-zg-WFA" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="73" id="vHL-5F-IaL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SiI-qa-hIL">
@@ -105,7 +107,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Group 2" width="1474" height="826"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
-        <image name="morflax-studio-18" width="1605" height="1374"/>
     </resources>
 </document>

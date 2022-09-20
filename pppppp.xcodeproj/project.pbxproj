@@ -13,17 +13,14 @@
 		0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034367FF28D609D0000BA656 /* OnboardingViewController2.swift */; };
 		0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680128D60A13000BA656 /* OnboardingViewController3.swift */; };
 		0343680428D60A1D000BA656 /* OnboardingView3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343680328D60A1D000BA656 /* OnboardingView3.storyboard */; };
-		0343680628D60D82000BA656 /* OnboardingView4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343680528D60D82000BA656 /* OnboardingView4.storyboard */; };
-		0343680828D60D93000BA656 /* OnboardingViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680728D60D93000BA656 /* OnboardingViewController4.swift */; };
 		0343680E28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680D28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift */; };
 		0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */; };
 		0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */; };
-		0343681628D7ED5C000BA656 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681528D7ED5C000BA656 /* FirstViewController.swift */; };
-		0343681828D7ED68000BA656 /* FirstView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343681728D7ED68000BA656 /* FirstView.storyboard */; };
+		0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681528D7ED5C000BA656 /* SignInWithAppleViewController.swift */; };
+		0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343681728D7ED68000BA656 /* SignInWithAppleView.storyboard */; };
 		0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */; };
 		0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681C28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift */; };
 		0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */; };
-		0343682128D80797000BA656 /* EmailSignUpViewController+UITextFieldDelegate .swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343682028D80797000BA656 /* EmailSignUpViewController+UITextFieldDelegate .swift */; };
 		0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */; };
 		0343682728D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */; };
 		035CE51E28CF1E53001F89BB /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */; };
@@ -37,7 +34,6 @@
 		036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69E628BE56E60066A7DA /* UserDataViewController.swift */; };
 		036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */; };
 		036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */; };
-		036F69F028C0868C0066A7DA /* EmailSignUpView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69EF28C0868C0066A7DA /* EmailSignUpView.storyboard */; };
 		036F69F228C089B40066A7DA /* EmailSignInView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F128C089B40066A7DA /* EmailSignInView.storyboard */; };
 		036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */; };
 		036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F528C08C0F0066A7DA /* SetNameView.storyboard */; };
@@ -56,6 +52,7 @@
 		03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */; };
 		03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */; };
 		03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */; };
+		03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */; };
 		03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */; };
 		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
 		03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7BD28D34E320069A46E /* WeightData.swift */; };
@@ -86,7 +83,6 @@
 		9CAA88EC26B1918B005517D5 /* EmailSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */; };
 		9CB2AB9A28A116120050562C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9CB2AB9928A116120050562C /* Kingfisher */; };
 		9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD49C2628AEAD5E000CDEDF /* NotificationManager.swift */; };
-		9CDF759F286326A600209FD0 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF759E286326A600209FD0 /* EmailSignUpViewController.swift */; };
 		9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B88288C384100FFE94C /* CoverWindow.swift */; };
 		9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */; };
 		9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B8C288C548D00FFE94C /* LoginHelper.swift */; };
@@ -109,17 +105,14 @@
 		034367FF28D609D0000BA656 /* OnboardingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController2.swift; sourceTree = "<group>"; };
 		0343680128D60A13000BA656 /* OnboardingViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController3.swift; sourceTree = "<group>"; };
 		0343680328D60A1D000BA656 /* OnboardingView3.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView3.storyboard; sourceTree = "<group>"; };
-		0343680528D60D82000BA656 /* OnboardingView4.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView4.storyboard; sourceTree = "<group>"; };
-		0343680728D60D93000BA656 /* OnboardingViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController4.swift; sourceTree = "<group>"; };
 		0343680D28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthDataViewController+UIPickerDelegate.swift"; sourceTree = "<group>"; };
 		0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseTableViewCell.xib; sourceTree = "<group>"; };
-		0343681528D7ED5C000BA656 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		0343681728D7ED68000BA656 /* FirstView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstView.storyboard; sourceTree = "<group>"; };
+		0343681528D7ED5C000BA656 /* SignInWithAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleViewController.swift; sourceTree = "<group>"; };
+		0343681728D7ED68000BA656 /* SignInWithAppleView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInWithAppleView.storyboard; sourceTree = "<group>"; };
 		0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeProfileViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		0343681C28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetNameViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResetPasswordViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
-		0343682028D80797000BA656 /* EmailSignUpViewController+UITextFieldDelegate .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailSignUpViewController+UITextFieldDelegate .swift"; sourceTree = "<group>"; };
 		0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailSignInViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareMyDataViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
 		035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +126,6 @@
 		036F69E628BE56E60066A7DA /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
 		036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentActivitysTableViewCell.swift; sourceTree = "<group>"; };
 		036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentActivitysTableViewCell.xib; sourceTree = "<group>"; };
-		036F69EF28C0868C0066A7DA /* EmailSignUpView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailSignUpView.storyboard; sourceTree = "<group>"; };
 		036F69F128C089B40066A7DA /* EmailSignInView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailSignInView.storyboard; sourceTree = "<group>"; };
 		036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResetPasswordView.storyboard; sourceTree = "<group>"; };
 		036F69F528C08C0F0066A7DA /* SetNameView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetNameView.storyboard; sourceTree = "<group>"; };
@@ -152,6 +144,7 @@
 		03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDataViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeProfileViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertHelper.swift; sourceTree = "<group>"; };
 		03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareMyDataView.storyboard; sourceTree = "<group>"; };
 		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
 		03C7E7BD28D34E320069A46E /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
@@ -175,7 +168,6 @@
 		9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardFriendDataCell.xib; sourceTree = "<group>"; };
 		9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInViewController.swift; sourceTree = "<group>"; };
 		9CD49C2628AEAD5E000CDEDF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		9CDF759E286326A600209FD0 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		9CE63B88288C384100FFE94C /* CoverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverWindow.swift; sourceTree = "<group>"; };
 		9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHelper.swift; sourceTree = "<group>"; };
 		9CE63B8C288C548D00FFE94C /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
@@ -222,8 +214,6 @@
 				034367FD28D609BA000BA656 /* OnboardingView2.storyboard */,
 				0343680128D60A13000BA656 /* OnboardingViewController3.swift */,
 				0343680328D60A1D000BA656 /* OnboardingView3.storyboard */,
-				0343680728D60D93000BA656 /* OnboardingViewController4.swift */,
-				0343680528D60D82000BA656 /* OnboardingView4.storyboard */,
 			);
 			path = OnboardingView;
 			sourceTree = "<group>";
@@ -234,7 +224,6 @@
 				0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */,
 				0343681C28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift */,
 				0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */,
-				0343682028D80797000BA656 /* EmailSignUpViewController+UITextFieldDelegate .swift */,
 				0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */,
 			);
 			path = UITextFieldDelegate;
@@ -245,8 +234,8 @@
 			children = (
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
-				036F69FF28C091590066A7DA /* CreatePoint */,
-				036F69E828BE60190066A7DA /* ProfileData */,
+				036F69FF28C091590066A7DA /* CreatePointView */,
+				036F69E828BE60190066A7DA /* Friend&MeDataView */,
 				03C7E79B28D2F3810069A46E /* AddFriendsView */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,
@@ -259,14 +248,8 @@
 		036F698428BB932D0066A7DA /* DashboardView */ = {
 			isa = PBXGroup;
 			children = (
-				BE7F337F2580D07E0027620D /* SanitasViewController.swift */,
-				03C7E7C528D49DB10069A46E /* SanitasView.storyboard */,
-				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
-				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
-				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
-				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
-				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
-				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
+				03A45B6D28D8A43E0059B617 /* SanitasGraphView */,
+				03A45B6E28D8A4510059B617 /* SanitasCollectionView */,
 			);
 			path = DashboardView;
 			sourceTree = "<group>";
@@ -274,14 +257,8 @@
 		036F698528BB93760066A7DA /* AuthView */ = {
 			isa = PBXGroup;
 			children = (
-				0343681528D7ED5C000BA656 /* FirstViewController.swift */,
-				0343681728D7ED68000BA656 /* FirstView.storyboard */,
-				9CDF759E286326A600209FD0 /* EmailSignUpViewController.swift */,
-				036F69EF28C0868C0066A7DA /* EmailSignUpView.storyboard */,
-				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
-				036F69F128C089B40066A7DA /* EmailSignInView.storyboard */,
-				036F698028B940270066A7DA /* ResetPasswordViewController.swift */,
-				036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */,
+				03A45B7328D8A5D90059B617 /* SignInWithApple */,
+				03A45B7228D8A5C40059B617 /* SignInWithEmail */,
 			);
 			path = AuthView;
 			sourceTree = "<group>";
@@ -303,6 +280,7 @@
 				9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */,
 				9CE63B8C288C548D00FFE94C /* LoginHelper.swift */,
 				9CE63B88288C384100FFE94C /* CoverWindow.swift */,
+				03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -317,7 +295,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		036F69E828BE60190066A7DA /* ProfileData */ = {
+		036F69E828BE60190066A7DA /* Friend&MeDataView */ = {
 			isa = PBXGroup;
 			children = (
 				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
@@ -332,13 +310,12 @@
 				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
 				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
 				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
-				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
-				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
+				03A45B7128D8A4EA0059B617 /* FriendDataView */,
 			);
-			path = ProfileData;
+			path = "Friend&MeDataView";
 			sourceTree = "<group>";
 		};
-		036F69FF28C091590066A7DA /* CreatePoint */ = {
+		036F69FF28C091590066A7DA /* CreatePointView */ = {
 			isa = PBXGroup;
 			children = (
 				9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */,
@@ -349,7 +326,58 @@
 				0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */,
 				0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */,
 			);
-			path = CreatePoint;
+			path = CreatePointView;
+			sourceTree = "<group>";
+		};
+		03A45B6D28D8A43E0059B617 /* SanitasGraphView */ = {
+			isa = PBXGroup;
+			children = (
+				BE7F337F2580D07E0027620D /* SanitasViewController.swift */,
+				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
+				03C7E7C528D49DB10069A46E /* SanitasView.storyboard */,
+			);
+			path = SanitasGraphView;
+			sourceTree = "<group>";
+		};
+		03A45B6E28D8A4510059B617 /* SanitasCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
+				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
+				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
+				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
+				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
+			);
+			path = SanitasCollectionView;
+			sourceTree = "<group>";
+		};
+		03A45B7128D8A4EA0059B617 /* FriendDataView */ = {
+			isa = PBXGroup;
+			children = (
+				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
+				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
+			);
+			path = FriendDataView;
+			sourceTree = "<group>";
+		};
+		03A45B7228D8A5C40059B617 /* SignInWithEmail */ = {
+			isa = PBXGroup;
+			children = (
+				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
+				036F69F128C089B40066A7DA /* EmailSignInView.storyboard */,
+				036F698028B940270066A7DA /* ResetPasswordViewController.swift */,
+				036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */,
+			);
+			path = SignInWithEmail;
+			sourceTree = "<group>";
+		};
+		03A45B7328D8A5D90059B617 /* SignInWithApple */ = {
+			isa = PBXGroup;
+			children = (
+				0343681528D7ED5C000BA656 /* SignInWithAppleViewController.swift */,
+				0343681728D7ED68000BA656 /* SignInWithAppleView.storyboard */,
+			);
+			path = SignInWithApple;
 			sourceTree = "<group>";
 		};
 		03C7E79B28D2F3810069A46E /* AddFriendsView */ = {
@@ -505,12 +533,10 @@
 				036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */,
 				036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */,
 				036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */,
-				0343680628D60D82000BA656 /* OnboardingView4.storyboard in Resources */,
 				035CE52028CF1E61001F89BB /* HealthDataView.storyboard in Resources */,
 				9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */,
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
 				036F69E528BE1DC70066A7DA /* SummaryCollectionViewCell.xib in Resources */,
-				036F69F028C0868C0066A7DA /* EmailSignUpView.storyboard in Resources */,
 				036F69F228C089B40066A7DA /* EmailSignInView.storyboard in Resources */,
 				9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */,
 				034367FE28D609BA000BA656 /* OnboardingView2.storyboard in Resources */,
@@ -522,7 +548,7 @@
 				0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */,
 				036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */,
 				03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */,
-				0343681828D7ED68000BA656 /* FirstView.storyboard in Resources */,
+				0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
 				036F69F828C08D140066A7DA /* ChangeProfileView.storyboard in Resources */,
 				9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */,
@@ -544,7 +570,6 @@
 				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
 				0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
-				0343680828D60D93000BA656 /* OnboardingViewController4.swift in Sources */,
 				03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */,
@@ -552,14 +577,12 @@
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
 				038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */,
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
-				9CDF759F286326A600209FD0 /* EmailSignUpViewController.swift in Sources */,
 				0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
 				03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */,
 				03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */,
 				0343680E28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift in Sources */,
-				0343682128D80797000BA656 /* EmailSignUpViewController+UITextFieldDelegate .swift in Sources */,
 				0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */,
 				0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */,
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
@@ -580,12 +603,13 @@
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
 				03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */,
-				0343681628D7ED5C000BA656 /* FirstViewController.swift in Sources */,
+				0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */,
 				03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */,
 				0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */,
 				036F697F28B8EACE0066A7DA /* PointData.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */,
+				03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */,
 				03A1E0B928D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,

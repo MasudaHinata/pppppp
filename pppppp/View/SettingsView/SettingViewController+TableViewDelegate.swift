@@ -1,11 +1,11 @@
 import UIKit
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return settingSection.count
     }
-
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return settingSection[section]
     }
@@ -58,8 +58,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             //TODO: アカウント削除だけ赤色にする(サインアウトも赤くなってる)
             cell.textLabel?.textColor = .red
+            cell.accessoryType = .none
             cell.textLabel?.text = "\(accountItems[indexPath.row])"
         } else if indexPath.section == 2 {
+            cell.accessoryType = .none
             cell.textLabel?.text = "\(feedbackItems[indexPath.row])"
         }
         
@@ -71,25 +73,19 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row == 0 {
                 UserDefaults.standard.set("今日までの一週間", forKey: "accumulationType")
                 tableView.reloadData()
-                let alert = UIAlertController(title: "ポイントの累積タイプを変更しました", message: "今日までの一週間", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                ShowAlertHelper.okAlert(vc: self, title: "ポイントの累積タイプを変更しました", message: "今日までの一週間", handler: { (_) in
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let secondVC = storyboard.instantiateInitialViewController()
                     self.showDetailViewController(secondVC!, sender: self)
-                }
-                alert.addAction(ok)
-                present(alert, animated: true, completion: nil)
+                })
             } else if indexPath.row == 1 {
                 UserDefaults.standard.set("月曜始まり", forKey: "accumulationType")
                 tableView.reloadData()
-                let alert = UIAlertController(title: "ポイントの累積タイプを変更しました", message: "月曜始まり", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                ShowAlertHelper.okAlert(vc: self, title: "ポイントの累積タイプを変更しました", message: "月曜始まり", handler: { (_) in
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let secondVC = storyboard.instantiateInitialViewController()
                     self.showDetailViewController(secondVC!, sender: self)
-                }
-                alert.addAction(ok)
-                present(alert, animated: true, completion: nil)
+                })
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {

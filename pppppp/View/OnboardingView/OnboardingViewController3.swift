@@ -15,7 +15,6 @@ class OnboardingViewController3: UIViewController {
     }
     
     @IBAction func backButton(_ sender: Any) {
-        //TODO: push遷移にする
         let storyBoard = UIStoryboard(name: "OnboardingView2", bundle: nil)
         let viewController = storyBoard.instantiateInitialViewController()
         let navigationController = UINavigationController(rootViewController: viewController!)
@@ -29,7 +28,7 @@ class OnboardingViewController3: UIViewController {
     }
     
     @IBAction func nextButton(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "SanitasView", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateInitialViewController()
         self.showDetailViewController(secondVC!, sender: self)
     }
