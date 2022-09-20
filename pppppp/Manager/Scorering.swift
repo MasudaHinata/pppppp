@@ -80,6 +80,7 @@ final class Scorering {
         
         let todayPoint = stepDifPoint + stepAvePoint
         print(stepDifPoint, "+", stepAvePoint, "=", todayPoint)
+        //TODO: Delegateをよんでalertをだそう
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
         
         //MARK: - 歩数ポイント Debug
