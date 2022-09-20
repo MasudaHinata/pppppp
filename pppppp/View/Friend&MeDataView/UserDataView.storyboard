@@ -23,10 +23,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hDW-VP-yiq">
-                                <rect key="frame" x="33" y="197" width="348.5" height="139"/>
+                                <rect key="frame" x="35.5" y="197" width="343" height="139"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="348.5" id="Lbb-Nl-yCb"/>
+                                    <constraint firstAttribute="width" constant="343.39999999999998" id="Lbb-Nl-yCb"/>
                                     <constraint firstAttribute="height" constant="139" id="gFD-4c-CFA"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IAy-fJ-fel">
