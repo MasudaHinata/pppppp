@@ -76,17 +76,44 @@
                                     <constraint firstItem="loL-8f-2LO" firstAttribute="top" secondItem="GYI-q8-w9F" secondAttribute="bottom" constant="16" id="xu1-gX-maV"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7W-ki-BbV">
+                                <rect key="frame" x="24" y="304" width="366" height="176"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Exercise &amp; Time." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwh-Ey-iq7">
+                                        <rect key="frame" x="24" y="24" width="170" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming Soon..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqK-5F-Z3P">
+                                        <rect key="frame" x="104" y="96" width="158" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Lwh-Ey-iq7" firstAttribute="top" secondItem="f7W-ki-BbV" secondAttribute="top" constant="24" id="6zF-dY-6bW"/>
+                                    <constraint firstAttribute="height" constant="176" id="91y-gO-LdF"/>
+                                    <constraint firstItem="lqK-5F-Z3P" firstAttribute="centerX" secondItem="f7W-ki-BbV" secondAttribute="centerX" id="OmE-be-V79"/>
+                                    <constraint firstItem="Lwh-Ey-iq7" firstAttribute="leading" secondItem="f7W-ki-BbV" secondAttribute="leading" constant="24" id="aut-R2-ksR"/>
+                                    <constraint firstItem="lqK-5F-Z3P" firstAttribute="centerY" secondItem="f7W-ki-BbV" secondAttribute="centerY" constant="20" id="bpf-u1-aSB"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SVz-Sw-HEj"/>
                         <color key="backgroundColor" red="0.074509803920000006" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bMI-by-4Vb" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="1hF-RT-8nW"/>
+                            <constraint firstItem="f7W-ki-BbV" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="CrP-DM-ozq"/>
                             <constraint firstItem="bMI-by-4Vb" firstAttribute="top" secondItem="SVz-Sw-HEj" secondAttribute="top" constant="40" id="WXa-aj-mat"/>
+                            <constraint firstItem="f7W-ki-BbV" firstAttribute="top" secondItem="bMI-by-4Vb" secondAttribute="bottom" constant="40" id="feF-Uw-m6s"/>
+                            <constraint firstItem="SVz-Sw-HEj" firstAttribute="trailing" secondItem="f7W-ki-BbV" secondAttribute="trailing" constant="24" id="hxh-Cy-QpW"/>
                             <constraint firstItem="SVz-Sw-HEj" firstAttribute="trailing" secondItem="bMI-by-4Vb" secondAttribute="trailing" constant="24" id="kAK-Tb-vKy"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="enterExerciseBackgroundView" destination="9Xv-kx-Zoh" id="BZR-hX-fEI"/>
+                        <outlet property="enterExerciseBackgroundView" destination="f7W-ki-BbV" id="qoP-mz-7pW"/>
                         <outlet property="enterWeightbackgroundView" destination="bMI-by-4Vb" id="thh-5Q-6ge"/>
                         <outlet property="exerciseTimeTextField" destination="xTX-mp-TUU" id="Os5-Xe-ia3"/>
                         <outlet property="saveExerciseButtonLayout" destination="jCv-IG-eh2" id="5Nj-7q-oGm"/>
@@ -108,7 +135,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Xv-kx-Zoh">
-                                <rect key="frame" x="0.0" y="287" width="366" height="176"/>
+                                <rect key="frame" x="28" y="360" width="366" height="176"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Exercise &amp; Time." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbS-71-7GY">
                                         <rect key="frame" x="24" y="24" width="170" height="20"/>
@@ -179,11 +206,15 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zdg-u8-Cba"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9Xv-kx-Zoh" firstAttribute="centerY" secondItem="66O-PV-mwf" secondAttribute="centerY" id="1cd-2E-cnd"/>
+                            <constraint firstItem="9Xv-kx-Zoh" firstAttribute="centerX" secondItem="66O-PV-mwf" secondAttribute="centerX" id="69l-vr-a9e"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXh-0B-WZU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2794" y="429"/>
+            <point key="canvasLocation" x="2841" y="429"/>
         </scene>
     </scenes>
     <resources>
