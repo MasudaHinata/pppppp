@@ -96,7 +96,7 @@ class HealthDataViewController: UIViewController{
             guard let self = self else { return }
             do {
                 try await Scorering.shared.writeWeight(weight: inputWeight)
-                ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました", handler: { (_) in })
+//                ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました", handler: { (_) in })
             }
             catch {
                 print("HealthData writeWeight error:", error.localizedDescription)
@@ -140,15 +140,15 @@ class HealthDataViewController: UIViewController{
         exerciseTimeTextField.inputView = exerciseTimePicker
         exerciseTimeTextField.inputAccessoryView = exerciseTimeToolbar
         
-                let task = Task {
-                    do {
-                        try await Scorering.shared.readWeight()
-                    }
-                    catch {
-                        print("HealthDataViewContr ViewDid error:", error.localizedDescription)
-                    }
-                }
-                cancellables.insert(.init { task.cancel() })
+//        let task = Task {
+//            do {
+//                try await Scorering.shared.readWeight()
+//            }
+//            catch {
+//                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
+//            }
+//        }
+//        cancellables.insert(.init { task.cancel() })
     }
     
     @objc func selectExerciseDone() {
