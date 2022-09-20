@@ -166,10 +166,13 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     //MARK: カメラの許可
     func useCameraPermission() {
-        AVCaptureDevice.requestAccess(for: .video) { [self] (res) in
+        AVCaptureDevice.requestAccess(for: .video) { [weak self] (res) in
+            guard let self = self else { return }
             if res == false {
                 print("許可なし")
-                alertButtonLayout.isHidden = false
+                DispatchQueue.main.async {
+                    self.alertButtonLayout.isHidden = false
+                }
             }
         }
     }
