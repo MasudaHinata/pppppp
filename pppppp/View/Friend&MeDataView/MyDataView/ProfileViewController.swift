@@ -35,11 +35,11 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
-            layout.minimumLineSpacing = 4.42
-            layout.minimumInteritemSpacing = 4.06
+            layout.minimumLineSpacing = 4.5
+            layout.minimumInteritemSpacing = 4.5
             collectionView.collectionViewLayout = layout
             collectionView.register(UINib(nibName: "SummaryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SummaryCollectionViewCell")
-            layout.estimatedItemSize = CGSize(width: 17.67, height: 16.24)
+            layout.estimatedItemSize = CGSize(width: 17, height: 16)
         }
     }
     
