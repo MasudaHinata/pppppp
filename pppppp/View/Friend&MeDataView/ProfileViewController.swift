@@ -16,7 +16,7 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     @IBOutlet var activityBackgroundView: UIView!
     @IBOutlet var myIconView: UIImageView! {
         didSet {
-            myIconView.layer.cornerRadius = 32
+            myIconView.layer.cornerRadius = 36
             myIconView.clipsToBounds = true
             myIconView.layer.cornerCurve = .continuous
         }
@@ -91,7 +91,7 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         friendcollectionView.isHidden = true
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: self.view.frame.width, height: 80)
+        layout.itemSize = CGSize(width: self.view.frame.width, height: 64)
         friendcollectionView.collectionViewLayout = layout
         
         friendDataList.removeAll()
