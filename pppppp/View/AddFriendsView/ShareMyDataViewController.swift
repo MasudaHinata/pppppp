@@ -11,6 +11,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     var qrCodeView = UIView()
     var qrCodeImageView = UIImageView()
+    var qrCodeSanitasIconView = UIImageView()
     var dismissButton = UIButton()
     @IBOutlet weak var caputureView: UIView!
     
@@ -100,7 +101,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         qrCodeView.layer.cornerRadius = 64
         qrCodeView.layer.cornerCurve = .continuous
         qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 236, width: 264, height: 264))
-        
+
         //TODO: 他のところ触ったら閉じるようにする
         dismissButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
         dismissButton.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 108)
