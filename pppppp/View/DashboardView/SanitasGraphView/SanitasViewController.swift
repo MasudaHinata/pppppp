@@ -129,7 +129,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
                         startDate = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
                     }
                 }
-                dateFormatter.dateFormat = "MM/dd(E)"
+                dateFormatter.dateFormat = "MM/dd"
                 weekPointLabel.text = "\(dateFormatter.string(from: startDate)) ~ Today  \(try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))  pt"
                 stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
             }
