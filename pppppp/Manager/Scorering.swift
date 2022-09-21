@@ -115,55 +115,19 @@ final class Scorering {
     //MARK: - Chart用の歩数を取得
     func createStepsChart() async throws {
         getPermissionHealthKit()
-        //TODO: forでまわす
-        //        let endDate = calendar.date(byAdding: .day, value: -0, to: calendar.startOfDay(for: Date()))
-        //        let startDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
-        //        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        //        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-        //        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        //        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        //
-        //        let endDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
-        //        let startDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: Date()))
-        //        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        //        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-        //        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        //        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        //
-        //        let endDate = calendar.date(byAdding: .day, value: -2, to: calendar.startOfDay(for: Date()))
-        //        let startDate = calendar.date(byAdding: .day, value: -3, to: calendar.startOfDay(for: Date()))
-        //        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        //        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-        //        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        //        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        //
-        //        let endDate = calendar.date(byAdding: .day, value: -3, to: calendar.startOfDay(for: Date()))
-        //        let startDate = calendar.date(byAdding: .day, value: -4, to: calendar.startOfDay(for: Date()))
-        //        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        //        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-        //        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        //        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        //
-        //        let endDate = calendar.date(byAdding: .day, value: -4, to: calendar.startOfDay(for: Date()))
-        //        let startDate = calendar.date(byAdding: .day, value: -5, to: calendar.startOfDay(for: Date()))
-        //        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        //        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-        //        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        //        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        //
-        //        let endDate = calendar.date(byAdding: .day, value: -5, to: calendar.startOfDay(for: Date()))
-        //        let startDate = calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: Date()))
-        //        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        //        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-        //        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        //        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        //
-        //        let endDate = calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: Date()))
-        //        let startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: Date()))
-        //        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        //        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-        //        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        //        let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        var chartsStepsItem = [ChartsStepItem]()
+        let days = [-1, 0, 1, 2, 3, 4, 5]
+        for date in days {
+            print(date)
+            let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
+            let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
+            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+            let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+            let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+            let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+            print(startDate, "start/end", endDate, "count", stepCounts)
+            //TODO: [ChartsStepItem]に日付と歩数をいれる
+        }
     }
     
     //MARK: - 入力した運動と時間からポイントを作成
