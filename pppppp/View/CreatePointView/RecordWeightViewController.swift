@@ -35,15 +35,15 @@ class RecordWeightViewController: UIViewController {
             guard let self = self else { return }
             do {
                 try await Scorering.shared.writeWeight(weight: inputWeight)
-                ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました", handler: { (_) in })
+                ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました", handler: { _ in })
                 weightTextField.text = ""
             }
             catch {
                 print("RecordExerciseView writeWeight error:", error.localizedDescription)
                 if error.localizedDescription == "Not authorized" {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "設定からHealthKitの許可をオンにしてください", handler: { (_) in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "設定からHealthKitの許可をオンにしてください", handler: { _ in })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                 }
             }
         }

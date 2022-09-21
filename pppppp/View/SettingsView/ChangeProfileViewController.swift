@@ -62,7 +62,7 @@ class ChangeProfileViewController: UIViewController {
                         try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
                     }
                     
-                    ShowAlertHelper.okAlert(vc: self, title: "完了", message: "変更しました", handler: { (_) in
+                    ShowAlertHelper.okAlert(vc: self, title: "完了", message: "変更しました", handler: { _ in
                         var configuration = UIButton.Configuration.gray()
                         configuration.title = "Save Change"
                         configuration.baseBackgroundColor = .init(hex: "92B2D3")
@@ -74,15 +74,15 @@ class ChangeProfileViewController: UIViewController {
                 catch {
                     print("ChangeProfile putFirebaseStorage error:", error.localizedDescription)
                     if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in })
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in })
                     } else {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                     }
                 }
             }
             self.cancellables.insert(.init { task.cancel() })
         } else {
-            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "画像を選択してください", handler: { (_) in })
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "画像を選択してください", handler: { _ in })
         }
     }
     
@@ -113,11 +113,11 @@ class ChangeProfileViewController: UIViewController {
             catch {
                 print("ChangeProfileView didLoad error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.dismiss(animated: true, completion: nil)
                     })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                 }
             }
         }

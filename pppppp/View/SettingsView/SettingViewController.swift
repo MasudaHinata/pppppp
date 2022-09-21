@@ -37,9 +37,9 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                 catch {
                     print("Change Logout error", error.localizedDescription)
                     if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in })
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in })
                     } else {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                     }
                 }
             }
@@ -65,7 +65,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                 catch {
                     //TODO: error処理
                     print("ChangeProfile deleteAccount error:\(String(describing: error.localizedDescription))")
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "ログインし直してもう一度お試しください", handler: { (_) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "ログインし直してもう一度お試しください", handler: { _ in
                         let storyboard = UIStoryboard(name: "SignInWithAppleView", bundle: nil)
                         let secondVC = storyboard.instantiateInitialViewController()
                         self.showDetailViewController(secondVC!, sender: self)

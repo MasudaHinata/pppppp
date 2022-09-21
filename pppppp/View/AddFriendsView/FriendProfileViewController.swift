@@ -44,7 +44,7 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 if friendId == userID {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "自分とは友達になれません", handler: { (_) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "自分とは友達になれません", handler: { _ in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let secondVC = storyboard.instantiateInitialViewController()
                         self.showDetailViewController(secondVC!, sender: self)
@@ -56,11 +56,11 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
             catch {
                 print("FriendProfileViewContro addFriend error:", error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.viewDidAppear(true)
                     })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                 }
             }
         }
@@ -82,17 +82,17 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
             catch {
                 print("FriendProfileViewContro ViewAppear error:", error.localizedDescription)
                 if error.localizedDescription == "The operation couldn’t be completed. (pppppp.FirebaseClientFirestoreError error 0.)" {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "アカウントが存在しません", handler: { (_) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "アカウントが存在しません", handler: { _ in
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let secondVC = storyboard.instantiateInitialViewController()
                         self.showDetailViewController(secondVC!, sender: self)
                     })
                 } else if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.dismiss(animated: true, completion: nil)
                     })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                 }
             }
         }
