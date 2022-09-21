@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hDW-VP-yiq">
-                                <rect key="frame" x="35.5" y="205" width="343" height="139"/>
+                                <rect key="frame" x="35.5" y="197" width="343" height="139"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343.39999999999998" id="Lbb-Nl-yCb"/>
@@ -38,45 +38,45 @@
                                 <cells/>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STREAK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rks-Ew-QDE">
-                                <rect key="frame" x="24" y="184" width="57" height="17"/>
+                                <rect key="frame" x="24" y="176" width="57" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="0.72999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECENT ACTIVITIES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLe-69-o6z">
-                                <rect key="frame" x="24" y="368" width="139" height="17"/>
+                                <rect key="frame" x="24" y="360" width="139" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="0.72999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUz-qN-ait">
-                                <rect key="frame" x="120" y="80" width="0.0" height="80"/>
+                                <rect key="frame" x="112" y="80" width="0.0" height="72"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="CI7-ta-TQ3"/>
+                                    <constraint firstAttribute="height" constant="72" id="CI7-ta-TQ3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO5-2g-eea">
-                                <rect key="frame" x="272" y="80" width="110" height="80"/>
+                                <rect key="frame" x="272" y="80" width="110" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="Bs3-3v-Kan"/>
-                                    <constraint firstAttribute="height" constant="80" id="xda-1M-v7p"/>
+                                    <constraint firstAttribute="height" constant="72" id="xda-1M-v7p"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="F5.6-Regular" family="F5.6" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zN3-6Y-4Ki">
-                                <rect key="frame" x="24" y="80" width="80" height="80"/>
+                                <rect key="frame" x="24" y="80" width="72" height="72"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="eXD-sf-NEn"/>
-                                    <constraint firstAttribute="width" constant="80" id="emn-Un-IgE"/>
+                                    <constraint firstAttribute="height" constant="72" id="eXD-sf-NEn"/>
+                                    <constraint firstAttribute="width" constant="72" id="emn-Un-IgE"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gX8-jP-2Ng">
-                                <rect key="frame" x="0.0" y="389" width="414" height="381"/>
+                                <rect key="frame" x="0.0" y="381" width="414" height="389"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kj7-vQ-Rbk">

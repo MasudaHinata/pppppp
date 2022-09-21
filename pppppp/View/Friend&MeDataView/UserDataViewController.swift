@@ -14,7 +14,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
     @IBOutlet var pointLabel: UILabel!
     @IBOutlet var iconView: UIImageView! {
         didSet {
-            iconView.layer.cornerRadius = 40
+            iconView.layer.cornerRadius = 36
             iconView.layer.cornerCurve = .continuous
         }
     }
