@@ -12,15 +12,6 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
     
     let exerciseTimeList: [Int] = Array(0...120)
     
-    @IBOutlet var enterExerciseBackgroundView: UIView! {
-        didSet {
-            enterExerciseBackgroundView.layer.cornerRadius = 36
-            enterExerciseBackgroundView.clipsToBounds = true
-            enterExerciseBackgroundView.layer.cornerCurve = .continuous
-            enterExerciseBackgroundView.backgroundColor = UIColor.init(hex: "443FA3")
-        }
-    }
-    
     @IBOutlet var selectExerciseTextField: UITextField! {
         didSet {
             selectExerciseTextField.layer.cornerRadius = 16

@@ -11,15 +11,6 @@ class RecordWeightViewController: UIViewController {
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
     
-    @IBOutlet var enterWeightbackgroundView: UIView! {
-        didSet {
-            enterWeightbackgroundView.layer.cornerRadius = 36
-            enterWeightbackgroundView.clipsToBounds = true
-            enterWeightbackgroundView.layer.cornerCurve = .continuous
-            enterWeightbackgroundView.backgroundColor = UIColor.init(hex: "443FA3")
-        }
-    }
-    
     @IBOutlet var weightTextField: UITextField! {
         didSet {
             weightTextField.layer.cornerRadius = 24

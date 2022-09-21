@@ -59,57 +59,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="27T-vj-mzN">
-                                <rect key="frame" x="16" y="256" width="366" height="176"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Current Weight here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ga-sH-6ru">
-                                        <rect key="frame" x="24" y="24" width="203" height="19.666666666666671"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UAN-iW-9VO">
-                                        <rect key="frame" x="24" y="59.666666666666657" width="232" height="88"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.23999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="88" id="0Oa-Ca-nxA"/>
-                                            <constraint firstAttribute="width" constant="232" id="uFX-pt-lOg"/>
-                                        </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="F5.6-Regular" family="F5.6" pointSize="30"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lM0-ZA-Wia">
-                                        <rect key="frame" x="220" y="93" width="19" height="20"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIU-EZ-7LR">
-                                        <rect key="frame" x="296" y="87" width="54" height="32"/>
-                                        <color key="backgroundColor" red="0.52156862749999999" green="0.62745098040000002" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="5Rc-qv-ylX"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Add">
-                                            <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
-                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="mIU-EZ-7LR" secondAttribute="trailing" constant="16" id="1mZ-J7-VRz"/>
-                                    <constraint firstAttribute="height" constant="176" id="C2R-gn-tyS"/>
-                                    <constraint firstItem="lM0-ZA-Wia" firstAttribute="top" secondItem="27T-vj-mzN" secondAttribute="top" constant="93" id="G7g-GB-pac"/>
-                                    <constraint firstItem="mIU-EZ-7LR" firstAttribute="top" secondItem="27T-vj-mzN" secondAttribute="top" constant="87" id="Mnc-gh-P7E"/>
-                                    <constraint firstItem="UAN-iW-9VO" firstAttribute="leading" secondItem="27T-vj-mzN" secondAttribute="leading" constant="24" id="aED-VM-8c7"/>
-                                    <constraint firstItem="3Ga-sH-6ru" firstAttribute="top" secondItem="27T-vj-mzN" secondAttribute="top" constant="24" id="al3-AY-W9p"/>
-                                    <constraint firstItem="UAN-iW-9VO" firstAttribute="top" secondItem="3Ga-sH-6ru" secondAttribute="bottom" constant="16" id="c0m-KP-Odl"/>
-                                    <constraint firstItem="lM0-ZA-Wia" firstAttribute="leading" secondItem="27T-vj-mzN" secondAttribute="leading" constant="220" id="lAd-U5-r1k"/>
-                                    <constraint firstItem="3Ga-sH-6ru" firstAttribute="leading" secondItem="27T-vj-mzN" secondAttribute="leading" constant="24" id="mBj-If-eyx"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.2666666667" green="0.2470588235" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

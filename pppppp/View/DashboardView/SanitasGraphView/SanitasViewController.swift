@@ -19,19 +19,20 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     @IBOutlet var noFriendLabel: UILabel!
     @IBOutlet var mountainView: DrawView!
     
-    @IBAction func sceneCollectionView() {
+    @IBAction func sceneDashboardView() {
         let storyboard = UIStoryboard(name: "DashboardView", bundle: nil)
         let secondVC = storyboard.instantiateInitialViewController()
         self.showDetailViewController(secondVC!, sender: self)
     }
     
+    //MARK: - 体重・運動を記録する
     @IBAction func sceneHealthDataView() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
             let storyboard = UIStoryboard(name: "RecordWeightView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             if let sheet = secondVC?.sheetPresentationController {
-                sheet.detents = [.custom { context in 0.25 * context.maximumDetentValue }]
+                sheet.detents = [.custom { context in 0.2 * context.maximumDetentValue }]
             }
             self.present(secondVC!, animated: true, completion: nil)
         }
@@ -39,7 +40,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             let storyboard = UIStoryboard(name: "RecordExerciseView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             if let sheet = secondVC?.sheetPresentationController {
-                sheet.detents = [.custom { context in 0.25 * context.maximumDetentValue }]
+                sheet.detents = [.custom { context in 0.2 * context.maximumDetentValue }]
             }
             self.present(secondVC!, animated: true, completion: nil)
         }

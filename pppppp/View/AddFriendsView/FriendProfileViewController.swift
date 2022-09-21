@@ -22,6 +22,7 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
             friendIconView.layer.cornerCurve = .continuous
         }
     }
+    
     @IBOutlet var backgroundView: UIView! {
         didSet {
             backgroundView.layer.cornerRadius = 40
@@ -29,12 +30,14 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
             backgroundView.layer.cornerCurve = .continuous
         }
     }
+    
     @IBAction func backButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let secondVC = storyboard.instantiateInitialViewController()
         self.showDetailViewController(secondVC!, sender: self)
     }
-    //友達を追加する
+    
+    //MARK: - 友達を追加する
     @IBAction func addFriend() {
         let task = Task { [weak self] in
             guard let self = self else { return }
