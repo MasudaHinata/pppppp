@@ -47,8 +47,6 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
                 guard let self = self else { return }
                 do {
                     let results = try await Scorering.shared.createExercisePoint(exercisesName: selectExerciseTextField.text!, time: Float(exerciseTimeTextField.text!)!)
-                    print(results)
-                    try await FirebaseClient.shared.firebasePutData(point: results.0, activity: "\(results.1), \(results.2)min")
                     exerciseTimeTextField.text = ""
                     selectExerciseTextField.text = ""
                 }
@@ -95,16 +93,6 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
         exerciseTimePicker.selectRow(0, inComponent: 0, animated: false)
         exerciseTimeTextField.inputView = exerciseTimePicker
         exerciseTimeTextField.inputAccessoryView = exerciseTimeToolbar
-        
-        //        let task = Task {
-        //            do {
-        //                try await Scorering.shared.readWeight()
-        //            }
-        //            catch {
-        //                print("RecordExerciseView ViewDid error:", error.localizedDescription)
-        //            }
-        //        }
-        //        cancellables.insert(.init { task.cancel() })
     }
     
     @objc func selectExerciseDone() {

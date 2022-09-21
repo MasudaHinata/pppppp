@@ -111,7 +111,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-//                try await Scorering.shared.createStepsChart()
+                // try await Scorering.shared.readWeight()
+                // try await Scorering.shared.createStepsChart()
                 
                 try await FirebaseClient.shared.userAuthCheck()
                 let now = calendar.component(.hour, from: Date())

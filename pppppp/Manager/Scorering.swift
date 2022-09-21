@@ -47,69 +47,63 @@ final class Scorering {
         let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
         let stepsTodayMonth = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodMonth)
         let sumOfStepsQueryMonth = HKStatisticsQueryDescriptor(predicate: stepsTodayMonth, options: .cumulativeSum)
-        
+
         let endDate = calendar.date(byAdding: .day, value: -0, to: calendar.startOfDay(for: Date()))
         let startDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
         let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
         let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-        
+
         let monthStepCountSum = try await sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-        
+
         let monthStepCountAve = (monthStepCountSum ?? 0) / 30
         let differenceStep = Int(yesterdayStepCount ?? 0) - Int(monthStepCountAve)
         var stepDifPoint = Int()
         var stepAvePoint = Int()
-        
+
         //先月との歩数差のポイント
         if differenceStep <= 0 {
             stepDifPoint = 0
-        } else if differenceStep < 1001 {
-            stepDifPoint = Int(0.6 / (0.1 + exp(-Double(differenceStep) * 0.005)))
         } else {
-            stepDifPoint = Int(6 / (0.2 + exp(-Double(differenceStep) * 0.0003)))
+            stepDifPoint = Int(9 / (0.3 + exp(-Double(differenceStep) * 0.0005)))
         }
-        
+
         //平均歩数のポイント
         if monthStepCountAve <= 6000 {
             stepAvePoint = 0
         } else {
             stepAvePoint = Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004)))
         }
-        
+
         let todayPoint = stepDifPoint + stepAvePoint
-        print(stepDifPoint, "+", stepAvePoint, "=", todayPoint)
-        //TODO: Delegateをよんでalertをだそう
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
         
         //MARK: - 歩数ポイント Debug
-        //        //先月との歩数差のポイント
-        //        let differenceStep = [200, 500, 1000, 2000, 3000, 4000, 5000, 6000, 8000, 10000, 13000, 20000]
-        //        var stepDifPoint = [Int]()
-        //
-        //        for differenceStep in differenceStep {
-        //            if differenceStep <= 0 {
-        //                stepDifPoint.append(0)
-        //            } else if differenceStep < 1001 {
-        //                stepDifPoint.append(Int(0.6 / (0.1 + exp(-Double(differenceStep) * 0.005))))
-        //            } else {
-        //                stepDifPoint.append(Int(6 / (0.2 + exp(-Double(differenceStep) * 0.0003))))
-        //            }
-        //        }
-        //        print(stepDifPoint)
-        //        //平均歩数のポイント
-        //        let monthStepCountAve = [4000, 6000, 7000, 8000, 10000, 15000, 20000]
-        //        var stepAvePoint = [Int]()
-        //
-        //        for monthStepCountAve  in monthStepCountAve {
-        //            if monthStepCountAve <= 6000 {
-        //                stepAvePoint.append(0)
-        //            } else {
-        //                stepAvePoint.append(Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004))))
-        //            }
-        //        }
-        //        print(stepAvePoint)
+//        //先月との歩数差のポイント
+//        let differenceStep = [200, 500, 1000, 2000, 3000, 4000, 5000, 6000, 8000, 10000, 13000, 20000]
+//        var stepDifPoint = [Int]()
+//
+//        for differenceStep in differenceStep {
+//            if differenceStep <= 0 {
+//                stepDifPoint.append(0)
+//            } else {
+//                stepDifPoint.append(Int(9 / (0.3 + exp(-Double(differenceStep) * 0.0005))))
+//            }
+//        }
+//        print(stepDifPoint)
+//        //平均歩数のポイント
+//        let monthStepCountAve = [4000, 6000, 7000, 8000, 10000, 15000, 20000]
+//        var stepAvePoint = [Int]()
+//
+//        for monthStepCountAve  in monthStepCountAve {
+//            if monthStepCountAve <= 6000 {
+//                stepAvePoint.append(0)
+//            } else {
+//                stepAvePoint.append(Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004))))
+//            }
+//        }
+//        print(stepAvePoint)
     }
     
     //MARK: - Chart用の歩数を取得
@@ -132,7 +126,7 @@ final class Scorering {
     }
     
     //MARK: - 入力した運動と時間からポイントを作成
-    func createExercisePoint(exercisesName: String, time: Float) async throws -> (Int, String, Int) {
+    func createExercisePoint(exercisesName: String, time: Float) async throws {
         var metz = Float()
         var exercizeName = exercisesName
         switch exercizeName {
@@ -176,7 +170,7 @@ final class Scorering {
         } else {
             exercisePoint = Int(15 / (0.6 + exp(-exercise * 0.2)))
         }
-        return (exercisePoint, exercizeName, Int(time))
+        try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: exercizeName)
         
         //MARK: - ExercisePoint debug
         //        let exercisee: [Double] = [0.05, 0.1, 0.2, 0.3, 0.5, 0.8, 0.9, 1, 1.1, 2, 3, 4, 5, 8, 10, 12, 15, 18, 20]
@@ -189,7 +183,6 @@ final class Scorering {
         //            }
         //        }
         //        print(exercisePointt) // ->[]
-        //        return (exercisePoint, exercizeName, Int(time))
     }
     
     //MARK: - 体重をHealthKitに書き込み
