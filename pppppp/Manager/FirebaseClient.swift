@@ -43,7 +43,7 @@ protocol SetttingAccountDelegate: AnyObject {
 }
 
 protocol FirebasePutPointDelegate: AnyObject {
-    func putPointForFirestore(point: Int)
+    func putPointForFirestore(point: Int, activity: String)
     func notGetPoint()
 }
 
@@ -228,7 +228,7 @@ final class FirebaseClient {
             self.putPointDelegate?.notGetPoint()
         } else {
             try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date()), "activity": activity])
-            self.putPointDelegate?.putPointForFirestore(point: point)
+            self.putPointDelegate?.putPointForFirestore(point: point, activity: activity)
         }
     }
     //画像をfirestore,firebaseStorageに保存

@@ -2,7 +2,7 @@ import Combine
 import UIKit
 import HealthKit
 
-class HealthDataViewController: UIViewController{
+class HealthDataViewController: UIViewController, FirebasePutPointDelegate {
     
     var cancellables = Set<AnyCancellable>()
     let calendar = Calendar.current
@@ -85,7 +85,8 @@ class HealthDataViewController: UIViewController{
             let task = Task { [weak self] in
                 guard let self = self else { return }
                 do {
-                    try await Scorering.shared.createExercisePoint(exercisesName: selectExerciseTextField.text!, time: Float(exerciseTimeTextField.text!)!)
+                    let results = try await Scorering.shared.createExercisePoint(exercisesName: selectExerciseTextField.text!, time: Float(exerciseTimeTextField.text!)!)
+                    try await FirebaseClient.shared.firebasePutData(point: results.0, activity: "\(results.1), \(results.2)min")
                 }
                 catch {
                     print("HealthData recordExercise error:", error.localizedDescription)
@@ -124,6 +125,7 @@ class HealthDataViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FirebaseClient.shared.putPointDelegate = self
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -131,7 +133,6 @@ class HealthDataViewController: UIViewController{
         
         exerciseTypePicker.tag = 0
         exerciseTimePicker.tag = 1
-        
         let exerciseTypeToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
         let exerciseTypeSpacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let exerciseTypeDoneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(selectExerciseDone))
@@ -152,15 +153,15 @@ class HealthDataViewController: UIViewController{
         exerciseTimeTextField.inputView = exerciseTimePicker
         exerciseTimeTextField.inputAccessoryView = exerciseTimeToolbar
         
-        let task = Task {
-            do {
-                try await Scorering.shared.readWeight()
-            }
-            catch {
-                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
+        //        let task = Task {
+        //            do {
+        //                try await Scorering.shared.readWeight()
+        //            }
+        //            catch {
+        //                print("HealthDataViewContr ViewDid error:", error.localizedDescription)
+        //            }
+        //        }
+        //        cancellables.insert(.init { task.cancel() })
     }
     
     @objc func selectExerciseDone() {
@@ -175,5 +176,21 @@ class HealthDataViewController: UIViewController{
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
+    }
+    
+    //MARK: - Setting Delegate
+    func putPointForFirestore(point: Int, activity: String) {
+        let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity)  \(point)pt", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func notGetPoint() {
+        let alert = UIAlertController(title: "今日の獲得ポイントは0ptです", message: "頑張りましょう", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

@@ -113,7 +113,7 @@ final class Scorering {
     }
     
     //MARK: - 入力した運動と時間からポイントを作成
-    func createExercisePoint(exercisesName: String, time: Float) async throws {
+    func createExercisePoint(exercisesName: String, time: Float) async throws -> (Int, String, Int) {
         var metz = Float()
         var exercizeName = exercisesName
         switch exercizeName {
@@ -158,8 +158,7 @@ final class Scorering {
         } else {
             exercisePoint = Int(12 / (0.6 + exp(-exercise * 0.2)))
         }
-        //TODO: delegateを読んでアラート
-        try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: "\(exercizeName),\(Int(time))min")
+        return (exercisePoint, exercizeName, Int(time))
         
 //        //MARK: - ExercisePoint debug
 //        let exercise: [Double] = [0.5, 1, 5, 10, 12, 15, 18, 20]

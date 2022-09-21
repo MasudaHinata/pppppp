@@ -142,8 +142,8 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     }
     
     //MARK: - Setting Delegate
-    func putPointForFirestore(point: Int) {
-        let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
+    func putPointForFirestore(point: Int, activity: String) {
+        let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity)  \(point)pt", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()

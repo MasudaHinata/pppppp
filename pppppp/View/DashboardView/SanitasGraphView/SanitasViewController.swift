@@ -2,7 +2,7 @@ import Combine
 import UIKit
 import SwiftUI
 
-class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
+class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
     var activityIndicator: UIActivityIndicatorView!
     var cancellables = Set<AnyCancellable>()
@@ -161,7 +161,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate ,Fire
             self.present(alert, animated: true, completion: nil)
         }
     }
-    func putPointForFirestore(point: Int) {
+    func putPointForFirestore(point: Int, activity: String) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         DispatchQueue.main.async {
