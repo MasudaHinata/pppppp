@@ -87,6 +87,8 @@ class HealthDataViewController: UIViewController, FirebasePutPointDelegate {
                 do {
                     let results = try await Scorering.shared.createExercisePoint(exercisesName: selectExerciseTextField.text!, time: Float(exerciseTimeTextField.text!)!)
                     try await FirebaseClient.shared.firebasePutData(point: results.0, activity: "\(results.1), \(results.2)min")
+                    exerciseTimeTextField.text = ""
+                    selectExerciseTextField.text = ""
                 }
                 catch {
                     print("HealthData recordExercise error:", error.localizedDescription)
@@ -110,6 +112,7 @@ class HealthDataViewController: UIViewController, FirebasePutPointDelegate {
             do {
                 try await Scorering.shared.writeWeight(weight: inputWeight)
                 ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました", handler: { (_) in })
+                weightTextField.text = ""
             }
             catch {
                 print("HealthData writeWeight error:", error.localizedDescription)
