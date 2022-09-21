@@ -17,7 +17,7 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
     }
     @IBOutlet var friendIconView: UIImageView! {
         didSet {
-            friendIconView.layer.cornerRadius = 34
+            friendIconView.layer.cornerRadius = 40
             friendIconView.clipsToBounds = true
             friendIconView.layer.cornerCurve = .continuous
         }

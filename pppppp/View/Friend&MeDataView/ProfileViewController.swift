@@ -58,15 +58,10 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
         let secondVC = storyboard.instantiateInitialViewController()
         if let sheet = secondVC?.sheetPresentationController {
-            sheet.detents = [.custom { context in 0.3 * context.maximumDetentValue }]
+            sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
         }
         secondVC?.presentationController?.delegate = self
         self.present(secondVC!, animated: true, completion: nil)
-        
-//        let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
-//        let modalViewController = storyboard.instantiateInitialViewController() as! ChangeProfileViewController
-//        modalViewController.presentationController?.delegate = self
-//        present(modalViewController, animated: true, completion: nil)
     }
     
     @IBAction func sceneSettingView() {
