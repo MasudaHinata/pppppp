@@ -112,6 +112,20 @@ final class Scorering {
         //        print(stepAvePoint)
     }
     
+    //MARK: - Chart用の歩数を取得
+    func createStepsChart() async throws {
+        getPermissionHealthKit()
+        //        let endDate = calendar.date(byAdding: .day, value: -0, to: calendar.startOfDay(for: Date()))
+        //        let startDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
+        //        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        //        let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: nil)
+        //        let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+        //
+        //        let monthStepCountSum = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+        //        print(monthStepCountSum)
+
+    }
+    
     //MARK: - 入力した運動と時間からポイントを作成
     func createExercisePoint(exercisesName: String, time: Float) async throws -> (Int, String, Int) {
         var metz = Float()
@@ -160,17 +174,17 @@ final class Scorering {
         return (exercisePoint, exercizeName, Int(time))
         
         //MARK: - ExercisePoint debug
-//        let exercisee: [Double] = [0.05, 0.1, 0.2, 0.3, 0.5, 0.8, 0.9, 1, 1.1, 2, 3, 4, 5, 8, 10, 12, 15, 18, 20]
-//        var exercisePointt = [Int]()
-//        for exercise  in exercisee {
-//            if exercise <= 0.9 {
-//                exercisePointt.append(Int(4.5 / (0.45 + exp(-exercise * 6))))
-//            } else {
-//                exercisePointt.append(Int(15 / (0.6 + exp(-exercise * 0.2))))
-//            }
-//        }
-//        print(exercisePointt) // ->[]
-//        return (exercisePoint, exercizeName, Int(time))
+        //        let exercisee: [Double] = [0.05, 0.1, 0.2, 0.3, 0.5, 0.8, 0.9, 1, 1.1, 2, 3, 4, 5, 8, 10, 12, 15, 18, 20]
+        //        var exercisePointt = [Int]()
+        //        for exercise  in exercisee {
+        //            if exercise <= 0.9 {
+        //                exercisePointt.append(Int(4.5 / (0.45 + exp(-exercise * 6))))
+        //            } else {
+        //                exercisePointt.append(Int(15 / (0.6 + exp(-exercise * 0.2))))
+        //            }
+        //        }
+        //        print(exercisePointt) // ->[]
+        //        return (exercisePoint, exercizeName, Int(time))
     }
     
     //MARK: - 体重をHealthKitに書き込み

@@ -25,6 +25,8 @@
 		0343682728D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */; };
 		035CE51E28CF1E53001F89BB /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */; };
 		035CE52028CF1E61001F89BB /* HealthDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 035CE51F28CF1E61001F89BB /* HealthDataView.storyboard */; };
+		036E476528DAF73C00EA7BB1 /* StepsChartsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */; };
+		036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */; };
 		036F697F28B8EACE0066A7DA /* PointData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F697E28B8EACE0066A7DA /* PointData.swift */; };
 		036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698028B940270066A7DA /* ResetPasswordViewController.swift */; };
 		036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698B28BB9DAD0066A7DA /* DrawView.swift */; };
@@ -117,6 +119,8 @@
 		0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareMyDataViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
 		035CE51D28CF1E53001F89BB /* HealthDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
 		035CE51F28CF1E61001F89BB /* HealthDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HealthDataView.storyboard; sourceTree = "<group>"; };
+		036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsChartsUIView.swift; sourceTree = "<group>"; };
+		036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsStepItem.swift; sourceTree = "<group>"; };
 		036F697E28B8EACE0066A7DA /* PointData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointData.swift; sourceTree = "<group>"; };
 		036F698028B940270066A7DA /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		036F698B28BB9DAD0066A7DA /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 				034367FC28D60539000BA656 /* OnboardingView */,
 				036F698528BB93760066A7DA /* AuthView */,
 				0343681928D8060A000BA656 /* UITextFieldDelegate */,
+				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
+				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -576,10 +582,12 @@
 				035CE51E28CF1E53001F89BB /* HealthDataViewController.swift in Sources */,
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
 				038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */,
+				036E476528DAF73C00EA7BB1 /* StepsChartsUIView.swift in Sources */,
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
 				0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
+				036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */,
 				03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */,
 				03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */,
 				0343680E28D756C3000BA656 /* HealthDataViewController+UIPickerDelegate.swift in Sources */,
