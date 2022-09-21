@@ -115,7 +115,7 @@ final class Scorering {
     //MARK: - Chart用の歩数を取得
     func createStepsChart() async throws {
         getPermissionHealthKit()
-        var chartsStepsItem = [ChartsStepItem]()
+        var chartsStepItem = [ChartsStepItem]()
         let days = [-1, 0, 1, 2, 3, 4, 5]
         for date in days {
             print(date)
@@ -127,6 +127,7 @@ final class Scorering {
             let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
             print(startDate, "start/end", endDate, "count", stepCounts)
             //TODO: [ChartsStepItem]に日付と歩数をいれる
+            
         }
     }
     
