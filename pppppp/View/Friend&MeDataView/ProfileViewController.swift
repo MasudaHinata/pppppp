@@ -126,6 +126,7 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
                 chartsStepItem = try await Scorering.shared.createStepsChart()
                 print(chartsStepItem)
                 let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
+//                let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView())
                 chartsView.addSubview(vc.view)
                 vc.view.translatesAutoresizingMaskIntoConstraints = false
                 vc.view.heightAnchor.constraint(equalToConstant: 400).isActive = true
