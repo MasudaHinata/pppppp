@@ -121,11 +121,9 @@ final class Scorering {
             let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
             let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
             
-            //TODO: [ChartsStepItem]に日付と歩数をいれる
-            let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts!))
+            let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts ?? 0))
             chartsStepItem.append(stepdata)
         }
-        print(chartsStepItem)
         return chartsStepItem
     }
     
