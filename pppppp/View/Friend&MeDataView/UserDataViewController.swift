@@ -14,7 +14,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
     @IBOutlet var pointLabel: UILabel!
     @IBOutlet var iconView: UIImageView! {
         didSet {
-            iconView.layer.cornerRadius = 24
+            iconView.layer.cornerRadius = 40
             iconView.layer.cornerCurve = .continuous
         }
     }
@@ -102,7 +102,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                 } else {
                     flag = true
                     deleteFriendButtonLayout.tintColor = UIColor.systemPink
-                    deleteFriendButtonLayout.setTitle("Delete This User From Friend", for: .normal)
+                    deleteFriendButtonLayout.setTitle("Delete Friend", for: .normal)
                 }
             }
             catch {

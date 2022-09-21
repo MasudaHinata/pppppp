@@ -32,7 +32,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             let storyboard = UIStoryboard(name: "RecordWeightView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             if let sheet = secondVC?.sheetPresentationController {
-                sheet.detents = [.custom { context in 0.2 * context.maximumDetentValue }]
+                sheet.detents = [.custom { context in 0.23 * context.maximumDetentValue }]
             }
             self.present(secondVC!, animated: true, completion: nil)
         }
@@ -40,7 +40,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             let storyboard = UIStoryboard(name: "RecordExerciseView", bundle: nil)
             let secondVC = storyboard.instantiateInitialViewController()
             if let sheet = secondVC?.sheetPresentationController {
-                sheet.detents = [.custom { context in 0.2 * context.maximumDetentValue }]
+                sheet.detents = [.custom { context in 0.23 * context.maximumDetentValue }]
             }
             self.present(secondVC!, animated: true, completion: nil)
         }
