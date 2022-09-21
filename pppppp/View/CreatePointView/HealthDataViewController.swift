@@ -130,25 +130,6 @@ class HealthDataViewController: UIViewController, FirebasePutPointDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                let results = try await Scorering.shared.createExercisePoint(exercisesName: "", time: Float(0))
-                exerciseTimeTextField.text = ""
-                selectExerciseTextField.text = ""
-            }
-            catch {
-                print("HealthData recordExercise error:", error.localizedDescription)
-                if error.localizedDescription == "Not authorized" {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "設定からHealthKitの許可をオンにしてください", handler: { (_) in })
-                } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
-                }
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-        
-        
         FirebaseClient.shared.putPointDelegate = self
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -166,7 +147,7 @@ class HealthDataViewController: UIViewController, FirebasePutPointDelegate {
         exerciseTypePicker.selectRow(2, inComponent: 0, animated: false)
         selectExerciseTextField.inputView = exerciseTypePicker
         selectExerciseTextField.inputAccessoryView = exerciseTypeToolbar
-        
+
         let exerciseTimeToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
         let exerciseTimeSpacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let exerciseTimeDoneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(exerciseTimeDone))

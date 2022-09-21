@@ -27,7 +27,10 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     @IBAction func sceneHealthDataView() {
         let storyboard = UIStoryboard(name: "HealthDataView", bundle: nil)
         let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC!, sender: self)
+        if let sheet = secondVC?.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        present(secondVC!, animated: true, completion: nil)
     }
     
     @IBAction func reloadButton() {

@@ -64,6 +64,5 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         } else {
             fatalError("collectionView Tag Invalid")
         }
-        
     }
 }

@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMI-by-4Vb">
-                                <rect key="frame" x="24" y="88" width="366" height="176"/>
+                                <rect key="frame" x="24" y="72" width="366" height="176"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Current Weight here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYI-q8-w9F">
                                         <rect key="frame" x="24" y="24" width="203" height="19.5"/>
@@ -76,7 +76,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Xv-kx-Zoh">
-                                <rect key="frame" x="24" y="304" width="366" height="176"/>
+                                <rect key="frame" x="24" y="272" width="366" height="176"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Exercise &amp; Time." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbS-71-7GY">
                                         <rect key="frame" x="24" y="24" width="170" height="20"/>
@@ -150,8 +150,8 @@
                         <constraints>
                             <constraint firstItem="bMI-by-4Vb" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="1hF-RT-8nW"/>
                             <constraint firstItem="9Xv-kx-Zoh" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="73X-W4-nn2"/>
-                            <constraint firstItem="bMI-by-4Vb" firstAttribute="top" secondItem="SVz-Sw-HEj" secondAttribute="top" constant="40" id="WXa-aj-mat"/>
-                            <constraint firstItem="9Xv-kx-Zoh" firstAttribute="top" secondItem="bMI-by-4Vb" secondAttribute="bottom" constant="40" id="bgD-LI-2nA"/>
+                            <constraint firstItem="bMI-by-4Vb" firstAttribute="top" secondItem="SVz-Sw-HEj" secondAttribute="top" constant="24" id="WXa-aj-mat"/>
+                            <constraint firstItem="9Xv-kx-Zoh" firstAttribute="top" secondItem="bMI-by-4Vb" secondAttribute="bottom" constant="24" id="bgD-LI-2nA"/>
                             <constraint firstItem="SVz-Sw-HEj" firstAttribute="trailing" secondItem="9Xv-kx-Zoh" secondAttribute="trailing" constant="24" id="j61-VZ-ydA"/>
                             <constraint firstItem="SVz-Sw-HEj" firstAttribute="trailing" secondItem="bMI-by-4Vb" secondAttribute="trailing" constant="24" id="kAK-Tb-vKy"/>
                         </constraints>
