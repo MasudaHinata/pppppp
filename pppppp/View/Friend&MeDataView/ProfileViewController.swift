@@ -2,6 +2,7 @@ import UIKit
 import Combine
 import Kingfisher
 
+@available(iOS 16.0, *)
 @MainActor
 final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendDelegate , FireStoreCheckNameDelegate {
     
@@ -55,9 +56,17 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     
     @IBAction func editButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
-        let modalViewController = storyboard.instantiateInitialViewController() as! ChangeProfileViewController
-        modalViewController.presentationController?.delegate = self
-        present(modalViewController, animated: true, completion: nil)
+        let secondVC = storyboard.instantiateInitialViewController()
+        if let sheet = secondVC?.sheetPresentationController {
+            sheet.detents = [.custom { context in 0.3 * context.maximumDetentValue }]
+        }
+        secondVC?.presentationController?.delegate = self
+        self.present(secondVC!, animated: true, completion: nil)
+        
+//        let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
+//        let modalViewController = storyboard.instantiateInitialViewController() as! ChangeProfileViewController
+//        modalViewController.presentationController?.delegate = self
+//        present(modalViewController, animated: true, completion: nil)
     }
     
     @IBAction func sceneSettingView() {
@@ -186,13 +195,5 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
-    }
-}
-
-//MARK: - extension
-extension ProfileViewController: UIAdaptivePresentationControllerDelegate {
-    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-        myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
     }
 }
