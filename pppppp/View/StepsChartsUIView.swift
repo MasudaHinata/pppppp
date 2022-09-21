@@ -2,6 +2,7 @@ import SwiftUI
 import Charts
 
 var data: [ChartsStepItem] = [
+        
     .init(date: "9/15", stepCounts: 5000),
     .init(date: "9/16", stepCounts: 4000),
     .init(date: "9/17", stepCounts: 6000),
@@ -15,6 +16,18 @@ var data: [ChartsStepItem] = [
 struct StepsChartsUIView: View {
     var body: some View {
         Chart {
+//
+//            let task = Task {
+//                do {
+//                    let aaa = try await Scorering.shared.createStepsChart()
+//                    print(aaa)
+//
+//                }
+//                catch {
+//
+//                }
+//            }
+            
             ForEach(data) { shape in
                 BarMark(
                     x: .value("Shape Type", shape.date),

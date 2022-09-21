@@ -112,7 +112,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             guard let self = self else { return }
             do {
                 // try await Scorering.shared.readWeight()
-                // try await Scorering.shared.createStepsChart()
+                 try await Scorering.shared.createStepsChart()
                 
                 try await FirebaseClient.shared.userAuthCheck()
                 let now = calendar.component(.hour, from: Date())
@@ -139,7 +139,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     self.showDetailViewController(secondVC!, sender: self)
                 }
                 activityIndicator.stopAnimating()
-                
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
                 if type as! String == "今日までの一週間" {
