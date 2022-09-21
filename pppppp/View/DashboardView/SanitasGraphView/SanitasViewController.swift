@@ -2,6 +2,7 @@ import Combine
 import UIKit
 import SwiftUI
 
+@available(iOS 16.0, *)
 class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
     var activityIndicator: UIActivityIndicatorView!
@@ -25,12 +26,28 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     }
     
     @IBAction func sceneHealthDataView() {
-        let storyboard = UIStoryboard(name: "HealthDataView", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        if let sheet = secondVC?.sheetPresentationController {
-            sheet.detents = [.medium()]
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
+            let storyboard = UIStoryboard(name: "RecordWeightView", bundle: nil)
+            let secondVC = storyboard.instantiateInitialViewController()
+            if let sheet = secondVC?.sheetPresentationController {
+                sheet.detents = [.custom { context in 0.25 * context.maximumDetentValue }]
+            }
+            self.present(secondVC!, animated: true, completion: nil)
         }
-        present(secondVC!, animated: true, completion: nil)
+        let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
+            let storyboard = UIStoryboard(name: "RecordExerciseView", bundle: nil)
+            let secondVC = storyboard.instantiateInitialViewController()
+            if let sheet = secondVC?.sheetPresentationController {
+                sheet.detents = [.custom { context in 0.25 * context.maximumDetentValue }]
+            }
+            self.present(secondVC!, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+        actionSheet.addAction(weightAction)
+        actionSheet.addAction(exerciseAction)
+        actionSheet.addAction(cancelAction)
+        present(actionSheet, animated: true)
     }
     
     @IBAction func reloadButton() {
@@ -46,11 +63,11 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             catch {
                 print("ViewContro reloadButton error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.viewDidAppear(true)
                     })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                 }
             }
         }

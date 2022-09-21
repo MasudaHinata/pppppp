@@ -7,76 +7,17 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="F5.6-Regular.otf">
-            <string>F5.6-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
-        <!--Health Data View Controller-->
+        <!--Record Exercise View Controller-->
         <scene sceneID="F14-vT-27l">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Dv-30-eAN" customClass="HealthDataViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Dv-30-eAN" customClass="RecordExerciseViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hk8-C9-c9Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMI-by-4Vb">
-                                <rect key="frame" x="24" y="72" width="366" height="176"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Current Weight here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYI-q8-w9F">
-                                        <rect key="frame" x="24" y="24" width="203" height="19.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="loL-8f-2LO">
-                                        <rect key="frame" x="24" y="59.5" width="232" height="88"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.23999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="88" id="ch5-9b-3a1"/>
-                                            <constraint firstAttribute="width" constant="232" id="vPC-a4-2Yb"/>
-                                        </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="F5.6-Regular" family="F5.6" pointSize="30"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0e-1S-wNx">
-                                        <rect key="frame" x="220" y="93" width="19" height="20"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62u-dQ-csJ">
-                                        <rect key="frame" x="296" y="87" width="54" height="32"/>
-                                        <color key="backgroundColor" red="0.52156862745098043" green="0.62745098039215685" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="yk7-uR-pLh"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Add">
-                                            <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
-                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="writeWeightDataButton" destination="9Dv-30-eAN" eventType="touchUpInside" id="wVA-BB-966"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="GYI-q8-w9F" firstAttribute="leading" secondItem="bMI-by-4Vb" secondAttribute="leading" constant="24" id="6sc-y8-hQ9"/>
-                                    <constraint firstItem="q0e-1S-wNx" firstAttribute="leading" secondItem="bMI-by-4Vb" secondAttribute="leading" constant="220" id="7sf-EX-RJK"/>
-                                    <constraint firstItem="GYI-q8-w9F" firstAttribute="top" secondItem="bMI-by-4Vb" secondAttribute="top" constant="24" id="CpJ-2a-ro8"/>
-                                    <constraint firstItem="q0e-1S-wNx" firstAttribute="top" secondItem="bMI-by-4Vb" secondAttribute="top" constant="93" id="Gxp-Bq-QOH"/>
-                                    <constraint firstAttribute="height" constant="176" id="J8c-0s-gqD"/>
-                                    <constraint firstItem="loL-8f-2LO" firstAttribute="leading" secondItem="bMI-by-4Vb" secondAttribute="leading" constant="24" id="UpR-bV-FNB"/>
-                                    <constraint firstAttribute="trailing" secondItem="62u-dQ-csJ" secondAttribute="trailing" constant="16" id="gDj-VQ-Gm0"/>
-                                    <constraint firstItem="62u-dQ-csJ" firstAttribute="top" secondItem="bMI-by-4Vb" secondAttribute="top" constant="87" id="mFE-HP-7qx"/>
-                                    <constraint firstItem="loL-8f-2LO" firstAttribute="top" secondItem="GYI-q8-w9F" secondAttribute="bottom" constant="16" id="xu1-gX-maV"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Xv-kx-Zoh">
-                                <rect key="frame" x="24" y="272" width="366" height="176"/>
+                                <rect key="frame" x="24" y="72" width="366" height="176"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Exercise &amp; Time." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbS-71-7GY">
                                         <rect key="frame" x="24" y="24" width="170" height="20"/>
@@ -148,22 +89,16 @@
                         <viewLayoutGuide key="safeArea" id="SVz-Sw-HEj"/>
                         <color key="backgroundColor" red="0.074509803920000006" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="bMI-by-4Vb" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="1hF-RT-8nW"/>
                             <constraint firstItem="9Xv-kx-Zoh" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="73X-W4-nn2"/>
-                            <constraint firstItem="bMI-by-4Vb" firstAttribute="top" secondItem="SVz-Sw-HEj" secondAttribute="top" constant="24" id="WXa-aj-mat"/>
-                            <constraint firstItem="9Xv-kx-Zoh" firstAttribute="top" secondItem="bMI-by-4Vb" secondAttribute="bottom" constant="24" id="bgD-LI-2nA"/>
+                            <constraint firstItem="9Xv-kx-Zoh" firstAttribute="top" secondItem="SVz-Sw-HEj" secondAttribute="top" constant="24" id="GAj-Qm-uMZ"/>
                             <constraint firstItem="SVz-Sw-HEj" firstAttribute="trailing" secondItem="9Xv-kx-Zoh" secondAttribute="trailing" constant="24" id="j61-VZ-ydA"/>
-                            <constraint firstItem="SVz-Sw-HEj" firstAttribute="trailing" secondItem="bMI-by-4Vb" secondAttribute="trailing" constant="24" id="kAK-Tb-vKy"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="enterExerciseBackgroundView" destination="9Xv-kx-Zoh" id="dMY-1c-R2u"/>
-                        <outlet property="enterWeightbackgroundView" destination="bMI-by-4Vb" id="thh-5Q-6ge"/>
                         <outlet property="exerciseTimeTextField" destination="xTX-mp-TUU" id="Os5-Xe-ia3"/>
                         <outlet property="saveExerciseButtonLayout" destination="jCv-IG-eh2" id="5Nj-7q-oGm"/>
                         <outlet property="selectExerciseTextField" destination="NoX-SH-DcP" id="cdw-xS-JPx"/>
-                        <outlet property="weightTextField" destination="loL-8f-2LO" id="NVM-Kf-t6S"/>
-                        <outlet property="writeWeightDataButtonLayout" destination="62u-dQ-csJ" id="Llv-0f-qwV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSU-1W-kfG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
