@@ -10,14 +10,13 @@ class SignInWithAppleViewController: UIViewController {
     
     @IBOutlet var privacyPolicyButtonLayout: UIButton! {
         didSet {
-            privacyPolicyButtonLayout.tintColor = UIColor.init(hex: "FFFFFF", alpha: 0.48)
+            privacyPolicyButtonLayout.tintColor = Asset.Colors.white48.color
         }
     }
     
     @IBAction func sceneEmailSignInButton() {
-        let storyboard = UIStoryboard(name: "EmailSignInView", bundle: nil)
-        let settingVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(settingVC!, sender: self)
+        let secondVC = StoryboardScene.EmailSignInView.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     @IBAction func privacyPolicyButton() {
@@ -130,9 +129,8 @@ extension SignInWithAppleViewController: ASAuthorizationControllerDelegate {
                     print(error!.localizedDescription)
                     return
                 }
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let secondVC = storyboard.instantiateInitialViewController()
-                self.showDetailViewController(secondVC!, sender: self)
+                let secondVC = StoryboardScene.Main.initialScene.instantiate()
+                self.showDetailViewController(secondVC, sender: self)
             }
         }
     }

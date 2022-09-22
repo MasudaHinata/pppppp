@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0318016828D4D32A004C7002 /* AddFriendView.storyboard */; };
 		0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318016A28D4D344004C7002 /* AddFriendViewController.swift */; };
-		033BC37628DC4E8B008DBC49 /* HealthDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37528DC4E8B008DBC49 /* HealthDataView.storyboard */; };
-		033BC37828DC4F97008DBC49 /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033BC37728DC4F97008DBC49 /* HealthDataViewController.swift */; };
-		034367FE28D609BA000BA656 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034367FD28D609BA000BA656 /* OnboardingView2.storyboard */; };
+		032843A628DC8C7E00AB1A5D /* OnboardingView3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 032843A528DC8C7E00AB1A5D /* OnboardingView3.storyboard */; };
+		032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843A728DC8E5700AB1A5D /* L10n-Constants.swift */; };
+		032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843A828DC8E5700AB1A5D /* Assets-Constants.swift */; };
+		032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */; };
+		0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */; };
+		033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37B28DC7FA9008DBC49 /* Colors.xcassets */; };
 		0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034367FF28D609D0000BA656 /* OnboardingViewController2.swift */; };
 		0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680128D60A13000BA656 /* OnboardingViewController3.swift */; };
-		0343680428D60A1D000BA656 /* OnboardingView3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343680328D60A1D000BA656 /* OnboardingView3.storyboard */; };
 		0343680E28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */; };
 		0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */; };
 		0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */; };
@@ -44,7 +46,6 @@
 		036F69F228C089B40066A7DA /* EmailSignInView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F128C089B40066A7DA /* EmailSignInView.storyboard */; };
 		036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */; };
 		036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F528C08C0F0066A7DA /* SetNameView.storyboard */; };
-		036F69F828C08D140066A7DA /* ChangeProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F728C08D140066A7DA /* ChangeProfileView.storyboard */; };
 		036F69FA28C08E7F0066A7DA /* SettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69F928C08E7F0066A7DA /* SettingView.storyboard */; };
 		036F69FC28C08F1C0066A7DA /* FriendProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69FB28C08F1C0066A7DA /* FriendProfileView.storyboard */; };
 		036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */; };
@@ -60,6 +61,8 @@
 		03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */; };
 		03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */; };
 		03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */; };
+		03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */; };
+		03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B832F228DC88E400C8AE3E /* Localizable.strings */; };
 		03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */; };
 		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
 		03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7BD28D34E320069A46E /* WeightData.swift */; };
@@ -76,7 +79,6 @@
 		9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */; };
 		9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69903E286C6517009D5BF5 /* FriendDataCell.swift */; };
 		9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C69903F286C6517009D5BF5 /* FriendDataCell.xib */; };
-		9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C699042286DA189009D5BF5 /* UIColorHex.swift */; };
 		9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */; };
 		9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */; };
 		9C7F3C25289CA21F0039BA2E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7F3C24289CA21F0039BA2E /* FirebaseAuth */; };
@@ -108,12 +110,14 @@
 /* Begin PBXFileReference section */
 		0318016828D4D32A004C7002 /* AddFriendView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFriendView.storyboard; sourceTree = "<group>"; };
 		0318016A28D4D344004C7002 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
-		033BC37528DC4E8B008DBC49 /* HealthDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HealthDataView.storyboard; sourceTree = "<group>"; };
-		033BC37728DC4F97008DBC49 /* HealthDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
-		034367FD28D609BA000BA656 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
+		032843A528DC8C7E00AB1A5D /* OnboardingView3.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView3.storyboard; sourceTree = "<group>"; };
+		032843A728DC8E5700AB1A5D /* L10n-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "L10n-Constants.swift"; sourceTree = "<group>"; };
+		032843A828DC8E5700AB1A5D /* Assets-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets-Constants.swift"; sourceTree = "<group>"; };
+		032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Scenes.swift"; sourceTree = "<group>"; };
+		0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
+		033BC37B28DC7FA9008DBC49 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		034367FF28D609D0000BA656 /* OnboardingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController2.swift; sourceTree = "<group>"; };
 		0343680128D60A13000BA656 /* OnboardingViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController3.swift; sourceTree = "<group>"; };
-		0343680328D60A1D000BA656 /* OnboardingView3.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView3.storyboard; sourceTree = "<group>"; };
 		0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordExerciseView+UIPickerDelegate.swift"; sourceTree = "<group>"; };
 		0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseTableViewCell.xib; sourceTree = "<group>"; };
@@ -143,7 +147,6 @@
 		036F69F128C089B40066A7DA /* EmailSignInView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailSignInView.storyboard; sourceTree = "<group>"; };
 		036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResetPasswordView.storyboard; sourceTree = "<group>"; };
 		036F69F528C08C0F0066A7DA /* SetNameView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetNameView.storyboard; sourceTree = "<group>"; };
-		036F69F728C08D140066A7DA /* ChangeProfileView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangeProfileView.storyboard; sourceTree = "<group>"; };
 		036F69F928C08E7F0066A7DA /* SettingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingView.storyboard; sourceTree = "<group>"; };
 		036F69FB28C08F1C0066A7DA /* FriendProfileView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendProfileView.storyboard; sourceTree = "<group>"; };
 		036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelfCheckView.storyboard; sourceTree = "<group>"; };
@@ -159,6 +162,9 @@
 		03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeProfileViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertHelper.swift; sourceTree = "<group>"; };
+		03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChangeProfileView.storyboard; sourceTree = "<group>"; };
+		03B832F128DC88E400C8AE3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		03B832F328DC891200C8AE3E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareMyDataView.storyboard; sourceTree = "<group>"; };
 		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
 		03C7E7BD28D34E320069A46E /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
@@ -175,7 +181,6 @@
 		9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckViewController.swift; sourceTree = "<group>"; };
 		9C69903E286C6517009D5BF5 /* FriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDataCell.swift; sourceTree = "<group>"; };
 		9C69903F286C6517009D5BF5 /* FriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendDataCell.xib; sourceTree = "<group>"; };
-		9C699042286DA189009D5BF5 /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
 		9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scorering.swift; sourceTree = "<group>"; };
 		9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileViewController.swift; sourceTree = "<group>"; };
 		9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardFriendDataCell.swift; sourceTree = "<group>"; };
@@ -219,7 +224,104 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		033BC37328DC37B2008DBC49 /* MyData */ = {
+		032843AD28DC9A5A00AB1A5D /* SetNameView */ = {
+			isa = PBXGroup;
+			children = (
+				03DFB7A228B7A8390019381A /* SetNameViewController.swift */,
+				0343681C28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift */,
+				036F69F528C08C0F0066A7DA /* SetNameView.storyboard */,
+			);
+			path = SetNameView;
+			sourceTree = "<group>";
+		};
+		032843AE28DC9A7900AB1A5D /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				038E26AD28BF4BF1000204A4 /* SettingViewController.swift */,
+				03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */,
+				036F69F928C08E7F0066A7DA /* SettingView.storyboard */,
+			);
+			path = SettingView;
+			sourceTree = "<group>";
+		};
+		032843AF28DC9A9A00AB1A5D /* SettingCell */ = {
+			isa = PBXGroup;
+			children = (
+				03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */,
+				03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */,
+			);
+			path = SettingCell;
+			sourceTree = "<group>";
+		};
+		0331A20228DC8C5C004AA309 /* OnboardingView3 */ = {
+			isa = PBXGroup;
+			children = (
+				0343680128D60A13000BA656 /* OnboardingViewController3.swift */,
+				032843A528DC8C7E00AB1A5D /* OnboardingView3.storyboard */,
+			);
+			path = OnboardingView3;
+			sourceTree = "<group>";
+		};
+		033BC37928DC7F51008DBC49 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				033BC37A28DC7F51008DBC49 /* Generated */,
+				BE7F33842580D0810027620D /* Assets.xcassets */,
+				033BC37B28DC7FA9008DBC49 /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		033BC37A28DC7F51008DBC49 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */,
+				032843A828DC8E5700AB1A5D /* Assets-Constants.swift */,
+				032843A728DC8E5700AB1A5D /* L10n-Constants.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		033BC37D28DC80D6008DBC49 /* AddFriendView */ = {
+			isa = PBXGroup;
+			children = (
+				0318016A28D4D344004C7002 /* AddFriendViewController.swift */,
+				0318016828D4D32A004C7002 /* AddFriendView.storyboard */,
+			);
+			path = AddFriendView;
+			sourceTree = "<group>";
+		};
+		033BC37E28DC8106008DBC49 /* FriendProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				9C4F1C742859E6F500623C66 /* FriendProfileViewController.swift */,
+				036F69FB28C08F1C0066A7DA /* FriendProfileView.storyboard */,
+			);
+			path = FriendProfileView;
+			sourceTree = "<group>";
+		};
+		033BC37F28DC8125008DBC49 /* ShareMyDataView */ = {
+			isa = PBXGroup;
+			children = (
+				03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */,
+				0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */,
+				03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */,
+			);
+			path = ShareMyDataView;
+			sourceTree = "<group>";
+		};
+		033BC38028DC81DE008DBC49 /* UserDataView */ = {
+			isa = PBXGroup;
+			children = (
+				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
+				03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */,
+				03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */,
+				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
+			);
+			path = UserDataView;
+			sourceTree = "<group>";
+		};
+		033BC38128DC81ED008DBC49 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
 				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
@@ -228,41 +330,110 @@
 				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
 				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
 			);
-			path = MyData;
+			path = ProfileView;
 			sourceTree = "<group>";
 		};
-		033BC37428DC4DE3008DBC49 /* HealthData */ = {
+		033BC38228DC81FF008DBC49 /* RecentActivityCell */ = {
 			isa = PBXGroup;
 			children = (
-				033BC37728DC4F97008DBC49 /* HealthDataViewController.swift */,
-				033BC37528DC4E8B008DBC49 /* HealthDataView.storyboard */,
+				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
+				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
+			);
+			path = RecentActivityCell;
+			sourceTree = "<group>";
+		};
+		033BC38328DC8212008DBC49 /* SummeryCell */ = {
+			isa = PBXGroup;
+			children = (
+				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
+				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
+			);
+			path = SummeryCell;
+			sourceTree = "<group>";
+		};
+		033BC38428DC822F008DBC49 /* DashboardVIew */ = {
+			isa = PBXGroup;
+			children = (
+				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
+				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
+				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
+			);
+			path = DashboardVIew;
+			sourceTree = "<group>";
+		};
+		033BC38528DC8246008DBC49 /* DashboardFriendDataCell */ = {
+			isa = PBXGroup;
+			children = (
+				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
+				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
+			);
+			path = DashboardFriendDataCell;
+			sourceTree = "<group>";
+		};
+		033BC38628DC8272008DBC49 /* SelfCheckView */ = {
+			isa = PBXGroup;
+			children = (
+				9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */,
+				036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */,
+			);
+			path = SelfCheckView;
+			sourceTree = "<group>";
+		};
+		033BC38728DC8283008DBC49 /* RecordExerciseView */ = {
+			isa = PBXGroup;
+			children = (
+				035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */,
+				0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */,
+				035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */,
+			);
+			path = RecordExerciseView;
+			sourceTree = "<group>";
+		};
+		033BC38828DC8295008DBC49 /* RecordWeightView */ = {
+			isa = PBXGroup;
+			children = (
+				036E476828DB1A5C00EA7BB1 /* RecordWeightViewController.swift */,
+				036E476A28DB1A6E00EA7BB1 /* RecordWeightView.storyboard */,
+			);
+			path = RecordWeightView;
+			sourceTree = "<group>";
+		};
+		033BC38928DC82B0008DBC49 /* ExerciseTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */,
+				0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */,
+			);
+			path = ExerciseTableViewCell;
+			sourceTree = "<group>";
+		};
+		033BC38A28DC8334008DBC49 /* ChartsView */ = {
+			isa = PBXGroup;
+			children = (
 				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
 			);
-			path = HealthData;
+			path = ChartsView;
+			sourceTree = "<group>";
+		};
+		033BC38B28DC844E008DBC49 /* ChangeProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
+				03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */,
+				0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */,
+				03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */,
+			);
+			path = ChangeProfileView;
 			sourceTree = "<group>";
 		};
 		034367FC28D60539000BA656 /* OnboardingView */ = {
 			isa = PBXGroup;
 			children = (
-				03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */,
-				03C7E7C328D454030069A46E /* OnboardingView1.storyboard */,
-				034367FF28D609D0000BA656 /* OnboardingViewController2.swift */,
-				034367FD28D609BA000BA656 /* OnboardingView2.storyboard */,
-				0343680128D60A13000BA656 /* OnboardingViewController3.swift */,
-				0343680328D60A1D000BA656 /* OnboardingView3.storyboard */,
+				03B832ED28DC858D00C8AE3E /* OnboardingView1 */,
+				03B832F628DC8BF400C8AE3E /* OnboardingView2 */,
+				0331A20228DC8C5C004AA309 /* OnboardingView3 */,
 			);
 			path = OnboardingView;
-			sourceTree = "<group>";
-		};
-		0343681928D8060A000BA656 /* UITextFieldDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */,
-				0343681C28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift */,
-				0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */,
-				0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */,
-			);
-			path = UITextFieldDelegate;
 			sourceTree = "<group>";
 		};
 		036F698228BB92C00066A7DA /* View */ = {
@@ -271,21 +442,12 @@
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69FF28C091590066A7DA /* CreatePointView */,
-				033BC37428DC4DE3008DBC49 /* HealthData */,
-				036F69E828BE60190066A7DA /* UserDataView */,
-				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
-				03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */,
-				03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */,
-				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
-				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
-				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
-				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
-				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
-				03C7E79B28D2F3810069A46E /* AddFriendsView */,
+				036F69E828BE60190066A7DA /* UserData */,
+				033BC38A28DC8334008DBC49 /* ChartsView */,
+				03C7E79B28D2F3810069A46E /* AddFriend */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,
 				036F698528BB93760066A7DA /* AuthView */,
-				0343681928D8060A000BA656 /* UITextFieldDelegate */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -321,7 +483,6 @@
 		036F698728BB93DA0066A7DA /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				9C699042286DA189009D5BF5 /* UIColorHex.swift */,
 				9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */,
 				9CE63B8C288C548D00FFE94C /* LoginHelper.swift */,
 				9CE63B88288C384100FFE94C /* CoverWindow.swift */,
@@ -341,27 +502,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		036F69E828BE60190066A7DA /* UserDataView */ = {
+		036F69E828BE60190066A7DA /* UserData */ = {
 			isa = PBXGroup;
 			children = (
-				033BC37328DC37B2008DBC49 /* MyData */,
-				03A45B7128D8A4EA0059B617 /* FriendData */,
+				033BC38028DC81DE008DBC49 /* UserDataView */,
+				033BC38128DC81ED008DBC49 /* ProfileView */,
+				033BC38328DC8212008DBC49 /* SummeryCell */,
+				033BC38228DC81FF008DBC49 /* RecentActivityCell */,
+				03A45B7128D8A4EA0059B617 /* FriendDataCell */,
 			);
-			path = UserDataView;
+			path = UserData;
 			sourceTree = "<group>";
 		};
 		036F69FF28C091590066A7DA /* CreatePointView */ = {
 			isa = PBXGroup;
 			children = (
-				9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */,
-				036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */,
-				035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */,
-				0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */,
-				035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */,
-				036E476828DB1A5C00EA7BB1 /* RecordWeightViewController.swift */,
-				036E476A28DB1A6E00EA7BB1 /* RecordWeightView.storyboard */,
-				0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */,
-				0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */,
+				033BC38628DC8272008DBC49 /* SelfCheckView */,
+				033BC38728DC8283008DBC49 /* RecordExerciseView */,
+				033BC38828DC8295008DBC49 /* RecordWeightView */,
+				033BC38928DC82B0008DBC49 /* ExerciseTableViewCell */,
 			);
 			path = CreatePointView;
 			sourceTree = "<group>";
@@ -379,31 +538,26 @@
 		03A45B6E28D8A4510059B617 /* SanitasCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
-				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
-				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
-				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
-				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
+				033BC38428DC822F008DBC49 /* DashboardVIew */,
+				033BC38528DC8246008DBC49 /* DashboardFriendDataCell */,
 			);
 			path = SanitasCollectionView;
 			sourceTree = "<group>";
 		};
-		03A45B7128D8A4EA0059B617 /* FriendData */ = {
+		03A45B7128D8A4EA0059B617 /* FriendDataCell */ = {
 			isa = PBXGroup;
 			children = (
 				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
 				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
 			);
-			path = FriendData;
+			path = FriendDataCell;
 			sourceTree = "<group>";
 		};
 		03A45B7228D8A5C40059B617 /* SignInWithEmail */ = {
 			isa = PBXGroup;
 			children = (
-				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
-				036F69F128C089B40066A7DA /* EmailSignInView.storyboard */,
-				036F698028B940270066A7DA /* ResetPasswordViewController.swift */,
-				036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */,
+				03B832F428DC8BD400C8AE3E /* EmailSignInView */,
+				03B832F528DC8BDB00C8AE3E /* ResetPasswordView */,
 			);
 			path = SignInWithEmail;
 			sourceTree = "<group>";
@@ -417,33 +571,61 @@
 			path = SignInWithApple;
 			sourceTree = "<group>";
 		};
-		03C7E79B28D2F3810069A46E /* AddFriendsView */ = {
+		03B832ED28DC858D00C8AE3E /* OnboardingView1 */ = {
 			isa = PBXGroup;
 			children = (
-				0318016A28D4D344004C7002 /* AddFriendViewController.swift */,
-				0318016828D4D32A004C7002 /* AddFriendView.storyboard */,
-				9C4F1C742859E6F500623C66 /* FriendProfileViewController.swift */,
-				036F69FB28C08F1C0066A7DA /* FriendProfileView.storyboard */,
-				03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */,
-				0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */,
-				03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */,
+				03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */,
+				03C7E7C328D454030069A46E /* OnboardingView1.storyboard */,
 			);
-			path = AddFriendsView;
+			path = OnboardingView1;
+			sourceTree = "<group>";
+		};
+		03B832F428DC8BD400C8AE3E /* EmailSignInView */ = {
+			isa = PBXGroup;
+			children = (
+				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
+				0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */,
+				036F69F128C089B40066A7DA /* EmailSignInView.storyboard */,
+			);
+			path = EmailSignInView;
+			sourceTree = "<group>";
+		};
+		03B832F528DC8BDB00C8AE3E /* ResetPasswordView */ = {
+			isa = PBXGroup;
+			children = (
+				036F698028B940270066A7DA /* ResetPasswordViewController.swift */,
+				0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */,
+				036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */,
+			);
+			path = ResetPasswordView;
+			sourceTree = "<group>";
+		};
+		03B832F628DC8BF400C8AE3E /* OnboardingView2 */ = {
+			isa = PBXGroup;
+			children = (
+				034367FF28D609D0000BA656 /* OnboardingViewController2.swift */,
+				0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */,
+			);
+			path = OnboardingView2;
+			sourceTree = "<group>";
+		};
+		03C7E79B28D2F3810069A46E /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				033BC37D28DC80D6008DBC49 /* AddFriendView */,
+				033BC37E28DC8106008DBC49 /* FriendProfileView */,
+				033BC37F28DC8125008DBC49 /* ShareMyDataView */,
+			);
+			path = AddFriend;
 			sourceTree = "<group>";
 		};
 		9CFBA12328D4B3CD003EBFB3 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
-				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
-				03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */,
-				036F69F728C08D140066A7DA /* ChangeProfileView.storyboard */,
-				03DFB7A228B7A8390019381A /* SetNameViewController.swift */,
-				036F69F528C08C0F0066A7DA /* SetNameView.storyboard */,
-				038E26AD28BF4BF1000204A4 /* SettingViewController.swift */,
-				03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */,
-				036F69F928C08E7F0066A7DA /* SettingView.storyboard */,
-				03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */,
-				03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */,
+				032843AD28DC9A5A00AB1A5D /* SetNameView */,
+				033BC38B28DC844E008DBC49 /* ChangeProfileView */,
+				032843AE28DC9A7900AB1A5D /* SettingView */,
+				032843AF28DC9A9A00AB1A5D /* SettingCell */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -477,6 +659,7 @@
 		BE7F337A2580D07E0027620D /* pppppp */ = {
 			isa = PBXGroup;
 			children = (
+				033BC37928DC7F51008DBC49 /* Resources */,
 				BE7F337B2580D07E0027620D /* AppDelegate.swift */,
 				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
@@ -484,10 +667,10 @@
 				036F698828BB93F60066A7DA /* Model */,
 				036F698628BB93AE0066A7DA /* Manager */,
 				036F698728BB93DA0066A7DA /* Helper */,
-				9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */,
-				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33892580D0810027620D /* Info.plist */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
+				9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */,
+				03B832F228DC88E400C8AE3E /* Localizable.strings */,
 			);
 			path = pppppp;
 			sourceTree = "<group>";
@@ -542,6 +725,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = BE7F336F2580D07E0027620D;
 			packageReferences = (
@@ -568,31 +752,32 @@
 				036E476B28DB1A6E00EA7BB1 /* RecordWeightView.storyboard in Resources */,
 				036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */,
 				03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */,
+				03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */,
 				036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */,
 				036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */,
+				032843A628DC8C7E00AB1A5D /* OnboardingView3.storyboard in Resources */,
 				036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */,
 				035CE52028CF1E61001F89BB /* RecordExerciseView.storyboard in Resources */,
 				9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */,
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
-				033BC37628DC4E8B008DBC49 /* HealthDataView.storyboard in Resources */,
 				036F69E528BE1DC70066A7DA /* SummaryCollectionViewCell.xib in Resources */,
+				03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */,
 				036F69F228C089B40066A7DA /* EmailSignInView.storyboard in Resources */,
 				9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */,
-				034367FE28D609BA000BA656 /* OnboardingView2.storyboard in Resources */,
 				03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */,
 				BEA64AED25D3EC040064F184 /* GoogleService-Info.plist in Resources */,
 				BE7F33852580D0810027620D /* Assets.xcassets in Resources */,
 				036F69FC28C08F1C0066A7DA /* FriendProfileView.storyboard in Resources */,
-				0343680428D60A1D000BA656 /* OnboardingView3.storyboard in Resources */,
 				0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */,
 				036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */,
 				03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */,
 				0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
-				036F69F828C08D140066A7DA /* ChangeProfileView.storyboard in Resources */,
 				9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */,
 				0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */,
+				033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
+				0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */,
 				BE7F33832580D07E0027620D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,7 +805,6 @@
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
 				0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
-				033BC37828DC4F97008DBC49 /* HealthDataViewController.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
 				036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */,
 				03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */,
@@ -643,11 +827,12 @@
 				9CAA88EC26B1918B005517D5 /* EmailSignInViewController.swift in Sources */,
 				9C4F1C752859E6F500623C66 /* FriendProfileViewController.swift in Sources */,
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
-				9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */,
+				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
 				03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */,
 				0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */,
+				032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */,
 				03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */,
 				0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */,
@@ -657,6 +842,7 @@
 				03A1E0B928D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
+				032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */,
 				03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */,
 				036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,
@@ -666,6 +852,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		03B832F228DC88E400C8AE3E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03B832F128DC88E400C8AE3E /* en */,
+				03B832F328DC891200C8AE3E /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BE7F33812580D07E0027620D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -689,6 +884,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -750,6 +946,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
