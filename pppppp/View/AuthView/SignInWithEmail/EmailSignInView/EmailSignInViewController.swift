@@ -61,9 +61,8 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
     }
     
     @IBAction func sentEmailMore() {
-        let storyboard = UIStoryboard(name: "ResetPasswordView", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC!, sender: self)
+        let secondVC = StoryboardScene.ResetPasswordView.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     override func viewDidLoad() {
@@ -90,8 +89,7 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
     
     //MARK: - Setting Delegate
     func loginScene() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC!, sender: self)
+        let secondVC = StoryboardScene.Main.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
     }
 }

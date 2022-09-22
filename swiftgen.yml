@@ -1,5 +1,5 @@
-input_dir: ppppppp
-output_dir: ppppppp/Resources/Generated/
+input_dir: pppppp
+output_dir: pppppp/Resources/Generated/
 xcassets:
   - inputs:
       - Resources/Colors.xcassets
@@ -8,16 +8,15 @@ xcassets:
       - templateName: swift5
         output: Assets-Constants.swift
 strings:
-  inputs: Resources/en.lproj
+  inputs: en.lproj
   filter: .+\.strings$
   outputs:
     - templateName: structured-swift4
       output: L10n-Constants.swift
 ib:
- inputs: Views
- filter: .+\.storyboard$
- outputs:
-  - templateName: scenes-swift4
-   output: Storyboard Scenes.swift
-  - templateName: segues-swift4
-   output: Storyboard Segues.swift
+  inputs: View
+  filter: .+\.storyboard$
+  outputs:
+    - templateName: scenes-swift4
+      output: Storyboard Scenes.swift
+   

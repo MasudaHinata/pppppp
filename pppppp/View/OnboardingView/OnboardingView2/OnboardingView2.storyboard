@@ -25,23 +25,7 @@
                                     <constraint firstAttribute="height" constant="444" id="zdu-st-UuI"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ccs-qe-bNr">
-                                <rect key="frame" x="16" y="538" width="240" height="48"/>
-                                <string key="text">運動・歩数を
-</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHe-oB-JIA">
-                                <rect key="frame" x="16" y="586" width="363" height="48"/>
-                                <string key="text">増やしてポイントを
-</string>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="集めよう" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDb-M8-rQH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="集めよう" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDb-M8-rQH">
                                 <rect key="frame" x="16" y="634" width="161" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,15 +67,12 @@
                         <viewLayoutGuide key="safeArea" id="pjo-t4-ZnU"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="yDb-M8-rQH" firstAttribute="top" secondItem="ZHe-oB-JIA" secondAttribute="bottom" id="3lr-aE-tIY"/>
                             <constraint firstAttribute="bottom" secondItem="RLV-jW-ZVI" secondAttribute="bottom" id="ADM-a1-Nc2"/>
                             <constraint firstItem="xBN-vf-RxM" firstAttribute="leading" secondItem="leq-bj-Sje" secondAttribute="leading" constant="-181" id="AOq-bb-hBI"/>
-                            <constraint firstItem="ZHe-oB-JIA" firstAttribute="top" secondItem="Ccs-qe-bNr" secondAttribute="bottom" id="Ad4-3W-uqC"/>
                             <constraint firstItem="pjo-t4-ZnU" firstAttribute="bottom" secondItem="FHt-Zd-pG3" secondAttribute="bottom" constant="40" id="Baj-sO-TV3"/>
                             <constraint firstItem="xBN-vf-RxM" firstAttribute="top" secondItem="leq-bj-Sje" secondAttribute="top" constant="-91" id="DN9-gY-wAb"/>
                             <constraint firstItem="pjo-t4-ZnU" firstAttribute="trailing" secondItem="cH1-5l-5wP" secondAttribute="trailing" constant="40" id="J3J-vb-SHK"/>
                             <constraint firstAttribute="trailing" secondItem="xBN-vf-RxM" secondAttribute="trailing" constant="-226" id="Qza-nf-JTO"/>
-                            <constraint firstItem="Ccs-qe-bNr" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="16" id="dYH-MM-z1Y"/>
                             <constraint firstItem="pjo-t4-ZnU" firstAttribute="trailing" secondItem="C5z-SQ-SPk" secondAttribute="trailing" constant="40" id="db6-SD-cma"/>
                             <constraint firstItem="yDb-M8-rQH" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="16" id="eJz-If-oLs"/>
                             <constraint firstAttribute="bottom" secondItem="xBN-vf-RxM" secondAttribute="bottom" id="eMQ-Lx-XHZ"/>
@@ -99,7 +80,6 @@
                             <constraint firstItem="pjo-t4-ZnU" firstAttribute="bottom" secondItem="C5z-SQ-SPk" secondAttribute="bottom" id="i31-aT-y9b"/>
                             <constraint firstItem="RLV-jW-ZVI" firstAttribute="leading" secondItem="leq-bj-Sje" secondAttribute="leading" id="lGv-JO-ArT"/>
                             <constraint firstAttribute="trailing" secondItem="RLV-jW-ZVI" secondAttribute="trailing" id="pPj-a6-FGI"/>
-                            <constraint firstItem="ZHe-oB-JIA" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="16" id="rU3-NI-Fi1"/>
                             <constraint firstItem="FHt-Zd-pG3" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="40" id="rVc-bb-ThU"/>
                             <constraint firstItem="cH1-5l-5wP" firstAttribute="top" secondItem="yDb-M8-rQH" secondAttribute="bottom" constant="24" id="s3M-Dj-t6i"/>
                         </constraints>
@@ -107,6 +87,7 @@
                     <navigationItem key="navigationItem" id="LtX-hF-weW"/>
                     <connections>
                         <outlet property="backButtonLayout" destination="FHt-Zd-pG3" id="0O3-cR-8vi"/>
+                        <outlet property="messageLabel" destination="yDb-M8-rQH" id="4iv-YN-Dzs"/>
                         <outlet property="nextButtonLayout" destination="cH1-5l-5wP" id="NiS-7m-jb4"/>
                     </connections>
                 </viewController>

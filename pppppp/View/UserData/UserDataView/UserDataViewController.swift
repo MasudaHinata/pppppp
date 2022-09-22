@@ -72,9 +72,8 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
             alert.addAction(cancel)
             self.present(alert, animated: true, completion: nil)
         } else if flag == false {
-            let storyboard = UIStoryboard(name: "SettingView", bundle: nil)
-            let secondVC = storyboard.instantiateInitialViewController()
-            self.showDetailViewController(secondVC!, sender: self)
+            let secondVC = StoryboardScene.SettingView.initialScene.instantiate()
+            self.showDetailViewController(secondVC, sender: self)
         }
     }
     
@@ -152,9 +151,8 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
     func friendDeleted() async {
         let alert = UIAlertController(title: "完了", message: "友達を削除しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let secondVC = storyboard.instantiateInitialViewController()
-            self.showDetailViewController(secondVC!, sender: self)
+            let secondVC = StoryboardScene.Main.initialScene.instantiate()
+            self.showDetailViewController(secondVC, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {

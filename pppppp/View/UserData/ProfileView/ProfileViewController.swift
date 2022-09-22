@@ -61,25 +61,22 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "ChangeProfileView", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        if let sheet = secondVC?.sheetPresentationController {
+        let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
+        if let sheet = secondVC.sheetPresentationController {
             sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
         }
-        secondVC?.presentationController?.delegate = self
-        self.present(secondVC!, animated: true, completion: nil)
+        secondVC.presentationController?.delegate = self
+        self.present(secondVC, animated: true, completion: nil)
     }
     
     @IBAction func sceneSettingView() {
-        let storyboard = UIStoryboard(name: "SettingView", bundle: nil)
-        let settingVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(settingVC ?? UIViewController(), sender: self)
+        let secondVC = StoryboardScene.SettingView.initialScene.instantiate()
+        self.showDetailViewController(secondVC ?? UIViewController(), sender: self)
     }
     
     @IBAction func scneShareMyDataView() {
-        let storyboard = UIStoryboard(name: "ShareMyDataView", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC!, sender: self)
+        let secondVC = StoryboardScene.ShareMyDataView.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
@@ -206,9 +203,8 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     
     //MARK: - Setting Delegate
     func notChangeName() {
-        let storyboard = UIStoryboard(name: "SetNameView", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC!, sender: self)
+        let secondVC = StoryboardScene.SetNameView.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     func scene() {

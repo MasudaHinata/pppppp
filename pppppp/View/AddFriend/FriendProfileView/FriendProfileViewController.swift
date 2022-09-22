@@ -32,9 +32,8 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
     }
     
     @IBAction func backButton() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC!, sender: self)
+        let secondVC = StoryboardScene.Main.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     //MARK: - 友達を追加する
@@ -45,9 +44,8 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 if friendId == userID {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "自分とは友達になれません", handler: { _ in
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateInitialViewController()
-                        self.showDetailViewController(secondVC!, sender: self)
+                        let secondVC = StoryboardScene.Main.initialScene.instantiate()
+                        self.showDetailViewController(secondVC, sender: self)
                     })
                 } else {
                     try await FirebaseClient.shared.addFriend(friendId: friendId)
@@ -83,9 +81,8 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
                 print("FriendProfileViewContro ViewAppear error:", error.localizedDescription)
                 if error.localizedDescription == "The operation couldn’t be completed. (pppppp.FirebaseClientFirestoreError error 0.)" {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "アカウントが存在しません", handler: { _ in
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let secondVC = storyboard.instantiateInitialViewController()
-                        self.showDetailViewController(secondVC!, sender: self)
+                        let secondVC = StoryboardScene.Main.initialScene.instantiate()
+                        self.showDetailViewController(secondVC, sender: self)
                     })
                 } else if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
@@ -103,9 +100,8 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
     func addFriends() {
         let alert = UIAlertController(title: "完了", message: "友達を追加しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let secondVC = storyboard.instantiateInitialViewController()
-            self.showDetailViewController(secondVC!, sender: self)
+            let secondVC = StoryboardScene.Main.initialScene.instantiate()
+            self.showDetailViewController(secondVC, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
@@ -116,9 +112,8 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
     func friendNotFound() {
         let alert = UIAlertController(title: "エラー", message: "アカウントが存在しません", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let secondVC = storyboard.instantiateInitialViewController()
-            self.showDetailViewController(secondVC!, sender: self)
+            let secondVC = StoryboardScene.Main.initialScene.instantiate()
+            self.showDetailViewController(secondVC, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {

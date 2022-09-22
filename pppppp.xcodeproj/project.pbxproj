@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0318016828D4D32A004C7002 /* AddFriendView.storyboard */; };
 		0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318016A28D4D344004C7002 /* AddFriendViewController.swift */; };
+		032843A628DC8C7E00AB1A5D /* OnboardingView3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 032843A528DC8C7E00AB1A5D /* OnboardingView3.storyboard */; };
+		032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843A728DC8E5700AB1A5D /* L10n-Constants.swift */; };
+		032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843A828DC8E5700AB1A5D /* Assets-Constants.swift */; };
+		032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */; };
+		0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */; };
 		033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37B28DC7FA9008DBC49 /* Colors.xcassets */; };
-		034367FE28D609BA000BA656 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034367FD28D609BA000BA656 /* OnboardingView2.storyboard */; };
 		0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034367FF28D609D0000BA656 /* OnboardingViewController2.swift */; };
 		0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680128D60A13000BA656 /* OnboardingViewController3.swift */; };
-		0343680428D60A1D000BA656 /* OnboardingView3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343680328D60A1D000BA656 /* OnboardingView3.storyboard */; };
 		0343680E28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */; };
 		0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */; };
 		0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */; };
@@ -59,6 +62,7 @@
 		03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */; };
 		03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */; };
 		03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */; };
+		03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B832F228DC88E400C8AE3E /* Localizable.strings */; };
 		03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */; };
 		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
 		03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7BD28D34E320069A46E /* WeightData.swift */; };
@@ -107,11 +111,14 @@
 /* Begin PBXFileReference section */
 		0318016828D4D32A004C7002 /* AddFriendView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFriendView.storyboard; sourceTree = "<group>"; };
 		0318016A28D4D344004C7002 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		032843A528DC8C7E00AB1A5D /* OnboardingView3.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView3.storyboard; sourceTree = "<group>"; };
+		032843A728DC8E5700AB1A5D /* L10n-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "L10n-Constants.swift"; sourceTree = "<group>"; };
+		032843A828DC8E5700AB1A5D /* Assets-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets-Constants.swift"; sourceTree = "<group>"; };
+		032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Scenes.swift"; sourceTree = "<group>"; };
+		0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
 		033BC37B28DC7FA9008DBC49 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		034367FD28D609BA000BA656 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
 		034367FF28D609D0000BA656 /* OnboardingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController2.swift; sourceTree = "<group>"; };
 		0343680128D60A13000BA656 /* OnboardingViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController3.swift; sourceTree = "<group>"; };
-		0343680328D60A1D000BA656 /* OnboardingView3.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView3.storyboard; sourceTree = "<group>"; };
 		0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordExerciseView+UIPickerDelegate.swift"; sourceTree = "<group>"; };
 		0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseTableViewCell.xib; sourceTree = "<group>"; };
@@ -157,6 +164,8 @@
 		03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertHelper.swift; sourceTree = "<group>"; };
 		03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChangeProfileView.storyboard; sourceTree = "<group>"; };
+		03B832F128DC88E400C8AE3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		03B832F328DC891200C8AE3E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareMyDataView.storyboard; sourceTree = "<group>"; };
 		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
 		03C7E7BD28D34E320069A46E /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
@@ -217,6 +226,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0331A20228DC8C5C004AA309 /* OnboardingView3 */ = {
+			isa = PBXGroup;
+			children = (
+				0343680128D60A13000BA656 /* OnboardingViewController3.swift */,
+				032843A528DC8C7E00AB1A5D /* OnboardingView3.storyboard */,
+			);
+			path = OnboardingView3;
+			sourceTree = "<group>";
+		};
 		033BC37928DC7F51008DBC49 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +248,9 @@
 		033BC37A28DC7F51008DBC49 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */,
+				032843A828DC8E5700AB1A5D /* Assets-Constants.swift */,
+				032843A728DC8E5700AB1A5D /* L10n-Constants.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -380,12 +401,9 @@
 		034367FC28D60539000BA656 /* OnboardingView */ = {
 			isa = PBXGroup;
 			children = (
-				03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */,
-				03C7E7C328D454030069A46E /* OnboardingView1.storyboard */,
-				034367FF28D609D0000BA656 /* OnboardingViewController2.swift */,
-				034367FD28D609BA000BA656 /* OnboardingView2.storyboard */,
-				0343680128D60A13000BA656 /* OnboardingViewController3.swift */,
-				0343680328D60A1D000BA656 /* OnboardingView3.storyboard */,
+				03B832ED28DC858D00C8AE3E /* OnboardingView1 */,
+				03B832F628DC8BF400C8AE3E /* OnboardingView2 */,
+				0331A20228DC8C5C004AA309 /* OnboardingView3 */,
 			);
 			path = OnboardingView;
 			sourceTree = "<group>";
@@ -523,10 +541,8 @@
 		03A45B7228D8A5C40059B617 /* SignInWithEmail */ = {
 			isa = PBXGroup;
 			children = (
-				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
-				036F69F128C089B40066A7DA /* EmailSignInView.storyboard */,
-				036F698028B940270066A7DA /* ResetPasswordViewController.swift */,
-				036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */,
+				03B832F428DC8BD400C8AE3E /* EmailSignInView */,
+				03B832F528DC8BDB00C8AE3E /* ResetPasswordView */,
 			);
 			path = SignInWithEmail;
 			sourceTree = "<group>";
@@ -538,6 +554,42 @@
 				0343681728D7ED68000BA656 /* SignInWithAppleView.storyboard */,
 			);
 			path = SignInWithApple;
+			sourceTree = "<group>";
+		};
+		03B832ED28DC858D00C8AE3E /* OnboardingView1 */ = {
+			isa = PBXGroup;
+			children = (
+				03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */,
+				03C7E7C328D454030069A46E /* OnboardingView1.storyboard */,
+			);
+			path = OnboardingView1;
+			sourceTree = "<group>";
+		};
+		03B832F428DC8BD400C8AE3E /* EmailSignInView */ = {
+			isa = PBXGroup;
+			children = (
+				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
+				036F69F128C089B40066A7DA /* EmailSignInView.storyboard */,
+			);
+			path = EmailSignInView;
+			sourceTree = "<group>";
+		};
+		03B832F528DC8BDB00C8AE3E /* ResetPasswordView */ = {
+			isa = PBXGroup;
+			children = (
+				036F698028B940270066A7DA /* ResetPasswordViewController.swift */,
+				036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */,
+			);
+			path = ResetPasswordView;
+			sourceTree = "<group>";
+		};
+		03B832F628DC8BF400C8AE3E /* OnboardingView2 */ = {
+			isa = PBXGroup;
+			children = (
+				034367FF28D609D0000BA656 /* OnboardingViewController2.swift */,
+				0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */,
+			);
+			path = OnboardingView2;
 			sourceTree = "<group>";
 		};
 		03C7E79B28D2F3810069A46E /* AddFriend */ = {
@@ -605,6 +657,7 @@
 				9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */,
 				BE7F33892580D0810027620D /* Info.plist */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
+				03B832F228DC88E400C8AE3E /* Localizable.strings */,
 			);
 			path = pppppp;
 			sourceTree = "<group>";
@@ -659,6 +712,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = BE7F336F2580D07E0027620D;
 			packageReferences = (
@@ -688,19 +742,19 @@
 				03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */,
 				036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */,
 				036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */,
+				032843A628DC8C7E00AB1A5D /* OnboardingView3.storyboard in Resources */,
 				036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */,
 				035CE52028CF1E61001F89BB /* RecordExerciseView.storyboard in Resources */,
 				9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */,
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
 				036F69E528BE1DC70066A7DA /* SummaryCollectionViewCell.xib in Resources */,
+				03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */,
 				036F69F228C089B40066A7DA /* EmailSignInView.storyboard in Resources */,
 				9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */,
-				034367FE28D609BA000BA656 /* OnboardingView2.storyboard in Resources */,
 				03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */,
 				BEA64AED25D3EC040064F184 /* GoogleService-Info.plist in Resources */,
 				BE7F33852580D0810027620D /* Assets.xcassets in Resources */,
 				036F69FC28C08F1C0066A7DA /* FriendProfileView.storyboard in Resources */,
-				0343680428D60A1D000BA656 /* OnboardingView3.storyboard in Resources */,
 				0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */,
 				036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */,
 				03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */,
@@ -710,6 +764,7 @@
 				0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */,
 				033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
+				0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */,
 				BE7F33832580D07E0027620D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,11 +814,13 @@
 				9CAA88EC26B1918B005517D5 /* EmailSignInViewController.swift in Sources */,
 				9C4F1C752859E6F500623C66 /* FriendProfileViewController.swift in Sources */,
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
+				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				9C699043286DA189009D5BF5 /* UIColorHex.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
 				03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */,
 				0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */,
+				032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */,
 				03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */,
 				0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */,
@@ -773,6 +830,7 @@
 				03A1E0B928D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
+				032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */,
 				03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */,
 				036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,
@@ -782,6 +840,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		03B832F228DC88E400C8AE3E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03B832F128DC88E400C8AE3E /* en */,
+				03B832F328DC891200C8AE3E /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BE7F33812580D07E0027620D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -805,6 +872,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -866,6 +934,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

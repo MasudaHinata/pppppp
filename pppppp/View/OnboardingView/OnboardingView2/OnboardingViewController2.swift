@@ -2,6 +2,12 @@ import UIKit
 
 class OnboardingViewController2: UIViewController {
     
+    @IBOutlet var messageLabel: UILabel! {
+        didSet {
+            messageLabel.text = L10n.onboardingView2
+        }
+    }
+    
     @IBOutlet var backButtonLayout: UIButton! {
         didSet {
             backButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
@@ -15,9 +21,8 @@ class OnboardingViewController2: UIViewController {
     }
     
     @IBAction func backButton(_ sender: Any) {
-        let storyBoard = UIStoryboard(name: "OnboardingView1", bundle: nil)
-        let viewController = storyBoard.instantiateInitialViewController()
-        let navigationController = UINavigationController(rootViewController: viewController!)
+        let secondVC = StoryboardScene.OnboardingView1.initialScene.instantiate()
+        let navigationController = UINavigationController(rootViewController: secondVC)
         navigationController.modalPresentationStyle = .fullScreen
         let transition = CATransition()
         transition.duration = 0.2
@@ -28,9 +33,8 @@ class OnboardingViewController2: UIViewController {
     }
     
     @IBAction func nextButton(_ sender: Any) {
-        let storyBoard = UIStoryboard(name: "OnboardingView3", bundle: nil)
-        let viewController = storyBoard.instantiateInitialViewController()
-        let navigationController = UINavigationController(rootViewController: viewController!)
+        let secondVC = StoryboardScene.OnboardingView3.initialScene.instantiate()
+        let navigationController = UINavigationController(rootViewController: secondVC)
         navigationController.modalPresentationStyle = .fullScreen
         let transition = CATransition()
         transition.duration = 0.2

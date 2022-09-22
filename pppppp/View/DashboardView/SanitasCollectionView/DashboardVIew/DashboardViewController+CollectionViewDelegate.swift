@@ -15,8 +15,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "UserDataView", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController() as! UserDataViewController
+        let secondVC = StoryboardScene.UserDataView.initialScene.instantiate()
         secondVC.userDataItem = friendDataList[indexPath.row]
         self.showDetailViewController(secondVC, sender: self)
     }

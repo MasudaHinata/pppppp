@@ -58,8 +58,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             //MARK: - activityGrass
         } else if collectionView.tag == 0 {
             //MARK: - friendList UserDataViewに遷移
-            let storyboard = UIStoryboard(name: "UserDataView", bundle: nil)
-            let secondVC = storyboard.instantiateInitialViewController() as! UserDataViewController
+            let secondVC = StoryboardScene.UserDataView.initialScene.instantiate()
             secondVC.userDataItem = friendDataList[indexPath.row]
             self.showDetailViewController(secondVC, sender: self)
         } else {

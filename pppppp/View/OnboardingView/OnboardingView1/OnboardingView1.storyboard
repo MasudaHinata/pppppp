@@ -25,21 +25,9 @@
                                     <constraint firstAttribute="height" constant="444" id="q9G-TL-Fi6"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="友達と" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzw-zM-QV5">
-                                <rect key="frame" x="16" y="590" width="120" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzw-zM-QV5">
+                                <rect key="frame" x="16" y="742" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="健康に関する" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNy-6u-mGD">
-                                <rect key="frame" x="16" y="638" width="242" height="48"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="努力ポイントを共有" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJM-cp-9Z3">
-                                <rect key="frame" x="16" y="686" width="363" height="48"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -64,21 +52,18 @@
                             <constraint firstItem="tyS-LQ-OWG" firstAttribute="top" secondItem="Iud-yC-ACo" secondAttribute="top" constant="-482" id="2Wu-dV-KXF"/>
                             <constraint firstAttribute="trailing" secondItem="tyS-LQ-OWG" secondAttribute="trailing" constant="-279" id="6jo-Sb-UkX"/>
                             <constraint firstAttribute="bottom" secondItem="xdM-x7-Qyf" secondAttribute="bottom" id="78f-Hy-Xhk"/>
-                            <constraint firstItem="gNy-6u-mGD" firstAttribute="leading" secondItem="tGI-rv-4XK" secondAttribute="leading" constant="16" id="7id-ft-kKS"/>
-                            <constraint firstItem="IJM-cp-9Z3" firstAttribute="leading" secondItem="tGI-rv-4XK" secondAttribute="leading" constant="16" id="7wf-S1-f7y"/>
-                            <constraint firstItem="gNy-6u-mGD" firstAttribute="top" secondItem="jzw-zM-QV5" secondAttribute="bottom" id="AEd-vn-mJB"/>
                             <constraint firstAttribute="bottom" secondItem="tyS-LQ-OWG" secondAttribute="bottom" constant="-75" id="HSS-Xa-1hj"/>
                             <constraint firstItem="tGI-rv-4XK" firstAttribute="trailing" secondItem="xdM-x7-Qyf" secondAttribute="trailing" id="MCc-ej-5j3"/>
                             <constraint firstItem="tGI-rv-4XK" firstAttribute="bottom" secondItem="yoK-BG-4t0" secondAttribute="bottom" constant="40" id="Nmg-q5-pCi"/>
                             <constraint firstItem="tGI-rv-4XK" firstAttribute="trailing" secondItem="yoK-BG-4t0" secondAttribute="trailing" constant="40" id="Y48-Xv-ri8"/>
-                            <constraint firstItem="yoK-BG-4t0" firstAttribute="top" secondItem="IJM-cp-9Z3" secondAttribute="bottom" constant="24" id="ecN-20-cGF"/>
+                            <constraint firstItem="yoK-BG-4t0" firstAttribute="topMargin" secondItem="jzw-zM-QV5" secondAttribute="bottom" constant="24" id="ad4-di-aQX"/>
                             <constraint firstItem="jzw-zM-QV5" firstAttribute="leading" secondItem="tGI-rv-4XK" secondAttribute="leading" constant="16" id="lJY-yt-HKK"/>
-                            <constraint firstItem="IJM-cp-9Z3" firstAttribute="top" secondItem="gNy-6u-mGD" secondAttribute="bottom" id="m5v-NT-5s3"/>
                             <constraint firstItem="tyS-LQ-OWG" firstAttribute="leading" secondItem="Iud-yC-ACo" secondAttribute="leading" constant="-341" id="wMp-yw-wEL"/>
                             <constraint firstItem="xdM-x7-Qyf" firstAttribute="leading" secondItem="tGI-rv-4XK" secondAttribute="leading" id="wNy-NL-inb"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="messageLabel" destination="jzw-zM-QV5" id="2gz-G0-7Fz"/>
                         <outlet property="nextButtonLayout" destination="yoK-BG-4t0" id="97q-21-Nod"/>
                     </connections>
                 </viewController>

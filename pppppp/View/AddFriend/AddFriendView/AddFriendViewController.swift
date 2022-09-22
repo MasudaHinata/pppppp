@@ -12,15 +12,13 @@ class AddFriendViewController: UIViewController {
     }
     
     @IBAction func addFriendButton() {
-        let storyboard = UIStoryboard(name: "ShareMyDataView", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC!, sender: self)
+        let secondVC = StoryboardScene.ShareMyDataView.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     @IBAction func sceneSetting() {
-        let storyboard = UIStoryboard(name: "SettingView", bundle: nil)
-        let secondVC = storyboard.instantiateInitialViewController()
-        self.showDetailViewController(secondVC!, sender: self)
+        let secondVC = StoryboardScene.SettingView.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     override func viewDidLoad() {
