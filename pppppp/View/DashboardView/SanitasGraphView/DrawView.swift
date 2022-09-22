@@ -67,6 +67,7 @@ class DrawView: UIView {
         path.close()
         path.lineWidth = 5.0
         Asset.Colors.lightBlue25.color.setFill()
+        path.fill()
         
         let pointLabel = UILabel()
         pointLabel.frame = CGRect(x: vertex.x - 28, y: vertex.y + 24, width: 56, height: 24)

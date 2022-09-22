@@ -25,20 +25,20 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             gradationFilterView.backgroundColor = .clear
             let gradientLayer: CAGradientLayer = CAGradientLayer()
             gradientLayer.frame.size = gradationFilterView.frame.size
-            gradientLayer.colors = [UIColor.init(hex: "4A0061", alpha: 0.6).cgColor, UIColor.init(hex: "0045F5",alpha: 0.6).cgColor]
+            gradientLayer.colors = [Asset.Colors.gradation2.color, Asset.Colors.gradation1.color]
             gradationFilterView.layer.addSublayer(gradientLayer)
         }
     }
     
     @IBOutlet var showMyQRCodeLayout: UIButton! {
         didSet {
-            showMyQRCodeLayout.tintColor = UIColor.init(hex: "000000", alpha: 0.39)
+            showMyQRCodeLayout.tintColor = Asset.Colors.black39.color
         }
     }
     
     @IBOutlet var shareLinkLayout: UIButton! {
         didSet {
-            shareLinkLayout .tintColor = UIColor.init(hex: "000000", alpha: 0.39)
+            shareLinkLayout .tintColor = Asset.Colors.black39.color
         }
     }
     
@@ -46,7 +46,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         didSet {
             settingLightLayout.setImage(UIImage(systemName: "flashlight.off.fill"), for: .normal)
             var configuration = UIButton.Configuration.filled()
-            configuration.baseBackgroundColor = .init(hex: "000000", alpha: 0.39)
+            configuration.baseBackgroundColor = Asset.Colors.black39.color
             configuration.cornerStyle = .capsule
             settingLightLayout.configuration = configuration
         }
@@ -56,7 +56,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         didSet {
             albumButtonLayout.setImage(UIImage(systemName: "photo"), for: .normal)
             var configuration = UIButton.Configuration.filled()
-            configuration.baseBackgroundColor = .init(hex: "000000", alpha: 0.39)
+            configuration.baseBackgroundColor = Asset.Colors.black39.color
             configuration.cornerStyle = .capsule
             albumButtonLayout.configuration = configuration
         }
@@ -104,7 +104,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         //TODO: 他のところ触ったら閉じるようにする
         dismissButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
         dismissButton.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 108)
-        dismissButton.backgroundColor = UIColor.init(hex: "000000", alpha: 0.39)
+        dismissButton.backgroundColor = Asset.Colors.black39.color
         dismissButton.layer.cornerRadius = 28.0
         dismissButton.setImage(UIImage(systemName: "xmark"), for: .normal)
         dismissButton.tintColor = Asset.Colors.white0.color
@@ -151,7 +151,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             ledFlash(false)
             settingLightLayout.setImage(UIImage(systemName: "flashlight.off.fill"), for: .normal)
             var configuration = UIButton.Configuration.filled()
-            configuration.baseBackgroundColor = .init(hex: "000000", alpha: 0.39)
+            configuration.baseBackgroundColor = Asset.Colors.black39.color
             configuration.cornerStyle = .capsule
             settingLightLayout.configuration = configuration
         }

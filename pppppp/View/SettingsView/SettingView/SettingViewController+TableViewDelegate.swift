@@ -38,7 +38,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
         
         let cellBackgroundView = UIView()
-        cellBackgroundView.backgroundColor = UIColor.init(hex: "969696", alpha: 0.5)
+        cellBackgroundView.backgroundColor = Asset.Colors.gray50.color
         cell.selectedBackgroundView = cellBackgroundView
         
         if indexPath.section == 0 {
