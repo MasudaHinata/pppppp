@@ -95,7 +95,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 if friendID == userID {
                     flag = false
-                    deleteFriendButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
+                    deleteFriendButtonLayout.tintColor = Asset.Colors.purple50.color
                     deleteFriendButtonLayout.setTitleColor(.white, for: .normal)
                     deleteFriendButtonLayout.setTitle("Setting", for: .normal)
                 } else {

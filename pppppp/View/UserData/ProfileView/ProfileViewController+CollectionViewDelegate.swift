@@ -33,15 +33,15 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             let totalPointsForCell = activitiesForCell.reduce(0, +) // 合計
             switch totalPointsForCell {
             case 0 :
-                cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0.46)
+                cell.backgroundColor = Asset.Colors.white48.color
             case 1...30:
-                cell.backgroundColor = UIColor(hex: "45E1FF", alpha: 0.46)
+                cell.backgroundColor = Asset.Colors.grass1.color
             case 30...70:
-                cell.backgroundColor = UIColor(hex: "3D83BC", alpha: 0.46)
+                cell.backgroundColor = Asset.Colors.grass2.color
             case 70...100:
-                cell.backgroundColor = UIColor(hex: "008DDC", alpha: 0.46)
+                cell.backgroundColor = Asset.Colors.grass3.color
             default:
-                cell.backgroundColor = UIColor(hex: "1D5CAC", alpha: 0.46)
+                cell.backgroundColor = Asset.Colors.grass4.color
             }
             return cell
         } else if collectionView.tag == 0 {

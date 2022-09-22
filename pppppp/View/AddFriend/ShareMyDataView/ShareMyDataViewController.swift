@@ -16,7 +16,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     @IBOutlet var alertButtonLayout: UIButton! {
         didSet {
-            alertButtonLayout.tintColor = UIColor.init(hex: "000000")
+            alertButtonLayout.tintColor = Asset.Colors.black00.color
         }
     }
     
@@ -144,7 +144,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             settingLightLayout.setImage(UIImage(systemName: "flashlight.on.fill"), for: .normal)
             var configuration = UIButton.Configuration.filled()
             configuration.baseBackgroundColor = Asset.Colors.white0.color
-            configuration.baseForegroundColor = .init(hex: "000000")
+            configuration.baseForegroundColor = Asset.Colors.black00.color
             configuration.cornerStyle = .capsule
             settingLightLayout.configuration = configuration
         } else if settingLightLayout.currentImage == UIImage(systemName: "flashlight.on.fill") {

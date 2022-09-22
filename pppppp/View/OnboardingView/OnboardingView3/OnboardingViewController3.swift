@@ -10,13 +10,13 @@ class OnboardingViewController3: UIViewController {
     
     @IBOutlet var backButtonLayout: UIButton! {
         didSet {
-            backButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
+            backButtonLayout.tintColor = Asset.Colors.purple50.color
         }
     }
     
     @IBOutlet var nextButtonLayout: UIButton! {
         didSet {
-            nextButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
+            nextButtonLayout.tintColor = Asset.Colors.purple50.color
         }
     }
     
