@@ -1,0 +1,23 @@
+input_dir: ppppppp
+output_dir: ppppppp/Resources/Generated/
+xcassets:
+  - inputs:
+      - Resources/Colors.xcassets
+      - Resources/Assets.xcassets
+    outputs:
+      - templateName: swift5
+        output: Assets-Constants.swift
+strings:
+  inputs: Resources/en.lproj
+  filter: .+\.strings$
+  outputs:
+    - templateName: structured-swift4
+      output: L10n-Constants.swift
+ib:
+ inputs: Views
+ filter: .+\.storyboard$
+ outputs:
+  - templateName: scenes-swift4
+   output: Storyboard Scenes.swift
+  - templateName: segues-swift4
+   output: Storyboard Segues.swift

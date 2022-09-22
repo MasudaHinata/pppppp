@@ -11,6 +11,7 @@
 		0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318016A28D4D344004C7002 /* AddFriendViewController.swift */; };
 		033BC37628DC4E8B008DBC49 /* HealthDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37528DC4E8B008DBC49 /* HealthDataView.storyboard */; };
 		033BC37828DC4F97008DBC49 /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033BC37728DC4F97008DBC49 /* HealthDataViewController.swift */; };
+		033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37B28DC7FA9008DBC49 /* Colors.xcassets */; };
 		034367FE28D609BA000BA656 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034367FD28D609BA000BA656 /* OnboardingView2.storyboard */; };
 		0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034367FF28D609D0000BA656 /* OnboardingViewController2.swift */; };
 		0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680128D60A13000BA656 /* OnboardingViewController3.swift */; };
@@ -110,6 +111,7 @@
 		0318016A28D4D344004C7002 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		033BC37528DC4E8B008DBC49 /* HealthDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HealthDataView.storyboard; sourceTree = "<group>"; };
 		033BC37728DC4F97008DBC49 /* HealthDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
+		033BC37B28DC7FA9008DBC49 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		034367FD28D609BA000BA656 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
 		034367FF28D609D0000BA656 /* OnboardingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController2.swift; sourceTree = "<group>"; };
 		0343680128D60A13000BA656 /* OnboardingViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController3.swift; sourceTree = "<group>"; };
@@ -222,11 +224,10 @@
 		033BC37328DC37B2008DBC49 /* MyData */ = {
 			isa = PBXGroup;
 			children = (
-				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
-				036E476C28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift */,
-				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
-				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
-				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
+				033BC38028DC81DE008DBC49 /* UserDataView */,
+				033BC38128DC81ED008DBC49 /* ProfileView */,
+				033BC38228DC81FF008DBC49 /* RecentActivityCell */,
+				033BC38328DC8212008DBC49 /* SummeryCell */,
 			);
 			path = MyData;
 			sourceTree = "<group>";
@@ -239,6 +240,148 @@
 				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
 			);
 			path = HealthData;
+			sourceTree = "<group>";
+		};
+		033BC37928DC7F51008DBC49 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				033BC37A28DC7F51008DBC49 /* Generated */,
+				BE7F33842580D0810027620D /* Assets.xcassets */,
+				033BC37B28DC7FA9008DBC49 /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		033BC37A28DC7F51008DBC49 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		033BC37D28DC80D6008DBC49 /* AddFriendView */ = {
+			isa = PBXGroup;
+			children = (
+				0318016A28D4D344004C7002 /* AddFriendViewController.swift */,
+				0318016828D4D32A004C7002 /* AddFriendView.storyboard */,
+			);
+			path = AddFriendView;
+			sourceTree = "<group>";
+		};
+		033BC37E28DC8106008DBC49 /* FriendProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				9C4F1C742859E6F500623C66 /* FriendProfileViewController.swift */,
+				036F69FB28C08F1C0066A7DA /* FriendProfileView.storyboard */,
+			);
+			path = FriendProfileView;
+			sourceTree = "<group>";
+		};
+		033BC37F28DC8125008DBC49 /* ShareMyDataView */ = {
+			isa = PBXGroup;
+			children = (
+				03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */,
+				0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */,
+				03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */,
+			);
+			path = ShareMyDataView;
+			sourceTree = "<group>";
+		};
+		033BC38028DC81DE008DBC49 /* UserDataView */ = {
+			isa = PBXGroup;
+			children = (
+				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
+				03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */,
+				03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */,
+				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
+			);
+			path = UserDataView;
+			sourceTree = "<group>";
+		};
+		033BC38128DC81ED008DBC49 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
+				036E476C28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift */,
+				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
+				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
+				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		033BC38228DC81FF008DBC49 /* RecentActivityCell */ = {
+			isa = PBXGroup;
+			children = (
+				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
+				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
+			);
+			path = RecentActivityCell;
+			sourceTree = "<group>";
+		};
+		033BC38328DC8212008DBC49 /* SummeryCell */ = {
+			isa = PBXGroup;
+			children = (
+				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
+				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
+			);
+			path = SummeryCell;
+			sourceTree = "<group>";
+		};
+		033BC38428DC822F008DBC49 /* DashboardVIew */ = {
+			isa = PBXGroup;
+			children = (
+				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
+				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
+				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
+			);
+			path = DashboardVIew;
+			sourceTree = "<group>";
+		};
+		033BC38528DC8246008DBC49 /* DashboardFriendDataCell */ = {
+			isa = PBXGroup;
+			children = (
+				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
+				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
+			);
+			path = DashboardFriendDataCell;
+			sourceTree = "<group>";
+		};
+		033BC38628DC8272008DBC49 /* SelfCheckView */ = {
+			isa = PBXGroup;
+			children = (
+				9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */,
+				036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */,
+			);
+			path = SelfCheckView;
+			sourceTree = "<group>";
+		};
+		033BC38728DC8283008DBC49 /* RecordExerciseView */ = {
+			isa = PBXGroup;
+			children = (
+				035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */,
+				0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */,
+				035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */,
+			);
+			path = RecordExerciseView;
+			sourceTree = "<group>";
+		};
+		033BC38828DC8295008DBC49 /* RecordWeightView */ = {
+			isa = PBXGroup;
+			children = (
+				036E476828DB1A5C00EA7BB1 /* RecordWeightViewController.swift */,
+				036E476A28DB1A6E00EA7BB1 /* RecordWeightView.storyboard */,
+			);
+			path = RecordWeightView;
+			sourceTree = "<group>";
+		};
+		033BC38928DC82B0008DBC49 /* ExerciseTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */,
+				0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */,
+			);
+			path = ExerciseTableViewCell;
 			sourceTree = "<group>";
 		};
 		034367FC28D60539000BA656 /* OnboardingView */ = {
@@ -273,15 +416,7 @@
 				036F69FF28C091590066A7DA /* CreatePointView */,
 				033BC37428DC4DE3008DBC49 /* HealthData */,
 				036F69E828BE60190066A7DA /* UserDataView */,
-				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
-				03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */,
-				03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */,
-				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
-				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
-				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
-				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
-				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
-				03C7E79B28D2F3810069A46E /* AddFriendsView */,
+				03C7E79B28D2F3810069A46E /* AddFriend */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,
 				036F698528BB93760066A7DA /* AuthView */,
@@ -353,15 +488,10 @@
 		036F69FF28C091590066A7DA /* CreatePointView */ = {
 			isa = PBXGroup;
 			children = (
-				9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */,
-				036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */,
-				035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */,
-				0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */,
-				035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */,
-				036E476828DB1A5C00EA7BB1 /* RecordWeightViewController.swift */,
-				036E476A28DB1A6E00EA7BB1 /* RecordWeightView.storyboard */,
-				0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */,
-				0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */,
+				033BC38628DC8272008DBC49 /* SelfCheckView */,
+				033BC38728DC8283008DBC49 /* RecordExerciseView */,
+				033BC38828DC8295008DBC49 /* RecordWeightView */,
+				033BC38928DC82B0008DBC49 /* ExerciseTableViewCell */,
 			);
 			path = CreatePointView;
 			sourceTree = "<group>";
@@ -379,11 +509,8 @@
 		03A45B6E28D8A4510059B617 /* SanitasCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
-				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
-				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
-				9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */,
-				9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */,
+				033BC38428DC822F008DBC49 /* DashboardVIew */,
+				033BC38528DC8246008DBC49 /* DashboardFriendDataCell */,
 			);
 			path = SanitasCollectionView;
 			sourceTree = "<group>";
@@ -417,18 +544,14 @@
 			path = SignInWithApple;
 			sourceTree = "<group>";
 		};
-		03C7E79B28D2F3810069A46E /* AddFriendsView */ = {
+		03C7E79B28D2F3810069A46E /* AddFriend */ = {
 			isa = PBXGroup;
 			children = (
-				0318016A28D4D344004C7002 /* AddFriendViewController.swift */,
-				0318016828D4D32A004C7002 /* AddFriendView.storyboard */,
-				9C4F1C742859E6F500623C66 /* FriendProfileViewController.swift */,
-				036F69FB28C08F1C0066A7DA /* FriendProfileView.storyboard */,
-				03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */,
-				0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */,
-				03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */,
+				033BC37D28DC80D6008DBC49 /* AddFriendView */,
+				033BC37E28DC8106008DBC49 /* FriendProfileView */,
+				033BC37F28DC8125008DBC49 /* ShareMyDataView */,
 			);
-			path = AddFriendsView;
+			path = AddFriend;
 			sourceTree = "<group>";
 		};
 		9CFBA12328D4B3CD003EBFB3 /* SettingsView */ = {
@@ -477,6 +600,7 @@
 		BE7F337A2580D07E0027620D /* pppppp */ = {
 			isa = PBXGroup;
 			children = (
+				033BC37928DC7F51008DBC49 /* Resources */,
 				BE7F337B2580D07E0027620D /* AppDelegate.swift */,
 				BE7F337D2580D07E0027620D /* SceneDelegate.swift */,
 				BE7F33862580D0810027620D /* LaunchScreen.storyboard */,
@@ -485,7 +609,6 @@
 				036F698628BB93AE0066A7DA /* Manager */,
 				036F698728BB93DA0066A7DA /* Helper */,
 				9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */,
-				BE7F33842580D0810027620D /* Assets.xcassets */,
 				BE7F33892580D0810027620D /* Info.plist */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
 			);
@@ -592,6 +715,7 @@
 				036F69F828C08D140066A7DA /* ChangeProfileView.storyboard in Resources */,
 				9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */,
 				0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */,
+				033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
 				BE7F33832580D07E0027620D /* Main.storyboard in Resources */,
 			);
