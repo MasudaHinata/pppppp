@@ -10,7 +10,7 @@ class SignInWithAppleViewController: UIViewController {
     
     @IBOutlet var privacyPolicyButtonLayout: UIButton! {
         didSet {
-            privacyPolicyButtonLayout.tintColor = UIColor.init(hex: "FFFFFF", alpha: 0.48)
+            privacyPolicyButtonLayout.tintColor = Asset.Colors.white48.color
         }
     }
     

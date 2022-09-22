@@ -26,7 +26,8 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             dayForCell = Calendar.current.date(byAdding: .weekday, value: -weekdayDelta, to: dayForCell)!
             let activitiesForCell = pointDataList.filter { $0.date.getZeroTime() == dayForCell.getZeroTime() }.compactMap { $0.point }
             if dayForCell.getZeroTime() > Date().getZeroTime() {
-                cell.backgroundColor = UIColor(hex: "FFFFFF", alpha: 0)
+                cell.backgroundColor = Asset.Colors.white0.color
+                
                 return cell
             }
             let totalPointsForCell = activitiesForCell.reduce(0, +) // 合計

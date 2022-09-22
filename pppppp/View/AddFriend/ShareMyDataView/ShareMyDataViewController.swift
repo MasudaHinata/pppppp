@@ -96,7 +96,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         
         flag = false
         qrCodeView = UIView(frame: CGRect(x: 24, y: 196, width: 344, height: 344))
-        qrCodeView.backgroundColor = UIColor.init(hex: "FFFFFF")
+        qrCodeView.backgroundColor = Asset.Colors.white0.color
         qrCodeView.layer.cornerRadius = 64
         qrCodeView.layer.cornerCurve = .continuous
         qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 236, width: 264, height: 264))
@@ -107,7 +107,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         dismissButton.backgroundColor = UIColor.init(hex: "000000", alpha: 0.39)
         dismissButton.layer.cornerRadius = 28.0
         dismissButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        dismissButton.tintColor = UIColor.init(hex: "FFFFFF")
+        dismissButton.tintColor = Asset.Colors.white0.color
         dismissButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickDismissButton(sender:)), for: .touchUpInside)
         
         qrCodeView.isHidden = false
@@ -143,7 +143,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             ledFlash(true)
             settingLightLayout.setImage(UIImage(systemName: "flashlight.on.fill"), for: .normal)
             var configuration = UIButton.Configuration.filled()
-            configuration.baseBackgroundColor = .init(hex: "FFFFFF")
+            configuration.baseBackgroundColor = Asset.Colors.white0.color
             configuration.baseForegroundColor = .init(hex: "000000")
             configuration.cornerStyle = .capsule
             settingLightLayout.configuration = configuration
