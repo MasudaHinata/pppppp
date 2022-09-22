@@ -215,6 +215,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		033BC37328DC37B2008DBC49 /* MyData */ = {
+			isa = PBXGroup;
+			children = (
+				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
+				036E476C28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift */,
+				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
+				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
+				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
+				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
+			);
+			path = MyData;
+			sourceTree = "<group>";
+		};
 		034367FC28D60539000BA656 /* OnboardingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,14 +258,20 @@
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69FF28C091590066A7DA /* CreatePointView */,
-				036F69E828BE60190066A7DA /* Friend&MeDataView */,
+				036F69E828BE60190066A7DA /* UserDataView */,
+				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
+				03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */,
+				03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */,
+				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
+				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
+				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
+				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
+				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
 				03C7E79B28D2F3810069A46E /* AddFriendsView */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,
 				036F698528BB93760066A7DA /* AuthView */,
 				0343681928D8060A000BA656 /* UITextFieldDelegate */,
-				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
-				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -303,29 +322,18 @@
 				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
 				036F697E28B8EACE0066A7DA /* PointData.swift */,
 				03C7E7BD28D34E320069A46E /* WeightData.swift */,
+				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		036F69E828BE60190066A7DA /* Friend&MeDataView */ = {
+		036F69E828BE60190066A7DA /* UserDataView */ = {
 			isa = PBXGroup;
 			children = (
-				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
-				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
-				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
-				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
-				036F69E628BE56E60066A7DA /* UserDataViewController.swift */,
-				03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */,
-				03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */,
-				036F6A0228C093560066A7DA /* UserDataView.storyboard */,
-				036F69E228BE1DC70066A7DA /* SummaryCollectionViewCell.swift */,
-				036F69E328BE1DC70066A7DA /* SummaryCollectionViewCell.xib */,
-				036F69EB28BE8F850066A7DA /* RecentActivitysTableViewCell.swift */,
-				036F69EC28BE8F850066A7DA /* RecentActivitysTableViewCell.xib */,
-				03A45B7128D8A4EA0059B617 /* FriendDataView */,
-				036E476C28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift */,
+				033BC37328DC37B2008DBC49 /* MyData */,
+				03A45B7128D8A4EA0059B617 /* FriendData */,
 			);
-			path = "Friend&MeDataView";
+			path = UserDataView;
 			sourceTree = "<group>";
 		};
 		036F69FF28C091590066A7DA /* CreatePointView */ = {
@@ -366,13 +374,13 @@
 			path = SanitasCollectionView;
 			sourceTree = "<group>";
 		};
-		03A45B7128D8A4EA0059B617 /* FriendDataView */ = {
+		03A45B7128D8A4EA0059B617 /* FriendData */ = {
 			isa = PBXGroup;
 			children = (
 				9C69903E286C6517009D5BF5 /* FriendDataCell.swift */,
 				9C69903F286C6517009D5BF5 /* FriendDataCell.xib */,
 			);
-			path = FriendDataView;
+			path = FriendData;
 			sourceTree = "<group>";
 		};
 		03A45B7228D8A5C40059B617 /* SignInWithEmail */ = {
@@ -783,6 +791,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = pppppp/pppppp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
@@ -794,6 +803,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

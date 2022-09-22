@@ -73,6 +73,12 @@
                                     <action selector="backButton:" destination="UOt-zi-CBt" eventType="touchUpInside" id="kim-dg-9GP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HealthKitで歩数を取得します" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5z-SQ-SPk">
+                                <rect key="frame" x="134" y="790" width="216" height="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pjo-t4-ZnU"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -86,9 +92,11 @@
                             <constraint firstItem="pjo-t4-ZnU" firstAttribute="trailing" secondItem="cH1-5l-5wP" secondAttribute="trailing" constant="40" id="J3J-vb-SHK"/>
                             <constraint firstAttribute="trailing" secondItem="xBN-vf-RxM" secondAttribute="trailing" constant="-226" id="Qza-nf-JTO"/>
                             <constraint firstItem="Ccs-qe-bNr" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="16" id="dYH-MM-z1Y"/>
+                            <constraint firstItem="pjo-t4-ZnU" firstAttribute="trailing" secondItem="C5z-SQ-SPk" secondAttribute="trailing" constant="40" id="db6-SD-cma"/>
                             <constraint firstItem="yDb-M8-rQH" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="16" id="eJz-If-oLs"/>
                             <constraint firstAttribute="bottom" secondItem="xBN-vf-RxM" secondAttribute="bottom" id="eMQ-Lx-XHZ"/>
                             <constraint firstItem="pjo-t4-ZnU" firstAttribute="bottom" secondItem="cH1-5l-5wP" secondAttribute="bottom" constant="40" id="gTO-0T-bRZ"/>
+                            <constraint firstItem="pjo-t4-ZnU" firstAttribute="bottom" secondItem="C5z-SQ-SPk" secondAttribute="bottom" id="i31-aT-y9b"/>
                             <constraint firstItem="RLV-jW-ZVI" firstAttribute="leading" secondItem="leq-bj-Sje" secondAttribute="leading" id="lGv-JO-ArT"/>
                             <constraint firstAttribute="trailing" secondItem="RLV-jW-ZVI" secondAttribute="trailing" id="pPj-a6-FGI"/>
                             <constraint firstItem="ZHe-oB-JIA" firstAttribute="leading" secondItem="pjo-t4-ZnU" secondAttribute="leading" constant="16" id="rU3-NI-Fi1"/>
