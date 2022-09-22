@@ -7,7 +7,7 @@ class AddFriendViewController: UIViewController {
     
     @IBOutlet var addFriendButtonLayout: UIButton! {
         didSet {
-            addFriendButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)
+            addFriendButtonLayout.tintColor = UIColor(named: "")
         }
     }
     

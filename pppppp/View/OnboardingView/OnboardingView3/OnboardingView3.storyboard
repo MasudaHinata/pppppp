@@ -26,14 +26,8 @@
                                     <constraint firstAttribute="height" constant="444" id="iFK-Us-uGx"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="毎日アプリを開いて" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMn-tQ-toU">
-                                <rect key="frame" x="16" y="586" width="363" height="48"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ポイントを獲得" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQY-mH-XKG">
-                                <rect key="frame" x="16" y="634" width="282" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQY-mH-XKG">
+                                <rect key="frame" x="16" y="682" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -69,14 +63,12 @@
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="I01-Sg-sL2" secondAttribute="bottom" id="6Eh-CT-cCO"/>
-                            <constraint firstItem="hQY-mH-XKG" firstAttribute="top" secondItem="JMn-tQ-toU" secondAttribute="bottom" id="6fR-Or-lTp"/>
                             <constraint firstItem="0Ff-gf-RZq" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="40" id="Aih-GM-CUV"/>
                             <constraint firstItem="hQY-mH-XKG" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="16" id="Cs8-0E-Ruq"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="bottom" secondItem="dUx-mH-y87" secondAttribute="bottom" constant="40" id="Lu7-4E-dkg"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="bottom" secondItem="0Ff-gf-RZq" secondAttribute="bottom" constant="40" id="cfq-wk-UVl"/>
                             <constraint firstItem="dUx-mH-y87" firstAttribute="top" secondItem="hQY-mH-XKG" secondAttribute="bottom" constant="24" id="fEb-G2-d5v"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="trailing" secondItem="dUx-mH-y87" secondAttribute="trailing" constant="40" id="mEW-TY-jfY"/>
-                            <constraint firstItem="JMn-tQ-toU" firstAttribute="leading" secondItem="e61-av-5UV" secondAttribute="leading" constant="16" id="red-Rd-a6y"/>
                             <constraint firstItem="e61-av-5UV" firstAttribute="trailing" secondItem="I01-Sg-sL2" secondAttribute="trailing" id="xFj-Cn-pys"/>
                             <constraint firstItem="I01-Sg-sL2" firstAttribute="leading" secondItem="6qx-zZ-TX1" secondAttribute="leading" id="xSL-m9-E1B"/>
                         </constraints>

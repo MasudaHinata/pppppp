@@ -670,9 +670,9 @@
 				036F698828BB93F60066A7DA /* Model */,
 				036F698628BB93AE0066A7DA /* Manager */,
 				036F698728BB93DA0066A7DA /* Helper */,
-				9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */,
 				BE7F33892580D0810027620D /* Info.plist */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
+				9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */,
 				03B832F228DC88E400C8AE3E /* Localizable.strings */,
 			);
 			path = pppppp;
