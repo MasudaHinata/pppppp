@@ -226,6 +226,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		032843AD28DC9A5A00AB1A5D /* SetNameView */ = {
+			isa = PBXGroup;
+			children = (
+				03DFB7A228B7A8390019381A /* SetNameViewController.swift */,
+				0343681C28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift */,
+				036F69F528C08C0F0066A7DA /* SetNameView.storyboard */,
+			);
+			path = SetNameView;
+			sourceTree = "<group>";
+		};
+		032843AE28DC9A7900AB1A5D /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				038E26AD28BF4BF1000204A4 /* SettingViewController.swift */,
+				03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */,
+				036F69F928C08E7F0066A7DA /* SettingView.storyboard */,
+			);
+			path = SettingView;
+			sourceTree = "<group>";
+		};
+		032843AF28DC9A9A00AB1A5D /* SettingCell */ = {
+			isa = PBXGroup;
+			children = (
+				03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */,
+				03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */,
+			);
+			path = SettingCell;
+			sourceTree = "<group>";
+		};
 		0331A20228DC8C5C004AA309 /* OnboardingView3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +422,7 @@
 			children = (
 				9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */,
 				03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */,
+				0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */,
 				03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */,
 			);
 			path = ChangeProfileView;
@@ -408,17 +438,6 @@
 			path = OnboardingView;
 			sourceTree = "<group>";
 		};
-		0343681928D8060A000BA656 /* UITextFieldDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */,
-				0343681C28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift */,
-				0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */,
-				0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */,
-			);
-			path = UITextFieldDelegate;
-			sourceTree = "<group>";
-		};
 		036F698228BB92C00066A7DA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,7 +450,6 @@
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,
 				036F698528BB93760066A7DA /* AuthView */,
-				0343681928D8060A000BA656 /* UITextFieldDelegate */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -569,6 +587,7 @@
 			isa = PBXGroup;
 			children = (
 				9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */,
+				0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */,
 				036F69F128C089B40066A7DA /* EmailSignInView.storyboard */,
 			);
 			path = EmailSignInView;
@@ -578,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				036F698028B940270066A7DA /* ResetPasswordViewController.swift */,
+				0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */,
 				036F69F328C08B330066A7DA /* ResetPasswordView.storyboard */,
 			);
 			path = ResetPasswordView;
@@ -605,14 +625,10 @@
 		9CFBA12328D4B3CD003EBFB3 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
+				032843AD28DC9A5A00AB1A5D /* SetNameView */,
 				033BC38B28DC844E008DBC49 /* ChangeProfileView */,
-				03DFB7A228B7A8390019381A /* SetNameViewController.swift */,
-				036F69F528C08C0F0066A7DA /* SetNameView.storyboard */,
-				038E26AD28BF4BF1000204A4 /* SettingViewController.swift */,
-				03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */,
-				036F69F928C08E7F0066A7DA /* SettingView.storyboard */,
-				03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */,
-				03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */,
+				032843AE28DC9A7900AB1A5D /* SettingView */,
+				032843AF28DC9A9A00AB1A5D /* SettingCell */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
