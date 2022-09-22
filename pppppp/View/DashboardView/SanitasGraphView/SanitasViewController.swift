@@ -91,11 +91,11 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         super.viewDidAppear(animated)
         activityIndicator.startAnimating()
         //初期画面
-//        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
-//        if judge == false {
+        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
+        if judge == false {
             let secondVC = StoryboardScene.OnboardingView1.initialScene.instantiate()
             self.showDetailViewController(secondVC, sender: self)
-//        }
+        }
         
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {

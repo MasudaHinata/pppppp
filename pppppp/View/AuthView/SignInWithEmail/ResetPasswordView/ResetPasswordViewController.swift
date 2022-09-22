@@ -9,7 +9,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
         didSet {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Reset password"
-            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.baseBackgroundColor = Asset.Colors.lightBlue00.color
             configuration.showsActivityIndicator = false
             goButtonLayout.configuration = configuration
         }
@@ -27,7 +27,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
         if let email = emailTextField.text, emailTextField.text != "" {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Sent Email..."
-            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.baseBackgroundColor = Asset.Colors.lightBlue00.color
             configuration.showsActivityIndicator = true
             goButtonLayout.configuration = configuration
             
@@ -46,7 +46,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
                 }
                 var configuration = UIButton.Configuration.gray()
                 configuration.title = "Reset password"
-                configuration.baseBackgroundColor = .init(hex: "92B2D3")
+                configuration.baseBackgroundColor = Asset.Colors.lightBlue00.color
                 configuration.baseForegroundColor = .white
                 self.goButtonLayout.configuration = configuration
             }

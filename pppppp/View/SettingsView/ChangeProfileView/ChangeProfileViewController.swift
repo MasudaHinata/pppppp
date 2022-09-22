@@ -29,7 +29,7 @@ class ChangeProfileViewController: UIViewController {
         didSet {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Save Change"
-            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.baseBackgroundColor = Asset.Colors.lightBlue00.color
             configuration.showsActivityIndicator = false
             changeProfileLayout.configuration = configuration
         }
@@ -50,7 +50,7 @@ class ChangeProfileViewController: UIViewController {
                 do {
                     var configuration = UIButton.Configuration.filled()
                     configuration.title = "Save Change..."
-                    configuration.baseBackgroundColor = .init(hex: "92B2D3")
+                    configuration.baseBackgroundColor = Asset.Colors.lightBlue00.color
                     configuration.showsActivityIndicator = true
                     changeProfileLayout.configuration = configuration
                     profileName = (self.nameTextField.text!)
@@ -65,7 +65,7 @@ class ChangeProfileViewController: UIViewController {
                     ShowAlertHelper.okAlert(vc: self, title: "完了", message: "変更しました", handler: { _ in
                         var configuration = UIButton.Configuration.gray()
                         configuration.title = "Save Change"
-                        configuration.baseBackgroundColor = .init(hex: "92B2D3")
+                        configuration.baseBackgroundColor = Asset.Colors.lightBlue00.color
                         configuration.baseForegroundColor = .white
                         self.changeProfileLayout.configuration = configuration
                         self.myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String

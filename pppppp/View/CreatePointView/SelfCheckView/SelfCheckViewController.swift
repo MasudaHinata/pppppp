@@ -17,7 +17,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         didSet {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "---pt"
-            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.baseBackgroundColor = Asset.Colors.lightBlue00.color
             configuration.cornerStyle = .capsule
             myPointLabelButton.configuration = configuration
         }
@@ -125,7 +125,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
                 var configuration = UIButton.Configuration.filled()
                 let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
                 try await configuration.title = "\(FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))pt"
-                configuration.baseBackgroundColor = .init(hex: "92B2D3")
+                configuration.baseBackgroundColor = Asset.Colors.lightBlue00.color
                 configuration.cornerStyle = .capsule
                 myPointLabelButton.configuration = configuration
             }

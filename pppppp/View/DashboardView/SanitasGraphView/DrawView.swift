@@ -66,7 +66,6 @@ class DrawView: UIView {
         path.addCurve(to: point7, controlPoint1: point5, controlPoint2: point6)
         path.close()
         path.lineWidth = 5.0
-//        UIColor.init(hex: "B8E9FF", alpha: 0.25).setFill()
         Asset.Colors.lightBlue25.color.setFill()
         
         let pointLabel = UILabel()

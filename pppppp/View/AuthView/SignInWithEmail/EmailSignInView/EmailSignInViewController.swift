@@ -12,7 +12,7 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
         didSet {
             var configuration = UIButton.Configuration.filled()
             configuration.title = "Sign In"
-            configuration.baseBackgroundColor = .init(hex: "92B2D3")
+            configuration.baseBackgroundColor = Asset.Colors.lightBlue00.color
             configuration.showsActivityIndicator = false
             loginButtonLayout.configuration = configuration
         }
