@@ -81,7 +81,7 @@ class DrawView: UIView {
         imageButton.frame = CGRect(x: vertex.x - 28, y: vertex.y - 28, width: 56, height: 56)
         imageButton.kf.setImage(with: URL(string: item.iconImageURL), for: .normal)
         imageButton.imageView?.contentMode = .scaleAspectFill
-        imageButton.layer.cornerRadius = 24
+        imageButton.layer.cornerRadius = 28
         imageButton.layer.cornerCurve = .continuous
         imageButton.clipsToBounds = true
         imageButton.addAction(.init { button in self.delegate?.buttonSelected(item: item) }, for: .touchUpInside)

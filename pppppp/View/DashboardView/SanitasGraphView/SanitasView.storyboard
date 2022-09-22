@@ -73,7 +73,7 @@
                                             <color key="baseForegroundColor" red="0.52156862749999999" green="0.62745098040000002" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="sceneHealthDataView" destination="i61-BL-DWj" eventType="touchUpInside" id="ERV-Yk-pYO"/>
+                                            <action selector="sceneRecordDataView" destination="i61-BL-DWj" eventType="touchUpInside" id="ERV-Yk-pYO"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -104,7 +104,7 @@
                             <barButtonItem title="Item" image="list.bullet.rectangle.portrait" catalog="system" id="V9p-pX-fHR">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <action selector="sceneCollectionView" destination="i61-BL-DWj" id="mCS-Zm-MUL"/>
+                                    <action selector="sceneDashboardView" destination="i61-BL-DWj" id="mCS-Zm-MUL"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="arrow.clockwise" catalog="system" id="tko-kg-OBX">

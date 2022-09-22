@@ -89,6 +89,6 @@
 	<key> item1</key>
 	<string>F5.6-Regular.otf</string>
 	<key>NSCameraUsageDescription</key>
-	<string>QRCodeを読み込みます</string>
+	<string>友達のQRCodeを読み込むためにカメラの使用を許可をしてください</string>
 </dict>
 </plist>

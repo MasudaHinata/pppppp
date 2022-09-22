@@ -14,7 +14,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
     @IBOutlet var pointLabel: UILabel!
     @IBOutlet var iconView: UIImageView! {
         didSet {
-            iconView.layer.cornerRadius = 24
+            iconView.layer.cornerRadius = 36
             iconView.layer.cornerCurve = .continuous
         }
     }
@@ -56,11 +56,11 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                     catch {
                         print("CollectionViewContro viewDid error:",error.localizedDescription)
                         if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
+                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                                 self.viewDidLoad()
                             })
                         } else {
-                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
+                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                         }
                     }
                 }
@@ -77,9 +77,6 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
             self.showDetailViewController(secondVC!, sender: self)
         }
     }
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,17 +102,17 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                 } else {
                     flag = true
                     deleteFriendButtonLayout.tintColor = UIColor.systemPink
-                    deleteFriendButtonLayout.setTitle("Delete This User From Friend", for: .normal)
+                    deleteFriendButtonLayout.setTitle("Delete Friend", for: .normal)
                 }
             }
             catch {
                 print("CollectionViewContro viewDid error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.viewDidLoad()
                     })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                 }
             }
         }
@@ -140,11 +137,11 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
             catch {
                 print("CollectionViewContro ViewDid error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { (_) in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.viewDidLoad()
                     })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { (_) in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                 }
             }
         }

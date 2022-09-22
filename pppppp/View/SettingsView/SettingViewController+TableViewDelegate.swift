@@ -73,7 +73,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row == 0 {
                 UserDefaults.standard.set("今日までの一週間", forKey: "accumulationType")
                 tableView.reloadData()
-                ShowAlertHelper.okAlert(vc: self, title: "ポイントの累積タイプを変更しました", message: "今日までの一週間", handler: { (_) in
+                ShowAlertHelper.okAlert(vc: self, title: "ポイントの累積タイプを変更しました", message: "今日までの一週間", handler: { _ in
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let secondVC = storyboard.instantiateInitialViewController()
                     self.showDetailViewController(secondVC!, sender: self)
@@ -81,7 +81,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             } else if indexPath.row == 1 {
                 UserDefaults.standard.set("月曜始まり", forKey: "accumulationType")
                 tableView.reloadData()
-                ShowAlertHelper.okAlert(vc: self, title: "ポイントの累積タイプを変更しました", message: "月曜始まり", handler: { (_) in
+                ShowAlertHelper.okAlert(vc: self, title: "ポイントの累積タイプを変更しました", message: "月曜始まり", handler: { _ in
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let secondVC = storyboard.instantiateInitialViewController()
                     self.showDetailViewController(secondVC!, sender: self)

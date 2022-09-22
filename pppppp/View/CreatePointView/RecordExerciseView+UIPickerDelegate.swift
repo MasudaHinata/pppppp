@@ -1,6 +1,6 @@
 import UIKit
 
-extension HealthDataViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension RecordExerciseViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     //UIPickerViewの列の数
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

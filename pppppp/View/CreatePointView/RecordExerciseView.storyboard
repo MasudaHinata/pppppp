@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Dv-30-eAN">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Record Exercise View Controller-->
+        <scene sceneID="F14-vT-27l">
+            <objects>
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Dv-30-eAN" customClass="RecordExerciseViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hk8-C9-c9Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Exercise &amp; Time." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbS-71-7GY">
+                                <rect key="frame" x="24" y="72" width="170" height="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="select exercise." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NoX-SH-DcP">
+                                <rect key="frame" x="24" y="108" width="232" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.23999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="7Ai-VX-oqY"/>
+                                    <constraint firstAttribute="width" constant="232" id="b1J-QB-JdH"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="enter exercise time." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xTX-mp-TUU">
+                                <rect key="frame" x="24" y="164" width="232" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.23999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="232" id="Lyv-Nf-rIR"/>
+                                    <constraint firstAttribute="height" constant="40" id="PKh-1C-9cn"/>
+                                    <constraint firstAttribute="width" constant="232" id="VIu-Mm-aK7"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gm2-Du-s8z">
+                                <rect key="frame" x="217" y="174" width="29" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCv-IG-eh2">
+                                <rect key="frame" x="328" y="139" width="54" height="32"/>
+                                <color key="backgroundColor" red="0.52156862749999999" green="0.62745098040000002" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="kHi-Bf-zLl"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add">
+                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="recordExerciseButton" destination="9Dv-30-eAN" eventType="touchUpInside" id="ktI-zJ-87y"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SVz-Sw-HEj"/>
+                        <color key="backgroundColor" red="0.2666666667" green="0.2470588235" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="NoX-SH-DcP" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="4af-8U-MLi"/>
+                            <constraint firstItem="bbS-71-7GY" firstAttribute="top" secondItem="SVz-Sw-HEj" secondAttribute="top" constant="24" id="7qN-QA-Ir5"/>
+                            <constraint firstItem="Gm2-Du-s8z" firstAttribute="centerY" secondItem="xTX-mp-TUU" secondAttribute="centerY" id="J6w-Im-t8T"/>
+                            <constraint firstItem="SVz-Sw-HEj" firstAttribute="trailing" secondItem="jCv-IG-eh2" secondAttribute="trailing" constant="32" id="MVr-AC-4mu"/>
+                            <constraint firstItem="NoX-SH-DcP" firstAttribute="top" secondItem="bbS-71-7GY" secondAttribute="bottom" constant="16" id="N1K-N3-AiW"/>
+                            <constraint firstItem="xTX-mp-TUU" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="S2t-2Y-0ve"/>
+                            <constraint firstItem="xTX-mp-TUU" firstAttribute="top" secondItem="NoX-SH-DcP" secondAttribute="bottom" constant="16" id="kG2-Lh-WDh"/>
+                            <constraint firstItem="jCv-IG-eh2" firstAttribute="top" secondItem="SVz-Sw-HEj" secondAttribute="top" constant="91" id="xE0-vF-bj8"/>
+                            <constraint firstItem="Gm2-Du-s8z" firstAttribute="leading" secondItem="xTX-mp-TUU" secondAttribute="leading" constant="193" id="xYJ-VG-xY5"/>
+                            <constraint firstItem="bbS-71-7GY" firstAttribute="leading" secondItem="SVz-Sw-HEj" secondAttribute="leading" constant="24" id="yUb-A9-X9Z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="exerciseTimeTextField" destination="xTX-mp-TUU" id="Os5-Xe-ia3"/>
+                        <outlet property="saveExerciseButtonLayout" destination="jCv-IG-eh2" id="5Nj-7q-oGm"/>
+                        <outlet property="selectExerciseTextField" destination="NoX-SH-DcP" id="cdw-xS-JPx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rSU-1W-kfG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2073.913043478261" y="428.57142857142856"/>
+        </scene>
+    </scenes>
+</document>
