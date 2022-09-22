@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0318016828D4D32A004C7002 /* AddFriendView.storyboard */; };
 		0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318016A28D4D344004C7002 /* AddFriendViewController.swift */; };
-		033BC37628DC4E8B008DBC49 /* HealthDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37528DC4E8B008DBC49 /* HealthDataView.storyboard */; };
-		033BC37828DC4F97008DBC49 /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033BC37728DC4F97008DBC49 /* HealthDataViewController.swift */; };
 		033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37B28DC7FA9008DBC49 /* Colors.xcassets */; };
 		034367FE28D609BA000BA656 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034367FD28D609BA000BA656 /* OnboardingView2.storyboard */; };
 		0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034367FF28D609D0000BA656 /* OnboardingViewController2.swift */; };
@@ -109,8 +107,6 @@
 /* Begin PBXFileReference section */
 		0318016828D4D32A004C7002 /* AddFriendView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFriendView.storyboard; sourceTree = "<group>"; };
 		0318016A28D4D344004C7002 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
-		033BC37528DC4E8B008DBC49 /* HealthDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HealthDataView.storyboard; sourceTree = "<group>"; };
-		033BC37728DC4F97008DBC49 /* HealthDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
 		033BC37B28DC7FA9008DBC49 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		034367FD28D609BA000BA656 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
 		034367FF28D609D0000BA656 /* OnboardingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController2.swift; sourceTree = "<group>"; };
@@ -226,20 +222,11 @@
 			children = (
 				033BC38028DC81DE008DBC49 /* UserDataView */,
 				033BC38128DC81ED008DBC49 /* ProfileView */,
+				033BC38A28DC8334008DBC49 /* ChartsView */,
 				033BC38228DC81FF008DBC49 /* RecentActivityCell */,
 				033BC38328DC8212008DBC49 /* SummeryCell */,
 			);
 			path = MyData;
-			sourceTree = "<group>";
-		};
-		033BC37428DC4DE3008DBC49 /* HealthData */ = {
-			isa = PBXGroup;
-			children = (
-				033BC37728DC4F97008DBC49 /* HealthDataViewController.swift */,
-				033BC37528DC4E8B008DBC49 /* HealthDataView.storyboard */,
-				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
-			);
-			path = HealthData;
 			sourceTree = "<group>";
 		};
 		033BC37928DC7F51008DBC49 /* Resources */ = {
@@ -384,6 +371,14 @@
 			path = ExerciseTableViewCell;
 			sourceTree = "<group>";
 		};
+		033BC38A28DC8334008DBC49 /* ChartsView */ = {
+			isa = PBXGroup;
+			children = (
+				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
+			);
+			path = ChartsView;
+			sourceTree = "<group>";
+		};
 		034367FC28D60539000BA656 /* OnboardingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,7 +409,6 @@
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69FF28C091590066A7DA /* CreatePointView */,
-				033BC37428DC4DE3008DBC49 /* HealthData */,
 				036F69E828BE60190066A7DA /* UserDataView */,
 				03C7E79B28D2F3810069A46E /* AddFriend */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
@@ -697,7 +691,6 @@
 				035CE52028CF1E61001F89BB /* RecordExerciseView.storyboard in Resources */,
 				9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */,
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
-				033BC37628DC4E8B008DBC49 /* HealthDataView.storyboard in Resources */,
 				036F69E528BE1DC70066A7DA /* SummaryCollectionViewCell.xib in Resources */,
 				036F69F228C089B40066A7DA /* EmailSignInView.storyboard in Resources */,
 				9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */,
@@ -744,7 +737,6 @@
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
 				0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
-				033BC37828DC4F97008DBC49 /* HealthDataViewController.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
 				036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */,
 				03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */,
