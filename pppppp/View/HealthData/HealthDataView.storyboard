@@ -25,6 +25,9 @@
                                             <segment title="Week"/>
                                             <segment title="Month"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="segmentValueChangedWithSender:" destination="Y6W-OH-hqX" eventType="valueChanged" id="GeO-pW-gbj"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
