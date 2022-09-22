@@ -19,6 +19,8 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     @IBOutlet var activityBackgroundView: UIView!
     @IBOutlet var stepChartsView: UIView!
     
+    @IBOutlet var averageStepLabel: UILabel!
+    
     @IBOutlet var myIconView: UIImageView! {
         didSet {
             myIconView.layer.cornerRadius = 36
@@ -100,15 +102,18 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         super.viewDidLoad()
         
         FirebaseClient.shared.notChangeDelegate = self
+        
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refreshCollectionView() }, for: .valueChanged)
+        
         friendcollectionView.isHidden = true
+        stepChartsView.isHidden = true
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: self.view.frame.width, height: 56)
         friendcollectionView.collectionViewLayout = layout
-        
+
         friendDataList.removeAll()
         pointDataList.removeAll()
         
@@ -128,16 +133,19 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
                 
+                
+                let averageStep = try await Scorering.shared.getAverageStepPoint()
                 chartsStepItem = try await Scorering.shared.createWeekStepsChart()
                 chartsStepItem.reverse()
                 let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
                 stepChartsView.addSubview(vc.view)
                 vc.view.translatesAutoresizingMaskIntoConstraints = false
-                vc.view.topAnchor.constraint(equalTo: stepChartsView.topAnchor, constant: 80).isActive = true
+                vc.view.topAnchor.constraint(equalTo: stepChartsView.topAnchor, constant: 54).isActive = true
                 vc.view.bottomAnchor.constraint(equalTo: stepChartsView.bottomAnchor, constant: -8).isActive = true
-                vc.view.leftAnchor.constraint(equalTo: stepChartsView.leftAnchor, constant: 0).isActive = true
-                vc.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: 0).isActive = true
+                vc.view.leftAnchor.constraint(equalTo: stepChartsView.leftAnchor, constant: 16).isActive = true
+                vc.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: -16).isActive = true
                 vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
+                averageStepLabel.text = "\(averageStep) steps"
             }
             catch {
                 print("ProfileViewContro ViewDid error:",error.localizedDescription)

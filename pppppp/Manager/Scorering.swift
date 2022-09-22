@@ -147,6 +147,31 @@ final class Scorering {
         return chartsStepItem
     }
     
+    //MARK: - 平均歩数を取得
+    func getAverageStepPoint() async throws -> Int {
+        getPermissionHealthKit()
+        var averageStep = Int()
+        
+//        if {
+            let endDateMonth = calendar.date(byAdding: .day, value: 0, to: calendar.startOfDay(for: Date()))
+            let startDateMonth = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: Date()))
+            let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
+            let stepsTodayMonth = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodMonth)
+            let sumOfStepsQueryMonth = HKStatisticsQueryDescriptor(predicate: stepsTodayMonth, options: .cumulativeSum)
+            averageStep = Int((try await (sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count()))!) / 31)
+//        } else {
+//            let endDate = calendar.date(byAdding: .day, value: -0, to: calendar.startOfDay(for: Date()))
+//            let startDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
+//            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+//            let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+//            let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+//            averageStep = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+//        }
+//
+        return averageStep
+    }
+    
+    
     //MARK: - 入力した運動と時間からポイントを作成
     func createExercisePoint(exercisesName: String, time: Float) async throws {
         var metz = Float()
