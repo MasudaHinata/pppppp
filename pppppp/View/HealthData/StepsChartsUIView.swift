@@ -17,6 +17,9 @@ struct StepsChartsUIView: View {
                     )
                 }
             }
+            .chartForegroundStyleScale([
+                "steps": Color.init(red: 146/255, green: 178/255, blue: 211/255)
+            ])
         }
     }
 }

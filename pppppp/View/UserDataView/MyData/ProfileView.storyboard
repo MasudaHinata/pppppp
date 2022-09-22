@@ -69,11 +69,6 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jrL-Kv-5tu">
-                                <rect key="frame" x="0.0" y="294" width="390" height="467"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.57254901960000004" green="0.69803921570000005" blue="0.82745098039999998" alpha="0.64372930463576161" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gji-DF-TMj">
                                 <rect key="frame" x="0.0" y="294" width="390" height="467"/>
                                 <subviews>
@@ -128,7 +123,6 @@
                                 <segments>
                                     <segment title="Activity"/>
                                     <segment title="FriendList"/>
-                                    <segment title="HealthData"/>
                                 </segments>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -166,14 +160,11 @@
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jrL-Kv-5tu" firstAttribute="top" secondItem="CQd-fR-N3q" secondAttribute="bottom" constant="20" id="3AI-Wn-EXb"/>
-                            <constraint firstItem="A8q-9m-zwg" firstAttribute="bottom" secondItem="jrL-Kv-5tu" secondAttribute="bottom" id="3Bz-Sy-eFu"/>
                             <constraint firstItem="A8q-9m-zwg" firstAttribute="bottom" secondItem="Gji-DF-TMj" secondAttribute="bottom" id="3YY-K6-WdA"/>
                             <constraint firstItem="A8q-9m-zwg" firstAttribute="trailing" secondItem="CQd-fR-N3q" secondAttribute="trailing" constant="24" id="3vl-E1-4s8"/>
                             <constraint firstItem="A8q-9m-zwg" firstAttribute="trailing" secondItem="taJ-vF-fMd" secondAttribute="trailing" constant="16" id="6Jl-eE-hK4"/>
                             <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="taJ-vF-fMd" secondAttribute="centerY" id="7rp-L3-Ubw"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="top" secondItem="CQd-fR-N3q" secondAttribute="bottom" constant="20" id="CDo-yy-8BN"/>
-                            <constraint firstItem="jrL-Kv-5tu" firstAttribute="trailing" secondItem="HJr-r8-Ssq" secondAttribute="trailing" id="DNx-GH-QpJ"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="leading" secondItem="A8q-9m-zwg" secondAttribute="leading" id="Dn2-ug-xWw"/>
                             <constraint firstItem="ENr-7I-fkB" firstAttribute="trailing" secondItem="A8q-9m-zwg" secondAttribute="trailing" id="InK-Ss-jon"/>
                             <constraint firstItem="iSb-Ii-EMn" firstAttribute="leading" secondItem="A8q-9m-zwg" secondAttribute="leading" constant="24" id="TIT-r7-FeB"/>
@@ -184,7 +175,6 @@
                             <constraint firstItem="ENr-7I-fkB" firstAttribute="leading" secondItem="A8q-9m-zwg" secondAttribute="leading" id="eAN-UK-E1n"/>
                             <constraint firstItem="qIj-nq-XZN" firstAttribute="leading" secondItem="iSb-Ii-EMn" secondAttribute="trailing" constant="16" id="fhs-Zp-RSl"/>
                             <constraint firstItem="ENr-7I-fkB" firstAttribute="top" secondItem="CQd-fR-N3q" secondAttribute="bottom" constant="20" id="mmH-Zb-yBW"/>
-                            <constraint firstItem="jrL-Kv-5tu" firstAttribute="leading" secondItem="HJr-r8-Ssq" secondAttribute="leading" id="mqF-du-7DR"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="trailing" secondItem="A8q-9m-zwg" secondAttribute="trailing" id="wpj-GD-nos"/>
                             <constraint firstItem="A8q-9m-zwg" firstAttribute="bottom" secondItem="ENr-7I-fkB" secondAttribute="bottom" id="z4M-QH-4Sj"/>
                         </constraints>
@@ -208,7 +198,6 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityBackgroundView" destination="Gji-DF-TMj" id="fhv-9a-IDy"/>
-                        <outlet property="chartsView" destination="jrL-Kv-5tu" id="T9f-Xp-F5b"/>
                         <outlet property="collectionView" destination="lAc-Rk-I35" id="vAJ-kX-7pr"/>
                         <outlet property="friendcollectionView" destination="ENr-7I-fkB" id="XK4-wB-Mce"/>
                         <outlet property="myIconView" destination="iSb-Ii-EMn" id="0Fo-K0-UB2"/>

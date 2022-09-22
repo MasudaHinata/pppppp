@@ -10,7 +10,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     let calendar = Calendar.current
     var startDate = Date()
     let dateFormatter = DateFormatter()
-    var friendIdList = [String]()
     var friendDataList = [UserData]()
     
     @IBOutlet var stepsLabel: UILabel!
@@ -26,7 +25,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     }
     
     //MARK: - 体重・運動を記録する
-    @IBAction func sceneHealthDataView() {
+    @IBAction func sceneRecordDataView() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
             let storyboard = UIStoryboard(name: "RecordWeightView", bundle: nil)

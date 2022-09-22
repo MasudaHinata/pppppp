@@ -16,29 +16,6 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var activityBackgroundView: UIView!
-    @IBOutlet var chartsView: UIView! {
-        didSet {
-//            var chartsStepItem = [ChartsStepItem]()
-//            let task = Task {
-//                do {
-//                    chartsStepItem = try await Scorering.shared.createStepsChart()
-//                }
-//                catch {
-//
-//                }
-//            }
-//            cancellables.insert(.init { task.cancel() })
-//            print(chartsStepItem)
-//            let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
-//            chartsView.addSubview(vc.view)
-//            vc.view.translatesAutoresizingMaskIntoConstraints = false
-//            vc.view.heightAnchor.constraint(equalToConstant: 400).isActive = true
-//            vc.view.leftAnchor.constraint(equalTo: chartsView.leftAnchor, constant: 16).isActive = true
-//            vc.view.rightAnchor.constraint(equalTo: chartsView.rightAnchor, constant: -16).isActive = true
-//            vc.view.centerYAnchor.constraint(equalTo: chartsView.centerYAnchor).isActive = true
-        }
-    }
-    
     
     @IBOutlet var myIconView: UIImageView! {
         didSet {
@@ -105,48 +82,23 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         if sender.selectedSegmentIndex == 0 {
             self.activityBackgroundView.isHidden = false
             self.friendcollectionView.isHidden = true
-            self.chartsView.isHidden = true
         } else if sender.selectedSegmentIndex == 1 {
             self.activityBackgroundView.isHidden = true
             self.friendcollectionView.isHidden = false
-            self.chartsView.isHidden = true
         } else if sender.selectedSegmentIndex == 2 {
             self.activityBackgroundView.isHidden = true
             self.friendcollectionView.isHidden = true
-            self.chartsView.isHidden = false
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var chartsStepItem = [ChartsStepItem]()
-        let taask = Task {
-            do {
-                chartsStepItem = try await Scorering.shared.createStepsChart()
-                print(chartsStepItem)
-                let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
-//                let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView())
-                chartsView.addSubview(vc.view)
-                vc.view.translatesAutoresizingMaskIntoConstraints = false
-                vc.view.heightAnchor.constraint(equalToConstant: 400).isActive = true
-                vc.view.leftAnchor.constraint(equalTo: chartsView.leftAnchor, constant: 16).isActive = true
-                vc.view.rightAnchor.constraint(equalTo: chartsView.rightAnchor, constant: -16).isActive = true
-                vc.view.centerYAnchor.constraint(equalTo: chartsView.centerYAnchor).isActive = true
-            }
-            catch {
-
-            }
-        }
-        cancellables.insert(.init { taask.cancel() })
-    
-        
         FirebaseClient.shared.notChangeDelegate = self
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refreshCollectionView() }, for: .valueChanged)
         friendcollectionView.isHidden = true
-        chartsView.isHidden = true
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: self.view.frame.width, height: 56)
