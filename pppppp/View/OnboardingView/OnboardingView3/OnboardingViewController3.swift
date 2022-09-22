@@ -2,6 +2,12 @@ import UIKit
 
 class OnboardingViewController3: UIViewController {
     
+    @IBOutlet var messageLabel: UILabel! {
+        didSet {
+            messageLabel.text = L10n.onboardingView3
+        }
+    }
+    
     @IBOutlet var backButtonLayout: UIButton! {
         didSet {
             backButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)

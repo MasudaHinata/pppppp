@@ -8,6 +8,12 @@ class OnboardingViewController2: UIViewController {
         }
     }
     
+    @IBOutlet var messageLabel2: UILabel! {
+        didSet {
+            messageLabel2.text = L10n.onboardingViewHealthKit
+        }
+    }
+    
     @IBOutlet var backButtonLayout: UIButton! {
         didSet {
             backButtonLayout.tintColor = UIColor.init(hex: "A5A1F8", alpha: 0.5)

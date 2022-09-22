@@ -15,8 +15,15 @@ internal enum L10n {
   /// with your friends
   internal static let onboardingView1 = L10n.tr("Localizable", "OnboardingView1", fallback: "Share\nyour health point\nwith your friends")
   /// Collect points
-  /// by exercising and walking more
-  internal static let onboardingView2 = L10n.tr("Localizable", "OnboardingView2", fallback: "Collect points\nby exercising and walking more")
+  /// by exercising and
+  /// walking more
+  internal static let onboardingView2 = L10n.tr("Localizable", "OnboardingView2", fallback: "Collect points\nby exercising and\nwalking more")
+  /// Earn points
+  /// by opening the app
+  /// every day
+  internal static let onboardingView3 = L10n.tr("Localizable", "OnboardingView3", fallback: "Earn points\nby opening the app\nevery day")
+  /// Get step count with HealthKit
+  internal static let onboardingViewHealthKit = L10n.tr("Localizable", "OnboardingView_HealthKit", fallback: "Get step count with HealthKit")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

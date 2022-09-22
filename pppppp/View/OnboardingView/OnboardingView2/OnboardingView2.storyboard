@@ -25,8 +25,8 @@
                                     <constraint firstAttribute="height" constant="444" id="zdu-st-UuI"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="集めよう" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDb-M8-rQH">
-                                <rect key="frame" x="16" y="634" width="161" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDb-M8-rQH">
+                                <rect key="frame" x="16" y="682" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -88,6 +88,7 @@
                     <connections>
                         <outlet property="backButtonLayout" destination="FHt-Zd-pG3" id="0O3-cR-8vi"/>
                         <outlet property="messageLabel" destination="yDb-M8-rQH" id="4iv-YN-Dzs"/>
+                        <outlet property="messageLabel2" destination="C5z-SQ-SPk" id="nMT-Eo-C98"/>
                         <outlet property="nextButtonLayout" destination="cH1-5l-5wP" id="NiS-7m-jb4"/>
                     </connections>
                 </viewController>

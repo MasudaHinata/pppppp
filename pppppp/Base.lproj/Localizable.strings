@@ -1,2 +1,4 @@
 "OnboardingView1" = "Share\nyour health point\nwith your friends";
-"OnboardingView2" = "Collect points\nby exercising and walking more";
+"OnboardingView2" = "Collect points\nby exercising and\nwalking more";
+"OnboardingView3" = "Earn points\nby opening the app\nevery day";
+"OnboardingView_HealthKit" = "Get step count with HealthKit";
