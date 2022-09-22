@@ -8,10 +8,7 @@ class HealthDataViewController: UIViewController {
     var cancellables = Set<AnyCancellable>()
     var chartsStepItem = [ChartsStepItem]()
     
-    
     @IBOutlet var stepChartsView: UIView!
-    @IBOutlet var stepChartsWeekView: UIView!
-    @IBOutlet var stepChartsMonthView: UIView!
     
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -40,7 +37,6 @@ class HealthDataViewController: UIViewController {
                 }
             }
             cancellables.insert(.init { task.cancel() })
-            
         } else if sender.selectedSegmentIndex == 1 {
             let task = Task {
                 do {

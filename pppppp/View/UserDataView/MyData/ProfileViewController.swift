@@ -10,12 +10,14 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     var completionHandlers = [() -> Void]()
     var friendDataList = [UserData]()
     var pointDataList = [PointData]()
+    var chartsStepItem = [ChartsStepItem]()
     let layout = UICollectionViewFlowLayout()
     var cancellables = Set<AnyCancellable>()
     var refreshCtl = UIRefreshControl()
     
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var activityBackgroundView: UIView!
+    @IBOutlet var stepChartsView: UIView!
     
     @IBOutlet var myIconView: UIImageView! {
         didSet {
@@ -82,12 +84,15 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         if sender.selectedSegmentIndex == 0 {
             self.activityBackgroundView.isHidden = false
             self.friendcollectionView.isHidden = true
+            self.stepChartsView.isHidden = true
         } else if sender.selectedSegmentIndex == 1 {
             self.activityBackgroundView.isHidden = true
             self.friendcollectionView.isHidden = false
+            self.stepChartsView.isHidden = true
         } else if sender.selectedSegmentIndex == 2 {
             self.activityBackgroundView.isHidden = true
             self.friendcollectionView.isHidden = true
+            self.stepChartsView.isHidden = false
         }
     }
     
@@ -122,6 +127,17 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
                 self.friendcollectionView.reloadData()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
+                
+                chartsStepItem = try await Scorering.shared.createWeekStepsChart()
+                chartsStepItem.reverse()
+                let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
+                stepChartsView.addSubview(vc.view)
+                vc.view.translatesAutoresizingMaskIntoConstraints = false
+                vc.view.topAnchor.constraint(equalTo: stepChartsView.topAnchor, constant: 80).isActive = true
+                vc.view.bottomAnchor.constraint(equalTo: stepChartsView.bottomAnchor, constant: -8).isActive = true
+                vc.view.leftAnchor.constraint(equalTo: stepChartsView.leftAnchor, constant: 0).isActive = true
+                vc.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: 0).isActive = true
+                vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
             }
             catch {
                 print("ProfileViewContro ViewDid error:",error.localizedDescription)
