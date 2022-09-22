@@ -122,21 +122,14 @@ extension SignInWithAppleViewController: ASAuthorizationControllerDelegate {
                 print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                 return
             }
-            // Initialize a Firebase credential.
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
-            // Sign in with Firebase.
             Auth.auth().signIn(with: credential) { (authResult, error) in
                 if (error != nil) {
-                    // Error. If error.code == .MissingOrInvalidNonce, make sure
-                    // you're sending the SHA256-hashed nonce as a hex string with
-                    // your request to Apple.
                     print(error!.localizedDescription)
                     return
                 }
-                // User is signed in to Firebase with Apple.
-                // ...
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let secondVC = storyboard.instantiateInitialViewController()
                 self.showDetailViewController(secondVC!, sender: self)

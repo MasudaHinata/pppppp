@@ -169,7 +169,6 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         AVCaptureDevice.requestAccess(for: .video) { [weak self] (res) in
             guard let self = self else { return }
             if res == false {
-                print("許可なし")
                 DispatchQueue.main.async {
                     self.alertButtonLayout.isHidden = false
                 }

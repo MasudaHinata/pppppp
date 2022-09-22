@@ -14,7 +14,6 @@ final class Scorering {
     let calendar = Calendar.current
     let dateFormatter = DateFormatter()
     var cancellables = Set<AnyCancellable>()
-    
     let typeOfWrite = Set([typeOfBodyMass])
     let typeOfRead = Set([typeOfBodyMass, typeOfStepCount])
     
@@ -79,32 +78,6 @@ final class Scorering {
 
         let todayPoint = stepDifPoint + stepAvePoint
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
-        
-        //MARK: - 歩数ポイント Debug
-//        //先月との歩数差のポイント
-//        let differenceStep = [200, 500, 1000, 2000, 3000, 4000, 5000, 6000, 8000, 10000, 13000, 20000]
-//        var stepDifPoint = [Int]()
-//
-//        for differenceStep in differenceStep {
-//            if differenceStep <= 0 {
-//                stepDifPoint.append(0)
-//            } else {
-//                stepDifPoint.append(Int(9 / (0.3 + exp(-Double(differenceStep) * 0.0005))))
-//            }
-//        }
-//        print(stepDifPoint)
-//        //平均歩数のポイント
-//        let monthStepCountAve = [4000, 6000, 7000, 8000, 10000, 15000, 20000]
-//        var stepAvePoint = [Int]()
-//
-//        for monthStepCountAve  in monthStepCountAve {
-//            if monthStepCountAve <= 6000 {
-//                stepAvePoint.append(0)
-//            } else {
-//                stepAvePoint.append(Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004))))
-//            }
-//        }
-//        print(stepAvePoint)
     }
     
     //MARK: - Chart用の歩数を取得(Week)
@@ -151,23 +124,12 @@ final class Scorering {
     func getAverageStepPoint() async throws -> Int {
         getPermissionHealthKit()
         var averageStep = Int()
-        
-//        if {
-            let endDateMonth = calendar.date(byAdding: .day, value: 0, to: calendar.startOfDay(for: Date()))
-            let startDateMonth = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: Date()))
-            let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
-            let stepsTodayMonth = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodMonth)
-            let sumOfStepsQueryMonth = HKStatisticsQueryDescriptor(predicate: stepsTodayMonth, options: .cumulativeSum)
-            averageStep = Int((try await (sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count()))!) / 31)
-//        } else {
-//            let endDate = calendar.date(byAdding: .day, value: -0, to: calendar.startOfDay(for: Date()))
-//            let startDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
-//            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-//            let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-//            let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-//            averageStep = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-//        }
-//
+        let endDateMonth = calendar.date(byAdding: .day, value: 0, to: calendar.startOfDay(for: Date()))
+        let startDateMonth = calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: Date()))
+        let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
+        let stepsTodayMonth = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodMonth)
+        let sumOfStepsQueryMonth = HKStatisticsQueryDescriptor(predicate: stepsTodayMonth, options: .cumulativeSum)
+        averageStep = Int((try await (sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count()))!) / 7)
         return averageStep
     }
     
@@ -218,18 +180,6 @@ final class Scorering {
             exercisePoint = Int(15 / (0.6 + exp(-exercise * 0.2)))
         }
         try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: exercizeName)
-        
-        //MARK: - ExercisePoint debug
-        //        let exercisee: [Double] = [0.05, 0.1, 0.2, 0.3, 0.5, 0.8, 0.9, 1, 1.1, 2, 3, 4, 5, 8, 10, 12, 15, 18, 20]
-        //        var exercisePointt = [Int]()
-        //        for exercise  in exercisee {
-        //            if exercise <= 0.9 {
-        //                exercisePointt.append(Int(4.5 / (0.45 + exp(-exercise * 6))))
-        //            } else {
-        //                exercisePointt.append(Int(15 / (0.6 + exp(-exercise * 0.2))))
-        //            }
-        //        }
-        //        print(exercisePointt) // ->[]
     }
     
     //MARK: - 体重をHealthKitに書き込み
@@ -243,26 +193,12 @@ final class Scorering {
     //MARK: - 体重を読み込み
     func readWeight() async throws {
         getPermissionHealthKit()
-        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重をWeightDataに入れたい
-        
+        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重を構造体にいれてグラフにする
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
         let results = try await descriptor.result(for: myHealthStore)
         let doubleValues = results.map {
             $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
         }
         print(doubleValues)
-        
-        //        let query = HKSampleQuery(sampleType: typeOfBodyMass, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
-        //            let samples = results as! [HKQuantitySample]
-        //
-        //            var buf = ""
-        //            for sample in samples {
-        //                let s = sample.quantity
-        //                print("\(String(describing: sample))")
-        //                buf.append("\(sample.startDate) \(String(describing: s))\n")
-        //            }
-        //            print(buf)
-        //        }
-        //        myHealthStore.execute(query)
     }
 }

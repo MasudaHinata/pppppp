@@ -37,7 +37,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
                     try await FirebaseClient.shared.passwordResetting(email: email)
                 }
                 catch {
-                    print("SentEmail sentEmailMore error:", error.localizedDescription)
+                    print("ResetPasswordView sentEmailMore error:", error.localizedDescription)
                     if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in })
                     } else {

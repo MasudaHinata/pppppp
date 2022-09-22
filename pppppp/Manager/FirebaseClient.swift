@@ -76,7 +76,8 @@ final class FirebaseClient {
     var cancellables = Set<AnyCancellable>()
     
     //MARK: - FireStore Read
-    //UUIDをとる
+    
+    //MARK: - UUIDをとる
     func getUserUUID() async throws -> String {
         guard let user = Auth.auth().currentUser else {
             try await self.userAuthCheck()
@@ -85,7 +86,7 @@ final class FirebaseClient {
         let userID = user.uid
         return userID
     }
-    //自分と友達のProfile,Pointデータを取得
+    //MARK: - 自分と友達のProfile,Pointデータを取得
     public func getProfileData(includeMe: Bool) async throws -> [UserData] {
         guard let user = Auth.auth().currentUser else {
             try await self.userAuthCheck()
@@ -108,7 +109,7 @@ final class FirebaseClient {
         users.sort { $1.point! < $0.point! }
         return users
     }
-    //idで与えられたユーザーの累積ポイントを返す
+    //MARK: - idで与えられたユーザーの累積ポイントを返す
     func getPointDataSum(id: String, accumulationType: String) async throws -> Int {
         var startDate = Date()
         if accumulationType == "今日までの一週間" {
@@ -137,12 +138,14 @@ final class FirebaseClient {
         }
         return pointSum
     }
-    //idで与えられたユーザーのポイント履歴を取得する
+    
+    //MARK: - idで与えられたユーザーのポイント履歴を取得する
     func getPointData(id: String) async throws -> [PointData] {
         let snapshot = try await db.collection("User").document(id).collection("HealthData").whereField("date", isLessThanOrEqualTo: Timestamp(date: Date())).getDocuments()
         return try snapshot.documents.map { try $0.data(as: PointData.self) }
     }
-    //自分の今までのポイントを取得する
+    
+    //MARK: - 自分の今までのポイントを取得する
     func getTotalPoint() async throws -> Int{
         guard let user = Auth.auth().currentUser else {
             try await self.userAuthCheck()
@@ -161,7 +164,8 @@ final class FirebaseClient {
         }
         return pointSum
     }
-    //自分の名前を取得する
+    
+    //MARK: - 自分の名前を取得する
     func getMyNameData() async throws -> String {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -173,7 +177,8 @@ final class FirebaseClient {
         let data = querySnapShot.data()!["name"]!
         return data as! String
     }
-    //自分のアイコンを取得する
+    
+    //MARK: - 自分のアイコンを取得する
     func getMyIconData() async throws -> URL {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -185,7 +190,8 @@ final class FirebaseClient {
         let url = URL(string: querySnapShot.data()!["IconImageURL"]! as! String)!
         return url
     }
-    //友達の名前を取得する
+    
+    //MARK: - 友達の名前を取得する
     func getFriendNameData(friendId: String) async throws -> String {
         let querySnapShot = try await db.collection("User").document(friendId).getDocument()
         var data: String!
@@ -196,7 +202,8 @@ final class FirebaseClient {
         }
         return data!
     }
-    //友達のアイコンを取得する
+    
+    //MARK: - 友達のアイコンを取得する
     func getFriendIconData(friendId: String) async throws -> URL {
         let querySnapShot = try await db.collection("User").document(friendId).getDocument()
         let url = URL(string: querySnapShot.data()!["IconImageURL"]! as! String)!
@@ -204,7 +211,8 @@ final class FirebaseClient {
     }
     
     //MARK: - FireStore Write
-    //UserDataをFirestoreに保存
+    
+    //MARK: - UserDataをFirestoreに保存
     func setUserData() async throws {
         guard let user = Auth.auth().currentUser else {
             try await self.userAuthCheck()
@@ -216,7 +224,8 @@ final class FirebaseClient {
         UserDefaults.standard.set("https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11", forKey: "IconImageURL")
         
     }
-    //ポイントをFirestoreに保存
+    
+    //MARK: - ポイントをFirestoreに保存
     func firebasePutData(point: Int, activity: String) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -231,7 +240,8 @@ final class FirebaseClient {
             self.putPointDelegate?.putPointForFirestore(point: point, activity: activity)
         }
     }
-    //画像をfirestore,firebaseStorageに保存
+    
+    //MARK: - 画像をfirestore,firebaseStorageに保存
     func putFirebaseStorage(selectImage: UIImage) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -251,7 +261,8 @@ final class FirebaseClient {
             UserDefaults.standard.set(downloadUrlStr, forKey: "IconImageURL")
         }
     }
-    //名前をfirestoreに保存
+    
+    //MARK: - 名前をfirestoreに保存
     func putNameFirestore(name: String) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -261,7 +272,8 @@ final class FirebaseClient {
         try await db.collection("User").document(userID).updateData(["name": name])
         UserDefaults.standard.set(name, forKey: "name")
     }
-    //自己評価をfirebaseに保存
+    
+    //MARK: - 自己評価をfirebaseに保存
     func firebasePutSelfCheckLog(log: String) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -270,7 +282,8 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).collection("SelfCheckLog").document().setData(["log": log, "date": Timestamp(date: Date())])
     }
-    //友達を追加する
+    
+    //MARK: - 友達を追加する
     func addFriend(friendId: String) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -281,7 +294,8 @@ final class FirebaseClient {
         try await db.collection("User").document(friendId).updateData(["FriendList": FieldValue.arrayUnion([userID])])
         self.addFriendDelegate?.addFriends()
     }
-    //友達を削除する
+    
+    //MARK: - 友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -292,7 +306,8 @@ final class FirebaseClient {
         try await db.collection("User").document(deleteFriendId).updateData(["FriendList": FieldValue.arrayRemove([userID])])
         await self.deletefriendDelegate?.friendDeleted()
     }
-    //友達のFriendListから自分を削除する
+    
+    //MARK: - 友達のFriendListから自分を削除する
     func deleteMeFromFriend() async throws  {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -304,7 +319,8 @@ final class FirebaseClient {
             try await db.collection("User").document(document.documentID).updateData(["FriendList": FieldValue.arrayRemove([userID])])
         }
     }
-    //自分のデータを全削除する
+    
+    //MARK: - 自分のデータを全削除する
     func accountDelete() async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -328,7 +344,7 @@ final class FirebaseClient {
     
     //MARK: - FireStore Check
     
-    //ログインできてるか・メール認証ができてるかの判定
+    //MARK: - ログインできてるか・メール認証ができてるかの判定
     func userAuthCheck() async throws {
         guard let user = Auth.auth().currentUser else {
             await LoginHelper.shared.showAccountViewController()
@@ -339,7 +355,8 @@ final class FirebaseClient {
         }
         try await user.reload()
     }
-    //名前があるかどうかの判定
+    
+    //MARK: - 名前があるかどうかの判定
     @MainActor
     func checkNameData() async throws {
         guard let user = Auth.auth().currentUser else {
@@ -365,7 +382,8 @@ final class FirebaseClient {
             UserDefaults.standard.set(data, forKey: "name")
         }
     }
-    //アイコンがあるかどうかの判定
+    
+    //MARK: - アイコンがあるかどうかの判定
     func checkIconData() async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
@@ -388,7 +406,8 @@ final class FirebaseClient {
             UserDefaults.standard.set(data, forKey: "IconImageURL")
         }
     }
-    //今日の歩数ポイントがあるかどうかの判定
+    
+    //MARK: - 今日の歩数ポイントがあるかどうかの判定
     func checkCreateStepPoint() async throws -> Bool {
         let judge: Bool!
         guard let user = Auth.auth().currentUser else {
@@ -405,7 +424,8 @@ final class FirebaseClient {
         judge = false
         return judge
     }
-    //今日の自己評価をしたかどうかの判定
+    
+    //MARK: - 今日の自己評価をしたかどうかの判定
     func checkSelfCheck() async throws -> Bool {
         let judge: Bool!
         guard let user = Auth.auth().currentUser else {
@@ -424,7 +444,7 @@ final class FirebaseClient {
     }
     
     //MARK: - Firebase Authentication
-    //Email ログインする
+    //MARK: - Email ログインする
     @MainActor
     func emailSignIn(email: String, password: String) async throws {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
@@ -433,16 +453,16 @@ final class FirebaseClient {
         }
     }
     
-    //Email パスワードを再設定する
+    //MARK: - Email パスワードを再設定する
     func passwordResetting(email: String) async throws{
         try await firebaseAuth.sendPasswordReset(withEmail: email)
         self.sentEmailDelegate?.sendEmail()
     }
     
-    //Appleログイン
+    //MARK: - Appleログイン
     //TODO: SignInWithAppleViewControllerから移行
     
-    //ログアウトする
+    //MARK: - ログアウトする
     func logout() async throws {
         do {
             try firebaseAuth.signOut()
@@ -454,7 +474,7 @@ final class FirebaseClient {
         }
     }
     
-    //アカウントを削除
+    //MARK: - アカウントを削除
     func accountDeleteAuth() async throws {
         guard let user = Auth.auth().currentUser else {
             try await self.userAuthCheck()

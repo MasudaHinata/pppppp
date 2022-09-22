@@ -46,7 +46,7 @@ class DashboardViewController: UIViewController {
                 activityIndicator.stopAnimating()
             }
             catch {
-                print("CollectionViewContro ViewDid error:",error.localizedDescription)
+                print("DashboardViewContro ViewDid error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.viewDidLoad()
@@ -67,7 +67,7 @@ class DashboardViewController: UIViewController {
                 self.collectionView.reloadData()
             }
             catch {
-                print("ViewContro refresh error",error.localizedDescription)
+                print("DashboardView refresh error",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.viewDidLoad()

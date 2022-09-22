@@ -44,7 +44,6 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
                     try await FirebaseClient.shared.emailSignIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }
                 catch {
-                    //TODO: エラーコードでアラートを判別
                     print("EmailSignInView goButtonPressed error:", error.localizedDescription)
                     if error.localizedDescription == "The email address is badly formatted." {
                         showAlert(title: "エラー", message: "メールアドレスの形式が間違っています")
