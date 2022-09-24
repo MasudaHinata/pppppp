@@ -129,7 +129,7 @@ final class Scorering {
         let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
         let stepsTodayMonth = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodMonth)
         let sumOfStepsQueryMonth = HKStatisticsQueryDescriptor(predicate: stepsTodayMonth, options: .cumulativeSum)
-        averageStep = Int((try await (sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count()))!) / 7)
+        averageStep = Int((try await (sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())) ?? 0) / 7)
         return averageStep
     }
     
