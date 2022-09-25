@@ -65,8 +65,9 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         FirebaseClient.shared.putPointDelegate = self
+        self.view.layer.cornerRadius = 48
+        self.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -83,7 +84,7 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
         exerciseTypePicker.selectRow(2, inComponent: 0, animated: false)
         selectExerciseTextField.inputView = exerciseTypePicker
         selectExerciseTextField.inputAccessoryView = exerciseTypeToolbar
-
+        
         let exerciseTimeToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
         let exerciseTimeSpacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let exerciseTimeDoneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(exerciseTimeDone))

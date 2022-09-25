@@ -29,14 +29,14 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
             let secondVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
             if let sheet = secondVC.sheetPresentationController {
-                sheet.detents = [.custom { context in 0.23 * context.maximumDetentValue }]
+                sheet.detents = [.custom { context in 178 }]
             }
             self.present(secondVC, animated: true, completion: nil)
         }
         let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
             let secondVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
             if let sheet = secondVC.sheetPresentationController {
-                sheet.detents = [.custom { context in 0.23 * context.maximumDetentValue }]
+                sheet.detents = [.custom { context in 178 }]
             }
             self.present(secondVC, animated: true, completion: nil)
         }
