@@ -202,29 +202,48 @@ final class Scorering {
         return doubleValues.first ?? 0
     }
     
-    //MARK: - Chart用の体重を取得
-    func createWeightChart() async throws -> [ChartsWeightItem] {
+//    //MARK: - Chart用の体重を取得
+//    func createWeightChart() async throws -> [ChartsWeightItem] {
+//        getPermissionHealthKit()
+//        try await readWeightDatas()
+//        dateFormatter.dateFormat = "MM/dd"
+//        var chartsWeightItem = [ChartsWeightItem]()
+//        let predicate = HKQuery.predicateForSamples(withStart: nil, end: Date())
+//        let sampleType = HKQuantityType.quantityType(forIdentifier: .bodyMass)!
+//        
+//        let query = HKSampleQuery(
+//            sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { [self]
+//                (query, results, error) in
+//                let samples = results as! [HKQuantitySample]
+//                for sample in samples {
+//                    let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
+//                    let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: sample.startDate), weight: Double(s))
+//                    chartsWeightItem.append(weightData)
+//                }
+//            }
+//        self.myHealthStore.execute(query)
+//        return chartsWeightItem
+//    }
+//    
+    //MARK: - 体重を読み込み
+    func readWeightDatas() async throws -> [ChartsWeightItem] {
         getPermissionHealthKit()
-        dateFormatter.dateFormat = "MM/dd"
         var chartsWeightItem = [ChartsWeightItem]()
-        let predicate = HKQuery.predicateForSamples(withStart: nil, end: Date())
-        let sampleType = HKQuantityType.quantityType(forIdentifier: .bodyMass)!
-        
-        let query = HKSampleQuery(
-            sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { [self]
-                (query, results, error) in
-                let samples = results as! [HKQuantitySample]
-                for sample in samples {
-                    let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
-                    let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: sample.startDate), weight: Double(s))
-                    chartsWeightItem.append(weightData)
-                }
-//                print(chartsWeightItem)
-            }
-        self.myHealthStore.execute(query)
-//        print(chartsWeightItem)
+        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重を構造体にいれてグラフにする
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: nil)
+        let results = try await descriptor.result(for: myHealthStore)
+//        let doubleValues = results.map {
+//            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
+//        }
+        for sample in results {
+            let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
+            let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: sample.startDate), weight: Double(s))
+            chartsWeightItem.append(weightData)
+        }
+        print(chartsWeightItem)
         return chartsWeightItem
     }
+    
 }
 
 //        let days = [-1, 0, 1, 2, 3, 4, 5]
