@@ -47,35 +47,35 @@ final class Scorering {
         let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
         let stepsTodayMonth = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: periodMonth)
         let sumOfStepsQueryMonth = HKStatisticsQueryDescriptor(predicate: stepsTodayMonth, options: .cumulativeSum)
-
+        
         let endDate = calendar.date(byAdding: .day, value: -0, to: calendar.startOfDay(for: Date()))
         let startDate = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
         let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
         let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-
+        
         let monthStepCountSum = try await sumOfStepsQueryMonth.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
         let yesterdayStepCount = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-
+        
         let monthStepCountAve = (monthStepCountSum ?? 0) / 30
         let differenceStep = Int(yesterdayStepCount ?? 0) - Int(monthStepCountAve)
         var stepDifPoint = Int()
         var stepAvePoint = Int()
-
+        
         //先月との歩数差のポイント
         if differenceStep <= 0 {
             stepDifPoint = 0
         } else {
             stepDifPoint = Int(9 / (0.3 + exp(-Double(differenceStep) * 0.0005)))
         }
-
+        
         //平均歩数のポイント
         if monthStepCountAve <= 6000 {
             stepAvePoint = 0
         } else {
             stepAvePoint = Int(0.5 / (0.05 + exp(-Double(monthStepCountAve) * 0.0004)))
         }
-
+        
         let todayPoint = stepDifPoint + stepAvePoint
         try await FirebaseClient.shared.firebasePutData(point: todayPoint, activity: "Steps")
     }
@@ -98,28 +98,6 @@ final class Scorering {
             chartsStepItem.append(stepdata)
         }
         return chartsStepItem
-    }
-    
-    //MARK: - Chart用の歩数を取得(Week)
-    func createWeightChart() async throws -> [ChartsWeightItem] {
-        getPermissionHealthKit()
-        dateFormatter.dateFormat = "MM/dd"
-        var chartsWeightItem = [ChartsWeightItem]()
-        
-        let days = [-1, 0, 1, 2, 3, 4, 5]
-        for date in days {
-            let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
-            let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
-            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-            let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-            let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-            let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-            
-            let stepdata = ChartsWeightItem.init(date: dateFormatter.string(from: startDate!), weight: Int(stepCounts ?? 0))
-            chartsWeightItem.append(stepdata)
-        }
-        
-        return chartsWeightItem
     }
     
     //MARK: - Chart用の歩数を取得(Month)
@@ -223,4 +201,44 @@ final class Scorering {
         }
         print(doubleValues)
     }
+    
+    //MARK: - Chart用の体重を取得
+    func createWeightChart() async throws -> [ChartsWeightItem] {
+        getPermissionHealthKit()
+        dateFormatter.dateFormat = "MM/dd"
+        var chartsWeightItem = [ChartsWeightItem]()
+        
+        let predicate = HKQuery.predicateForSamples(withStart: nil, end: Date())
+        let sampleType = HKQuantityType.quantityType(forIdentifier: .bodyMass)!
+        
+        let query = HKSampleQuery(
+            sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { [self]
+                (query, results, error) in
+                let samples = results as! [HKQuantitySample]
+//                print(samples)
+                for sample in samples {
+                    let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
+                    let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: sample.startDate), weight: Float(s))
+//                    print(weightData)
+                    chartsWeightItem.append(weightData)
+                }
+//                print(chartsWeightItem)
+            }
+        self.myHealthStore.execute(query)
+        print(chartsWeightItem)
+        return chartsWeightItem
+    }
 }
+
+//        let days = [-1, 0, 1, 2, 3, 4, 5]
+//        for date in days {
+//            let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
+//            let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
+//            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+//            let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+//            let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+//            let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+//
+//            let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: startDate!), weight: Int(stepCounts ?? 0))
+//            chartsWeightItem.append(weightData)
+//        }

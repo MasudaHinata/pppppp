@@ -10,14 +10,14 @@ struct WeightChartsUIView: View {
             Color(asset: Asset.Colors.mainColor)
             Chart {
                 ForEach(data) { item in
-                    LineMark(
+                    BarMark(
                         x: .value("Date", item.date),
                         y: .value("Weight", item.weight)
                     )
-                    PointMark(
-                        x: .value("Date", item.date),
-                        y: .value("Step Count", item.weight)
-                    )
+//                    PointMark(
+//                        x: .value("Date", item.date),
+//                        y: .value("Step Count", item.weight)
+//                    )
                 }
             }
             .chartForegroundStyleScale([
