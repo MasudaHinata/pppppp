@@ -2,15 +2,15 @@ import SwiftUI
 import Charts
 
 @available(iOS 16.0, *)
-struct StepsChartsUIView: View {
-
-    var data: [ChartsStepItem]
+struct WeightChartsUIView: View {
+    
+    var data: [ChartsWeightItem]
     var body: some View {
         ZStack {
             Color(asset: Asset.Colors.mainColor)
             Chart {
                 ForEach(data) { item in
-                    BarMark(
+                    LineMark(
                         x: .value("Date", item.date),
                         y: .value("Step Count", item.stepCounts)
                     )

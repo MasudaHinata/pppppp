@@ -100,6 +100,28 @@ final class Scorering {
         return chartsStepItem
     }
     
+    //MARK: - Chart用の歩数を取得(Week)
+    func createWeightChart() async throws -> [ChartsWeightItem] {
+        getPermissionHealthKit()
+        dateFormatter.dateFormat = "MM/dd"
+        var chartsWeightItem = [ChartsWeightItem]()
+        
+        let days = [-1, 0, 1, 2, 3, 4, 5]
+        for date in days {
+            let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
+            let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
+            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+            let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+            let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+            let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+            
+            let stepdata = ChartsWeightItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts ?? 0))
+            chartsWeightItem.append(stepdata)
+        }
+        
+        return chartsWeightItem
+    }
+    
     //MARK: - Chart用の歩数を取得(Month)
     func createMonthStepsChart() async throws -> [ChartsStepItem] {
         getPermissionHealthKit()

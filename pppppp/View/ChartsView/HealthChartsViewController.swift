@@ -7,13 +7,27 @@ class HealthChartsViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
     var chartsStepItem = [ChartsStepItem]()
-
+    var weightStepItem = [ChartsWeightItem]()
+    
     @IBOutlet var stepChartsView: UIView!
+    @IBOutlet var weightChartsView: UIView!
     @IBOutlet var averageStepLabel: UILabel!
+    @IBOutlet var todayWeightLabel: UILabel!
+    
+    @IBAction func segmentValueChanged(sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            self.stepChartsView.isHidden = false
+            self.weightChartsView.isHidden = true
+        } else if sender.selectedSegmentIndex == 1 {
+            self.stepChartsView.isHidden = true
+            self.weightChartsView.isHidden = false
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Asset.Colors.mainColor.color
+        self.weightChartsView.isHidden = true
         let task = Task {  [weak self] in
             guard let self = self else { return }
             do {
@@ -29,6 +43,20 @@ class HealthChartsViewController: UIViewController {
                 vc.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: -16).isActive = true
                 vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
                 averageStepLabel.text = "\(averageStep) steps"
+                
+                let weight = 40
+//                try await Scorering.shared.getAverageStepPoint()
+                weightStepItem = try await Scorering.shared.createWeightChart()
+                weightStepItem.reverse()
+                let weightVC: UIHostingController = UIHostingController(rootView: WeightChartsUIView(data: weightStepItem))
+                weightChartsView.addSubview(weightVC.view)
+                weightVC.view.translatesAutoresizingMaskIntoConstraints = false
+                weightVC.view.topAnchor.constraint(equalTo: weightChartsView.topAnchor, constant: 54).isActive = true
+                weightVC.view.bottomAnchor.constraint(equalTo: weightChartsView.bottomAnchor, constant: -8).isActive = true
+                weightVC.view.leftAnchor.constraint(equalTo: weightChartsView.leftAnchor, constant: 16).isActive = true
+                weightVC.view.rightAnchor.constraint(equalTo: weightChartsView.rightAnchor, constant: -16).isActive = true
+                weightVC.view.centerYAnchor.constraint(equalTo: weightChartsView.centerYAnchor).isActive = true
+                todayWeightLabel.text = "\(weight) kg"
             }
             catch {
                 print("ProfileViewContro ViewDid error:",error.localizedDescription)

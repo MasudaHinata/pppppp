@@ -96,8 +96,6 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: self.view.frame.width, height: 56)
         friendcollectionView.collectionViewLayout = layout
-//        friendDataList.removeAll()
-//        pointDataList.removeAll()
         
         let task = Task {  [weak self] in
             guard let self = self else { return }

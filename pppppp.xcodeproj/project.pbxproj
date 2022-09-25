@@ -53,6 +53,8 @@
 		036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */; };
 		036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0028C092520066A7DA /* DashboardView.storyboard */; };
 		036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0228C093560066A7DA /* UserDataView.storyboard */; };
+		03704A2128E01D78004BE7C3 /* WeightChartsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */; };
+		03704A2328E022D6004BE7C3 /* ChartsWeightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
 		03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */; };
@@ -156,6 +158,8 @@
 		036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelfCheckView.storyboard; sourceTree = "<group>"; };
 		036F6A0028C092520066A7DA /* DashboardView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardView.storyboard; sourceTree = "<group>"; };
 		036F6A0228C093560066A7DA /* UserDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDataView.storyboard; sourceTree = "<group>"; };
+		03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightChartsUIView.swift; sourceTree = "<group>"; };
+		03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsWeightItem.swift; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
@@ -417,6 +421,7 @@
 				033945ED28DF25AE00681E9C /* HealthChartsView.storyboard */,
 				033945EF28DF25C100681E9C /* HealthChartsViewController.swift */,
 				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
+				03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */,
 			);
 			path = ChartsView;
 			sourceTree = "<group>";
@@ -504,6 +509,7 @@
 				036F697E28B8EACE0066A7DA /* PointData.swift */,
 				03C7E7BD28D34E320069A46E /* WeightData.swift */,
 				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
+				03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -821,6 +827,7 @@
 				036E476D28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */,
 				0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */,
+				03704A2328E022D6004BE7C3 /* ChartsWeightItem.swift in Sources */,
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
 				0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */,
@@ -835,6 +842,7 @@
 				9CAA88EC26B1918B005517D5 /* EmailSignInViewController.swift in Sources */,
 				9C4F1C752859E6F500623C66 /* FriendProfileViewController.swift in Sources */,
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
+				03704A2128E01D78004BE7C3 /* WeightChartsUIView.swift in Sources */,
 				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
