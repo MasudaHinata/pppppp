@@ -7,8 +7,9 @@ struct StepsChartsUIView: View {
     var data: [ChartsStepItem]
     var body: some View {
         ZStack {
-            Color.init(red: 18/255, green: 0/255, blue: 76/255)
-                .ignoresSafeArea()
+            Color(asset: Asset.Colors.mainColor)
+//            Color.Asset.Colors.mainColor.color
+//                .ignoresSafeArea()
             Chart {
                 ForEach(data) { item in
                     BarMark(
