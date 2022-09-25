@@ -46,7 +46,7 @@ class HealthChartsViewController: UIViewController {
                 
                 weightStepItem = try await Scorering.shared.createWeightChart()
                 weightStepItem.reverse()
-//                print(weightStepItem)
+                print(weightStepItem)
                 let weightVC: UIHostingController = UIHostingController(rootView: WeightChartsUIView(data: weightStepItem))
                 weightChartsView.addSubview(weightVC.view)
                 weightVC.view.translatesAutoresizingMaskIntoConstraints = false

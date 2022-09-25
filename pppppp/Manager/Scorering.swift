@@ -207,7 +207,6 @@ final class Scorering {
         getPermissionHealthKit()
         dateFormatter.dateFormat = "MM/dd"
         var chartsWeightItem = [ChartsWeightItem]()
-        
         let predicate = HKQuery.predicateForSamples(withStart: nil, end: Date())
         let sampleType = HKQuantityType.quantityType(forIdentifier: .bodyMass)!
         
@@ -215,14 +214,12 @@ final class Scorering {
             sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { [self]
                 (query, results, error) in
                 let samples = results as! [HKQuantitySample]
-//                print(samples)
                 for sample in samples {
                     let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
-                    let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: sample.startDate), weight: Float(s))
-//                    print(weightData)
+                    let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: sample.startDate), weight: Double(s))
                     chartsWeightItem.append(weightData)
                 }
-                print(chartsWeightItem)
+//                print(chartsWeightItem)
             }
         self.myHealthStore.execute(query)
 //        print(chartsWeightItem)
