@@ -8,7 +8,7 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
     
     var exerciseTypePicker = UIPickerView()
     var exerciseTimePicker = UIPickerView()
-    let exerciseTypeList = ["軽いジョギング", "ランニング", "運動を選択してください", "筋トレ(軽・中等度)", "筋トレ(強等度)", "サイクリング", "テニス(ダブルス)", "テニス(シングルス)", "水泳(ゆっくりとした背泳ぎ・平泳ぎ)", "水泳(クロール・普通の速さ)", "水泳(クロール・速い)", "野球"]
+    let exerciseTypeList = ["軽いジョギング", "ランニング", "運動を選択してください", "筋トレ(軽・中等度)", "筋トレ(強等度)", "テニス(ダブルス)", "テニス(シングルス)", "水泳(ゆっくりとした背泳ぎ・平泳ぎ)", "水泳(クロール・普通の速さ)", "水泳(クロール・速い)", "野球"]
     
     let exerciseTimeList: [Int] = Array(0...120)
     

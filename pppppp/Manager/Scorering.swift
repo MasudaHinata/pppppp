@@ -150,8 +150,6 @@ final class Scorering {
         case "筋トレ(強等度)":
             metz = 6.0
             exercizeName = "筋トレ"
-        case "サイクリング":
-            metz = 4.5
         case "テニス(ダブルス)":
             metz = 4.5
             exercizeName = "テニス"
@@ -204,7 +202,7 @@ final class Scorering {
         getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
         //TODO: 毎日のグラフにしたい(データがある日だけ線グラフに)
-        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: nil)
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 7)
         let results = try await descriptor.result(for: myHealthStore)
         for sample in results {
             let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
@@ -216,3 +214,13 @@ final class Scorering {
     }
     
 }
+
+//let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
+//let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
+//let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+//let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+//let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+//let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+//
+//let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts ?? 0))
+//chartsStepItem.append(stepdata)
