@@ -12,7 +12,6 @@ class DashboardViewController: UIViewController {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
-            layout.minimumLineSpacing = 22
             collectionView.collectionViewLayout = layout
             collectionView.register(UINib(nibName: "DashBoardFriendDataCell", bundle: nil), forCellWithReuseIdentifier: "DashBoardFriendDataCell")
         }
@@ -20,8 +19,7 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.9, height: 130)
-        
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 72)
         refreshCtl.tintColor = .white
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
@@ -58,7 +56,8 @@ class DashboardViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    //引っ張ってcollectionViewの更新する
+    
+    //MARK: - 引っ張ってcollectionViewの更新する
     func refresh() {
         let task = Task { [weak self] in
             guard let self = self else { return }

@@ -8,8 +8,9 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DashBoardFriendDataCell", for: indexPath)  as! DashBoardFriendDataCell
         cell.contentView.isUserInteractionEnabled = false
+        cell.rankingLabel.text = "\(indexPath.row + 1)."
         cell.nameLabel.text = friendDataList[indexPath.row].name
-        cell.dataLabel.text = String(friendDataList[indexPath.row].point ?? 0)
+        cell.dataLabel.text = "\(friendDataList[indexPath.row].point ?? 0)pt"
         cell.iconView.kf.setImage(with: URL(string: friendDataList[indexPath.row].iconImageURL)!)
         return cell
     }

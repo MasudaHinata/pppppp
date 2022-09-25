@@ -2,11 +2,12 @@ import UIKit
 
 class DashBoardFriendDataCell: UICollectionViewCell {
     
+    @IBOutlet var rankingLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dataLabel: UILabel!
     @IBOutlet var iconView: UIImageView! {
         didSet {
-            iconView.layer.cornerRadius = 24
+            iconView.layer.cornerRadius = 28
             iconView.layer.cornerCurve = .continuous
             iconView.clipsToBounds = true
         }
@@ -14,8 +15,5 @@ class DashBoardFriendDataCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.cornerRadius = 32
-        self.layer.cornerCurve = .continuous
-        self.clipsToBounds = true
     }
 }

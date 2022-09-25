@@ -52,7 +52,22 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             guard let self = self else { return }
             do {
                 activityIndicator.startAnimating()
-                stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps())) steps"
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+                if type as! String == "今日までの一週間" {
+                    startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: Date()))!
+                } else if type as! String == "月曜始まり" {
+                    let am = calendar.startOfDay(for: Date())
+                    let weekNumber = calendar.component(.weekday, from: am)
+                    if weekNumber == 1 {
+                        startDate = calendar.date(byAdding: .day, value: -6, to: am)!
+                    } else {
+                        startDate = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
+                    }
+                }
+                dateFormatter.dateFormat = "MM/dd"
+                weekPointLabel.text = "\(dateFormatter.string(from: startDate)) ~ Today  \(try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))  pt"
+                stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 activityIndicator.stopAnimating()
