@@ -202,7 +202,7 @@ final class Scorering {
         getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
         //TODO: 毎日のグラフにしたい(データがある日だけ線グラフに)
-        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 7)
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 10)
         let results = try await descriptor.result(for: myHealthStore)
         for sample in results {
             let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
