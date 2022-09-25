@@ -44,7 +44,7 @@ class HealthChartsViewController: UIViewController {
                 vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
                 averageStepLabel.text = "\(averageStep) steps"
                 
-                weightStepItem = try await Scorering.shared.createWeightChart()
+                weightStepItem = try await Scorering.shared.readWeightData()
 //                print(weightStepItem)
                 weightStepItem.reverse()
                 let weightVC: UIHostingController = UIHostingController(rootView: WeightChartsUIView(data: weightStepItem))

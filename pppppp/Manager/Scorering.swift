@@ -198,7 +198,7 @@ final class Scorering {
     }
     
     //MARK: - Chart用の体重を取得
-    func readWeightDatas() async throws -> [ChartsWeightItem] {
+    func readWeightData() async throws -> [ChartsWeightItem] {
         getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
         //TODO: 毎日のグラフにしたい(データがある日だけ線グラフに)
