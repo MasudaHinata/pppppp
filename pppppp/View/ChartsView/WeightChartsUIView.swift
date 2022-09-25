@@ -12,12 +12,16 @@ struct WeightChartsUIView: View {
                 ForEach(data) { item in
                     LineMark(
                         x: .value("Date", item.date),
+                        y: .value("Weight", item.stepCounts)
+                    )
+                    PointMark(
+                        x: .value("Date", item.date),
                         y: .value("Step Count", item.stepCounts)
                     )
                 }
             }
             .chartForegroundStyleScale([
-                "steps": Color.init(red: 146/255, green: 178/255, blue: 211/255)
+                "weight": Color.init(red: 146/255, green: 178/255, blue: 211/255)
             ])
         }
     }
