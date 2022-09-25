@@ -191,7 +191,7 @@ final class Scorering {
     }
     
     //MARK: - 体重を読み込み
-    func readWeight() async throws {
+    func readWeight() async throws -> Double {
         getPermissionHealthKit()
         //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重を構造体にいれてグラフにする
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
@@ -199,7 +199,7 @@ final class Scorering {
         let doubleValues = results.map {
             $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
         }
-        print(doubleValues)
+        return doubleValues.first ?? 0
     }
     
     //MARK: - Chart用の体重を取得
@@ -222,10 +222,10 @@ final class Scorering {
 //                    print(weightData)
                     chartsWeightItem.append(weightData)
                 }
-//                print(chartsWeightItem)
+                print(chartsWeightItem)
             }
         self.myHealthStore.execute(query)
-        print(chartsWeightItem)
+//        print(chartsWeightItem)
         return chartsWeightItem
     }
 }

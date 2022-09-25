@@ -44,8 +44,6 @@ class HealthChartsViewController: UIViewController {
                 vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
                 averageStepLabel.text = "\(averageStep) steps"
                 
-                let weight = 40
-//                try await Scorering.shared.getAverageStepPoint()
                 weightStepItem = try await Scorering.shared.createWeightChart()
                 weightStepItem.reverse()
 //                print(weightStepItem)
@@ -57,6 +55,7 @@ class HealthChartsViewController: UIViewController {
                 weightVC.view.leftAnchor.constraint(equalTo: weightChartsView.leftAnchor, constant: 16).isActive = true
                 weightVC.view.rightAnchor.constraint(equalTo: weightChartsView.rightAnchor, constant: -16).isActive = true
                 weightVC.view.centerYAnchor.constraint(equalTo: weightChartsView.centerYAnchor).isActive = true
+                let weight = try await Scorering.shared.readWeight()
                 todayWeightLabel.text = "\(weight) kg"
             }
             catch {
