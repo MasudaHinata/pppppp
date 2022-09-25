@@ -190,71 +190,29 @@ final class Scorering {
         try await self.myHealthStore.save(myWeightData)
     }
     
-    //MARK: - 体重を読み込み
+    //MARK: - 最新の体重を取得
     func readWeight() async throws -> Double {
         getPermissionHealthKit()
-        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重を構造体にいれてグラフにする
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
         let results = try await descriptor.result(for: myHealthStore)
-        let doubleValues = results.map {
-            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
-        }
-        return doubleValues.first ?? 0
+        let doubleValues = results.first?.quantity.doubleValue(for: .gramUnit(with: .kilo))
+        return doubleValues ?? 0
     }
     
-//    //MARK: - Chart用の体重を取得
-//    func createWeightChart() async throws -> [ChartsWeightItem] {
-//        getPermissionHealthKit()
-//        try await readWeightDatas()
-//        dateFormatter.dateFormat = "MM/dd"
-//        var chartsWeightItem = [ChartsWeightItem]()
-//        let predicate = HKQuery.predicateForSamples(withStart: nil, end: Date())
-//        let sampleType = HKQuantityType.quantityType(forIdentifier: .bodyMass)!
-//        
-//        let query = HKSampleQuery(
-//            sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { [self]
-//                (query, results, error) in
-//                let samples = results as! [HKQuantitySample]
-//                for sample in samples {
-//                    let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
-//                    let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: sample.startDate), weight: Double(s))
-//                    chartsWeightItem.append(weightData)
-//                }
-//            }
-//        self.myHealthStore.execute(query)
-//        return chartsWeightItem
-//    }
-//    
-    //MARK: - 体重を読み込み
+    //MARK: - Chart用の体重を取得
     func readWeightDatas() async throws -> [ChartsWeightItem] {
         getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
-        //TODO: 日付の指定をする(HKSampleQueryDescriptor日付指定できる？) &　日付と体重を構造体にいれてグラフにする
+        //TODO: 毎日のグラフにしたい(データがある日だけ線グラフに)
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: nil)
         let results = try await descriptor.result(for: myHealthStore)
-//        let doubleValues = results.map {
-//            $0.quantity.doubleValue(for: .gramUnit(with: .kilo))
-//        }
         for sample in results {
             let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
             let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: sample.startDate), weight: Double(s))
             chartsWeightItem.append(weightData)
         }
-        print(chartsWeightItem)
+//        print(chartsWeightItem)
         return chartsWeightItem
     }
     
 }
-
-//        let days = [-1, 0, 1, 2, 3, 4, 5]
-//        for date in days {
-//            let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
-//            let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
-//            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-//            let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-//            let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-//            let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-//
-//            let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: startDate!), weight: Int(stepCounts ?? 0))
-//            chartsWeightItem.append(weightData)
-//        }
