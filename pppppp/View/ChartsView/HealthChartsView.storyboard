@@ -35,6 +35,12 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming Soon..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyx-lS-aOQ">
+                                        <rect key="frame" x="116.33333333333333" y="261" width="157.33333333333337" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.57254901960000004" green="0.69803921570000005" blue="0.82745098039999998" alpha="0.6437293046" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -42,6 +48,8 @@
                                     <constraint firstItem="iav-bd-IAb" firstAttribute="top" secondItem="ave-Vq-Qlt" secondAttribute="top" constant="16" id="7N0-LL-Tnt"/>
                                     <constraint firstItem="QvW-0E-cp6" firstAttribute="leading" secondItem="ave-Vq-Qlt" secondAttribute="leading" constant="24" id="9O4-fq-VUm"/>
                                     <constraint firstItem="QvW-0E-cp6" firstAttribute="top" secondItem="ave-Vq-Qlt" secondAttribute="top" id="Zgf-eP-A94"/>
+                                    <constraint firstItem="yyx-lS-aOQ" firstAttribute="centerX" secondItem="ave-Vq-Qlt" secondAttribute="centerX" id="bUn-Fh-fQW"/>
+                                    <constraint firstItem="yyx-lS-aOQ" firstAttribute="centerY" secondItem="ave-Vq-Qlt" secondAttribute="centerY" id="bxU-cb-Lcq"/>
                                     <constraint firstItem="iav-bd-IAb" firstAttribute="leading" secondItem="ave-Vq-Qlt" secondAttribute="leading" constant="24" id="n7j-DC-ECy"/>
                                 </constraints>
                             </view>

@@ -44,17 +44,16 @@ class HealthChartsViewController: UIViewController {
                 vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
                 averageStepLabel.text = "\(averageStep) steps"
                 
-                weightStepItem = try await Scorering.shared.readWeightData()
-//                print(weightStepItem)
-                weightStepItem.reverse()
-                let weightVC: UIHostingController = UIHostingController(rootView: WeightChartsUIView(data: weightStepItem))
-                weightChartsView.addSubview(weightVC.view)
-                weightVC.view.translatesAutoresizingMaskIntoConstraints = false
-                weightVC.view.topAnchor.constraint(equalTo: weightChartsView.topAnchor, constant: 54).isActive = true
-                weightVC.view.bottomAnchor.constraint(equalTo: weightChartsView.bottomAnchor, constant: -8).isActive = true
-                weightVC.view.leftAnchor.constraint(equalTo: weightChartsView.leftAnchor, constant: 16).isActive = true
-                weightVC.view.rightAnchor.constraint(equalTo: weightChartsView.rightAnchor, constant: -16).isActive = true
-                weightVC.view.centerYAnchor.constraint(equalTo: weightChartsView.centerYAnchor).isActive = true
+//                weightStepItem = try await Scorering.shared.readWeightData()
+//                weightStepItem.reverse()
+//                let weightVC: UIHostingController = UIHostingController(rootView: WeightChartsUIView(data: weightStepItem))
+//                weightChartsView.addSubview(weightVC.view)
+//                weightVC.view.translatesAutoresizingMaskIntoConstraints = false
+//                weightVC.view.topAnchor.constraint(equalTo: weightChartsView.topAnchor, constant: 54).isActive = true
+//                weightVC.view.bottomAnchor.constraint(equalTo: weightChartsView.bottomAnchor, constant: -8).isActive = true
+//                weightVC.view.leftAnchor.constraint(equalTo: weightChartsView.leftAnchor, constant: 16).isActive = true
+//                weightVC.view.rightAnchor.constraint(equalTo: weightChartsView.rightAnchor, constant: -16).isActive = true
+//                weightVC.view.centerYAnchor.constraint(equalTo: weightChartsView.centerYAnchor).isActive = true
                 let weight = try await Scorering.shared.readWeight()
                 todayWeightLabel.text = "\(weight) kg"
             }
