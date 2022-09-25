@@ -209,18 +209,6 @@ final class Scorering {
             let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: sample.startDate), weight: Double(s))
             chartsWeightItem.append(weightData)
         }
-//        print(chartsWeightItem)
         return chartsWeightItem
     }
-    
 }
-
-//let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
-//let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
-//let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-//let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-//let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-//let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-//
-//let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts ?? 0))
-//chartsStepItem.append(stepdata)
