@@ -115,7 +115,7 @@ final class Scorering {
             let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
             let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
             
-            let stepdata = ChartsWeightItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts ?? 0))
+            let stepdata = ChartsWeightItem.init(date: dateFormatter.string(from: startDate!), weight: Int(stepCounts ?? 0))
             chartsWeightItem.append(stepdata)
         }
         

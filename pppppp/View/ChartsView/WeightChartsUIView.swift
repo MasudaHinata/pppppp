@@ -12,11 +12,11 @@ struct WeightChartsUIView: View {
                 ForEach(data) { item in
                     LineMark(
                         x: .value("Date", item.date),
-                        y: .value("Weight", item.stepCounts)
+                        y: .value("Weight", item.weight)
                     )
                     PointMark(
                         x: .value("Date", item.date),
-                        y: .value("Step Count", item.stepCounts)
+                        y: .value("Step Count", item.weight)
                     )
                 }
             }
