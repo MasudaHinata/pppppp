@@ -3,7 +3,6 @@ import Charts
 
 @available(iOS 16.0, *)
 struct StepsChartsUIView: View {
-
     var data: [ChartsStepItem]
     var body: some View {
         ZStack {

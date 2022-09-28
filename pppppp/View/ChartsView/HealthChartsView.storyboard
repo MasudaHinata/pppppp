@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t1e-mL-vfJ">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,8 +36,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming Soon..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyx-lS-aOQ">
-                                        <rect key="frame" x="116.33333333333333" y="261" width="157.33333333333337" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS16 only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNe-Qw-YcE">
+                                        <rect key="frame" x="146" y="221" width="98" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -47,10 +48,10 @@
                                 <constraints>
                                     <constraint firstItem="iav-bd-IAb" firstAttribute="top" secondItem="ave-Vq-Qlt" secondAttribute="top" constant="16" id="7N0-LL-Tnt"/>
                                     <constraint firstItem="QvW-0E-cp6" firstAttribute="leading" secondItem="ave-Vq-Qlt" secondAttribute="leading" constant="24" id="9O4-fq-VUm"/>
+                                    <constraint firstItem="gNe-Qw-YcE" firstAttribute="centerX" secondItem="ave-Vq-Qlt" secondAttribute="centerX" id="W52-1k-Nxx"/>
                                     <constraint firstItem="QvW-0E-cp6" firstAttribute="top" secondItem="ave-Vq-Qlt" secondAttribute="top" id="Zgf-eP-A94"/>
-                                    <constraint firstItem="yyx-lS-aOQ" firstAttribute="centerX" secondItem="ave-Vq-Qlt" secondAttribute="centerX" id="bUn-Fh-fQW"/>
-                                    <constraint firstItem="yyx-lS-aOQ" firstAttribute="centerY" secondItem="ave-Vq-Qlt" secondAttribute="centerY" id="bxU-cb-Lcq"/>
                                     <constraint firstItem="iav-bd-IAb" firstAttribute="leading" secondItem="ave-Vq-Qlt" secondAttribute="leading" constant="24" id="n7j-DC-ECy"/>
+                                    <constraint firstItem="gNe-Qw-YcE" firstAttribute="centerY" secondItem="ave-Vq-Qlt" secondAttribute="centerY" constant="-40" id="zR8-27-2jD"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16Q-Vw-NNY">
@@ -68,10 +69,18 @@
                                         <color key="textColor" white="1" alpha="0.71828435430000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS16 only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyx-lS-aOQ">
+                                        <rect key="frame" x="146" y="221" width="98" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="tintColor" red="0.57254901960000004" green="0.69803921570000005" blue="0.82745098039999998" alpha="0.6437293046" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="xIV-ce-rvU" firstAttribute="top" secondItem="16Q-Vw-NNY" secondAttribute="top" constant="16" id="0EJ-t3-rgK"/>
+                                    <constraint firstItem="yyx-lS-aOQ" firstAttribute="centerY" secondItem="16Q-Vw-NNY" secondAttribute="centerY" constant="-40" id="WYu-Fn-X3z"/>
+                                    <constraint firstItem="yyx-lS-aOQ" firstAttribute="centerX" secondItem="16Q-Vw-NNY" secondAttribute="centerX" id="aAu-uK-exK"/>
                                     <constraint firstItem="8Um-Y0-P7z" firstAttribute="leading" secondItem="16Q-Vw-NNY" secondAttribute="leading" constant="24" id="oBj-JL-rLS"/>
                                     <constraint firstItem="8Um-Y0-P7z" firstAttribute="top" secondItem="16Q-Vw-NNY" secondAttribute="top" id="phi-Rl-AOC"/>
                                     <constraint firstItem="xIV-ce-rvU" firstAttribute="leading" secondItem="16Q-Vw-NNY" secondAttribute="leading" constant="24" id="yF5-9j-NhV"/>
@@ -110,8 +119,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Health" id="0LO-kk-QRb"/>
                     <connections>
+                        <outlet property="averageLabel" destination="8Um-Y0-P7z" id="aRu-F6-vOF"/>
                         <outlet property="averageStepLabel" destination="xIV-ce-rvU" id="Isd-ux-LlK"/>
+                        <outlet property="ios16only2Label" destination="gNe-Qw-YcE" id="4XX-fi-Nnc"/>
+                        <outlet property="ios16onlyLabel" destination="yyx-lS-aOQ" id="dJs-s7-2A8"/>
                         <outlet property="stepChartsView" destination="16Q-Vw-NNY" id="1ru-cA-MFd"/>
+                        <outlet property="todayLabel" destination="QvW-0E-cp6" id="Mia-JM-Acm"/>
                         <outlet property="todayWeightLabel" destination="iav-bd-IAb" id="Xeb-Ft-MPT"/>
                         <outlet property="weightChartsView" destination="ave-Vq-Qlt" id="DV6-PP-iIO"/>
                     </connections>

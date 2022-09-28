@@ -3,7 +3,6 @@ import SwiftUI
 import Combine
 import Kingfisher
 
-@available(iOS 16.0, *)
 @MainActor
 final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendDelegate , FireStoreCheckNameDelegate {
     
@@ -57,12 +56,17 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
-        let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
-        if let sheet = secondVC.sheetPresentationController {
-            sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
+        if #available(iOS 16.0, *) {
+            let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
+            if let sheet = secondVC.sheetPresentationController {
+                sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
+            }
+            secondVC.presentationController?.delegate = self
+            self.present(secondVC, animated: true, completion: nil)
+        } else {
+            let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
+            self.present(secondVC, animated: true, completion: nil)
         }
-        secondVC.presentationController?.delegate = self
-        self.present(secondVC, animated: true, completion: nil)
     }
     
     @IBAction func sceneSettingView() {

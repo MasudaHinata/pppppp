@@ -201,12 +201,12 @@ final class Scorering {
     func readWeightData() async throws -> [ChartsWeightItem] {
         getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
-        //TODO: 毎日のグラフにしたい(データがある日だけ線グラフに)
+        //TODO: 毎日のグラフにしたい(データがある日だけ線グラフをつなぐ)
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 10)
         let results = try await descriptor.result(for: myHealthStore)
         for sample in results {
             let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
-            let weightData = ChartsWeightItem.init(date: dateFormatter.string(from: sample.startDate), weight: Double(s))
+            let weightData = ChartsWeightItem.init(date: sample.startDate, weight: Double(s))
             chartsWeightItem.append(weightData)
         }
         return chartsWeightItem

@@ -2,7 +2,6 @@ import Combine
 import UIKit
 import SwiftUI
 
-@available(iOS 16.0, *)
 class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
     var activityIndicator: UIActivityIndicatorView!
@@ -25,26 +24,66 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     
     //MARK: - 体重・運動を記録する
     @IBAction func sceneRecordDataView() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
-            let secondVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
-            if let sheet = secondVC.sheetPresentationController {
-                sheet.detents = [.custom { context in 178 }]
+        if #available(iOS 16.0, *) {
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
+                let secondVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
+                if let sheet = secondVC.sheetPresentationController {
+                    sheet.detents = [.custom { context in 178 }]
+                }
+                self.present(secondVC, animated: true, completion: nil)
             }
-            self.present(secondVC, animated: true, completion: nil)
-        }
-        let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
-            let secondVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
-            if let sheet = secondVC.sheetPresentationController {
-                sheet.detents = [.custom { context in 178 }]
+            let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
+                let secondVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
+                if let sheet = secondVC.sheetPresentationController {
+                    sheet.detents = [.custom { context in 178 }]
+                }
+                self.present(secondVC, animated: true, completion: nil)
             }
-            self.present(secondVC, animated: true, completion: nil)
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+            actionSheet.addAction(weightAction)
+            actionSheet.addAction(exerciseAction)
+            actionSheet.addAction(cancelAction)
+            present(actionSheet, animated: true)
+            print("16")
+        } else {
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
+                let secondVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
+                self.present(secondVC, animated: true, completion: nil)
+            }
+            let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
+                let secondVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
+                self.present(secondVC, animated: true, completion: nil)
+            }
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+            actionSheet.addAction(weightAction)
+            actionSheet.addAction(exerciseAction)
+            actionSheet.addAction(cancelAction)
+            present(actionSheet, animated: true)
+            print("16以下")
         }
-        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
-        actionSheet.addAction(weightAction)
-        actionSheet.addAction(exerciseAction)
-        actionSheet.addAction(cancelAction)
-        present(actionSheet, animated: true)
+        
+//        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
+//            let secondVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
+//            if let sheet = secondVC.sheetPresentationController {
+//                sheet.detents = [.custom { context in 178 }]
+//            }
+//            self.present(secondVC, animated: true, completion: nil)
+//        }
+//        let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
+//            let secondVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
+//            if let sheet = secondVC.sheetPresentationController {
+//                sheet.detents = [.custom { context in 178 }]
+//            }
+//            self.present(secondVC, animated: true, completion: nil)
+//        }
+//        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+//        actionSheet.addAction(weightAction)
+//        actionSheet.addAction(exerciseAction)
+//        actionSheet.addAction(cancelAction)
+//        present(actionSheet, animated: true)
     }
     
     @IBAction func reloadButton() {
