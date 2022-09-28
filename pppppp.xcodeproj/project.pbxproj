@@ -508,8 +508,8 @@
 			children = (
 				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
 				036F697E28B8EACE0066A7DA /* PointData.swift */,
-				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
 				03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */,
+				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
