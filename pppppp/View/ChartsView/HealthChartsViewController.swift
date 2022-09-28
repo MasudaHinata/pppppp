@@ -139,9 +139,7 @@ class HealthChartsViewController: UIViewController {
                                         let todayEndDate = self.calendar.date(byAdding: todayAdds, to: todayStartDate)!
                                         let dayCount = self.calendar.component(.day, from: todayEndDate)
                                         let todayCount = self.calendar.component(.day, from: Date())
-                                        print("\(todayCount)月は\(dayCount)日間")
-                                        
-                                        let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 362)
+                                        let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: Double(365 - ((dayCount - todayCount) + 1)))
                                         self.averageStepLabel.text = "\(averageStep) steps"
                                     }
                                     
