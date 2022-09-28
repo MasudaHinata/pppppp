@@ -113,58 +113,58 @@ class HealthChartsViewController: UIViewController {
                 UIAction(title: type.title,
                          state: type == selectedMenuType ? .on : .off,
                          handler: { _ in
-                    //                        let task = Task {  [weak self] in
-                    //                            guard let self = self else { return }
-                    //                            do{
-                    //                                self.removeAllSubviews(parentView: self.stepChartsView)
-                    //                                //TODO: 毎回下にあるChartsを消す
-                    //                                if type == .week {
-                    //                                    self.chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
-                    //                                    self.chartsStepItem.reverse()
-                    //                                    let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 6)
-                    //                                    self.averageStepLabel.text = "\(averageStep) steps"
-                    //                                } else if type == .month {
-                    //                                    self.chartsStepItem = try await ChartsManager.shared.createMonthStepsChart()
-                    //                                    self.chartsStepItem.reverse()
-                    //                                    let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 30)
-                    //                                    self.averageStepLabel.text = "\(averageStep) steps"
-                    //                                } else if type == .year {
-                    //                                    self.chartsStepItem = try await ChartsManager.shared.createYearStepsChart()
-                    //                                    self.chartsStepItem.reverse()
-                    //
-                    //                                    let todayComps = self.calendar.dateComponents([.year, .month], from: Date())
-                    //                                    let todayAdds = DateComponents(month: 1, day: -1)
-                    //                                    let todayStartDate = self.calendar.date(from: todayComps)!
-                    //                                    let todayEndDate = self.calendar.date(byAdding: todayAdds, to: todayStartDate)!
-                    //                                    let dayCount = self.calendar.component(.day, from: todayEndDate)
-                    //                                    let todayCount = self.calendar.component(.day, from: Date())
-                    //                                    let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: Double(365 - ((dayCount - todayCount) + 1)))
-                    //                                    self.averageStepLabel.text = "\(averageStep) steps"
-                    //                                }
-                    //
-                    //                                let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: self.chartsStepItem))
-                    //                                self.stepChartsView.addSubview(vc.view)
-                    //                                vc.view.translatesAutoresizingMaskIntoConstraints = false
-                    //                                vc.view.topAnchor.constraint(equalTo: self.stepChartsView.topAnchor, constant: 54).isActive = true
-                    //                                vc.view.bottomAnchor.constraint(equalTo: self.stepChartsView.bottomAnchor, constant: -8).isActive = true
-                    //                                vc.view.leftAnchor.constraint(equalTo: self.stepChartsView.leftAnchor, constant: 16).isActive = true
-                    //                                vc.view.rightAnchor.constraint(equalTo: self.stepChartsView.rightAnchor, constant: -16).isActive = true
-                    //                                vc.view.centerYAnchor.constraint(equalTo: self.stepChartsView.centerYAnchor).isActive = true
-                                                    self.selectedMenuType = type
-                                                    self.configureMenu()
-                    //                            }
-                    //                            catch {
-                    //                                print("ViewContro reloadButton error:",error.localizedDescription)
-                    //                                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    //                                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
-                    //                                        self.viewDidAppear(true)
-                    //                                    })
-                    //                                } else {
-                    //                                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
-                    //                                }
-                    //                            }
-                    //                        }
-                    //                        self.cancellables.insert(.init { task.cancel() })
+                    let task = Task {  [weak self] in
+                        guard let self = self else { return }
+                        do{
+                            self.removeAllSubviews(parentView: self.stepChartsView)
+                            //TODO: 毎回下にあるChartsを消す
+                            if type == .week {
+                                self.chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
+                                self.chartsStepItem.reverse()
+                                let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 6)
+                                self.averageStepLabel.text = "\(averageStep) steps"
+                            } else if type == .month {
+                                self.chartsStepItem = try await ChartsManager.shared.createMonthStepsChart()
+                                self.chartsStepItem.reverse()
+                                let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 30)
+                                self.averageStepLabel.text = "\(averageStep) steps"
+                            } else if type == .year {
+                                self.chartsStepItem = try await ChartsManager.shared.createYearStepsChart()
+                                self.chartsStepItem.reverse()
+                                
+                                let todayComps = self.calendar.dateComponents([.year, .month], from: Date())
+                                let todayAdds = DateComponents(month: 1, day: -1)
+                                let todayStartDate = self.calendar.date(from: todayComps)!
+                                let todayEndDate = self.calendar.date(byAdding: todayAdds, to: todayStartDate)!
+                                let dayCount = self.calendar.component(.day, from: todayEndDate)
+                                let todayCount = self.calendar.component(.day, from: Date())
+                                let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: Double(365 - ((dayCount - todayCount) + 1)))
+                                self.averageStepLabel.text = "\(averageStep) steps"
+                            }
+                            
+                            let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: self.chartsStepItem))
+                            self.stepChartsView.addSubview(vc.view)
+                            vc.view.translatesAutoresizingMaskIntoConstraints = false
+                            vc.view.topAnchor.constraint(equalTo: self.stepChartsView.topAnchor, constant: 54).isActive = true
+                            vc.view.bottomAnchor.constraint(equalTo: self.stepChartsView.bottomAnchor, constant: -8).isActive = true
+                            vc.view.leftAnchor.constraint(equalTo: self.stepChartsView.leftAnchor, constant: 16).isActive = true
+                            vc.view.rightAnchor.constraint(equalTo: self.stepChartsView.rightAnchor, constant: -16).isActive = true
+                            vc.view.centerYAnchor.constraint(equalTo: self.stepChartsView.centerYAnchor).isActive = true
+                            self.selectedMenuType = type
+                            self.configureMenu()
+                        }
+                        catch {
+                            print("ViewContro reloadButton error:",error.localizedDescription)
+                            if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                                ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                                    self.viewDidAppear(true)
+                                })
+                            } else {
+                                ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                            }
+                        }
+                    }
+                    self.cancellables.insert(.init { task.cancel() })
                 })
             }
             selectStepChartsType.menu = UIMenu(title: "", options: .displayInline, children: actions)
