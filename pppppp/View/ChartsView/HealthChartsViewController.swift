@@ -23,6 +23,7 @@ enum MenuType: CaseIterable {
 class HealthChartsViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
+    let calendar = Calendar.current
     var selectedMenuType = MenuType.week
     var chartsStepItem = [ChartsStepItem]()
     var weightStepItem = [ChartsWeightItem]()
@@ -70,7 +71,7 @@ class HealthChartsViewController: UIViewController {
                     vc.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: -16).isActive = true
                     vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
                     let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 6)
-                    averageStepLabel.text = "\(averageStep) steps"
+                    self.averageStepLabel.text = "\(averageStep) steps"
                     
                     weightStepItem = try await ChartsManager.shared.readWeightData()
                     weightStepItem.reverse()
@@ -117,6 +118,7 @@ class HealthChartsViewController: UIViewController {
                             let task = Task {  [weak self] in
                                 guard let self = self else { return }
                                 do{
+                                    //TODO: 毎回下にあるChartsを消す
                                     if type == .week {
                                         self.chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
                                         self.chartsStepItem.reverse()
@@ -130,7 +132,16 @@ class HealthChartsViewController: UIViewController {
                                     } else if type == .year {
                                         self.chartsStepItem = try await ChartsManager.shared.createYearStepsChart()
                                         self.chartsStepItem.reverse()
-                                        let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 364)
+                                        
+                                        let todayComps = self.calendar.dateComponents([.year, .month], from: Date())
+                                        let todayAdds = DateComponents(month: 1, day: -1)
+                                        let todayStartDate = self.calendar.date(from: todayComps)!
+                                        let todayEndDate = self.calendar.date(byAdding: todayAdds, to: todayStartDate)!
+                                        let dayCount = self.calendar.component(.day, from: todayEndDate)
+                                        let todayCount = self.calendar.component(.day, from: Date())
+                                        print("\(todayCount)月は\(dayCount)日間")
+                                        
+                                        let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 362)
                                         self.averageStepLabel.text = "\(averageStep) steps"
                                     }
                                     
