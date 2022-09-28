@@ -151,9 +151,18 @@ class HealthChartsViewController: UIViewController {
                                     vc.view.leftAnchor.constraint(equalTo: self.stepChartsView.leftAnchor, constant: 16).isActive = true
                                     vc.view.rightAnchor.constraint(equalTo: self.stepChartsView.rightAnchor, constant: -16).isActive = true
                                     vc.view.centerYAnchor.constraint(equalTo: self.stepChartsView.centerYAnchor).isActive = true
-                                    
                                     self.selectedMenuType = type
                                     self.configureMenu()
+                                }
+                                catch {
+                                    print("ViewContro reloadButton error:",error.localizedDescription)
+                                    if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                                            self.viewDidAppear(true)
+                                        })
+                                    } else {
+                                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                                    }
                                 }
                             }
                             self.cancellables.insert(.init { task.cancel() })
