@@ -44,7 +44,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.57254901960000004" green="0.69803921570000005" blue="0.82745098039999998" alpha="0.6437293046" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.57254901960000004" green="0.69803921570000005" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="iav-bd-IAb" firstAttribute="top" secondItem="ave-Vq-Qlt" secondAttribute="top" constant="16" id="7N0-LL-Tnt"/>
                                     <constraint firstItem="QvW-0E-cp6" firstAttribute="leading" secondItem="ave-Vq-Qlt" secondAttribute="leading" constant="24" id="9O4-fq-VUm"/>

@@ -46,7 +46,7 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
             let task = Task { [weak self] in
                 guard let self = self else { return }
                 do {
-                    let results = try await Scorering.shared.createExercisePoint(exercisesName: selectExerciseTextField.text!, time: Float(exerciseTimeTextField.text!)!)
+                    try await Scorering.shared.createExercisePoint(exercisesName: selectExerciseTextField.text!, time: Float(exerciseTimeTextField.text!)!)
                     exerciseTimeTextField.text = ""
                     selectExerciseTextField.text = ""
                 }

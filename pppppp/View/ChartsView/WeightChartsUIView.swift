@@ -3,7 +3,7 @@ import Charts
 
 @available(iOS 16.0, *)
 struct WeightChartsUIView: View {
-    
+
     var data: [ChartsWeightItem]
     var body: some View {
         ZStack {

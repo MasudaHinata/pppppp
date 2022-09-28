@@ -69,7 +69,6 @@
 		03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B832F228DC88E400C8AE3E /* Localizable.strings */; };
 		03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */; };
 		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
-		03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7BD28D34E320069A46E /* WeightData.swift */; };
 		03C7E7C228D453ED0069A46E /* OnboardingViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */; };
 		03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C328D454030069A46E /* OnboardingView1.storyboard */; };
 		03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C528D49DB10069A46E /* SanitasView.storyboard */; };
@@ -175,7 +174,6 @@
 		03B832F328DC891200C8AE3E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareMyDataView.storyboard; sourceTree = "<group>"; };
 		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
-		03C7E7BD28D34E320069A46E /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
 		03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController1.swift; sourceTree = "<group>"; };
 		03C7E7C328D454030069A46E /* OnboardingView1.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView1.storyboard; sourceTree = "<group>"; };
 		03C7E7C528D49DB10069A46E /* SanitasView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SanitasView.storyboard; sourceTree = "<group>"; };
@@ -507,7 +505,6 @@
 			children = (
 				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
 				036F697E28B8EACE0066A7DA /* PointData.swift */,
-				03C7E7BD28D34E320069A46E /* WeightData.swift */,
 				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
 				03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */,
 			);
@@ -808,7 +805,6 @@
 				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
 				0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
-				03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */,
 				035CE51E28CF1E53001F89BB /* RecordExerciseViewController.swift in Sources */,

@@ -12,7 +12,6 @@ final class Scorering {
     
     let myHealthStore = HKHealthStore()
     let calendar = Calendar.current
-    let dateFormatter = DateFormatter()
     var cancellables = Set<AnyCancellable>()
     let typeOfWrite = Set([typeOfBodyMass])
     let typeOfRead = Set([typeOfBodyMass, typeOfStepCount])
@@ -83,9 +82,9 @@ final class Scorering {
     //MARK: - Chart用の歩数を取得(Week)
     func createWeekStepsChart() async throws -> [ChartsStepItem] {
         getPermissionHealthKit()
-        dateFormatter.dateFormat = "MM/dd"
         var chartsStepItem = [ChartsStepItem]()
-        let days = [-1, 0, 1, 2, 3, 4, 5]
+//        let days = [-1, 0, 1, 2, 3, 4, 5]
+        let days: [Int] = Array(-1...30)
         for date in days {
             let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
             let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
@@ -93,8 +92,7 @@ final class Scorering {
             let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
             let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
             let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-            
-            let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts ?? 0))
+            let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
             chartsStepItem.append(stepdata)
         }
         return chartsStepItem
@@ -103,7 +101,6 @@ final class Scorering {
     //MARK: - Chart用の歩数を取得(Month)
     func createMonthStepsChart() async throws -> [ChartsStepItem] {
         getPermissionHealthKit()
-        dateFormatter.dateFormat = "MM/dd"
         var chartsStepItem = [ChartsStepItem]()
         let days: [Int] = Array(-1...30)
         for date in days {
@@ -114,7 +111,7 @@ final class Scorering {
             let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
             let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
             
-            let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts ?? 0))
+            let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
             chartsStepItem.append(stepdata)
         }
         return chartsStepItem
@@ -193,16 +190,18 @@ final class Scorering {
         getPermissionHealthKit()
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
         let results = try await descriptor.result(for: myHealthStore)
-        let doubleValues = results.first?.quantity.doubleValue(for: .gramUnit(with: .kilo))
-        return doubleValues ?? 0
+        guard let doubleValues = results.first?.quantity.doubleValue(for: .gramUnit(with: .kilo)) else { return 0 }
+        
+        let weight = (round(doubleValues * 10)) / 10
+
+        return weight
     }
     
     //MARK: - Chart用の体重を取得
     func readWeightData() async throws -> [ChartsWeightItem] {
         getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
-        //TODO: 毎日のグラフにしたい(データがある日だけ線グラフをつなぐ)
-        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 10)
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 30)
         let results = try await descriptor.result(for: myHealthStore)
         for sample in results {
             let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
