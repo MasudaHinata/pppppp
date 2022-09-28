@@ -75,10 +75,17 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iez-JW-W8M">
+                                        <rect key="frame" x="366" y="0.0" width="24" height="14"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                    </button>
                                 </subviews>
                                 <color key="tintColor" red="0.57254901960000004" green="0.69803921570000005" blue="0.82745098039999998" alpha="0.6437293046" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="xIV-ce-rvU" firstAttribute="top" secondItem="16Q-Vw-NNY" secondAttribute="top" constant="16" id="0EJ-t3-rgK"/>
+                                    <constraint firstItem="Iez-JW-W8M" firstAttribute="top" secondItem="16Q-Vw-NNY" secondAttribute="top" id="WHz-6x-fRY"/>
+                                    <constraint firstAttribute="trailing" secondItem="Iez-JW-W8M" secondAttribute="trailing" id="WJb-C3-FXE"/>
                                     <constraint firstItem="yyx-lS-aOQ" firstAttribute="centerY" secondItem="16Q-Vw-NNY" secondAttribute="centerY" constant="-40" id="WYu-Fn-X3z"/>
                                     <constraint firstItem="yyx-lS-aOQ" firstAttribute="centerX" secondItem="16Q-Vw-NNY" secondAttribute="centerX" id="aAu-uK-exK"/>
                                     <constraint firstItem="8Um-Y0-P7z" firstAttribute="leading" secondItem="16Q-Vw-NNY" secondAttribute="leading" constant="24" id="oBj-JL-rLS"/>
@@ -123,6 +130,7 @@
                         <outlet property="averageStepLabel" destination="xIV-ce-rvU" id="Isd-ux-LlK"/>
                         <outlet property="ios16only2Label" destination="gNe-Qw-YcE" id="4XX-fi-Nnc"/>
                         <outlet property="ios16onlyLabel" destination="yyx-lS-aOQ" id="dJs-s7-2A8"/>
+                        <outlet property="selectStepChartsType" destination="Iez-JW-W8M" id="UIx-k2-cpv"/>
                         <outlet property="stepChartsView" destination="16Q-Vw-NNY" id="1ru-cA-MFd"/>
                         <outlet property="todayLabel" destination="QvW-0E-cp6" id="Mia-JM-Acm"/>
                         <outlet property="todayWeightLabel" destination="iav-bd-IAb" id="Xeb-Ft-MPT"/>

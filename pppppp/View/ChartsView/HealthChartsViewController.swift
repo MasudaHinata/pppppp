@@ -3,9 +3,27 @@ import Combine
 import SwiftUI
 import Charts
 
+enum MenuType: CaseIterable {
+    case week
+    case month
+    case year
+    
+    var title: String {
+        switch self {
+        case .week:
+            return "week"
+        case .month:
+            return "month"
+        case .year:
+            return "year"
+        }
+    }
+}
+
 class HealthChartsViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
+    var selectedMenuType = MenuType.week
     var chartsStepItem = [ChartsStepItem]()
     var weightStepItem = [ChartsWeightItem]()
     
@@ -17,6 +35,7 @@ class HealthChartsViewController: UIViewController {
     @IBOutlet var averageLabel: UILabel!
     @IBOutlet var ios16onlyLabel: UILabel!
     @IBOutlet var ios16only2Label: UILabel!
+    @IBOutlet var selectStepChartsType: UIButton!
     
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -30,6 +49,7 @@ class HealthChartsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureMenu()
         self.view.backgroundColor = Asset.Colors.mainColor.color
         self.weightChartsView.isHidden = true
         let task = Task {  [weak self] in
@@ -38,7 +58,7 @@ class HealthChartsViewController: UIViewController {
                 if #available(iOS 16.0, *) {
                     ios16onlyLabel.isHidden = true
                     ios16only2Label.isHidden = true
-                    let averageStep = try await ChartsManager.shared.getAverageStepPoint()
+                    
                     chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
                     chartsStepItem.reverse()
                     let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
@@ -49,6 +69,7 @@ class HealthChartsViewController: UIViewController {
                     vc.view.leftAnchor.constraint(equalTo: stepChartsView.leftAnchor, constant: 16).isActive = true
                     vc.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: -16).isActive = true
                     vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
+                    let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 6)
                     averageStepLabel.text = "\(averageStep) steps"
                     
                     weightStepItem = try await ChartsManager.shared.readWeightData()
@@ -80,5 +101,58 @@ class HealthChartsViewController: UIViewController {
             }
         }
         cancellables.insert(.init { task.cancel() })
+    }
+    
+    
+    func configureMenu() {
+        if #available(iOS 16.0, *) {
+            
+            
+            let actions = MenuType.allCases
+                .compactMap { type in
+                    UIAction(
+                        title: type.title,
+                        state: type == selectedMenuType ? .on : .off,
+                        handler: { _ in
+                            let task = Task {  [weak self] in
+                                guard let self = self else { return }
+                                do{
+                                    if type == .week {
+                                        self.chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
+                                        self.chartsStepItem.reverse()
+                                        let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 6)
+                                        self.averageStepLabel.text = "\(averageStep) steps"
+                                    } else if type == .month {
+                                        self.chartsStepItem = try await ChartsManager.shared.createMonthStepsChart()
+                                        self.chartsStepItem.reverse()
+                                        let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 30)
+                                        self.averageStepLabel.text = "\(averageStep) steps"
+                                    } else if type == .year {
+                                        self.chartsStepItem = try await ChartsManager.shared.createYearStepsChart()
+                                        self.chartsStepItem.reverse()
+                                        let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 364)
+                                        self.averageStepLabel.text = "\(averageStep) steps"
+                                    }
+                                    
+                                    let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: self.chartsStepItem))
+                                    self.stepChartsView.addSubview(vc.view)
+                                    vc.view.translatesAutoresizingMaskIntoConstraints = false
+                                    vc.view.topAnchor.constraint(equalTo: self.stepChartsView.topAnchor, constant: 54).isActive = true
+                                    vc.view.bottomAnchor.constraint(equalTo: self.stepChartsView.bottomAnchor, constant: -8).isActive = true
+                                    vc.view.leftAnchor.constraint(equalTo: self.stepChartsView.leftAnchor, constant: 16).isActive = true
+                                    vc.view.rightAnchor.constraint(equalTo: self.stepChartsView.rightAnchor, constant: -16).isActive = true
+                                    vc.view.centerYAnchor.constraint(equalTo: self.stepChartsView.centerYAnchor).isActive = true
+                                    
+                                    self.selectedMenuType = type
+                                    self.configureMenu()
+                                }
+                            }
+                            self.cancellables.insert(.init { task.cancel() })
+                        })
+                }
+            selectStepChartsType.menu = UIMenu(title: "", options: .displayInline, children: actions)
+            selectStepChartsType.showsMenuAsPrimaryAction = true
+            selectStepChartsType.setTitle(selectedMenuType.title, for: .normal)
+        }
     }
 }
