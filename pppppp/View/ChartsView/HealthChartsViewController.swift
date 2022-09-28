@@ -38,8 +38,8 @@ class HealthChartsViewController: UIViewController {
                 if #available(iOS 16.0, *) {
                     ios16onlyLabel.isHidden = true
                     ios16only2Label.isHidden = true
-                    let averageStep = try await Scorering.shared.getAverageStepPoint()
-                    chartsStepItem = try await Scorering.shared.createWeekStepsChart()
+                    let averageStep = try await ChartsManager.shared.getAverageStepPoint()
+                    chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
                     chartsStepItem.reverse()
                     let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
                     stepChartsView.addSubview(vc.view)
@@ -51,7 +51,7 @@ class HealthChartsViewController: UIViewController {
                     vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
                     averageStepLabel.text = "\(averageStep) steps"
                     
-                    weightStepItem = try await Scorering.shared.readWeightData()
+                    weightStepItem = try await ChartsManager.shared.readWeightData()
                     weightStepItem.reverse()
                     let weightVC: UIHostingController = UIHostingController(rootView: WeightChartsUIView(data: weightStepItem))
                     weightChartsView.addSubview(weightVC.view)
@@ -61,7 +61,7 @@ class HealthChartsViewController: UIViewController {
                     weightVC.view.leftAnchor.constraint(equalTo: weightChartsView.leftAnchor, constant: 16).isActive = true
                     weightVC.view.rightAnchor.constraint(equalTo: weightChartsView.rightAnchor, constant: -16).isActive = true
                     weightVC.view.centerYAnchor.constraint(equalTo: weightChartsView.centerYAnchor).isActive = true
-                    let weight = try await Scorering.shared.readWeight()
+                    let weight = try await ChartsManager.shared.readWeight()
                     todayWeightLabel.text = "\(weight) kg"
                 } else {
                     todayLabel.isHidden = true

@@ -55,6 +55,7 @@
 		036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0228C093560066A7DA /* UserDataView.storyboard */; };
 		03704A2128E01D78004BE7C3 /* WeightChartsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */; };
 		03704A2328E022D6004BE7C3 /* ChartsWeightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */; };
+		03879DE128E46E7200C1DBA2 /* ChartsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03879DE028E46E7200C1DBA2 /* ChartsManager.swift */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
 		03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */; };
@@ -159,6 +160,7 @@
 		036F6A0228C093560066A7DA /* UserDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDataView.storyboard; sourceTree = "<group>"; };
 		03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightChartsUIView.swift; sourceTree = "<group>"; };
 		03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsWeightItem.swift; sourceTree = "<group>"; };
+		03879DE028E46E7200C1DBA2 /* ChartsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsManager.swift; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 			children = (
 				9C2BE4402885108300431FEC /* FirebaseClient.swift */,
 				9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */,
+				03879DE028E46E7200C1DBA2 /* ChartsManager.swift */,
 				9CD49C2628AEAD5E000CDEDF /* NotificationManager.swift */,
 			);
 			path = Manager;
@@ -801,6 +804,7 @@
 			files = (
 				036E476928DB1A5C00EA7BB1 /* RecordWeightViewController.swift in Sources */,
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
+				03879DE128E46E7200C1DBA2 /* ChartsManager.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
 				0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */,
