@@ -2,10 +2,6 @@ import Foundation
 import HealthKit
 import Combine
 
-//var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
-//var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
-//var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
-
 final class Scorering {
     static let shared = Scorering()
     private init() {}
