@@ -83,8 +83,7 @@ final class Scorering {
     func createWeekStepsChart() async throws -> [ChartsStepItem] {
         getPermissionHealthKit()
         var chartsStepItem = [ChartsStepItem]()
-//        let days = [-1, 0, 1, 2, 3, 4, 5]
-        let days: [Int] = Array(-1...30)
+        let days = [-1, 0, 1, 2, 3, 4, 5]
         for date in days {
             let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
             let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))

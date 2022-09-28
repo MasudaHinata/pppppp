@@ -21,7 +21,7 @@ struct WeightChartsUIView: View {
                 }
             }
             .chartForegroundStyleScale([
-                "weight": Color.init(red: 146/255, green: 178/255, blue: 211/255)
+                "weight": Color(asset: Asset.Colors.subColor)
             ])
         }
     }
