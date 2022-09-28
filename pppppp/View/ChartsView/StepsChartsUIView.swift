@@ -12,7 +12,9 @@ struct StepsChartsUIView: View {
                 ForEach(data) { item in
                     BarMark(
                         x: .value("Date", item.date),
-                        y: .value("Step Count", item.stepCounts)
+                        y: .value("Step Count", item.stepCounts),
+                        //TODO: 幅を指定する
+                        //                        width:
                     )
                 }
             }

@@ -99,13 +99,11 @@ class HealthChartsViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
-   
+    
     func configureMenu() {
         if #available(iOS 16.0, *) {
             let actions = MenuType.allCases.compactMap { type in
-                UIAction(title: type.title,
-                         state: type == selectedMenuType ? .on : .off,
-                         handler: { _ in
+                UIAction(title: type.title, state: type == selectedMenuType ? .on : .off, handler: { _ in
                     let task = Task {  [weak self] in
                         guard let self = self else { return }
                         do {
@@ -113,7 +111,6 @@ class HealthChartsViewController: UIViewController {
                             for subview in subviews {
                                 subview.removeFromSuperview()
                             }
-                            //TODO: 毎回下にあるChartsを消す
                             if type == .week {
                                 self.chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
                                 self.chartsStepItem.reverse()
@@ -151,13 +148,7 @@ class HealthChartsViewController: UIViewController {
                         }
                         catch {
                             print("ViewContro reloadButton error:",error.localizedDescription)
-                            if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                                ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
-                                    self.viewDidAppear(true)
-                                })
-                            } else {
-                                ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
-                            }
+                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                         }
                     }
                     self.cancellables.insert(.init { task.cancel() })
