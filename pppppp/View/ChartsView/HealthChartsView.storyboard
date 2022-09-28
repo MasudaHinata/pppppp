@@ -92,10 +92,10 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mY1-8d-5zF">
-                                <rect key="frame" x="296" y="207" width="62" height="33.333333333333343"/>
+                                <rect key="frame" x="279.33333333333331" y="207" width="78.666666666666686" height="42.666666666666657"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="week">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>

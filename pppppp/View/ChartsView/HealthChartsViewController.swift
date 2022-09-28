@@ -61,7 +61,7 @@ class HealthChartsViewController: UIViewController {
                     let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
                     stepChartsView.addSubview(vc.view)
                     vc.view.translatesAutoresizingMaskIntoConstraints = false
-                    vc.view.topAnchor.constraint(equalTo: stepChartsView.topAnchor, constant: 54).isActive = true
+                    vc.view.topAnchor.constraint(equalTo: stepChartsView.topAnchor, constant: 24).isActive = true
                     vc.view.bottomAnchor.constraint(equalTo: stepChartsView.bottomAnchor, constant: -8).isActive = true
                     vc.view.leftAnchor.constraint(equalTo: stepChartsView.leftAnchor, constant: 16).isActive = true
                     vc.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: -16).isActive = true
@@ -74,7 +74,7 @@ class HealthChartsViewController: UIViewController {
                     let weightVC: UIHostingController = UIHostingController(rootView: WeightChartsUIView(data: weightStepItem))
                     weightChartsView.addSubview(weightVC.view)
                     weightVC.view.translatesAutoresizingMaskIntoConstraints = false
-                    weightVC.view.topAnchor.constraint(equalTo: weightChartsView.topAnchor, constant: 54).isActive = true
+                    weightVC.view.topAnchor.constraint(equalTo: weightChartsView.topAnchor, constant: 24).isActive = true
                     weightVC.view.bottomAnchor.constraint(equalTo: weightChartsView.bottomAnchor, constant: -8).isActive = true
                     weightVC.view.leftAnchor.constraint(equalTo: weightChartsView.leftAnchor, constant: 16).isActive = true
                     weightVC.view.rightAnchor.constraint(equalTo: weightChartsView.rightAnchor, constant: -16).isActive = true
@@ -99,14 +99,7 @@ class HealthChartsViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    
-    func removeAllSubviews(parentView: UIView) {
-        let subviews = parentView.subviews
-        for subview in subviews {
-            subview.removeFromSuperview()
-        }
-    }
-    
+   
     func configureMenu() {
         if #available(iOS 16.0, *) {
             let actions = MenuType.allCases.compactMap { type in
@@ -115,8 +108,11 @@ class HealthChartsViewController: UIViewController {
                          handler: { _ in
                     let task = Task {  [weak self] in
                         guard let self = self else { return }
-                        do{
-                            self.removeAllSubviews(parentView: self.stepChartsView)
+                        do {
+                            let subviews = self.stepChartsView.subviews
+                            for subview in subviews {
+                                subview.removeFromSuperview()
+                            }
                             //TODO: 毎回下にあるChartsを消す
                             if type == .week {
                                 self.chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
@@ -145,7 +141,7 @@ class HealthChartsViewController: UIViewController {
                             let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: self.chartsStepItem))
                             self.stepChartsView.addSubview(vc.view)
                             vc.view.translatesAutoresizingMaskIntoConstraints = false
-                            vc.view.topAnchor.constraint(equalTo: self.stepChartsView.topAnchor, constant: 54).isActive = true
+                            vc.view.topAnchor.constraint(equalTo: self.stepChartsView.topAnchor, constant: 24).isActive = true
                             vc.view.bottomAnchor.constraint(equalTo: self.stepChartsView.bottomAnchor, constant: -8).isActive = true
                             vc.view.leftAnchor.constraint(equalTo: self.stepChartsView.leftAnchor, constant: 16).isActive = true
                             vc.view.rightAnchor.constraint(equalTo: self.stepChartsView.rightAnchor, constant: -16).isActive = true
