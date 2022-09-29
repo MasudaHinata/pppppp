@@ -23,7 +23,7 @@ class HealthChartsViewController: UIViewController {
     
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            if #available(iOS 17.0, *) {
+            if #available(iOS 16.0, *) {
                 self.stepChartsView.isHidden = false
                 self.averageStepLabel.isHidden = false
                 self.averageLabel.isHidden = false
@@ -32,18 +32,16 @@ class HealthChartsViewController: UIViewController {
                 self.todayWeightLabel.isHidden = true
                 self.todayLabel.isHidden = true
             } else {
-                self.stepChartsView.isHidden = true
+                self.stepChartsView.isHidden = false
                 self.averageStepLabel.isHidden = true
                 self.averageLabel.isHidden = true
                 self.selectStepChartsType.isHidden = true
                 self.weightChartsView.isHidden = true
                 self.todayWeightLabel.isHidden = true
                 self.todayLabel.isHidden = true
-                ios16onlyLabel.isHidden = false
-                ios16only2Label.isHidden = false
             }
         } else if sender.selectedSegmentIndex == 1 {
-            if #available(iOS 17.0, *) {
+            if #available(iOS 16.0, *) {
                 self.stepChartsView.isHidden = true
                 self.averageStepLabel.isHidden = true
                 self.averageLabel.isHidden = true
@@ -56,33 +54,26 @@ class HealthChartsViewController: UIViewController {
                 self.averageStepLabel.isHidden = true
                 self.averageLabel.isHidden = true
                 self.selectStepChartsType.isHidden = true
-                self.weightChartsView.isHidden = true
+                self.weightChartsView.isHidden = false
                 self.todayWeightLabel.isHidden = true
                 self.todayLabel.isHidden = true
-                ios16onlyLabel.isHidden = false
-                ios16only2Label.isHidden = false
             }
         }
     }
     
     @IBAction func reloadButton() {
+        selectStepChartsType.showsMenuAsPrimaryAction = true
+        selectStepChartsType.setTitle(MenuType.week.title, for: .normal)
         
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureMenu()
-        self.view.backgroundColor = Asset.Colors.mainColor.color
-        self.weightChartsView.isHidden = true
-        self.todayWeightLabel.isHidden = true
-        self.todayLabel.isHidden = true
-        ios16onlyLabel.isHidden = true
-        ios16only2Label.isHidden = true
+        let subviews = self.stepChartsView.subviews
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
         
         let task = Task {  [weak self] in
             guard let self = self else { return }
             do {
-                if #available(iOS 17.0, *) {
+                if #available(iOS 16.0, *) {
                     chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
                     chartsStepItem.reverse()
                     let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
@@ -108,24 +99,79 @@ class HealthChartsViewController: UIViewController {
                     weightVC.view.centerYAnchor.constraint(equalTo: weightChartsView.centerYAnchor).isActive = true
                     let weight = try await ChartsManager.shared.readWeight()
                     todayWeightLabel.text = "\(weight) kg"
+                } else {
+                    todayLabel.isHidden = true
+                    averageLabel.isHidden = true
+                    selectStepChartsType.isHidden = true
+                    ios16onlyLabel.isHidden = false
+                    ios16only2Label.isHidden = false
                 }
             }
             catch {
                 print("ProfileViewContro ViewDid error:",error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
-                        self.viewDidLoad()
-                    })
+                ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureMenu()
+        self.view.backgroundColor = Asset.Colors.mainColor.color
+        self.weightChartsView.isHidden = true
+        self.todayWeightLabel.isHidden = true
+        self.todayLabel.isHidden = true
+        ios16onlyLabel.isHidden = true
+        ios16only2Label.isHidden = true
+        
+        let task = Task {  [weak self] in
+            guard let self = self else { return }
+            do {
+                if #available(iOS 16.0, *) {
+                    chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
+                    chartsStepItem.reverse()
+                    let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
+                    stepChartsView.addSubview(vc.view)
+                    vc.view.translatesAutoresizingMaskIntoConstraints = false
+                    vc.view.topAnchor.constraint(equalTo: stepChartsView.topAnchor, constant: 24).isActive = true
+                    vc.view.bottomAnchor.constraint(equalTo: stepChartsView.bottomAnchor, constant: -8).isActive = true
+                    vc.view.leftAnchor.constraint(equalTo: stepChartsView.leftAnchor, constant: 16).isActive = true
+                    vc.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: -16).isActive = true
+                    vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
+                    let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 6)
+                    self.averageStepLabel.text = "\(averageStep) steps"
+                    
+                    weightStepItem = try await ChartsManager.shared.readWeightData()
+                    weightStepItem.reverse()
+                    let weightVC: UIHostingController = UIHostingController(rootView: WeightChartsUIView(data: weightStepItem))
+                    weightChartsView.addSubview(weightVC.view)
+                    weightVC.view.translatesAutoresizingMaskIntoConstraints = false
+                    weightVC.view.topAnchor.constraint(equalTo: weightChartsView.topAnchor, constant: 24).isActive = true
+                    weightVC.view.bottomAnchor.constraint(equalTo: weightChartsView.bottomAnchor, constant: -8).isActive = true
+                    weightVC.view.leftAnchor.constraint(equalTo: weightChartsView.leftAnchor, constant: 16).isActive = true
+                    weightVC.view.rightAnchor.constraint(equalTo: weightChartsView.rightAnchor, constant: -16).isActive = true
+                    weightVC.view.centerYAnchor.constraint(equalTo: weightChartsView.centerYAnchor).isActive = true
+                    let weight = try await ChartsManager.shared.readWeight()
+                    todayWeightLabel.text = "\(weight) kg"
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    todayLabel.isHidden = true
+                    averageLabel.isHidden = true
+                    selectStepChartsType.isHidden = true
+                    ios16onlyLabel.isHidden = false
+                    ios16only2Label.isHidden = false
                 }
+            }
+            catch {
+                print("ProfileViewContro ViewDid error:",error.localizedDescription)
+                ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
             }
         }
         cancellables.insert(.init { task.cancel() })
     }
     
     func configureMenu() {
-        if #available(iOS 17.0, *) {
+        if #available(iOS 16.0, *) {
             let actions = MenuType.allCases.compactMap { type in
                 UIAction(title: type.title, state: type == selectedMenuType ? .on : .off, handler: { _ in
                     let task = Task {  [weak self] in
