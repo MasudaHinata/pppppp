@@ -14,7 +14,7 @@ struct StepsChartsUIView: View {
                         x: .value("Date", item.date),
                         y: .value("Step Count", item.stepCounts)
                         //TODO: 幅を指定する
-                        //                        width:
+                        //width:
                     )
                 }
             }

@@ -127,7 +127,14 @@
                             <constraint firstItem="pLN-Ip-js5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="oIz-1w-muz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Health" id="0LO-kk-QRb"/>
+                    <navigationItem key="navigationItem" title="Health" id="0LO-kk-QRb">
+                        <barButtonItem key="rightBarButtonItem" image="arrow.clockwise" catalog="system" id="qpZ-46-arU">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="reloadButton" destination="Y6W-OH-hqX" id="RmJ-yZ-XUY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="averageLabel" destination="8Um-Y0-P7z" id="aRu-F6-vOF"/>
                         <outlet property="averageStepLabel" destination="xIV-ce-rvU" id="Isd-ux-LlK"/>
@@ -169,6 +176,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
         <image name="heart" catalog="system" width="128" height="107"/>
     </resources>
 </document>

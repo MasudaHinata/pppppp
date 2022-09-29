@@ -23,22 +23,50 @@ class HealthChartsViewController: UIViewController {
     
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            self.stepChartsView.isHidden = false
-            self.averageStepLabel.isHidden = false
-            self.averageLabel.isHidden = false
-            self.selectStepChartsType.isHidden = false
-            self.weightChartsView.isHidden = true
-            self.todayWeightLabel.isHidden = true
-            self.todayLabel.isHidden = true
+            if #available(iOS 17.0, *) {
+                self.stepChartsView.isHidden = false
+                self.averageStepLabel.isHidden = false
+                self.averageLabel.isHidden = false
+                self.selectStepChartsType.isHidden = false
+                self.weightChartsView.isHidden = true
+                self.todayWeightLabel.isHidden = true
+                self.todayLabel.isHidden = true
+            } else {
+                self.stepChartsView.isHidden = true
+                self.averageStepLabel.isHidden = true
+                self.averageLabel.isHidden = true
+                self.selectStepChartsType.isHidden = true
+                self.weightChartsView.isHidden = true
+                self.todayWeightLabel.isHidden = true
+                self.todayLabel.isHidden = true
+                ios16onlyLabel.isHidden = false
+                ios16only2Label.isHidden = false
+            }
         } else if sender.selectedSegmentIndex == 1 {
-            self.stepChartsView.isHidden = true
-            self.averageStepLabel.isHidden = true
-            self.averageLabel.isHidden = true
-            self.selectStepChartsType.isHidden = true
-            self.weightChartsView.isHidden = false
-            self.todayWeightLabel.isHidden = false
-            self.todayLabel.isHidden = false
+            if #available(iOS 17.0, *) {
+                self.stepChartsView.isHidden = true
+                self.averageStepLabel.isHidden = true
+                self.averageLabel.isHidden = true
+                self.selectStepChartsType.isHidden = true
+                self.weightChartsView.isHidden = false
+                self.todayWeightLabel.isHidden = false
+                self.todayLabel.isHidden = false
+            } else {
+                self.stepChartsView.isHidden = true
+                self.averageStepLabel.isHidden = true
+                self.averageLabel.isHidden = true
+                self.selectStepChartsType.isHidden = true
+                self.weightChartsView.isHidden = true
+                self.todayWeightLabel.isHidden = true
+                self.todayLabel.isHidden = true
+                ios16onlyLabel.isHidden = false
+                ios16only2Label.isHidden = false
+            }
         }
+    }
+    
+    @IBAction func reloadButton() {
+        
     }
     
     override func viewDidLoad() {
@@ -48,14 +76,13 @@ class HealthChartsViewController: UIViewController {
         self.weightChartsView.isHidden = true
         self.todayWeightLabel.isHidden = true
         self.todayLabel.isHidden = true
+        ios16onlyLabel.isHidden = true
+        ios16only2Label.isHidden = true
         
         let task = Task {  [weak self] in
             guard let self = self else { return }
             do {
-                if #available(iOS 16.0, *) {
-                    ios16onlyLabel.isHidden = true
-                    ios16only2Label.isHidden = true
-                    
+                if #available(iOS 17.0, *) {
                     chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
                     chartsStepItem.reverse()
                     let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
@@ -81,9 +108,6 @@ class HealthChartsViewController: UIViewController {
                     weightVC.view.centerYAnchor.constraint(equalTo: weightChartsView.centerYAnchor).isActive = true
                     let weight = try await ChartsManager.shared.readWeight()
                     todayWeightLabel.text = "\(weight) kg"
-                } else {
-                    todayLabel.isHidden = true
-                    averageLabel.isHidden = true
                 }
             }
             catch {
@@ -101,7 +125,7 @@ class HealthChartsViewController: UIViewController {
     }
     
     func configureMenu() {
-        if #available(iOS 16.0, *) {
+        if #available(iOS 17.0, *) {
             let actions = MenuType.allCases.compactMap { type in
                 UIAction(title: type.title, state: type == selectedMenuType ? .on : .off, handler: { _ in
                     let task = Task {  [weak self] in
