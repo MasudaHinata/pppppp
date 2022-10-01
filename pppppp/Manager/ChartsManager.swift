@@ -38,7 +38,7 @@ final class ChartsManager {
     }
     
     //MARK: - Chart用の歩数を取得(Week)
-    func createWeekStepsChart() async throws -> [ChartsStepItem] {//[ChartsStepDateStrItem]
+    func createWeekStepsChart() async throws -> [ChartsStepItem] {
         getPermissionHealthKit()
         var chartsStepItem = [ChartsStepItem]()
         let days: [Int] = Array(-1...5)
@@ -49,6 +49,7 @@ final class ChartsManager {
             let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
             let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
             let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+            
             let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
             chartsStepItem.append(stepdata)
         }
