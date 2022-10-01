@@ -3,6 +3,7 @@ import Combine
 import SwiftUI
 import Charts
 
+//@available(iOS 16.0, *)
 class HealthChartsViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
@@ -10,6 +11,7 @@ class HealthChartsViewController: UIViewController {
     var selectedMenuType = MenuType.week
     var chartsStepItem = [ChartsStepItem]()
     var weightStepItem = [ChartsWeightItem]()
+//    var stepChartsHostingController: UIHostingController<StepsChartsUIView>?
     
     @IBOutlet var stepChartsView: UIView!
     @IBOutlet var weightChartsView: UIView!
@@ -128,10 +130,11 @@ class HealthChartsViewController: UIViewController {
         let task = Task {  [weak self] in
             guard let self = self else { return }
             do {
+                
                 if #available(iOS 16.0, *) {
                     chartsStepItem = try await ChartsManager.shared.createWeekStepsChart()
                     chartsStepItem.reverse()
-                    let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
+                    let vc: UIHostingController<StepsChartsUIView> = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
                     stepChartsView.addSubview(vc.view)
                     vc.view.translatesAutoresizingMaskIntoConstraints = false
                     vc.view.topAnchor.constraint(equalTo: stepChartsView.topAnchor, constant: 24).isActive = true
@@ -141,7 +144,7 @@ class HealthChartsViewController: UIViewController {
                     vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
                     let averageStep = try await ChartsManager.shared.getAverageStepPoint(date: 6)
                     self.averageStepLabel.text = "\(averageStep) steps"
-                    
+
                     weightStepItem = try await ChartsManager.shared.readWeightData()
                     weightStepItem.reverse()
                     let weightVC: UIHostingController = UIHostingController(rootView: WeightChartsUIView(data: weightStepItem))
@@ -168,6 +171,14 @@ class HealthChartsViewController: UIViewController {
             }
         }
         cancellables.insert(.init { task.cancel() })
+        
+//        stepChartsHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
+//        stepChartsHostingController!.view.translatesAutoresizingMaskIntoConstraints = false
+//        stepChartsHostingController!.view.topAnchor.constraint(equalTo: stepChartsView.topAnchor, constant: 24).isActive = true
+//        stepChartsHostingController!.view.bottomAnchor.constraint(equalTo: stepChartsView.bottomAnchor, constant: -8).isActive = true
+//        stepChartsHostingController!.view.leftAnchor.constraint(equalTo: stepChartsView.leftAnchor, constant: 16).isActive = true
+//        stepChartsHostingController!.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: -16).isActive = true
+//        stepChartsHostingController!.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
     }
     
     func configureMenu() {
@@ -217,7 +228,7 @@ class HealthChartsViewController: UIViewController {
                             self.configureMenu()
                         }
                         catch {
-                            print("ViewContro reloadButton error:",error.localizedDescription)
+                            print("ViewController reloadButton error:",error.localizedDescription)
                             ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                         }
                     }
