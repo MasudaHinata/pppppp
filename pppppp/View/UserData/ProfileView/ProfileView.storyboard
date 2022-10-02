@@ -122,14 +122,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSM-3J-7bZ">
-                                <rect key="frame" x="192" y="143.66666666666666" width="49.333333333333343" height="17"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <rect key="frame" x="190.33333333333334" y="143.66666666666666" width="52.333333333333343" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itx-Bv-4CI">
-                                <rect key="frame" x="139" y="141.66666666666666" width="16" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="139" y="143.66666666666666" width="15.666666666666657" height="19.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -145,7 +145,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfs-be-v9J">
-                                <rect key="frame" x="128" y="108.33333333333333" width="37.666666666666657" height="33.333333333333329"/>
+                                <rect key="frame" x="128" y="110.33333333333333" width="37.666666666666657" height="33.333333333333329"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33.329999999999998" id="A8j-AY-dj4"/>
                                     <constraint firstAttribute="width" constant="37.670000000000002" id="Nba-xS-hYG"/>
@@ -163,7 +163,7 @@
                             <constraint firstItem="A8q-9m-zwg" firstAttribute="trailing" secondItem="taJ-vF-fMd" secondAttribute="trailing" constant="16" id="6Jl-eE-hK4"/>
                             <constraint firstItem="nfs-be-v9J" firstAttribute="leading" secondItem="iSb-Ii-EMn" secondAttribute="trailing" constant="32" id="7Yf-Ey-fX3"/>
                             <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="taJ-vF-fMd" secondAttribute="centerY" id="7rp-L3-Ubw"/>
-                            <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="nfs-be-v9J" secondAttribute="centerY" constant="10" id="CxW-7U-0Oq"/>
+                            <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="nfs-be-v9J" secondAttribute="centerY" constant="8" id="CxW-7U-0Oq"/>
                             <constraint firstItem="itx-Bv-4CI" firstAttribute="top" secondItem="nfs-be-v9J" secondAttribute="bottom" id="DmG-FZ-Xlk"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="leading" secondItem="A8q-9m-zwg" secondAttribute="leading" id="Dn2-ug-xWw"/>
                             <constraint firstItem="2Ol-nN-Lti" firstAttribute="leading" secondItem="nfs-be-v9J" secondAttribute="trailing" constant="32" id="HK4-sN-7ph"/>
@@ -173,7 +173,7 @@
                             <constraint firstItem="nfs-be-v9J" firstAttribute="centerX" secondItem="itx-Bv-4CI" secondAttribute="centerX" id="VUU-2z-yRm"/>
                             <constraint firstItem="nSM-3J-7bZ" firstAttribute="top" secondItem="2Ol-nN-Lti" secondAttribute="bottom" id="ZoI-JT-TUc"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="top" secondItem="iSb-Ii-EMn" secondAttribute="bottom" constant="24" id="bRM-k8-lFI"/>
-                            <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="2Ol-nN-Lti" secondAttribute="centerY" constant="8" id="l1J-ml-OTo"/>
+                            <constraint firstItem="nfs-be-v9J" firstAttribute="centerY" secondItem="2Ol-nN-Lti" secondAttribute="centerY" id="cOn-Wl-aIN"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="trailing" secondItem="A8q-9m-zwg" secondAttribute="trailing" id="wpj-GD-nos"/>
                         </constraints>
                     </view>
