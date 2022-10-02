@@ -171,14 +171,6 @@ class HealthChartsViewController: UIViewController {
             }
         }
         cancellables.insert(.init { task.cancel() })
-        
-//        stepChartsHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
-//        stepChartsHostingController!.view.translatesAutoresizingMaskIntoConstraints = false
-//        stepChartsHostingController!.view.topAnchor.constraint(equalTo: stepChartsView.topAnchor, constant: 24).isActive = true
-//        stepChartsHostingController!.view.bottomAnchor.constraint(equalTo: stepChartsView.bottomAnchor, constant: -8).isActive = true
-//        stepChartsHostingController!.view.leftAnchor.constraint(equalTo: stepChartsView.leftAnchor, constant: 16).isActive = true
-//        stepChartsHostingController!.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: -16).isActive = true
-//        stepChartsHostingController!.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
     }
     
     func configureMenu() {
