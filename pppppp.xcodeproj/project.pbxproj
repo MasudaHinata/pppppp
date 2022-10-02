@@ -420,11 +420,11 @@
 		033BC38A28DC8334008DBC49 /* ChartsView */ = {
 			isa = PBXGroup;
 			children = (
-				033945ED28DF25AE00681E9C /* HealthChartsView.storyboard */,
 				033945EF28DF25C100681E9C /* HealthChartsViewController.swift */,
+				035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */,
 				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
 				03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */,
-				035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */,
+				033945ED28DF25AE00681E9C /* HealthChartsView.storyboard */,
 			);
 			path = ChartsView;
 			sourceTree = "<group>";

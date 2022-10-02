@@ -48,14 +48,14 @@ struct HealthChartsContentView: View {
                     //MARK: - Weight Chart
                     Text("Weight").fontWeight(.semibold)
                         .frame(maxWidth:  CGFloat(width) - 32, alignment: .leading)
-//                    Picker("Weight period", selection: self.$weightSelectedIndex) {
-//                        ForEach(0..<self.periodIndex.count) { index in
-//                            Text(self.periodIndex[index])
-//                                .tag(index)
-//                        }
-//                    }
-//                    .pickerStyle(SegmentedPickerStyle())
-//                    .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
+                    //                    Picker("Weight period", selection: self.$weightSelectedIndex) {
+                    //                        ForEach(0..<self.periodIndex.count) { index in
+                    //                            Text(self.periodIndex[index])
+                    //                                .tag(index)
+                    //                        }
+                    //                    }
+                    //                    .pickerStyle(SegmentedPickerStyle())
+                    //                    .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
                     Spacer(minLength: 16)
                     WeightChartsUIView(data: chartsWeightItem)
                         .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
