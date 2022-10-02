@@ -44,23 +44,46 @@ final class ChartsManager {
         var chartsStepItem = [ChartsStepItem]()
         var days = [Int]()
         
-        if period == "month" {
-            days = Array(-1...29)
-        } else if period == "week" {
-            days = Array(-1...5)
-        }
-        
-        for date in days {
-            let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
-            let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
-            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-            let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-            let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-            let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-            dateFormatter.dateFormat = "MM/dd"
-            let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts ?? 0))
-            //            let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
-            chartsStepItem.append(stepdata)
+        if period == "Y" {
+            days = Array(0...11)
+            let todayComps = calendar.dateComponents([.year, .month], from: Date())
+            let todayAdds = DateComponents(month: 1, day: -1)
+            let todayStartDate = calendar.date(from: todayComps)!
+            let todayEndDate = calendar.date(byAdding: todayAdds, to: todayStartDate)!
+            
+            for month in days {
+                let monthDate = calendar.date(byAdding: .month, value: -month, to: calendar.startOfDay(for: todayEndDate))
+                let comps = calendar.dateComponents([.year, .month], from: monthDate!)
+                let add = DateComponents(month: 1, day: -1)
+                let startDate = calendar.date(from: comps)!
+                let endDate = calendar.date(byAdding: add, to: startDate)!
+                let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+                let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+                let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+                let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+                dateFormatter.dateFormat = "MM"
+                let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate), stepCounts: Int((stepCounts ?? 0) / 31))
+                //            let stepdata = ChartsStepItem.init(date: startDate, stepCounts: Int((stepCounts ?? 0) / 31))
+                chartsStepItem.append(stepdata)
+            }
+        } else {
+            if period == "M" {
+                days = Array(-1...29)
+            } else if period == "W" {
+                days = Array(-1...5)
+            }
+            for date in days {
+                let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
+                let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
+                let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+                let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
+                let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
+                let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
+                dateFormatter.dateFormat = "MM/dd"
+                let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts ?? 0))
+                //            let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
+                chartsStepItem.append(stepdata)
+            }
         }
         return chartsStepItem
     }
