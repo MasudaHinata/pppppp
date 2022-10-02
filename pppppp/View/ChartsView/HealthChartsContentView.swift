@@ -7,22 +7,44 @@ var cancellables = Set<AnyCancellable>()
 
 @available(iOS 16.0, *)
 struct HealthChartsContentView: View {
+    
+    @State private var selectedIndex = 0
+    
     var body: some View {
+        
+        let bounds = UIScreen.main.bounds
+        let width = Int(bounds.width)
+        let height = Int(bounds.height)
+        
         NavigationView {
             ZStack {
                 Color(asset: Asset.Colors.mainColor)
                     .ignoresSafeArea()
                 ScrollView {
-                    Text("　Step").fontWeight(.semibold)
+                    //MARK: - Step Chart
+                    Text("Step").fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                    Picker("あ", selection: self.$selectedIndex) {
+                        Text("Week")
+                            .tag(0)
+                        Text("Month")
+                            .tag(1)
+                        Text("Year")
+                            .tag(2)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
+                
                     StepsChartsUIView(data: chartsStepItem)
-//                        .frame(height: 300)
-                        .frame(minWidth: .infinity, minHeight: 300, alignment: .leading)
-                    Spacer(minLength: 24)
+                        .frame(maxWidth: .infinity, minHeight: 300, alignment: .leading)
+                    
+                    Spacer(minLength: 40)
+                    
+                    //MARK: - Weight Chart
                     Text("　Weight").fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     WeightChartsUIView(data: chartsWeightItem)
-                        .frame(minWidth: .infinity, minHeight: 300, alignment: .leading)
+                        .frame(maxWidth: .infinity, minHeight: 300, alignment: .leading)
                 }
             }
             .navigationTitle(Text("Health"))
