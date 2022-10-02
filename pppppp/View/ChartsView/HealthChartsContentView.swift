@@ -4,6 +4,7 @@ import Combine
 var chartsStepItem = [ChartsStepItem]()
 var chartsWeightItem = [ChartsWeightItem]()
 var cancellables = Set<AnyCancellable>()
+var averageStep: Int = 0
 
 @available(iOS 16.0, *)
 struct HealthChartsContentView: View {
@@ -24,7 +25,7 @@ struct HealthChartsContentView: View {
                 ScrollView {
                     //MARK: - Step Chart
                     Text("Step").fontWeight(.semibold)
-                        .frame(maxWidth:  CGFloat(width) - 32, alignment: .leading)
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
                     Picker("Step period", selection: self.$stepSelectedIndex) {
                         ForEach(0..<self.periodIndex.count) { index in
                             Text(self.periodIndex[index])
@@ -33,12 +34,20 @@ struct HealthChartsContentView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
-                    
                     //TODO: セグメントが変わったらchartsStepItemに再代入する
-                    //                    chartsStepItem = try await ChartsManager.shared.createStepsChart(period: self.periodIndex[index])
-                    //                    chartsStepItem.reverse()
+                    //                                        chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: self.periodIndex[index])
+                    //                                        chartsStepItem.reverse()
                     
-                    Spacer(minLength: 16)
+                    Text("平均")
+                        .font(.custom("F5.6", fixedSize: 12))
+                        .foregroundColor(Color(asset: Asset.Colors.white48))
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                    
+                    Text("\(averageStep) steps")
+                        .font(.custom("F5.6", fixedSize: 16))
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                    
+            
                     StepsChartsUIView(data: chartsStepItem)
                         .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
                     
@@ -46,15 +55,15 @@ struct HealthChartsContentView: View {
                     
                     //MARK: - Weight Chart
                     Text("Weight").fontWeight(.semibold)
-                        .frame(maxWidth:  CGFloat(width) - 32, alignment: .leading)
-                    //                    Picker("Weight period", selection: self.$weightSelectedIndex) {
-                    //                        ForEach(0..<self.periodIndex.count) { index in
-                    //                            Text(self.periodIndex[index])
-                    //                                .tag(index)
-                    //                        }
-                    //                    }
-                    //                    .pickerStyle(SegmentedPickerStyle())
-                    //                    .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                    Picker("Weight period", selection: self.$weightSelectedIndex) {
+                        ForEach(0..<self.periodIndex.count) { index in
+                            Text(self.periodIndex[index])
+                                .tag(index)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
                     Spacer(minLength: 16)
                     WeightChartsUIView(data: chartsWeightItem)
                         .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
@@ -66,9 +75,10 @@ struct HealthChartsContentView: View {
         .onAppear {
             let task = Task {
                 do {
-                    chartsStepItem = try await ChartsManager.shared.createStepsChart(period: "week")
+                    averageStep = try await HealthKitManager.shared.getAverageStep(date: 6)
+                    chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: "week")
                     chartsStepItem.reverse()
-                    chartsWeightItem = try await ChartsManager.shared.readWeightData()
+                    chartsWeightItem = try await HealthKitManager.shared.readWeightData()
                     chartsWeightItem.reverse()
                 }
                 catch {

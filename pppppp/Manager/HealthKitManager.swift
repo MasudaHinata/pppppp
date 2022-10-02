@@ -4,8 +4,8 @@ import HealthKit
 var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
 var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
 
-final class ChartsManager {
-    static let shared = ChartsManager()
+final class HealthKitManager {
+    static let shared = HealthKitManager()
     private init() {}
     
     let myHealthStore = HKHealthStore()
@@ -26,7 +26,7 @@ final class ChartsManager {
     }
     
     //MARK: - 平均歩数を取得
-    func getAverageStepPoint(date: Double) async throws -> Int {
+    func getAverageStep(date: Double) async throws -> Int {
         getPermissionHealthKit()
         var averageStep = Int()
         let endDate = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: Date()))
@@ -38,7 +38,7 @@ final class ChartsManager {
         return averageStep
     }
     
-    //MARK: - Chart用の歩数を取得(week, month)
+    //MARK: - Chart用の歩数を取得
     func createStepsChart(period: String) async throws -> [ChartsStepItem] {
         getPermissionHealthKit()
         var chartsStepItem = [ChartsStepItem]()
@@ -84,35 +84,6 @@ final class ChartsManager {
                 //            let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
                 chartsStepItem.append(stepdata)
             }
-        }
-        return chartsStepItem
-    }
-    
-    //MARK: - Chart用の歩数を取得(year)
-    func createYearStepsChart() async throws -> [ChartsStepItem] {
-        getPermissionHealthKit()
-        var chartsStepItem = [ChartsStepItem]()
-        let days: [Int] = Array(0...11)
-        
-        let todayComps = calendar.dateComponents([.year, .month], from: Date())
-        let todayAdds = DateComponents(month: 1, day: -1)
-        let todayStartDate = calendar.date(from: todayComps)!
-        let todayEndDate = calendar.date(byAdding: todayAdds, to: todayStartDate)!
-        
-        for month in days {
-            let monthDate = calendar.date(byAdding: .month, value: -month, to: calendar.startOfDay(for: todayEndDate))
-            let comps = calendar.dateComponents([.year, .month], from: monthDate!)
-            let add = DateComponents(month: 1, day: -1)
-            let startDate = calendar.date(from: comps)!
-            let endDate = calendar.date(byAdding: add, to: startDate)!
-            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-            let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-            let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-            let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-            dateFormatter.dateFormat = "MM"
-            let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate), stepCounts: Int((stepCounts ?? 0) / 31))
-            //            let stepdata = ChartsStepItem.init(date: startDate, stepCounts: Int((stepCounts ?? 0) / 31))
-            chartsStepItem.append(stepdata)
         }
         return chartsStepItem
     }
