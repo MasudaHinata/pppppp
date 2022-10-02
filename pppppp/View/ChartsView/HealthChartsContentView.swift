@@ -16,7 +16,6 @@ struct HealthChartsContentView: View {
         
         let bounds = UIScreen.main.bounds
         let width = Int(bounds.width)
-        let height = Int(bounds.height)
         
         NavigationView {
             ZStack {

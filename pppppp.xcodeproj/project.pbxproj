@@ -32,6 +32,7 @@
 		035CE51E28CF1E53001F89BB /* RecordExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */; };
 		035CE52028CF1E61001F89BB /* RecordExerciseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */; };
 		035D29DA28E98AA400E1BEA4 /* HealthChartsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */; };
+		035D29DC28E9E97600E1BEA4 /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D29DB28E9E97600E1BEA4 /* ProfileContentView.swift */; };
 		036E476528DAF73C00EA7BB1 /* StepsChartsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */; };
 		036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */; };
 		036E476928DB1A5C00EA7BB1 /* RecordWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476828DB1A5C00EA7BB1 /* RecordWeightViewController.swift */; };
@@ -138,6 +139,7 @@
 		035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordExerciseViewController.swift; sourceTree = "<group>"; };
 		035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordExerciseView.storyboard; sourceTree = "<group>"; };
 		035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsContentView.swift; sourceTree = "<group>"; };
+		035D29DB28E9E97600E1BEA4 /* ProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
 		036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsChartsUIView.swift; sourceTree = "<group>"; };
 		036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsStepItem.swift; sourceTree = "<group>"; };
 		036E476828DB1A5C00EA7BB1 /* RecordWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordWeightViewController.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
+				035D29DB28E9E97600E1BEA4 /* ProfileContentView.swift */,
 				036E476C28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift */,
 				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
 				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
@@ -833,6 +836,7 @@
 				0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */,
 				03704A2328E022D6004BE7C3 /* ChartsWeightItem.swift in Sources */,
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
+				035D29DC28E9E97600E1BEA4 /* ProfileContentView.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
 				0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
