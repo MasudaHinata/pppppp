@@ -7,13 +7,10 @@ import Kingfisher
 final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate {
     
     var completionHandlers = [() -> Void]()
-    var friendDataList = [UserData]()
     var pointDataList = [PointData]()
     let layout = UICollectionViewFlowLayout()
     var cancellables = Set<AnyCancellable>()
-    var refreshCtl = UIRefreshControl()
     
-    @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var activityBackgroundView: UIView!
     
     @IBOutlet var myIconView: UIImageView! {
@@ -21,14 +18,6 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
             myIconView.layer.cornerRadius = 36
             myIconView.clipsToBounds = true
             myIconView.layer.cornerCurve = .continuous
-        }
-    }
-    
-    @IBOutlet var friendcollectionView: UICollectionView! {
-        didSet {
-            friendcollectionView.delegate = self
-            friendcollectionView.dataSource = self
-            friendcollectionView.register(UINib(nibName: "FriendDataCell", bundle: nil), forCellWithReuseIdentifier: "frienddatacell")
         }
     }
     
@@ -52,6 +41,11 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
             tableView.backgroundView = nil
             tableView.backgroundColor = .clear
         }
+    }
+    
+    @IBAction func friendListButton() {
+        let secondVC = StoryboardScene.FriendListView.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
@@ -78,41 +72,21 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
         self.showDetailViewController(secondVC, sender: self)
     }
     
-    @IBAction func segmentValueChanged(sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            self.activityBackgroundView.isHidden = false
-            self.friendcollectionView.isHidden = true
-        } else if sender.selectedSegmentIndex == 1 {
-            self.activityBackgroundView.isHidden = true
-            self.friendcollectionView.isHidden = false
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         FirebaseClient.shared.notChangeDelegate = self
-        refreshCtl.tintColor = .white
-        friendcollectionView.refreshControl = refreshCtl
-        refreshCtl.addAction(.init { _ in self.refreshCollectionView() }, for: .valueChanged)
-        friendcollectionView.isHidden = true
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: self.view.frame.width, height: 56)
-        friendcollectionView.collectionViewLayout = layout
         
         let task = Task {  [weak self] in
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
-                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+                navigationItem.title = UserDefaults.standard.object(forKey: "name")! as? String
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 pointDataList.reverse()
-                self.friendcollectionView.reloadData()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
             }
@@ -149,28 +123,6 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
             }
         }
         cancellables.insert(.init { task.cancel() })
-    }
-    
-    func refreshCollectionView() {
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
-                self.friendcollectionView.reloadData()
-            }
-            catch {
-                print("ProfileViewContro refresh error:", error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
-                        self.viewDidLoad()
-                    })
-                } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
-                }
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-        refreshCtl.endRefreshing()
     }
     
     //MARK: - Setting Delegate
