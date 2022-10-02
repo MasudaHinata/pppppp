@@ -9,6 +9,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="F5.6-Regular.otf">
+            <string>F5.6-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Me-->
         <scene sceneID="Nzm-lp-loV">
@@ -116,20 +121,20 @@
                                     <action selector="editButtonPressed:" destination="n68-DN-VhL" eventType="touchUpInside" id="a49-iB-MwS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDg-n6-akb">
-                                <rect key="frame" x="128" y="125" width="40" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSM-3J-7bZ">
-                                <rect key="frame" x="210.33333333333334" y="143.66666666666666" width="49.333333333333343" height="17"/>
+                                <rect key="frame" x="192" y="143.66666666666666" width="49.333333333333343" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itx-Bv-4CI">
+                                <rect key="frame" x="139" y="141.66666666666666" width="16" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ol-nN-Lti">
-                                <rect key="frame" x="216" y="110.33333333333333" width="37.666666666666657" height="33.333333333333329"/>
+                                <rect key="frame" x="197.66666666666666" y="110.33333333333333" width="37.666666666666657" height="33.333333333333329"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="0">
                                     <fontDescription key="titleFontDescription" name="F5.6-Regular" family="F5.6" pointSize="16"/>
@@ -139,6 +144,16 @@
                                     <action selector="sceneFriendListButton" destination="n68-DN-VhL" eventType="touchUpInside" id="msG-5s-QQN"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfs-be-v9J">
+                                <rect key="frame" x="128" y="108.33333333333333" width="37.666666666666657" height="33.333333333333329"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33.329999999999998" id="A8j-AY-dj4"/>
+                                    <constraint firstAttribute="width" constant="37.670000000000002" id="Nba-xS-hYG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="F5.6-Regular" family="F5.6" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="A8q-9m-zwg"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -146,16 +161,18 @@
                         <constraints>
                             <constraint firstItem="A8q-9m-zwg" firstAttribute="bottom" secondItem="Gji-DF-TMj" secondAttribute="bottom" id="3YY-K6-WdA"/>
                             <constraint firstItem="A8q-9m-zwg" firstAttribute="trailing" secondItem="taJ-vF-fMd" secondAttribute="trailing" constant="16" id="6Jl-eE-hK4"/>
+                            <constraint firstItem="nfs-be-v9J" firstAttribute="leading" secondItem="iSb-Ii-EMn" secondAttribute="trailing" constant="32" id="7Yf-Ey-fX3"/>
                             <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="taJ-vF-fMd" secondAttribute="centerY" id="7rp-L3-Ubw"/>
-                            <constraint firstItem="CDg-n6-akb" firstAttribute="leading" secondItem="iSb-Ii-EMn" secondAttribute="trailing" constant="32" id="CJ8-im-KMe"/>
+                            <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="nfs-be-v9J" secondAttribute="centerY" constant="10" id="CxW-7U-0Oq"/>
+                            <constraint firstItem="itx-Bv-4CI" firstAttribute="top" secondItem="nfs-be-v9J" secondAttribute="bottom" id="DmG-FZ-Xlk"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="leading" secondItem="A8q-9m-zwg" secondAttribute="leading" id="Dn2-ug-xWw"/>
+                            <constraint firstItem="2Ol-nN-Lti" firstAttribute="leading" secondItem="nfs-be-v9J" secondAttribute="trailing" constant="32" id="HK4-sN-7ph"/>
                             <constraint firstItem="2Ol-nN-Lti" firstAttribute="centerX" secondItem="nSM-3J-7bZ" secondAttribute="centerX" id="Hpo-ei-YXS"/>
-                            <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="CDg-n6-akb" secondAttribute="centerY" id="HwI-9f-Y48"/>
                             <constraint firstItem="iSb-Ii-EMn" firstAttribute="leading" secondItem="A8q-9m-zwg" secondAttribute="leading" constant="24" id="TIT-r7-FeB"/>
                             <constraint firstItem="iSb-Ii-EMn" firstAttribute="top" secondItem="A8q-9m-zwg" secondAttribute="top" constant="8" id="U6e-VE-Hvv"/>
+                            <constraint firstItem="nfs-be-v9J" firstAttribute="centerX" secondItem="itx-Bv-4CI" secondAttribute="centerX" id="VUU-2z-yRm"/>
                             <constraint firstItem="nSM-3J-7bZ" firstAttribute="top" secondItem="2Ol-nN-Lti" secondAttribute="bottom" id="ZoI-JT-TUc"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="top" secondItem="iSb-Ii-EMn" secondAttribute="bottom" constant="24" id="bRM-k8-lFI"/>
-                            <constraint firstItem="2Ol-nN-Lti" firstAttribute="leading" secondItem="CDg-n6-akb" secondAttribute="trailing" constant="48" id="kS9-fg-FqL"/>
                             <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="2Ol-nN-Lti" secondAttribute="centerY" constant="8" id="l1J-ml-OTo"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="trailing" secondItem="A8q-9m-zwg" secondAttribute="trailing" id="wpj-GD-nos"/>
                         </constraints>
@@ -181,7 +198,7 @@
                         <outlet property="activityBackgroundView" destination="Gji-DF-TMj" id="fhv-9a-IDy"/>
                         <outlet property="collectionView" destination="lAc-Rk-I35" id="vAJ-kX-7pr"/>
                         <outlet property="myIconView" destination="iSb-Ii-EMn" id="0Fo-K0-UB2"/>
-                        <outlet property="pointLabel" destination="CDg-n6-akb" id="ELv-yC-eez"/>
+                        <outlet property="pointLabel" destination="nfs-be-v9J" id="fIX-fJ-64f"/>
                         <outlet property="sceneFriendListButtonLayout" destination="2Ol-nN-Lti" id="S6o-bg-s7L"/>
                         <outlet property="tableView" destination="J3b-i7-ahx" id="hT1-F1-GIS"/>
                     </connections>
