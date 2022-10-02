@@ -14,6 +14,8 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
     
     @IBOutlet var sceneFriendListButtonLayout: UIButton!
     
+    @IBOutlet var pointLabel: UILabel!
+    
     @IBOutlet var activityBackgroundView: UIView!
     
     @IBOutlet var myIconView: UIImageView! {
@@ -94,8 +96,12 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
                 self.tableView.reloadData()
                 
                 let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
-                print(friendDataList.count)
-//                sceneFriendListButtonLayout.setTitle("\(friendDataList.count)", for: .normal)
+                sceneFriendListButtonLayout.titleLabel?.font = UIFont(name: "F5.6", size: 16)
+                sceneFriendListButtonLayout.setTitle("\(friendDataList.count)", for: .normal)
+                
+                let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+                let point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
+                pointLabel.text = "\(point)"
             }
             catch {
                 print("ProfileViewContro ViewDid error:",error.localizedDescription)
