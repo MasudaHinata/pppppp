@@ -9,6 +9,7 @@ final class ChartsManager {
     private init() {}
     
     let myHealthStore = HKHealthStore()
+    let dateFormatter = DateFormatter()
     let calendar = Calendar.current
     let typeOfWrite = Set([typeOfBodyMass])
     let typeOfRead = Set([typeOfBodyMass, typeOfStepCount])
@@ -37,11 +38,18 @@ final class ChartsManager {
         return averageStep
     }
     
-    //MARK: - Chart用の歩数を取得(Week)
-    func createWeekStepsChart() async throws -> [ChartsStepItem] {
+    //MARK: - Chart用の歩数を取得(week, month)
+    func createStepsChart(period: String) async throws -> [ChartsStepItem] {
         getPermissionHealthKit()
         var chartsStepItem = [ChartsStepItem]()
-        let days: [Int] = Array(-1...5)
+        var days = [Int]()
+        
+        if period == "month" {
+            days = Array(-1...29)
+        } else if period == "week" {
+            days = Array(-1...5)
+        }
+        
         for date in days {
             let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
             let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
@@ -49,31 +57,15 @@ final class ChartsManager {
             let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
             let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
             let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-            let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
+            dateFormatter.dateFormat = "MM/dd"
+            let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate!), stepCounts: Int(stepCounts ?? 0))
+            //            let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
             chartsStepItem.append(stepdata)
         }
         return chartsStepItem
     }
     
-    //MARK: - Chart用の歩数を取得(Month)
-    func createMonthStepsChart() async throws -> [ChartsStepItem] {
-        getPermissionHealthKit()
-        var chartsStepItem = [ChartsStepItem]()
-        let days: [Int] = Array(-1...29)
-        for date in days {
-            let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
-            let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
-            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-            let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
-            let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
-            let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-            let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
-            chartsStepItem.append(stepdata)
-        }
-        return chartsStepItem
-    }
-    
-    //MARK: - Chart用の歩数を取得(Year)
+    //MARK: - Chart用の歩数を取得(year)
     func createYearStepsChart() async throws -> [ChartsStepItem] {
         getPermissionHealthKit()
         var chartsStepItem = [ChartsStepItem]()
@@ -94,7 +86,9 @@ final class ChartsManager {
             let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
             let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
             let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-            let stepdata = ChartsStepItem.init(date: startDate, stepCounts: Int((stepCounts ?? 0) / 31))
+            dateFormatter.dateFormat = "MM"
+            let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate), stepCounts: Int((stepCounts ?? 0) / 31))
+            //            let stepdata = ChartsStepItem.init(date: startDate, stepCounts: Int((stepCounts ?? 0) / 31))
             chartsStepItem.append(stepdata)
         }
         return chartsStepItem

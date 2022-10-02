@@ -2,6 +2,7 @@ import SwiftUI
 import Combine
 
 var chartsStepItem = [ChartsStepItem]()
+var chartsWeightItem = [ChartsWeightItem]()
 var cancellables = Set<AnyCancellable>()
 
 @available(iOS 16.0, *)
@@ -12,12 +13,15 @@ struct HealthChartsContentView: View {
                 Color(asset: Asset.Colors.mainColor)
                     .ignoresSafeArea()
                 ScrollView {
+                    Text("　Step").fontWeight(.semibold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     StepsChartsUIView(data: chartsStepItem)
                         .frame(height: 300)
-//                        .padding()
-//                        .background(.ultraThinMaterial)
-//                        .cornerRadius(16)
-                    Text("Hello, World!")
+                    Spacer(minLength: 24)
+                    Text("　Weight").fontWeight(.semibold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    WeightChartsUIView(data: chartsWeightItem)
+                        .frame(height: 300)
                 }
             }
             .navigationTitle(Text("Health"))
@@ -25,8 +29,10 @@ struct HealthChartsContentView: View {
         .onAppear {
             let task = Task {
                 do {
-                    chartsStepItem = try await ChartsManager.shared.createMonthStepsChart()
+                    chartsStepItem = try await ChartsManager.shared.createStepsChart(period: "week")
                     chartsStepItem.reverse()
+                    chartsWeightItem = try await ChartsManager.shared.readWeightData()
+                    chartsWeightItem.reverse()
                 }
                 catch {
                     
