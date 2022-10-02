@@ -1,5 +1,7 @@
 import UIKit
 import SwiftUI
+import Combine
+import Kingfisher
 
 @MainActor
 final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate {
@@ -24,7 +26,6 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
     
     @IBOutlet var friendcollectionView: UICollectionView! {
         didSet {
-            FirebaseClient.shared.deletefriendDelegate = self
             friendcollectionView.delegate = self
             friendcollectionView.dataSource = self
             friendcollectionView.register(UINib(nibName: "FriendDataCell", bundle: nil), forCellWithReuseIdentifier: "frienddatacell")
