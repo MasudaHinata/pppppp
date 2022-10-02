@@ -23,8 +23,8 @@ struct HealthChartsContentView: View {
                 ScrollView {
                     //MARK: - Step Chart
                     Text("Step").fontWeight(.semibold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Picker("あ", selection: self.$selectedIndex) {
+                        .frame(maxWidth:  CGFloat(width) - 32, alignment: .leading)
+                    Picker("Step", selection: self.$selectedIndex) {
                         Text("Week")
                             .tag(0)
                         Text("Month")
@@ -34,17 +34,28 @@ struct HealthChartsContentView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
-                
+                    Spacer(minLength: 16)
                     StepsChartsUIView(data: chartsStepItem)
-                        .frame(maxWidth: .infinity, minHeight: 300, alignment: .leading)
+                        .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
                     
                     Spacer(minLength: 40)
                     
                     //MARK: - Weight Chart
-                    Text("　Weight").fontWeight(.semibold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Weight").fontWeight(.semibold)
+                        .frame(maxWidth:  CGFloat(width) - 32, alignment: .leading)
+                    Picker("Weight", selection: self.$selectedIndex) {
+                        Text("Week")
+                            .tag(0)
+                        Text("Month")
+                            .tag(1)
+                        Text("Year")
+                            .tag(2)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
+                    Spacer(minLength: 16)
                     WeightChartsUIView(data: chartsWeightItem)
-                        .frame(maxWidth: .infinity, minHeight: 300, alignment: .leading)
+                        .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
                 }
             }
             .navigationTitle(Text("Health"))
