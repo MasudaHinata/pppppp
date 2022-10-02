@@ -1,6 +1,5 @@
 import UIKit
 
-@available(iOS 16.0, *)
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         pointDataList.count

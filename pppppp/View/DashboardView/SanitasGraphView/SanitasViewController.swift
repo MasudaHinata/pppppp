@@ -2,7 +2,6 @@ import Combine
 import UIKit
 import SwiftUI
 
-@available(iOS 16.0, *)
 class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
     var activityIndicator: UIActivityIndicatorView!
@@ -25,26 +24,43 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     
     //MARK: - 体重・運動を記録する
     @IBAction func sceneRecordDataView() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
-            let secondVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
-            if let sheet = secondVC.sheetPresentationController {
-                sheet.detents = [.custom { context in 0.23 * context.maximumDetentValue }]
+        if #available(iOS 16.0, *) {
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
+                let secondVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
+                if let sheet = secondVC.sheetPresentationController {
+                    sheet.detents = [.custom { context in 178 }]
+                }
+                self.present(secondVC, animated: true, completion: nil)
             }
-            self.present(secondVC, animated: true, completion: nil)
-        }
-        let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
-            let secondVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
-            if let sheet = secondVC.sheetPresentationController {
-                sheet.detents = [.custom { context in 0.23 * context.maximumDetentValue }]
+            let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
+                let secondVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
+                if let sheet = secondVC.sheetPresentationController {
+                    sheet.detents = [.custom { context in 178 }]
+                }
+                self.present(secondVC, animated: true, completion: nil)
             }
-            self.present(secondVC, animated: true, completion: nil)
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+            actionSheet.addAction(weightAction)
+            actionSheet.addAction(exerciseAction)
+            actionSheet.addAction(cancelAction)
+            present(actionSheet, animated: true)
+        } else {
+            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
+                let secondVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
+                self.present(secondVC, animated: true, completion: nil)
+            }
+            let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
+                let secondVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
+                self.present(secondVC, animated: true, completion: nil)
+            }
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+            actionSheet.addAction(weightAction)
+            actionSheet.addAction(exerciseAction)
+            actionSheet.addAction(cancelAction)
+            present(actionSheet, animated: true)
         }
-        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
-        actionSheet.addAction(weightAction)
-        actionSheet.addAction(exerciseAction)
-        actionSheet.addAction(cancelAction)
-        present(actionSheet, animated: true)
     }
     
     @IBAction func reloadButton() {
@@ -52,7 +68,22 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             guard let self = self else { return }
             do {
                 activityIndicator.startAnimating()
-                stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps())) steps"
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+                if type as! String == "今日までの一週間" {
+                    startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: Date()))!
+                } else if type as! String == "月曜始まり" {
+                    let am = calendar.startOfDay(for: Date())
+                    let weekNumber = calendar.component(.weekday, from: am)
+                    if weekNumber == 1 {
+                        startDate = calendar.date(byAdding: .day, value: -6, to: am)!
+                    } else {
+                        startDate = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
+                    }
+                }
+                dateFormatter.dateFormat = "MM/dd"
+                weekPointLabel.text = "\(dateFormatter.string(from: startDate)) ~ Today  \(try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))  pt"
+                stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 activityIndicator.stopAnimating()

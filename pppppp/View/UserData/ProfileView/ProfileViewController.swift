@@ -3,23 +3,18 @@ import SwiftUI
 import Combine
 import Kingfisher
 
-@available(iOS 16.0, *)
 @MainActor
 final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendDelegate , FireStoreCheckNameDelegate {
     
     var completionHandlers = [() -> Void]()
     var friendDataList = [UserData]()
     var pointDataList = [PointData]()
-    var chartsStepItem = [ChartsStepItem]()
     let layout = UICollectionViewFlowLayout()
     var cancellables = Set<AnyCancellable>()
     var refreshCtl = UIRefreshControl()
     
     @IBOutlet var myNameLabel: UILabel!
     @IBOutlet var activityBackgroundView: UIView!
-    @IBOutlet var stepChartsView: UIView!
-    
-    @IBOutlet var averageStepLabel: UILabel!
     
     @IBOutlet var myIconView: UIImageView! {
         didSet {
@@ -61,17 +56,22 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
-        let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
-        if let sheet = secondVC.sheetPresentationController {
-            sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
+        if #available(iOS 16.0, *) {
+            let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
+            if let sheet = secondVC.sheetPresentationController {
+                sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
+            }
+            secondVC.presentationController?.delegate = self
+            self.present(secondVC, animated: true, completion: nil)
+        } else {
+            let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
+            self.present(secondVC, animated: true, completion: nil)
         }
-        secondVC.presentationController?.delegate = self
-        self.present(secondVC, animated: true, completion: nil)
     }
     
     @IBAction func sceneSettingView() {
         let secondVC = StoryboardScene.SettingView.initialScene.instantiate()
-        self.showDetailViewController(secondVC ?? UIViewController(), sender: self)
+        self.showDetailViewController(secondVC, sender: self)
     }
     
     @IBAction func scneShareMyDataView() {
@@ -83,15 +83,9 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         if sender.selectedSegmentIndex == 0 {
             self.activityBackgroundView.isHidden = false
             self.friendcollectionView.isHidden = true
-            self.stepChartsView.isHidden = true
         } else if sender.selectedSegmentIndex == 1 {
             self.activityBackgroundView.isHidden = true
             self.friendcollectionView.isHidden = false
-            self.stepChartsView.isHidden = true
-        } else if sender.selectedSegmentIndex == 2 {
-            self.activityBackgroundView.isHidden = true
-            self.friendcollectionView.isHidden = true
-            self.stepChartsView.isHidden = false
         }
     }
     
@@ -99,20 +93,13 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         super.viewDidLoad()
         
         FirebaseClient.shared.notChangeDelegate = self
-        
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refreshCollectionView() }, for: .valueChanged)
-        
         friendcollectionView.isHidden = true
-        stepChartsView.isHidden = true
-        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: self.view.frame.width, height: 56)
         friendcollectionView.collectionViewLayout = layout
-
-        friendDataList.removeAll()
-        pointDataList.removeAll()
         
         let task = Task {  [weak self] in
             guard let self = self else { return }
@@ -129,20 +116,6 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
                 self.friendcollectionView.reloadData()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
-                
-                
-                let averageStep = try await Scorering.shared.getAverageStepPoint()
-                chartsStepItem = try await Scorering.shared.createWeekStepsChart()
-                chartsStepItem.reverse()
-                let vc: UIHostingController = UIHostingController(rootView: StepsChartsUIView(data: chartsStepItem))
-                stepChartsView.addSubview(vc.view)
-                vc.view.translatesAutoresizingMaskIntoConstraints = false
-                vc.view.topAnchor.constraint(equalTo: stepChartsView.topAnchor, constant: 54).isActive = true
-                vc.view.bottomAnchor.constraint(equalTo: stepChartsView.bottomAnchor, constant: -8).isActive = true
-                vc.view.leftAnchor.constraint(equalTo: stepChartsView.leftAnchor, constant: 16).isActive = true
-                vc.view.rightAnchor.constraint(equalTo: stepChartsView.rightAnchor, constant: -16).isActive = true
-                vc.view.centerYAnchor.constraint(equalTo: stepChartsView.centerYAnchor).isActive = true
-                averageStepLabel.text = "\(averageStep) steps"
             }
             catch {
                 print("ProfileViewContro ViewDid error:",error.localizedDescription)

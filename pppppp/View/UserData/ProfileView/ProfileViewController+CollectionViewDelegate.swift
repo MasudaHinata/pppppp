@@ -1,6 +1,5 @@
 import UIKit
 
-@available(iOS 16.0, *)
 extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {

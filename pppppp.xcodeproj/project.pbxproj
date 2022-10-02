@@ -53,6 +53,9 @@
 		036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */; };
 		036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0028C092520066A7DA /* DashboardView.storyboard */; };
 		036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F6A0228C093560066A7DA /* UserDataView.storyboard */; };
+		03704A2128E01D78004BE7C3 /* WeightChartsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */; };
+		03704A2328E022D6004BE7C3 /* ChartsWeightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */; };
+		03879DE128E46E7200C1DBA2 /* ChartsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03879DE028E46E7200C1DBA2 /* ChartsManager.swift */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
 		03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */; };
@@ -67,7 +70,6 @@
 		03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B832F228DC88E400C8AE3E /* Localizable.strings */; };
 		03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */; };
 		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
-		03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7BD28D34E320069A46E /* WeightData.swift */; };
 		03C7E7C228D453ED0069A46E /* OnboardingViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */; };
 		03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C328D454030069A46E /* OnboardingView1.storyboard */; };
 		03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C528D49DB10069A46E /* SanitasView.storyboard */; };
@@ -156,6 +158,9 @@
 		036F69FD28C0914D0066A7DA /* SelfCheckView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelfCheckView.storyboard; sourceTree = "<group>"; };
 		036F6A0028C092520066A7DA /* DashboardView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardView.storyboard; sourceTree = "<group>"; };
 		036F6A0228C093560066A7DA /* UserDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDataView.storyboard; sourceTree = "<group>"; };
+		03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightChartsUIView.swift; sourceTree = "<group>"; };
+		03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsWeightItem.swift; sourceTree = "<group>"; };
+		03879DE028E46E7200C1DBA2 /* ChartsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsManager.swift; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
@@ -171,7 +176,6 @@
 		03B832F328DC891200C8AE3E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareMyDataView.storyboard; sourceTree = "<group>"; };
 		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
-		03C7E7BD28D34E320069A46E /* WeightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightData.swift; sourceTree = "<group>"; };
 		03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController1.swift; sourceTree = "<group>"; };
 		03C7E7C328D454030069A46E /* OnboardingView1.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView1.storyboard; sourceTree = "<group>"; };
 		03C7E7C528D49DB10069A46E /* SanitasView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SanitasView.storyboard; sourceTree = "<group>"; };
@@ -417,6 +421,7 @@
 				033945ED28DF25AE00681E9C /* HealthChartsView.storyboard */,
 				033945EF28DF25C100681E9C /* HealthChartsViewController.swift */,
 				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
+				03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */,
 			);
 			path = ChartsView;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 			children = (
 				9C2BE4402885108300431FEC /* FirebaseClient.swift */,
 				9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */,
+				03879DE028E46E7200C1DBA2 /* ChartsManager.swift */,
 				9CD49C2628AEAD5E000CDEDF /* NotificationManager.swift */,
 			);
 			path = Manager;
@@ -502,7 +508,7 @@
 			children = (
 				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
 				036F697E28B8EACE0066A7DA /* PointData.swift */,
-				03C7E7BD28D34E320069A46E /* WeightData.swift */,
+				03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */,
 				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
 			);
 			path = Model;
@@ -798,11 +804,11 @@
 			files = (
 				036E476928DB1A5C00EA7BB1 /* RecordWeightViewController.swift in Sources */,
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
+				03879DE128E46E7200C1DBA2 /* ChartsManager.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
 				0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
-				03C7E7BE28D34E320069A46E /* WeightData.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */,
 				035CE51E28CF1E53001F89BB /* RecordExerciseViewController.swift in Sources */,
@@ -821,6 +827,7 @@
 				036E476D28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */,
 				0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */,
+				03704A2328E022D6004BE7C3 /* ChartsWeightItem.swift in Sources */,
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
 				0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */,
@@ -835,6 +842,7 @@
 				9CAA88EC26B1918B005517D5 /* EmailSignInViewController.swift in Sources */,
 				9C4F1C752859E6F500623C66 /* FriendProfileViewController.swift in Sources */,
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
+				03704A2128E01D78004BE7C3 /* WeightChartsUIView.swift in Sources */,
 				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
@@ -940,7 +948,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -996,7 +1004,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1017,11 +1025,12 @@
 				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Sanitas;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1042,11 +1051,12 @@
 				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Sanitas;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

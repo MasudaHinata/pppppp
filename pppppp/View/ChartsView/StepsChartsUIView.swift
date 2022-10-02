@@ -5,21 +5,30 @@ import Charts
 struct StepsChartsUIView: View {
     
     var data: [ChartsStepItem]
+    @State var width = 0.0
     var body: some View {
         ZStack {
-            Color.init(red: 18/255, green: 0/255, blue: 76/255)
-                .ignoresSafeArea()
+            Color(asset: Asset.Colors.mainColor)
             Chart {
                 ForEach(data) { item in
                     BarMark(
                         x: .value("Date", item.date),
-                        y: .value("Step Count", item.stepCounts)
+                        y: .value("Step Count", item.stepCounts)//,
+//                        width: MarkDimension(floatLiteral: width / Double(data.count + 1))
                     )
                 }
             }
             .chartForegroundStyleScale([
-                "steps": Color.init(red: 146/255, green: 178/255, blue: 211/255)
+                "steps": Color(asset: Asset.Colors.subColor)
             ])
         }
+//        }.background (
+//            GeometryReader { geometry in
+//                Color(asset: Asset.Colors.mainColor)
+//                    .onAppear {
+//                        width = geometry.size.width
+//                    }
+//            }
+//        )
     }
 }

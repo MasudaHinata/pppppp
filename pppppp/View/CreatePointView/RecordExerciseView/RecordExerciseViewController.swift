@@ -8,7 +8,7 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
     
     var exerciseTypePicker = UIPickerView()
     var exerciseTimePicker = UIPickerView()
-    let exerciseTypeList = ["軽いジョギング", "ランニング", "運動を選択してください", "筋トレ(軽・中等度)", "筋トレ(強等度)", "サイクリング", "テニス(ダブルス)", "テニス(シングルス)", "水泳(ゆっくりとした背泳ぎ・平泳ぎ)", "水泳(クロール・普通の速さ)", "水泳(クロール・速い)", "野球"]
+    let exerciseTypeList = ["軽いジョギング", "ランニング", "運動を選択してください", "筋トレ(軽・中等度)", "筋トレ(強等度)", "テニス(ダブルス)", "テニス(シングルス)", "水泳(ゆっくりとした背泳ぎ・平泳ぎ)", "水泳(クロール・普通の速さ)", "水泳(クロール・速い)", "野球"]
     
     let exerciseTimeList: [Int] = Array(0...120)
     
@@ -46,7 +46,7 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
             let task = Task { [weak self] in
                 guard let self = self else { return }
                 do {
-                    let results = try await Scorering.shared.createExercisePoint(exercisesName: selectExerciseTextField.text!, time: Float(exerciseTimeTextField.text!)!)
+                    try await Scorering.shared.createExercisePoint(exercisesName: selectExerciseTextField.text!, time: Float(exerciseTimeTextField.text!)!)
                     exerciseTimeTextField.text = ""
                     selectExerciseTextField.text = ""
                 }
@@ -65,8 +65,9 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         FirebaseClient.shared.putPointDelegate = self
+        self.view.layer.cornerRadius = 48
+        self.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -83,7 +84,7 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
         exerciseTypePicker.selectRow(2, inComponent: 0, animated: false)
         selectExerciseTextField.inputView = exerciseTypePicker
         selectExerciseTextField.inputAccessoryView = exerciseTypeToolbar
-
+        
         let exerciseTimeToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
         let exerciseTimeSpacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let exerciseTimeDoneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(exerciseTimeDone))

@@ -38,6 +38,14 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<FriendProfileViewController>(storyboard: FriendProfileView.self)
   }
+//    @available(iOS 16.0, *)
+    internal enum HealthChartsView: StoryboardType {
+    internal static let storyboardName = "HealthChartsView"
+
+    internal static let initialScene = InitialSceneType<UIKit.UINavigationController>(storyboard: HealthChartsView.self)
+
+    internal static let healthChartsViewController = SceneType<HealthChartsViewController>(storyboard: HealthChartsView.self, identifier: "HealthChartsViewController")
+  }
   internal enum Main: StoryboardType {
     internal static let storyboardName = "Main"
 

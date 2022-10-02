@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rpb-kf-ecp">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0AS-4d-5gZ">
-                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <rect key="frame" x="0.0" y="152" width="414" height="710"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4Nf-Zh-dgo">
                                     <size key="itemSize" width="128" height="128"/>
@@ -31,7 +30,7 @@
                         <viewLayoutGuide key="safeArea" id="aU8-9C-mDn"/>
                         <color key="backgroundColor" red="0.074509803920000006" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="0AS-4d-5gZ" firstAttribute="top" secondItem="aU8-9C-mDn" secondAttribute="top" id="iB1-1B-p7Z"/>
+                            <constraint firstItem="0AS-4d-5gZ" firstAttribute="top" secondItem="aU8-9C-mDn" secondAttribute="top" constant="8" id="iB1-1B-p7Z"/>
                             <constraint firstItem="0AS-4d-5gZ" firstAttribute="leading" secondItem="aU8-9C-mDn" secondAttribute="leading" id="lkh-P1-TnN"/>
                             <constraint firstItem="aU8-9C-mDn" firstAttribute="bottom" secondItem="0AS-4d-5gZ" secondAttribute="bottom" id="niI-8N-aJy"/>
                             <constraint firstItem="aU8-9C-mDn" firstAttribute="trailing" secondItem="0AS-4d-5gZ" secondAttribute="trailing" id="yiX-ki-vmh"/>
