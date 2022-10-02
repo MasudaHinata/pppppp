@@ -123,15 +123,14 @@
                                     <action selector="editButtonPressed:" destination="n68-DN-VhL" eventType="touchUpInside" id="a49-iB-MwS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ol-nN-Lti">
-                                <rect key="frame" x="197" y="117" width="72" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ol-nN-Lti">
+                                <rect key="frame" x="203" y="117.66666666666669" width="75" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="friendListButton" destination="n68-DN-VhL" eventType="touchUpInside" id="msG-5s-QQN"/>
+                                    <action selector="sceneFriendListButton" destination="n68-DN-VhL" eventType="touchUpInside" id="msG-5s-QQN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDg-n6-akb">
@@ -150,9 +149,11 @@
                             <constraint firstItem="A8q-9m-zwg" firstAttribute="trailing" secondItem="taJ-vF-fMd" secondAttribute="trailing" constant="16" id="6Jl-eE-hK4"/>
                             <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="taJ-vF-fMd" secondAttribute="centerY" id="7rp-L3-Ubw"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="leading" secondItem="A8q-9m-zwg" secondAttribute="leading" id="Dn2-ug-xWw"/>
+                            <constraint firstItem="taJ-vF-fMd" firstAttribute="leading" secondItem="2Ol-nN-Lti" secondAttribute="trailing" constant="16" id="Lxe-J6-NiB"/>
                             <constraint firstItem="iSb-Ii-EMn" firstAttribute="leading" secondItem="A8q-9m-zwg" secondAttribute="leading" constant="24" id="TIT-r7-FeB"/>
                             <constraint firstItem="iSb-Ii-EMn" firstAttribute="top" secondItem="A8q-9m-zwg" secondAttribute="top" constant="8" id="U6e-VE-Hvv"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="top" secondItem="iSb-Ii-EMn" secondAttribute="bottom" constant="24" id="bRM-k8-lFI"/>
+                            <constraint firstItem="iSb-Ii-EMn" firstAttribute="centerY" secondItem="2Ol-nN-Lti" secondAttribute="centerY" id="l1J-ml-OTo"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="trailing" secondItem="A8q-9m-zwg" secondAttribute="trailing" id="wpj-GD-nos"/>
                         </constraints>
                     </view>

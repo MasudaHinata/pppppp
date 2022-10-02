@@ -8,8 +8,11 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
     
     var completionHandlers = [() -> Void]()
     var pointDataList = [PointData]()
+    var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
     var cancellables = Set<AnyCancellable>()
+    
+    @IBOutlet var sceneFriendListButtonLayout: UIButton!
     
     @IBOutlet var activityBackgroundView: UIView!
     
@@ -43,7 +46,7 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
         }
     }
     
-    @IBAction func friendListButton() {
+    @IBAction func sceneFriendListButton() {
         let secondVC = StoryboardScene.FriendListView.initialScene.instantiate()
         self.showDetailViewController(secondVC, sender: self)
     }
@@ -89,6 +92,10 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
                 pointDataList.reverse()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
+                
+                let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
+                print(friendDataList.count)
+//                sceneFriendListButtonLayout.setTitle("\(friendDataList.count)", for: .normal)
             }
             catch {
                 print("ProfileViewContro ViewDid error:",error.localizedDescription)
