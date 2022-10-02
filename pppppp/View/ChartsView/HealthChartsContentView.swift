@@ -32,30 +32,30 @@ struct HealthChartsContentView: View {
                                 .tag(index)
                         }
                     }
-                    
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
+                    
+                    //TODO: セグメントが変わったらchartsStepItemに再代入する
+                    //                    chartsStepItem = try await ChartsManager.shared.createStepsChart(period: self.periodIndex[index])
+                    //                    chartsStepItem.reverse()
+                    
                     Spacer(minLength: 16)
                     StepsChartsUIView(data: chartsStepItem)
                         .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
                     
                     Spacer(minLength: 40)
                     
-                    Text(self.periodIndex[self.stepSelectedIndex])
-                    //                    chartsStepItem = try await ChartsManager.shared.createStepsChart(period: self.periodIndex[index])
-                    //                    chartsStepItem.reverse()
-                    
                     //MARK: - Weight Chart
                     Text("Weight").fontWeight(.semibold)
                         .frame(maxWidth:  CGFloat(width) - 32, alignment: .leading)
-                    Picker("Weight period", selection: self.$weightSelectedIndex) {
-                        ForEach(0..<self.periodIndex.count) { index in
-                            Text(self.periodIndex[index])
-                                .tag(index)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
+//                    Picker("Weight period", selection: self.$weightSelectedIndex) {
+//                        ForEach(0..<self.periodIndex.count) { index in
+//                            Text(self.periodIndex[index])
+//                                .tag(index)
+//                        }
+//                    }
+//                    .pickerStyle(SegmentedPickerStyle())
+//                    .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
                     Spacer(minLength: 16)
                     WeightChartsUIView(data: chartsWeightItem)
                         .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
