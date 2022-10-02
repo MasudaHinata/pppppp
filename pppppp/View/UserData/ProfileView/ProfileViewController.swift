@@ -50,7 +50,7 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
     
     @IBAction func sceneFriendListButton() {
         let secondVC = StoryboardScene.FriendListView.initialScene.instantiate()
-        self.showDetailViewController(secondVC, sender: self)
+        self.navigationController?.pushViewController(secondVC, animated: true)
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
@@ -84,17 +84,7 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
         let task = Task {  [weak self] in
             guard let self = self else { return }
             do {
-                try await FirebaseClient.shared.checkNameData()
-                try await FirebaseClient.shared.checkIconData()
-                navigationItem.title = UserDefaults.standard.object(forKey: "name")! as? String
-                myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-                
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
-                pointDataList.reverse()
-                self.collectionView.reloadData()
-                self.tableView.reloadData()
-                
                 let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 sceneFriendListButtonLayout.titleLabel?.font = UIFont(name: "F5.6", size: 16)
                 sceneFriendListButtonLayout.setTitle("\(friendDataList.count)", for: .normal)
@@ -102,6 +92,16 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
                 let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
                 let point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
                 pointLabel.text = "\(point)"
+                
+                try await FirebaseClient.shared.checkNameData()
+                try await FirebaseClient.shared.checkIconData()
+                navigationItem.title = UserDefaults.standard.object(forKey: "name")! as? String
+                myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+                
+                pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                pointDataList.reverse()
+                self.collectionView.reloadData()
+                self.tableView.reloadData()
             }
             catch {
                 print("ProfileViewContro ViewDid error:",error.localizedDescription)

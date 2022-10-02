@@ -370,8 +370,8 @@
 		033BC38428DC822F008DBC49 /* DashboardVIew */ = {
 			isa = PBXGroup;
 			children = (
-				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
 				036F699128BCFE850066A7DA /* DashboardViewController.swift */,
+				03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */,
 				036F6A0028C092520066A7DA /* DashboardView.storyboard */,
 			);
 			path = DashboardVIew;

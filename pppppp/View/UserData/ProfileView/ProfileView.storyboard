@@ -121,8 +121,8 @@
                                     <action selector="editButtonPressed:" destination="n68-DN-VhL" eventType="touchUpInside" id="a49-iB-MwS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSM-3J-7bZ">
-                                <rect key="frame" x="190.33333333333334" y="143.66666666666666" width="52.333333333333343" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="friends" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSM-3J-7bZ">
+                                <rect key="frame" x="192" y="144.33333333333334" width="49.333333333333343" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -134,7 +134,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ol-nN-Lti">
-                                <rect key="frame" x="197.66666666666666" y="110.33333333333333" width="37.666666666666657" height="33.333333333333329"/>
+                                <rect key="frame" x="197.66666666666666" y="111" width="37.666666666666657" height="33.333333333333343"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="0">
                                     <fontDescription key="titleFontDescription" name="F5.6-Regular" family="F5.6" pointSize="16"/>
@@ -173,7 +173,7 @@
                             <constraint firstItem="nfs-be-v9J" firstAttribute="centerX" secondItem="itx-Bv-4CI" secondAttribute="centerX" id="VUU-2z-yRm"/>
                             <constraint firstItem="nSM-3J-7bZ" firstAttribute="top" secondItem="2Ol-nN-Lti" secondAttribute="bottom" id="ZoI-JT-TUc"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="top" secondItem="iSb-Ii-EMn" secondAttribute="bottom" constant="24" id="bRM-k8-lFI"/>
-                            <constraint firstItem="nfs-be-v9J" firstAttribute="centerY" secondItem="2Ol-nN-Lti" secondAttribute="centerY" id="cOn-Wl-aIN"/>
+                            <constraint firstItem="itx-Bv-4CI" firstAttribute="centerY" secondItem="nSM-3J-7bZ" secondAttribute="centerY" id="nwK-5o-Vx7"/>
                             <constraint firstItem="Gji-DF-TMj" firstAttribute="trailing" secondItem="A8q-9m-zwg" secondAttribute="trailing" id="wpj-GD-nos"/>
                         </constraints>
                     </view>

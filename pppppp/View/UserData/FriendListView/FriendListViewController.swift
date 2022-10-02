@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 class FriendListViewController: UIViewController {
-
+    
     var friendDataList = [UserData]()
     var refreshCtl = UIRefreshControl()
     var cancellables = Set<AnyCancellable>()
@@ -17,12 +17,12 @@ class FriendListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refreshCollectionView() }, for: .valueChanged)
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: self.view.frame.width, height: 56)
+        layout.itemSize = CGSize(width: self.view.frame.width, height: 60)
         friendcollectionView.collectionViewLayout = layout
         
         let task = Task {  [weak self] in
@@ -70,5 +70,5 @@ class FriendListViewController: UIViewController {
         cancellables.insert(.init { task.cancel() })
         refreshCtl.endRefreshing()
     }
-
+    
 }
