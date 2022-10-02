@@ -44,7 +44,7 @@ final class ChartsManager {
         var chartsStepItem = [ChartsStepItem]()
         var days = [Int]()
         
-        if period == "Y" {
+        if period == "year" {
             days = Array(0...11)
             let todayComps = calendar.dateComponents([.year, .month], from: Date())
             let todayAdds = DateComponents(month: 1, day: -1)
@@ -67,9 +67,9 @@ final class ChartsManager {
                 chartsStepItem.append(stepdata)
             }
         } else {
-            if period == "M" {
+            if period == "month" {
                 days = Array(-1...29)
-            } else if period == "W" {
+            } else if period == "week" {
                 days = Array(-1...5)
             }
             for date in days {

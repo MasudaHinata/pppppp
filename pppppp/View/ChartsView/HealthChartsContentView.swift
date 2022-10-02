@@ -8,7 +8,9 @@ var cancellables = Set<AnyCancellable>()
 @available(iOS 16.0, *)
 struct HealthChartsContentView: View {
     
-    @State private var selectedIndex = 0
+    @State private var stepSelectedIndex = 0
+    @State private var weightSelectedIndex = 0
+    @State private var periodIndex = ["week", "month", "year"]
     
     var body: some View {
         
@@ -24,14 +26,13 @@ struct HealthChartsContentView: View {
                     //MARK: - Step Chart
                     Text("Step").fontWeight(.semibold)
                         .frame(maxWidth:  CGFloat(width) - 32, alignment: .leading)
-                    Picker("Step", selection: self.$selectedIndex) {
-                        Text("Week")
-                            .tag(0)
-                        Text("Month")
-                            .tag(1)
-                        Text("Year")
-                            .tag(2)
+                    Picker("Step period", selection: self.$stepSelectedIndex) {
+                        ForEach(0..<self.periodIndex.count) { index in
+                            Text(self.periodIndex[index])
+                                .tag(index)
+                        }
                     }
+                    
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
                     Spacer(minLength: 16)
@@ -40,16 +41,18 @@ struct HealthChartsContentView: View {
                     
                     Spacer(minLength: 40)
                     
+                    Text(self.periodIndex[self.stepSelectedIndex])
+                    //                    chartsStepItem = try await ChartsManager.shared.createStepsChart(period: self.periodIndex[index])
+                    //                    chartsStepItem.reverse()
+                    
                     //MARK: - Weight Chart
                     Text("Weight").fontWeight(.semibold)
                         .frame(maxWidth:  CGFloat(width) - 32, alignment: .leading)
-                    Picker("Weight", selection: self.$selectedIndex) {
-                        Text("Week")
-                            .tag(0)
-                        Text("Month")
-                            .tag(1)
-                        Text("Year")
-                            .tag(2)
+                    Picker("Weight period", selection: self.$weightSelectedIndex) {
+                        ForEach(0..<self.periodIndex.count) { index in
+                            Text(self.periodIndex[index])
+                                .tag(index)
+                        }
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
@@ -64,7 +67,7 @@ struct HealthChartsContentView: View {
         .onAppear {
             let task = Task {
                 do {
-                    chartsStepItem = try await ChartsManager.shared.createStepsChart(period: "Y")
+                    chartsStepItem = try await ChartsManager.shared.createStepsChart(period: "week")
                     chartsStepItem.reverse()
                     chartsWeightItem = try await ChartsManager.shared.readWeightData()
                     chartsWeightItem.reverse()
