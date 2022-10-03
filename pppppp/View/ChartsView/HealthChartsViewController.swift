@@ -5,6 +5,10 @@ import Charts
 @available(iOS 16.0, *)
 class HealthChartsViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         
         let vc = UIHostingController(rootView: HealthChartsContentView())

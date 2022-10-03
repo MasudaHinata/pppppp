@@ -104,6 +104,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UITabBar.appearance().backgroundColor = Asset.Colors.white00.color
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPointDelegate = self
         FirebaseClient.shared.notChangeDelegate = self
