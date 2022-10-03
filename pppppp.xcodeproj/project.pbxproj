@@ -20,8 +20,6 @@
 		0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034367FF28D609D0000BA656 /* OnboardingViewController2.swift */; };
 		0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680128D60A13000BA656 /* OnboardingViewController3.swift */; };
 		0343680E28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */; };
-		0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */; };
-		0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */; };
 		0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681528D7ED5C000BA656 /* SignInWithAppleViewController.swift */; };
 		0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343681728D7ED68000BA656 /* SignInWithAppleView.storyboard */; };
 		0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */; };
@@ -133,8 +131,6 @@
 		034367FF28D609D0000BA656 /* OnboardingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController2.swift; sourceTree = "<group>"; };
 		0343680128D60A13000BA656 /* OnboardingViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController3.swift; sourceTree = "<group>"; };
 		0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordExerciseView+UIPickerDelegate.swift"; sourceTree = "<group>"; };
-		0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
-		0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseTableViewCell.xib; sourceTree = "<group>"; };
 		0343681528D7ED5C000BA656 /* SignInWithAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleViewController.swift; sourceTree = "<group>"; };
 		0343681728D7ED68000BA656 /* SignInWithAppleView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInWithAppleView.storyboard; sourceTree = "<group>"; };
 		0343681A28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeProfileViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
@@ -422,15 +418,6 @@
 			path = RecordWeightView;
 			sourceTree = "<group>";
 		};
-		033BC38928DC82B0008DBC49 /* ExerciseTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				0343680F28D75CFB000BA656 /* ExerciseTableViewCell.swift */,
-				0343681028D75CFB000BA656 /* ExerciseTableViewCell.xib */,
-			);
-			path = ExerciseTableViewCell;
-			sourceTree = "<group>";
-		};
 		033BC38A28DC8334008DBC49 /* HealthView */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,7 +550,6 @@
 				033BC38628DC8272008DBC49 /* SelfCheckView */,
 				033BC38728DC8283008DBC49 /* RecordExerciseView */,
 				033BC38828DC8295008DBC49 /* RecordWeightView */,
-				033BC38928DC82B0008DBC49 /* ExerciseTableViewCell */,
 			);
 			path = CreatePointView;
 			sourceTree = "<group>";
@@ -829,7 +815,6 @@
 				0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
 				9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */,
-				0343681228D75CFB000BA656 /* ExerciseTableViewCell.xib in Resources */,
 				033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
 				0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */,
@@ -850,7 +835,6 @@
 				03879DE128E46E7200C1DBA2 /* HealthKitManager.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
-				0343681128D75CFB000BA656 /* ExerciseTableViewCell.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */,
