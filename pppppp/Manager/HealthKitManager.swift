@@ -119,19 +119,20 @@ final class HealthKitManager {
     func readWorkoutData() {
         getPermissionHealthKit()
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate,
-                                              ascending: false)
-        let query = HKSampleQuery(sampleType: typeOfWorkout,
-                                  predicate: nil,
-                                  limit: HKObjectQueryNoLimit,
-                                  sortDescriptors: [sortDescriptor]) { _, samples, error in
-            guard let workouts = samples as? [HKWorkout],
-                  error == nil else {
+                                              ascending: true)
+        let query = HKSampleQuery(sampleType: typeOfWorkout, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) {  (query, result, error) in
+            
+            guard error == nil else {
+                print("Error: \(error?.localizedDescription ?? "nil")")
                 return
             }
-            print(workouts)
-//            self.workouts = workouts.sorted(by: { (lw, rw) -> Bool in
-//                lw.startDate < rw.startDate
-//            })
+            guard result != nil else {
+                return
+            }
+            let workout = result as! [HKWorkout]
+            print(workout.last?.workoutActivityType.rawValue)
+            print(workout.last?.startDate)
+            print(workout.last?.totalEnergyBurned ?? 0)
         }
         myHealthStore.execute(query)
     }
