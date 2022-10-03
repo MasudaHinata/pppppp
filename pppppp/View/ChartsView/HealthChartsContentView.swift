@@ -3,7 +3,7 @@ import Combine
 
 
 var cancellables = Set<AnyCancellable>()
-var averageStep: Int = 0
+var averageStep: Int!
 
 @available(iOS 16.0, *)
 struct HealthChartsContentView: View {
@@ -42,10 +42,30 @@ struct HealthChartsContentView: View {
                         .font(.custom("F5.6", fixedSize: 12))
                         .foregroundColor(Color(asset: Asset.Colors.white48))
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
-                    
-                    Text("\(averageStep) steps")
+                
+                    Text("\(averageStep ?? 0) steps")
                         .font(.custom("F5.6", fixedSize: 16))
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                        .onAppear {
+                            let task = Task {
+                                do {
+                                    let period = self.periodIndex[self.stepSelectedIndex]
+                                    var averagePeriod = 0
+                                    if period == "week" {
+                                        averagePeriod = 6
+                                    } else if period == "month" {
+                                        averagePeriod = 29
+                                    } else {
+                                        averagePeriod = 364
+                                    }
+                                    averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
+                                }
+                                catch {
+                                    print("HealthChartsContentView error:", error.localizedDescription)
+                                }
+                            }
+                            cancellables.insert(.init { task.cancel() })
+                        }
                     
                     StepsChartsUIView(data: chartsStepItem)
                         .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
@@ -78,7 +98,6 @@ struct HealthChartsContentView: View {
                     chartsStepItem.reverse()
                     chartsWeightItem = try await HealthKitManager.shared.readWeightData()
                     chartsWeightItem.reverse()
-                    averageStep = try await HealthKitManager.shared.getAverageStep(date: 6)
                 }
                 catch {
                     print("HealthChartsContentView error:", error.localizedDescription)
@@ -91,6 +110,28 @@ struct HealthChartsContentView: View {
                 do {
                     let period = newValue
                     chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: period)
+                    chartsStepItem.reverse()
+                }
+                catch {
+                    print("HealthChartsContentView error:", error.localizedDescription)
+                }
+            }
+            cancellables.insert(.init { task.cancel() })
+        }
+        .onChange(of: self.periodIndex[self.stepSelectedIndex]) { (newValue) in
+            let task = Task {
+                do {
+                    let period = newValue
+                    var averagePeriod = 0
+                    if period == "month" {
+                        averagePeriod = 29
+                    } else if period == "year" {
+                        averagePeriod = 364
+                    } else {
+                        averagePeriod = 6
+                    }
+                    
+                    averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
                 }
                 catch {
                     print("HealthChartsContentView error:", error.localizedDescription)
