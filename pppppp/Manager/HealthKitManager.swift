@@ -12,7 +12,7 @@ final class HealthKitManager {
     let dateFormatter = DateFormatter()
     let calendar = Calendar.current
     let typeOfWrite = Set([typeOfBodyMass])
-    let typeOfRead = Set([typeOfBodyMass, typeOfStepCount])
+    let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, HKWorkoutType.workoutType()])
     
     //MARK: - HealthKitの許可を求める
     func getPermissionHealthKit() {
@@ -111,5 +111,13 @@ final class HealthKitManager {
             chartsWeightItem.append(weightData)
         }
         return chartsWeightItem
+    }
+    
+    //MARK: - Workoutを取得
+    func readWorkoutData() {
+        getPermissionHealthKit()
+        
+        
+        
     }
 }
