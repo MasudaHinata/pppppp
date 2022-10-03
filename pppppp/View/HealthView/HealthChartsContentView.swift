@@ -42,37 +42,17 @@ struct HealthChartsContentView: View {
                     Text("平均")
                         .font(.custom("F5.6", fixedSize: 12))
                         .foregroundColor(Color(asset: Asset.Colors.white48))
-                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                        .frame(maxWidth: CGFloat(width) - 48, alignment: .leading)
                     
                     Text("\(averageStep ?? 0) steps")
                         .font(.custom("F5.6", fixedSize: 16))
-                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
-//                        .onAppear {
-//                            let task = Task {
-//                                do {
-//                                    let period = self.stepPeriodIndex[self.stepSelectedIndex]
-//                                    var averagePeriod = 0
-//                                    if period == "week" {
-//                                        averagePeriod = 6
-//                                    } else if period == "month" {
-//                                        averagePeriod = 30
-//                                    } else {
-//                                        averagePeriod = 364
-//                                    }
-//                                    averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
-//                                }
-//                                catch {
-//                                    print("HealthChartsContentView error:", error.localizedDescription)
-//                                }
-//                            }
-//                            cancellables.insert(.init { task.cancel() })
-//                        }
+                        .frame(maxWidth: CGFloat(width) - 48, alignment: .leading)
                     
                     StepsChartsUIView(data: chartsStepItem, selectedTabState: self.$newStepSelectedIndex)
-                        .frame(maxWidth: CGFloat(width) - 32, minHeight: 280, alignment: .center)
+                        .frame(maxWidth: CGFloat(width) - 48, minHeight: 280, alignment: .center)
                 }
                 
-                Spacer(minLength: 40)
+                Spacer(minLength: 32)
                 
                 //MARK: - Weight Chart
                 Group {
@@ -91,14 +71,14 @@ struct HealthChartsContentView: View {
                     Text("最新")
                         .font(.custom("F5.6", fixedSize: 12))
                         .foregroundColor(Color(asset: Asset.Colors.white48))
-                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                        .frame(maxWidth: CGFloat(width) - 48, alignment: .leading)
                     
                     Text("\(lastWeightStr ?? "0") kg")
                         .font(.custom("F5.6", fixedSize: 16))
-                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                        .frame(maxWidth: CGFloat(width) - 48, alignment: .leading)
                     
                     WeightChartsUIView(data: chartsWeightItem)
-                        .frame(maxWidth: CGFloat(width) - 32, minHeight:280, alignment: .center)
+                        .frame(maxWidth: CGFloat(width) - 48, minHeight:280, alignment: .center)
                 }
                 
                 Spacer(minLength: 32)
