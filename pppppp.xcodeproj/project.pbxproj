@@ -78,6 +78,7 @@
 		03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C328D454030069A46E /* OnboardingView1.storyboard */; };
 		03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C528D49DB10069A46E /* SanitasView.storyboard */; };
 		03DAC40028EA7918005F173B /* UIColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC3FF28EA7918005F173B /* UIColorHelper.swift */; };
+		03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40128EAD1DD005F173B /* WorkoutData.swift */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */; };
@@ -189,6 +190,7 @@
 		03C7E7C328D454030069A46E /* OnboardingView1.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView1.storyboard; sourceTree = "<group>"; };
 		03C7E7C528D49DB10069A46E /* SanitasView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SanitasView.storyboard; sourceTree = "<group>"; };
 		03DAC3FF28EA7918005F173B /* UIColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHelper.swift; sourceTree = "<group>"; };
+		03DAC40128EAD1DD005F173B /* WorkoutData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutData.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
@@ -425,7 +427,7 @@
 			path = ExerciseTableViewCell;
 			sourceTree = "<group>";
 		};
-		033BC38A28DC8334008DBC49 /* ChartsView */ = {
+		033BC38A28DC8334008DBC49 /* HealthView */ = {
 			isa = PBXGroup;
 			children = (
 				033945EF28DF25C100681E9C /* HealthChartsViewController.swift */,
@@ -434,7 +436,7 @@
 				03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */,
 				033945ED28DF25AE00681E9C /* HealthChartsView.storyboard */,
 			);
-			path = ChartsView;
+			path = HealthView;
 			sourceTree = "<group>";
 		};
 		033BC38B28DC844E008DBC49 /* ChangeProfileView */ = {
@@ -475,7 +477,7 @@
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69FF28C091590066A7DA /* CreatePointView */,
 				036F69E828BE60190066A7DA /* UserData */,
-				033BC38A28DC8334008DBC49 /* ChartsView */,
+				033BC38A28DC8334008DBC49 /* HealthView */,
 				03C7E79B28D2F3810069A46E /* AddFriend */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,
@@ -532,6 +534,7 @@
 				036F697E28B8EACE0066A7DA /* PointData.swift */,
 				03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */,
 				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
+				03DAC40128EAD1DD005F173B /* WorkoutData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */,
 				03A1E0BD28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift in Sources */,
 				9C1A900C283506D5004B4100 /* ProfileViewController.swift in Sources */,
+				03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */,
 				0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */,
 				03C7E7C228D453ED0069A46E /* OnboardingViewController1.swift in Sources */,
 				0343682728D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift in Sources */,
