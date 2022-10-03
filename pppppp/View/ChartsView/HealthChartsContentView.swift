@@ -1,7 +1,6 @@
 import SwiftUI
 import Combine
 
-
 var cancellables = Set<AnyCancellable>()
 var averageStep: Int!
 
@@ -12,6 +11,7 @@ struct HealthChartsContentView: View {
     @State var chartsWeightItem = [ChartsWeightItem]()
     @State var workoutDataItem = [WorkoutData]()
     @State private var stepSelectedIndex = 0
+    @State private var newStepSelectedIndex = 0
     @State private var weightSelectedIndex = 0
     @State private var stepPeriodIndex = ["week", "month", "year"]
     @State private var weightPeriodIndex = ["week"]
@@ -65,7 +65,7 @@ struct HealthChartsContentView: View {
                             cancellables.insert(.init { task.cancel() })
                         }
                     
-                    StepsChartsUIView(data: chartsStepItem)
+                    StepsChartsUIView(data: chartsStepItem, selectedTabState: self.$newStepSelectedIndex)
                         .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
                 }
                 
@@ -100,7 +100,7 @@ struct HealthChartsContentView: View {
                     HStack {
                         ForEach(workoutDataItem) { item in
                             Text(item.date)
-//                            Text(item.energy)
+                            //                            Text(item.energy)
                             padding(4)
                         }
                     }
@@ -129,9 +129,9 @@ struct HealthChartsContentView: View {
         .onChange(of: self.stepPeriodIndex[self.stepSelectedIndex]) { (newValue) in
             let task = Task {
                 do {
-                    let period = newValue
-                    chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: period)
+                    chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: newValue)
                     chartsStepItem.reverse()
+                    self.newStepSelectedIndex = self.stepSelectedIndex
                 }
                 catch {
                     print("HealthChartsContentView error:", error.localizedDescription)
@@ -162,4 +162,3 @@ struct HealthChartsContentView: View {
         }
     }
 }
-
