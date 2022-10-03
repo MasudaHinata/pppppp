@@ -4,16 +4,18 @@ import Combine
 import Kingfisher
 
 @MainActor
-final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendDelegate , FireStoreCheckNameDelegate {
+final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate {
     
     var completionHandlers = [() -> Void]()
-    var friendDataList = [UserData]()
     var pointDataList = [PointData]()
+    var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
     var cancellables = Set<AnyCancellable>()
-    var refreshCtl = UIRefreshControl()
     
-    @IBOutlet var myNameLabel: UILabel!
+    @IBOutlet var sceneFriendListButtonLayout: UIButton!
+    
+    @IBOutlet var pointLabel: UILabel!
+    
     @IBOutlet var activityBackgroundView: UIView!
     
     @IBOutlet var myIconView: UIImageView! {
@@ -21,15 +23,6 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
             myIconView.layer.cornerRadius = 36
             myIconView.clipsToBounds = true
             myIconView.layer.cornerCurve = .continuous
-        }
-    }
-    
-    @IBOutlet var friendcollectionView: UICollectionView! {
-        didSet {
-            FirebaseClient.shared.deletefriendDelegate = self
-            friendcollectionView.delegate = self
-            friendcollectionView.dataSource = self
-            friendcollectionView.register(UINib(nibName: "FriendDataCell", bundle: nil), forCellWithReuseIdentifier: "frienddatacell")
         }
     }
     
@@ -53,6 +46,11 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
             tableView.backgroundView = nil
             tableView.backgroundColor = .clear
         }
+    }
+    
+    @IBAction func sceneFriendListButton() {
+        let secondVC = StoryboardScene.FriendListView.initialScene.instantiate()
+        self.navigationController?.pushViewController(secondVC, animated: true)
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
@@ -79,41 +77,29 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         self.showDetailViewController(secondVC, sender: self)
     }
     
-    @IBAction func segmentValueChanged(sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            self.activityBackgroundView.isHidden = false
-            self.friendcollectionView.isHidden = true
-        } else if sender.selectedSegmentIndex == 1 {
-            self.activityBackgroundView.isHidden = true
-            self.friendcollectionView.isHidden = false
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         FirebaseClient.shared.notChangeDelegate = self
-        refreshCtl.tintColor = .white
-        friendcollectionView.refreshControl = refreshCtl
-        refreshCtl.addAction(.init { _ in self.refreshCollectionView() }, for: .valueChanged)
-        friendcollectionView.isHidden = true
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: self.view.frame.width, height: 56)
-        friendcollectionView.collectionViewLayout = layout
         
         let task = Task {  [weak self] in
             guard let self = self else { return }
             do {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
+                sceneFriendListButtonLayout.titleLabel?.font = UIFont(name: "F5.6", size: 16)
+                sceneFriendListButtonLayout.setTitle("\(friendDataList.count)", for: .normal)
+                
+                let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+                let point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
+                pointLabel.text = "\(point)"
+                
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
-                myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
+                navigationItem.title = UserDefaults.standard.object(forKey: "name")! as? String
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
                 
-                let userID = try await FirebaseClient.shared.getUserUUID()
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 pointDataList.reverse()
-                self.friendcollectionView.reloadData()
                 self.collectionView.reloadData()
                 self.tableView.reloadData()
             }
@@ -152,28 +138,6 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
         cancellables.insert(.init { task.cancel() })
     }
     
-    func refreshCollectionView() {
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
-                self.friendcollectionView.reloadData()
-            }
-            catch {
-                print("ProfileViewContro refresh error:", error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
-                        self.viewDidLoad()
-                    })
-                } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
-                }
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-        refreshCtl.endRefreshing()
-    }
-    
     //MARK: - Setting Delegate
     func notChangeName() {
         let secondVC = StoryboardScene.SetNameView.initialScene.instantiate()
@@ -182,12 +146,5 @@ final class ProfileViewController: UIViewController, FirebaseClientDeleteFriendD
     
     func scene() {
         viewDidLoad()
-    }
-    func friendDeleted() {
-        let alert = UIAlertController(title: "友達の削除", message: "友達を削除しました。", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
     }
 }

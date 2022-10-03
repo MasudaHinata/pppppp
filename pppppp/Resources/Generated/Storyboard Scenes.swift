@@ -33,16 +33,21 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<EmailSignInViewController>(storyboard: EmailSignInView.self)
   }
+  internal enum FriendListView: StoryboardType {
+    internal static let storyboardName = "FriendListView"
+
+    internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: FriendListView.self)
+  }
   internal enum FriendProfileView: StoryboardType {
     internal static let storyboardName = "FriendProfileView"
 
     internal static let initialScene = InitialSceneType<FriendProfileViewController>(storyboard: FriendProfileView.self)
   }
-//    @available(iOS 16.0, *)
+    @available(iOS 16.0, *)
     internal enum HealthChartsView: StoryboardType {
     internal static let storyboardName = "HealthChartsView"
 
-    internal static let initialScene = InitialSceneType<UIKit.UINavigationController>(storyboard: HealthChartsView.self)
+    internal static let initialScene = InitialSceneType<HealthChartsViewController>(storyboard: HealthChartsView.self)
 
     internal static let healthChartsViewController = SceneType<HealthChartsViewController>(storyboard: HealthChartsView.self, identifier: "HealthChartsViewController")
   }

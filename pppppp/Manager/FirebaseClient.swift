@@ -109,6 +109,7 @@ final class FirebaseClient {
         users.sort { $1.point! < $0.point! }
         return users
     }
+    
     //MARK: - idで与えられたユーザーの累積ポイントを返す
     func getPointDataSum(id: String, accumulationType: String) async throws -> Int {
         var startDate = Date()
