@@ -9,43 +9,30 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Health-->
+        <!--Timeline-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="HealthChartsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="HealthChartsViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TImeLineViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="mainColor"/>
-                        <color key="tintColor" name="subColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Health" image="heart" catalog="system" id="Dvc-LH-ExO">
+                    <tabBarItem key="tabBarItem" title="Timeline" image="message" catalog="system" id="ckX-kO-k7r">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Health" id="0LO-kk-QRb">
-                        <barButtonItem key="rightBarButtonItem" image="arrow.clockwise" catalog="system" id="qpZ-46-arU">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="reloadButton" destination="Y6W-OH-hqX" id="RmJ-yZ-XUY"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998.46153846153845" y="-2.1327014218009479"/>
+            <point key="canvasLocation" x="77" y="4"/>
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
-        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="message" catalog="system" width="128" height="116"/>
         <namedColor name="mainColor">
             <color red="0.071000002324581146" green="0.0" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="subColor">
-            <color red="0.56499999761581421" green="0.69800001382827759" blue="0.82700002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

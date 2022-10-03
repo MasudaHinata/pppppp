@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -87,7 +88,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EgC-1K-tGS"/>
-                        <color key="backgroundColor" red="0.070588235294117646" green="0.0" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="mainColor"/>
                         <constraints>
                             <constraint firstAttribute="top" secondItem="Leb-HE-572" secondAttribute="bottom" id="06a-Is-ZiU"/>
                             <constraint firstAttribute="bottom" secondItem="aNt-9z-eNH" secondAttribute="bottom" id="5E1-6k-3RG"/>
@@ -121,5 +122,8 @@
         <image name="addFriendGradationBackground" width="390" height="843"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
+        <namedColor name="mainColor">
+            <color red="0.071000002324581146" green="0.0" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

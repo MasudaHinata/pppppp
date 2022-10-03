@@ -79,6 +79,8 @@
 		03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C528D49DB10069A46E /* SanitasView.storyboard */; };
 		03DAC40028EA7918005F173B /* UIColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC3FF28EA7918005F173B /* UIColorHelper.swift */; };
 		03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40128EAD1DD005F173B /* WorkoutData.swift */; };
+		03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */; };
+		03DAC40728EB2C21005F173B /* TimeLineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DAC40628EB2C21005F173B /* TimeLineView.storyboard */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */; };
@@ -191,6 +193,8 @@
 		03C7E7C528D49DB10069A46E /* SanitasView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SanitasView.storyboard; sourceTree = "<group>"; };
 		03DAC3FF28EA7918005F173B /* UIColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHelper.swift; sourceTree = "<group>"; };
 		03DAC40128EAD1DD005F173B /* WorkoutData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutData.swift; sourceTree = "<group>"; };
+		03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		03DAC40628EB2C21005F173B /* TimeLineView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeLineView.storyboard; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
@@ -463,9 +467,9 @@
 		035D29DD28E9F25F00E1BEA4 /* FriendListView */ = {
 			isa = PBXGroup;
 			children = (
-				035D29E028E9F29200E1BEA4 /* FriendListView.storyboard */,
 				035D29E228E9F30200E1BEA4 /* FriendListViewController.swift */,
 				035D29E428E9F46D00E1BEA4 /* FriendListViewController+CollectionViewDelegate.swift */,
+				035D29E028E9F29200E1BEA4 /* FriendListView.storyboard */,
 			);
 			path = FriendListView;
 			sourceTree = "<group>";
@@ -476,6 +480,7 @@
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69FF28C091590066A7DA /* CreatePointView */,
+				03DAC40328EB2BF0005F173B /* TimeLineView */,
 				036F69E828BE60190066A7DA /* UserData */,
 				033BC38A28DC8334008DBC49 /* HealthView */,
 				03C7E79B28D2F3810069A46E /* AddFriend */,
@@ -657,6 +662,15 @@
 			path = AddFriend;
 			sourceTree = "<group>";
 		};
+		03DAC40328EB2BF0005F173B /* TimeLineView */ = {
+			isa = PBXGroup;
+			children = (
+				03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */,
+				03DAC40628EB2C21005F173B /* TimeLineView.storyboard */,
+			);
+			path = TimeLineView;
+			sourceTree = "<group>";
+		};
 		9CFBA12328D4B3CD003EBFB3 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -803,6 +817,7 @@
 				03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */,
 				036F69F228C089B40066A7DA /* EmailSignInView.storyboard in Resources */,
 				035D29E128E9F29200E1BEA4 /* FriendListView.storyboard in Resources */,
+				03DAC40728EB2C21005F173B /* TimeLineView.storyboard in Resources */,
 				9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */,
 				03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */,
 				BEA64AED25D3EC040064F184 /* GoogleService-Info.plist in Resources */,
@@ -846,6 +861,7 @@
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
 				0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
+				03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */,
 				033945F028DF25C100681E9C /* HealthChartsViewController.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
 				035D29DA28E98AA400E1BEA4 /* HealthChartsContentView.swift in Sources */,
