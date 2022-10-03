@@ -102,7 +102,6 @@ final class HealthKitManager {
     //MARK: - Chart用の体重を取得
     func readWeightData() async throws -> [ChartsWeightItem] {
         getPermissionHealthKit()
-        readWorkoutData()
         var chartsWeightItem = [ChartsWeightItem]()
         //TODO: 期間を指定して週・月・年で分ける
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 7)
@@ -116,10 +115,10 @@ final class HealthKitManager {
     }
     
     //MARK: - Workoutを取得
-    func readWorkoutData() {
+    func readWorkoutData() -> [WorkoutData] {
         getPermissionHealthKit()
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate,
-                                              ascending: true)
+        var workoutData = [WorkoutData]()
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         let query = HKSampleQuery(sampleType: typeOfWorkout, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) {  (query, result, error) in
             
             guard error == nil else {
@@ -135,11 +134,14 @@ final class HealthKitManager {
 //            print(lastWorkout.last?.totalEnergyBurned ?? 0)
             
             for workout in result as! [HKWorkout] {
-                print(workout.workoutActivityType.rawValue)
-                print(workout.startDate)
-                print(workout.totalEnergyBurned ?? 0)
+                self.dateFormatter.dateFormat = "YY/MM/dd"
+                let data = WorkoutData(date: self.dateFormatter.string(from:  workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
+                
+                workoutData.append(data)
             }
+            print(workoutData)
         }
         myHealthStore.execute(query)
+        return workoutData
     }
 }

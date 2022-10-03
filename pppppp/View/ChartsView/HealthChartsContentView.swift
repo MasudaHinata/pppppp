@@ -10,6 +10,7 @@ struct HealthChartsContentView: View {
     
     @State var chartsStepItem = [ChartsStepItem]()
     @State var chartsWeightItem = [ChartsWeightItem]()
+    @State var workoutDataItem = [WorkoutData]()
     @State private var stepSelectedIndex = 0
     @State private var weightSelectedIndex = 0
     @State private var stepPeriodIndex = ["week", "month", "year"]
@@ -94,7 +95,15 @@ struct HealthChartsContentView: View {
                     Text("Workout").fontWeight(.semibold)
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
                     
+                    Spacer(minLength: 16)
                     
+                    HStack {
+                        ForEach(workoutDataItem) { item in
+                            Text(item.date)
+//                            Text(item.energy)
+                            padding(4)
+                        }
+                    }
                 }
             }
             .navigationTitle(Text("Health"))
@@ -104,6 +113,7 @@ struct HealthChartsContentView: View {
         .onAppear {
             let task = Task {
                 do {
+                    workoutDataItem = HealthKitManager.shared.readWorkoutData()
                     let period = self.stepPeriodIndex[self.stepSelectedIndex]
                     chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: period)
                     chartsStepItem.reverse()
