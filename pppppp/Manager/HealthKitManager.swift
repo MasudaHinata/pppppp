@@ -157,7 +157,7 @@ final class HealthKitManager {
                 
                 workoutData.append(data)
             }
-            print(workoutData)
+            //            print(workoutData)
         }
         myHealthStore.execute(query)
         return workoutData
