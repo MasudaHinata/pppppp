@@ -284,7 +284,7 @@ final class FirebaseClient {
     }
     
     //MARK: - Pointを獲得したらTimelineに投稿する
-    func postPointActivity(point: Int, activity: String) async throws {
+    func putPointActivityPost(point: Int, activity: String) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
@@ -292,8 +292,12 @@ final class FirebaseClient {
         let userID = user.uid
         
         if point != 0 {
-            try await db.collection("Post").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date()), "activity": activity])
+            try await db.collection("Post").document().setData(["userID": userID, "date": Timestamp(date: Date()), "activity": activity, "point": point])
         }
+    }
+    
+    func getPointActivityPost() async throws {
+        
     }
     
     //MARK: - 友達を追加する
