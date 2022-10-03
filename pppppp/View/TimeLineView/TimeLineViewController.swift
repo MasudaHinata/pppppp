@@ -9,7 +9,7 @@ class TimeLineViewController: UIViewController {
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.putPointActivityPost(point: 2, activity: "test")
-                try await FirebaseClient.shared.getPointActivityPost()
+                let postDataItem = try await FirebaseClient.shared.getPointActivityPost()
             }
             catch {
                 print("TimeLineViewContro reloadButton error:",error.localizedDescription)

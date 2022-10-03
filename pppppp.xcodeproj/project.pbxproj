@@ -79,6 +79,7 @@
 		03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40128EAD1DD005F173B /* WorkoutData.swift */; };
 		03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */; };
 		03DAC40728EB2C21005F173B /* TimeLineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DAC40628EB2C21005F173B /* TimeLineView.storyboard */; };
+		03DAC40928EB369D005F173B /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40828EB369D005F173B /* PostData.swift */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */; };
@@ -191,6 +192,7 @@
 		03DAC40128EAD1DD005F173B /* WorkoutData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutData.swift; sourceTree = "<group>"; };
 		03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		03DAC40628EB2C21005F173B /* TimeLineView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeLineView.storyboard; sourceTree = "<group>"; };
+		03DAC40828EB369D005F173B /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
@@ -524,9 +526,10 @@
 			children = (
 				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
 				036F697E28B8EACE0066A7DA /* PointData.swift */,
+				03DAC40828EB369D005F173B /* PostData.swift */,
+				03DAC40128EAD1DD005F173B /* WorkoutData.swift */,
 				03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */,
 				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
-				03DAC40128EAD1DD005F173B /* WorkoutData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
 				0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */,
+				03DAC40928EB369D005F173B /* PostData.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
 				036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */,
 				03A1E0BD28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift in Sources */,

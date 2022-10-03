@@ -110,6 +110,15 @@ final class FirebaseClient {
         return users
     }
     
+    //MARK: - idで与えられたユーザーのProfileデータを返す
+    func getUserData(id: String) async throws -> [UserData] {
+        
+        let querySnapshot = try await db.collection("User").document(id).getDocument()
+        guard let userData = querySnapshot.data() as? [UserData] else { return [] }
+        
+        return userData
+    }
+    
     //MARK: - idで与えられたユーザーの累積ポイントを返す
     func getPointDataSum(id: String, accumulationType: String) async throws -> Int {
         var startDate = Date()
@@ -292,12 +301,25 @@ final class FirebaseClient {
         let userID = user.uid
         
         if point != 0 {
-            try await db.collection("Post").document().setData(["userID": userID, "date": Timestamp(date: Date()), "activity": activity, "point": point])
+            try await db.collection("Post").document().setData(["userID": "0ZLOlRWI3ETcetSF49H8RC2DVGo2", "date": Timestamp(date: Date()), "activity": activity, "point": point])
         }
     }
     
-    func getPointActivityPost() async throws {
+    //MARK: - 友達と自分の投稿を取得する
+    func getPointActivityPost() async throws -> [PostData] {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        let postDataItem = [PostData]()
         
+        
+        
+//        try await getUserData(id: )
+        
+        print(postDataItem)
+        return postDataItem
     }
     
     //MARK: - 友達を追加する
