@@ -91,8 +91,7 @@ final class HealthKitManager {
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
         let results = try await descriptor.result(for: myHealthStore)
         guard let doubleValues = results.first?.quantity.doubleValue(for: .gramUnit(with: .kilo)) else { return 0 }
-        let weight = (round(doubleValues * 10)) / 10
-        return weight
+        return doubleValues
     }
     
     //MARK: - Chart用の体重を取得

@@ -2,7 +2,6 @@ import SwiftUI
 import Combine
 
 var cancellables = Set<AnyCancellable>()
-var averageStep: Int!
 
 @available(iOS 16.0, *)
 struct HealthChartsContentView: View {
@@ -15,6 +14,8 @@ struct HealthChartsContentView: View {
     @State private var weightSelectedIndex = 0
     @State private var stepPeriodIndex = ["week", "month", "year"]
     @State private var weightPeriodIndex = ["week"]
+    @State private var averageStep: Int!
+    @State private var lastWeightStr: String!
     
     var body: some View {
         
@@ -28,6 +29,7 @@ struct HealthChartsContentView: View {
                 Group {
                     Text("Step").fontWeight(.semibold)
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                    
                     Picker("Step period", selection: self.$stepSelectedIndex) {
                         ForEach(0..<self.stepPeriodIndex.count) { index in
                             Text(self.stepPeriodIndex[index])
@@ -36,6 +38,7 @@ struct HealthChartsContentView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
+                    
                     Text("平均")
                         .font(.custom("F5.6", fixedSize: 12))
                         .foregroundColor(Color(asset: Asset.Colors.white48))
@@ -52,7 +55,7 @@ struct HealthChartsContentView: View {
                                     if period == "week" {
                                         averagePeriod = 6
                                     } else if period == "month" {
-                                        averagePeriod = 29
+                                        averagePeriod = 30
                                     } else {
                                         averagePeriod = 364
                                     }
@@ -75,6 +78,7 @@ struct HealthChartsContentView: View {
                 Group {
                     Text("Weight").fontWeight(.semibold)
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                    
                     Picker("Weight period", selection: self.$weightSelectedIndex) {
                         ForEach(0..<self.weightPeriodIndex.count) { index in
                             Text(self.weightPeriodIndex[index])
@@ -83,7 +87,23 @@ struct HealthChartsContentView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
-                    Spacer(minLength: 16)
+                    
+                    Text("\(lastWeightStr ?? "0") kg")
+                        .font(.custom("F5.6", fixedSize: 16))
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                        .onAppear {
+                            let task = Task {
+                                do {
+                                    let lastWeight = try await HealthKitManager.shared.getWeight()
+                                    lastWeightStr = String(format: "%.2f", round(lastWeight * 10) / 10)
+                                }
+                                catch {
+                                    print("HealthChartsContentView error:", error.localizedDescription)
+                                }
+                            }
+                            cancellables.insert(.init { task.cancel() })
+                        }
+                
                     WeightChartsUIView(data: chartsWeightItem)
                         .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
                 }
@@ -92,18 +112,18 @@ struct HealthChartsContentView: View {
                 
                 //MARK: - Workout
                 Group {
-                    Text("Workout").fontWeight(.semibold)
-                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
-                    
-                    Spacer(minLength: 16)
-                    
-                    HStack {
-                        ForEach(workoutDataItem) { item in
-                            Text(item.date)
-                            //                            Text(item.energy)
-                            padding(4)
-                        }
-                    }
+//                    Text("Workout").fontWeight(.semibold)
+//                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+//
+//                    Spacer(minLength: 16)
+//
+//                    HStack {
+//                        ForEach(workoutDataItem) { item in
+//                            Text(item.date)
+//                            //                            Text(item.energy)
+//                            padding(4)
+//                        }
+//                    }
                 }
             }
             .navigationTitle(Text("Health"))
