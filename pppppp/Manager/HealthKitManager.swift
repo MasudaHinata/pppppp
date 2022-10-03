@@ -129,10 +129,16 @@ final class HealthKitManager {
             guard result != nil else {
                 return
             }
-            let workout = result as! [HKWorkout]
-            print(workout.last?.workoutActivityType.rawValue)
-            print(workout.last?.startDate)
-            print(workout.last?.totalEnergyBurned ?? 0)
+//            let lastWorkout = result as! [HKWorkout]
+//            print(lastWorkout.last?.workoutActivityType.rawValue)
+//            print(lastWorkout.last?.startDate)
+//            print(lastWorkout.last?.totalEnergyBurned ?? 0)
+            
+            for workout in result as! [HKWorkout] {
+                print(workout.workoutActivityType.rawValue)
+                print(workout.startDate)
+                print(workout.totalEnergyBurned ?? 0)
+            }
         }
         myHealthStore.execute(query)
     }

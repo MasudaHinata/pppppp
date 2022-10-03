@@ -24,66 +24,78 @@ struct HealthChartsContentView: View {
         NavigationView {
             ScrollView {
                 //MARK: - Step Chart
-                Text("Step").fontWeight(.semibold)
-                    .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
-                Picker("Step period", selection: self.$stepSelectedIndex) {
-                    ForEach(0..<self.stepPeriodIndex.count) { index in
-                        Text(self.stepPeriodIndex[index])
-                            .tag(index)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
-                
-                
-                Text("平均")
-                    .font(.custom("F5.6", fixedSize: 12))
-                    .foregroundColor(Color(asset: Asset.Colors.white48))
-                    .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
-                
-                Text("\(averageStep ?? 0) steps")
-                    .font(.custom("F5.6", fixedSize: 16))
-                    .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
-                    .onAppear {
-                        let task = Task {
-                            do {
-                                let period = self.stepPeriodIndex[self.stepSelectedIndex]
-                                var averagePeriod = 0
-                                if period == "week" {
-                                    averagePeriod = 6
-                                } else if period == "month" {
-                                    averagePeriod = 29
-                                } else {
-                                    averagePeriod = 364
-                                }
-                                averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
-                            }
-                            catch {
-                                print("HealthChartsContentView error:", error.localizedDescription)
-                            }
+                Group {
+                    Text("Step").fontWeight(.semibold)
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                    Picker("Step period", selection: self.$stepSelectedIndex) {
+                        ForEach(0..<self.stepPeriodIndex.count) { index in
+                            Text(self.stepPeriodIndex[index])
+                                .tag(index)
                         }
-                        cancellables.insert(.init { task.cancel() })
                     }
-                
-                StepsChartsUIView(data: chartsStepItem)
-                    .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
+                    .pickerStyle(SegmentedPickerStyle())
+                    .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
+                    Text("平均")
+                        .font(.custom("F5.6", fixedSize: 12))
+                        .foregroundColor(Color(asset: Asset.Colors.white48))
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                    
+                    Text("\(averageStep ?? 0) steps")
+                        .font(.custom("F5.6", fixedSize: 16))
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                        .onAppear {
+                            let task = Task {
+                                do {
+                                    let period = self.stepPeriodIndex[self.stepSelectedIndex]
+                                    var averagePeriod = 0
+                                    if period == "week" {
+                                        averagePeriod = 6
+                                    } else if period == "month" {
+                                        averagePeriod = 29
+                                    } else {
+                                        averagePeriod = 364
+                                    }
+                                    averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
+                                }
+                                catch {
+                                    print("HealthChartsContentView error:", error.localizedDescription)
+                                }
+                            }
+                            cancellables.insert(.init { task.cancel() })
+                        }
+                    
+                    StepsChartsUIView(data: chartsStepItem)
+                        .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
+                }
                 
                 Spacer(minLength: 40)
                 
                 //MARK: - Weight Chart
-                Text("Weight").fontWeight(.semibold)
-                    .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
-                Picker("Weight period", selection: self.$weightSelectedIndex) {
-                    ForEach(0..<self.weightPeriodIndex.count) { index in
-                        Text(self.weightPeriodIndex[index])
-                            .tag(index)
+                Group {
+                    Text("Weight").fontWeight(.semibold)
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                    Picker("Weight period", selection: self.$weightSelectedIndex) {
+                        ForEach(0..<self.weightPeriodIndex.count) { index in
+                            Text(self.weightPeriodIndex[index])
+                                .tag(index)
+                        }
                     }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
+                    Spacer(minLength: 16)
+                    WeightChartsUIView(data: chartsWeightItem)
+                        .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
-                Spacer(minLength: 16)
-                WeightChartsUIView(data: chartsWeightItem)
-                    .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
+                
+                Spacer(minLength: 40)
+                
+                //MARK: - Workout
+                Group {
+                    Text("Workout").fontWeight(.semibold)
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                    
+                    
+                }
             }
             .navigationTitle(Text("Health"))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
