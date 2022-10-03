@@ -3,6 +3,7 @@ import HealthKit
 
 var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
 var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
+var typeOfWorkout = HKWorkoutType.workoutType()
 
 final class HealthKitManager {
     static let shared = HealthKitManager()
@@ -12,7 +13,7 @@ final class HealthKitManager {
     let dateFormatter = DateFormatter()
     let calendar = Calendar.current
     let typeOfWrite = Set([typeOfBodyMass])
-    let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, HKWorkoutType.workoutType()])
+    let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfWorkout])
     
     //MARK: - HealthKitの許可を求める
     func getPermissionHealthKit() {
@@ -101,6 +102,7 @@ final class HealthKitManager {
     //MARK: - Chart用の体重を取得
     func readWeightData() async throws -> [ChartsWeightItem] {
         getPermissionHealthKit()
+        readWorkoutData()
         var chartsWeightItem = [ChartsWeightItem]()
         //TODO: 期間を指定して週・月・年で分ける
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 7)
@@ -116,8 +118,21 @@ final class HealthKitManager {
     //MARK: - Workoutを取得
     func readWorkoutData() {
         getPermissionHealthKit()
-        
-        
-        
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate,
+                                              ascending: false)
+        let query = HKSampleQuery(sampleType: typeOfWorkout,
+                                  predicate: nil,
+                                  limit: HKObjectQueryNoLimit,
+                                  sortDescriptors: [sortDescriptor]) { _, samples, error in
+            guard let workouts = samples as? [HKWorkout],
+                  error == nil else {
+                return
+            }
+            print(workouts)
+//            self.workouts = workouts.sorted(by: { (lw, rw) -> Bool in
+//                lw.startDate < rw.startDate
+//            })
+        }
+        myHealthStore.execute(query)
     }
 }
