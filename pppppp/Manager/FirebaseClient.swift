@@ -175,6 +175,34 @@ final class FirebaseClient {
         return pointSum
     }
     
+    //MARK: - 友達と自分の投稿を取得する
+    func getPointActivityPost() async throws -> [PostData] {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        var postDataItem = [PostData]()
+        
+        //友達のIDリストを取得
+        let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
+        let friendIdList = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
+
+        //友達のpostを取得
+        for postData in friendIdList {
+            //FIXME: whereFieldが動いてない
+            let snapshot = try await db.collection("Post").whereField("useID", isEqualTo: postData.id ?? "").getDocuments()
+            
+            let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
+            for postDataList in postDataList {
+                let pointData = PostData(userID: postDataList.userID, date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
+                postDataItem.append(postDataList)
+            }
+        }
+        print(postDataItem)
+        return postDataItem
+    }
+    
     //MARK: - 自分の名前を取得する
     func getMyNameData() async throws -> String {
         guard let user = Auth.auth().currentUser else {
@@ -303,34 +331,6 @@ final class FirebaseClient {
         if point != 0 {
             try await db.collection("Post").document().setData(["userID": userID, "date": Timestamp(date: Date()), "activity": activity, "point": point])
         }
-    }
-    
-    //MARK: - 友達と自分の投稿を取得する
-    func getPointActivityPost() async throws -> [PostData] {
-        guard let user = Auth.auth().currentUser else {
-            try await  self.checkUserAuth()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        var postDataItem = [PostData]()
-        
-        //友達のIDリストを取得
-        let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
-        let friendIdList = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
-
-        //友達のpostを取得
-        for postData in friendIdList {
-            //FIXME: whereFieldが動いてない
-            let snapshot = try await db.collection("Post").whereField("useID", isEqualTo: postData.id ?? "").getDocuments()
-            
-            let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
-            for postDataList in postDataList {
-                let pointData = PostData(userID: postDataList.userID, date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
-                postDataItem.append(postDataList)
-            }
-        }
-        print(postDataItem)
-        return postDataItem
     }
     
     //MARK: - 友達を追加する
