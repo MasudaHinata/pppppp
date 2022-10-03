@@ -96,7 +96,7 @@ final class HealthKitManager {
     }
     
     //MARK: - Chart用の体重を取得
-    func getWeightData() -> [ChartsWeightItem] {
+    func getWeightData() async throws -> [ChartsWeightItem] {
         getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
         

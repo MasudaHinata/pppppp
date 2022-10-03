@@ -117,7 +117,7 @@ struct HealthChartsContentView: View {
                     let period = self.stepPeriodIndex[self.stepSelectedIndex]
                     chartsStepItem = try await HealthKitManager.shared.getStepsChart(period: period)
                     chartsStepItem.reverse()
-                    chartsWeightItem = HealthKitManager.shared.getWeightData()
+                    chartsWeightItem = try await HealthKitManager.shared.getWeightData()
                     chartsWeightItem.reverse()
                 }
                 catch {

@@ -275,7 +275,7 @@ final class FirebaseClient {
     }
     
     //MARK: - 自己評価をfirebaseに保存
-    func firebasePutSelfCheckLog(log: String) async throws {
+    func PutSelfCheckLog(log: String) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.userAuthCheck()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
