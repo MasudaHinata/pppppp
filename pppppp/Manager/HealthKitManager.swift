@@ -96,39 +96,38 @@ final class HealthKitManager {
     }
     
     //MARK: - Chart用の体重を取得
-    func getWeightData() async throws -> [ChartsWeightItem] {
+    func getWeightData() -> [ChartsWeightItem] {
         getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
         
-        //        //TODO: 期間を指定して週・月・年で分ける
-        //async
+        //FIXME: 期間を指定して週・月・年で分ける  async
         
-                let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 7)
-                let results = try await descriptor.result(for: myHealthStore)
-                for sample in results {
-                            let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
-                            let weightData = ChartsWeightItem.init(date: sample.startDate, weight: Double(s))
-                    chartsWeightItem.append(weightData)
-                }
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 7)
+        let results = try await descriptor.result(for: myHealthStore)
+        for sample in results {
+            let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
+            let weightData = ChartsWeightItem.init(date: sample.startDate, weight: Double(s))
+            chartsWeightItem.append(weightData)
+        }
         
-//        //TODO: データが飛ばない
-//        //asyncなし
-//        let start = Calendar.current.date(byAdding: .month, value: -48, to: Date())
-//        let end = Date()
-//        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
-//        let sampleType = HKQuantityType.quantityType(forIdentifier: .bodyMass)!
-//
-//        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
-//
-//            let samples = results as! [HKQuantitySample]
-//            for sample in samples {
-//                let sam = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
-//                let weightData = ChartsWeightItem.init(date: sample.startDate, weight: Double(sam))
-//                chartsWeightItem.append(weightData)
-//            }
-//            print(chartsWeightItem)
-//        }
-//        self.myHealthStore.execute(query)
+        //FIXME: データが飛ばない  asyncなし
+        
+        //        let startDate = Calendar.current.date(byAdding: .month, value: -7, to: Date())
+        //        let endDate = Date()
+        //        print(startDate, endDate)
+        //        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        //        let sampleType = HKQuantityType.quantityType(forIdentifier: .bodyMass)!
+        //
+        //        //FIXME: この処理を待ってから処理する
+        //        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
+        //            let samples = results as! [HKQuantitySample]
+        //            for sample in samples {
+        //                let sam = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
+        //                let weightData = ChartsWeightItem.init(date: sample.startDate, weight: Double(sam))
+        //                chartsWeightItem.append(weightData)
+        //            }
+        //        }
+        //        self.myHealthStore.execute(query)
         
         return chartsWeightItem
     }
@@ -147,11 +146,12 @@ final class HealthKitManager {
             guard result != nil else {
                 return
             }
-//                        let lastWorkout = result as! [HKWorkout]
-//                        print(lastWorkout.last?.workoutActivityType.rawValue)
-//                        print(lastWorkout.last?.startDate)
-//                        print(lastWorkout.last?.totalEnergyBurned ?? 0)
+            //                        let lastWorkout = result as! [HKWorkout]
+            //                        print(lastWorkout.last?.workoutActivityType.rawValue)
+            //                        print(lastWorkout.last?.startDate)
+            //                        print(lastWorkout.last?.totalEnergyBurned ?? 0)
             
+            //FIXME: データが飛ばない  asyncなし
             for workout in result as! [HKWorkout] {
                 self.dateFormatter.dateFormat = "YY/MM/dd"
                 let data = WorkoutData(date: self.dateFormatter.string(from:  workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
