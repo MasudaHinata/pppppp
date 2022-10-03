@@ -41,7 +41,7 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
         } else {
             let task = Task {
                 do {
-                    try await FirebaseClient.shared.emailSignIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
+                    try await FirebaseClient.shared.signInWithEmail(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
                 }
                 catch {
                     print("EmailSignInView goButtonPressed error:", error.localizedDescription)

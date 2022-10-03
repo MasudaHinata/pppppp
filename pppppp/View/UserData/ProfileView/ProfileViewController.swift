@@ -122,7 +122,7 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.checkUserAuth()
             }
             catch {
                 print("ProfileViewContro didAppear error:",error.localizedDescription)

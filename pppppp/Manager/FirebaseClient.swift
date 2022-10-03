@@ -80,7 +80,7 @@ final class FirebaseClient {
     //MARK: - UUIDをとる
     func getUserUUID() async throws -> String {
         guard let user = Auth.auth().currentUser else {
-            try await self.userAuthCheck()
+            try await self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -89,7 +89,7 @@ final class FirebaseClient {
     //MARK: - 自分と友達のProfile,Pointデータを取得
     public func getProfileData(includeMe: Bool) async throws -> [UserData] {
         guard let user = Auth.auth().currentUser else {
-            try await self.userAuthCheck()
+            try await self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -149,7 +149,7 @@ final class FirebaseClient {
     //MARK: - 自分の今までのポイントを取得する
     func getTotalPoint() async throws -> Int{
         guard let user = Auth.auth().currentUser else {
-            try await self.userAuthCheck()
+            try await self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -169,7 +169,7 @@ final class FirebaseClient {
     //MARK: - 自分の名前を取得する
     func getMyNameData() async throws -> String {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -182,7 +182,7 @@ final class FirebaseClient {
     //MARK: - 自分のアイコンを取得する
     func getMyIconData() async throws -> URL {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -216,7 +216,7 @@ final class FirebaseClient {
     //MARK: - UserDataをFirestoreに保存
     func setUserData() async throws {
         guard let user = Auth.auth().currentUser else {
-            try await self.userAuthCheck()
+            try await self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -229,7 +229,7 @@ final class FirebaseClient {
     //MARK: - ポイントをFirestoreに保存
     func firebasePutData(point: Int, activity: String) async throws {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -245,7 +245,7 @@ final class FirebaseClient {
     //MARK: - 画像をfirestore,firebaseStorageに保存
     func putFirebaseStorage(selectImage: UIImage) async throws {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -266,7 +266,7 @@ final class FirebaseClient {
     //MARK: - 名前をfirestoreに保存
     func putNameFirestore(name: String) async throws {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -277,7 +277,7 @@ final class FirebaseClient {
     //MARK: - 自己評価をfirebaseに保存
     func PutSelfCheckLog(log: String) async throws {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -287,7 +287,7 @@ final class FirebaseClient {
     //MARK: - 友達を追加する
     func addFriend(friendId: String) async throws {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -299,7 +299,7 @@ final class FirebaseClient {
     //MARK: - 友達を削除する
     func deleteFriendQuery(deleteFriendId: String) async throws {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -311,7 +311,7 @@ final class FirebaseClient {
     //MARK: - 友達のFriendListから自分を削除する
     func deleteMeFromFriend() async throws  {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -324,7 +324,7 @@ final class FirebaseClient {
     //MARK: - 自分のデータを全削除する
     func accountDelete() async throws {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -333,7 +333,7 @@ final class FirebaseClient {
             do {
                 try? await deleteMeFromFriend()
                 try await db.collection("User").document(userID).delete()
-                try await accountDeleteAuth()
+                try await deleteAccount()
             }
             catch {
                 self.SettingAccountDelegate?.faildAcccountDeleteData()
@@ -346,7 +346,7 @@ final class FirebaseClient {
     //MARK: - FireStore Check
     
     //MARK: - ログインできてるか・メール認証ができてるかの判定
-    func userAuthCheck() async throws {
+    func checkUserAuth() async throws {
         guard let user = Auth.auth().currentUser else {
             await LoginHelper.shared.showAccountViewController()
             return
@@ -361,7 +361,7 @@ final class FirebaseClient {
     @MainActor
     func checkNameData() async throws {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -387,7 +387,7 @@ final class FirebaseClient {
     //MARK: - アイコンがあるかどうかの判定
     func checkIconData() async throws {
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -412,7 +412,7 @@ final class FirebaseClient {
     func checkCreateStepPoint() async throws -> Bool {
         let judge: Bool!
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -430,7 +430,7 @@ final class FirebaseClient {
     func checkSelfCheck() async throws -> Bool {
         let judge: Bool!
         guard let user = Auth.auth().currentUser else {
-            try await  self.userAuthCheck()
+            try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
@@ -445,9 +445,10 @@ final class FirebaseClient {
     }
     
     //MARK: - Firebase Authentication
+    
     //MARK: - Email ログインする
     @MainActor
-    func emailSignIn(email: String, password: String) async throws {
+    func signInWithEmail(email: String, password: String) async throws {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
         if authReault.user.isEmailVerified {
             self.loginDelegate?.loginScene()
@@ -455,13 +456,15 @@ final class FirebaseClient {
     }
     
     //MARK: - Email パスワードを再設定する
-    func passwordResetting(email: String) async throws{
+    func resetPassword(email: String) async throws{
         try await firebaseAuth.sendPasswordReset(withEmail: email)
         self.sentEmailDelegate?.sendEmail()
     }
     
-    //MARK: - Appleログイン
-    //TODO: SignInWithAppleViewControllerから移行
+    //MARK: - SignInWithApple
+    func SignInWithApple() async throws {
+        //TODO: SignInWithAppleViewControllerから移行
+    }
     
     //MARK: - ログアウトする
     func logout() async throws {
@@ -476,9 +479,9 @@ final class FirebaseClient {
     }
     
     //MARK: - アカウントを削除
-    func accountDeleteAuth() async throws {
+    func deleteAccount() async throws {
         guard let user = Auth.auth().currentUser else {
-            try await self.userAuthCheck()
+            try await self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         do {

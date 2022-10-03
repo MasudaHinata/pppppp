@@ -107,7 +107,7 @@ class ChangeProfileViewController: UIViewController {
             guard let self = self else { return }
             do {
                 activityIndicator.startAnimating()
-                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.checkUserAuth()
                 activityIndicator.stopAnimating()
             }
             catch {

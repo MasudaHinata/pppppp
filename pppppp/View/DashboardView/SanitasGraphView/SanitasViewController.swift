@@ -136,7 +136,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.checkUserAuth()
                 let now = calendar.component(.hour, from: Date())
                 if now >= 19 {
                     let selfCheckJudge = try await FirebaseClient.shared.checkSelfCheck()

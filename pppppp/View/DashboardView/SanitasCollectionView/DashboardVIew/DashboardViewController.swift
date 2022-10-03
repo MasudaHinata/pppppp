@@ -38,7 +38,7 @@ class DashboardViewController: UIViewController {
             guard let self = self else { return }
             do {
                 activityIndicator.startAnimating()
-                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.checkUserAuth()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 self.collectionView.reloadData()
                 activityIndicator.stopAnimating()

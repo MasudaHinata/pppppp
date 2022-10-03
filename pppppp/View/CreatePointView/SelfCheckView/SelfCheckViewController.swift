@@ -117,7 +117,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await FirebaseClient.shared.userAuthCheck()
+                try await FirebaseClient.shared.checkUserAuth()
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
                 myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))

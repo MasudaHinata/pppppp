@@ -34,7 +34,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
             let task = Task { [weak self] in
                 guard let self = self else { return }
                 do {
-                    try await FirebaseClient.shared.passwordResetting(email: email)
+                    try await FirebaseClient.shared.resetPassword(email: email)
                 }
                 catch {
                     print("ResetPasswordView sentEmailMore error:", error.localizedDescription)
