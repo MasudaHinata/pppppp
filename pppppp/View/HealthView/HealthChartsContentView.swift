@@ -115,9 +115,9 @@ struct HealthChartsContentView: View {
                 do {
                     workoutDataItem = HealthKitManager.shared.readWorkoutData()
                     let period = self.stepPeriodIndex[self.stepSelectedIndex]
-                    chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: period)
+                    chartsStepItem = try await HealthKitManager.shared.getStepsChart(period: period)
                     chartsStepItem.reverse()
-                    chartsWeightItem = try await HealthKitManager.shared.readWeightData()
+                    chartsWeightItem = try await HealthKitManager.shared.getWeightData()
                     chartsWeightItem.reverse()
                 }
                 catch {
@@ -129,7 +129,7 @@ struct HealthChartsContentView: View {
         .onChange(of: self.stepPeriodIndex[self.stepSelectedIndex]) { (newValue) in
             let task = Task {
                 do {
-                    chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: newValue)
+                    chartsStepItem = try await HealthKitManager.shared.getStepsChart(period: newValue)
                     chartsStepItem.reverse()
                     self.newStepSelectedIndex = self.stepSelectedIndex
                 }
@@ -151,7 +151,6 @@ struct HealthChartsContentView: View {
                     } else {
                         averagePeriod = 6
                     }
-                    
                     averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
                 }
                 catch {

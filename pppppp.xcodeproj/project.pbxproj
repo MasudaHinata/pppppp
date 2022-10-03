@@ -427,7 +427,7 @@
 			path = ExerciseTableViewCell;
 			sourceTree = "<group>";
 		};
-		033BC38A28DC8334008DBC49 /* ChartsView */ = {
+		033BC38A28DC8334008DBC49 /* HealthView */ = {
 			isa = PBXGroup;
 			children = (
 				033945EF28DF25C100681E9C /* HealthChartsViewController.swift */,
@@ -436,7 +436,7 @@
 				03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */,
 				033945ED28DF25AE00681E9C /* HealthChartsView.storyboard */,
 			);
-			path = ChartsView;
+			path = HealthView;
 			sourceTree = "<group>";
 		};
 		033BC38B28DC844E008DBC49 /* ChangeProfileView */ = {
@@ -477,7 +477,7 @@
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69FF28C091590066A7DA /* CreatePointView */,
 				036F69E828BE60190066A7DA /* UserData */,
-				033BC38A28DC8334008DBC49 /* ChartsView */,
+				033BC38A28DC8334008DBC49 /* HealthView */,
 				03C7E79B28D2F3810069A46E /* AddFriend */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,

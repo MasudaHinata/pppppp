@@ -40,7 +40,7 @@ final class HealthKitManager {
     }
     
     //MARK: - Chart用の歩数を取得
-    func createStepsChart(period: String) async throws -> [ChartsStepItem] {
+    func getStepsChart(period: String) async throws -> [ChartsStepItem] {
         getPermissionHealthKit()
         var chartsStepItem = [ChartsStepItem]()
         var days = [Int]()
@@ -62,10 +62,6 @@ final class HealthKitManager {
                 let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
                 let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
                 let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-//                dateFormatter.dateFormat = "MM"
-//                let stepdata = ChartsStepItem.init(date: dateFormatter.string(from: startDate), stepCounts: Int((stepCounts ?? 0) / 31))
-                
-                
                 let stepdata = ChartsStepItem.init(date: startDate, stepCounts: Int((stepCounts ?? 0) / 31))
                 chartsStepItem.append(stepdata)
             }
@@ -82,9 +78,7 @@ final class HealthKitManager {
                 let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
                 let sumOfStepsQuery = HKStatisticsQueryDescriptor(predicate: stepsToday, options: .cumulativeSum)
                 let stepCounts = try await sumOfStepsQuery.result(for: myHealthStore)?.sumQuantity()?.doubleValue(for: HKUnit.count())
-                dateFormatter.dateFormat = "MM/dd"
                 let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
-                //            let stepdata = ChartsStepItem.init(date: startDate!, stepCounts: Int(stepCounts ?? 0))
                 chartsStepItem.append(stepdata)
             }
         }
@@ -92,7 +86,7 @@ final class HealthKitManager {
     }
     
     //MARK: - 最新の体重を取得
-    func readWeight() async throws -> Double {
+    func getWeight() async throws -> Double {
         getPermissionHealthKit()
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)], limit: nil)
         let results = try await descriptor.result(for: myHealthStore)
@@ -102,7 +96,7 @@ final class HealthKitManager {
     }
     
     //MARK: - Chart用の体重を取得
-    func readWeightData() async throws -> [ChartsWeightItem] {
+    func getWeightData() async throws -> [ChartsWeightItem] {
         getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
         
