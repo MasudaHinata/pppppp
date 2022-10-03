@@ -12,7 +12,8 @@ struct HealthChartsContentView: View {
     @State var chartsWeightItem = [ChartsWeightItem]()
     @State private var stepSelectedIndex = 0
     @State private var weightSelectedIndex = 0
-    @State private var periodIndex = ["week", "month", "year"]
+    @State private var stepPeriodIndex = ["week", "month", "year"]
+    @State private var weightPeriodIndex = ["week"]
 
     var body: some View {
         
@@ -29,8 +30,8 @@ struct HealthChartsContentView: View {
                     Text("Step").fontWeight(.semibold)
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
                     Picker("Step period", selection: self.$stepSelectedIndex) {
-                        ForEach(0..<self.periodIndex.count) { index in
-                            Text(self.periodIndex[index])
+                        ForEach(0..<self.stepPeriodIndex.count) { index in
+                            Text(self.stepPeriodIndex[index])
                                 .tag(index)
                         }
                     }
@@ -49,7 +50,7 @@ struct HealthChartsContentView: View {
                         .onAppear {
                             let task = Task {
                                 do {
-                                    let period = self.periodIndex[self.stepSelectedIndex]
+                                    let period = self.stepPeriodIndex[self.stepSelectedIndex]
                                     var averagePeriod = 0
                                     if period == "week" {
                                         averagePeriod = 6
@@ -76,8 +77,8 @@ struct HealthChartsContentView: View {
                     Text("Weight").fontWeight(.semibold)
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
                     Picker("Weight period", selection: self.$weightSelectedIndex) {
-                        ForEach(0..<self.periodIndex.count) { index in
-                            Text(self.periodIndex[index])
+                        ForEach(0..<self.weightPeriodIndex.count) { index in
+                            Text(self.weightPeriodIndex[index])
                                 .tag(index)
                         }
                     }
@@ -93,7 +94,7 @@ struct HealthChartsContentView: View {
         .onAppear {
             let task = Task {
                 do {
-                    let period = self.periodIndex[self.stepSelectedIndex]
+                    let period = self.stepPeriodIndex[self.stepSelectedIndex]
                     chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: period)
                     chartsStepItem.reverse()
                     chartsWeightItem = try await HealthKitManager.shared.readWeightData()
@@ -105,7 +106,7 @@ struct HealthChartsContentView: View {
             }
             cancellables.insert(.init { task.cancel() })
         }
-        .onChange(of: self.periodIndex[self.stepSelectedIndex]) { (newValue) in
+        .onChange(of: self.stepPeriodIndex[self.stepSelectedIndex]) { (newValue) in
             let task = Task {
                 do {
                     let period = newValue
@@ -118,7 +119,7 @@ struct HealthChartsContentView: View {
             }
             cancellables.insert(.init { task.cancel() })
         }
-        .onChange(of: self.periodIndex[self.stepSelectedIndex]) { (newValue) in
+        .onChange(of: self.stepPeriodIndex[self.stepSelectedIndex]) { (newValue) in
             let task = Task {
                 do {
                     let period = newValue
