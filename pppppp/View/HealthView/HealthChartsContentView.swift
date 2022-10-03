@@ -47,29 +47,29 @@ struct HealthChartsContentView: View {
                     Text("\(averageStep ?? 0) steps")
                         .font(.custom("F5.6", fixedSize: 16))
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
-                        .onAppear {
-                            let task = Task {
-                                do {
-                                    let period = self.stepPeriodIndex[self.stepSelectedIndex]
-                                    var averagePeriod = 0
-                                    if period == "week" {
-                                        averagePeriod = 6
-                                    } else if period == "month" {
-                                        averagePeriod = 30
-                                    } else {
-                                        averagePeriod = 364
-                                    }
-                                    averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
-                                }
-                                catch {
-                                    print("HealthChartsContentView error:", error.localizedDescription)
-                                }
-                            }
-                            cancellables.insert(.init { task.cancel() })
-                        }
+//                        .onAppear {
+//                            let task = Task {
+//                                do {
+//                                    let period = self.stepPeriodIndex[self.stepSelectedIndex]
+//                                    var averagePeriod = 0
+//                                    if period == "week" {
+//                                        averagePeriod = 6
+//                                    } else if period == "month" {
+//                                        averagePeriod = 30
+//                                    } else {
+//                                        averagePeriod = 364
+//                                    }
+//                                    averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
+//                                }
+//                                catch {
+//                                    print("HealthChartsContentView error:", error.localizedDescription)
+//                                }
+//                            }
+//                            cancellables.insert(.init { task.cancel() })
+//                        }
                     
                     StepsChartsUIView(data: chartsStepItem, selectedTabState: self.$newStepSelectedIndex)
-                        .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
+                        .frame(maxWidth: CGFloat(width) - 32, minHeight: 280, alignment: .center)
                 }
                 
                 Spacer(minLength: 40)
@@ -88,27 +88,20 @@ struct HealthChartsContentView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
                     
+                    Text("最新")
+                        .font(.custom("F5.6", fixedSize: 12))
+                        .foregroundColor(Color(asset: Asset.Colors.white48))
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+                    
                     Text("\(lastWeightStr ?? "0") kg")
                         .font(.custom("F5.6", fixedSize: 16))
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
-                        .onAppear {
-                            let task = Task {
-                                do {
-                                    let lastWeight = try await HealthKitManager.shared.getWeight()
-                                    lastWeightStr = String(format: "%.2f", round(lastWeight * 10) / 10)
-                                }
-                                catch {
-                                    print("HealthChartsContentView error:", error.localizedDescription)
-                                }
-                            }
-                            cancellables.insert(.init { task.cancel() })
-                        }
-                
+                    
                     WeightChartsUIView(data: chartsWeightItem)
-                        .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
+                        .frame(maxWidth: CGFloat(width) - 32, minHeight:280, alignment: .center)
                 }
                 
-                Spacer(minLength: 40)
+                Spacer(minLength: 32)
                 
                 //MARK: - Workout
                 Group {
@@ -133,9 +126,21 @@ struct HealthChartsContentView: View {
         .onAppear {
             let task = Task {
                 do {
-                    workoutDataItem = HealthKitManager.shared.readWorkoutData()
                     let period = self.stepPeriodIndex[self.stepSelectedIndex]
-                    chartsStepItem = try await HealthKitManager.shared.getStepsChart(period: period)
+                    var averagePeriod = 0
+                    if period == "week" {
+                        averagePeriod = 6
+                    } else if period == "month" {
+                        averagePeriod = 30
+                    } else {
+                        averagePeriod = 364
+                    }
+                    averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
+                    let lastWeight = try await HealthKitManager.shared.getWeight()
+                    lastWeightStr = String(format: "%.2f", round(lastWeight * 10) / 10)
+                    workoutDataItem = HealthKitManager.shared.readWorkoutData()
+                    let stepPeriod = self.stepPeriodIndex[self.stepSelectedIndex]
+                    chartsStepItem = try await HealthKitManager.shared.getStepsChart(period: stepPeriod)
                     chartsStepItem.reverse()
                     chartsWeightItem = try await HealthKitManager.shared.getWeightData()
                     chartsWeightItem.reverse()
