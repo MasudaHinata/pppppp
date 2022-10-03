@@ -1,22 +1,24 @@
 import SwiftUI
 import Combine
 
-var chartsStepItem = [ChartsStepItem]()
-var chartsWeightItem = [ChartsWeightItem]()
+
 var cancellables = Set<AnyCancellable>()
 var averageStep: Int = 0
 
 @available(iOS 16.0, *)
 struct HealthChartsContentView: View {
     
+    @State var chartsStepItem = [ChartsStepItem]()
+    @State var chartsWeightItem = [ChartsWeightItem]()
     @State private var stepSelectedIndex = 0
     @State private var weightSelectedIndex = 0
     @State private var periodIndex = ["week", "month", "year"]
-    
+
     var body: some View {
         
         let bounds = UIScreen.main.bounds
         let width = Int(bounds.width)
+        let height = Int(bounds.height)
         
         NavigationView {
             ZStack {
@@ -34,9 +36,7 @@ struct HealthChartsContentView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(maxWidth: CGFloat(width) - 32, alignment: .center)
-                    //TODO: セグメントが変わったらchartsStepItemに再代入する
-                    //                                        chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: self.periodIndex[index])
-                    //                                        chartsStepItem.reverse()
+                    
                     
                     Text("平均")
                         .font(.custom("F5.6", fixedSize: 12))
@@ -47,7 +47,6 @@ struct HealthChartsContentView: View {
                         .font(.custom("F5.6", fixedSize: 16))
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
                     
-            
                     StepsChartsUIView(data: chartsStepItem)
                         .frame(maxWidth: CGFloat(width) - 32, minHeight: 300, alignment: .center)
                     
@@ -71,15 +70,27 @@ struct HealthChartsContentView: View {
             }
             .navigationTitle(Text("Health"))
         }
-        //FIXME: 画面を開いた時にグラフを表示するように
         .onAppear {
             let task = Task {
                 do {
-                    averageStep = try await HealthKitManager.shared.getAverageStep(date: 6)
-                    chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: "week")
+                    let period = self.periodIndex[self.stepSelectedIndex]
+                    chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: period)
                     chartsStepItem.reverse()
                     chartsWeightItem = try await HealthKitManager.shared.readWeightData()
                     chartsWeightItem.reverse()
+                    averageStep = try await HealthKitManager.shared.getAverageStep(date: 6)
+                }
+                catch {
+                    print("HealthChartsContentView error:", error.localizedDescription)
+                }
+            }
+            cancellables.insert(.init { task.cancel() })
+        }
+        .onChange(of: self.periodIndex[self.stepSelectedIndex]) { (newValue) in
+            let task = Task {
+                do {
+                    let period = newValue
+                    chartsStepItem = try await HealthKitManager.shared.createStepsChart(period: period)
                 }
                 catch {
                     print("HealthChartsContentView error:", error.localizedDescription)
@@ -90,9 +101,3 @@ struct HealthChartsContentView: View {
     }
 }
 
-@available(iOS 16.0, *)
-struct HealthChartsContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        HealthChartsContentView()
-    }
-}
