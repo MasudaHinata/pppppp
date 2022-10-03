@@ -5,7 +5,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import UIKit
 
-//MARK: - error
+//MARK: - Error
 enum FirebaseClientAuthError: Error {
     case notAuthenticated
     case emailVerifyRequired
@@ -223,7 +223,6 @@ final class FirebaseClient {
         try await db.collection("User").document(userID).setData(["name": "名称未設定", "IconImageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"])
         UserDefaults.standard.set("名称未設定", forKey: "name")
         UserDefaults.standard.set("https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11", forKey: "IconImageURL")
-        
     }
     
     //MARK: - ポイントをFirestoreに保存
@@ -275,13 +274,26 @@ final class FirebaseClient {
     }
     
     //MARK: - 自己評価をfirebaseに保存
-    func PutSelfCheckLog(log: String) async throws {
+    func putSelfCheckLog(log: String) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
         try await db.collection("User").document(userID).collection("SelfCheckLog").document().setData(["log": log, "date": Timestamp(date: Date())])
+    }
+    
+    //MARK: - Pointを獲得したらTimelineに投稿する
+    func postPointActivity(point: Int, activity: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        
+        if point != 0 {
+            try await db.collection("Post").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date()), "activity": activity])
+        }
     }
     
     //MARK: - 友達を追加する
