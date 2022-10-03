@@ -119,7 +119,7 @@
                         <outlet property="albumButtonLayout" destination="xU5-xE-ref" id="BwB-Jo-S9V"/>
                         <outlet property="alertButtonLayout" destination="1Kd-65-Gbj" id="I7M-h8-pmb"/>
                         <outlet property="caputureView" destination="bcq-l2-IAg" id="oPL-lQ-pOL"/>
-                        <outlet property="gradationFilterView" destination="5fy-dV-ESd" id="fMh-yo-XiY"/>
+                        <outlet property="gradationFilterView" destination="5fy-dV-ESd" id="cBA-Hh-ROb"/>
                         <outlet property="settingLightLayout" destination="5iP-pf-8Mi" id="fFS-PT-4Mj"/>
                         <outlet property="shareLinkLayout" destination="urc-n8-HmE" id="VgP-IZ-Vg7"/>
                         <outlet property="showMyQRCodeLayout" destination="FQF-Xb-Gd3" id="Ezh-RP-Hkz"/>

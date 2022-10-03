@@ -77,6 +77,7 @@
 		03C7E7C228D453ED0069A46E /* OnboardingViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */; };
 		03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C328D454030069A46E /* OnboardingView1.storyboard */; };
 		03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C528D49DB10069A46E /* SanitasView.storyboard */; };
+		03DAC40028EA7918005F173B /* UIColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC3FF28EA7918005F173B /* UIColorHelper.swift */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */; };
@@ -187,6 +188,7 @@
 		03C7E7C128D453ED0069A46E /* OnboardingViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController1.swift; sourceTree = "<group>"; };
 		03C7E7C328D454030069A46E /* OnboardingView1.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView1.storyboard; sourceTree = "<group>"; };
 		03C7E7C528D49DB10069A46E /* SanitasView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SanitasView.storyboard; sourceTree = "<group>"; };
+		03DAC3FF28EA7918005F173B /* UIColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHelper.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				9CE63B8C288C548D00FFE94C /* LoginHelper.swift */,
 				9CE63B88288C384100FFE94C /* CoverWindow.swift */,
 				03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */,
+				03DAC3FF28EA7918005F173B /* UIColorHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -866,6 +869,7 @@
 				9C4F1C752859E6F500623C66 /* FriendProfileViewController.swift in Sources */,
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
 				03704A2128E01D78004BE7C3 /* WeightChartsUIView.swift in Sources */,
+				03DAC40028EA7918005F173B /* UIColorHelper.swift in Sources */,
 				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
