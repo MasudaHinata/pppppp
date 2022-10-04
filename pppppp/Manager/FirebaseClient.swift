@@ -184,22 +184,18 @@ final class FirebaseClient {
         let userID = user.uid
         var postDataItem = [PostData]()
         
-        //友達のIDリストを取得
         let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
         let friendIdList = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
-
-        //友達のpostを取得
         for postData in friendIdList {
-            //FIXME: whereFieldが動いてない
-            let snapshot = try await db.collection("Post").whereField("useID", isEqualTo: postData.id ?? "").getDocuments()
-            
+            let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: postData.id ?? "").getDocuments()
             let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
             for postDataList in postDataList {
-                let pointData = PostData(userID: postDataList.userID, date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
-                postDataItem.append(postDataList)
+                let postData = PostData(userID: postDataList.userID, date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
+                postDataItem.append(postData)
             }
         }
-        print(postDataItem)
+        postDataItem = postDataItem.sorted(by: { (a, b) -> Bool in return a.date > b.date })
+        
         return postDataItem
     }
     
@@ -274,6 +270,7 @@ final class FirebaseClient {
             self.putPointDelegate?.notGetPoint()
         } else {
             try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date()), "activity": activity])
+            try await FirebaseClient.shared.putPointActivityPost(point: point, activity: activity)
             self.putPointDelegate?.putPointForFirestore(point: point, activity: activity)
         }
     }
@@ -327,7 +324,6 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        
         if point != 0 {
             try await db.collection("Post").document().setData(["userID": userID, "date": Timestamp(date: Date()), "activity": activity, "point": point])
         }
