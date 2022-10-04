@@ -71,7 +71,6 @@ final class FirebaseClient {
     let firebaseAuth = Auth.auth()
     let db = Firestore.firestore()
     let calendar = Calendar.current
-    let formatter = DateFormatter()
     let date = Date()
     var cancellables = Set<AnyCancellable>()
     
@@ -192,13 +191,14 @@ final class FirebaseClient {
         
         for postData in friendIdList {
             let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: postData.id ?? "").getDocuments()
+            
             let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
             for postDataList in postDataList {
                 print(postData.name)
                 //TODO: 名前とアイコンを入れようとするとエラー
-                let postData = PostData(name: postData.name, date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
+//                let postData = PostData(name: , date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
                 
-//                let postData = PostData(date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
+                let postData = PostData(date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
                 postDataItem.append(postData)
             }
         }
