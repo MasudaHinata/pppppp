@@ -189,12 +189,16 @@ final class FirebaseClient {
         let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
         var friendIdList = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
         friendIdList.append(try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self))
-
+        
         for postData in friendIdList {
             let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: postData.id ?? "").getDocuments()
             let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
             for postDataList in postDataList {
+                
+                print("あいうえお", postData.name)
+                print("アイウエオ", postDataList)
                 let postData = PostData(userID: postDataList.userID, date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
+//                let postData = PostData(userID: postDataList.userID, name: "", iconImageURL: URL(string: "")!, date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
                 postDataItem.append(postData)
             }
         }

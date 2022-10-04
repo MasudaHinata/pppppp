@@ -26,7 +26,7 @@ internal enum StoryboardScene {
   internal enum DashboardView: StoryboardType {
     internal static let storyboardName = "DashboardView"
 
-    internal static let initialScene = InitialSceneType<UIKit.UINavigationController>(storyboard: DashboardView.self)
+    internal static let initialScene = InitialSceneType<DashboardViewController>(storyboard: DashboardView.self)
   }
   internal enum EmailSignInView: StoryboardType {
     internal static let storyboardName = "EmailSignInView"
@@ -54,9 +54,9 @@ internal enum StoryboardScene {
   internal enum Main: StoryboardType {
     internal static let storyboardName = "Main"
 
-    internal static let initialScene = InitialSceneType<UIKit.UITabBarController>(storyboard: Main.self)
+    internal static let initialScene = InitialSceneType<MainTabBarController>(storyboard: Main.self)
 
-    internal static let tabBarViewController = SceneType<UIKit.UITabBarController>(storyboard: Main.self, identifier: "TabBarViewController")
+    internal static let tabBarViewController = SceneType<MainTabBarController>(storyboard: Main.self, identifier: "TabBarViewController")
   }
   internal enum OnboardingView1: StoryboardType {
     internal static let storyboardName = "OnboardingView1"
@@ -133,6 +133,10 @@ internal enum StoryboardScene {
   }
   internal enum TimeLineView: StoryboardType {
     internal static let storyboardName = "TimeLineView"
+
+    internal static let initialScene = InitialSceneType<TimeLineViewController>(storyboard: TimeLineView.self)
+
+    internal static let tImeLineViewController = SceneType<TimeLineViewController>(storyboard: TimeLineView.self, identifier: "TImeLineViewController")
   }
   internal enum UserDataView: StoryboardType {
     internal static let storyboardName = "UserDataView"
