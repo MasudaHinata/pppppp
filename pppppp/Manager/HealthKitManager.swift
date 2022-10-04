@@ -88,7 +88,7 @@ final class HealthKitManager {
     //MARK: - 最新の体重を取得
     func getWeight() async throws -> Double {
         getPermissionHealthKit()
-        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [])
         let results = try await descriptor.result(for: myHealthStore)
         guard let doubleValues = results.last?.quantity.doubleValue(for: .gramUnit(with: .kilo)) else { return 0 }
         return doubleValues
@@ -124,7 +124,7 @@ final class HealthKitManager {
 //        print(results.last?.startDate)
 //        print(results.last?.totalEnergyBurned ?? 0)
         
-        for workout in results as! [HKWorkout] {
+        for workout in results {
             self.dateFormatter.dateFormat = "YY/MM/dd"
             let data = WorkoutData(date: self.dateFormatter.string(from:  workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
             workoutData.append(data)
