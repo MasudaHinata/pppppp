@@ -17,7 +17,7 @@ class TimeLineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 72)
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 104)
         
         let task = Task { [weak self] in
             guard let self = self else { return }
