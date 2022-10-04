@@ -13,7 +13,7 @@ struct HealthChartsContentView: View {
     @State private var newStepSelectedIndex = 0
     @State private var weightSelectedIndex = 0
     @State private var stepPeriodIndex = ["week", "month", "year"]
-    @State private var weightPeriodIndex = ["week", "month"]
+    @State private var weightPeriodIndex = ["week", "2month"]
     @State private var averageStep: Int!
     @State private var lastWeightStr: String!
     
@@ -150,11 +150,10 @@ struct HealthChartsContentView: View {
         .onChange(of: self.stepPeriodIndex[self.stepSelectedIndex]) { (newValue) in
             let task = Task {
                 do {
-                    let period = newValue
                     var averagePeriod = 0
-                    if period == "month" {
+                    if newValue == "month" {
                         averagePeriod = 29
-                    } else if period == "year" {
+                    } else if newValue == "year" {
                         averagePeriod = 364
                     } else {
                         averagePeriod = 6
@@ -170,11 +169,8 @@ struct HealthChartsContentView: View {
         .onChange(of: self.weightPeriodIndex[self.weightSelectedIndex]) { (newValue) in
             let task = Task {
                 do {
-                    print(newValue)
                     chartsWeightItem = try await HealthKitManager.shared.getWeightData(period: newValue)
                     chartsWeightItem.reverse()
-                    print(chartsWeightItem)
-                    self.newStepSelectedIndex = self.stepSelectedIndex
                 }
                 catch {
                     print("HealthChartsContentView error:", error.localizedDescription)

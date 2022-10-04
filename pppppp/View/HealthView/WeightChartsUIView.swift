@@ -10,7 +10,7 @@ struct WeightChartsUIView: View {
             Color(asset: Asset.Colors.mainColor)
             Chart {
                 ForEach(data) { item in
-                    LineMark(
+                    AreaMark(
                         x: .value("Date", item.date),
                         y: .value("Weight", item.weight)
                     )

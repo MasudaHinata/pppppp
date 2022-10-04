@@ -100,7 +100,8 @@ final class HealthKitManager {
         var chartsWeightItem = [ChartsWeightItem]()
         var days = [Int]()
         
-        if period == "month" {
+        //TODO: 体重がなかったら日付の線だけ表示したい
+        if period == "2month" {
             days = Array(-1...60)
         } else if period == "week" {
             days = Array(-1...5)
@@ -111,9 +112,8 @@ final class HealthKitManager {
             let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
             let predicate = [HKSamplePredicate.quantitySample(type: typeOfBodyMass, predicate: period)]
             let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
-            
-            let results = try await descriptor.result(for: myHealthStore)
-            for sample in results {
+            print(try await descriptor.result(for: myHealthStore))
+            for sample in try await descriptor.result(for: myHealthStore) {
                 chartsWeightItem.append(ChartsWeightItem.init(date: sample.startDate, weight: Double(sample.quantity.doubleValue(for: .gramUnit(with: .kilo)))))
             }
         }
