@@ -3,6 +3,7 @@ import UIKit
 class TimeLineViewController: UIViewController {
     
     let layout = UICollectionViewFlowLayout()
+    var postDataItem = [PostData]()
     
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
@@ -16,10 +17,13 @@ class TimeLineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 72)
+        
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                let postDataItem = try await FirebaseClient.shared.getPointActivityPost()
+                postDataItem = try await FirebaseClient.shared.getPointActivityPost()
+                collectionView.reloadData()
             }
             catch {
                 print("TimeLineViewContro reloadButton error:",error.localizedDescription)

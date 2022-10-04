@@ -2,7 +2,7 @@ import UIKit
 
 extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return postDataItem.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -10,8 +10,4 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
         
         return cell
     }
-    
-    
-    
-    
 }

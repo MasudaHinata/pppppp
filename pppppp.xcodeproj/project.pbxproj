@@ -475,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				BE7F33812580D07E0027620D /* Main.storyboard */,
+				03DAC41228EC47E3005F173B /* MainTabBarController.swift */,
 				036F698428BB932D0066A7DA /* DashboardView */,
 				036F69FF28C091590066A7DA /* CreatePointView */,
 				03DAC40328EB2BF0005F173B /* TimeLineView */,
@@ -484,7 +485,6 @@
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,
 				036F698528BB93760066A7DA /* AuthView */,
-				03DAC41228EC47E3005F173B /* MainTabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
