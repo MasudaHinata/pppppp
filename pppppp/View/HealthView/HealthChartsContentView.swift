@@ -91,13 +91,12 @@ struct HealthChartsContentView: View {
                     
                     Spacer(minLength: 16)
                     
-                    //                    HStack {
-                    //                        ForEach(workoutDataItem) { item in
-                    //                            Text(item.date)
-                    //                            //                            Text(item.energy)
-                    //                            padding(4)
-                    //                        }
-                    //                    }
+                    //HStack {
+                    //ForEach(workoutDataItem) { item in
+                    //padding(4)
+                    //Text(item.date)
+                    //Text(item.energy)
+                    //}
                 }
             }
             .navigationTitle(Text("Health"))
