@@ -80,6 +80,9 @@
 		03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */; };
 		03DAC40728EB2C21005F173B /* TimeLineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DAC40628EB2C21005F173B /* TimeLineView.storyboard */; };
 		03DAC40928EB369D005F173B /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40828EB369D005F173B /* PostData.swift */; };
+		03DAC40E28EC2865005F173B /* TimelinePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40C28EC2865005F173B /* TimelinePostCollectionViewCell.swift */; };
+		03DAC40F28EC2865005F173B /* TimelinePostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03DAC40D28EC2865005F173B /* TimelinePostCollectionViewCell.xib */; };
+		03DAC41128EC287D005F173B /* TimeLineViewController+collectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC41028EC287D005F173B /* TimeLineViewController+collectionViewDelegate.swift */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */; };
@@ -193,6 +196,9 @@
 		03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		03DAC40628EB2C21005F173B /* TimeLineView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeLineView.storyboard; sourceTree = "<group>"; };
 		03DAC40828EB369D005F173B /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
+		03DAC40C28EC2865005F173B /* TimelinePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePostCollectionViewCell.swift; sourceTree = "<group>"; };
+		03DAC40D28EC2865005F173B /* TimelinePostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelinePostCollectionViewCell.xib; sourceTree = "<group>"; };
+		03DAC41028EC287D005F173B /* TimeLineViewController+collectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeLineViewController+collectionViewDelegate.swift"; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
@@ -654,10 +660,29 @@
 		03DAC40328EB2BF0005F173B /* TimeLineView */ = {
 			isa = PBXGroup;
 			children = (
-				03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */,
-				03DAC40628EB2C21005F173B /* TimeLineView.storyboard */,
+				03DAC40A28EC2818005F173B /* TimelineView */,
+				03DAC40B28EC282A005F173B /* TimelinePostCell */,
 			);
 			path = TimeLineView;
+			sourceTree = "<group>";
+		};
+		03DAC40A28EC2818005F173B /* TimelineView */ = {
+			isa = PBXGroup;
+			children = (
+				03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */,
+				03DAC40628EB2C21005F173B /* TimeLineView.storyboard */,
+				03DAC41028EC287D005F173B /* TimeLineViewController+collectionViewDelegate.swift */,
+			);
+			path = TimelineView;
+			sourceTree = "<group>";
+		};
+		03DAC40B28EC282A005F173B /* TimelinePostCell */ = {
+			isa = PBXGroup;
+			children = (
+				03DAC40C28EC2865005F173B /* TimelinePostCollectionViewCell.swift */,
+				03DAC40D28EC2865005F173B /* TimelinePostCollectionViewCell.xib */,
+			);
+			path = TimelinePostCell;
 			sourceTree = "<group>";
 		};
 		9CFBA12328D4B3CD003EBFB3 /* SettingsView */ = {
@@ -793,6 +818,7 @@
 				03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */,
 				036E476B28DB1A6E00EA7BB1 /* RecordWeightView.storyboard in Resources */,
 				036F6A0328C093560066A7DA /* UserDataView.storyboard in Resources */,
+				03DAC40F28EC2865005F173B /* TimelinePostCollectionViewCell.xib in Resources */,
 				03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */,
 				03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */,
 				036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */,
@@ -833,6 +859,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				036E476928DB1A5C00EA7BB1 /* RecordWeightViewController.swift in Sources */,
+				03DAC40E28EC2865005F173B /* TimelinePostCollectionViewCell.swift in Sources */,
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
 				035D29E328E9F30200E1BEA4 /* FriendListViewController.swift in Sources */,
 				03879DE128E46E7200C1DBA2 /* HealthKitManager.swift in Sources */,
@@ -840,6 +867,7 @@
 				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
+				03DAC41128EC287D005F173B /* TimeLineViewController+collectionViewDelegate.swift in Sources */,
 				0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */,
 				035CE51E28CF1E53001F89BB /* RecordExerciseViewController.swift in Sources */,
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,

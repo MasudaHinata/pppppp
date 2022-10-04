@@ -181,11 +181,15 @@ final class FirebaseClient {
             try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
+        try await FirebaseClient.shared.checkNameData()
+        try await FirebaseClient.shared.checkIconData()
         let userID = user.uid
         var postDataItem = [PostData]()
         
         let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
-        let friendIdList = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
+        var friendIdList = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
+        friendIdList.append(try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self))
+
         for postData in friendIdList {
             let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: postData.id ?? "").getDocuments()
             let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
