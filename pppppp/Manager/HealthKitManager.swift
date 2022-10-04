@@ -100,28 +100,21 @@ final class HealthKitManager {
         var chartsWeightItem = [ChartsWeightItem]()
         var days = [Int]()
         
-        if period == "year" {
-            days = Array(0...11)
-        } else {
+        if period == "month" {
+            days = Array(-1...60)
+        } else if period == "week" {
+            days = Array(-1...5)
+        }
+        for date in days {
+            let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
+            let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
+            let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+            let predicate = [HKSamplePredicate.quantitySample(type: typeOfBodyMass, predicate: period)]
+            let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
             
-            if period == "month" {
-                days = Array(-1...29)
-            } else if period == "week" {
-                days = Array(-1...5)
-            } else {
-                days = Array(-1...363)
-            }
-            for date in days {
-                let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
-                let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
-                let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-                let predicate = [HKSamplePredicate.quantitySample(type: typeOfBodyMass, predicate: period)]
-                let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
-                
-                let results = try await descriptor.result(for: myHealthStore)
-                for sample in results {
-                    chartsWeightItem.append(ChartsWeightItem.init(date: sample.startDate, weight: Double(sample.quantity.doubleValue(for: .gramUnit(with: .kilo)))))
-                }
+            let results = try await descriptor.result(for: myHealthStore)
+            for sample in results {
+                chartsWeightItem.append(ChartsWeightItem.init(date: sample.startDate, weight: Double(sample.quantity.doubleValue(for: .gramUnit(with: .kilo)))))
             }
         }
         return chartsWeightItem

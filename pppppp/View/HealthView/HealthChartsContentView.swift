@@ -13,7 +13,7 @@ struct HealthChartsContentView: View {
     @State private var newStepSelectedIndex = 0
     @State private var weightSelectedIndex = 0
     @State private var stepPeriodIndex = ["week", "month", "year"]
-    @State private var weightPeriodIndex = ["week", "month", "year"]
+    @State private var weightPeriodIndex = ["week", "month"]
     @State private var averageStep: Int!
     @State private var lastWeightStr: String!
     
@@ -125,7 +125,6 @@ struct HealthChartsContentView: View {
                     lastWeightStr = String(format: "%.2f", round(lastWeight * 10) / 10)
                     chartsWeightItem = try await HealthKitManager.shared.getWeightData(period: self.weightPeriodIndex[self.weightSelectedIndex])
                     chartsWeightItem.reverse()
-                    print(chartsWeightItem)
                     
                     workoutDataItem = try await HealthKitManager.shared.readWorkoutData()
                 }
@@ -174,6 +173,7 @@ struct HealthChartsContentView: View {
                     print(newValue)
                     chartsWeightItem = try await HealthKitManager.shared.getWeightData(period: newValue)
                     chartsWeightItem.reverse()
+                    print(chartsWeightItem)
                     self.newStepSelectedIndex = self.stepSelectedIndex
                 }
                 catch {
