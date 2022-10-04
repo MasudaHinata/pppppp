@@ -101,65 +101,64 @@ final class HealthKitManager {
         
         //FIXME: 期間を指定して週・月・年で分ける  async
         
-        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)], limit: 7)
+        let startDate = Calendar.current.date(byAdding: .day, value: -60, to: Date())
+        let endDate = Date()
+        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        let predicate = [HKSamplePredicate.quantitySample(type: typeOfBodyMass, predicate: period)]
+        let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
+    
         let results = try await descriptor.result(for: myHealthStore)
         for sample in results {
             let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
             let weightData = ChartsWeightItem.init(date: sample.startDate, weight: Double(s))
             chartsWeightItem.append(weightData)
         }
-        
-        //FIXME: データが飛ばない  asyncなし
-        
-        //        let startDate = Calendar.current.date(byAdding: .month, value: -7, to: Date())
-        //        let endDate = Date()
-        //        print(startDate, endDate)
-        //        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        //        let sampleType = HKQuantityType.quantityType(forIdentifier: .bodyMass)!
-        //
-        //        //FIXME: この処理を待ってから処理する
-        //        let query = HKSampleQuery(sampleType: sampleType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
-        //            let samples = results as! [HKQuantitySample]
-        //            for sample in samples {
-        //                let sam = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
-        //                let weightData = ChartsWeightItem.init(date: sample.startDate, weight: Double(sam))
-        //                chartsWeightItem.append(weightData)
-        //            }
-        //        }
-        //        self.myHealthStore.execute(query)
-        
         return chartsWeightItem
     }
     
     //MARK: - Workoutを取得
-    func readWorkoutData() -> [WorkoutData] {
+    func readWorkoutData() async throws -> [WorkoutData] {
         getPermissionHealthKit()
         var workoutData = [WorkoutData]()
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
-        let query = HKSampleQuery(sampleType: typeOfWorkout, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) {  (query, result, error) in
-            
-            guard error == nil else {
-                print("Error: \(error?.localizedDescription ?? "nil")")
-                return
-            }
-            guard result != nil else {
-                return
-            }
-            //                        let lastWorkout = result as! [HKWorkout]
-            //                        print(lastWorkout.last?.workoutActivityType.rawValue)
-            //                        print(lastWorkout.last?.startDate)
-            //                        print(lastWorkout.last?.totalEnergyBurned ?? 0)
-            
-            //FIXME: データが飛ばない  asyncなし
-            for workout in result as! [HKWorkout] {
-                self.dateFormatter.dateFormat = "YY/MM/dd"
-                let data = WorkoutData(date: self.dateFormatter.string(from:  workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
-                
-                workoutData.append(data)
-            }
-            //            print(workoutData)
+        
+        let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
+//        let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
+    
+        let results = try await descriptor.result(for: myHealthStore)
+        for sample in results {
+            print(sample)
+//            let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
+//            let weightData = WorkoutData
+//            workoutData.append(weightData)
         }
-        myHealthStore.execute(query)
+        print(results)
+        
+        
+//        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+//
+//        let query = HKSampleQuery(sampleType: typeOfWorkout, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) {  (query, result, error) in
+//
+//            guard error == nil else {
+//                print("Error: \(error?.localizedDescription ?? "nil")")
+//                return
+//            }
+//            guard result != nil else {
+//                return
+//            }
+//            //                        let lastWorkout = result as! [HKWorkout]
+//            //                        print(lastWorkout.last?.workoutActivityType.rawValue)
+//            //                        print(lastWorkout.last?.startDate)
+//            //                        print(lastWorkout.last?.totalEnergyBurned ?? 0)XME: データが飛ばない  asyncなし
+//            for workout in result as! [HKWorkout] {
+//                self.dateFormatter.dateFormat = "YY/MM/dd"
+//                let data = WorkoutData(date: self.dateFormatter.string(from:  workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
+//
+//                workoutData.append(data)
+//            }
+//            //            print(workoutData)
+//        }
+//        myHealthStore.execute(query)
+
         return workoutData
     }
 }

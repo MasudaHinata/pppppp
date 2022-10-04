@@ -118,7 +118,7 @@ struct HealthChartsContentView: View {
                     averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
                     let lastWeight = try await HealthKitManager.shared.getWeight()
                     lastWeightStr = String(format: "%.2f", round(lastWeight * 10) / 10)
-                    workoutDataItem = HealthKitManager.shared.readWorkoutData()
+                    workoutDataItem = try await HealthKitManager.shared.readWorkoutData()
                     let stepPeriod = self.stepPeriodIndex[self.stepSelectedIndex]
                     chartsStepItem = try await HealthKitManager.shared.getStepsChart(period: stepPeriod)
                     chartsStepItem.reverse()

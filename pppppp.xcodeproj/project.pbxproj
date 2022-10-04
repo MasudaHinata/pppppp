@@ -670,8 +670,8 @@
 			isa = PBXGroup;
 			children = (
 				03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */,
-				03DAC40628EB2C21005F173B /* TimeLineView.storyboard */,
 				03DAC41028EC287D005F173B /* TimeLineViewController+collectionViewDelegate.swift */,
+				03DAC40628EB2C21005F173B /* TimeLineView.storyboard */,
 			);
 			path = TimelineView;
 			sourceTree = "<group>";
