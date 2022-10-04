@@ -85,9 +85,9 @@ struct HealthChartsContentView: View {
                 
                 //MARK: - Workout
                 Group {
-//                    Text("Workout").fontWeight(.semibold)
-//                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
-//
+                    Text("Workout").fontWeight(.semibold)
+                        .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
+
 //                    Spacer(minLength: 16)
 //
 //                    HStack {
@@ -118,12 +118,13 @@ struct HealthChartsContentView: View {
                     averageStep = try await HealthKitManager.shared.getAverageStep(date: Double(averagePeriod))
                     let lastWeight = try await HealthKitManager.shared.getWeight()
                     lastWeightStr = String(format: "%.2f", round(lastWeight * 10) / 10)
-                    workoutDataItem = try await HealthKitManager.shared.readWorkoutData()
                     let stepPeriod = self.stepPeriodIndex[self.stepSelectedIndex]
                     chartsStepItem = try await HealthKitManager.shared.getStepsChart(period: stepPeriod)
                     chartsStepItem.reverse()
                     chartsWeightItem = try await HealthKitManager.shared.getWeightData()
                     chartsWeightItem.reverse()
+                    workoutDataItem = try await HealthKitManager.shared.readWorkoutData()
+                    print(workoutDataItem)
                 }
                 catch {
                     print("HealthChartsContentView error:", error.localizedDescription)

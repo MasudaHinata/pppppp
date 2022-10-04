@@ -99,8 +99,6 @@ final class HealthKitManager {
         getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
         
-        //FIXME: 期間を指定して週・月・年で分ける  async
-        
         let startDate = Calendar.current.date(byAdding: .day, value: -60, to: Date())
         let endDate = Date()
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
@@ -125,40 +123,46 @@ final class HealthKitManager {
 //        let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
     
         let results = try await descriptor.result(for: myHealthStore)
-        for sample in results {
-            print(sample)
-//            let s = sample.quantity.doubleValue(for: .gramUnit(with: .kilo))
-//            let weightData = WorkoutData
-//            workoutData.append(weightData)
-        }
-        print(results)
         
         
-//        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
-//
-//        let query = HKSampleQuery(sampleType: typeOfWorkout, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) {  (query, result, error) in
-//
-//            guard error == nil else {
-//                print("Error: \(error?.localizedDescription ?? "nil")")
-//                return
-//            }
-//            guard result != nil else {
-//                return
-//            }
-//            //                        let lastWorkout = result as! [HKWorkout]
-//            //                        print(lastWorkout.last?.workoutActivityType.rawValue)
-//            //                        print(lastWorkout.last?.startDate)
-//            //                        print(lastWorkout.last?.totalEnergyBurned ?? 0)XME: データが飛ばない  asyncなし
-//            for workout in result as! [HKWorkout] {
-//                self.dateFormatter.dateFormat = "YY/MM/dd"
-//                let data = WorkoutData(date: self.dateFormatter.string(from:  workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
-//
-//                workoutData.append(data)
-//            }
-//            //            print(workoutData)
-//        }
-//        myHealthStore.execute(query)
+//        print(results)
+//        print(results.last?.workoutActivityType.rawValue)
+//        print(results.last?.startDate)
+//        print(results.last?.totalEnergyBurned ?? 0)
+        
+        for workout in results as! [HKWorkout] {
+            self.dateFormatter.dateFormat = "YY/MM/dd"
+            let data = WorkoutData(date: self.dateFormatter.string(from:  workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
 
+            workoutData.append(data)
+        }
+        
+        
+        //        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+        //
+        //        let query = HKSampleQuery(sampleType: typeOfWorkout, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) {  (query, result, error) in
+        //
+        //            guard error == nil else {
+        //                print("Error: \(error?.localizedDescription ?? "nil")")
+        //                return
+        //            }
+        //            guard result != nil else {
+        //                return
+        //            }
+        //            //                        let lastWorkout = result as! [HKWorkout]
+        //            //                        print(lastWorkout.last?.workoutActivityType.rawValue)
+        //            //                        print(lastWorkout.last?.startDate)
+        //            //                        print(lastWorkout.last?.totalEnergyBurned ?? 0)XME: データが飛ばない  asyncなし
+//                    for workout in result as! [HKWorkout] {
+//                        self.dateFormatter.dateFormat = "YY/MM/dd"
+//                        let data = WorkoutData(date: self.dateFormatter.string(from:  workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
+//
+//                        workoutData.append(data)
+//                    }
+        //            //            print(workoutData)
+        //        }
+        //        myHealthStore.execute(query)
+        
         return workoutData
     }
 }
