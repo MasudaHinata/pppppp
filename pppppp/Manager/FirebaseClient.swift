@@ -194,11 +194,11 @@ final class FirebaseClient {
             let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: postData.id ?? "").getDocuments()
             let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
             for postDataList in postDataList {
+                print(postData.name)
+                //TODO: 名前とアイコンを入れようとするとエラー
+                let postData = PostData(name: postData.name, date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
                 
-                print("あいうえお", postData.name)
-                print("アイウエオ", postDataList)
-                let postData = PostData(userID: postDataList.userID, date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
-//                let postData = PostData(userID: postDataList.userID, name: "", iconImageURL: URL(string: "")!, date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
+//                let postData = PostData(date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
                 postDataItem.append(postData)
             }
         }
