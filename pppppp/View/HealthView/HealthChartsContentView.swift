@@ -88,15 +88,15 @@ struct HealthChartsContentView: View {
                     Text("Workout").fontWeight(.semibold)
                         .frame(maxWidth: CGFloat(width) - 32, alignment: .leading)
 
-//                    Spacer(minLength: 16)
-//
-//                    HStack {
-//                        ForEach(workoutDataItem) { item in
-//                            Text(item.date)
-//                            //                            Text(item.energy)
-//                            padding(4)
-//                        }
-//                    }
+                    Spacer(minLength: 16)
+
+                    //                    HStack {
+                    //                        ForEach(workoutDataItem) { item in
+                    //                            Text(item.date)
+                    //                            //                            Text(item.energy)
+                    //                            padding(4)
+                    //                        }
+                    //                    }
                 }
             }
             .navigationTitle(Text("Health"))
