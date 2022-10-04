@@ -1,6 +1,17 @@
 import UIKit
 
 class TimeLineViewController: UIViewController {
+    
+    let layout = UICollectionViewFlowLayout()
+    
+    @IBOutlet var collectionView: UICollectionView! {
+        didSet {
+            collectionView.delegate = self
+            collectionView.dataSource = self
+            collectionView.collectionViewLayout = layout
+            collectionView.register(UINib(nibName: "TimelinePostCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TimelinePostCollectionViewCell")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
