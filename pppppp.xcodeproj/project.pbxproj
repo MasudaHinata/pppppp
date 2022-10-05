@@ -58,7 +58,9 @@
 		03704A2128E01D78004BE7C3 /* WeightChartsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */; };
 		03704A2328E022D6004BE7C3 /* ChartsWeightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */; };
 		0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374653928ED7C9100DB0833 /* PostDispleyData.swift */; };
-		03879DE128E46E7200C1DBA2 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03879DE028E46E7200C1DBA2 /* HealthKitManager.swift */; };
+		0374653C28EDA3F900DB0833 /* SetGoalWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374653B28EDA3F900DB0833 /* SetGoalWeightViewController.swift */; };
+		0374653E28EDA42400DB0833 /* SetGoalWeightView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0374653D28EDA42400DB0833 /* SetGoalWeightView.storyboard */; };
+		03879DE128E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03879DE028E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
 		03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */; };
@@ -95,7 +97,6 @@
 		9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */; };
 		9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69903E286C6517009D5BF5 /* FriendDataCell.swift */; };
 		9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C69903F286C6517009D5BF5 /* FriendDataCell.xib */; };
-		9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */; };
 		9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */; };
 		9C7F3C25289CA21F0039BA2E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7F3C24289CA21F0039BA2E /* FirebaseAuth */; };
 		9C7F3C27289CA2250039BA2E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7F3C26289CA2250039BA2E /* FirebaseFirestore */; };
@@ -175,7 +176,9 @@
 		03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightChartsUIView.swift; sourceTree = "<group>"; };
 		03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsWeightItem.swift; sourceTree = "<group>"; };
 		0374653928ED7C9100DB0833 /* PostDispleyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDispleyData.swift; sourceTree = "<group>"; };
-		03879DE028E46E7200C1DBA2 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		0374653B28EDA3F900DB0833 /* SetGoalWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalWeightViewController.swift; sourceTree = "<group>"; };
+		0374653D28EDA42400DB0833 /* SetGoalWeightView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetGoalWeightView.storyboard; sourceTree = "<group>"; };
+		03879DE028E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthKit&ScoreringManager.swift"; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
@@ -213,7 +216,6 @@
 		9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckViewController.swift; sourceTree = "<group>"; };
 		9C69903E286C6517009D5BF5 /* FriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDataCell.swift; sourceTree = "<group>"; };
 		9C69903F286C6517009D5BF5 /* FriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendDataCell.xib; sourceTree = "<group>"; };
-		9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scorering.swift; sourceTree = "<group>"; };
 		9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileViewController.swift; sourceTree = "<group>"; };
 		9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardFriendDataCell.swift; sourceTree = "<group>"; };
 		9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardFriendDataCell.xib; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 				03B832ED28DC858D00C8AE3E /* OnboardingView1 */,
 				03B832F628DC8BF400C8AE3E /* OnboardingView2 */,
 				0331A20228DC8C5C004AA309 /* OnboardingView3 */,
+				0374653F28EDA43D00DB0833 /* SetGoalWeightView */,
 			);
 			path = OnboardingView;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				BE7F33812580D07E0027620D /* Main.storyboard */,
 				03DAC41228EC47E3005F173B /* MainTabBarController.swift */,
 				036F698428BB932D0066A7DA /* DashboardView */,
+				033BC38A28DC8334008DBC49 /* HealthView */,
 				036F69FF28C091590066A7DA /* CreatePointView */,
 				03DAC40328EB2BF0005F173B /* TimelineView */,
 				036F69E828BE60190066A7DA /* UserData */,
@@ -495,7 +499,6 @@
 			children = (
 				03A45B6D28D8A43E0059B617 /* SanitasGraphView */,
 				03A45B6E28D8A4510059B617 /* SanitasCollectionView */,
-				033BC38A28DC8334008DBC49 /* HealthView */,
 			);
 			path = DashboardView;
 			sourceTree = "<group>";
@@ -513,8 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				9C2BE4402885108300431FEC /* FirebaseClient.swift */,
-				9C6BD3A728A1DC8900F6BFB5 /* Scorering.swift */,
-				03879DE028E46E7200C1DBA2 /* HealthKitManager.swift */,
+				03879DE028E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift */,
 				9CD49C2628AEAD5E000CDEDF /* NotificationManager.swift */,
 			);
 			path = Manager;
@@ -567,6 +569,15 @@
 				033BC38828DC8295008DBC49 /* RecordWeightView */,
 			);
 			path = CreatePointView;
+			sourceTree = "<group>";
+		};
+		0374653F28EDA43D00DB0833 /* SetGoalWeightView */ = {
+			isa = PBXGroup;
+			children = (
+				0374653B28EDA3F900DB0833 /* SetGoalWeightViewController.swift */,
+				0374653D28EDA42400DB0833 /* SetGoalWeightView.storyboard */,
+			);
+			path = SetGoalWeightView;
 			sourceTree = "<group>";
 		};
 		03A45B6D28D8A43E0059B617 /* SanitasGraphView */ = {
@@ -852,6 +863,7 @@
 				9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */,
 				033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
+				0374653E28EDA42400DB0833 /* SetGoalWeightView.storyboard in Resources */,
 				0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */,
 				BE7F33832580D07E0027620D /* Main.storyboard in Resources */,
 			);
@@ -868,8 +880,9 @@
 				03DAC40E28EC2865005F173B /* TimelinePostCollectionViewCell.swift in Sources */,
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
 				035D29E328E9F30200E1BEA4 /* FriendListViewController.swift in Sources */,
-				03879DE128E46E7200C1DBA2 /* HealthKitManager.swift in Sources */,
+				03879DE128E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
+				0374653C28EDA3F900DB0833 /* SetGoalWeightViewController.swift in Sources */,
 				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
@@ -895,7 +908,6 @@
 				0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */,
 				03DAC41328EC47E3005F173B /* MainTabBarController.swift in Sources */,
 				03704A2328E022D6004BE7C3 /* ChartsWeightItem.swift in Sources */,
-				9C6BD3A828A1DC8900F6BFB5 /* Scorering.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
 				0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */,
 				03DAC40928EB369D005F173B /* PostData.swift in Sources */,

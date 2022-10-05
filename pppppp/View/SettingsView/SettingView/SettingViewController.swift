@@ -32,7 +32,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
             let task = Task { [weak self] in
                 guard let self = self else { return }
                 do {
-                    try await FirebaseClient.shared.logout()
+                    try await FirebaseClient.shared.signout()
                 }
                 catch {
                     print("Setting Logout error", error.localizedDescription)

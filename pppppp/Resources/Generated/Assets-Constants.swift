@@ -28,6 +28,7 @@ internal enum Asset {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let group2 = ImageAsset(name: "Group 2")
     internal static let sanitasIcon = ImageAsset(name: "SanitasIcon")
+    internal static let sanitasLogo1 = ImageAsset(name: "Sanitas_logo1")
     internal static let scanQRCode = ImageAsset(name: "ScanQRCode")
     internal static let addFriendBackground = ImageAsset(name: "addFriendBackground")
     internal static let addFriendGradationBackground = ImageAsset(name: "addFriendGradationBackground")

@@ -43,8 +43,7 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<FriendProfileViewController>(storyboard: FriendProfileView.self)
   }
-    @available(iOS 16.0, *)
-    internal enum HealthChartsView: StoryboardType {
+  internal enum HealthChartsView: StoryboardType {
     internal static let storyboardName = "HealthChartsView"
 
     internal static let initialScene = InitialSceneType<HealthChartsViewController>(storyboard: HealthChartsView.self)
@@ -107,6 +106,11 @@ internal enum StoryboardScene {
 
     internal static let selfCheckViewController = SceneType<SelfCheckViewController>(storyboard: SelfCheckView.self, identifier: "SelfCheckViewController")
   }
+  internal enum SetGoalWeightView: StoryboardType {
+    internal static let storyboardName = "SetGoalWeightView"
+
+    internal static let initialScene = InitialSceneType<SetGoalWeightViewController>(storyboard: SetGoalWeightView.self)
+  }
   internal enum SetNameView: StoryboardType {
     internal static let storyboardName = "SetNameView"
 
@@ -134,7 +138,7 @@ internal enum StoryboardScene {
   internal enum TimeLineView: StoryboardType {
     internal static let storyboardName = "TimeLineView"
 
-    internal static let initialScene = InitialSceneType<TimeLineViewController>(storyboard: TimeLineView.self)
+    internal static let initialScene = InitialSceneType<UIKit.UINavigationController>(storyboard: TimeLineView.self)
 
     internal static let tImeLineViewController = SceneType<TimeLineViewController>(storyboard: TimeLineView.self, identifier: "TImeLineViewController")
   }

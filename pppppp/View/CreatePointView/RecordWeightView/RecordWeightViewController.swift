@@ -6,7 +6,7 @@ class RecordWeightViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
     
-    let myHealthStore = Scorering.shared.myHealthStore
+    let myHealthStore = HealthKit_ScoreringManager.shared.myHealthStore
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
@@ -29,12 +29,26 @@ class RecordWeightViewController: UIViewController {
     
     @IBAction func writeWeightDataButton() {
         guard let inputWeightText = weightTextField.text else { return }
-        guard let inputWeight = Double(inputWeightText) else { return }
+        guard let inputWeight = Double(inputWeightText) else {
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "体重を入力してください", handler: { _ in })
+            return
+        }
         
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await Scorering.shared.writeWeight(weight: inputWeight)
+                try await HealthKit_ScoreringManager.shared.writeWeight(weight: inputWeight)
+
+                guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
+                    let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
+                    self.showDetailViewController(secondVC, sender: self)
+                    return
+                }
+                let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: inputWeight)
+                if checkPoint == [] {
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2s週間の体重データがないためポイントを作成できませんでした", handler: { _ in })
+                }
+                
                 ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました", handler: { _ in })
                 weightTextField.text = ""
             }

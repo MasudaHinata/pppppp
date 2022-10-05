@@ -189,23 +189,20 @@ final class FirebaseClient {
         var userDataList = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
         userDataList.append(try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self))
         
+        //FIXME: IDを10個ずつに分けて.whereField("userID", in: userIdList)にする(forやめる)
         let userIdList = userDataList.map { $0.id }
-        
-//        for userData in userIdList {
-        let snapshot = try await db.collection("Post").whereField("userID", in: [userID, "0ZLOlRWI3ETcetSF49H8RC2DVGo2"]).getDocuments()
-        print(snapshot.documents)
+        for userId in userIdList {
+            let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: userId!).getDocuments()
             let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
-        
-        
+            
             for postData in postDataList {
                 if let user = userDataList.first{ $0.id == postData.userID } {
                     let postData = PostDisplayData(userID: user.id!, date: postData.date, activity: postData.activity, point: postData.point, name: user.name, iconImageURL: URL(string: user.iconImageURL)!)
                     postDataItem.append(postData)
                 }
             }
-//        }
-        postDataItem = postDataItem.sorted(by: { (a, b) -> Bool in return a.date > b.date })
-        
+            postDataItem = postDataItem.sorted(by: { (a, b) -> Bool in return a.date > b.date })
+        }
         return postDataItem
     }
     
@@ -501,7 +498,7 @@ final class FirebaseClient {
     
     //MARK: - Firebase Authentication
     
-    //MARK: - Email ログインする
+    //MARK: - Email サインインする
     @MainActor
     func signInWithEmail(email: String, password: String) async throws {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
@@ -517,12 +514,12 @@ final class FirebaseClient {
     }
     
     //MARK: - SignInWithApple
-    func SignInWithApple() async throws {
+    func signInWithApple() async throws {
         //TODO: SignInWithAppleViewControllerから移行
     }
     
-    //MARK: - ログアウトする
-    func logout() async throws {
+    //MARK: - サインアウトする
+    func signout() async throws {
         do {
             try firebaseAuth.signOut()
             let appDomain = Bundle.main.bundleIdentifier
