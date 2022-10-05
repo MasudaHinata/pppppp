@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -65,7 +66,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pjo-t4-ZnU"/>
-                        <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="mainColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="RLV-jW-ZVI" secondAttribute="bottom" id="ADM-a1-Nc2"/>
                             <constraint firstItem="xBN-vf-RxM" firstAttribute="leading" secondItem="leq-bj-Sje" secondAttribute="leading" constant="-181" id="AOq-bb-hBI"/>
@@ -102,5 +103,8 @@
         <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="gradation" width="390" height="437"/>
         <image name="onboardingImage2" width="4045" height="5545"/>
+        <namedColor name="mainColor">
+            <color red="0.071000002324581146" green="0.0" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

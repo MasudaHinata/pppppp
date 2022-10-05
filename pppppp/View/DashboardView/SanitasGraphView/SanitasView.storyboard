@@ -2,8 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="15Z-bF-3hS">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -91,7 +91,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ypr-RF-fL0"/>
-                        <color key="backgroundColor" red="0.070588235289999995" green="0.0" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" name="mainColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="HiD-Bi-t46" secondAttribute="bottom" id="KXl-En-dVg"/>
                             <constraint firstItem="HiD-Bi-t46" firstAttribute="top" secondItem="vvX-uT-WQU" secondAttribute="top" id="ULB-al-vg7"/>
@@ -101,10 +101,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sanitas" largeTitleDisplayMode="always" id="D6I-ua-FJn">
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="list.bullet.rectangle.portrait" catalog="system" id="V9p-pX-fHR">
+                            <barButtonItem image="list.bullet.rectangle.portrait" catalog="system" id="V9p-pX-fHR">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="sceneDashboardView" destination="i61-BL-DWj" id="mCS-Zm-MUL"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="heart" catalog="system" id="zi6-1S-vdI">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="sceneHealthView" destination="i61-BL-DWj" id="bvS-pB-Yvb"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="arrow.clockwise" catalog="system" id="tko-kg-OBX">
@@ -153,8 +159,12 @@
     </scenes>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="list.bullet.rectangle.portrait" catalog="system" width="115" height="128"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="mainColor">
+            <color red="0.071000002324581146" green="0.0" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

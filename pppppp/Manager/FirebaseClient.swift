@@ -5,7 +5,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import UIKit
 
-//MARK: - error
+//MARK: - Error
 enum FirebaseClientAuthError: Error {
     case notAuthenticated
     case emailVerifyRequired
@@ -71,7 +71,6 @@ final class FirebaseClient {
     let firebaseAuth = Auth.auth()
     let db = Firestore.firestore()
     let calendar = Calendar.current
-    let formatter = DateFormatter()
     let date = Date()
     var cancellables = Set<AnyCancellable>()
     
@@ -108,6 +107,15 @@ final class FirebaseClient {
         }
         users.sort { $1.point! < $0.point! }
         return users
+    }
+    
+    //MARK: - idで与えられたユーザーのProfileデータを返す
+    func getUserData(id: String) async throws -> [UserData] {
+        
+        let querySnapshot = try await db.collection("User").document(id).getDocument()
+        guard let userData = querySnapshot.data() as? [UserData] else { return [] }
+        
+        return userData
     }
     
     //MARK: - idで与えられたユーザーの累積ポイントを返す
@@ -164,6 +172,41 @@ final class FirebaseClient {
             pointSum += point ?? 0
         }
         return pointSum
+    }
+    
+    //MARK: - 友達と自分の投稿を取得する
+    func getPointActivityPost() async throws -> [PostDisplayData] {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        try await FirebaseClient.shared.checkNameData()
+        try await FirebaseClient.shared.checkIconData()
+        let userID = user.uid
+        var postDataItem = [PostDisplayData]()
+        
+        let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
+        var userDataList = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
+        userDataList.append(try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self))
+        
+        let userIdList = userDataList.map { $0.id }
+        
+//        for userData in userIdList {
+        let snapshot = try await db.collection("Post").whereField("userID", in: [userID, "0ZLOlRWI3ETcetSF49H8RC2DVGo2"]).getDocuments()
+        print(snapshot.documents)
+            let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
+        
+        
+            for postData in postDataList {
+                if let user = userDataList.first{ $0.id == postData.userID } {
+                    let postData = PostDisplayData(userID: user.id!, date: postData.date, activity: postData.activity, point: postData.point, name: user.name, iconImageURL: URL(string: user.iconImageURL)!)
+                    postDataItem.append(postData)
+                }
+            }
+//        }
+        postDataItem = postDataItem.sorted(by: { (a, b) -> Bool in return a.date > b.date })
+        
+        return postDataItem
     }
     
     //MARK: - 自分の名前を取得する
@@ -223,7 +266,6 @@ final class FirebaseClient {
         try await db.collection("User").document(userID).setData(["name": "名称未設定", "IconImageURL": "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"])
         UserDefaults.standard.set("名称未設定", forKey: "name")
         UserDefaults.standard.set("https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11", forKey: "IconImageURL")
-        
     }
     
     //MARK: - ポイントをFirestoreに保存
@@ -238,6 +280,7 @@ final class FirebaseClient {
             self.putPointDelegate?.notGetPoint()
         } else {
             try await db.collection("User").document(userID).collection("HealthData").document().setData(["point": point, "date": Timestamp(date: Date()), "activity": activity])
+            try await FirebaseClient.shared.putPointActivityPost(point: point, activity: activity)
             self.putPointDelegate?.putPointForFirestore(point: point, activity: activity)
         }
     }
@@ -275,13 +318,25 @@ final class FirebaseClient {
     }
     
     //MARK: - 自己評価をfirebaseに保存
-    func PutSelfCheckLog(log: String) async throws {
+    func putSelfCheckLog(log: String) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
         try await db.collection("User").document(userID).collection("SelfCheckLog").document().setData(["log": log, "date": Timestamp(date: Date())])
+    }
+    
+    //MARK: - Pointを獲得したらTimelineに投稿する
+    func putPointActivityPost(point: Int, activity: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        if point != 0 {
+            try await db.collection("Post").document().setData(["userID": userID, "date": Timestamp(date: Date()), "activity": activity, "point": point])
+        }
     }
     
     //MARK: - 友達を追加する

@@ -60,7 +60,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 7, activity: "SelfCheck")
-                try await FirebaseClient.shared.PutSelfCheckLog(log: "good")
+                try await FirebaseClient.shared.putSelfCheckLog(log: "good")
             }
             catch {
                 print("SelfViewCotro goodButton error:", error.localizedDescription)
@@ -79,7 +79,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 5, activity: "SelfCheck")
-                try await FirebaseClient.shared.PutSelfCheckLog(log: "normal")
+                try await FirebaseClient.shared.putSelfCheckLog(log: "normal")
             }
             catch {
                 print("SelfViewCotro normalButton error", error.localizedDescription)
@@ -97,7 +97,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.firebasePutData(point: 3, activity: "SelfCheck")
-                try await FirebaseClient.shared.PutSelfCheckLog(log: "bad")
+                try await FirebaseClient.shared.putSelfCheckLog(log: "bad")
             }
             catch {
                 print("SelfViewCotro badButton error", error.localizedDescription)

@@ -19,7 +19,12 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     
     @IBAction func sceneDashboardView() {
         let secondVC = StoryboardScene.DashboardView.initialScene.instantiate()
-        self.showDetailViewController(secondVC, sender: self)
+        self.navigationController?.pushViewController(secondVC, animated: true)
+    }
+    
+    @IBAction func sceneHealthView() {
+        let secondVC = StoryboardScene.HealthChartsView.initialScene.instantiate()
+        self.navigationController?.pushViewController(secondVC, animated: true)
     }
     
     //MARK: - 体重・運動を記録する
