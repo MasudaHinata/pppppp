@@ -482,7 +482,6 @@
 				036F69FF28C091590066A7DA /* CreatePointView */,
 				03DAC40328EB2BF0005F173B /* TimelineView */,
 				036F69E828BE60190066A7DA /* UserData */,
-				033BC38A28DC8334008DBC49 /* HealthView */,
 				03C7E79B28D2F3810069A46E /* AddFriend */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,
@@ -496,6 +495,7 @@
 			children = (
 				03A45B6D28D8A43E0059B617 /* SanitasGraphView */,
 				03A45B6E28D8A4510059B617 /* SanitasCollectionView */,
+				033BC38A28DC8334008DBC49 /* HealthView */,
 			);
 			path = DashboardView;
 			sourceTree = "<group>";
@@ -1097,12 +1097,12 @@
 				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Sanitas;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1123,12 +1123,12 @@
 				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Sanitas;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

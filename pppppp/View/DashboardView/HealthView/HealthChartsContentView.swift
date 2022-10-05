@@ -13,7 +13,7 @@ struct HealthChartsContentView: View {
     @State private var newStepSelectedIndex = 0
     @State private var weightSelectedIndex = 0
     @State private var stepPeriodIndex = ["week", "month", "year"]
-    @State private var weightPeriodIndex = ["week", "2month"]
+    @State private var weightPeriodIndex = ["2month", "week"]
     @State private var averageStep: Int!
     @State private var lastWeightStr: String!
     
@@ -23,7 +23,7 @@ struct HealthChartsContentView: View {
         let width = bounds.width
         let height = bounds.height
         
-        NavigationView {
+//        NavigationView {
             ScrollView {
                 //MARK: - Step Chart
                 Group {
@@ -84,21 +84,21 @@ struct HealthChartsContentView: View {
                 
                 Spacer(minLength: 32)
                 
-                //MARK: - Workout
-                Group {
-                    Text("Workout").fontWeight(.semibold)
-                        .frame(maxWidth: width - 32, alignment: .leading)
-                    
-                    Spacer(minLength: 16)
-                    
-                    //HStack {
-                    //ForEach(workoutDataItem) { item in
-                    //padding(4)
-                    //Text(item.date)
-                    //Text(item.energy)
-                    //}
-                }
-            }
+//                //MARK: - Workout
+//                Group {
+//                    Text("Workout").fontWeight(.semibold)
+//                        .frame(maxWidth: width - 32, alignment: .leading)
+//
+//                    Spacer(minLength: 16)
+//
+//                    HStack {
+//                    ForEach(workoutDataItem) { item in
+//                    padding(4)
+//                    Text(item.date)
+//                    Text(item.energy)
+//                    }
+//                }
+//            }
             .navigationTitle(Text("Health"))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(asset: Asset.Colors.mainColor))
