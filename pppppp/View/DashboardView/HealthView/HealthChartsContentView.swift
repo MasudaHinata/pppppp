@@ -98,7 +98,6 @@ struct HealthChartsContentView: View {
             //                    }
             //                }
         }
-//        .navigationTitle(Text("Health"))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(asset: Asset.Colors.mainColor))
         .onAppear {
