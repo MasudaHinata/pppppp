@@ -96,7 +96,7 @@ final class HealthKit_ScoreringManager {
         return chartsStepItem
     }
     
-    //MARK: - 歩数を取得してポイントを作成
+    //MARK: - 歩数を取得・歩数ポイントを作成
     func createStepPoint() async throws {
         HealthKit_ScoreringManager.shared.getPermissionHealthKit()
         let endDateMonth = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
@@ -185,6 +185,51 @@ final class HealthKit_ScoreringManager {
         let myWeight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
         let myWeightData = HKQuantitySample(type: typeOfBodyMass, quantity: myWeight, start: Date(),end: Date())
         try await self.myHealthStore.save(myWeightData)
+    }
+    
+    //MARK: - 体重ポイントを作成
+    func createWeightPoint(weightGoal: Double, weight: Double) async throws -> [Double] {
+        
+        let endDate = calendar.date(byAdding: .day, value: 0, to: calendar.startOfDay(for: Date()))
+        let startDate = calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: endDate!))
+        let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        let predicate = [HKSamplePredicate.quantitySample(type: typeOfBodyMass, predicate: period)]
+        let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
+        let lastWeightDataList = try await descriptor.result(for: myHealthStore)
+        let lastweightList = lastWeightDataList.map { $0.quantity.doubleValue(for: .gramUnit(with: .kilo)) }
+        
+        if lastweightList != [] {
+            var weightPoint: Int?
+            
+            if lastweightList.reduce(0, +) / Double(lastweightList.count) - weightGoal >= 0 {
+                //減量
+                if weightGoal >= weight {
+                    weightPoint = 15
+                } else {
+                    let weightDifference = lastweightList.reduce(0, +) / Double(lastweightList.count) - weight
+                    if weightDifference > 0 {
+                        print(weightDifference)
+                        weightPoint = Int(3.5 / (0.3 + exp(-weightDifference * 3)))
+                        print(weightPoint ?? 0)
+                    }
+                }
+                try await FirebaseClient.shared.firebasePutData(point: weightPoint ?? 0, activity: "Weight")
+            } else {
+                //増量
+                if weightGoal <= weight {
+                    weightPoint = 15
+                } else {
+                    let weightDifference = lastweightList.reduce(0, +) / Double(lastweightList.count) - weight
+                    if weightDifference < 0 {
+                        weightPoint = Int(3.4 / (0.3 + exp(-weightDifference * 3)))
+                    }
+                }
+                try await FirebaseClient.shared.firebasePutData(point: weightPoint ?? 0, activity: "Weight")
+            }
+            print(weightPoint ?? 0)
+        }
+        
+        return lastweightList
     }
     
     //MARK: - Workoutを取得
