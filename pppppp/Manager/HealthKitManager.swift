@@ -106,15 +106,21 @@ final class HealthKitManager {
         } else if period == "week" {
             days = Array(-1...5)
         }
+        
         for date in days {
             let startDate = calendar.date(byAdding: .day, value: -(date + 1), to: calendar.startOfDay(for: Date()))
             let endDate = calendar.date(byAdding: .day, value: -date, to: calendar.startOfDay(for: Date()))
             let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
             let predicate = [HKSamplePredicate.quantitySample(type: typeOfBodyMass, predicate: period)]
             let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
-            print(try await descriptor.result(for: myHealthStore))
-            for sample in try await descriptor.result(for: myHealthStore) {
-                chartsWeightItem.append(ChartsWeightItem.init(date: sample.startDate, weight: Double(sample.quantity.doubleValue(for: .gramUnit(with: .kilo)))))
+            
+            let weightDataList = try await descriptor.result(for: myHealthStore)
+            if weightDataList == [] {
+                print("データなし　ラベル出す")
+            } else {
+                for sample in weightDataList {
+                    chartsWeightItem.append(ChartsWeightItem.init(date: sample.startDate, weight: Double(sample.quantity.doubleValue(for: .gramUnit(with: .kilo)))))
+                }
             }
         }
         return chartsWeightItem
