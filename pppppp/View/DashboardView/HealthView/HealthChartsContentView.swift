@@ -16,93 +16,91 @@ struct HealthChartsContentView: View {
     @State private var weightPeriodIndex = ["2month", "week"]
     @State private var averageStep: Int!
     @State private var lastWeightStr: String!
-    
+
     var body: some View {
         
         let bounds = UIScreen.main.bounds
         let width = bounds.width
         let height = bounds.height
         
-//        NavigationView {
-            ScrollView {
-                //MARK: - Step Chart
-                Group {
-                    Text("Step").fontWeight(.semibold)
-                        .padding(.horizontal, 16.0)
-                        .frame(maxWidth: width, alignment: .leading)
-                    
-                    Picker("Step period", selection: self.$stepSelectedIndex) {
-                        ForEach(0..<self.stepPeriodIndex.count) { index in
-                            Text(self.stepPeriodIndex[index])
-                                .tag(index)
-                        }
+        ScrollView {
+            //MARK: - Step Chart
+            Group {
+                Text("Step").fontWeight(.semibold)
+                    .padding(.horizontal, 16.0)
+                    .frame(maxWidth: width, alignment: .leading)
+                
+                Picker("Step period", selection: self.$stepSelectedIndex) {
+                    ForEach(0..<self.stepPeriodIndex.count) { index in
+                        Text(self.stepPeriodIndex[index])
+                            .tag(index)
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .frame(maxWidth: width - 32, alignment: .center)
-                    
-                    Text("平均")
-                        .font(.custom("F5.6", fixedSize: 12))
-                        .foregroundColor(Color(asset: Asset.Colors.white48))
-                        .frame(maxWidth: width - 48, alignment: .leading)
-                    
-                    Text("\(averageStep ?? 0) steps")
-                        .font(.custom("F5.6", fixedSize: 16))
-                        .frame(maxWidth: width - 48, alignment: .leading)
-                    
-                    StepsChartsUIView(data: chartsStepItem, selectedTabState: self.$newStepSelectedIndex)
-                        .frame(maxWidth: width - 48, minHeight: 280, alignment: .center)
                 }
+                .pickerStyle(SegmentedPickerStyle())
+                .frame(maxWidth: width - 32, alignment: .center)
                 
-                Spacer(minLength: 32)
+                Text("平均")
+                    .font(.custom("F5.6", fixedSize: 12))
+                    .foregroundColor(Color(asset: Asset.Colors.white48))
+                    .frame(maxWidth: width - 48, alignment: .leading)
                 
-                //MARK: - Weight Chart
-                Group {
-                    Text("Weight").fontWeight(.semibold)
-                        .frame(maxWidth: width - 32, alignment: .leading)
-                    
-                    Picker("Weight period", selection: self.$weightSelectedIndex) {
-                        ForEach(0..<self.weightPeriodIndex.count) { index in
-                            Text(self.weightPeriodIndex[index])
-                                .tag(index)
-                        }
+                Text("\(averageStep ?? 0) steps")
+                    .font(.custom("F5.6", fixedSize: 16))
+                    .frame(maxWidth: width - 48, alignment: .leading)
+                
+                StepsChartsUIView(data: chartsStepItem, selectedTabState: self.$newStepSelectedIndex)
+                    .frame(maxWidth: width - 48, minHeight: 280, alignment: .center)
+            }
+            
+            Spacer(minLength: 32)
+            
+            //MARK: - Weight Chart
+            Group {
+                Text("Weight").fontWeight(.semibold)
+                    .frame(maxWidth: width - 32, alignment: .leading)
+                
+                Picker("Weight period", selection: self.$weightSelectedIndex) {
+                    ForEach(0..<self.weightPeriodIndex.count) { index in
+                        Text(self.weightPeriodIndex[index])
+                            .tag(index)
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .frame(maxWidth: width - 32, alignment: .center)
-                    
-                    Text("最新")
-                        .font(.custom("F5.6", fixedSize: 12))
-                        .foregroundColor(Color(asset: Asset.Colors.white48))
-                        .frame(maxWidth: width - 48, alignment: .leading)
-                    
-                    Text("\(lastWeightStr ?? "0") kg")
-                        .font(.custom("F5.6", fixedSize: 16))
-                        .frame(maxWidth: width - 48, alignment: .leading)
-                    
-                    WeightChartsUIView(data: chartsWeightItem)
-                        .frame(maxWidth: width - 48, minHeight:280, alignment: .center)
                 }
+                .pickerStyle(SegmentedPickerStyle())
+                .frame(maxWidth: width - 32, alignment: .center)
                 
-                Spacer(minLength: 32)
+                Text("最新")
+                    .font(.custom("F5.6", fixedSize: 12))
+                    .foregroundColor(Color(asset: Asset.Colors.white48))
+                    .frame(maxWidth: width - 48, alignment: .leading)
                 
-//                //MARK: - Workout
-//                Group {
-//                    Text("Workout").fontWeight(.semibold)
-//                        .frame(maxWidth: width - 32, alignment: .leading)
-//
-//                    Spacer(minLength: 16)
-//
-//                    HStack {
-//                    ForEach(workoutDataItem) { item in
-//                    padding(4)
-//                    Text(item.date)
-//                    Text(item.energy)
-//                    }
-//                }
-//            }
-            .navigationTitle(Text("Health"))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(asset: Asset.Colors.mainColor))
+                Text("\(lastWeightStr ?? "0") kg")
+                    .font(.custom("F5.6", fixedSize: 16))
+                    .frame(maxWidth: width - 48, alignment: .leading)
+                
+                WeightChartsUIView(data: chartsWeightItem)
+                    .frame(maxWidth: width - 48, minHeight:280, alignment: .center)
+            }
+            
+            Spacer(minLength: 32)
+            
+            //MARK: - Workout
+            //                Group {
+            //                    Text("Workout").fontWeight(.semibold)
+            //                        .frame(maxWidth: width - 32, alignment: .leading)
+            //
+            //                    Spacer(minLength: 16)
+            //
+            //                    HStack {
+            //                    ForEach(workoutDataItem) { item in
+            //                    padding(4)
+            //                    Text(item.date)
+            //                    Text(item.energy)
+            //                    }
+            //                }
         }
+//        .navigationTitle(Text("Health"))
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(asset: Asset.Colors.mainColor))
         .onAppear {
             let task = Task {
                 do {
