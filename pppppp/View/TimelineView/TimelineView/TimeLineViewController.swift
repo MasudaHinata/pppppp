@@ -3,7 +3,7 @@ import UIKit
 class TimeLineViewController: UIViewController {
     
     let layout = UICollectionViewFlowLayout()
-    var postDataItem = [PostData]()
+    var postDataItem = [PostDisplayData]()
     
     @IBOutlet var collectionView: UICollectionView! {
         didSet {

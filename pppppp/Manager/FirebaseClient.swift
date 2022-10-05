@@ -175,7 +175,7 @@ final class FirebaseClient {
     }
     
     //MARK: - 友達と自分の投稿を取得する
-    func getPointActivityPost() async throws -> [PostData] {
+    func getPointActivityPost() async throws -> [PostDisplayData] {
         guard let user = Auth.auth().currentUser else {
             try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
@@ -183,25 +183,27 @@ final class FirebaseClient {
         try await FirebaseClient.shared.checkNameData()
         try await FirebaseClient.shared.checkIconData()
         let userID = user.uid
-        var postDataItem = [PostData]()
+        var postDataItem = [PostDisplayData]()
         
         let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userID).getDocuments()
-        var friendIdList = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
-        friendIdList.append(try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self))
+        var userDataList = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
+        userDataList.append(try (try await db.collection("User").document(userID).getDocument()).data(as: UserData.self))
         
-        for postData in friendIdList {
-            let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: postData.id ?? "").getDocuments()
-            
+        let userIdList = userDataList.map { $0.id }
+        
+//        for userData in userIdList {
+        let snapshot = try await db.collection("Post").whereField("userID", in: [userID, "0ZLOlRWI3ETcetSF49H8RC2DVGo2"]).getDocuments()
+        print(snapshot.documents)
             let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
-            for postDataList in postDataList {
-                print(postData.name)
-                //TODO: 名前とアイコンを入れようとするとエラー
-//                let postData = PostData(name: , date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
-                
-                let postData = PostData(date: postDataList.date, activity: postDataList.activity, point: postDataList.point)
-                postDataItem.append(postData)
+        
+        
+            for postData in postDataList {
+                if let user = userDataList.first{ $0.id == postData.userID } {
+                    let postData = PostDisplayData(userID: user.id!, date: postData.date, activity: postData.activity, point: postData.point, name: user.name, iconImageURL: URL(string: user.iconImageURL)!)
+                    postDataItem.append(postData)
+                }
             }
-        }
+//        }
         postDataItem = postDataItem.sorted(by: { (a, b) -> Bool in return a.date > b.date })
         
         return postDataItem

@@ -12,9 +12,11 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
         dateFormatter.dateFormat = "YY/MM/dd hh:mm"
         dateFormatter.string(from: postDataItem[indexPath.row].date)
         
-//        cell.userNameLabel.text = postDataItem[indexPath.row].name
+        
+        cell.userIconImageView.kf.setImage(with: postDataItem[indexPath.row].iconImageURL)
+        cell.userNameLabel.text = postDataItem[indexPath.row].name
         cell.dateLabel.text = "\(dateFormatter.string(from: postDataItem[indexPath.row].date))"
-        cell.pointLabel.text = "\(postDataItem[indexPath.row].point ?? 0) pt"
+        cell.pointLabel.text = "\(postDataItem[indexPath.row].point) pt"
         cell.activityLabel.text = postDataItem[indexPath.row].activity
         
         return cell
