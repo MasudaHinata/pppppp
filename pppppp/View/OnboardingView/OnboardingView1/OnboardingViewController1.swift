@@ -28,6 +28,5 @@ class OnboardingViewController1: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserDefaults.standard.set(true, forKey: "initialScreen")
     }
 }

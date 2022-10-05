@@ -498,7 +498,7 @@ final class FirebaseClient {
     
     //MARK: - Firebase Authentication
     
-    //MARK: - Email ログインする
+    //MARK: - Email サインインする
     @MainActor
     func signInWithEmail(email: String, password: String) async throws {
         let authReault = try await firebaseAuth.signIn(withEmail: email, password: password)
@@ -514,12 +514,12 @@ final class FirebaseClient {
     }
     
     //MARK: - SignInWithApple
-    func SignInWithApple() async throws {
+    func signInWithApple() async throws {
         //TODO: SignInWithAppleViewControllerから移行
     }
     
-    //MARK: - ログアウトする
-    func logout() async throws {
+    //MARK: - サインアウトする
+    func signout() async throws {
         do {
             try firebaseAuth.signOut()
             let appDomain = Bundle.main.bundleIdentifier
