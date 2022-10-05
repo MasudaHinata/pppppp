@@ -6,7 +6,7 @@ class RecordWeightViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
     
-    let myHealthStore = Scorering.shared.myHealthStore
+    let myHealthStore = HealthKit_ScoreringManager.shared.myHealthStore
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
@@ -34,7 +34,7 @@ class RecordWeightViewController: UIViewController {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await Scorering.shared.writeWeight(weight: inputWeight)
+                try await HealthKit_ScoreringManager.shared.writeWeight(weight: inputWeight)
                 ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました", handler: { _ in })
                 weightTextField.text = ""
             }

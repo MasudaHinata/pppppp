@@ -88,7 +88,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 }
                 dateFormatter.dateFormat = "MM/dd"
                 weekPointLabel.text = "\(dateFormatter.string(from: startDate)) ~ Today  \(try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))  pt"
-                stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
+                stepsLabel.text = "Today  \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps()))  steps"
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 activityIndicator.stopAnimating()
@@ -154,7 +154,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 }
                 let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
                 if createStepPointJudge {
-                    try await Scorering.shared.createStepPoint()
+                    try await HealthKit_ScoreringManager.shared.createStepPoint()
                 }
                 
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
@@ -179,7 +179,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 }
                 dateFormatter.dateFormat = "MM/dd"
                 weekPointLabel.text = "\(dateFormatter.string(from: startDate)) ~ Today  \(try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))  pt"
-                stepsLabel.text = "Today  \(Int(try await Scorering.shared.getTodaySteps()))  steps"
+                stepsLabel.text = "Today  \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps()))  steps"
             }
             catch {
                 print("ViewContro ViewAppear error:",error.localizedDescription)
