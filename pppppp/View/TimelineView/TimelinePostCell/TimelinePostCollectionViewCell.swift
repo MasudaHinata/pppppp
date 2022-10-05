@@ -2,7 +2,11 @@ import UIKit
 
 class TimelinePostCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet var userIconImageView: UIImageView!
+    @IBOutlet var userIconImageView: UIImageView! {
+        didSet {
+            
+        }
+    }
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var pointLabel: UILabel!
     @IBOutlet var activityLabel: UILabel!

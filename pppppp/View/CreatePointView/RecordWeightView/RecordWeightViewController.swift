@@ -46,7 +46,7 @@ class RecordWeightViewController: UIViewController {
                 }
                 let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: inputWeight)
                 if checkPoint == [] {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去一週間の体重データがないためポイントを作成できませんでした", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2s週間の体重データがないためポイントを作成できませんでした", handler: { _ in })
                 }
                 
                 ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました", handler: { _ in })

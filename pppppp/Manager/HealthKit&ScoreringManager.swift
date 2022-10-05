@@ -187,11 +187,35 @@ final class HealthKit_ScoreringManager {
         try await self.myHealthStore.save(myWeightData)
     }
     
+    //MARK: - 体重ポイント作成の判定
+    func checkWeightPoint() async throws -> Bool {
+        getPermissionHealthKit()
+        let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [])
+        let results = try await descriptor.result(for: myHealthStore)
+        
+        var checkWeightPoint: Bool
+        let lastDate = UserDefaults.standard.object(forKey: "createWeightPointDate") as? Date
+        if UserDefaults.standard.object(forKey: "createWeightPointDate") as? Date == nil {
+            checkWeightPoint = true
+        } else {
+            if results.last?.startDate != nil {
+                if results.last?.startDate ?? Date() > lastDate ?? Date() {
+                    checkWeightPoint = true
+                } else {
+                    checkWeightPoint = false
+                }
+            } else {
+                checkWeightPoint = false
+            }
+        }
+        return checkWeightPoint
+    }
+    
     //MARK: - 体重ポイントを作成
     func createWeightPoint(weightGoal: Double, weight: Double) async throws -> [Double] {
         
         let endDate = calendar.date(byAdding: .day, value: 0, to: calendar.startOfDay(for: Date()))
-        let startDate = calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: endDate!))
+        let startDate = calendar.date(byAdding: .day, value: -12, to: calendar.startOfDay(for: endDate!))
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
         let predicate = [HKSamplePredicate.quantitySample(type: typeOfBodyMass, predicate: period)]
         let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
@@ -208,9 +232,7 @@ final class HealthKit_ScoreringManager {
                 } else {
                     let weightDifference = lastweightList.reduce(0, +) / Double(lastweightList.count) - weight
                     if weightDifference > 0 {
-                        print(weightDifference)
                         weightPoint = Int(3.5 / (0.3 + exp(-weightDifference * 3)))
-                        print(weightPoint ?? 0)
                     }
                 }
                 try await FirebaseClient.shared.firebasePutData(point: weightPoint ?? 0, activity: "Weight")
@@ -226,8 +248,8 @@ final class HealthKit_ScoreringManager {
                 }
                 try await FirebaseClient.shared.firebasePutData(point: weightPoint ?? 0, activity: "Weight")
             }
-            print(weightPoint ?? 0)
         }
+        UserDefaults.standard.set((Date()), forKey: "createWeightPointDate")
         
         return lastweightList
     }

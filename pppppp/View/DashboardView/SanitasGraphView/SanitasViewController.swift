@@ -165,6 +165,23 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     self.showDetailViewController(secondVC, sender: self)
                 }
                 activityIndicator.stopAnimating()
+                
+                stepsLabel.text = "Today  \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps()))  steps"
+                
+                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
+                if judge {
+                    let weight = try await HealthKit_ScoreringManager.shared.getWeight()
+                    guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
+                        let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
+                        self.showDetailViewController(secondVC, sender: self)
+                        return
+                    }
+                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
+                    if checkPoint == [] {
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2週間の体重データがないためポイントを作成できませんでした", handler: { _ in })
+                    }
+                }
+                
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
                 if type as! String == "今日までの一週間" {
@@ -180,7 +197,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 }
                 dateFormatter.dateFormat = "MM/dd"
                 weekPointLabel.text = "\(dateFormatter.string(from: startDate)) ~ Today  \(try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))  pt"
-                stepsLabel.text = "Today  \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps()))  steps"
             }
             catch {
                 print("ViewContro ViewAppear error:",error.localizedDescription)
