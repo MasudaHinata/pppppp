@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HWL-JB-unQ">
-                                <rect key="frame" x="0.0" y="107" width="390" height="654"/>
+                                <rect key="frame" x="0.0" y="91" width="390" height="674"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3Pt-ym-5fh">
                                     <size key="itemSize" width="128" height="128"/>
@@ -42,8 +42,8 @@
                         <color key="backgroundColor" name="mainColor"/>
                         <constraints>
                             <constraint firstItem="HWL-JB-unQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5Fu-mW-JYg"/>
-                            <constraint firstItem="HWL-JB-unQ" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="ECf-8h-BGb"/>
-                            <constraint firstItem="HWL-JB-unQ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="kEr-Oa-Mqg"/>
+                            <constraint firstItem="HWL-JB-unQ" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="4" id="7s8-3f-F7G"/>
+                            <constraint firstItem="HWL-JB-unQ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="kEr-Oa-Mqg"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="HWL-JB-unQ" secondAttribute="trailing" id="r2f-Km-0FP"/>
                         </constraints>
                     </view>
@@ -61,10 +61,11 @@
         <scene sceneID="AdP-gs-f4K">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bOc-oz-swF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Timeline" image="message" catalog="system" id="ckX-kO-k7r">
+                    <tabBarItem key="tabBarItem" title="Timeline" image="message" catalog="system" id="QyE-4w-Rjn">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="hkM-ei-8Wc">
                         <rect key="frame" x="0.0" y="47" width="390" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>

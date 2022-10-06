@@ -13,10 +13,10 @@ struct HealthChartsContentView: View {
     @State private var newStepSelectedIndex = 0
     @State private var weightSelectedIndex = 0
     @State private var stepPeriodIndex = ["week", "month", "year"]
-    @State private var weightPeriodIndex = ["2month", "week"]
+    @State private var weightPeriodIndex = ["month", "week"]
     @State private var averageStep: Int!
     @State private var lastWeightStr: String!
-
+    
     var body: some View {
         
         let bounds = UIScreen.main.bounds
@@ -82,21 +82,6 @@ struct HealthChartsContentView: View {
             }
             
             Spacer(minLength: 32)
-            
-            //MARK: - Workout
-            //                Group {
-            //                    Text("Workout").fontWeight(.semibold)
-            //                        .frame(maxWidth: width - 32, alignment: .leading)
-            //
-            //                    Spacer(minLength: 16)
-            //
-            //                    HStack {
-            //                    ForEach(workoutDataItem) { item in
-            //                    padding(4)
-            //                    Text(item.date)
-            //                    Text(item.energy)
-            //                    }
-            //                }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(asset: Asset.Colors.mainColor))
@@ -121,8 +106,11 @@ struct HealthChartsContentView: View {
                     lastWeightStr = String(format: "%.2f", round(lastWeight * 10) / 10)
                     chartsWeightItem = try await HealthKit_ScoreringManager.shared.getWeightData(period: self.weightPeriodIndex[self.weightSelectedIndex])
                     chartsWeightItem.reverse()
-                    
-                    workoutDataItem = try await HealthKit_ScoreringManager.shared.readWorkoutData()
+                    //TODO: chartsWeightItemが空だったらなんかする
+                    //                    print(chartsWeightItem)
+                    //                    if chartsWeightItem == [] {
+                    //                        print("nasi")
+                    //                    }
                 }
                 catch {
                     print("HealthChartsContentView error:", error.localizedDescription)

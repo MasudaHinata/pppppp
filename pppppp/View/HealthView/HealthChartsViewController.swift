@@ -10,7 +10,6 @@ class HealthChartsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         let vc = UIHostingController(rootView: HealthChartsContentView())
         self.addChild(vc)
         self.view.addSubview(vc.view)

@@ -366,7 +366,6 @@
 				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
 				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
 				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
-				035D29DD28E9F25F00E1BEA4 /* FriendListView */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -557,6 +556,7 @@
 			children = (
 				033BC38028DC81DE008DBC49 /* UserDataView */,
 				033BC38128DC81ED008DBC49 /* ProfileView */,
+				035D29DD28E9F25F00E1BEA4 /* FriendListView */,
 				033BC38328DC8212008DBC49 /* SummeryCell */,
 				033BC38228DC81FF008DBC49 /* RecentActivityCell */,
 				03A45B7128D8A4EA0059B617 /* FriendDataCell */,

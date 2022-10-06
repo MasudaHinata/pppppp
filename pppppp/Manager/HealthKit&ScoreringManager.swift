@@ -154,7 +154,7 @@ final class HealthKit_ScoreringManager {
         var days = [Int]()
         
         //TODO: 体重がなかったら日付の線だけ表示したい
-        if period == "2month" {
+        if period == "month" {
             days = Array(-1...60)
         } else if period == "week" {
             days = Array(-1...5)
@@ -168,9 +168,7 @@ final class HealthKit_ScoreringManager {
             let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
             
             let weightDataList = try await descriptor.result(for: myHealthStore)
-            if weightDataList == [] {
-                print("データなし　ラベル出す")
-            } else {
+            if weightDataList != [] {
                 for sample in weightDataList {
                     chartsWeightItem.append(ChartsWeightItem.init(date: sample.startDate, weight: Double(sample.quantity.doubleValue(for: .gramUnit(with: .kilo)))))
                 }
@@ -248,25 +246,21 @@ final class HealthKit_ScoreringManager {
                 }
                 try await FirebaseClient.shared.firebasePutData(point: weightPoint ?? 0, activity: "Weight")
             }
+            UserDefaults.standard.set((Date()), forKey: "createWeightPointDate")
         }
-        UserDefaults.standard.set((Date()), forKey: "createWeightPointDate")
+
         
         return lastweightList
     }
     
     //MARK: - Workoutを取得
-    func readWorkoutData() async throws -> [WorkoutData] {
+    func getWorkoutData() async throws -> [WorkoutData] {
         getPermissionHealthKit()
         self.dateFormatter.dateFormat = "YY/MM/dd"
         var workoutData = [WorkoutData]()
         
         let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
         let results = try await descriptor.result(for: myHealthStore)
-        
-        //        print(results)
-        //        print(results.last?.workoutActivityType.rawValue)
-        //        print(results.last?.startDate)
-        //        print(results.last?.totalEnergyBurned ?? 0)
         
         for workout in results {
             let data = WorkoutData(date: self.dateFormatter.string(from:  workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
@@ -275,7 +269,59 @@ final class HealthKit_ScoreringManager {
         print(workoutData)
         return workoutData
     }
-
+    
+    //MARK: - ポイント作成の判定 & 最新のworkoutを取得してポイントを作成
+    func createWorkoutPoint() async throws -> Bool {
+        getPermissionHealthKit()
+        var createdPointJudge: Bool = true
+        var checkWorkoutPoint: Bool
+        let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [])
+        let results = try await descriptor.result(for: myHealthStore)
+        
+        
+        let lastDate = UserDefaults.standard.object(forKey: "createWorkoutPointDate") as? Date
+        if UserDefaults.standard.object(forKey: "createWorkoutPointDate") as? Date == nil {
+            checkWorkoutPoint = true
+        } else {
+            if results.last?.startDate != nil {
+                if results.last?.startDate ?? Date() > lastDate ?? Date() {
+                    checkWorkoutPoint = true
+                } else {
+                    checkWorkoutPoint = false
+                }
+            } else {
+                checkWorkoutPoint = false
+            }
+        }
+        
+        if checkWorkoutPoint {
+            if results.last != nil {
+                createdPointJudge = true
+                let energy = results.last?.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0
+                let time = calendar.dateComponents([.minute], from: (results.last?.startDate)!, to: (results.last?.endDate)!)
+                let weight = try await getWeight()
+                let metz = energy / (1.05 * weight * Double(Double(time.minute ?? 0) / 60))
+                
+                var exercisePoint = Int()
+                let exercise = metz * (Double(Double(time.minute ?? 0) / 60))
+                if exercise <= 1 {
+                    exercisePoint = Int(4.5 / (0.45 + exp(-exercise * 6)))
+                } else {
+                    exercisePoint = Int(15 / (0.6 + exp(-exercise * 0.2)))
+                }
+                //TODO: AppleのworkoutIDからcaseで名前を代入する
+                let exercizeName = "Workout"
+                
+                UserDefaults.standard.set((Date()), forKey: "createWorkoutPointDate")
+                try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: exercizeName)
+            } else {
+                createdPointJudge = false
+            }
+        }
+    
+        return createdPointJudge
+    }
+    
     //MARK: - 入力した運動と時間からポイントを作成
     func createExercisePoint(exercisesName: String, time: Float) async throws {
         var metz = Float()

@@ -142,6 +142,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
+                
                 try await FirebaseClient.shared.checkUserAuth()
                 let now = calendar.component(.hour, from: Date())
                 if now >= 19 {
@@ -180,6 +181,11 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     if checkPoint == [] {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2週間の体重データがないためポイントを作成できませんでした", handler: { _ in })
                     }
+                }
+                
+                let createdPointjudge = try await HealthKit_ScoreringManager.shared.createWorkoutPoint()
+                if createdPointjudge == false {
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "体重データがないためポイントを作成できませんでした", handler: { _ in })
                 }
                 
                 let userID = try await FirebaseClient.shared.getUserUUID()

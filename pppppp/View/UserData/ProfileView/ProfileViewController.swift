@@ -4,14 +4,14 @@ import Combine
 import Kingfisher
 
 @MainActor
-final class ProfileViewController: UIViewController {//}, FireStoreCheckNameDelegate {
+final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
-        
+
         let vc = UIHostingController(rootView: ProfileContentView())
         self.addChild(vc)
         self.view.addSubview(vc.view)
@@ -157,13 +157,13 @@ final class ProfileViewController: UIViewController {//}, FireStoreCheckNameDele
 //        cancellables.insert(.init { task.cancel() })
 //    }
 //
-//    //MARK: - Setting Delegate
-//    func notChangeName() {
-//        let secondVC = StoryboardScene.SetNameView.initialScene.instantiate()
-//        self.showDetailViewController(secondVC, sender: self)
-//    }
-//
-//    func scene() {
-//        viewDidLoad()
-//    }
+    //MARK: - Setting Delegate
+    func notChangeName() {
+        let secondVC = StoryboardScene.SetNameView.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
+    }
+
+    func scene() {
+        viewDidLoad()
+    }
 }
