@@ -12,31 +12,48 @@ struct ProfileContentView: View {
         
         NavigationView {
             ScrollView {
-                
-                HStack(alignment: .center, spacing: 32) {
-                    Spacer(minLength: -30)
-                    //FIXME: 画像が大きくなっちゃう
-//                    AsyncImage(url: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-//                        .frame(width: 72, height: 72)
-                    
-                    Text("\(String(point ?? 0))\npoint")
-                    
-                    Button(action: {
-                        //TODO: FriendListViewにpush遷移させる
+                //MARK: - profile画面
+                Group {
+                    HStack(alignment: .center, spacing: 32) {
+                        //                    Spacer()
+                        //FIXME: 画像が大きくなっちゃう
+                        //                    AsyncImage(url: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+                        //                        .frame(width: 72, height: 72)
                         
-                    }){
-                        Text("\((friendCount ?? 0))\nfriends")
+                        Text("\(String(point ?? 0))\npoint")
+                            .font(.custom("F5.6", fixedSize: 16))
+                        
+                        Button(action: {
+                            //TODO: FriendListViewにpush遷移させる
+                            
+                        }){
+                            Text("\((friendCount ?? 0))\nfriends")
+                                .font(.custom("F5.6", fixedSize: 16))
+                        }
+                        .foregroundColor(.white)
+                        
+                        Button(action: {
+                            //TODO: ChangeProfileViewにmodal遷移させる
+                        }){
+                            Image(systemName: "pencil")
+                            Text("Edit")
+                        }
+                        .foregroundColor(.white)
+                        .background(Color(asset: Asset.Colors.white48))
+                        
+                        //FIXME: 空白16空ける
                     }
-                    .foregroundColor(.white)
+                }
+                
+                
+                //MARK: - Streak
+                Group {
                     
-                    Button(action: {
-                        //TODO: ChangeProfileViewにmodal遷移させる
-                    }){
-                        Image(systemName: "pencil")
-                        Text("Edit")
-                    }
-                    .foregroundColor(.white)
-                    .background(Color(asset: Asset.Colors.white48))
+                }
+                
+                //MARK: - RecentActivity
+                Group {
+                    
                 }
             }
             .navigationBarTitle(Text((UserDefaults.standard.object(forKey: "name") as? String) ?? ""))

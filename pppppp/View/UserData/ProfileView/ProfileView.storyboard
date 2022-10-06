@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="smp-2B-KGT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dbh-b9-BhT">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
@@ -14,7 +14,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Profile View Controller-->
+        <!--Me-->
         <scene sceneID="bJ0-u0-alk">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v1d-lR-ijF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -25,39 +25,14 @@
                         <viewLayoutGuide key="safeArea" id="r9X-at-1ZF"/>
                         <color key="backgroundColor" name="mainColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8cH-kh-rp7"/>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="6428" y="422"/>
-        </scene>
-        <!--Me-->
-        <scene sceneID="JC9-PJ-tma">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ljZ-2K-ZEa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="smp-2B-KGT" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" image="person" catalog="system" id="7Ur-kR-zrq">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
-                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="8cH-kh-rp7"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="2eH-se-gms">
-                        <rect key="frame" x="0.0" y="47" width="390" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="mainColor"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Dbh-b9-BhT" kind="relationship" relationship="rootViewController" id="WQP-bJ-SRz"/>
-                    </connections>
-                </navigationController>
+                </viewController>
             </objects>
-            <point key="canvasLocation" x="5456.9230769230771" y="429.38388625592415"/>
+            <point key="canvasLocation" x="6428" y="422"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="FKv-l0-VqD">
