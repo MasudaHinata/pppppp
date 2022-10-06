@@ -275,15 +275,18 @@ final class HealthKit_ScoreringManager {
         self.dateFormatter.dateFormat = "YY/MM/dd"
         var workoutData = [WorkoutData]()
         
-        let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
+        let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [])
         let results = try await descriptor.result(for: myHealthStore)
         
         
-        print(results.last)
-        print(results.last?.workoutActivityType.rawValue)
-        print(results.last?.startDate)
-        print(results.last?.endDate)
-        print(results.last?.totalEnergyBurned ?? 0)
+        print("type", results.last?.workoutActivityType.rawValue)
+        print("date", results.last?.startDate)
+        print("energey", results.last?.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0)
+        print("time", calendar.dateComponents([.minute], from: (results.last?.startDate)!, to: (results.last?.endDate)!))
+        let weight = try await getWeight()
+        print("weight", weight)
+        
+        
     }
     
     //MARK: - 入力した運動と時間からポイントを作成

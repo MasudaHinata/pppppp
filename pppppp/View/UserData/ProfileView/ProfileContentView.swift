@@ -1,4 +1,5 @@
 import SwiftUI
+import Kingfisher
 import Charts
 import Combine
 
@@ -15,13 +16,16 @@ struct ProfileContentView: View {
                 //MARK: - profile画面
                 Group {
                     HStack(alignment: .center, spacing: 32) {
-                        //                    Spacer()
-                        //FIXME: 画像が大きくなっちゃう
-                        //                    AsyncImage(url: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-                        //                        .frame(width: 72, height: 72)
+                        
+                        KFImage(URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 72, height: 72)
+                            .cornerRadius(36)
                         
                         Text("\(String(point ?? 0))\npoint")
                             .font(.custom("F5.6", fixedSize: 16))
+                            .multilineTextAlignment(.center)
                         
                         Button(action: {
                             //TODO: FriendListViewにpush遷移させる
@@ -38,10 +42,10 @@ struct ProfileContentView: View {
                             Image(systemName: "pencil")
                             Text("Edit")
                         }
+                        //TODO: textの上下に余白
+                        .padding()
                         .foregroundColor(.white)
                         .background(Color(asset: Asset.Colors.white48))
-                        
-                        //FIXME: 空白16空ける
                     }
                 }
                 
@@ -86,28 +90,6 @@ struct ProfileContentView: View {
                 }
             }
             cancellables.insert(.init { task.cancel() })
-            
-            //                    myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
         }
     }
 }
-
-//struct SecondContentView:View{
-//    var body: some View {
-//        Text("second")
-//    }
-//}
-
-//                    Button(action: { self.show.toggle() }) {
-//                        Text("画面遷移Present").fontWeight(.bold).font(.largeTitle)
-//                    }
-//                    .sheet(isPresented: self.$show) {
-//                        // trueになれば下からふわっと表示
-//                        SecondContentView()
-//                    }
-//                    NavigationLink(
-//                        destination: SecondContentView(),
-//                        label: {
-//                            Text("Next")
-//                        }
-//                    )
