@@ -261,11 +261,6 @@ final class HealthKit_ScoreringManager {
         let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
         let results = try await descriptor.result(for: myHealthStore)
         
-        //        print(results)
-        //        print(results.last?.workoutActivityType.rawValue)
-        //        print(results.last?.startDate)
-        //        print(results.last?.totalEnergyBurned ?? 0)
-        
         for workout in results {
             let data = WorkoutData(date: self.dateFormatter.string(from:  workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
             workoutData.append(data)
@@ -273,7 +268,24 @@ final class HealthKit_ScoreringManager {
         print(workoutData)
         return workoutData
     }
-
+    
+    //MARK: - 最新のworkoutを取得して時間からポイントを作成
+    func createWorkoutPoint() async throws {
+        getPermissionHealthKit()
+        self.dateFormatter.dateFormat = "YY/MM/dd"
+        var workoutData = [WorkoutData]()
+        
+        let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
+        let results = try await descriptor.result(for: myHealthStore)
+        
+        
+        print(results.last)
+        print(results.last?.workoutActivityType.rawValue)
+        print(results.last?.startDate)
+        print(results.last?.endDate)
+        print(results.last?.totalEnergyBurned ?? 0)
+    }
+    
     //MARK: - 入力した運動と時間からポイントを作成
     func createExercisePoint(exercisesName: String, time: Float) async throws {
         var metz = Float()

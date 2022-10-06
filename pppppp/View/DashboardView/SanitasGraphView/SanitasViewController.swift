@@ -143,7 +143,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             guard let self = self else { return }
             do {
                 
-                try await HealthKit_ScoreringManager.shared.getWorkoutData()
+                try await HealthKit_ScoreringManager.shared.createWorkoutPoint()
                 
                 try await FirebaseClient.shared.checkUserAuth()
                 let now = calendar.component(.hour, from: Date())

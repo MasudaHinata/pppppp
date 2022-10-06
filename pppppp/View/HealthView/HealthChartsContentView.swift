@@ -82,22 +82,6 @@ struct HealthChartsContentView: View {
             }
             
             Spacer(minLength: 32)
-            
-            //MARK: - Workout
-            Group {
-                Text("Workout").fontWeight(.semibold)
-                    .frame(maxWidth: width - 32, alignment: .leading)
-                
-                Spacer(minLength: 16)
-                
-                HStack {
-                    //                    ForEach(workoutDataItem) { item in
-                    //                        padding(4)
-                    //                        Text(item.date)
-                    ////                        Text(item.energy)
-                    //                    }
-                }
-            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(asset: Asset.Colors.mainColor))
@@ -127,8 +111,6 @@ struct HealthChartsContentView: View {
                     //                    if chartsWeightItem == [] {
                     //                        print("nasi")
                     //                    }
-                    
-                    workoutDataItem = try await HealthKit_ScoreringManager.shared.getWorkoutData()
                 }
                 catch {
                     print("HealthChartsContentView error:", error.localizedDescription)
