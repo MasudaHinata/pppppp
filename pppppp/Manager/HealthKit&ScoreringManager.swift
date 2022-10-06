@@ -154,7 +154,7 @@ final class HealthKit_ScoreringManager {
         var days = [Int]()
         
         //TODO: 体重がなかったら日付の線だけ表示したい
-        if period == "2month" {
+        if period == "month" {
             days = Array(-1...60)
         } else if period == "week" {
             days = Array(-1...5)
@@ -168,9 +168,7 @@ final class HealthKit_ScoreringManager {
             let descriptor = HKSampleQueryDescriptor(predicates: predicate, sortDescriptors: [SortDescriptor(\.startDate, order: .reverse)])
             
             let weightDataList = try await descriptor.result(for: myHealthStore)
-            if weightDataList == [] {
-                print("データなし　ラベル出す")
-            } else {
+            if weightDataList != [] {
                 for sample in weightDataList {
                     chartsWeightItem.append(ChartsWeightItem.init(date: sample.startDate, weight: Double(sample.quantity.doubleValue(for: .gramUnit(with: .kilo)))))
                 }
@@ -255,7 +253,7 @@ final class HealthKit_ScoreringManager {
     }
     
     //MARK: - Workoutを取得
-    func readWorkoutData() async throws -> [WorkoutData] {
+    func getWorkoutData() async throws -> [WorkoutData] {
         getPermissionHealthKit()
         self.dateFormatter.dateFormat = "YY/MM/dd"
         var workoutData = [WorkoutData]()

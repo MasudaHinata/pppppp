@@ -17,7 +17,6 @@
         <!--Me-->
         <scene sceneID="bJ0-u0-alk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v1d-lR-ijF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="Dbh-b9-BhT" customClass="ProfileViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kG3-sa-1Y2">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
@@ -31,13 +30,13 @@
                     <navigationItem key="navigationItem" id="8cH-kh-rp7"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v1d-lR-ijF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6428" y="422"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="FKv-l0-VqD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fa8-dM-JRF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="wjO-po-3Kl" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LVq-g8-bcO">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
@@ -89,7 +88,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" image="pencil" catalog="system" title="Edit" imagePadding="12" cornerStyle="capsule">
                                     <color key="baseForegroundColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="baseBackgroundColor" red="1" green="1" blue="1" alpha="0.74782491719999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="baseBackgroundColor" red="1" green="1" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="editButtonPressed:" destination="wjO-po-3Kl" eventType="touchUpInside" id="gAU-xy-8mW"/>
@@ -191,6 +190,7 @@
                         <outlet property="tableView" destination="0AB-jf-LiR" id="aC5-vN-I1A"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fa8-dM-JRF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7188" y="422"/>
         </scene>
