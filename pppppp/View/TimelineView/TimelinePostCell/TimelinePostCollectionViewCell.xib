@@ -42,13 +42,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZW-UM-4eA">
-                        <rect key="frame" x="282" y="63" width="68" height="25"/>
+                        <rect key="frame" x="282.66666666666669" y="63.666666666666664" width="67.333333333333314" height="24.333333333333336"/>
                         <fontDescription key="fontDescription" name="F5.6-Regular" family="F5.6" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7K-qn-CU9">
-                        <rect key="frame" x="112" y="63.666666666666657" width="49" height="24"/>
+                        <rect key="frame" x="112" y="64" width="49" height="24"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -78,7 +78,7 @@
                 <outlet property="userIconImageView" destination="NlN-dq-lcz" id="HJz-EA-o8n"/>
                 <outlet property="userNameLabel" destination="HPm-nM-2Z8" id="Hpo-WH-gCf"/>
             </connections>
-            <point key="canvasLocation" x="320" y="46.919431279620852"/>
+            <point key="canvasLocation" x="175" y="14"/>
         </collectionViewCell>
     </objects>
     <resources>

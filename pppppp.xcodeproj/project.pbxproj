@@ -27,6 +27,7 @@
 		0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */; };
 		0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */; };
 		0343682728D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */; };
+		035329CD28EECB9000257768 /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035329CC28EECB9000257768 /* ProfileContentView.swift */; };
 		035CE51E28CF1E53001F89BB /* RecordExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */; };
 		035CE52028CF1E61001F89BB /* RecordExerciseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */; };
 		035D29DA28E98AA400E1BEA4 /* HealthChartsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */; };
@@ -145,6 +146,7 @@
 		0343681E28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResetPasswordViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		0343682228D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmailSignInViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		0343682628D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareMyDataViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
+		035329CC28EECB9000257768 /* ProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
 		035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordExerciseViewController.swift; sourceTree = "<group>"; };
 		035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordExerciseView.storyboard; sourceTree = "<group>"; };
 		035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsContentView.swift; sourceTree = "<group>"; };
@@ -359,10 +361,12 @@
 			isa = PBXGroup;
 			children = (
 				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
+				035329CC28EECB9000257768 /* ProfileContentView.swift */,
 				036E476C28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift */,
 				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
 				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
 				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
+				035D29DD28E9F25F00E1BEA4 /* FriendListView */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -553,7 +557,6 @@
 			children = (
 				033BC38028DC81DE008DBC49 /* UserDataView */,
 				033BC38128DC81ED008DBC49 /* ProfileView */,
-				035D29DD28E9F25F00E1BEA4 /* FriendListView */,
 				033BC38328DC8212008DBC49 /* SummeryCell */,
 				033BC38228DC81FF008DBC49 /* RecentActivityCell */,
 				03A45B7128D8A4EA0059B617 /* FriendDataCell */,
@@ -902,6 +905,7 @@
 				036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */,
 				03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */,
 				03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */,
+				035329CD28EECB9000257768 /* ProfileContentView.swift in Sources */,
 				0343680E28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift in Sources */,
 				036E476D28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */,
