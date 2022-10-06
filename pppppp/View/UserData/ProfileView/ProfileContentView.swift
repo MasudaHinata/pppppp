@@ -43,12 +43,10 @@ struct ProfileContentView: View {
                             Text("Edit")
                         }
                         //TODO: textの上下に余白
-                        .padding()
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(asset: Asset.Colors.white00))
                         .background(Color(asset: Asset.Colors.white48))
                     }
                 }
-                
                 
                 //MARK: - Streak
                 Group {

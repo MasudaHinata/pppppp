@@ -246,8 +246,9 @@ final class HealthKit_ScoreringManager {
                 }
                 try await FirebaseClient.shared.firebasePutData(point: weightPoint ?? 0, activity: "Weight")
             }
+            UserDefaults.standard.set((Date()), forKey: "createWeightPointDate")
         }
-        UserDefaults.standard.set((Date()), forKey: "createWeightPointDate")
+
         
         return lastweightList
     }
@@ -269,24 +270,56 @@ final class HealthKit_ScoreringManager {
         return workoutData
     }
     
-    //MARK: - 最新のworkoutを取得して時間からポイントを作成
-    func createWorkoutPoint() async throws {
+    //MARK: - ポイント作成の判定 & 最新のworkoutを取得してポイントを作成
+    func createWorkoutPoint() async throws -> Bool {
         getPermissionHealthKit()
-        self.dateFormatter.dateFormat = "YY/MM/dd"
-        var workoutData = [WorkoutData]()
-        
+        var createdPointJudge: Bool = true
+        var checkWorkoutPoint: Bool
         let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [])
         let results = try await descriptor.result(for: myHealthStore)
         
         
-        print("type", results.last?.workoutActivityType.rawValue)
-        print("date", results.last?.startDate)
-        print("energey", results.last?.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0)
-        print("time", calendar.dateComponents([.minute], from: (results.last?.startDate)!, to: (results.last?.endDate)!))
-        let weight = try await getWeight()
-        print("weight", weight)
+        let lastDate = UserDefaults.standard.object(forKey: "createWorkoutPointDate") as? Date
+        if UserDefaults.standard.object(forKey: "createWorkoutPointDate") as? Date == nil {
+            checkWorkoutPoint = true
+        } else {
+            if results.last?.startDate != nil {
+                if results.last?.startDate ?? Date() > lastDate ?? Date() {
+                    checkWorkoutPoint = true
+                } else {
+                    checkWorkoutPoint = false
+                }
+            } else {
+                checkWorkoutPoint = false
+            }
+        }
         
-        
+        if checkWorkoutPoint {
+            if results.last != nil {
+                createdPointJudge = true
+                let energy = results.last?.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0
+                let time = calendar.dateComponents([.minute], from: (results.last?.startDate)!, to: (results.last?.endDate)!)
+                let weight = try await getWeight()
+                let metz = energy / (1.05 * weight * Double(Double(time.minute ?? 0) / 60))
+                
+                var exercisePoint = Int()
+                let exercise = metz * (Double(Double(time.minute ?? 0) / 60))
+                if exercise <= 1 {
+                    exercisePoint = Int(4.5 / (0.45 + exp(-exercise * 6)))
+                } else {
+                    exercisePoint = Int(15 / (0.6 + exp(-exercise * 0.2)))
+                }
+                //TODO: AppleのworkoutIDからcaseで名前を代入する
+                let exercizeName = "Workout"
+                
+                UserDefaults.standard.set((Date()), forKey: "createWorkoutPointDate")
+                try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: exercizeName)
+            } else {
+                createdPointJudge = false
+            }
+        }
+    
+        return createdPointJudge
     }
     
     //MARK: - 入力した運動と時間からポイントを作成
