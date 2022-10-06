@@ -1,29 +1,78 @@
 import SwiftUI
 import Charts
-
-
+import Combine
 
 struct ProfileContentView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     
-        var imageUrl: URL? = URL(string: "")
+    @State var friendCount: Int?
+    @State var point: Int?
+//    @State var imrageUrl: URL
+    
+    var body: some View {
         
-        AsyncImage(url: imageUrl) { image in
-            image.resizable()
-        } placeholder: {
-            ProgressView()
+//        var imageUrl: URL
+        
+        NavigationView {
+            ScrollView {
+                
+                HStack(spacing: 32) {
+                    Spacer(minLength: -30)
+                    
+                    AsyncImage(url: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+                        .frame(width: 30, height: 30)
+                    
+                    Text("\(String(point ?? 0))\npoint")
+                    
+                    Button(action: {
+                        //TODO: FriendListViewにpush遷移させる
+                        
+                    }){
+                        Text("\((friendCount ?? 0))\nfriends")
+                    }
+                    .foregroundColor(.white)
+                    
+                    
+                    Button(action: {
+                        //TODO: ChangeProfileViewにpush遷移させる
+                        
+                    }){
+                        Image(systemName: "pencil")
+                        Text("Edit")
+                    }
+                    .foregroundColor(.white)
+                    
+                }
+            }
+            .navigationBarTitle(Text((UserDefaults.standard.object(forKey: "name") as? String) ?? ""))
+            .navigationBarItems(trailing: HStack {
+                //TODO: SettingViewにmodal遷移させる, Imageおく
+                Button("gearshape") {}
+                //TODO: ShareMyDataViewにmodal遷移させる, Imageおく
+                Button("person.crop.circle.badge.plus") {}
+            })
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(asset: Asset.Colors.mainColor))
         }
-        .frame(width: 240, height: 126)
-        
         .onAppear {
-            imageUrl = URL(string: "https://cdn-ssl-devio-img.classmethod.jp/wp-content/uploads/2022/08/swiftui-image-from-url-eyecatch-960x504.png")
+            let task = Task {
+                do {
+                    let userID = try await FirebaseClient.shared.getUserUUID()
+                    try await FirebaseClient.shared.checkNameData()
+                    try await FirebaseClient.shared.checkIconData()
+                    
+                    let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
+                    friendCount = friendDataList.count
+                    
+                    let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+                    point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
+                }
+                catch {
+                    print("ProfileViewContro didAppear error:",error.localizedDescription)
+                }
+            }
+            cancellables.insert(.init { task.cancel() })
+            
+            //                    myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
         }
-    }
-}
-
-struct ProfileContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileContentView()
     }
 }
