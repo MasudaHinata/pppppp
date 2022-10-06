@@ -6,20 +6,18 @@ struct ProfileContentView: View {
     
     @State var friendCount: Int?
     @State var point: Int?
-//    @State var imrageUrl: URL
+    @State private var show: Bool = false
     
     var body: some View {
-        
-//        var imageUrl: URL
         
         NavigationView {
             ScrollView {
                 
-                HStack(spacing: 32) {
+                HStack(alignment: .center, spacing: 32) {
                     Spacer(minLength: -30)
-                    
-                    AsyncImage(url: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-                        .frame(width: 30, height: 30)
+                    //FIXME: 画像が大きくなっちゃう
+//                    AsyncImage(url: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
+//                        .frame(width: 72, height: 72)
                     
                     Text("\(String(point ?? 0))\npoint")
                     
@@ -31,24 +29,24 @@ struct ProfileContentView: View {
                     }
                     .foregroundColor(.white)
                     
-                    
                     Button(action: {
-                        //TODO: ChangeProfileViewにpush遷移させる
-                        
+                        //TODO: ChangeProfileViewにmodal遷移させる
                     }){
                         Image(systemName: "pencil")
                         Text("Edit")
                     }
                     .foregroundColor(.white)
-                    
+                    .background(Color(asset: Asset.Colors.white48))
                 }
             }
             .navigationBarTitle(Text((UserDefaults.standard.object(forKey: "name") as? String) ?? ""))
             .navigationBarItems(trailing: HStack {
-                //TODO: SettingViewにmodal遷移させる, Imageおく
-                Button("gearshape") {}
-                //TODO: ShareMyDataViewにmodal遷移させる, Imageおく
-                Button("person.crop.circle.badge.plus") {}
+                //TODO: SettingViewにmodal遷移させる
+                Button("\(Image(systemName: "gearshape"))") {}
+                    .foregroundColor(.white)
+                //TODO: ShareMyDataViewにmodal遷移させる
+                Button("\(Image(systemName: "person.crop.circle.badge.plus"))") {}
+                    .foregroundColor(.white)
             })
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(asset: Asset.Colors.mainColor))
@@ -76,3 +74,23 @@ struct ProfileContentView: View {
         }
     }
 }
+
+//struct SecondContentView:View{
+//    var body: some View {
+//        Text("second")
+//    }
+//}
+
+//                    Button(action: { self.show.toggle() }) {
+//                        Text("画面遷移Present").fontWeight(.bold).font(.largeTitle)
+//                    }
+//                    .sheet(isPresented: self.$show) {
+//                        // trueになれば下からふわっと表示
+//                        SecondContentView()
+//                    }
+//                    NavigationLink(
+//                        destination: SecondContentView(),
+//                        label: {
+//                            Text("Next")
+//                        }
+//                    )
