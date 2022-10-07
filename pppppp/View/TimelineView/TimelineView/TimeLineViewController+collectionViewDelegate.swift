@@ -19,7 +19,6 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                let userID = try await FirebaseClient.shared.getUserUUID()
                 cell.userIconImageView.kf.setImage(with: postDataItem[indexPath.row].iconImageURL)
                 cell.userNameLabel.text = postDataItem[indexPath.row].name
                 cell.dateLabel.text = "\(dateFormatter.string(from: postDataItem[indexPath.row].date))"
