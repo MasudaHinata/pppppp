@@ -180,6 +180,7 @@ final class FirebaseClient {
             try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
+        try await user.reload()
         try await FirebaseClient.shared.checkNameData()
         try await FirebaseClient.shared.checkIconData()
         let userID = user.uid

@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 protocol TimelineCollectionViewCellDelegate: AnyObject {
     func tapGoodButton(judge: Bool)
@@ -7,6 +8,7 @@ protocol TimelineCollectionViewCellDelegate: AnyObject {
 class TimelinePostCollectionViewCell: UICollectionViewCell {
     
     var timelineCollectionViewCellDelegate: TimelineCollectionViewCellDelegate?
+    var cancellables = Set<AnyCancellable>()
     
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var pointLabel: UILabel!
@@ -22,23 +24,31 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func tapGoodButton(_ sender: Any) {
+        var judge: Bool!
         
-        let judge: Bool!
-        
-        if goodButton.currentImage == UIImage.init(systemName: "heart.fill") {
-            //MARK: Post good cancell
-            goodButton.setImage(UIImage.init(systemName: "heart"), for: .normal)
-            judge = false
-        } else {
-            //MARK: Post good
-            goodButton.setImage(UIImage.init(systemName: "heart.fill"), for: .normal)
-            judge = true
+        let task = Task {
+            do {
+                try await FirebaseClient.shared.checkUserAuth()
+                if goodButton.currentImage == UIImage.init(systemName: "heart.fill") {
+                    //MARK: Post good cancell
+                    goodButton.setImage(UIImage.init(systemName: "heart"), for: .normal)
+                    judge = false
+                } else {
+                    //MARK: Post good
+                    goodButton.setImage(UIImage.init(systemName: "heart.fill"), for: .normal)
+                    judge = true
+                }
+                timelineCollectionViewCellDelegate?.tapGoodButton(judge: judge!)
+            }
+            catch {
+                print("TimeLineCollection tapGoodButton error:",error.localizedDescription)
+            }
         }
-        timelineCollectionViewCellDelegate?.tapGoodButton(judge: judge!)
-       }
+        cancellables.insert(.init { task.cancel() })
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-      
+        
     }
 }
