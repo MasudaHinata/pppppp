@@ -4,7 +4,7 @@ class TimelineNotificationViewCell: UICollectionViewCell {
     
     @IBOutlet var friendIconView: UIImageView! {
         didSet {
-            friendIconView.layer.cornerRadius = 36
+            friendIconView.layer.cornerRadius = 28
             friendIconView.clipsToBounds = true
             friendIconView.layer.cornerCurve = .continuous
         }
@@ -13,8 +13,6 @@ class TimelineNotificationViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
 }
 

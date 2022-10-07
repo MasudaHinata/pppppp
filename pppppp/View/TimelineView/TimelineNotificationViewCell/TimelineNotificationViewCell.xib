@@ -17,15 +17,15 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zH1-p3-4EA">
-                        <rect key="frame" x="16" y="3" width="64" height="64"/>
+                        <rect key="frame" x="24" y="7" width="56" height="56"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="64" id="Tbs-tZ-5Ca"/>
-                            <constraint firstAttribute="height" constant="64" id="jEJ-x8-ZrC"/>
+                            <constraint firstAttribute="width" constant="56" id="Tbs-tZ-5Ca"/>
+                            <constraint firstAttribute="height" constant="56" id="jEJ-x8-ZrC"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jtp-nu-Wuy">
                         <rect key="frame" x="96" y="35" width="0.0" height="0.0"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -36,7 +36,7 @@
                 <constraint firstItem="zH1-p3-4EA" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="U26-U9-dem"/>
                 <constraint firstItem="Jtp-nu-Wuy" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="ZHP-NG-9Kz"/>
                 <constraint firstItem="Jtp-nu-Wuy" firstAttribute="leading" secondItem="zH1-p3-4EA" secondAttribute="trailing" constant="16" id="rW1-tX-rGs"/>
-                <constraint firstItem="zH1-p3-4EA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="sja-7t-qbB"/>
+                <constraint firstItem="zH1-p3-4EA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="sja-7t-qbB"/>
             </constraints>
             <size key="customSize" width="330" height="70"/>
             <connections>
