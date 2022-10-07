@@ -15,33 +15,21 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
         cell.goodButton.isHidden = true
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YY/MM/dd hh:mm"
-        var userID: String?
-        dateFormatter.string(from: postDataItem[indexPath.row].date)
         
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                userID = try await FirebaseClient.shared.getUserUUID()
-                
-                if postDataItem[indexPath.row].userID == userID {
-                    cell.userIconImageView.kf.setImage(with: postDataItem[indexPath.row].iconImageURL)
-                    cell.userNameLabel.text = postDataItem[indexPath.row].name
-                    cell.dateLabel.text = "\(dateFormatter.string(from: postDataItem[indexPath.row].date))"
-                    cell.pointLabel.text = "\(postDataItem[indexPath.row].point) pt"
-                    cell.activityLabel.text = postDataItem[indexPath.row].activity
-                } else {
-                    cell.userIconImageView.kf.setImage(with: postDataItem[indexPath.row].iconImageURL)
-                    cell.userNameLabel.text = postDataItem[indexPath.row].name
-                    cell.dateLabel.text = "\(dateFormatter.string(from: postDataItem[indexPath.row].date))"
-                    cell.pointLabel.text = "\(postDataItem[indexPath.row].point) pt"
-                    cell.activityLabel.text = postDataItem[indexPath.row].activity
-                    cell.goodButton.isHidden = false
-                    
-                    cell.timelineCollectionViewCellDelegate = self
-                }
+                cell.userIconImageView.kf.setImage(with: postDataItem[indexPath.row].iconImageURL)
+                cell.userNameLabel.text = postDataItem[indexPath.row].name
+                cell.dateLabel.text = "\(dateFormatter.string(from: postDataItem[indexPath.row].date))"
+                cell.pointLabel.text = "\(postDataItem[indexPath.row].point) pt"
+                cell.activityLabel.text = postDataItem[indexPath.row].activity
+                cell.likeFriendCountLabel.text = "\(try await FirebaseClient.shared.getPostLikeFriendCount(postId: postDataItem[indexPath.row].id ?? ""))"
+                cell.goodButton.isHidden = false
+                cell.timelineCollectionViewCellDelegate = self
             }
             catch {
-                print("TimeLineViewContro viewdid error:",error.localizedDescription)
+                print("TimelineViewContro viewdid error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.viewDidAppear(true)
@@ -54,6 +42,35 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
         cancellables.insert(.init { task.cancel() })
         
         return cell
+    }
+    
+    //MARK: 自分の投稿がタップされたらいいねした人を出す
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var cancellables = Set<AnyCancellable>()
+        
+        let task = Task { [weak self] in
+            guard let self = self else { return }
+            do {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                
+                if userID == postDataItem[indexPath.row].userID {
+                    let secondVC = StoryboardScene.TimelineNotificationView.initialScene.instantiate()
+                    secondVC.postData = postDataItem[indexPath.row]
+                    self.navigationController?.pushViewController(secondVC, animated: true)
+                }
+            }
+            catch {
+                print("TimelineViewContro viewdid error:",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                        self.viewDidAppear(true)
+                    })
+                } else {
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                }
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
     }
 }
 
@@ -68,7 +85,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                 guard let self = self else { return }
                 do {
                     //FIXME: postIDを取ってくる
-                    let postId = "V97PuH2RkHDLgsFyJpdJ"
+                    let postId = "o4AsPx1um8cqzaCmlbZe"
                     try await FirebaseClient.shared.putGoodFriendsPost(postId: postId)
                 }
                 catch {
@@ -89,7 +106,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                 guard let self = self else { return }
                 do {
                     //FIXME: postIDを取ってくる
-                    let postId = "V97PuH2RkHDLgsFyJpdJ"
+                    let postId = "o4AsPx1um8cqzaCmlbZe"
                     try await FirebaseClient.shared.putGoodCancelFriendsPost(postId: postId)
                 }
                 catch {
@@ -105,5 +122,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
             }
             cancellables.insert(.init { task.cancel() })
         }
+        //TODO: データをキャッシュしておく, いいねが終わったらreloadData()する
+//        collectionView.reloadData()
     }
 }

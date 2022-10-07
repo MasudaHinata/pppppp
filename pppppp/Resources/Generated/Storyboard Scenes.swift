@@ -145,7 +145,7 @@ internal enum StoryboardScene {
   internal enum TimelineNotificationView: StoryboardType {
     internal static let storyboardName = "TimelineNotificationView"
 
-    internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: TimelineNotificationView.self)
+    internal static let initialScene = InitialSceneType<TimelineNotificationViewController>(storyboard: TimelineNotificationView.self)
   }
   internal enum UserDataView: StoryboardType {
     internal static let storyboardName = "UserDataView"

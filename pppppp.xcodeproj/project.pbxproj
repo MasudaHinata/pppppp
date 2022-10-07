@@ -63,6 +63,9 @@
 		0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374653928ED7C9100DB0833 /* PostDispleyData.swift */; };
 		0374653C28EDA3F900DB0833 /* SetGoalWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374653B28EDA3F900DB0833 /* SetGoalWeightViewController.swift */; };
 		0374653E28EDA42400DB0833 /* SetGoalWeightView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0374653D28EDA42400DB0833 /* SetGoalWeightView.storyboard */; };
+		037EE2AA28F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EE2A928F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift */; };
+		037EE2B128F068E400912D6F /* TimelineNotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EE2AF28F068E400912D6F /* TimelineNotificationViewCell.swift */; };
+		037EE2B228F068E400912D6F /* TimelineNotificationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037EE2B028F068E400912D6F /* TimelineNotificationViewCell.xib */; };
 		03879DE128E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03879DE028E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
@@ -184,6 +187,9 @@
 		0374653928ED7C9100DB0833 /* PostDispleyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDispleyData.swift; sourceTree = "<group>"; };
 		0374653B28EDA3F900DB0833 /* SetGoalWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalWeightViewController.swift; sourceTree = "<group>"; };
 		0374653D28EDA42400DB0833 /* SetGoalWeightView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetGoalWeightView.storyboard; sourceTree = "<group>"; };
+		037EE2A928F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelineNotificationViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		037EE2AF28F068E400912D6F /* TimelineNotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineNotificationViewCell.swift; sourceTree = "<group>"; };
+		037EE2B028F068E400912D6F /* TimelineNotificationViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineNotificationViewCell.xib; sourceTree = "<group>"; };
 		03879DE028E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthKit&ScoreringManager.swift"; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -268,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				0314456F28EFD7DA00B29D2B /* TimelineNotificationViewController.swift */,
+				037EE2A928F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift */,
 				0314457128EFD7EE00B29D2B /* TimelineNotificationView.storyboard */,
 			);
 			path = TimelineNotificationView;
@@ -596,6 +603,15 @@
 			path = SetGoalWeightView;
 			sourceTree = "<group>";
 		};
+		037EE2A228F0588F00912D6F /* TimelineNotificationViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				037EE2AF28F068E400912D6F /* TimelineNotificationViewCell.swift */,
+				037EE2B028F068E400912D6F /* TimelineNotificationViewCell.xib */,
+			);
+			path = TimelineNotificationViewCell;
+			sourceTree = "<group>";
+		};
 		03A45B6D28D8A43E0059B617 /* SanitasGraphView */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +712,7 @@
 				03DAC40A28EC2818005F173B /* TimelineView */,
 				03DAC40B28EC282A005F173B /* TimelinePostCell */,
 				0314456E28EFD7A200B29D2B /* TimelineNotificationView */,
+				037EE2A228F0588F00912D6F /* TimelineNotificationViewCell */,
 			);
 			path = TimelineView;
 			sourceTree = "<group>";
@@ -847,6 +864,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				037EE2B228F068E400912D6F /* TimelineNotificationViewCell.xib in Resources */,
 				036F69FA28C08E7F0066A7DA /* SettingView.storyboard in Resources */,
 				033945EE28DF25AE00681E9C /* HealthChartsView.storyboard in Resources */,
 				03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */,
@@ -948,6 +966,7 @@
 				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
+				037EE2B128F068E400912D6F /* TimelineNotificationViewCell.swift in Sources */,
 				03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */,
 				0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */,
 				032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */,
@@ -963,6 +982,7 @@
 				0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
 				032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */,
+				037EE2AA28F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift in Sources */,
 				03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */,
 				036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,

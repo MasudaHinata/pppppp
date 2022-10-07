@@ -14,6 +14,7 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     @IBOutlet var pointLabel: UILabel!
     @IBOutlet var activityLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var likeFriendCountLabel: UILabel!
     @IBOutlet var goodButton: UIButton!
     @IBOutlet var userIconImageView: UIImageView! {
         didSet {
