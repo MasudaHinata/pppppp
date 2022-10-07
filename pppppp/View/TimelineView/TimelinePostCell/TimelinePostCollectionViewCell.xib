@@ -42,7 +42,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZW-UM-4eA">
-                        <rect key="frame" x="282.66666666666669" y="63.666666666666664" width="67.333333333333314" height="24.333333333333336"/>
+                        <rect key="frame" x="218.66666666666666" y="63.666666666666664" width="67.333333333333343" height="24.333333333333336"/>
                         <fontDescription key="fontDescription" name="F5.6-Regular" family="F5.6" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -53,14 +53,29 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmF-c3-SC5">
+                        <rect key="frame" x="326" y="64" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="MMY-u2-1eh"/>
+                            <constraint firstAttribute="height" constant="24" id="m4e-py-5jB"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
+                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="tapGoodButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="rwl-vq-m53"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" name="lightBlue25"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="hZW-UM-4eA" secondAttribute="trailing" constant="16" id="1kW-El-2ch"/>
+                <constraint firstAttribute="trailing" secondItem="NmF-c3-SC5" secondAttribute="trailing" constant="16" id="32e-62-6No"/>
                 <constraint firstItem="NlN-dq-lcz" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="5f7-EI-5ND"/>
                 <constraint firstItem="NlN-dq-lcz" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="9xf-zp-CZz"/>
+                <constraint firstItem="NmF-c3-SC5" firstAttribute="leading" secondItem="hZW-UM-4eA" secondAttribute="trailing" constant="40" id="BW9-tK-IJv"/>
                 <constraint firstItem="mph-eG-fuZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="BvN-6w-APD"/>
                 <constraint firstItem="HPm-nM-2Z8" firstAttribute="leading" secondItem="NlN-dq-lcz" secondAttribute="trailing" constant="24" id="LfP-sO-cGj"/>
                 <constraint firstItem="N7K-qn-CU9" firstAttribute="centerY" secondItem="hZW-UM-4eA" secondAttribute="centerY" id="Nqq-Ua-PiG"/>
@@ -69,19 +84,22 @@
                 <constraint firstAttribute="bottom" secondItem="hZW-UM-4eA" secondAttribute="bottom" constant="16" id="e60-n4-aGv"/>
                 <constraint firstAttribute="trailing" secondItem="mph-eG-fuZ" secondAttribute="trailing" constant="16" id="kck-Wf-tl2"/>
                 <constraint firstItem="HPm-nM-2Z8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="u6T-GK-kGR"/>
+                <constraint firstAttribute="bottom" secondItem="NmF-c3-SC5" secondAttribute="bottom" constant="16" id="zle-uz-BoL"/>
             </constraints>
             <size key="customSize" width="366" height="104"/>
             <connections>
                 <outlet property="activityLabel" destination="N7K-qn-CU9" id="4kl-xn-7xa"/>
                 <outlet property="dateLabel" destination="mph-eG-fuZ" id="9co-c4-VEB"/>
+                <outlet property="goodButton" destination="NmF-c3-SC5" id="HXF-mz-UBc"/>
                 <outlet property="pointLabel" destination="hZW-UM-4eA" id="YLT-qG-ldj"/>
                 <outlet property="userIconImageView" destination="NlN-dq-lcz" id="HJz-EA-o8n"/>
                 <outlet property="userNameLabel" destination="HPm-nM-2Z8" id="Hpo-WH-gCf"/>
             </connections>
-            <point key="canvasLocation" x="175" y="14"/>
+            <point key="canvasLocation" x="173.84615384615384" y="13.507109004739336"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <namedColor name="lightBlue25">
             <color red="0.72200000286102295" green="0.91399997472763062" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -19,14 +19,7 @@
                         <color key="backgroundColor" name="mainColor"/>
                         <color key="tintColor" name="subColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Health" id="0LO-kk-QRb">
-                        <barButtonItem key="rightBarButtonItem" image="arrow.clockwise" catalog="system" id="qpZ-46-arU">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="reloadButton" destination="Y6W-OH-hqX" id="RmJ-yZ-XUY"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Health" id="0LO-kk-QRb"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -35,7 +28,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
         <namedColor name="mainColor">
             <color red="0.071000002324581146" green="0.0" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

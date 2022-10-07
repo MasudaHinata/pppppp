@@ -19,6 +19,8 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
         cell.pointLabel.text = "\(postDataItem[indexPath.row].point) pt"
         cell.activityLabel.text = postDataItem[indexPath.row].activity
         
+        cell.timelineCollectionViewCellDelegate = self
+        
         return cell
     }
 }

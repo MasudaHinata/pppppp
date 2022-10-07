@@ -4,6 +4,7 @@ class TimeLineViewController: UIViewController {
     
     let layout = UICollectionViewFlowLayout()
     var refreshCtl = UIRefreshControl()
+    var activityIndicator: UIActivityIndicatorView!
     var postDataItem = [PostDisplayData]()
     
     @IBOutlet var collectionView: UICollectionView! {
@@ -20,7 +21,6 @@ class TimeLineViewController: UIViewController {
         self.navigationController?.pushViewController(secondVC, animated: true)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,12 +28,20 @@ class TimeLineViewController: UIViewController {
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
         layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.96, height: 104)
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .large
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
+                activityIndicator.startAnimating()
                 postDataItem = try await FirebaseClient.shared.getPointActivityPost()
                 collectionView.reloadData()
+//                activityIndicator.stopAnimating()
             }
             catch {
                 print("TimeLineViewContro viewdid error:",error.localizedDescription)
@@ -45,6 +53,7 @@ class TimeLineViewController: UIViewController {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
                 }
             }
+            activityIndicator.stopAnimating()
         }
         cancellables.insert(.init { task.cancel() })
     }
@@ -70,5 +79,12 @@ class TimeLineViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
         refreshCtl.endRefreshing()
+    }
+}
+
+extension TimeLineViewController: TimelineCollectionViewCellDelegate {
+    func tapGoodButton() {
+        //Goodボタンが押された時の処理
+        print("push!!")
     }
 }
