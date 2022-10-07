@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class TimeLineViewController: UIViewController {
     
@@ -6,12 +7,14 @@ class TimeLineViewController: UIViewController {
     var refreshCtl = UIRefreshControl()
     var activityIndicator: UIActivityIndicatorView!
     var postDataItem = [PostDisplayData]()
+    var cancellables = Set<AnyCancellable>()
     
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = self
             collectionView.dataSource = self
             collectionView.collectionViewLayout = layout
+            layout.minimumLineSpacing = 0
             collectionView.register(UINib(nibName: "TimelinePostCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TimelinePostCollectionViewCell")
         }
     }
@@ -27,7 +30,7 @@ class TimeLineViewController: UIViewController {
         refreshCtl.tintColor = .white
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
-        layout.estimatedItemSize = CGSize(width: self.view.frame.width * 0.96, height: 104)
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 104)
         activityIndicator = UIActivityIndicatorView()
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
         activityIndicator.center = self.view.center

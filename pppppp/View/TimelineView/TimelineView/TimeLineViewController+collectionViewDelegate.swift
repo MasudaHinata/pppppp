@@ -1,12 +1,16 @@
 import UIKit
+import Combine
 
 extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return postDataItem.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimelinePostCollectionViewCell", for: indexPath)  as! TimelinePostCollectionViewCell
+        
+        var cancellables = Set<AnyCancellable>()
         
         cell.goodButton.isHidden = true
         let dateFormatter = DateFormatter()
@@ -54,14 +58,18 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
 }
 
 extension TimeLineViewController: TimelineCollectionViewCellDelegate {
+    
     func tapGoodButton(judge: Bool) {
+        var cancellables = Set<AnyCancellable>()
+        
         if judge {
             //MARK: いいねを保存する
             let task = Task { [weak self] in
                 guard let self = self else { return }
                 do {
                     //FIXME: postIDを取ってくる
-                    try await FirebaseClient.shared.putGoodFriendsPost(postId: "")
+                    let postId = "3t17wFLGKb07lWy76fZk"
+                    try await FirebaseClient.shared.putGoodFriendsPost(postId: postId)
                 }
                 catch {
                     print("TimelineCollectionViewCellDelegate error:",error.localizedDescription)
@@ -81,7 +89,8 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                 guard let self = self else { return }
                 do {
                     //FIXME: postIDを取ってくる
-                    try await FirebaseClient.shared.putGoodCancelFriendsPost(postId: "")
+                    let postId = "3t17wFLGKb07lWy76fZk"
+                    try await FirebaseClient.shared.putGoodCancelFriendsPost(postId: postId)
                 }
                 catch {
                     print("TimelineCollectionViewCellDelegate error:",error.localizedDescription)

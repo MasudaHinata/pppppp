@@ -1,14 +1,13 @@
 import SwiftUI
 import Combine
 
-var cancellables = Set<AnyCancellable>()
-
 @available(iOS 16.0, *)
 struct HealthChartsContentView: View {
     
     @State var chartsStepItem = [ChartsStepItem]()
     @State var chartsWeightItem = [ChartsWeightItem]()
     @State var workoutDataItem = [WorkoutData]()
+    @State var cancellables = Set<AnyCancellable>()
     @State private var stepSelectedIndex = 0
     @State private var newStepSelectedIndex = 0
     @State private var weightSelectedIndex = 0

@@ -5,6 +5,7 @@ import Combine
 
 struct ProfileContentView: View {
     
+    @State var cancellables = Set<AnyCancellable>()
     @State var friendCount: Int?
     @State var point: Int?
     @State private var show: Bool = false
