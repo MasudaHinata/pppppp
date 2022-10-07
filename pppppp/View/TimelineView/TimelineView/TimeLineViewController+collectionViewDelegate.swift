@@ -31,8 +31,9 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
                     cell.dateLabel.text = "\(dateFormatter.string(from: postDataItem[indexPath.row].date))"
                     cell.pointLabel.text = "\(postDataItem[indexPath.row].point) pt"
                     cell.activityLabel.text = postDataItem[indexPath.row].activity
-                    cell.timelineCollectionViewCellDelegate = self
                     cell.goodButton.isHidden = false
+                    
+                    cell.timelineCollectionViewCellDelegate = self
                 }
             }
             catch {
@@ -49,5 +50,51 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
         cancellables.insert(.init { task.cancel() })
         
         return cell
+    }
+}
+
+extension TimeLineViewController: TimelineCollectionViewCellDelegate {
+    func tapGoodButton(judge: Bool) {
+        if judge {
+            //MARK: いいねを保存する
+            let task = Task { [weak self] in
+                guard let self = self else { return }
+                do {
+                    //FIXME: postIDを取ってくる
+                    try await FirebaseClient.shared.putGoodFriendsPost(postId: "")
+                }
+                catch {
+                    print("TimelineCollectionViewCellDelegate error:",error.localizedDescription)
+                    if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                            self.viewDidAppear(true)
+                        })
+                    } else {
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    }
+                }
+            }
+            cancellables.insert(.init { task.cancel() })
+        } else {
+            //MARK: いいねを取り消す
+            let task = Task { [weak self] in
+                guard let self = self else { return }
+                do {
+                    //FIXME: postIDを取ってくる
+                    try await FirebaseClient.shared.putGoodCancelFriendsPost(postId: "")
+                }
+                catch {
+                    print("TimelineCollectionViewCellDelegate error:",error.localizedDescription)
+                    if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                            self.viewDidAppear(true)
+                        })
+                    } else {
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    }
+                }
+            }
+            cancellables.insert(.init { task.cancel() })
+        }
     }
 }

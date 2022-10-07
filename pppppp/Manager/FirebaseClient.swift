@@ -197,7 +197,7 @@ final class FirebaseClient {
             
             for postData in postDataList {
                 if let user = userDataList.first{ $0.id == postData.userID } {
-                    let postData = PostDisplayData(userID: user.id!, date: postData.date, activity: postData.activity, point: postData.point, name: user.name, iconImageURL: URL(string: user.iconImageURL)!)
+                    let postData = PostDisplayData(id : postData.id,userID: user.id!, date: postData.date, activity: postData.activity, point: postData.point, name: user.name, iconImageURL: URL(string: user.iconImageURL)!)
                     postDataItem.append(postData)
                 }
             }
@@ -337,6 +337,26 @@ final class FirebaseClient {
     }
     
     //MARK: - 友達の投稿へのいいねを保存
+    func putGoodFriendsPost(postId: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        
+        try await db.collection("Post").document(postId).updateData(["likeFriendList": FieldValue.arrayUnion([userID])])
+    }
+    
+    //MARK: - 友達の投稿へのいいねを取り消し
+    func putGoodCancelFriendsPost(postId: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        
+        try await db.collection("Post").document(postId).updateData(["likeFriendList": FieldValue.arrayRemove([userID])])
+    }
     
     //MARK: - 友達を追加する
     func addFriend(friendId: String) async throws {

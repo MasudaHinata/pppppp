@@ -1,7 +1,7 @@
 import UIKit
 
 protocol TimelineCollectionViewCellDelegate: AnyObject {
-    func tapGoodButton()
+    func tapGoodButton(judge: Bool)
 }
 
 class TimelinePostCollectionViewCell: UICollectionViewCell {
@@ -23,13 +23,18 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     
     @IBAction func tapGoodButton(_ sender: Any) {
         
+        let judge: Bool!
+        
         if goodButton.currentImage == UIImage.init(systemName: "heart.fill") {
+            //MARK: Post good cancell
             goodButton.setImage(UIImage.init(systemName: "heart"), for: .normal)
+            judge = false
         } else {
+            //MARK: Post good
             goodButton.setImage(UIImage.init(systemName: "heart.fill"), for: .normal)
+            judge = true
         }
-           
-        timelineCollectionViewCellDelegate?.tapGoodButton()
+        timelineCollectionViewCellDelegate?.tapGoodButton(judge: judge!)
        }
     
     override func awakeFromNib() {

@@ -80,10 +80,3 @@ class TimeLineViewController: UIViewController {
         refreshCtl.endRefreshing()
     }
 }
-
-extension TimeLineViewController: TimelineCollectionViewCellDelegate {
-    func tapGoodButton() {
-        //Goodボタンが押された時の処理
-        print("push!!")
-    }
-}
