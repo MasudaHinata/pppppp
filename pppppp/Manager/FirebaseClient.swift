@@ -215,6 +215,22 @@ final class FirebaseClient {
         return likeFriendData
     }
     
+    //MARK: - 投稿のいいね数を取得
+    func getPostLikeFriendCount(postId: String) async throws -> Int {
+        let querySnapShot = try await db.collection("Post").document(postId).getDocument()
+        guard querySnapShot.data()!["likeFriendList"] != nil else {
+            return 0
+        }
+        
+        let likeFriendIdList: [String] = querySnapShot.data()!["likeFriendList"] as! [String]
+        var likeFriendData = [UserData]()
+        for likeFriendId in likeFriendIdList {
+            let snapshot = try await db.collection("User").document(likeFriendId).getDocument()
+            likeFriendData.append(UserData(name: snapshot.data()!["name"]! as! String, iconImageURL: snapshot.data()!["IconImageURL"]! as! String))
+        }
+        return likeFriendData.count
+    }
+    
     //MARK: - 自分の名前を取得する
     func getMyNameData() async throws -> String {
         guard let user = Auth.auth().currentUser else {

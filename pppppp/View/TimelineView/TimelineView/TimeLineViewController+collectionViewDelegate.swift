@@ -20,25 +20,17 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
             guard let self = self else { return }
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                
-                if postDataItem[indexPath.row].userID == userID {
-                    cell.userIconImageView.kf.setImage(with: postDataItem[indexPath.row].iconImageURL)
-                    cell.userNameLabel.text = postDataItem[indexPath.row].name
-                    cell.dateLabel.text = "\(dateFormatter.string(from: postDataItem[indexPath.row].date))"
-                    cell.pointLabel.text = "\(postDataItem[indexPath.row].point) pt"
-                    cell.activityLabel.text = postDataItem[indexPath.row].activity
-                } else {
-                    cell.userIconImageView.kf.setImage(with: postDataItem[indexPath.row].iconImageURL)
-                    cell.userNameLabel.text = postDataItem[indexPath.row].name
-                    cell.dateLabel.text = "\(dateFormatter.string(from: postDataItem[indexPath.row].date))"
-                    cell.pointLabel.text = "\(postDataItem[indexPath.row].point) pt"
-                    cell.activityLabel.text = postDataItem[indexPath.row].activity
-                    cell.goodButton.isHidden = false
-                    cell.timelineCollectionViewCellDelegate = self
-                }
+                cell.userIconImageView.kf.setImage(with: postDataItem[indexPath.row].iconImageURL)
+                cell.userNameLabel.text = postDataItem[indexPath.row].name
+                cell.dateLabel.text = "\(dateFormatter.string(from: postDataItem[indexPath.row].date))"
+                cell.pointLabel.text = "\(postDataItem[indexPath.row].point) pt"
+                cell.activityLabel.text = postDataItem[indexPath.row].activity
+                cell.likeFriendCountLabel.text = "\(try await FirebaseClient.shared.getPostLikeFriendCount(postId: postDataItem[indexPath.row].id ?? ""))"
+                cell.goodButton.isHidden = false
+                cell.timelineCollectionViewCellDelegate = self
             }
             catch {
-                print("TimeLineViewContro viewdid error:",error.localizedDescription)
+                print("TimelineViewContro viewdid error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.viewDidAppear(true)
@@ -69,7 +61,7 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
                 }
             }
             catch {
-                print("TimeLineViewContro viewdid error:",error.localizedDescription)
+                print("TimelineViewContro viewdid error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
                         self.viewDidAppear(true)
@@ -131,5 +123,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
             }
             cancellables.insert(.init { task.cancel() })
         }
+        //TODO: データをキャッシュしておく
+        collectionView.reloadData()
     }
 }

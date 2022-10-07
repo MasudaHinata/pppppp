@@ -12,7 +12,7 @@ class TimelineNotificationViewController: UIViewController {
     @IBOutlet var pointLabel: UILabel!
     @IBOutlet var activityLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
-//    @IBOutlet var goodButton: UIButton!
+    @IBOutlet var likeFriendCountLabel: UILabel!
     @IBOutlet var userIconImageView: UIImageView! {
         didSet {
             userIconImageView.layer.cornerRadius = 40
@@ -40,9 +40,11 @@ class TimelineNotificationViewController: UIViewController {
         activityLabel.text = postData?.activity
         dateLabel.text = "\(dateFormatter.string(from: postData!.date))"
         userIconImageView.kf.setImage(with: postData?.iconImageURL)
+
         
         let task = Task {
             do {
+                likeFriendCountLabel.text = "\(try await FirebaseClient.shared.getPostLikeFriendCount(postId: postData?.id ?? ""))"
 //                likeFriendDataList = try await FirebaseClient.shared.getPostLikeFriend(postId: postData?.id ?? "")
 //                collectionView.reloadData()
 //                likeFriendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
@@ -50,7 +52,7 @@ class TimelineNotificationViewController: UIViewController {
 //                self.collectionView.reloadData()
             }
             catch {
-
+                print("TimelineNotificationViewController viewdid error:" ,error.localizedDescription)
             }
         }
         cancellables.insert(.init { task.cancel() })
