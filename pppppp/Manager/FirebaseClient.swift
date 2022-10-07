@@ -109,15 +109,6 @@ final class FirebaseClient {
         return users
     }
     
-    //MARK: - idで与えられたユーザーのProfileデータを返す
-    func getUserData(id: String) async throws -> [UserData] {
-        
-        let querySnapshot = try await db.collection("User").document(id).getDocument()
-        guard let userData = querySnapshot.data() as? [UserData] else { return [] }
-        
-        return userData
-    }
-    
     //MARK: - idで与えられたユーザーの累積ポイントを返す
     func getPointDataSum(id: String, accumulationType: String) async throws -> Int {
         var startDate = Date()
@@ -205,6 +196,23 @@ final class FirebaseClient {
             postDataItem = postDataItem.sorted(by: { (a, b) -> Bool in return a.date > b.date })
         }
         return postDataItem
+    }
+    
+    //MARK: - 自分の投稿にいいねした友達を取得
+    func getPostLikeFriend(postId: String) async throws -> [UserData] {
+        let querySnapShot = try await db.collection("Post").document(postId).getDocument()
+        guard querySnapShot.data()!["likeFriendList"] != nil else {
+            return []
+        }
+        
+        let likeFriendIdList: [String] = querySnapShot.data()!["likeFriendList"] as! [String]
+        var likeFriendData = [UserData]()
+        for likeFriendId in likeFriendIdList {
+            let snapshot = try await db.collection("User").document(likeFriendId).getDocument()
+            likeFriendData.append(UserData(name: snapshot.data()!["name"]! as! String, iconImageURL: snapshot.data()!["IconImageURL"]! as! String))
+        }
+        print(likeFriendData)
+        return likeFriendData
     }
     
     //MARK: - 自分の名前を取得する
