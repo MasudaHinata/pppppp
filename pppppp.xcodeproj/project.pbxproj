@@ -63,9 +63,9 @@
 		0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374653928ED7C9100DB0833 /* PostDispleyData.swift */; };
 		0374653C28EDA3F900DB0833 /* SetGoalWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374653B28EDA3F900DB0833 /* SetGoalWeightViewController.swift */; };
 		0374653E28EDA42400DB0833 /* SetGoalWeightView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0374653D28EDA42400DB0833 /* SetGoalWeightView.storyboard */; };
-		037EE2A128F056EF00912D6F /* TimelinePostCollectionViewCell+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EE2A028F056EF00912D6F /* TimelinePostCollectionViewCell+CollectionView.swift */; };
-		037EE2A728F0593000912D6F /* TimelineNotificationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EE2A528F0593000912D6F /* TimelineNotificationCollectionViewCell.swift */; };
-		037EE2A828F0593000912D6F /* TimelineNotificationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037EE2A628F0593000912D6F /* TimelineNotificationCollectionViewCell.xib */; };
+		037EE2AA28F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EE2A928F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift */; };
+		037EE2B128F068E400912D6F /* TimelineNotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EE2AF28F068E400912D6F /* TimelineNotificationViewCell.swift */; };
+		037EE2B228F068E400912D6F /* TimelineNotificationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037EE2B028F068E400912D6F /* TimelineNotificationViewCell.xib */; };
 		03879DE128E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03879DE028E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
@@ -187,9 +187,9 @@
 		0374653928ED7C9100DB0833 /* PostDispleyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDispleyData.swift; sourceTree = "<group>"; };
 		0374653B28EDA3F900DB0833 /* SetGoalWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalWeightViewController.swift; sourceTree = "<group>"; };
 		0374653D28EDA42400DB0833 /* SetGoalWeightView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetGoalWeightView.storyboard; sourceTree = "<group>"; };
-		037EE2A028F056EF00912D6F /* TimelinePostCollectionViewCell+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelinePostCollectionViewCell+CollectionView.swift"; sourceTree = "<group>"; };
-		037EE2A528F0593000912D6F /* TimelineNotificationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineNotificationCollectionViewCell.swift; sourceTree = "<group>"; };
-		037EE2A628F0593000912D6F /* TimelineNotificationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineNotificationCollectionViewCell.xib; sourceTree = "<group>"; };
+		037EE2A928F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelineNotificationViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		037EE2AF28F068E400912D6F /* TimelineNotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineNotificationViewCell.swift; sourceTree = "<group>"; };
+		037EE2B028F068E400912D6F /* TimelineNotificationViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineNotificationViewCell.xib; sourceTree = "<group>"; };
 		03879DE028E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthKit&ScoreringManager.swift"; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				0314456F28EFD7DA00B29D2B /* TimelineNotificationViewController.swift */,
-				037EE2A028F056EF00912D6F /* TimelinePostCollectionViewCell+CollectionView.swift */,
+				037EE2A928F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift */,
 				0314457128EFD7EE00B29D2B /* TimelineNotificationView.storyboard */,
 			);
 			path = TimelineNotificationView;
@@ -606,8 +606,8 @@
 		037EE2A228F0588F00912D6F /* TimelineNotificationViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				037EE2A528F0593000912D6F /* TimelineNotificationCollectionViewCell.swift */,
-				037EE2A628F0593000912D6F /* TimelineNotificationCollectionViewCell.xib */,
+				037EE2AF28F068E400912D6F /* TimelineNotificationViewCell.swift */,
+				037EE2B028F068E400912D6F /* TimelineNotificationViewCell.xib */,
 			);
 			path = TimelineNotificationViewCell;
 			sourceTree = "<group>";
@@ -864,6 +864,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				037EE2B228F068E400912D6F /* TimelineNotificationViewCell.xib in Resources */,
 				036F69FA28C08E7F0066A7DA /* SettingView.storyboard in Resources */,
 				033945EE28DF25AE00681E9C /* HealthChartsView.storyboard in Resources */,
 				03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */,
@@ -894,7 +895,6 @@
 				03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */,
 				0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
-				037EE2A828F0593000912D6F /* TimelineNotificationCollectionViewCell.xib in Resources */,
 				0314457228EFD7EE00B29D2B /* TimelineNotificationView.storyboard in Resources */,
 				9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */,
 				033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */,
@@ -950,12 +950,10 @@
 				0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */,
 				03DAC40928EB369D005F173B /* PostData.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
-				037EE2A728F0593000912D6F /* TimelineNotificationCollectionViewCell.swift in Sources */,
 				036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */,
 				03A1E0BD28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift in Sources */,
 				9C1A900C283506D5004B4100 /* ProfileViewController.swift in Sources */,
 				03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */,
-				037EE2A128F056EF00912D6F /* TimelinePostCollectionViewCell+CollectionView.swift in Sources */,
 				0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */,
 				03C7E7C228D453ED0069A46E /* OnboardingViewController1.swift in Sources */,
 				0343682728D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift in Sources */,
@@ -968,6 +966,7 @@
 				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
+				037EE2B128F068E400912D6F /* TimelineNotificationViewCell.swift in Sources */,
 				03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */,
 				0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */,
 				032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */,
@@ -983,6 +982,7 @@
 				0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
 				032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */,
+				037EE2AA28F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift in Sources */,
 				03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */,
 				036F69E728BE56E60066A7DA /* UserDataViewController.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,

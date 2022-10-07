@@ -211,7 +211,6 @@ final class FirebaseClient {
             let snapshot = try await db.collection("User").document(likeFriendId).getDocument()
             likeFriendData.append(UserData(name: snapshot.data()!["name"]! as! String, iconImageURL: snapshot.data()!["IconImageURL"]! as! String))
         }
-        print(likeFriendData)
         return likeFriendData
     }
     

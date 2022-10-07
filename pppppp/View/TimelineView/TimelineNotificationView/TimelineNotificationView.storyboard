@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -63,27 +64,52 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="H6H-Hp-6vn">
+                                <rect key="frame" x="0.0" y="183" width="390" height="627"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Mr-oA-z1L">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Lrd-bG-GRU">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CQE-FS-wvn">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="mainColor"/>
                         <constraints>
                             <constraint firstItem="SCM-b5-YE5" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="2rQ-gl-YYa"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="H6H-Hp-6vn" secondAttribute="trailing" id="3nk-g4-yyi"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="H6H-Hp-6vn" secondAttribute="bottom" id="AVq-uo-L92"/>
                             <constraint firstItem="KHK-1Z-pLW" firstAttribute="leading" secondItem="dpD-yJ-fAr" secondAttribute="trailing" constant="24" id="B8h-lA-C2F"/>
                             <constraint firstItem="LZx-NC-vdg" firstAttribute="centerY" secondItem="dpD-yJ-fAr" secondAttribute="centerY" id="FQ9-an-Lwv"/>
                             <constraint firstItem="LZx-NC-vdg" firstAttribute="leading" secondItem="SCM-b5-YE5" secondAttribute="trailing" constant="20" id="O9c-LO-gjC"/>
                             <constraint firstItem="KHK-1Z-pLW" firstAttribute="centerY" secondItem="p0j-q4-gkr" secondAttribute="centerY" id="Tze-wC-Bos"/>
                             <constraint firstItem="SCM-b5-YE5" firstAttribute="top" secondItem="hKi-VY-f8Q" secondAttribute="top" id="bsu-sj-TAl"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="p0j-q4-gkr" secondAttribute="trailing" constant="24" id="hue-Lz-C7E"/>
+                            <constraint firstItem="H6H-Hp-6vn" firstAttribute="top" secondItem="SCM-b5-YE5" secondAttribute="bottom" constant="40" id="ibx-NI-Xzs"/>
                             <constraint firstItem="dpD-yJ-fAr" firstAttribute="centerY" secondItem="KHK-1Z-pLW" secondAttribute="centerY" id="k8I-tI-BMP"/>
                             <constraint firstItem="SCM-b5-YE5" firstAttribute="centerY" secondItem="LZx-NC-vdg" secondAttribute="centerY" constant="-16" id="mXD-Fx-5bW"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hKi-VY-f8Q" secondAttribute="trailing" constant="24" id="nCu-q9-OR2"/>
                             <constraint firstItem="SCM-b5-YE5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="q7W-rE-gjq"/>
+                            <constraint firstItem="H6H-Hp-6vn" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rPc-Xc-ogO"/>
                             <constraint firstItem="p0j-q4-gkr" firstAttribute="leading" secondItem="KHK-1Z-pLW" secondAttribute="trailing" constant="2" id="yYw-J3-nAB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Post" largeTitleDisplayMode="always" id="LvU-zc-2sm"/>
                     <connections>
                         <outlet property="activityLabel" destination="LZx-NC-vdg" id="Ufb-Pv-bai"/>
+                        <outlet property="collectionView" destination="H6H-Hp-6vn" id="lzT-xi-IyZ"/>
                         <outlet property="dateLabel" destination="hKi-VY-f8Q" id="ajT-1g-akD"/>
                         <outlet property="likeFriendCountLabel" destination="p0j-q4-gkr" id="Pp9-TM-Nyr"/>
                         <outlet property="pointLabel" destination="dpD-yJ-fAr" id="It5-qr-XJI"/>

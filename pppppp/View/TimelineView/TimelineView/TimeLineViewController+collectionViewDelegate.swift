@@ -86,7 +86,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                 guard let self = self else { return }
                 do {
                     //FIXME: postIDを取ってくる
-                    let postId = "V97PuH2RkHDLgsFyJpdJ"
+                    let postId = "o4AsPx1um8cqzaCmlbZe"
                     try await FirebaseClient.shared.putGoodFriendsPost(postId: postId)
                 }
                 catch {
@@ -107,7 +107,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                 guard let self = self else { return }
                 do {
                     //FIXME: postIDを取ってくる
-                    let postId = "V97PuH2RkHDLgsFyJpdJ"
+                    let postId = "o4AsPx1um8cqzaCmlbZe"
                     try await FirebaseClient.shared.putGoodCancelFriendsPost(postId: postId)
                 }
                 catch {
@@ -123,7 +123,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
             }
             cancellables.insert(.init { task.cancel() })
         }
-        //TODO: データをキャッシュしておく
-        collectionView.reloadData()
+        //TODO: データをキャッシュしておく, いいねが終わったらreloadData()する
+//        collectionView.reloadData()
     }
 }

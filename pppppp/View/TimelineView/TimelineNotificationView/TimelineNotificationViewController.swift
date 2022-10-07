@@ -7,7 +7,8 @@ class TimelineNotificationViewController: UIViewController {
     let dateFormatter = DateFormatter()
     var cancellables = Set<AnyCancellable>()
     let layout = UICollectionViewFlowLayout()
-    var likeFriendDataList = [UserData]()
+//    var likeFriendDataList = [UserData]()
+    var friendDataList = [UserData]()
     
     @IBOutlet var pointLabel: UILabel!
     @IBOutlet var activityLabel: UILabel!
@@ -21,15 +22,15 @@ class TimelineNotificationViewController: UIViewController {
         }
     }
     
-//    @IBOutlet var collectionView: UICollectionView! {
-//        didSet {
-//            collectionView.delegate = self
-//            collectionView.dataSource = self
-//            collectionView.collectionViewLayout = layout
-//            layout.minimumLineSpacing = 0
-//            collectionView.register(UINib(nibName: "TimelineNotificationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TimelineNotificationCollectionViewCell")
-//        }
-//    }
+    @IBOutlet var collectionView: UICollectionView! {
+        didSet {
+            collectionView.delegate = self
+            collectionView.dataSource = self
+            collectionView.collectionViewLayout = layout
+            layout.minimumLineSpacing = 0
+            collectionView.register(UINib(nibName: "TimelineNotificationViewCell", bundle: nil), forCellWithReuseIdentifier: "TimelineNotificationViewCell")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +46,28 @@ class TimelineNotificationViewController: UIViewController {
         let task = Task {
             do {
                 likeFriendCountLabel.text = "\(try await FirebaseClient.shared.getPostLikeFriendCount(postId: postData?.id ?? ""))"
-//                likeFriendDataList = try await FirebaseClient.shared.getPostLikeFriend(postId: postData?.id ?? "")
-//                collectionView.reloadData()
-//                likeFriendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-//                print(likeFriendDataList)
-//                self.collectionView.reloadData()
+
+                let task = Task { [weak self] in
+                    guard let self = self else { return }
+                    do {
+                        try await FirebaseClient.shared.checkUserAuth()
+                        //FIXME: postIDを取ってくる
+                        let postId = "o4AsPx1um8cqzaCmlbZe"
+                        friendDataList = try await FirebaseClient.shared.getPostLikeFriend(postId: postId)
+                        self.collectionView.reloadData()
+                    }
+                    catch {
+                        print("DashboardViewContro ViewDid error:",error.localizedDescription)
+                        if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                                self.viewDidLoad()
+                            })
+                        } else {
+                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                        }
+                    }
+                }
+                cancellables.insert(.init { task.cancel() })
             }
             catch {
                 print("TimelineNotificationViewController viewdid error:" ,error.localizedDescription)
