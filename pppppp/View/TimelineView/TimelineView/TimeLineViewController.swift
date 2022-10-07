@@ -41,7 +41,6 @@ class TimeLineViewController: UIViewController {
                 activityIndicator.startAnimating()
                 postDataItem = try await FirebaseClient.shared.getPointActivityPost()
                 collectionView.reloadData()
-//                activityIndicator.stopAnimating()
             }
             catch {
                 print("TimeLineViewContro viewdid error:",error.localizedDescription)

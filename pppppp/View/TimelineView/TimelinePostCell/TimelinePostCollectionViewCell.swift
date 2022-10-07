@@ -22,24 +22,13 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func tapGoodButton(_ sender: Any) {
-//           //お気に入り状態を取得
-//           let isFavorite = UserDefaults.standard.bool(forKey: displayFruits)
-//           //表示画像を切り替える
-//           if isFavorite {
-//               goodButton.setImage(UIImage.init(systemName: "hand.thumbsup"), for: .normal)
-//           } else {
-//               goodButton.setImage(UIImage.init(systemName: "hand.thumbsup.fill"), for: .normal)
-//           }
         
         if goodButton.currentImage == UIImage.init(systemName: "heart.fill") {
             goodButton.setImage(UIImage.init(systemName: "heart"), for: .normal)
         } else {
             goodButton.setImage(UIImage.init(systemName: "heart.fill"), for: .normal)
         }
-            
            
-        
-        
         timelineCollectionViewCellDelegate?.tapGoodButton()
        }
     

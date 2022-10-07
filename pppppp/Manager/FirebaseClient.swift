@@ -336,6 +336,8 @@ final class FirebaseClient {
         }
     }
     
+    //MARK: - 友達の投稿へのいいねを保存
+    
     //MARK: - 友達を追加する
     func addFriend(friendId: String) async throws {
         guard let user = Auth.auth().currentUser else {
