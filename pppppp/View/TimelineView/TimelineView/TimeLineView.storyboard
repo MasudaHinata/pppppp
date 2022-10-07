@@ -47,14 +47,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="HWL-JB-unQ" secondAttribute="trailing" id="r2f-Km-0FP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Timeline" id="kig-hb-FHE">
-                        <barButtonItem key="rightBarButtonItem" image="bell.badge" catalog="system" id="Qt6-KR-X5W">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="bellButton" destination="Y6W-OH-hqX" id="6aq-zB-Ekx"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Timeline" id="kig-hb-FHE"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="HWL-JB-unQ" id="MbQ-tU-S2s"/>
@@ -91,7 +84,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bell.badge" catalog="system" width="125" height="128"/>
         <image name="message" catalog="system" width="128" height="116"/>
         <namedColor name="mainColor">
             <color red="0.071000002324581146" green="0.0" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

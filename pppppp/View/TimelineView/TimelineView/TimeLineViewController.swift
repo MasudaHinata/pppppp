@@ -19,11 +19,6 @@ class TimeLineViewController: UIViewController {
         }
     }
     
-    @IBAction func bellButton() {
-        let secondVC = StoryboardScene.TimelineNotificationView.initialScene.instantiate()
-        self.navigationController?.pushViewController(secondVC, animated: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

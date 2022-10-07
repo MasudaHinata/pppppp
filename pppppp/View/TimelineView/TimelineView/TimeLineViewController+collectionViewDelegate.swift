@@ -68,7 +68,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                 guard let self = self else { return }
                 do {
                     //FIXME: postIDを取ってくる
-                    let postId = "3t17wFLGKb07lWy76fZk"
+                    let postId = "V97PuH2RkHDLgsFyJpdJ"
                     try await FirebaseClient.shared.putGoodFriendsPost(postId: postId)
                 }
                 catch {
@@ -89,7 +89,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                 guard let self = self else { return }
                 do {
                     //FIXME: postIDを取ってくる
-                    let postId = "3t17wFLGKb07lWy76fZk"
+                    let postId = "V97PuH2RkHDLgsFyJpdJ"
                     try await FirebaseClient.shared.putGoodCancelFriendsPost(postId: postId)
                 }
                 catch {

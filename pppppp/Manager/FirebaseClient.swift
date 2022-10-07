@@ -333,7 +333,7 @@ final class FirebaseClient {
         }
         let userID = user.uid
         if point != 0 {
-            try await db.collection("Post").document().setData(["userID": userID, "date": Timestamp(date: Date()), "activity": activity, "point": point])
+            try await db.collection("Post").document().setData(["userID": "9MPo5yjRpyRBn5i5WX6orITxoT63", "date": Timestamp(date: Date()), "activity": activity, "point": point])
         }
     }
     
