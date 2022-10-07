@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0314457028EFD7DA00B29D2B /* TimelineNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314456F28EFD7DA00B29D2B /* TimelineNotificationViewController.swift */; };
+		0314457228EFD7EE00B29D2B /* TimelineNotificationView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0314457128EFD7EE00B29D2B /* TimelineNotificationView.storyboard */; };
 		0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0318016828D4D32A004C7002 /* AddFriendView.storyboard */; };
 		0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318016A28D4D344004C7002 /* AddFriendViewController.swift */; };
 		032843A628DC8C7E00AB1A5D /* OnboardingView3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 032843A528DC8C7E00AB1A5D /* OnboardingView3.storyboard */; };
@@ -126,6 +128,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0314456F28EFD7DA00B29D2B /* TimelineNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineNotificationViewController.swift; sourceTree = "<group>"; };
+		0314457128EFD7EE00B29D2B /* TimelineNotificationView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimelineNotificationView.storyboard; sourceTree = "<group>"; };
 		0318016828D4D32A004C7002 /* AddFriendView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFriendView.storyboard; sourceTree = "<group>"; };
 		0318016A28D4D344004C7002 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		032843A528DC8C7E00AB1A5D /* OnboardingView3.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView3.storyboard; sourceTree = "<group>"; };
@@ -260,6 +264,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0314456E28EFD7A200B29D2B /* TimelineNotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				0314456F28EFD7DA00B29D2B /* TimelineNotificationViewController.swift */,
+				0314457128EFD7EE00B29D2B /* TimelineNotificationView.storyboard */,
+			);
+			path = TimelineNotificationView;
+			sourceTree = "<group>";
+		};
 		032843AD28DC9A5A00AB1A5D /* SetNameView */ = {
 			isa = PBXGroup;
 			children = (
@@ -682,6 +695,7 @@
 			children = (
 				03DAC40A28EC2818005F173B /* TimelineView */,
 				03DAC40B28EC282A005F173B /* TimelinePostCell */,
+				0314456E28EFD7A200B29D2B /* TimelineNotificationView */,
 			);
 			path = TimelineView;
 			sourceTree = "<group>";
@@ -863,6 +877,7 @@
 				03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */,
 				0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
+				0314457228EFD7EE00B29D2B /* TimelineNotificationView.storyboard in Resources */,
 				9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */,
 				033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
@@ -887,6 +902,7 @@
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				0374653C28EDA3F900DB0833 /* SetGoalWeightViewController.swift in Sources */,
 				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
+				0314457028EFD7DA00B29D2B /* TimelineNotificationViewController.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				03DAC41128EC287D005F173B /* TimeLineViewController+collectionViewDelegate.swift in Sources */,
