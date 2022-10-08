@@ -4,91 +4,101 @@ import Charts
 import Combine
 
 struct ProfileContentView: View {
-    
-    @State var cancellables = Set<AnyCancellable>()
-    @State var friendCount: Int?
-    @State var point: Int?
-    @State private var show: Bool = false
+    @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
-        
         NavigationView {
-            ScrollView {
-                //MARK: - profile画面
-                Group {
-                    HStack(alignment: .center, spacing: 32) {
-                        
-                        KFImage(URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 72, height: 72)
-                            .cornerRadius(36)
-                        
-                        Text("\(String(point ?? 0))\npoint")
-                            .font(.custom("F5.6", fixedSize: 16))
-                            .multilineTextAlignment(.center)
-                        
-                        Button(action: {
-                            //TODO: FriendListViewにpush遷移させる
+            VStack {
+//                ScrollView {
+                    //MARK: - profile画面
+                    Group {
+                        HStack(alignment: .center, spacing: 32) {
                             
-                        }){
-                            Text("\((friendCount ?? 0))\nfriends")
+                            KFImage(viewModel.iconImageURL)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 72, height: 72)
+                                .cornerRadius(36)
+                            
+                            Text("\(String(viewModel.point))\npoint")
                                 .font(.custom("F5.6", fixedSize: 16))
+                                .multilineTextAlignment(.center)
+                            
+                            Button(action: {
+                                //TODO: FriendListViewにpush遷移させる
+                                
+                            }){
+                                Text("\((viewModel.friendCount))\nfriends")
+                                    .font(.custom("F5.6", fixedSize: 16))
+                            }
+                            .foregroundColor(.white)
+                            
+                            Button{
+                                //TODO: ChangeProfileViewにmodal遷移させる
+                            } label: {
+                                Image(systemName: "pencil")
+                                Text("Edit")
+                            }
+                            //TODO: textの上下に余白
+                            .foregroundColor(Color(asset: Asset.Colors.white00))
+                            .background(Color(asset: Asset.Colors.white48))
                         }
-                        .foregroundColor(.white)
+                    }
+//                }
+                Form {
+                    //MARK: - Streak
+                    Section {
+                        //TODO: gridの間隔設定
                         
-                        Button(action: {
-                            //TODO: ChangeProfileViewにmodal遷移させる
-                        }){
-                            Image(systemName: "pencil")
-                            Text("Edit")
+                        
+                        //                    Grid {
+                        //                        ForEach(0..<7) { _ in
+                        //                            GridRow {
+                        //                                ForEach([0, 1, 2, 3, 4, 5]) { index in
+                        //                                    Rectangle()
+                        //
+                        //
+                        //                                        .frame(width: 17, height: 16)
+                        //                                }
+                        //                            }
+                        //                        }
+                        //                    }
+                    }
+                    
+                    //MARK: - RecentActivity
+                    Section {
+                        ForEach(viewModel.pointDataList, id: \.self) { pointdataItem in
+                            HStack {
+                                Text(String(pointdataItem.point ?? 0))
+                                Text(pointdataItem.activity ?? "")
+                                //                            Text(pointdataItem.date)
+                            }
                         }
-                        //TODO: textの上下に余白
-                        .foregroundColor(Color(asset: Asset.Colors.white00))
-                        .background(Color(asset: Asset.Colors.white48))
+                    } header: {
+                        Text("RECENT ACTIVITY")
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(asset: Asset.Colors.mainColor))
                 
-                //MARK: - Streak
-                Group {
-                    
-                }
-                
-                //MARK: - RecentActivity
-                Group {
-                    
-                }
+                .navigationBarTitle(Text(viewModel.name))
+                    .navigationBarItems(trailing: HStack {
+                        //TODO: SettingViewにmodal遷移させる
+                        Button("\(Image(systemName: "gearshape"))") {}
+                            .foregroundColor(.white)
+                        //TODO: ShareMyDataViewにmodal遷移させる
+                        Button("\(Image(systemName: "person.crop.circle.badge.plus"))") {}
+                            .foregroundColor(.white)
+                    })
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    .background(Color(asset: Asset.Colors.mainColor))
+//                }
             }
-            .navigationBarTitle(Text((UserDefaults.standard.object(forKey: "name") as? String) ?? ""))
-            .navigationBarItems(trailing: HStack {
-                //TODO: SettingViewにmodal遷移させる
-                Button("\(Image(systemName: "gearshape"))") {}
-                    .foregroundColor(.white)
-                //TODO: ShareMyDataViewにmodal遷移させる
-                Button("\(Image(systemName: "person.crop.circle.badge.plus"))") {}
-                    .foregroundColor(.white)
-            })
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(asset: Asset.Colors.mainColor))
-        }
-        .onAppear {
-            let task = Task {
-                do {
-                    let userID = try await FirebaseClient.shared.getUserUUID()
-                    try await FirebaseClient.shared.checkNameData()
-                    try await FirebaseClient.shared.checkIconData()
-                    
-                    let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
-                    friendCount = friendDataList.count
-                    
-                    let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
-                    point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
-                }
-                catch {
-                    print("ProfileViewContro didAppear error:",error.localizedDescription)
-                }
+            .onAppear {
+                viewModel.getProfileData()
             }
-            cancellables.insert(.init { task.cancel() })
         }
     }
 }
