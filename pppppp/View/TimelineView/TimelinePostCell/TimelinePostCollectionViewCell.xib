@@ -108,7 +108,7 @@
             <connections>
                 <outlet property="activityLabel" destination="N7K-qn-CU9" id="4kl-xn-7xa"/>
                 <outlet property="dateLabel" destination="mph-eG-fuZ" id="9co-c4-VEB"/>
-                <outlet property="goodButton" destination="NmF-c3-SC5" id="HXF-mz-UBc"/>
+                <outlet property="heartButton" destination="NmF-c3-SC5" id="0S9-oD-IhW"/>
                 <outlet property="likeFriendCountLabel" destination="Q8W-xA-pNZ" id="Vef-h7-Jyu"/>
                 <outlet property="pointLabel" destination="hZW-UM-4eA" id="YLT-qG-ldj"/>
                 <outlet property="userIconImageView" destination="NlN-dq-lcz" id="HJz-EA-o8n"/>

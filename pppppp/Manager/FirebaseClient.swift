@@ -198,8 +198,19 @@ final class FirebaseClient {
         return postDataItem
     }
     
-    //MARK: - 自分の投稿にいいねした友達を取得
-    func getPostLikeFriend(postId: String) async throws -> [UserData] {
+    //MARK: - 投稿にいいねした友達IDを取得
+    func getPostLikeFriend(postId: String) async throws -> [String] {
+        let querySnapShot = try await db.collection("Post").document(postId).getDocument()
+        guard querySnapShot.data()!["likeFriendList"] != nil else {
+            return []
+        }
+        
+        let likeFriendIdList: [String] = querySnapShot.data()!["likeFriendList"] as! [String]
+        return likeFriendIdList
+    }
+    
+    //MARK: - 投稿にいいねした友達のデータを取得
+    func getPostLikeFriendDate(postId: String) async throws -> [UserData] {
         let querySnapShot = try await db.collection("Post").document(postId).getDocument()
         guard querySnapShot.data()!["likeFriendList"] != nil else {
             return []
@@ -209,7 +220,7 @@ final class FirebaseClient {
         var likeFriendData = [UserData]()
         for likeFriendId in likeFriendIdList {
             let snapshot = try await db.collection("User").document(likeFriendId).getDocument()
-            likeFriendData.append(UserData(name: snapshot.data()!["name"]! as! String, iconImageURL: snapshot.data()!["IconImageURL"]! as! String))
+            likeFriendData.append(try snapshot.data(as: UserData.self))
         }
         return likeFriendData
     }
@@ -455,21 +466,19 @@ final class FirebaseClient {
         try await user.reload()
     }
     
-    //MARK: - 投稿にいいねされたかどうかの判定
-    func checkLikeFriendsPost(postId: String) async throws -> Bool {
-        guard let user = Auth.auth().currentUser else {
-            try await  self.checkUserAuth()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-
-        let judge: Bool
-
-//        let querySnapshot = try await db.collection("Post").document(postId).updateData(["likeFriendList": FieldValue.arrayUnion([userID])])
-//        if let result = 
-
-        return judge
-    }
+//    //MARK: - 投稿にいいねした人のリストを取得する
+//    func checkLikeFriendsPost(postId: String) async throws -> String {
+//        guard let user = Auth.auth().currentUser else {
+//            try await  self.checkUserAuth()
+//            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+//        }
+//        let userID = user.uid
+//        var postLikeList: [String]!
+//        let querySnapshot = try await db.collection("Post").document(postId).getDocument()
+//        postLikeList = querySnapshot.data()![""]!
+//
+//        return postLikeList
+//    }
     
     //MARK: - 名前があるかどうかの判定
     @MainActor

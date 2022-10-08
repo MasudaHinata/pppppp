@@ -50,9 +50,8 @@ class TimelineNotificationViewController: UIViewController {
                     guard let self = self else { return }
                     do {
                         try await FirebaseClient.shared.checkUserAuth()
-                        //FIXME: postIDを取ってくる
                         if let postId = postData?.postData.id {
-                            friendDataList = try await FirebaseClient.shared.getPostLikeFriend(postId: postId)
+                            friendDataList = try await FirebaseClient.shared.getPostLikeFriendDate(postId: postId)
                             self.collectionView.reloadData()
                         }
                     } catch {

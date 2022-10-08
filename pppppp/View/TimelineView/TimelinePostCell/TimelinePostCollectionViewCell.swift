@@ -18,7 +18,7 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var activityLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
     @IBOutlet private var likeFriendCountLabel: UILabel!
-    @IBOutlet private var goodButton: UIButton!
+    @IBOutlet private var heartButton: UIButton!
     @IBOutlet private var userIconImageView: UIImageView! {
         didSet {
             userIconImageView.layer.cornerRadius = 36
@@ -28,24 +28,24 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func tapGoodButton(_ sender: Any) {
-        var judge: Bool!
         let task = Task {
             do {
                 try await FirebaseClient.shared.checkUserAuth()
-                    
-                    if goodButton.currentImage == UIImage(systemName: "heart.fill") {
-                        //MARK: Post good cancell
-                        goodButton.setImage(UIImage(systemName: "heart"), for: .normal)
-                        judge = false
-                    } else {
-                        //MARK: Post good
-                        goodButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-                        judge = true
-                    }
-                    
-                    if let judge = judge, let postId = postDisplayData?.postData.id {
-                        timelineCollectionViewCellDelegate?.tapGoodButton(judge: judge, postId: postId)
-                    }
+                let judge: Bool?
+               
+                if heartButton.currentImage == UIImage(systemName: "heart.fill") {
+                    //MARK: Post good cancell
+                    heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                    judge = false
+                } else {
+                    //MARK: Post good
+                    heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                    judge = true
+                }
+                
+                if let judge = judge, let postId = postDisplayData?.postData.id {
+                    timelineCollectionViewCellDelegate?.tapGoodButton(judge: judge, postId: postId)
+                }
             }
             catch {
                 print("TimeLineCollection tapGoodButton error:",error.localizedDescription)
@@ -67,10 +67,20 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
         dateLabel.text = "\(dateFormatter.string(from: postDisplayData.postData.date))"
         pointLabel.text = "\(postDisplayData.postData.point) pt"
         activityLabel.text = postDisplayData.postData.activity
-        
+
         let task = Task {
             do {
                 likeFriendCountLabel.text = "\(try await FirebaseClient.shared.getPostLikeFriendCount(postId: postDisplayData.postData.id ?? ""))"
+                
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                var likedFriendDataList = [UserData]()
+                likedFriendDataList = try await FirebaseClient.shared.getPostLikeFriendDate(postId: postDisplayData.postData.id ?? "")
+                print(likedFriendDataList)
+                if likedFriendDataList.first { $0.id == userID } != nil {
+                    heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                } else {
+                    heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                }
             } catch {
                 print("TimelinePostCollection tapGoodButton error:",error.localizedDescription)
             }
