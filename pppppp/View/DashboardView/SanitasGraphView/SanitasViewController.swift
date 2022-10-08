@@ -15,8 +15,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     @IBOutlet var weekPointLabel: UILabel!
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var noFriendLabel: UILabel!
-//    @IBOutlet var mountainView: DrawView!
-    @IBOutlet var mountainView: PersonalPathView!
+    @IBOutlet var mountainView: DrawView!
     
     @IBAction func sceneDashboardView() {
         let secondVC = StoryboardScene.DashboardView.initialScene.instantiate()
@@ -143,7 +142,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await FirebaseClient.shared.checkUserAuth()
+                let userID = try await FirebaseClient.shared.getUserUUID()
                 let now = calendar.component(.hour, from: Date())
                 if now >= 19 {
                     let selfCheckJudge = try await FirebaseClient.shared.checkSelfCheck()
@@ -169,26 +168,25 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 
                 stepsLabel.text = "Today  \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps()))  steps"
                 
-                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
-                if judge {
-                    let weight = try await HealthKit_ScoreringManager.shared.getWeight()
-                    guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
-                        let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
-                        self.showDetailViewController(secondVC, sender: self)
-                        return
-                    }
-                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
-                    if checkPoint == [] {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2週間の体重データがないためポイントを作成できませんでした", handler: { _ in })
-                    }
-                }
-                
-                let createdPointjudge = try await HealthKit_ScoreringManager.shared.createWorkoutPoint()
-                if createdPointjudge == false {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "体重データがないためポイントを作成できませんでした", handler: { _ in })
-                }
-                
-                let userID = try await FirebaseClient.shared.getUserUUID()
+                //MARK: 体重のポイント作成判定
+                //                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
+                //                if judge {
+                //                    let weight = try await HealthKit_ScoreringManager.shared.getWeight()
+                //                    guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
+                //                        let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
+                //                        self.showDetailViewController(secondVC, sender: self)
+                //                        return
+                //                    }
+                //                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
+                //                    if checkPoint == [] {
+                //                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2週間の体重データがないためポイントを作成できませんでした", handler: { _ in })
+                //                    }
+                //                }
+                //MARK: ワークアウトのポイント作成判定
+                //                let createdPointjudge = try await HealthKit_ScoreringManager.shared.createWorkoutPoint()
+                //                if createdPointjudge == false {
+                //                    ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "体重データがないためポイントを作成できませんでした", handler: { _ in })
+                //                }
                 let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
                 if type as! String == "今日までの一週間" {
                     startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: Date()))!

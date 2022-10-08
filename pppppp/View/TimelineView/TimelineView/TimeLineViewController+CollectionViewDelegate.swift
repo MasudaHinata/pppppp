@@ -10,32 +10,11 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimelinePostCollectionViewCell", for: indexPath)  as! TimelinePostCollectionViewCell
         
-        var cancellables = Set<AnyCancellable>()
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YY/MM/dd hh:mm"
         
         cell.configureCell(postDataItem[indexPath.row])
         cell.timelineCollectionViewCellDelegate = self
-        
-//        let task = Task { [weak self] in
-//            guard let self = self else { return }
-//            do {
-//                cell.configureCell(postDataItem[indexPath.row])
-//                cell.timelineCollectionViewCellDelegate = self
-//            } catch {
-//                print("TimelineViewContro viewdid error:",error.localizedDescription)
-//                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-//                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
-//                        self.viewDidAppear(true)
-//                    })
-//                } else {
-//                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
-//                }
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
-        
         return cell
     }
     

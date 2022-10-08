@@ -7,7 +7,7 @@ class TimelineNotificationViewController: UIViewController {
     let dateFormatter = DateFormatter()
     var cancellables = Set<AnyCancellable>()
     let layout = UICollectionViewFlowLayout()
-    var friendDataList = [UserData]()
+    var likedFriendDataList = [UserData]()
     
     @IBOutlet var pointLabel: UILabel!
     @IBOutlet var activityLabel: UILabel!
@@ -44,14 +44,13 @@ class TimelineNotificationViewController: UIViewController {
         
         let task = Task {
             do {
-                likeFriendCountLabel.text = "\(try await FirebaseClient.shared.getPostLikeFriendCount(postId: postData?.postData.id ?? ""))"
-
                 let task = Task { [weak self] in
                     guard let self = self else { return }
                     do {
                         try await FirebaseClient.shared.checkUserAuth()
                         if let postId = postData?.postData.id {
-                            friendDataList = try await FirebaseClient.shared.getPostLikeFriendDate(postId: postId)
+                            likedFriendDataList = try await FirebaseClient.shared.getPostLikeFriendDate(postId: postId)
+                            likeFriendCountLabel.text = "\(likedFriendDataList.count)"
                             self.collectionView.reloadData()
                         }
                     } catch {
