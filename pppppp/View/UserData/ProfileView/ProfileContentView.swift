@@ -45,26 +45,9 @@ struct ProfileContentView: View {
                 }
                 Form {
                     //MARK: - Streak
-                    Section {
-                        
-                        
-                        
-                        
-                        
-                        //                        //TODO: gridの間隔設定
-                        //                        Grid {
-                        //                            ForEach(0..<7) { _ in
-                        //                                GridRow {
-                        //                                    ForEach([0, 1, 2, 3, 4, 5]) { index in
-                        //                                        Rectangle()
-                        //
-                        //
-                        //                                            .frame(width: 17, height: 16)
-                        //                                    }
-                        //                                }
-                        //                            }
-                        //                        }
-                    }
+//                    Section {
+                        StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList, flowLayout: viewModel.layout))
+//                    }
                     
                     //MARK: - RecentActivity
                     Section {

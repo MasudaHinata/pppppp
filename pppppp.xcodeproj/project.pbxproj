@@ -17,6 +17,7 @@
 		032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */; };
 		032DF35B28F1888D00458C20 /* PersonalPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF35A28F1888D00458C20 /* PersonalPathView.swift */; };
 		032DF35D28F1B7AC00458C20 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */; };
+		032DF35F28F1D0EE00458C20 /* StreakCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */; };
 		0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */; };
 		033945EE28DF25AE00681E9C /* HealthChartsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033945ED28DF25AE00681E9C /* HealthChartsView.storyboard */; };
 		033945F028DF25C100681E9C /* HealthChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033945EF28DF25C100681E9C /* HealthChartsViewController.swift */; };
@@ -144,6 +145,7 @@
 		032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Scenes.swift"; sourceTree = "<group>"; };
 		032DF35A28F1888D00458C20 /* PersonalPathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPathView.swift; sourceTree = "<group>"; };
 		032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCollectionView.swift; sourceTree = "<group>"; };
 		0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
 		033945ED28DF25AE00681E9C /* HealthChartsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HealthChartsView.storyboard; sourceTree = "<group>"; };
 		033945EF28DF25C100681E9C /* HealthChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsViewController.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
 				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
 				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
+				032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -985,6 +988,7 @@
 				0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */,
 				032DF35D28F1B7AC00458C20 /* ProfileViewModel.swift in Sources */,
 				036F697F28B8EACE0066A7DA /* PointData.swift in Sources */,
+				032DF35F28F1D0EE00458C20 /* StreakCollectionView.swift in Sources */,
 				035D29E528E9F46D00E1BEA4 /* FriendListViewController+CollectionViewDelegate.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */,
 				03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */,
