@@ -189,11 +189,11 @@ final class FirebaseClient {
             
             for postData in postDataList {
                 if let user = userDataList.first{ $0.id == postData.userID } {
-                    let postData = PostDisplayData(id : postData.id,userID: user.id!, date: postData.date, activity: postData.activity, point: postData.point, name: user.name, iconImageURL: URL(string: user.iconImageURL)!)
+                    let postData = PostDisplayData(postData: postData, createdUser: user)
                     postDataItem.append(postData)
                 }
             }
-            postDataItem = postDataItem.sorted(by: { (a, b) -> Bool in return a.date > b.date })
+            postDataItem = postDataItem.sorted(by: { (a, b) -> Bool in return a.postData.date > b.postData.date })
         }
         return postDataItem
     }
@@ -454,6 +454,22 @@ final class FirebaseClient {
         }
         try await user.reload()
     }
+    
+//    //MARK: - 投稿にいいねされたかどうかの判定
+//    func checkLikeFriendsPost(postId: String) async throws -> Bool {
+//        guard let user = Auth.auth().currentUser else {
+//            try await  self.checkUserAuth()
+//            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+//        }
+//        let userID = user.uid
+//
+//        let judge: Bool
+//
+//        let querySnapshot = try await db.collection("Post").document(postId).updateData(["likeFriendList": FieldValue.arrayUnion([userID])])
+//        if let result = querySnapshot.data
+//
+//        return judge
+//    }
     
     //MARK: - 名前があるかどうかの判定
     @MainActor
