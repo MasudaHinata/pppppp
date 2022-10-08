@@ -22,9 +22,9 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                 } catch {
                     print("TimelineCollectionViewCellDelegate error:",error.localizedDescription)
                     if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                             self.viewDidAppear(true)
-                        })
+                        }
                     } else {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                     }
@@ -40,9 +40,9 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                 } catch {
                     print("TimelineCollectionViewCellDelegate error:",error.localizedDescription)
                     if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                             self.viewDidAppear(true)
-                        })
+                        }
                     } else {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                     }
@@ -50,7 +50,6 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
             }
             cancellables.insert(.init { task.cancel() })
         }
-        //TODO: データをキャッシュしておく, いいねが終わったらreloadData()する
-//        collectionView.reloadData()
+        collectionView.reloadData()
     }
 }

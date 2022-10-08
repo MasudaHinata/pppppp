@@ -96,7 +96,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             catch {
                 print("SanitasViewContro reloadButton error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください"){ _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.viewDidAppear(true)
                     }
                 } else {
@@ -186,13 +186,13 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 //                    }
                 //                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
                 //                    if checkPoint == [] {
-                //                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2週間の体重データがないためポイントを作成できませんでした", handler: { _ in })
+                //                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2週間の体重データがないためポイントを作成できませんでした")
                 //                    }
                 //                }
                 //MARK: ワークアウトのポイント作成判定
                 //                let createdPointjudge = try await HealthKit_ScoreringManager.shared.createWorkoutPoint()
                 //                if createdPointjudge == false {
-                //                    ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "体重データがないためポイントを作成できませんでした", handler: { _ in })
+                //                    ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "体重データがないためポイントを作成できませんでした")
                 //                }
                 
                 //MARK: ポイントの期間・今日の歩数を表示

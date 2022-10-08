@@ -39,9 +39,9 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
     
     @IBAction func recordExerciseButton() {
         if selectExerciseTextField.text == "" || selectExerciseTextField.text == "運動を選択してください" {
-            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "運動を選択してください", handler: { _ in })
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "運動を選択してください")
         } else if exerciseTimeTextField.text == "" || exerciseTimeTextField.text == "0" {
-            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "時間を選択してください", handler: { _ in })
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "時間を選択してください")
         } else {
             let task = Task { [weak self] in
                 guard let self = self else { return }
@@ -53,7 +53,7 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
                 catch {
                     print("RecordExerciseView recordExercise error:", error.localizedDescription)
                     if error.localizedDescription == "Not authorized" {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "設定からHealthKitの許可をオンにしてください", handler: { _ in })
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "設定からHealthKitの許可をオンにしてください")
                     } else {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                     }

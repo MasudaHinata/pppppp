@@ -109,6 +109,15 @@ final class FirebaseClient {
         return users
     }
     
+    //MARK: - idで渡されたユーザーデータを取得する
+    func getUserDataFromId(friendId: String) async throws -> [UserData] {
+        var userData = [UserData]()
+        let querySnapShot = try await db.collection("User").document(friendId).getDocument()
+        userData.append(try querySnapShot.data(as: UserData.self))
+        
+        return userData
+    }
+    
     //MARK: - idで与えられたユーザーの累積ポイントを返す
     func getPointDataSum(id: String, accumulationType: String) async throws -> Int {
         var startDate = Date()
@@ -188,7 +197,7 @@ final class FirebaseClient {
             let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
             
             for postData in postDataList {
-                if let user = userDataList.first{ $0.id == postData.userID } {
+                if let user = userDataList.first(where: { $0.id == postData.userID }) {
                     let postData = PostDisplayData(postData: postData, createdUser: user)
                     postDataItem.append(postData)
                 }
@@ -196,17 +205,6 @@ final class FirebaseClient {
             postDataItem = postDataItem.sorted(by: { (a, b) -> Bool in return a.postData.date > b.postData.date })
         }
         return postDataItem
-    }
-    
-    //MARK: - 投稿にいいねした友達IDを取得
-    func getPostLikeFriend(postId: String) async throws -> [String] {
-        let querySnapShot = try await db.collection("Post").document(postId).getDocument()
-        guard querySnapShot.data()!["likeFriendList"] != nil else {
-            return []
-        }
-        
-        let likeFriendIdList: [String] = querySnapShot.data()!["likeFriendList"] as! [String]
-        return likeFriendIdList
     }
     
     //MARK: - 投稿にいいねした友達のデータを取得
@@ -224,68 +222,7 @@ final class FirebaseClient {
         }
         return likeFriendData
     }
-    
-//    //MARK: - 投稿のいいね数を取得
-//    func getPostLikeFriendCount(postId: String) async throws -> Int {
-//        let querySnapShot = try await db.collection("Post").document(postId).getDocument()
-//        guard querySnapShot.data()!["likeFriendList"] != nil else {
-//            return 0
-//        }
-//        
-//        let likeFriendIdList: [String] = querySnapShot.data()!["likeFriendList"] as! [String]
-//        var likeFriendData = [UserData]()
-//        for likeFriendId in likeFriendIdList {
-//            let snapshot = try await db.collection("User").document(likeFriendId).getDocument()
-//            likeFriendData.append(UserData(name: snapshot.data()!["name"]! as! String, iconImageURL: snapshot.data()!["IconImageURL"]! as! String))
-//        }
-//        return likeFriendData.count
-//    }
-    
-    //MARK: - 自分の名前を取得する
-    func getMyNameData() async throws -> String {
-        guard let user = Auth.auth().currentUser else {
-            try await  self.checkUserAuth()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        try await checkNameData()
-        let querySnapShot = try await db.collection("User").document(userID).getDocument()
-        let data = querySnapShot.data()!["name"]!
-        return data as! String
-    }
-    
-    //MARK: - 自分のアイコンを取得する
-    func getMyIconData() async throws -> URL {
-        guard let user = Auth.auth().currentUser else {
-            try await  self.checkUserAuth()
-            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-        }
-        let userID = user.uid
-        try await checkIconData()
-        let querySnapShot = try await db.collection("User").document(userID).getDocument()
-        let url = URL(string: querySnapShot.data()!["IconImageURL"]! as! String)!
-        return url
-    }
-    
-    //MARK: - 友達の名前を取得する
-    func getFriendNameData(friendId: String) async throws -> String {
-        let querySnapShot = try await db.collection("User").document(friendId).getDocument()
-        var data: String!
-        if querySnapShot.data() == nil {
-            throw FirebaseClientFirestoreError.userDataNotFound
-        } else {
-            data = querySnapShot.data()!["name"]! as? String
-        }
-        return data!
-    }
-    
-    //MARK: - 友達のアイコンを取得する
-    func getFriendIconData(friendId: String) async throws -> URL {
-        let querySnapShot = try await db.collection("User").document(friendId).getDocument()
-        let url = URL(string: querySnapShot.data()!["IconImageURL"]! as! String)!
-        return url
-    }
-    
+ 
     //MARK: - FireStore Write
     
     //MARK: - UserDataをFirestoreに保存
@@ -465,20 +402,6 @@ final class FirebaseClient {
         }
         try await user.reload()
     }
-    
-//    //MARK: - 投稿にいいねした人のリストを取得する
-//    func checkLikeFriendsPost(postId: String) async throws -> String {
-//        guard let user = Auth.auth().currentUser else {
-//            try await  self.checkUserAuth()
-//            throw FirebaseClientAuthError.firestoreUserDataNotCreated
-//        }
-//        let userID = user.uid
-//        var postLikeList: [String]!
-//        let querySnapshot = try await db.collection("Post").document(postId).getDocument()
-//        postLikeList = querySnapshot.data()![""]!
-//
-//        return postLikeList
-//    }
     
     //MARK: - 名前があるかどうかの判定
     @MainActor
