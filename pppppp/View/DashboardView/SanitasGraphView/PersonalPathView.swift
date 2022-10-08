@@ -9,17 +9,15 @@ class PersonalPathView: UIView {
     var paths = [UIBezierPath]()
     var imageButtons = [UIButton]()
     var pointLabels = [UILabel]()
-    var friendListItems = UserData.self
+    var friendListItems = [UserData]()
     
-    func configure(rect: CGRect, friendListItems: UserData) {
-//        self.friendListItems = friendListItems
+    func configure(rect: CGRect, friendListItems: [UserData]) {
+        self.friendListItems = friendListItems
         setNeedsDisplay()
     }
     
     override func draw(_ rect: CGRect) {
-        
-//        startAccelerometer(vertex: , item: )
-        
+        //TODO: PersonalPathViewに渡したvertexでPathを作ってDrawViewにaddsubviewする
     }
     
     

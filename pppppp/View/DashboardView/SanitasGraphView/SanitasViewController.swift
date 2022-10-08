@@ -15,7 +15,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     @IBOutlet var weekPointLabel: UILabel!
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var noFriendLabel: UILabel!
-    @IBOutlet var mountainView: DrawView!
+//    @IBOutlet var mountainView: DrawView!
+    @IBOutlet var mountainView: PersonalPathView!
     
     @IBAction func sceneDashboardView() {
         let secondVC = StoryboardScene.DashboardView.initialScene.instantiate()
