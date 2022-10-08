@@ -22,7 +22,6 @@ final class ProfileViewModel: ObservableObject {
     init() {
     }
 
-    
     func getProfileData() {
         let task = Task { [weak self] in
             guard let self = self else { return }

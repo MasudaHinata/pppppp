@@ -12,6 +12,7 @@ struct StreakCollectionView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<StreakCollectionView>) -> UIStreakCollectionView {
         let streakCollectionView = UIStreakCollectionView(frame: .zero)
         streakCollectionView.delegate = context.coordinator
+        streakCollectionView.collectionViewLayout = configuration.flowLayout
         return streakCollectionView
     }
     
@@ -70,7 +71,7 @@ struct StreakCollectionView: UIViewRepresentable {
     
     struct Configuration {
         var pointDataList = [PointData]()
-       var flowLayout = UICollectionViewFlowLayout()
+        var flowLayout = UICollectionViewFlowLayout()
     }
     
 }
