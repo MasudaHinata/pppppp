@@ -60,7 +60,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                                 self.viewDidLoad()
                             })
                         } else {
-                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                         }
                     }
                 }
@@ -111,7 +111,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                         self.viewDidLoad()
                     })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }
@@ -140,7 +140,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                         self.viewDidLoad()
                     })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }

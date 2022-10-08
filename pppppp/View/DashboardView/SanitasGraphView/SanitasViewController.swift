@@ -94,13 +94,13 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 activityIndicator.stopAnimating()
             }
             catch {
-                print("ViewContro reloadButton error:",error.localizedDescription)
+                print("SanitasViewContro reloadButton error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください"){ _ in
                         self.viewDidAppear(true)
-                    })
+                    }
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }
@@ -127,22 +127,27 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         activityIndicator.startAnimating()
-        //初期画面
+        
+        //MARK: 初期画面
         let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
         if judge == false {
             let secondVC = StoryboardScene.OnboardingView1.initialScene.instantiate()
             self.showDetailViewController(secondVC, sender: self)
         }
         
+        //MARK: MountainViewを表示(一回読み込んでおいて待ち時間を減らす)
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
             let secondVC = StoryboardScene.AddFriendView.initialScene.instantiate()
             self.showDetailViewController(secondVC, sender: self)
         }
+        
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                let userID = try await FirebaseClient.shared.getUserUUID()
+                try await FirebaseClient.shared.checkUserAuth()
+                
+                //MARK: 今日の自己評価が完了しているかの判定
                 let now = calendar.component(.hour, from: Date())
                 if now >= 19 {
                     let selfCheckJudge = try await FirebaseClient.shared.checkSelfCheck()
@@ -153,20 +158,22 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                         self.present(secondVC, animated: true)
                     }
                 }
+                
+                //MARK: 今日の歩数ポイントの作成が完了しているかの判定
                 let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
                 if createStepPointJudge {
                     try await HealthKit_ScoreringManager.shared.createStepPoint()
                 }
                 
+                //MARK: MountainViewを更新
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 if friendDataList.count == 1 {
                     let secondVC = StoryboardScene.AddFriendView.initialScene.instantiate()
                     self.showDetailViewController(secondVC, sender: self)
                 }
-                activityIndicator.stopAnimating()
                 
-                stepsLabel.text = "Today  \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps()))  steps"
+                activityIndicator.stopAnimating()
                 
                 //MARK: 体重のポイント作成判定
                 //                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
@@ -187,6 +194,9 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 //                if createdPointjudge == false {
                 //                    ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "体重データがないためポイントを作成できませんでした", handler: { _ in })
                 //                }
+                
+                //MARK: ポイントの期間・今日の歩数を表示
+                stepsLabel.text = "Today \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps())) steps"
                 let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
                 if type as! String == "今日までの一週間" {
                     startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: Date()))!
@@ -200,17 +210,17 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     }
                 }
                 dateFormatter.dateFormat = "MM/dd"
-                weekPointLabel.text = "\(dateFormatter.string(from: startDate)) ~ Today  \(try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))  pt"
+                weekPointLabel.text = "\(dateFormatter.string(from: startDate)) ~ Today"
             }
             catch {
-                print("ViewContro ViewAppear error:",error.localizedDescription)
+                print("SanitasViewContro ViewAppear error:",error.localizedDescription)
                 if error.localizedDescription == "Authorization not determined" {
                 } else if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.viewDidAppear(true)
-                    })
+                    }
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }

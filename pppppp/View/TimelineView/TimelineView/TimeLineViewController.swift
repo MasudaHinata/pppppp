@@ -47,7 +47,7 @@ class TimeLineViewController: UIViewController {
                         self.viewDidLoad()
                     })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
             activityIndicator.stopAnimating()
@@ -70,7 +70,7 @@ class TimeLineViewController: UIViewController {
                         self.viewDidLoad()
                     })
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }

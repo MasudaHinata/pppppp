@@ -41,7 +41,7 @@ class ResetPasswordViewController: UIViewController, FirebaseSentEmailDelegate {
                     if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in })
                     } else {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                     }
                 }
                 var configuration = UIButton.Configuration.gray()

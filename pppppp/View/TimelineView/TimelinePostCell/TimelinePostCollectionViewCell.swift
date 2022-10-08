@@ -31,8 +31,8 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
         let task = Task {
             do {
                 try await FirebaseClient.shared.checkUserAuth()
+
                 let judge: Bool?
-               
                 if heartButton.currentImage == UIImage(systemName: "heart.fill") {
                     //MARK: Post good cancell
                     heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -67,7 +67,7 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
         dateLabel.text = "\(dateFormatter.string(from: postDisplayData.postData.date))"
         pointLabel.text = "\(postDisplayData.postData.point) pt"
         activityLabel.text = postDisplayData.postData.activity
-
+        
         let task = Task {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()

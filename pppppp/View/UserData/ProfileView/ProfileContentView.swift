@@ -46,7 +46,7 @@ struct ProfileContentView: View {
                 Form {
                     //MARK: - Streak
                     //                    Section {
-                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList, flowLayout: viewModel.layout))
+                    //                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList, flowLayout: viewModel.layout))
                     //                    }
                     
                     //MARK: - RecentActivity

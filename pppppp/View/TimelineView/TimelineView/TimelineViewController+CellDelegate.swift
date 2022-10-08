@@ -26,7 +26,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                             self.viewDidAppear(true)
                         })
                     } else {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                     }
                 }
             }
@@ -44,7 +44,7 @@ extension TimeLineViewController: TimelineCollectionViewCellDelegate {
                             self.viewDidAppear(true)
                         })
                     } else {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                     }
                 }
             }
