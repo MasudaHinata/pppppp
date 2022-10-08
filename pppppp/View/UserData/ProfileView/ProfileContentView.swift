@@ -9,60 +9,61 @@ struct ProfileContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-//                ScrollView {
-                    //MARK: - profile画面
-                    Group {
-                        HStack(alignment: .center, spacing: 32) {
+                //MARK: - profile画面
+                Group {
+                    HStack(alignment: .center, spacing: 32) {
+                        
+                        KFImage(viewModel.iconImageURL)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 72, height: 72)
+                            .cornerRadius(36)
+                        
+                        Text("\(String(viewModel.point))\npoint")
+                            .font(.custom("F5.6", fixedSize: 16))
+                            .multilineTextAlignment(.center)
+                        
+                        Button(action: {
+                            //TODO: FriendListViewにpush遷移させる
                             
-                            KFImage(viewModel.iconImageURL)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 72, height: 72)
-                                .cornerRadius(36)
-                            
-                            Text("\(String(viewModel.point))\npoint")
+                        }){
+                            Text("\((viewModel.friendCount))\nfriends")
                                 .font(.custom("F5.6", fixedSize: 16))
-                                .multilineTextAlignment(.center)
-                            
-                            Button(action: {
-                                //TODO: FriendListViewにpush遷移させる
-                                
-                            }){
-                                Text("\((viewModel.friendCount))\nfriends")
-                                    .font(.custom("F5.6", fixedSize: 16))
-                            }
-                            .foregroundColor(.white)
-                            
-                            Button{
-                                //TODO: ChangeProfileViewにmodal遷移させる
-                            } label: {
-                                Image(systemName: "pencil")
-                                Text("Edit")
-                            }
-                            //TODO: textの上下に余白
-                            .foregroundColor(Color(asset: Asset.Colors.white00))
-                            .background(Color(asset: Asset.Colors.white48))
                         }
+                        .foregroundColor(.white)
+                        
+                        Button{
+                            //TODO: ChangeProfileViewにmodal遷移させる
+                        } label: {
+                            Image(systemName: "pencil")
+                            Text("Edit")
+                        }
+                        //TODO: textの上下に余白
+                        .foregroundColor(Color(asset: Asset.Colors.white00))
+                        .background(Color(asset: Asset.Colors.white48))
                     }
-//                }
+                }
                 Form {
                     //MARK: - Streak
                     Section {
-                        //TODO: gridの間隔設定
                         
                         
-                        //                    Grid {
-                        //                        ForEach(0..<7) { _ in
-                        //                            GridRow {
-                        //                                ForEach([0, 1, 2, 3, 4, 5]) { index in
-                        //                                    Rectangle()
+                        
+                        
+                        
+                        //                        //TODO: gridの間隔設定
+                        //                        Grid {
+                        //                            ForEach(0..<7) { _ in
+                        //                                GridRow {
+                        //                                    ForEach([0, 1, 2, 3, 4, 5]) { index in
+                        //                                        Rectangle()
                         //
                         //
-                        //                                        .frame(width: 17, height: 16)
+                        //                                            .frame(width: 17, height: 16)
+                        //                                    }
                         //                                }
                         //                            }
                         //                        }
-                        //                    }
                     }
                     
                     //MARK: - RecentActivity
@@ -82,17 +83,14 @@ struct ProfileContentView: View {
                 .background(Color(asset: Asset.Colors.mainColor))
                 
                 .navigationBarTitle(Text(viewModel.name))
-                    .navigationBarItems(trailing: HStack {
-                        //TODO: SettingViewにmodal遷移させる
-                        Button("\(Image(systemName: "gearshape"))") {}
-                            .foregroundColor(.white)
-                        //TODO: ShareMyDataViewにmodal遷移させる
-                        Button("\(Image(systemName: "person.crop.circle.badge.plus"))") {}
-                            .foregroundColor(.white)
-                    })
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    .background(Color(asset: Asset.Colors.mainColor))
-//                }
+                .navigationBarItems(trailing: HStack {
+                    //TODO: SettingViewにmodal遷移させる
+                    Button("\(Image(systemName: "gearshape"))") {}
+                        .foregroundColor(.white)
+                    //TODO: ShareMyDataViewにmodal遷移させる
+                    Button("\(Image(systemName: "person.crop.circle.badge.plus"))") {}
+                        .foregroundColor(.white)
+                })
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(asset: Asset.Colors.mainColor))
