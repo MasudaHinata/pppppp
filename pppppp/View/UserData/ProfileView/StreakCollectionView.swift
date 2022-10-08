@@ -10,9 +10,11 @@ struct StreakCollectionView: UIViewRepresentable {
     let configuration: Configuration
     
     func makeUIView(context: UIViewRepresentableContext<StreakCollectionView>) -> UIStreakCollectionView {
-        let streakCollectionView = UIStreakCollectionView(frame: .zero)
+        let streakCollectionView = UIStreakCollectionView()
         streakCollectionView.delegate = context.coordinator
+        streakCollectionView.dataSource = context.coordinator
         streakCollectionView.collectionViewLayout = configuration.flowLayout
+        streakCollectionView.register(UINib(nibName: "SummaryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SummaryCollectionViewCell")
         return streakCollectionView
     }
     
