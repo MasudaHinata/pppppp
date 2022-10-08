@@ -2,18 +2,6 @@ import Combine
 import UIKit
 import SwiftUI
 
-
-//func startAccelerometer() {
-//    let handler: CMAccelerometerHandler = {( CMAccelerometerData: CMAccelerometerData?, error: Error?) -> Void in
-//        
-//        var posX = self.view.frame.width / 2 + (CGFloat(CMAccelerometerData!.acceleration.x) * 20)
-//        var posY = self.view.frame.height / 2 - (CGFloat(CMAccelerometerData!.acceleration.y) * 20)
-//        
-//        self.playerView.center = CGPoint(x: posX, y: posY)
-//    }
-//    playerMotionManager.startAccelerometerUpdates(to: OperationQueue.main, withHandler: handler)
-//}
-
 class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
     var activityIndicator: UIActivityIndicatorView!

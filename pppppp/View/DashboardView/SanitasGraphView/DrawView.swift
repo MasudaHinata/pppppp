@@ -1,4 +1,5 @@
 import UIKit
+import CoreMotion
 
 protocol DrawViewDelegate: AnyObject {
     func buttonSelected(item: UserData)
@@ -6,6 +7,7 @@ protocol DrawViewDelegate: AnyObject {
 class DrawView: UIView {
     weak var delegate: DrawViewDelegate?
     
+    var playerMotionManager: CMMotionManager!
     var paths = [UIBezierPath]()
     var imageButtons = [UIButton]()
     var pointLabels = [UILabel]()
@@ -40,7 +42,12 @@ class DrawView: UIView {
             //TODO: 大差がついた時に見た目を良くする計算を考える
             let x = CGFloat(itemPoint / largestPoint * self.bounds.width * 0.8)
             let y = CGFloat(Float.random(in: 300 ..< Float(self.bounds.height * 0.8)))
+            
+            playerMotionManager = CMMotionManager()
+            playerMotionManager.accelerometerUpdateInterval = 0.001
+            
             graph(vertex: CGPoint(x: x, y: y), item: item)
+//            startAccelerometer(vertex: CGPoint(x: x, y: y), item: item)
         }
     }
     func configure(rect: CGRect, friendListItems: [UserData]) {
@@ -88,5 +95,18 @@ class DrawView: UIView {
         self.addSubview(imageButton)
         imageButtons.append(imageButton)
         paths.append(path)
+    }
+    
+    func startAccelerometer(vertex: CGPoint, item: UserData) {
+        let handler: CMAccelerometerHandler = {( CMAccelerometerData: CMAccelerometerData?, error: Error?) -> Void in
+            var vertexPoint = vertex
+            let posX = self.frame.width / 2 + (CGFloat(CMAccelerometerData!.acceleration.x) * 20)
+            let posY = self.frame.height / 2 - (CGFloat(CMAccelerometerData!.acceleration.y) * 20)
+            vertexPoint = CGPoint(x: posX, y: posY)
+            
+            self.graph(vertex: vertexPoint, item: item)
+        }
+        
+        playerMotionManager.startAccelerometerUpdates(to: OperationQueue.main, withHandler: handler)
     }
 }

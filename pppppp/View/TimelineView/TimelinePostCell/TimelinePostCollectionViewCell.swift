@@ -75,7 +75,6 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 var likedFriendDataList = [UserData]()
                 likedFriendDataList = try await FirebaseClient.shared.getPostLikeFriendDate(postId: postDisplayData.postData.id ?? "")
-                print(likedFriendDataList)
                 if likedFriendDataList.first { $0.id == userID } != nil {
                     heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 } else {
