@@ -21,7 +21,7 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var heartButton: UIButton!
     @IBOutlet private var userIconImageView: UIImageView! {
         didSet {
-            userIconImageView.layer.cornerRadius = 36
+            userIconImageView.layer.cornerRadius = 32
             userIconImageView.clipsToBounds = true
             userIconImageView.layer.cornerCurve = .continuous
         }
@@ -60,7 +60,7 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Configure Cell
     func configureCell(_ postDisplayData: PostDisplayData) {
-        dateFormatter.dateFormat = "YY/MM/dd hh:mm"
+        dateFormatter.dateFormat = "YY/MM/dd HH:mm"
         self.postDisplayData = postDisplayData
         userNameLabel.text = postDisplayData.createdUser.name
         userIconImageView.kf.setImage(with: URL(string: postDisplayData.createdUser.iconImageURL))
