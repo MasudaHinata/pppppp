@@ -12,7 +12,7 @@ struct ProfileContentView: View {
             //MARK: - profile画面
             Form {
                 Section {
-                    HStack(alignment: .center, spacing: 44) {
+                    HStack(alignment: .center, spacing: 40) {
                         KFImage(viewModel.iconImageURL)
                             .resizable()
                             .scaledToFill()
@@ -20,10 +20,10 @@ struct ProfileContentView: View {
                             .cornerRadius(36)
 
                         VStack {
+                            Text("point")
+                                .font(.custom("F5.6", fixedSize: 14))
                             Text("\(viewModel.point)")
                                 .font(.custom("F5.6", fixedSize: 18))
-                            Text("pt")
-                                .font(.custom("F5.6", fixedSize: 14))
                         }
 
                         Button {
@@ -31,10 +31,10 @@ struct ProfileContentView: View {
                             viewModel.sceneFriendList()
                         } label: {
                             VStack {
-                                Text("\(viewModel.friendCount)")
-                                    .font(.custom("F5.6", fixedSize: 18))
                                 Text("friend")
                                     .font(.custom("F5.6", fixedSize: 14))
+                                Text("\(viewModel.friendCount)")
+                                    .font(.custom("F5.6", fixedSize: 18))
                             }
                         }
                         .buttonStyle(PlainButtonStyle())
