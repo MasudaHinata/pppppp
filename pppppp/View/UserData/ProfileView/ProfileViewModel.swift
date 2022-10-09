@@ -6,6 +6,8 @@ final class ProfileViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
+    @Published var friendListView: Void = ()
+    
     @Published var friendCount: Int = 0
     @Published var point: Int = 0
     @Published var iconImageURL = URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String)
@@ -21,7 +23,11 @@ final class ProfileViewModel: ObservableObject {
     
     init() {
     }
-
+    
+    func sceneFriendList() {
+        self.friendListView = ()
+    }
+    
     func getProfileData() {
         let task = Task { [weak self] in
             guard let self = self else { return }
@@ -35,7 +41,7 @@ final class ProfileViewModel: ObservableObject {
                 
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 pointDataList.reverse()
-            
+                
                 let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
                 self.point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
             }
