@@ -46,7 +46,7 @@ struct ProfileContentView: View {
                             Image(systemName: "pencil.circle.fill")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 32, height: 32)
+                                .frame(width: 24, height: 24)
                                 .foregroundColor(Color(asset: Asset.Colors.white00))
                         }
                         .buttonStyle(PlainButtonStyle())

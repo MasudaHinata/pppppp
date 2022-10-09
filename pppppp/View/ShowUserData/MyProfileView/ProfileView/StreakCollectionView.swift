@@ -1,5 +1,6 @@
 import UIKit
 import SwiftUI
+import Combine
 
 class UIStreakCollectionView: UICollectionView {
     var pointDataList = [PointData]()
@@ -33,6 +34,7 @@ struct StreakCollectionView: UIViewRepresentable {
     }
     
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+        var cancellables = Set<AnyCancellable>()
         var configuration: Configuration
         init(configuretion: Configuration) {
             self.configuration = configuretion
@@ -88,6 +90,8 @@ struct StreakCollectionView: UIViewRepresentable {
                     print("ProfileViewContro didAppear error:",error.localizedDescription)
                 }
             }
+            cancellables.insert(.init { task.cancel() })
+
             return cell
         }
     }

@@ -319,6 +319,16 @@
 			path = SettingCell;
 			sourceTree = "<group>";
 		};
+		032DF36428F2E50300458C20 /* MyProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				033BC38128DC81ED008DBC49 /* ProfileView */,
+				035D29DD28E9F25F00E1BEA4 /* FriendListView */,
+				03A45B7128D8A4EA0059B617 /* FriendDataCell */,
+			);
+			path = MyProfileView;
+			sourceTree = "<group>";
+		};
 		0331A20228DC8C5C004AA309 /* OnboardingView3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,7 +529,7 @@
 				033BC38A28DC8334008DBC49 /* HealthView */,
 				036F69FF28C091590066A7DA /* CreatePointView */,
 				03DAC40328EB2BF0005F173B /* TimelineView */,
-				036F69E828BE60190066A7DA /* UserData */,
+				036F69E828BE60190066A7DA /* ShowUserData */,
 				03C7E79B28D2F3810069A46E /* AddFriend */,
 				9CFBA12328D4B3CD003EBFB3 /* SettingsView */,
 				034367FC28D60539000BA656 /* OnboardingView */,
@@ -583,17 +593,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		036F69E828BE60190066A7DA /* UserData */ = {
+		036F69E828BE60190066A7DA /* ShowUserData */ = {
 			isa = PBXGroup;
 			children = (
+				032DF36428F2E50300458C20 /* MyProfileView */,
 				033BC38028DC81DE008DBC49 /* UserDataView */,
-				033BC38128DC81ED008DBC49 /* ProfileView */,
-				035D29DD28E9F25F00E1BEA4 /* FriendListView */,
 				033BC38328DC8212008DBC49 /* SummeryCell */,
 				033BC38228DC81FF008DBC49 /* RecentActivityCell */,
-				03A45B7128D8A4EA0059B617 /* FriendDataCell */,
 			);
-			path = UserData;
+			path = ShowUserData;
 			sourceTree = "<group>";
 		};
 		036F69FF28C091590066A7DA /* CreatePointView */ = {
