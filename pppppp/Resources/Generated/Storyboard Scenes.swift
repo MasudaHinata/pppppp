@@ -36,7 +36,7 @@ internal enum StoryboardScene {
   internal enum FriendListView: StoryboardType {
     internal static let storyboardName = "FriendListView"
 
-    internal static let initialScene = InitialSceneType<FriendListViewController>(storyboard: FriendListView.self)
+    internal static let initialScene = InitialSceneType<UIKit.UINavigationController>(storyboard: FriendListView.self)
   }
   internal enum FriendProfileView: StoryboardType {
     internal static let storyboardName = "FriendProfileView"

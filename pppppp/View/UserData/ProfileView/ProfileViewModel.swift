@@ -8,18 +8,12 @@ final class ProfileViewModel: ObservableObject {
     
     @Published var friendCount: Int = 0
     @Published var point: Int = 0
-    @Published var iconImageURL = URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String)
-    @Published var name = UserDefaults.standard.object(forKey: "name") as! String
+    @Published var iconImageURL = URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
+    @Published var name = UserDefaults.standard.object(forKey: "name") as? String ?? "名称未設定"
     @Published var pointDateStr = ""
     
     @Published var pointDataList = [PointData]()
-    @Published var layout = UICollectionViewFlowLayout() {
-        didSet {
-            layout.minimumLineSpacing = 4.5
-            layout.minimumInteritemSpacing = 4.2
-            layout.estimatedItemSize = CGSize(width: 17, height: 16)
-        }
-    }
+    @Published var layout = UICollectionViewFlowLayout()
     
     @Published var friendListView: Void = ()
     @Published var changeProfileView: Void = ()

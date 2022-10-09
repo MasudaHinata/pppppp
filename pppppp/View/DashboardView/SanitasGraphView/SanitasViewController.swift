@@ -187,13 +187,13 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     }
                     let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
                     if checkPoint == [] {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2週間の体重データがないためポイントを作成できませんでした")
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "HealthKitに過去2週間の体重データがないためポイントを作成できませんでした")
                     }
                 }
                 //MARK: ワークアウトのポイント作成判定
                 let createdPointjudge = try await HealthKit_ScoreringManager.shared.createWorkoutPoint()
                 if createdPointjudge == false {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "体重データがないためポイントを作成できませんでした")
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "HealthKitにデータがないためポイントを作成できませんでした")
                 }
                 
                 //MARK: ポイントの期間・今日の歩数を表示

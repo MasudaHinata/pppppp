@@ -98,7 +98,7 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
 //            layout.estimatedItemSize = CGSize(width: 17, height: 16)
 //        }
 //    }
-//
+
 //    @IBOutlet var tableView: UITableView! {
 //        didSet {
 //            tableView.delegate = self

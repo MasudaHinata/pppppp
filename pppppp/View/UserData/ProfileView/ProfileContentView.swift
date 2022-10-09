@@ -36,29 +36,26 @@ struct ProfileContentView: View {
                                     .font(.custom("F5.6", fixedSize: 16))
                             }
                         }
+                        .buttonStyle(PlainButtonStyle())
                         .foregroundColor(.white)
 
                         Button{
                             viewModel.sceneChangeProfile()
                         } label: {
-                            HStack {
-                                Image(systemName: "pencil")
+                                Image(systemName: "pencil.circle.fill")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 16, height: 16)
-                            }
+                                    .frame(width: 32, height: 32)
+                                    .foregroundColor(Color(asset: Asset.Colors.white00))
                         }
-                        //TODO: textの上下にも余白
-                        .frame(width: 40, height: 20)
-                        .cornerRadius(10)
-                        .foregroundColor(Color(asset: Asset.Colors.white00))
-//                        .background(Color(asset: Asset.Colors.white16))
+                        .buttonStyle(PlainButtonStyle())
                     }
                     .listRowBackground(Color.clear)
                 }
                 //MARK: - Streak
                 Section {
-                //                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList, flowLayout: viewModel.layout))
+                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList, flowLayout: viewModel.layout))
+                        .frame(width: 343.4, height: 139)
                 }
 
                 //MARK: - RecentActivity

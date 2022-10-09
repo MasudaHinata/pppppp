@@ -3,6 +3,7 @@ import SwiftUI
 
 class UIStreakCollectionView: UICollectionView {
     var pointDataList = [PointData]()
+    var layout = UICollectionViewFlowLayout()
 }
 
 struct StreakCollectionView: UIViewRepresentable {
@@ -10,10 +11,14 @@ struct StreakCollectionView: UIViewRepresentable {
     let configuration: Configuration
     
     func makeUIView(context: UIViewRepresentableContext<StreakCollectionView>) -> UIStreakCollectionView {
-        let streakCollectionView = UIStreakCollectionView()
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 4.5
+        layout.minimumInteritemSpacing = 4.2
+        layout.estimatedItemSize = CGSize(width: 17, height: 16)
+
+        let streakCollectionView = UIStreakCollectionView(frame: .zero, collectionViewLayout: layout)
         streakCollectionView.delegate = context.coordinator
         streakCollectionView.dataSource = context.coordinator
-        streakCollectionView.collectionViewLayout = configuration.flowLayout
         streakCollectionView.register(UINib(nibName: "SummaryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SummaryCollectionViewCell")
         return streakCollectionView
     }
@@ -24,8 +29,8 @@ struct StreakCollectionView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIStreakCollectionView, context: UIViewRepresentableContext<StreakCollectionView>) {
         uiView.pointDataList = configuration.pointDataList
+        uiView.layout = configuration.layout
     }
-    
     
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
         let configuration: Configuration
@@ -73,7 +78,6 @@ struct StreakCollectionView: UIViewRepresentable {
     
     struct Configuration {
         var pointDataList = [PointData]()
-        var flowLayout = UICollectionViewFlowLayout()
+        var layout = UICollectionViewFlowLayout()
     }
-    
 }
