@@ -17,6 +17,8 @@ class FriendListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.title = "Friends"
         
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl

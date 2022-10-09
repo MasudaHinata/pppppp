@@ -61,7 +61,6 @@ struct StreakCollectionView: UIViewRepresentable {
             }
 
             let task = Task { [weak self] in
-                guard let self = self else { return }
                 do {
                     let userID = try await FirebaseClient.shared.getUserUUID()
                     try await FirebaseClient.shared.checkNameData()
