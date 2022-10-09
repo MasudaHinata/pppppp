@@ -12,7 +12,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     var friendDataList = [UserData]()
     
     @IBOutlet var stepsLabel: UILabel!
-    @IBOutlet var weekPointLabel: UILabel!
     @IBOutlet var noFriendView: UIView!
     @IBOutlet var noFriendLabel: UILabel!
     @IBOutlet var mountainView: DrawView!
@@ -74,7 +73,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             guard let self = self else { return }
             do {
                 activityIndicator.startAnimating()
-                let userID = try await FirebaseClient.shared.getUserUUID()
                 let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
                 if type as! String == "今日までの一週間" {
                     startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: Date()))!
@@ -87,15 +85,13 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                         startDate = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
                     }
                 }
-                dateFormatter.dateFormat = "MM/dd"
-                weekPointLabel.text = "\(dateFormatter.string(from: startDate)) ~ Today  \(try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))  pt"
                 stepsLabel.text = "Today  \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps()))  steps"
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 activityIndicator.stopAnimating()
             }
             catch {
-                print("SanitasViewContro reloadButton error:",error.localizedDescription)
+                print("SanitasViewContro reloadButton error:", error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.viewDidAppear(true)
@@ -196,22 +192,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "HealthKitにデータがないためポイントを作成できませんでした")
                 }
                 
-                //MARK: ポイントの期間・今日の歩数を表示
+                //MARK: 今日の歩数を表示
                 stepsLabel.text = "Today \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps())) steps"
-                let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
-                if type as! String == "今日までの一週間" {
-                    startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: Date()))!
-                } else if type as! String == "月曜始まり" {
-                    let am = calendar.startOfDay(for: Date())
-                    let weekNumber = calendar.component(.weekday, from: am)
-                    if weekNumber == 1 {
-                        startDate = calendar.date(byAdding: .day, value: -6, to: am)!
-                    } else {
-                        startDate = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
-                    }
-                }
-                dateFormatter.dateFormat = "MM/dd"
-                weekPointLabel.text = "\(dateFormatter.string(from: startDate)) ~ Today"
             }
             catch {
                 print("SanitasViewContro ViewAppear error:",error.localizedDescription)

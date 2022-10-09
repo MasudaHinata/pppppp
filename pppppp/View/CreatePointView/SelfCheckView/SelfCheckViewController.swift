@@ -130,7 +130,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
                 myPointLabelButton.configuration = configuration
             }
             catch {
-                print("SelfViewCotro viewApe", error.localizedDescription)
+                print("SelfCheckViewCotro viewApe", error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください")
                 } else {

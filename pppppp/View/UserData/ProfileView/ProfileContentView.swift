@@ -11,7 +11,7 @@ struct ProfileContentView: View {
             //MARK: - profile画面
             Form {
                 Section {
-                    HStack(alignment: .center, spacing: 36) {
+                    HStack(alignment: .center, spacing: 48) {
                         KFImage(viewModel.iconImageURL)
                             .resizable()
                             .scaledToFill()
@@ -22,7 +22,7 @@ struct ProfileContentView: View {
                             Text("\(viewModel.point)")
                                 .font(.custom("F5.6", fixedSize: 18))
                             Text("pt")
-                                .font(.custom("F5.6", fixedSize: 16))
+                                .font(.custom("F5.6", fixedSize: 14))
                         }
 
                         Button {
@@ -33,7 +33,7 @@ struct ProfileContentView: View {
                                 Text("\(viewModel.friendCount)")
                                     .font(.custom("F5.6", fixedSize: 18))
                                 Text("friends")
-                                    .font(.custom("F5.6", fixedSize: 16))
+                                    .font(.custom("F5.6", fixedSize: 14))
                             }
                         }
                         .buttonStyle(PlainButtonStyle())
@@ -52,10 +52,14 @@ struct ProfileContentView: View {
                     }
                     .listRowBackground(Color.clear)
                 }
+
                 //MARK: - Streak
                 Section {
-                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList, flowLayout: viewModel.layout))
+                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList))
                         .frame(width: 343.4, height: 139)
+                        .listRowBackground(Color(asset: Asset.Colors.white16))
+                } header: {
+                    Text("STREAK")
                 }
 
                 //MARK: - RecentActivity

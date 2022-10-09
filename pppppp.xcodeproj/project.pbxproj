@@ -393,10 +393,10 @@
 				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
 				035329CC28EECB9000257768 /* ProfileContentView.swift */,
 				032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */,
+				032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */,
 				036E476C28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift */,
 				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
 				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
-				032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */,
 				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
 			);
 			path = ProfileView;
