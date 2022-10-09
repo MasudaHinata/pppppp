@@ -53,13 +53,15 @@ struct ProfileContentView: View {
                         ForEach(viewModel.pointDataList, id: \.self) { pointdataItem in
                             HStack {
                                 Text(DateToString(date: pointdataItem.date))
-                                
-//                                Spacer(minLength: 24)
+                                    .font(.custom("F5.6", fixedSize: 22))
                                 Text(pointdataItem.activity ?? "")
-                                Spacer()
+
                                 Text("+")
+                                    .font(.custom("F5.6", fixedSize: 22))
                                 Text(String(pointdataItem.point ?? 0))
+                                    .font(.custom("F5.6", fixedSize: 22))
                                 Text("pt")
+                                    .font(.custom("F5.6", fixedSize: 22))
                             }
                         }
                     } header: {
