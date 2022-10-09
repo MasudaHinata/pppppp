@@ -5,6 +5,7 @@ import Combine
 
 struct ProfileContentView: View {
     @ObservedObject var viewModel: ProfileViewModel
+    @State var pointDisplayData = [PointData]()
     
     var body: some View {
         NavigationView {
@@ -32,7 +33,7 @@ struct ProfileContentView: View {
                             VStack {
                                 Text("\(viewModel.friendCount)")
                                     .font(.custom("F5.6", fixedSize: 18))
-                                Text("friends")
+                                Text("friend")
                                     .font(.custom("F5.6", fixedSize: 14))
                             }
                         }
@@ -42,11 +43,11 @@ struct ProfileContentView: View {
                         Button{
                             viewModel.sceneChangeProfile()
                         } label: {
-                                Image(systemName: "pencil.circle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 32, height: 32)
-                                    .foregroundColor(Color(asset: Asset.Colors.white00))
+                            Image(systemName: "pencil.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 32, height: 32)
+                                .foregroundColor(Color(asset: Asset.Colors.white00))
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
@@ -55,7 +56,7 @@ struct ProfileContentView: View {
 
                 //MARK: - Streak
                 Section {
-                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList))
+                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: pointDisplayData))
                         .frame(width: 343.4, height: 139)
                         .listRowBackground(Color(asset: Asset.Colors.white16))
                 } header: {
