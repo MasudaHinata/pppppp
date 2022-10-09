@@ -41,15 +41,13 @@ class DrawView: UIView {
             }
 
             for item in friendListItems {
-                var itemPoint = CGFloat()
+                var itemPoint = CGFloat(item.point ?? 0)
                 if item.point == 0 {
-                    itemPoint = CGFloat(Float(item.point!) + 0.1)
-                } else {
-                    itemPoint = CGFloat(Float(item.point!))
+                    itemPoint += 0.1
                 }
                 //TODO: 大差がついた時に見た目を良くする計算を考える
-                let x = CGFloat(itemPoint / largestPoint * self.bounds.width * 0.8)
-                let y = CGFloat(Float.random(in: 300 ..< Float(self.bounds.height * 0.8)))
+                let x = itemPoint / largestPoint * bounds.width * 0.8 + bounds.width * 0.1
+                let y = CGFloat.random(in: 300 ..< bounds.height * 0.8)
                 friendPositions.append(CGPoint(x: x, y: y))
             }
         }

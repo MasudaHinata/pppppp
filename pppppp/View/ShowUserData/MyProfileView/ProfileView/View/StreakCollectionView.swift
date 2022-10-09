@@ -2,22 +2,18 @@ import UIKit
 import SwiftUI
 import Combine
 
-class UIStreakCollectionView: UICollectionView {
-    var pointDataList = [PointData]()
-    var layout = UICollectionViewFlowLayout()
-}
 
 struct StreakCollectionView: UIViewRepresentable {
     
     let configuration: Configuration
     
-    func makeUIView(context: UIViewRepresentableContext<StreakCollectionView>) -> UIStreakCollectionView {
+    func makeUIView(context: UIViewRepresentableContext<StreakCollectionView>) -> UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 4.5
         layout.minimumInteritemSpacing = 4.2
         layout.estimatedItemSize = CGSize(width: 17, height: 16)
 
-        let streakCollectionView = UIStreakCollectionView(frame: .zero, collectionViewLayout: layout)
+        let streakCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         streakCollectionView.delegate = context.coordinator
         streakCollectionView.dataSource = context.coordinator
         streakCollectionView.register(UINib(nibName: "SummaryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SummaryCollectionViewCell")
@@ -28,13 +24,12 @@ struct StreakCollectionView: UIViewRepresentable {
         return Coordinator(configuretion: configuration)
     }
     
-    func updateUIView(_ uiView: UIStreakCollectionView, context: UIViewRepresentableContext<StreakCollectionView>) {
-        uiView.pointDataList = configuration.pointDataList
-        uiView.layout = configuration.layout
+    func updateUIView(_ uiView: UICollectionView, context: UIViewRepresentableContext<StreakCollectionView>) {
+        context.coordinator.configuration = configuration
+        uiView.reloadData()
     }
     
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-        var cancellables = Set<AnyCancellable>()
         var configuration: Configuration
         init(configuretion: Configuration) {
             self.configuration = configuretion
@@ -60,37 +55,23 @@ struct StreakCollectionView: UIViewRepresentable {
                 return cell
             }
 
-            //TODO: ViewModelからデータを渡してStreakを更新する
-            let task = Task {
-                do {
-                    let userID = try await FirebaseClient.shared.getUserUUID()
-                    try await FirebaseClient.shared.checkNameData()
-                    try await FirebaseClient.shared.checkIconData()
 
-                    configuration.pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
-                    configuration.pointDataList.reverse()
+            let activitiesForCell = configuration.pointDataList.filter { $0.date.getZeroTime() == dayForCell.getZeroTime() }.compactMap { $0.point }
 
-                    let activitiesForCell = configuration.pointDataList.filter { $0.date.getZeroTime() == dayForCell.getZeroTime() }.compactMap { $0.point }
-
-                    let totalPointsForCell = activitiesForCell.reduce(0, +) // 合計
-                    switch totalPointsForCell {
-                    case 0 :
-                        cell.backgroundColor = Asset.Colors.white48.color
-                    case 1...30:
-                        cell.backgroundColor = Asset.Colors.grass1.color
-                    case 30...70:
-                        cell.backgroundColor = Asset.Colors.grass2.color
-                    case 70...100:
-                        cell.backgroundColor = Asset.Colors.grass3.color
-                    default:
-                        cell.backgroundColor = Asset.Colors.grass4.color
-                    }
-                }
-                catch {
-                    print("StreakCollectionView error:",error.localizedDescription)
-                }
+            print(configuration.pointDataList)
+            let totalPointsForCell = activitiesForCell.reduce(0, +) // 合計
+            switch totalPointsForCell {
+            case 0 :
+                cell.backgroundColor = Asset.Colors.white48.color
+            case 1...30:
+                cell.backgroundColor = Asset.Colors.grass1.color
+            case 30...70:
+                cell.backgroundColor = Asset.Colors.grass2.color
+            case 70...100:
+                cell.backgroundColor = Asset.Colors.grass3.color
+            default:
+                cell.backgroundColor = Asset.Colors.grass4.color
             }
-            cancellables.insert(.init { task.cancel() })
 
             return cell
         }
