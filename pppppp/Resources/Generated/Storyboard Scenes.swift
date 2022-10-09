@@ -72,11 +72,6 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<OnboardingViewController3>(storyboard: OnboardingView3.self)
   }
-  internal enum ProfileView: StoryboardType {
-    internal static let storyboardName = "ProfileView"
-
-    internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: ProfileView.self)
-  }
   internal enum RecordExerciseView: StoryboardType {
     internal static let storyboardName = "RecordExerciseView"
 

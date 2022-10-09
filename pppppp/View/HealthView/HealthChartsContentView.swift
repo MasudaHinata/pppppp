@@ -20,7 +20,6 @@ struct HealthChartsContentView: View {
         
         let bounds = UIScreen.main.bounds
         let width = bounds.width
-        let height = bounds.height
         
         ScrollView {
             //MARK: - Step Chart

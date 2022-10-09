@@ -44,7 +44,6 @@
 		036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */; };
 		036E476928DB1A5C00EA7BB1 /* RecordWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476828DB1A5C00EA7BB1 /* RecordWeightViewController.swift */; };
 		036E476B28DB1A6E00EA7BB1 /* RecordWeightView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036E476A28DB1A6E00EA7BB1 /* RecordWeightView.storyboard */; };
-		036E476D28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476C28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift */; };
 		036F697F28B8EACE0066A7DA /* PointData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F697E28B8EACE0066A7DA /* PointData.swift */; };
 		036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698028B940270066A7DA /* ResetPasswordViewController.swift */; };
 		036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F698B28BB9DAD0066A7DA /* DrawView.swift */; };
@@ -75,8 +74,6 @@
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
 		03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */; };
-		03A1E0B928D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */; };
-		03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */; };
 		03A1E0BD28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */; };
 		03A1E0BF28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */; };
 		03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */; };
@@ -123,7 +120,6 @@
 		9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B88288C384100FFE94C /* CoverWindow.swift */; };
 		9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */; };
 		9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE63B8C288C548D00FFE94C /* LoginHelper.swift */; };
-		9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */; };
 		BE0BF72725B5C734005646AE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D12588CCF5004DC436 /* HealthKit.framework */; };
 		BE0BF72825B5C73A005646AE /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */; };
 		BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F337B2580D07E0027620D /* AppDelegate.swift */; };
@@ -173,7 +169,6 @@
 		036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsStepItem.swift; sourceTree = "<group>"; };
 		036E476828DB1A5C00EA7BB1 /* RecordWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordWeightViewController.swift; sourceTree = "<group>"; };
 		036E476A28DB1A6E00EA7BB1 /* RecordWeightView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordWeightView.storyboard; sourceTree = "<group>"; };
-		036E476C28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+UIAdaptivePresentationControllerDelegate.swift"; sourceTree = "<group>"; };
 		036F697E28B8EACE0066A7DA /* PointData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointData.swift; sourceTree = "<group>"; };
 		036F698028B940270066A7DA /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		036F698B28BB9DAD0066A7DA /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
@@ -204,8 +199,6 @@
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
-		03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
-		03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0BC28D4C3E000B5B9C3 /* UserDataViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDataViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0BE28D4C3F000B5B9C3 /* UserDataViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDataViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeProfileViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -246,7 +239,6 @@
 		9CE63B88288C384100FFE94C /* CoverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverWindow.swift; sourceTree = "<group>"; };
 		9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHelper.swift; sourceTree = "<group>"; };
 		9CE63B8C288C548D00FFE94C /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
-		9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileView.storyboard; sourceTree = "<group>"; };
 		BE2F95D12588CCF5004DC436 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		BE2F95D32588CD1A004DC436 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 		BE7F33782580D07E0027620D /* pppppp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pppppp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -329,6 +321,24 @@
 			path = MyProfileView;
 			sourceTree = "<group>";
 		};
+		032DF36528F2EAAE00458C20 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
+				035329CC28EECB9000257768 /* ProfileContentView.swift */,
+				032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		032DF36628F2EABB00458C20 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0331A20228DC8C5C004AA309 /* OnboardingView3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,14 +410,8 @@
 		033BC38128DC81ED008DBC49 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
-				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
-				035329CC28EECB9000257768 /* ProfileContentView.swift */,
-				032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */,
-				032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */,
-				036E476C28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift */,
-				03A1E0B828D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift */,
-				03A1E0BA28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift */,
-				9CFBA12428D4B4E6003EBFB3 /* ProfileView.storyboard */,
+				032DF36528F2EAAE00458C20 /* View */,
+				032DF36628F2EABB00458C20 /* ViewModel */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -919,7 +923,6 @@
 				0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
 				0314457228EFD7EE00B29D2B /* TimelineNotificationView.storyboard in Resources */,
-				9CFBA12528D4B4E6003EBFB3 /* ProfileView.storyboard in Resources */,
 				033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
 				0374653E28EDA42400DB0833 /* SetGoalWeightView.storyboard in Resources */,
@@ -942,7 +945,6 @@
 				03879DE128E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				0374653C28EDA3F900DB0833 /* SetGoalWeightViewController.swift in Sources */,
-				03A1E0BB28D4C39500B5B9C3 /* ProfileViewController+TableViewDelegate.swift in Sources */,
 				0314457028EFD7DA00B29D2B /* TimelineNotificationViewController.swift in Sources */,
 				032DF36128F24E7F00458C20 /* DateHelper.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
@@ -965,7 +967,6 @@
 				03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */,
 				035329CD28EECB9000257768 /* ProfileContentView.swift in Sources */,
 				0343680E28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift in Sources */,
-				036E476D28DB37FF00EA7BB1 /* ProfileViewController+UIAdaptivePresentationControllerDelegate.swift in Sources */,
 				0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */,
 				0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */,
 				03DAC41328EC47E3005F173B /* MainTabBarController.swift in Sources */,
@@ -1004,7 +1005,6 @@
 				035D29E528E9F46D00E1BEA4 /* FriendListViewController+CollectionViewDelegate.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */,
 				03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */,
-				03A1E0B928D4C34900B5B9C3 /* ProfileViewController+CollectionViewDelegate.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */,
 				032DF35B28F1888D00458C20 /* PersonalPathView.swift in Sources */,

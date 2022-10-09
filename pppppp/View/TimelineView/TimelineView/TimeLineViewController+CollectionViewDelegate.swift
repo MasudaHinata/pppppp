@@ -10,8 +10,8 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimelinePostCollectionViewCell", for: indexPath)  as! TimelinePostCollectionViewCell
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YY/MM/dd hh:mm"
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "YY/MM/dd hh:mm"
         
         cell.configureCell(postDataItem[indexPath.row])
         cell.timelineCollectionViewCellDelegate = self
@@ -26,7 +26,6 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
             guard let self = self else { return }
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                
                 if userID == postDataItem[indexPath.row].postData.userID {
                     let secondVC = StoryboardScene.TimelineNotificationView.initialScene.instantiate()
                     secondVC.postData = postDataItem[indexPath.row]

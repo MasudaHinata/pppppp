@@ -60,6 +60,7 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Configure Cell
     func configureCell(_ postDisplayData: PostDisplayData) {
+        
         dateFormatter.dateFormat = "YY/MM/dd HH:mm"
         self.postDisplayData = postDisplayData
         userNameLabel.text = postDisplayData.createdUser.name
