@@ -209,8 +209,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
 
     func buttonSelected(item: UserData) {
         let profileVC = ProfileViewController(viewModel: .init(userDataItem: item))
-//        let secondVC = StoryboardScene.UserDataView.initialScene.instantiate()
-//        profileVC.userDataItem = item
         self.showDetailViewController(profileVC, sender: self)
     }
     

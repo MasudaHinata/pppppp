@@ -16,8 +16,7 @@ extension DashboardViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let secondVC = StoryboardScene.UserDataView.initialScene.instantiate()
-        secondVC.userDataItem = friendDataList[indexPath.row]
-        self.showDetailViewController(secondVC, sender: self)
+        let profileVC = ProfileViewController(viewModel: .init(userDataItem: friendDataList[indexPath.row]))
+        self.showDetailViewController(profileVC, sender: self)
     }
 }
