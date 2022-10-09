@@ -17,7 +17,7 @@
         <!--Me-->
         <scene sceneID="bJ0-u0-alk">
             <objects>
-                <viewController id="Dbh-b9-BhT" customClass="ProfileViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Dbh-b9-BhT" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kG3-sa-1Y2">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

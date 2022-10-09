@@ -12,7 +12,6 @@ struct ProfileContentView: View {
                 //MARK: - profile画面
                 Group {
                     HStack(alignment: .center, spacing: 32) {
-                        
                         KFImage(viewModel.iconImageURL)
                             .resizable()
                             .scaledToFill()
@@ -23,18 +22,17 @@ struct ProfileContentView: View {
                             .font(.custom("F5.6", fixedSize: 16))
                             .multilineTextAlignment(.center)
                         
-                        Button(action: {
-                            //TODO: FriendListViewにpush遷移させる
-//                            viewModel.sceneFriendList()
-                            
-                        }){
+                        Button {
+                            //TODO: push遷移させる
+                            viewModel.sceneFriendList()
+                        } label: {
                             Text("\((viewModel.friendCount))\nfriends")
                                 .font(.custom("F5.6", fixedSize: 16))
                         }
                         .foregroundColor(.white)
                         
                         Button{
-                            //TODO: ChangeProfileViewにmodal遷移させる
+                            viewModel.sceneChangeProfile()
                         } label: {
                             Image(systemName: "pencil")
                             Text("Edit")
@@ -54,26 +52,38 @@ struct ProfileContentView: View {
                     Section {
                         ForEach(viewModel.pointDataList, id: \.self) { pointdataItem in
                             HStack {
-                                Text(String(pointdataItem.point ?? 0))
+                                Text(DateToString(date: pointdataItem.date))
+                                
+//                                Spacer(minLength: 24)
                                 Text(pointdataItem.activity ?? "")
-                                //                            Text(pointdataItem.date)
+                                Spacer()
+                                Text("+")
+                                Text(String(pointdataItem.point ?? 0))
+                                Text("pt")
                             }
                         }
                     } header: {
                         Text("RECENT ACTIVITY")
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(asset: Asset.Colors.mainColor))
                 
                 .navigationBarTitle(Text(viewModel.name))
                 .navigationBarItems(trailing: HStack {
-                    //TODO: SettingViewにmodal遷移させる
-                    Button("\(Image(systemName: "gearshape"))") {}
-                        .foregroundColor(.white)
-                    //TODO: ShareMyDataViewにmodal遷移させる
-                    Button("\(Image(systemName: "person.crop.circle.badge.plus"))") {}
-                        .foregroundColor(.white)
+                    Button {
+                        viewModel.sceneShareMyData()
+                    } label: {
+                        Image(systemName: "person.crop.circle.badge.plus")
+                    }
+                    .foregroundColor(.white)
+
+                    Button {
+                        print("aaaa")
+                        viewModel.sceneSetting()
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                    .foregroundColor(.white)
                 })
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -82,5 +92,11 @@ struct ProfileContentView: View {
                 viewModel.getProfileData()
             }
         }
+    }
+    
+    func DateToString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+        return dateFormatter.string(from: date)
     }
 }
