@@ -13,9 +13,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //MARK: - friendList UserDataViewに遷移
-        let secondVC = StoryboardScene.UserDataView.initialScene.instantiate()
-        secondVC.userDataItem = friendDataList[indexPath.row]
-        self.showDetailViewController(secondVC, sender: self)
+       let profileVC = ProfileViewController(viewModel: .init(userDataItem: friendDataList[indexPath.row]))
+        self.showDetailViewController(profileVC, sender: self)
     }
 }

@@ -117,11 +117,12 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await FirebaseClient.shared.checkUserAuth()
+                let userID = try await FirebaseClient.shared.getUserUUID()
                 try await FirebaseClient.shared.checkNameData()
                 try await FirebaseClient.shared.checkIconData()
-                myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String))
-                let userID = try await FirebaseClient.shared.getUserUUID()
+
+                myIconView.kf.setImage(with: URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"))
+
                 var configuration = UIButton.Configuration.filled()
                 let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
                 try await configuration.title = "\(FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String))pt"
@@ -143,7 +144,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
     
     //MARK: - Setting Delegate
     func putPointForFirestore(point: Int, activity: String) {
-        let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity)  \(point)pt", preferredStyle: .alert)
+        let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity): \(point)pt", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let secondVC = StoryboardScene.Main.initialScene.instantiate()
             self.showDetailViewController(secondVC, sender: self)
@@ -153,6 +154,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
     func notGetPoint() {
         let alert = UIAlertController(title: "今日の獲得ポイントは0ptです", message: "がんばりましょう", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

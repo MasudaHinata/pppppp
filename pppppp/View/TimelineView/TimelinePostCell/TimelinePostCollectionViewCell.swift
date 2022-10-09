@@ -28,30 +28,20 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func tapGoodButton(_ sender: Any) {
-        let task = Task {
-            do {
-                try await FirebaseClient.shared.checkUserAuth()
-
-                let judge: Bool?
-                if heartButton.currentImage == UIImage(systemName: "heart.fill") {
-                    //MARK: Post good cancell
-                    heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
-                    judge = false
-                } else {
-                    //MARK: Post good
-                    heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-                    judge = true
-                }
-                
-                if let judge = judge, let postId = postDisplayData?.postData.id {
-                    timelineCollectionViewCellDelegate?.tapGoodButton(judge: judge, postId: postId)
-                }
-            }
-            catch {
-                print("TimeLineCollection tapGoodButton error:",error.localizedDescription)
-            }
+        let judge: Bool?
+        if heartButton.currentImage == UIImage(systemName: "heart.fill") {
+            //MARK: いいね取り消し
+            heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            judge = false
+        } else {
+            //MARK: いいねされた
+            heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            judge = true
         }
-        cancellables.insert(.init { task.cancel() })
+
+        if let judge = judge, let postId = postDisplayData?.postData.id {
+            timelineCollectionViewCellDelegate?.tapGoodButton(judge: judge, postId: postId)
+        }
     }
     
     override func awakeFromNib() {

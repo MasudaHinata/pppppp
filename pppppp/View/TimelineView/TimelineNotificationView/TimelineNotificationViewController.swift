@@ -35,7 +35,6 @@ class TimelineNotificationViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = postData?.createdUser.name
-        
         dateFormatter.dateFormat = "YY/MM/dd hh:mm"
         layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 72)
         pointLabel.text = "\(postData?.postData.point ?? 0) pt"
@@ -47,6 +46,7 @@ class TimelineNotificationViewController: UIViewController {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
+                //MARK: 投稿にいいねした友達と数を表示
                 if let postId = postData?.postData.id {
                     likedFriendDataList = try await FirebaseClient.shared.getPostLikeFriendDate(postId: postId)
                     self.collectionView.reloadData()

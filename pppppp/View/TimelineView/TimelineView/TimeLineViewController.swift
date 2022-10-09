@@ -21,11 +21,13 @@ class TimeLineViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 104)
         
         refreshCtl.tintColor = .white
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
-        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 104)
+
         activityIndicator = UIActivityIndicatorView()
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
         activityIndicator.center = self.view.center
@@ -41,7 +43,7 @@ class TimeLineViewController: UIViewController {
                 collectionView.reloadData()
             }
             catch {
-                print("TimeLineViewContro viewdid error:",error.localizedDescription)
+                print("TimeLineViewContro viewDidL error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください")
                 } else {
@@ -53,7 +55,7 @@ class TimeLineViewController: UIViewController {
         cancellables.insert(.init { task.cancel() })
     }
     
-    //MARK: - 引っ張ってcollectionViewの更新する
+    //MARK: - timelineの更新
     func refresh() {
         let task = Task { [weak self] in
             guard let self = self else { return }

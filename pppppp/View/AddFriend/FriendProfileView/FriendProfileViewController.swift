@@ -68,9 +68,7 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseClient.shared.addFriendDelegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {

@@ -104,11 +104,8 @@ struct HealthChartsContentView: View {
                     lastWeightStr = String(format: "%.2f", round(lastWeight * 10) / 10)
                     chartsWeightItem = try await HealthKit_ScoreringManager.shared.getWeightData(period: self.weightPeriodIndex[self.weightSelectedIndex])
                     chartsWeightItem.reverse()
-                    //TODO: chartsWeightItemが空だったらなんかする
-                    //                    print(chartsWeightItem)
-                    //                    if chartsWeightItem == [] {
-                    //                        print("nasi")
-                    //                    }
+                    
+                    //TODO: chartsWeightItemが空だったらlabel出す
                 }
                 catch {
                     print("HealthChartsContentView error:", error.localizedDescription)

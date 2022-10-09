@@ -4,14 +4,14 @@ import AVFoundation
 import AVKit
 
 class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    
+
+    private let session = AVCaptureSession()
     var flag = Bool()
     var cancellables = Set<AnyCancellable>()
-    private let session = AVCaptureSession()
-    
     var qrCodeView = UIView()
     var qrCodeImageView = UIImageView()
     var dismissButton = UIButton()
+
     @IBOutlet weak var caputureView: UIView!
     
     @IBOutlet var alertButtonLayout: UIButton! {

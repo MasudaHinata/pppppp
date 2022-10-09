@@ -142,11 +142,6 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<TimelineNotificationViewController>(storyboard: TimelineNotificationView.self)
   }
-  internal enum UserDataView: StoryboardType {
-    internal static let storyboardName = "UserDataView"
-
-    internal static let initialScene = InitialSceneType<UserDataViewController>(storyboard: UserDataView.self)
-  }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length prefer_self_in_static_references
 // swiftlint:enable type_body_length type_name

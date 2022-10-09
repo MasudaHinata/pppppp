@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hP6-qC-sR1">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wym-Ve-gTt">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wym-Ve-gTt">
                                 <rect key="frame" x="32" y="356" width="350" height="48"/>
                                 <color key="backgroundColor" red="0.4823529412" green="0.50980392159999999" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -38,17 +37,28 @@
                                     <action selector="changeName" destination="hP6-qC-sR1" eventType="touchUpInside" id="7XC-Rn-W2J"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlU-OY-buV">
+                                <rect key="frame" x="32" y="328" width="69" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="iLd-iH-snV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <color key="textColor" name="white48"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iqh-9R-1y7"/>
                         <color key="backgroundColor" name="mainColor"/>
                         <constraints>
                             <constraint firstItem="iqh-9R-1y7" firstAttribute="trailing" secondItem="Y3v-fU-epH" secondAttribute="trailing" constant="32" id="14N-B3-VZz"/>
                             <constraint firstItem="Wym-Ve-gTt" firstAttribute="leading" secondItem="iqh-9R-1y7" secondAttribute="leading" constant="32" id="Swm-Lf-nW0"/>
+                            <constraint firstItem="UlU-OY-buV" firstAttribute="leading" secondItem="R4E-cZ-njX" secondAttribute="leading" constant="32" id="UMy-pb-hZd"/>
                             <constraint firstItem="iqh-9R-1y7" firstAttribute="trailing" secondItem="Wym-Ve-gTt" secondAttribute="trailing" constant="32" id="b3R-6J-Tsb"/>
                             <constraint firstItem="Wym-Ve-gTt" firstAttribute="centerX" secondItem="R4E-cZ-njX" secondAttribute="centerX" id="c2H-el-RZE"/>
                             <constraint firstItem="Y3v-fU-epH" firstAttribute="leading" secondItem="iqh-9R-1y7" secondAttribute="leading" constant="32" id="kGf-wi-3wj"/>
                             <constraint firstItem="Y3v-fU-epH" firstAttribute="centerX" secondItem="R4E-cZ-njX" secondAttribute="centerX" id="nd7-Xg-OPT"/>
                             <constraint firstItem="Y3v-fU-epH" firstAttribute="top" secondItem="Wym-Ve-gTt" secondAttribute="bottom" constant="20" id="pqu-W5-P1r"/>
+                            <constraint firstItem="Wym-Ve-gTt" firstAttribute="top" secondItem="UlU-OY-buV" secondAttribute="bottom" constant="12" id="uTT-Op-ZyM"/>
                             <constraint firstItem="Y3v-fU-epH" firstAttribute="centerY" secondItem="R4E-cZ-njX" secondAttribute="centerY" id="xOf-pj-y2J"/>
                         </constraints>
                     </view>
@@ -65,6 +75,9 @@
     <resources>
         <namedColor name="mainColor">
             <color red="0.071000002324581146" green="0.0" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white48">
+            <color red="1" green="1" blue="1" alpha="0.47999998927116394" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
