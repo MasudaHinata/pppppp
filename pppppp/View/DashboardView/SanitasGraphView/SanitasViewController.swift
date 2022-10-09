@@ -177,24 +177,24 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 activityIndicator.stopAnimating()
                 
                 //MARK: 体重のポイント作成判定
-                //                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
-                //                if judge {
-                //                    let weight = try await HealthKit_ScoreringManager.shared.getWeight()
-                //                    guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
-                //                        let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
-                //                        self.showDetailViewController(secondVC, sender: self)
-                //                        return
-                //                    }
-                //                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
-                //                    if checkPoint == [] {
-                //                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2週間の体重データがないためポイントを作成できませんでした")
-                //                    }
-                //                }
+                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
+                if judge {
+                    let weight = try await HealthKit_ScoreringManager.shared.getWeight()
+                    guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
+                        let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
+                        self.showDetailViewController(secondVC, sender: self)
+                        return
+                    }
+                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
+                    if checkPoint == [] {
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2週間の体重データがないためポイントを作成できませんでした")
+                    }
+                }
                 //MARK: ワークアウトのポイント作成判定
-                //                let createdPointjudge = try await HealthKit_ScoreringManager.shared.createWorkoutPoint()
-                //                if createdPointjudge == false {
-                //                    ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "体重データがないためポイントを作成できませんでした")
-                //                }
+                let createdPointjudge = try await HealthKit_ScoreringManager.shared.createWorkoutPoint()
+                if createdPointjudge == false {
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "体重データがないためポイントを作成できませんでした")
+                }
                 
                 //MARK: ポイントの期間・今日の歩数を表示
                 stepsLabel.text = "Today \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps())) steps"

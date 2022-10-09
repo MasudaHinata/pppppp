@@ -496,7 +496,6 @@
 				03B832ED28DC858D00C8AE3E /* OnboardingView1 */,
 				03B832F628DC8BF400C8AE3E /* OnboardingView2 */,
 				0331A20228DC8C5C004AA309 /* OnboardingView3 */,
-				0374653F28EDA43D00DB0833 /* SetGoalWeightView */,
 			);
 			path = OnboardingView;
 			sourceTree = "<group>";
@@ -758,6 +757,7 @@
 				033BC38B28DC844E008DBC49 /* ChangeProfileView */,
 				032843AE28DC9A7900AB1A5D /* SettingView */,
 				032843AF28DC9A9A00AB1A5D /* SettingCell */,
+				0374653F28EDA43D00DB0833 /* SetGoalWeightView */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
