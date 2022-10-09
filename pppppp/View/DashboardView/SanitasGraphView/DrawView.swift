@@ -53,7 +53,7 @@ class DrawView: UIView {
         }
 
         for (index, item) in friendListItems.enumerated() {
-            let alpha = CGFloat(friendListItems.count - index - 1) / CGFloat(friendListItems.count)
+            let alpha = CGFloat(friendListItems.count - index - 1) / CGFloat(friendListItems.count) * 2
             let newPosition = friendPositions[index] + (vertexPoint * alpha)
             graph(vertex: newPosition, item: item, index: index)
         }
@@ -135,7 +135,7 @@ class DrawView: UIView {
             self.setNeedsDisplay()
         }
 
-        playerMotionManager.accelerometerUpdateInterval = 0.05
+        playerMotionManager.accelerometerUpdateInterval = 0.008
         playerMotionManager.startAccelerometerUpdates(to: OperationQueue.main, withHandler: handler)
     }
 }
