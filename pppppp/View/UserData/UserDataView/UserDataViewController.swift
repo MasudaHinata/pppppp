@@ -88,6 +88,11 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
         
+        activityIndicator.startAnimating()
+        iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
+        nameLabel.text = userDataItem?.name
+        pointLabel.text = "\(userDataItem?.point ?? 0)pt"
+        
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
@@ -103,9 +108,14 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                     deleteFriendButtonLayout.tintColor = UIColor.systemPink
                     deleteFriendButtonLayout.setTitle("Delete Friend", for: .normal)
                 }
+                pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
+                pointDataList.reverse()
+                self.collectionView.reloadData()
+                self.tableView.reloadData()
+                activityIndicator.stopAnimating()
             }
             catch {
-                print("CollectionViewContro viewDid error:",error.localizedDescription)
+                print("UserDataViewContro viewDidL error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.viewDidLoad()
@@ -116,35 +126,6 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
             }
         }
         self.cancellables.insert(.init { task.cancel() })
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        activityIndicator.startAnimating()
-        iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
-        nameLabel.text = userDataItem?.name
-        pointLabel.text = "\(userDataItem?.point ?? 0)pt"
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
-                pointDataList.reverse()
-                self.collectionView.reloadData()
-                self.tableView.reloadData()
-                activityIndicator.stopAnimating()
-            }
-            catch {
-                print("CollectionViewContro ViewDid error:",error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
-                        self.viewDidLoad()
-                    }
-                } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
-                }
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
     }
     
     //MARK: - Setting Delegate
