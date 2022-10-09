@@ -42,6 +42,7 @@ struct ProfileContentView: View {
                         .background(Color(asset: Asset.Colors.white48))
                     }
                 }
+
                 Form {
                     //MARK: - Streak
                     //                    Section {
@@ -53,21 +54,20 @@ struct ProfileContentView: View {
                         ForEach(viewModel.pointDataList, id: \.self) { pointdataItem in
                             HStack {
                                 Text(DateToString(date: pointdataItem.date))
-                                    .font(.custom("F5.6", fixedSize: 22))
+                                    .font(.custom("F5.6", fixedSize: 16))
                                 Text(pointdataItem.activity ?? "")
-
-                                Text("+")
-                                    .font(.custom("F5.6", fixedSize: 22))
-                                Text(String(pointdataItem.point ?? 0))
-                                    .font(.custom("F5.6", fixedSize: 22))
-                                Text("pt")
+                                    .font(.system(size: 22, weight: .semibold))
+                                Spacer()
+                                Text("+\(pointdataItem.point ?? 0)pt")
                                     .font(.custom("F5.6", fixedSize: 22))
                             }
+                            .listRowBackground(Color(asset: Asset.Colors.white16))
                         }
                     } header: {
-                        Text("RECENT ACTIVITY")
+                        Text("RECENT ACTIVITIES")
                     }
                 }
+                .scrollContentBackground(.hidden)
                 .background(Color(asset: Asset.Colors.mainColor))
                 
                 .navigationBarTitle(Text(viewModel.name))

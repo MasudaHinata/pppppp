@@ -57,8 +57,8 @@ internal enum Asset {
     internal static let subColor = ColorAsset(name: "subColor")
     internal static let white0 = ColorAsset(name: "white0")
     internal static let white00 = ColorAsset(name: "white00")
+    internal static let white16 = ColorAsset(name: "white16")
     internal static let white48 = ColorAsset(name: "white48")
-    internal static let white50 = ColorAsset(name: "white50")
     internal static let white75 = ColorAsset(name: "white75")
   }
 }
