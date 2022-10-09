@@ -6,8 +6,6 @@ final class ProfileViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var friendListView: Void = ()
-    
     @Published var friendCount: Int = 0
     @Published var point: Int = 0
     @Published var iconImageURL = URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as! String)
@@ -20,13 +18,14 @@ final class ProfileViewModel: ObservableObject {
             layout.estimatedItemSize = CGSize(width: 17, height: 16)
         }
     }
+//    @Published var friendListView: Void = ()
     
     init() {
     }
     
-    func sceneFriendList() {
-        self.friendListView = ()
-    }
+//    func sceneFriendList() {
+//        self.friendListView = ()
+//    }
     
     func getProfileData() {
         let task = Task { [weak self] in

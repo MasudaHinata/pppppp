@@ -25,7 +25,7 @@ struct ProfileContentView: View {
                         
                         Button(action: {
                             //TODO: FriendListViewにpush遷移させる
-                            viewModel.sceneFriendList()
+//                            viewModel.sceneFriendList()
                             
                         }){
                             Text("\((viewModel.friendCount))\nfriends")

@@ -4,27 +4,28 @@ import Combine
 import Kingfisher
 
 @MainActor
-final class ProfileViewController: UIHostingController<ProfileContentView>, FireStoreCheckNameDelegate {
+//UIHostingController<ProfileContentView>
+final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate {
     
     private var cancellables: [AnyCancellable] = []
     
-    init(viewModel: ProfileViewModel) {
-        super.init(rootView: .init(viewModel: viewModel))
-//        super.init(coder: coder, rootView: .init(viewModel: viewModel))
-        
-        viewModel.$friendListView
-            .dropFirst()
-            .sink { [weak self] _ in
-                
-//                let vc = InAppPurchaseHostingController(viewModel: .init())
-//                self?.present(vc, animated: true)
-                
-            }.store(in: &cancellables)
-    }
-    
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init(viewModel: ProfileViewModel) {
+//        super.init(rootView: .init(viewModel: viewModel))
+////        super.init(coder: coder, rootView: .init(viewModel: viewModel))
+//        
+//        viewModel.$friendListView
+//            .dropFirst()
+//            .sink { [weak self] _ in
+//                
+////                let vc = InAppPurchaseHostingController(viewModel: .init())
+////                self?.present(vc, animated: true)
+//                
+//            }.store(in: &cancellables)
+//    }
+//    
+//    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
