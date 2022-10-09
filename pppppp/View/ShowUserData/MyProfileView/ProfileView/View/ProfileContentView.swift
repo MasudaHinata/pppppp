@@ -66,8 +66,6 @@ struct ProfileContentView: View {
                                 .frame(width: 72, height: 72)
                                 .cornerRadius(36)
 
-                            Spacer()
-                            
                             HStack {
                                 Text(String(viewModel.userDataItem?.point ?? 0))
                                     .font(.custom("F5.6", fixedSize: 24))
