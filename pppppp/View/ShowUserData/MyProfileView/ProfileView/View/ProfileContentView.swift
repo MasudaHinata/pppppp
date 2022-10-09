@@ -4,8 +4,8 @@ import Charts
 import Combine
 
 struct ProfileContentView: View {
+
     @ObservedObject var viewModel: ProfileViewModel
-    @State var pointDisplayData = [PointData]()
     
     var body: some View {
         NavigationView {
@@ -56,7 +56,7 @@ struct ProfileContentView: View {
 
                 //MARK: - Streak
                 Section {
-                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: pointDisplayData))
+                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList))
                         .frame(width: 343.4, height: 139)
                         .listRowBackground(Color(asset: Asset.Colors.white16))
                 } header: {

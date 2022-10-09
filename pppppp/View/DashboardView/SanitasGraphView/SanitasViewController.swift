@@ -8,12 +8,9 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     var cancellables = Set<AnyCancellable>()
     let calendar = Calendar.current
     var startDate = Date()
-    let dateFormatter = DateFormatter()
     var friendDataList = [UserData]()
     
     @IBOutlet var stepsLabel: UILabel!
-    @IBOutlet var noFriendView: UIView!
-    @IBOutlet var noFriendLabel: UILabel!
     @IBOutlet var mountainView: DrawView!
     
     @IBAction func sceneDashboardView() {
@@ -223,7 +220,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         }
     }
     func putPointForFirestore(point: Int, activity: String) {
-        let alert = UIAlertController(title: "ポイントを獲得しました", message: "あなたのポイントは\(point)pt", preferredStyle: .alert)
+        let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity): \(point)pt", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)

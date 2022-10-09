@@ -35,7 +35,7 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                     try await FirebaseClient.shared.signout()
                 }
                 catch {
-                    print("Setting Logout error", error.localizedDescription)
+                    print("SettingView Logout error", error.localizedDescription)
                     if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください")
                     } else {
@@ -50,7 +50,6 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         alert.addAction(delete)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
-        
     }
     
     func deleteAccount() {
@@ -63,7 +62,6 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                     try await FirebaseClient.shared.accountDelete()
                 }
                 catch {
-                    //TODO: error処理
                     print("SettingView deleteAccount error:\(String(describing: error.localizedDescription))")
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "ログインし直してもう一度お試しください") { _ in
                         let secondVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()

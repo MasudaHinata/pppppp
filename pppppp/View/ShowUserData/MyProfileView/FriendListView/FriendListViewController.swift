@@ -30,10 +30,6 @@ class FriendListViewController: UIViewController {
         let task = Task {  [weak self] in
             guard let self = self else { return }
             do {
-                try await FirebaseClient.shared.checkNameData()
-                try await FirebaseClient.shared.checkIconData()
-                navigationItem.title = UserDefaults.standard.object(forKey: "name")! as? String
-                
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
             }
@@ -72,5 +68,4 @@ class FriendListViewController: UIViewController {
         cancellables.insert(.init { task.cancel() })
         refreshCtl.endRefreshing()
     }
-    
 }

@@ -5,7 +5,6 @@ class ChangeProfileViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
     var profileName: String = ""
-    var myName: String!
     var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var myNameLabel: UILabel!
@@ -72,7 +71,7 @@ class ChangeProfileViewController: UIViewController {
                     }
                 }
                 catch {
-                    print("ChangeProfile putFirebaseStorage error:", error.localizedDescription)
+                    print("ChangeProfile changeProfile error:", error.localizedDescription)
                     if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください")
                     } else {
@@ -111,7 +110,7 @@ class ChangeProfileViewController: UIViewController {
                 activityIndicator.stopAnimating()
             }
             catch {
-                print("ChangeProfileView didLoad error:",error.localizedDescription)
+                print("ChangeProfileView didLoadL error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.dismiss(animated: true, completion: nil)

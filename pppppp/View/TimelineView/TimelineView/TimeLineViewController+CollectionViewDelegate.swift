@@ -9,10 +9,6 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimelinePostCollectionViewCell", for: indexPath)  as! TimelinePostCollectionViewCell
-        
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "YY/MM/dd hh:mm"
-        
         cell.configureCell(postDataItem[indexPath.row])
         cell.timelineCollectionViewCellDelegate = self
         return cell

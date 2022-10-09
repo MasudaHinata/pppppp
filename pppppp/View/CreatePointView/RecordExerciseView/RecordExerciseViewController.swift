@@ -4,12 +4,9 @@ import UIKit
 class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
     
     var cancellables = Set<AnyCancellable>()
-    let calendar = Calendar.current
-    
     var exerciseTypePicker = UIPickerView()
     var exerciseTimePicker = UIPickerView()
     let exerciseTypeList = ["軽いジョギング", "ランニング", "運動を選択してください", "筋トレ(軽・中等度)", "筋トレ(強等度)", "テニス(ダブルス)", "テニス(シングルス)", "水泳(ゆっくりとした背泳ぎ・平泳ぎ)", "水泳(クロール・普通の速さ)", "水泳(クロール・速い)", "野球"]
-    
     let exerciseTimeList: [Int] = Array(0...120)
     
     @IBOutlet var selectExerciseTextField: UITextField! {
@@ -36,7 +33,6 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
         }
     }
     
-    
     @IBAction func recordExerciseButton() {
         if selectExerciseTextField.text == "" || selectExerciseTextField.text == "運動を選択してください" {
             ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "運動を選択してください")
@@ -51,7 +47,7 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
                     selectExerciseTextField.text = ""
                 }
                 catch {
-                    print("RecordExerciseView recordExercise error:", error.localizedDescription)
+                    print("RecordExerciseView recordExerciseButton error:", error.localizedDescription)
                     if error.localizedDescription == "Not authorized" {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "設定からHealthKitの許可をオンにしてください")
                     } else {
@@ -112,7 +108,7 @@ class RecordExerciseViewController: UIViewController, FirebasePutPointDelegate {
     
     //MARK: - Setting Delegate
     func putPointForFirestore(point: Int, activity: String) {
-        let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity)  \(point)pt", preferredStyle: .alert)
+        let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity): \(point)pt", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)

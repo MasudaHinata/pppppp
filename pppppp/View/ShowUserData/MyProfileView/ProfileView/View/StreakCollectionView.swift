@@ -60,7 +60,8 @@ struct StreakCollectionView: UIViewRepresentable {
                 return cell
             }
 
-            let task = Task { [weak self] in
+            //TODO: ViewModelからデータを渡してStreakを更新する
+            let task = Task {
                 do {
                     let userID = try await FirebaseClient.shared.getUserUUID()
                     try await FirebaseClient.shared.checkNameData()
@@ -86,7 +87,7 @@ struct StreakCollectionView: UIViewRepresentable {
                     }
                 }
                 catch {
-                    print("ProfileViewContro didAppear error:",error.localizedDescription)
+                    print("StreakCollectionView error:",error.localizedDescription)
                 }
             }
             cancellables.insert(.init { task.cancel() })

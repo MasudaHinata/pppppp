@@ -17,10 +17,12 @@ extension UserDataViewController: UITableViewDelegate, UITableViewDataSource {
         cell.activityLabel.text = pointDataList[indexPath.row].activity ?? ""
         return cell
     }
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         //ヘッダーの肥大化を回避
         return "  "
     }
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 4
     }

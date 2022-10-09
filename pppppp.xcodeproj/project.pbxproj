@@ -15,7 +15,6 @@
 		032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843A728DC8E5700AB1A5D /* L10n-Constants.swift */; };
 		032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843A828DC8E5700AB1A5D /* Assets-Constants.swift */; };
 		032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */; };
-		032DF35B28F1888D00458C20 /* PersonalPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF35A28F1888D00458C20 /* PersonalPathView.swift */; };
 		032DF35D28F1B7AC00458C20 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */; };
 		032DF35F28F1D0EE00458C20 /* StreakCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */; };
 		032DF36128F24E7F00458C20 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36028F24E7F00458C20 /* DateHelper.swift */; };
@@ -140,7 +139,6 @@
 		032843A728DC8E5700AB1A5D /* L10n-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "L10n-Constants.swift"; sourceTree = "<group>"; };
 		032843A828DC8E5700AB1A5D /* Assets-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets-Constants.swift"; sourceTree = "<group>"; };
 		032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Scenes.swift"; sourceTree = "<group>"; };
-		032DF35A28F1888D00458C20 /* PersonalPathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPathView.swift; sourceTree = "<group>"; };
 		032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCollectionView.swift; sourceTree = "<group>"; };
 		032DF36028F24E7F00458C20 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
@@ -641,7 +639,6 @@
 			children = (
 				BE7F337F2580D07E0027620D /* SanitasViewController.swift */,
 				036F698B28BB9DAD0066A7DA /* DrawView.swift */,
-				032DF35A28F1888D00458C20 /* PersonalPathView.swift */,
 				03C7E7C528D49DB10069A46E /* SanitasView.storyboard */,
 			);
 			path = SanitasGraphView;
@@ -1007,7 +1004,6 @@
 				03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */,
-				032DF35B28F1888D00458C20 /* PersonalPathView.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
 				032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */,
 				037EE2AA28F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift in Sources */,
