@@ -8,86 +8,97 @@ struct ProfileContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                //MARK: - profile画面
-                Group {
-                    HStack(alignment: .center, spacing: 32) {
+            //MARK: - profile画面
+            Form {
+                Section {
+                    HStack(alignment: .center, spacing: 36) {
                         KFImage(viewModel.iconImageURL)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 72, height: 72)
                             .cornerRadius(36)
-                        
-                        Text("\(String(viewModel.point))\npoint")
-                            .font(.custom("F5.6", fixedSize: 16))
-                            .multilineTextAlignment(.center)
-                        
+
+                        VStack {
+                            Text("\(viewModel.point)")
+                                .font(.custom("F5.6", fixedSize: 18))
+                            Text("pt")
+                                .font(.custom("F5.6", fixedSize: 16))
+                        }
+
                         Button {
                             //TODO: push遷移させる
                             viewModel.sceneFriendList()
                         } label: {
-                            Text("\((viewModel.friendCount))\nfriends")
-                                .font(.custom("F5.6", fixedSize: 16))
+                            VStack {
+                                Text("\(viewModel.friendCount)")
+                                    .font(.custom("F5.6", fixedSize: 18))
+                                Text("friends")
+                                    .font(.custom("F5.6", fixedSize: 16))
+                            }
                         }
                         .foregroundColor(.white)
-                        
+
                         Button{
                             viewModel.sceneChangeProfile()
                         } label: {
-                            Image(systemName: "pencil")
-                            Text("Edit")
-                        }
-                        //TODO: textの上下に余白
-                        .foregroundColor(Color(asset: Asset.Colors.white00))
-                        .background(Color(asset: Asset.Colors.white48))
-                    }
-                }
-
-                Form {
-                    //MARK: - Streak
-                    //                    Section {
-                    //                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList, flowLayout: viewModel.layout))
-                    //                    }
-                    
-                    //MARK: - RecentActivity
-                    Section {
-                        ForEach(viewModel.pointDataList, id: \.self) { pointdataItem in
                             HStack {
-                                Text(DateToString(date: pointdataItem.date))
-                                    .font(.custom("F5.6", fixedSize: 16))
-                                Text(pointdataItem.activity ?? "")
-                                    .font(.system(size: 22, weight: .semibold))
-                                Spacer()
-                                Text("+\(pointdataItem.point ?? 0)pt")
-                                    .font(.custom("F5.6", fixedSize: 22))
+                                Image(systemName: "pencil")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 16, height: 16)
                             }
-                            .listRowBackground(Color(asset: Asset.Colors.white16))
                         }
-                    } header: {
-                        Text("RECENT ACTIVITIES")
+                        //TODO: textの上下にも余白
+                        .frame(width: 40, height: 20)
+                        .cornerRadius(10)
+                        .foregroundColor(Color(asset: Asset.Colors.white00))
+//                        .background(Color(asset: Asset.Colors.white16))
                     }
+                    .listRowBackground(Color.clear)
                 }
-                .scrollContentBackground(.hidden)
-                .background(Color(asset: Asset.Colors.mainColor))
-                
-                .navigationBarTitle(Text(viewModel.name))
-                .navigationBarItems(trailing: HStack {
-                    Button {
-                        viewModel.sceneShareMyData()
-                    } label: {
-                        Image(systemName: "person.crop.circle.badge.plus")
-                    }
-                    .foregroundColor(.white)
+                //MARK: - Streak
+                Section {
+                //                    StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList, flowLayout: viewModel.layout))
+                }
 
-                    Button {
-                        print("aaaa")
-                        viewModel.sceneSetting()
-                    } label: {
-                        Image(systemName: "gearshape")
+                //MARK: - RecentActivity
+                Section {
+                    ForEach(viewModel.pointDataList, id: \.self) { pointdataItem in
+                        HStack {
+                            Text(DateToString(date: pointdataItem.date))
+                                .font(.custom("F5.6", fixedSize: 16))
+                            Text(pointdataItem.activity ?? "")
+                                .font(.system(size: 22, weight: .semibold))
+                            Spacer()
+                            Text("+\(pointdataItem.point ?? 0)pt")
+                                .font(.custom("F5.6", fixedSize: 22))
+                        }
+                        .listRowBackground(Color(asset: Asset.Colors.white16))
                     }
-                    .foregroundColor(.white)
-                })
+                } header: {
+                    Text("RECENT ACTIVITIES")
+                }
             }
+            .scrollContentBackground(.hidden)
+            .background(Color(asset: Asset.Colors.mainColor))
+
+            .navigationBarTitle(Text(viewModel.name))
+            .navigationBarItems(trailing: HStack {
+                Button {
+                    viewModel.sceneShareMyData()
+                } label: {
+                    Image(systemName: "person.crop.circle.badge.plus")
+                }
+                .foregroundColor(.white)
+
+                Button {
+                    print("aaaa")
+                    viewModel.sceneSetting()
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+                .foregroundColor(.white)
+            })
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(asset: Asset.Colors.mainColor))
             .onAppear {
