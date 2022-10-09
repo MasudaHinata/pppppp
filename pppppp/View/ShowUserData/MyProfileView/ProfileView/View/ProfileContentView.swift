@@ -12,7 +12,7 @@ struct ProfileContentView: View {
             //MARK: - profile画面
             Form {
                 Section {
-                    HStack(alignment: .center, spacing: 48) {
+                    HStack(alignment: .center, spacing: 44) {
                         KFImage(viewModel.iconImageURL)
                             .resizable()
                             .scaledToFill()
