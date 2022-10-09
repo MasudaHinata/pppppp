@@ -18,6 +18,7 @@
 		032DF35D28F1B7AC00458C20 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */; };
 		032DF35F28F1D0EE00458C20 /* StreakCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */; };
 		032DF36128F24E7F00458C20 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36028F24E7F00458C20 /* DateHelper.swift */; };
+		032DF36A28F30FDA00458C20 /* CGPointHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36928F30FDA00458C20 /* CGPointHelper.swift */; };
 		0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */; };
 		033945EE28DF25AE00681E9C /* HealthChartsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033945ED28DF25AE00681E9C /* HealthChartsView.storyboard */; };
 		033945F028DF25C100681E9C /* HealthChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033945EF28DF25C100681E9C /* HealthChartsViewController.swift */; };
@@ -142,6 +143,7 @@
 		032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCollectionView.swift; sourceTree = "<group>"; };
 		032DF36028F24E7F00458C20 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		032DF36928F30FDA00458C20 /* CGPointHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointHelper.swift; sourceTree = "<group>"; };
 		0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
 		033945ED28DF25AE00681E9C /* HealthChartsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HealthChartsView.storyboard; sourceTree = "<group>"; };
 		033945EF28DF25C100681E9C /* HealthChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsViewController.swift; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 				03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */,
 				03DAC3FF28EA7918005F173B /* UIColorHelper.swift */,
 				032DF36028F24E7F00458C20 /* DateHelper.swift */,
+				032DF36928F30FDA00458C20 /* CGPointHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -957,6 +960,7 @@
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */,
 				033945F028DF25C100681E9C /* HealthChartsViewController.swift in Sources */,
+				032DF36A28F30FDA00458C20 /* CGPointHelper.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
 				035D29DA28E98AA400E1BEA4 /* HealthChartsContentView.swift in Sources */,
 				036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */,
