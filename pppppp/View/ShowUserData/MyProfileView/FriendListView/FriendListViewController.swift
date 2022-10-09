@@ -17,6 +17,8 @@ class FriendListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.title = "Friends"
         
         refreshCtl.tintColor = .white
         friendcollectionView.refreshControl = refreshCtl
@@ -38,11 +40,11 @@ class FriendListViewController: UIViewController {
             catch {
                 print("FriendListViewContro ViewDid error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.viewDidLoad()
-                    })
+                    }
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }
@@ -59,11 +61,11 @@ class FriendListViewController: UIViewController {
             catch {
                 print("ProfileViewContro refresh error:", error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.viewDidLoad()
-                    })
+                    }
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }

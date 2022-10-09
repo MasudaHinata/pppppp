@@ -46,7 +46,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
     @IBAction func deleteFriendButton() {
         if flag {
             let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
-            let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
+            let delete = UIAlertAction(title: "削除", style: .destructive) { [self] (action) -> Void in
                 let task = Task { [weak self] in
                     guard let self = self else { return }
                     do {
@@ -56,18 +56,18 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                     catch {
                         print("CollectionViewContro viewDid error:",error.localizedDescription)
                         if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                                 self.viewDidLoad()
-                            })
+                            }
                         } else {
-                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                         }
                     }
                 }
                 self.cancellables.insert(.init { task.cancel() })
-            })
-            let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-            })
+            }
+            let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (action) -> Void in
+            }
             alert.addAction(delete)
             alert.addAction(cancel)
             self.present(alert, animated: true, completion: nil)
@@ -88,6 +88,11 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
         
+        activityIndicator.startAnimating()
+        iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
+        nameLabel.text = userDataItem?.name
+        pointLabel.text = "\(userDataItem?.point ?? 0)pt"
+        
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
@@ -103,30 +108,6 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                     deleteFriendButtonLayout.tintColor = UIColor.systemPink
                     deleteFriendButtonLayout.setTitle("Delete Friend", for: .normal)
                 }
-            }
-            catch {
-                print("CollectionViewContro viewDid error:",error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
-                        self.viewDidLoad()
-                    })
-                } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
-                }
-            }
-        }
-        self.cancellables.insert(.init { task.cancel() })
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        activityIndicator.startAnimating()
-        iconView.kf.setImage(with: URL(string: userDataItem!.iconImageURL))
-        nameLabel.text = userDataItem?.name
-        pointLabel.text = "\(userDataItem?.point ?? 0)pt"
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
                 pointDataList = try await FirebaseClient.shared.getPointData(id: (userDataItem?.id)!)
                 pointDataList.reverse()
                 self.collectionView.reloadData()
@@ -134,17 +115,17 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                 activityIndicator.stopAnimating()
             }
             catch {
-                print("CollectionViewContro ViewDid error:",error.localizedDescription)
+                print("UserDataViewContro viewDidL error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.viewDidLoad()
-                    })
+                    }
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }
-        cancellables.insert(.init { task.cancel() })
+        self.cancellables.insert(.init { task.cancel() })
     }
     
     //MARK: - Setting Delegate
@@ -158,12 +139,5 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
-    }
-}
-
-//MARK: - extension
-extension Date {
-    func getZeroTime() -> Date {
-        Calendar.current.startOfDay(for: self)
     }
 }

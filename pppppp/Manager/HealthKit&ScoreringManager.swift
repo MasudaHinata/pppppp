@@ -212,6 +212,8 @@ final class HealthKit_ScoreringManager {
     //MARK: - 体重ポイントを作成
     func createWeightPoint(weightGoal: Double, weight: Double) async throws -> [Double] {
         
+        UserDefaults.standard.set((Date()), forKey: "createWeightPointDate")
+        
         let endDate = calendar.date(byAdding: .day, value: 0, to: calendar.startOfDay(for: Date()))
         let startDate = calendar.date(byAdding: .day, value: -12, to: calendar.startOfDay(for: endDate!))
         let period = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
@@ -230,7 +232,7 @@ final class HealthKit_ScoreringManager {
                 } else {
                     let weightDifference = lastweightList.reduce(0, +) / Double(lastweightList.count) - weight
                     if weightDifference > 0 {
-                        weightPoint = Int(3.5 / (0.3 + exp(-weightDifference * 3)))
+                        weightPoint = Int(3.4 / (0.3 + exp(-weightDifference * 3)))
                     }
                 }
                 try await FirebaseClient.shared.firebasePutData(point: weightPoint ?? 0, activity: "Weight")
@@ -246,10 +248,7 @@ final class HealthKit_ScoreringManager {
                 }
                 try await FirebaseClient.shared.firebasePutData(point: weightPoint ?? 0, activity: "Weight")
             }
-            UserDefaults.standard.set((Date()), forKey: "createWeightPointDate")
         }
-
-        
         return lastweightList
     }
     
@@ -312,11 +311,11 @@ final class HealthKit_ScoreringManager {
                 //TODO: AppleのworkoutIDからcaseで名前を代入する
                 let exercizeName = "Workout"
                 
-                UserDefaults.standard.set((Date()), forKey: "createWorkoutPointDate")
                 try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: exercizeName)
             } else {
                 createdPointJudge = false
             }
+            UserDefaults.standard.set((Date()), forKey: "createWorkoutPointDate")
         }
     
         return createdPointJudge

@@ -62,27 +62,27 @@ class ChangeProfileViewController: UIViewController {
                         try await FirebaseClient.shared.putFirebaseStorage(selectImage: selectImage)
                     }
                     
-                    ShowAlertHelper.okAlert(vc: self, title: "完了", message: "変更しました", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "完了", message: "変更しました") { _ in
                         var configuration = UIButton.Configuration.gray()
                         configuration.title = "Save Change"
                         configuration.baseBackgroundColor = Asset.Colors.lightBlue00.color
                         configuration.baseForegroundColor = .white
                         self.changeProfileLayout.configuration = configuration
                         self.myNameLabel.text = UserDefaults.standard.object(forKey: "name")! as? String
-                    })
+                    }
                 }
                 catch {
                     print("ChangeProfile putFirebaseStorage error:", error.localizedDescription)
                     if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in })
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください")
                     } else {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                     }
                 }
             }
             self.cancellables.insert(.init { task.cancel() })
         } else {
-            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "画像を選択してください", handler: { _ in })
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "画像を選択してください")
         }
     }
     
@@ -113,11 +113,11 @@ class ChangeProfileViewController: UIViewController {
             catch {
                 print("ChangeProfileView didLoad error:",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.dismiss(animated: true, completion: nil)
-                    })
+                    }
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }

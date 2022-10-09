@@ -43,10 +43,10 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 if friendId == userID {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "自分とは友達になれません", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "自分とは友達になれません") { _ in
                         let secondVC = StoryboardScene.Main.initialScene.instantiate()
                         self.showDetailViewController(secondVC, sender: self)
-                    })
+                    }
                 } else {
                     try await FirebaseClient.shared.addFriend(friendId: friendId)
                 }
@@ -54,11 +54,11 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
             catch {
                 print("FriendProfileViewContro addFriend error:", error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.viewDidAppear(true)
-                    })
+                    }
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }
@@ -74,22 +74,24 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                friendLabel.text = try await  FirebaseClient.shared.getFriendNameData(friendId: friendId)
-                friendIconView.kf.setImage(with: try await FirebaseClient.shared.getFriendIconData(friendId: friendId!))
+                var friendData = [UserData]()
+                friendData = try await FirebaseClient.shared.getUserDataFromId(friendId: friendId)
+                friendLabel.text = friendData.last?.name
+                friendIconView.kf.setImage(with: URL(string: friendData.last!.iconImageURL))
             }
             catch {
                 print("FriendProfileViewContro ViewAppear error:", error.localizedDescription)
                 if error.localizedDescription == "The operation couldn’t be completed. (pppppp.FirebaseClientFirestoreError error 0.)" {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "アカウントが存在しません", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "アカウントが存在しません") { _ in
                         let secondVC = StoryboardScene.Main.initialScene.instantiate()
                         self.showDetailViewController(secondVC, sender: self)
-                    })
+                    }
                 } else if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
                         self.dismiss(animated: true, completion: nil)
-                    })
+                    }
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }

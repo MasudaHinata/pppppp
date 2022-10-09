@@ -30,7 +30,7 @@ class RecordWeightViewController: UIViewController {
     @IBAction func writeWeightDataButton() {
         guard let inputWeightText = weightTextField.text else { return }
         guard let inputWeight = Double(inputWeightText) else {
-            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "体重を入力してください", handler: { _ in })
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "体重を入力してください")
             return
         }
         
@@ -46,18 +46,18 @@ class RecordWeightViewController: UIViewController {
                 }
                 let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: inputWeight)
                 if checkPoint == [] {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2s週間の体重データがないためポイントを作成できませんでした", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2s週間の体重データがないためポイントを作成できませんでした")
                 }
                 
-                ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました", handler: { _ in })
+                ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重を記録しました")
                 weightTextField.text = ""
             }
             catch {
                 print("RecordExerciseView writeWeight error:", error.localizedDescription)
                 if error.localizedDescription == "Not authorized" {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "設定からHealthKitの許可をオンにしてください", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "設定からHealthKitの許可をオンにしてください")
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }

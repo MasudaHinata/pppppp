@@ -2,11 +2,13 @@ import UIKit
 import Combine
 
 class DashboardViewController: UIViewController {
+    
     var activityIndicator: UIActivityIndicatorView!
-    var friendDataList = [UserData]()
     let layout = UICollectionViewFlowLayout()
     var refreshCtl = UIRefreshControl()
     var cancellables = Set<AnyCancellable>()
+    
+    var friendDataList = [UserData]()
     
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
@@ -20,6 +22,7 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 72)
+        
         refreshCtl.tintColor = .white
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
@@ -34,45 +37,26 @@ class DashboardViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                activityIndicator.startAnimating()
-                try await FirebaseClient.shared.checkUserAuth()
-                friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-                self.collectionView.reloadData()
-                activityIndicator.stopAnimating()
-            }
-            catch {
-                print("DashboardViewContro ViewDid error:",error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
-                        self.viewDidLoad()
-                    })
-                } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
-                }
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
+        activityIndicator.startAnimating()
+        self.collectionView.reloadData()
+        activityIndicator.stopAnimating()
     }
     
-    //MARK: - 引っ張ってcollectionViewの更新する
+    //MARK: - 引っ張ってcollectionViewを更新する
     func refresh() {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
+                try await FirebaseClient.shared.checkUserAuth()
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 self.collectionView.reloadData()
             }
             catch {
                 print("DashboardView refresh error",error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
-                        self.viewDidLoad()
-                    })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください")
                 } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
         }

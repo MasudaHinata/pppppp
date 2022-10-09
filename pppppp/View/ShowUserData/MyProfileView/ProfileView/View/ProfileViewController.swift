@@ -4,30 +4,72 @@ import Combine
 import Kingfisher
 
 @MainActor
-final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+final class ProfileViewController: UIHostingController<ProfileContentView>, FireStoreCheckNameDelegate, UIAdaptivePresentationControllerDelegate {
+
+    private var cancellables: [AnyCancellable] = []
+
+    //MARK: 画面遷移
+    init(viewModel: ProfileViewModel) {
+        super.init(rootView: .init(viewModel: viewModel))
+
+        viewModel.$friendListView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let friendListViewController = StoryboardScene.FriendListView.initialScene.instantiate()
+                self.present(friendListViewController, animated: true)
+            }.store(in: &cancellables)
+
+        viewModel.$changeProfileView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+
+                let changeProfileViewController = StoryboardScene.ChangeProfileView.initialScene.instantiate()
+                if let sheet = changeProfileViewController.sheetPresentationController {
+                    sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
+                }
+                changeProfileViewController.presentationController?.delegate = self
+                self.present(changeProfileViewController, animated: true, completion: nil)
+            }.store(in: &cancellables)
+
+        viewModel.$shareMyData
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let shareMyDataViewController = StoryboardScene.ShareMyDataView.initialScene.instantiate()
+                self.present(shareMyDataViewController, animated: true)
+            }.store(in: &cancellables)
+
+        viewModel.$settingView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let settingViewController = StoryboardScene.SettingView.initialScene.instantiate()
+                self.present(settingViewController, animated: true)
+            }.store(in: &cancellables)
+
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-
-        let vc = UIHostingController(rootView: ProfileContentView())
-        self.addChild(vc)
-        self.view.addSubview(vc.view)
-        vc.didMove(toParent: self)
-        vc.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            vc.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            vc.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            vc.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            vc.view.topAnchor.constraint(equalTo: view.topAnchor)
-        ])
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
+
+    //MARK: - Setting Delegate
+    func notChangeName() {
+        let secondVC = StoryboardScene.SetNameView.initialScene.instantiate()
+        self.showDetailViewController(secondVC, sender: self)
+    }
+
+    func scene() {
+        viewDidLoad()
+    }
+}
+
+
 //    var completionHandlers = [() -> Void]()
 //    var pointDataList = [PointData]()
-//    var friendDataList = [UserData]()
+//    var likedFriendDataList = [UserData]()
 //    let layout = UICollectionViewFlowLayout()
 //    var cancellables = Set<AnyCancellable>()
 //
@@ -56,7 +98,7 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
 //            layout.estimatedItemSize = CGSize(width: 17, height: 16)
 //        }
 //    }
-//
+
 //    @IBOutlet var tableView: UITableView! {
 //        didSet {
 //            tableView.delegate = self
@@ -73,17 +115,17 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
 //    }
 //
 //    @IBAction func editButtonPressed(_ sender: Any) {
-//        if #available(iOS 16.0, *) {
-//            let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
-//            if let sheet = secondVC.sheetPresentationController {
-//                sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
+//            if #available(iOS 16.0, *) {
+//                let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
+//                if let sheet = secondVC.sheetPresentationController {
+//                    sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
+//                }
+//                secondVC.presentationController?.delegate = self
+//                self.present(secondVC, animated: true, completion: nil)
+//            } else {
+//                let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
+//                self.present(secondVC, animated: true, completion: nil)
 //            }
-//            secondVC.presentationController?.delegate = self
-//            self.present(secondVC, animated: true, completion: nil)
-//        } else {
-//            let secondVC = StoryboardScene.ChangeProfileView.initialScene.instantiate()
-//            self.present(secondVC, animated: true, completion: nil)
-//        }
 //    }
 //
 //    @IBAction func sceneSettingView() {
@@ -104,9 +146,9 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
 //            guard let self = self else { return }
 //            do {
 //                let userID = try await FirebaseClient.shared.getUserUUID()
-//                let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
+//                let likedFriendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
 //                sceneFriendListButtonLayout.titleLabel?.font = UIFont(name: "F5.6", size: 16)
-//                sceneFriendListButtonLayout.setTitle("\(friendDataList.count)", for: .normal)
+//                sceneFriendListButtonLayout.setTitle("\(likedFriendDataList.count)", for: .normal)
 //
 //                let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
 //                let point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
@@ -125,45 +167,13 @@ final class ProfileViewController: UIViewController, FireStoreCheckNameDelegate 
 //            catch {
 //                print("ProfileViewContro ViewDid error:",error.localizedDescription)
 //                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-//                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
+//                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
 //                        self.viewDidLoad()
-//                    })
+//                    }
 //                } else {
-//                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
+//                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
 //                }
 //            }
 //        }
 //        cancellables.insert(.init { task.cancel() })
 //    }
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        let task = Task { [weak self] in
-//            guard let self = self else { return }
-//            do {
-//                try await FirebaseClient.shared.checkUserAuth()
-//            }
-//            catch {
-//                print("ProfileViewContro didAppear error:",error.localizedDescription)
-//                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-//                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください", handler: { _ in
-//                        self.viewDidLoad()
-//                    })
-//                } else {
-//                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
-//                }
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
-//    }
-//
-    //MARK: - Setting Delegate
-    func notChangeName() {
-        let secondVC = StoryboardScene.SetNameView.initialScene.instantiate()
-        self.showDetailViewController(secondVC, sender: self)
-    }
-
-    func scene() {
-        viewDidLoad()
-    }
-}

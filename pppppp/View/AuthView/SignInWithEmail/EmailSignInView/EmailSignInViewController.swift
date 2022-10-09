@@ -37,7 +37,7 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
     
     @IBAction func goButtonPressed() {
         if passwordTextField.text == "" {
-            showAlert(title: "エラー", message: "パスワードか入力されていません")
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "パスワードが入力されていません")
         } else {
             let task = Task {
                 do {
@@ -46,13 +46,13 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
                 catch {
                     print("EmailSignInView goButtonPressed error:", error.localizedDescription)
                     if error.localizedDescription == "The email address is badly formatted." {
-                        showAlert(title: "エラー", message: "メールアドレスの形式が間違っています")
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "メールアドレスの形式が間違っています")
                     }  else if  error.localizedDescription == "There is no user record corresponding to this identifier. The user may have been deleted." {
-                        showAlert(title: "エラー", message: "アカウントが存在しません")
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "アカウントが存在しません")
                     }else if error.localizedDescription == "The password is invalid or the user does not have a password." {
-                        showAlert(title: "エラー", message: "パスワードが間違っているか無効です")
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "パスワードが間違っているか無効です")
                     } else {
-                        showAlert(title: "エラー", message: "\(error.localizedDescription)")
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                     }
                 }
             }
@@ -78,13 +78,6 @@ class EmailSignInViewController: UIViewController, FirebaseClientAuthDelegate {
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
-    }
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(action)
-        present(alert, animated: true)
     }
     
     //MARK: - Setting Delegate

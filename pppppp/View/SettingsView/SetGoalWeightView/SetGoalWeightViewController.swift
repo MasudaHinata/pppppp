@@ -32,36 +32,33 @@ class SetGoalWeightViewController: UIViewController {
     }
     
     @IBAction func saveWeightGoalButton(_ sender: Any) {
-        guard let inputWeightText = weightTextField.text else { return }
-        guard let inputWeight = Double(inputWeightText) else {
-            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "体重を入力してください", handler: { _ in })
-            return
-        }
-        
         guard let inputWeightGoalText = weightGoalTextField.text else { return }
         guard let inputWeightGoal = Double(inputWeightGoalText) else {
-            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "目標体重を入力してください", handler: { _ in })
+            ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "目標体重を入力してください")
             return
-            
         }
-        
+
+        guard let inputWeightText = weightTextField.text else { return }
+        if inputWeightText != "" {
+            let task = Task { [weak self] in
+                guard let self = self else { return }
+                do {
+                    try await HealthKit_ScoreringManager.shared.writeWeight(weight: Double(inputWeightText) ?? 0)
+                }
+                catch {
+                    print("SetGoalWeightViewDid error:", error.localizedDescription)
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
+                }
+            }
+            self.cancellables.insert(.init { task.cancel() })
+        }
+
         UserDefaults.standard.set(inputWeightGoal, forKey: "weightGoal")
-        
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                try await HealthKit_ScoreringManager.shared.writeWeight(weight: inputWeight)
-                ShowAlertHelper.okAlert(vc: self, title: "完了", message: "体重と目標体重を記録しました", handler: { _ in })
-            }
-            catch {
-                print("SetGoalWeightViewDid error:", error.localizedDescription)
-                ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)", handler: { _ in })
-            }
+
+        ShowAlertHelper.okAlert(vc: self, title: "完了", message: "記録しました") { _ in
+            let secondVC = StoryboardScene.Main.initialScene.instantiate()
+            self.showDetailViewController(secondVC, sender: self)
         }
-        self.cancellables.insert(.init { task.cancel() })
-        
-        let secondVC = StoryboardScene.Main.initialScene.instantiate()
-        self.showDetailViewController(secondVC, sender: self)
     }
     
     override func viewDidLoad() {
