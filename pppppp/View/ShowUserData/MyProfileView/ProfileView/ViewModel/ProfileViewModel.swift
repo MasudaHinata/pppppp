@@ -20,7 +20,29 @@ final class ProfileViewModel: ObservableObject {
     @Published var settingView: Void = ()
     @Published var shareMyData: Void = ()
 
-    init() {
+    @Published var userDataItem: UserData?
+    @Published var meJudge = Bool()
+
+    init(userDataItem: UserData? = nil) {
+        self.userDataItem = userDataItem
+
+        let task = Task {
+            do {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                if userDataItem == nil {
+                    meJudge = true
+                } else if userDataItem?.id == userID {
+                    meJudge = true
+                } else {
+                    meJudge = false
+                }
+            }
+            catch {
+                print("ProfileViewModel init error:",error.localizedDescription)
+            }
+        }
+
+        self.cancellables.insert(.init { task.cancel() })
     }
     
     func sceneFriendList() {
@@ -45,20 +67,33 @@ final class ProfileViewModel: ObservableObject {
             guard let self = self else { return }
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                try await FirebaseClient.shared.checkNameData()
-                try await FirebaseClient.shared.checkIconData()
-                
-                let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
-                self.friendCount = friendDataList.count
-                
-                pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
-                pointDataList.reverse()
-                
-                let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
-                self.point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
+
+                if userDataItem == nil {
+                    let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
+                    self.friendCount = friendDataList.count
+                    pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                    pointDataList.reverse()
+                    let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+                    self.point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
+                    meJudge = true
+                } else if userDataItem?.id == userID {
+                    let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
+                    self.friendCount = friendDataList.count
+                    pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                    pointDataList.reverse()
+                    let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+                    self.point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
+                    meJudge = true
+                } else {
+                    pointDataList = try await FirebaseClient.shared.getPointData(id: userDataItem?.id ?? "")
+                    pointDataList.reverse()
+                    let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
+                    self.point = try await FirebaseClient.shared.getPointDataSum(id: userDataItem?.id ?? "", accumulationType: type as! String)
+                    meJudge = false
+                }
             }
             catch {
-                print("ProfileViewContro didAppear error:",error.localizedDescription)
+                print("ProfileViewModel getProfileData error:",error.localizedDescription)
             }
         }
         self.cancellables.insert(.init { task.cancel() })

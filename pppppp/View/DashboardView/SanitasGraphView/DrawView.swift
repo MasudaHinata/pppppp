@@ -13,7 +13,6 @@ class DrawView: UIView {
     var friendListItems = [UserData]()
     var friendPositions = [CGPoint]()
 
-    // Accelerometer
     let playerMotionManager = CMMotionManager()
     var vertexPoint: CGPoint = .zero
     var vertexPointTmps: [CGPoint] = Array(repeating: .zero, count: 10)
@@ -53,7 +52,7 @@ class DrawView: UIView {
         }
 
         for (index, item) in friendListItems.enumerated() {
-            let alpha = CGFloat(friendListItems.count - index - 1) / CGFloat(friendListItems.count) * 2
+            let alpha = CGFloat(friendListItems.count - index - 1) / CGFloat(friendListItems.count) * 1.8
             let newPosition = friendPositions[index] + (vertexPoint * alpha)
             graph(vertex: newPosition, item: item, index: index)
         }
@@ -98,7 +97,6 @@ class DrawView: UIView {
             pointLabel.font = UIFont(name: "F5.6", size: 12)
             pointLabel.text = "\(item.point ?? 0)pt"
             pointLabel.textAlignment = .center
-            //pointLabel.frame = CGRect(x: vertex.x - 28, y: vertex.y + 24, width: 56, height: 24)
             self.addSubview(pointLabel)
             pointLabels.append(pointLabel)
         }
@@ -123,7 +121,6 @@ class DrawView: UIView {
         paths.append(path)
     }
 
-    //TODO: MountainViewを一つずつ切り出して視差効果で動かす
     func startAccelerometer() {
         let handler: CMAccelerometerHandler = {( CMAccelerometerData: CMAccelerometerData?, error: Error?) -> Void in
 

@@ -11,48 +11,75 @@ struct ProfileContentView: View {
         NavigationView {
             //MARK: - profile画面
             Form {
-                Section {
-                    HStack(alignment: .center, spacing: 40) {
-                        KFImage(viewModel.iconImageURL)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 72, height: 72)
-                            .cornerRadius(36)
 
-                        VStack {
-                            Text("point")
-                                .font(.custom("F5.6", fixedSize: 14))
-                            Text("\(viewModel.point)")
-                                .font(.custom("F5.6", fixedSize: 18))
-                        }
+                if  viewModel.meJudge {
+                    //MARK: 自分のデータを表示する時
+                    Section {
+                        HStack(alignment: .center, spacing: 40) {
+                            KFImage(viewModel.iconImageURL)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 72, height: 72)
+                                .cornerRadius(36)
 
-                        Button {
-                            //TODO: push遷移させる
-                            viewModel.sceneFriendList()
-                        } label: {
                             VStack {
-                                Text("friend")
+                                Text("point")
                                     .font(.custom("F5.6", fixedSize: 14))
-                                Text("\(viewModel.friendCount)")
+                                Text("\(viewModel.point)")
                                     .font(.custom("F5.6", fixedSize: 18))
                             }
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        .foregroundColor(.white)
 
-                        Button{
-                            viewModel.sceneChangeProfile()
-                        } label: {
-                            Image(systemName: "pencil.circle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(Color(asset: Asset.Colors.white00))
+                            Button {
+                                //TODO: push遷移させる
+                                viewModel.sceneFriendList()
+                            } label: {
+                                VStack {
+                                    Text("friend")
+                                        .font(.custom("F5.6", fixedSize: 14))
+                                    Text("\(viewModel.friendCount)")
+                                        .font(.custom("F5.6", fixedSize: 18))
+                                }
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .foregroundColor(.white)
+
+                            Button{
+                                viewModel.sceneChangeProfile()
+                            } label: {
+                                Image(systemName: "pencil.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(Color(asset: Asset.Colors.white00))
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
+                        .listRowBackground(Color.clear)
+                    }
+                } else {
+                    //MARK: 友達のデータを表示する時
+                    Section {
+                        HStack(alignment: .center) {
+                            KFImage(URL(string: viewModel.userDataItem?.iconImageURL ?? ""))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 72, height: 72)
+                                .cornerRadius(36)
+
+                            Spacer()
+                            
+                            HStack {
+                                Text(String(viewModel.userDataItem?.point ?? 0))
+                                    .font(.custom("F5.6", fixedSize: 24))
+                                Text("pt")
+                                    .font(.custom("F5.6", fixedSize: 24))
+                            }
+
+                        }
                     }
                     .listRowBackground(Color.clear)
                 }
+
 
                 //MARK: - Streak
                 Section {
@@ -84,7 +111,7 @@ struct ProfileContentView: View {
             .scrollContentBackground(.hidden)
             .background(Color(asset: Asset.Colors.mainColor))
 
-            .navigationBarTitle(Text(viewModel.name))
+            .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
             .navigationBarItems(trailing: HStack {
                 Button {
                     viewModel.sceneShareMyData()

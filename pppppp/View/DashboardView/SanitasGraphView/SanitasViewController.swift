@@ -206,6 +206,13 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         }
         self.cancellables.insert(.init { task.cancel() })
     }
+
+    func buttonSelected(item: UserData) {
+        let profileVC = ProfileViewController(viewModel: .init(userDataItem: item))
+//        let secondVC = StoryboardScene.UserDataView.initialScene.instantiate()
+//        profileVC.userDataItem = item
+        self.showDetailViewController(profileVC, sender: self)
+    }
     
     //MARK: - Setting Delegate
     func emailVerifyRequiredAlert() {
@@ -219,6 +226,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             self.present(alert, animated: true, completion: nil)
         }
     }
+
     func putPointForFirestore(point: Int, activity: String) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity): \(point)pt", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -226,6 +234,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             self.present(alert, animated: true, completion: nil)
         }
     }
+
     func notGetPoint() {
         let alert = UIAlertController(title: "今日の獲得ポイントは0ptです", message: "頑張りましょう", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -233,11 +242,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             self.present(alert, animated: true, completion: nil)
         }
     }
-    func buttonSelected(item: UserData) {
-        let secondVC = StoryboardScene.UserDataView.initialScene.instantiate()
-        secondVC.userDataItem = item
-        self.showDetailViewController(secondVC, sender: self)
-    }
+
     func notChangeName() {
         let secondVC = StoryboardScene.SetNameView.initialScene.instantiate()
         self.showDetailViewController(secondVC, sender: self)
