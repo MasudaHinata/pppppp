@@ -15,6 +15,7 @@ enum FirebaseClientAuthError: Error {
 enum FirebaseClientFirestoreError: Error {
     case userDataNotFound
 }
+
 //MARK: - Setting Delegate
 
 @MainActor

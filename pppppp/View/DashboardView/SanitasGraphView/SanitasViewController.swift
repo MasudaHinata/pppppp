@@ -19,6 +19,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     
     @IBAction func sceneDashboardView() {
         let secondVC = StoryboardScene.DashboardView.initialScene.instantiate()
+        secondVC.friendDataList = friendDataList
         self.navigationController?.pushViewController(secondVC, animated: true)
     }
     

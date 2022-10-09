@@ -46,7 +46,7 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
     @IBAction func deleteFriendButton() {
         if flag {
             let alert = UIAlertController(title: "注意", message: "友達を削除しますか？", preferredStyle: .alert)
-            let delete = UIAlertAction(title: "削除", style: .destructive, handler: { [self] (action) -> Void in
+            let delete = UIAlertAction(title: "削除", style: .destructive) { [self] (action) -> Void in
                 let task = Task { [weak self] in
                     guard let self = self else { return }
                     do {
@@ -65,9 +65,9 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
                     }
                 }
                 self.cancellables.insert(.init { task.cancel() })
-            })
-            let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) -> Void in
-            })
+            }
+            let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (action) -> Void in
+            }
             alert.addAction(delete)
             alert.addAction(cancel)
             self.present(alert, animated: true, completion: nil)
@@ -158,12 +158,5 @@ class UserDataViewController: UIViewController, FirebaseClientDeleteFriendDelega
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
-    }
-}
-
-//MARK: - extension
-extension Date {
-    func getZeroTime() -> Date {
-        Calendar.current.startOfDay(for: self)
     }
 }
