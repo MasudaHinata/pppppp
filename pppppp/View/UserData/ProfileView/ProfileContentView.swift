@@ -93,7 +93,6 @@ struct ProfileContentView: View {
                 .foregroundColor(.white)
 
                 Button {
-                    print("aaaa")
                     viewModel.sceneSetting()
                 } label: {
                     Image(systemName: "gearshape")
