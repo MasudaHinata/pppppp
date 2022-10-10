@@ -129,13 +129,12 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 pointDataList.reverse()
 
                 let todayPoint = pointDataList.filter { $0.date.getZeroTime() == Date().getZeroTime() }.compactMap { $0.point }
-                print(todayPoint.reduce(0, +))
 
                 if todayPoint.reduce(0, +) <= 0 {
                     imageView?.image = UIImage(named: "Rectangle1")
-                } else if todayPoint.reduce(0, +) <= 7 {
+                } else if todayPoint.reduce(0, +) <= 15 {
                     imageView?.image = UIImage(named: "Rectangle2")
-                } else if todayPoint.reduce(0, +) <= 20 {
+                } else if todayPoint.reduce(0, +) <= 60 {
                     imageView?.image = UIImage(named: "Rectangle3")
                 } else {
                     imageView?.image = UIImage(named: "Rectangle4")
