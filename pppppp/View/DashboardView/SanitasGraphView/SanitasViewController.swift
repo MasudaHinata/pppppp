@@ -9,9 +9,11 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     let calendar = Calendar.current
     var startDate = Date()
     var friendDataList = [UserData]()
+    var pointDataList = [PointData]()
     
     @IBOutlet var stepsLabel: UILabel!
     @IBOutlet var mountainView: DrawView!
+    @IBOutlet var imageView: UIImageView!
     
     @IBAction func sceneDashboardView() {
         let dashboardVC = StoryboardScene.DashboardView.initialScene.instantiate()
@@ -103,7 +105,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPointDelegate = self
         FirebaseClient.shared.notChangeDelegate = self
@@ -121,6 +123,23 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             guard let self = self else { return }
             do {
                 activityIndicator.startAnimating()
+
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                pointDataList.reverse()
+
+                let todayPoint = pointDataList.filter { $0.date.getZeroTime() == Date().getZeroTime() }.compactMap { $0.point }
+                print(todayPoint.reduce(0, +))
+
+                if todayPoint.reduce(0, +) <= 0 {
+                    imageView?.image = UIImage(named: "Rectangle1")
+                } else if todayPoint.reduce(0, +) <= 7 {
+                    imageView?.image = UIImage(named: "Rectangle2")
+                } else if todayPoint.reduce(0, +) <= 20 {
+                    imageView?.image = UIImage(named: "Rectangle3")
+                } else {
+                    imageView?.image = UIImage(named: "Rectangle4")
+                }
 
                 //MARK: MountainViewを表示
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)

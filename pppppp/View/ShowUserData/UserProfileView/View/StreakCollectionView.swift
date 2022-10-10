@@ -55,7 +55,6 @@ struct StreakCollectionView: UIViewRepresentable {
                 return cell
             }
 
-
             let activitiesForCell = configuration.pointDataList.filter { $0.date.getZeroTime() == dayForCell.getZeroTime() }.compactMap { $0.point }
 
             let totalPointsForCell = activitiesForCell.reduce(0, +) // 合計
