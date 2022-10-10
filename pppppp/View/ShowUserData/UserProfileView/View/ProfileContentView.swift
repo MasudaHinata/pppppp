@@ -6,6 +6,7 @@ import Combine
 struct ProfileContentView: View {
 
     @ObservedObject var viewModel: ProfileViewModel
+    @State private var showingAlert = false
     
     var body: some View {
         NavigationView {
@@ -73,6 +74,20 @@ struct ProfileContentView: View {
                                     .font(.custom("F5.6", fixedSize: 24))
                             }
 
+                            Spacer()
+
+                            Button {
+                                self.showingAlert = true
+                            } label: {
+                                Image(systemName: "trash")
+                                    .foregroundColor(Color.red)
+                            }
+                            .alert(isPresented: $showingAlert) {
+                                Alert(title: Text("警告"),
+                                      message: Text("友達を削除しますか？"),
+                                      primaryButton: .cancel(Text("キャンセル")),
+                                      secondaryButton: .destructive(Text("削除"), action: { viewModel.friendDelete() })) 
+                            }
                         }
                     }
                     .listRowBackground(Color.clear)

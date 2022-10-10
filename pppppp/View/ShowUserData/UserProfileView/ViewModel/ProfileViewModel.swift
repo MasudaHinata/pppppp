@@ -98,4 +98,18 @@ final class ProfileViewModel: ObservableObject {
         }
         self.cancellables.insert(.init { task.cancel() })
     }
+
+    func friendDelete() {
+
+        let task = Task {
+            do {
+                guard let friendID = userDataItem?.id else { return }
+                try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: friendID)
+            }
+            catch {
+                print("ProfileViewModel friendDelete() error:",error.localizedDescription)
+            }
+        }
+        self.cancellables.insert(.init { task.cancel() })
+    }
 }

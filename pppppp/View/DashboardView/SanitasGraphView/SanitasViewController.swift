@@ -120,26 +120,30 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                //MARK: MountainView
+                activityIndicator.startAnimating()
+
+                //MARK: MountainViewを表示
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 if friendDataList.count == 1 {
                     let secondVC = StoryboardScene.AddFriendView.initialScene.instantiate()
                     self.showDetailViewController(secondVC, sender: self)
                 }
+
+                activityIndicator.stopAnimating()
             } catch {
-                    print("SanitasViewContro ViewDidL error:",error.localizedDescription)
-                    if error.localizedDescription == "Authorization not determined" {
-                    } else if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
-                            self.viewDidAppear(true)
-                        }
-                    } else {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
+                print("SanitasViewContro ViewDidL error:",error.localizedDescription)
+                if error.localizedDescription == "Authorization not determined" {
+                } else if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
+                        self.viewDidAppear(true)
                     }
+                } else {
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
-            self.cancellables.insert(.init { task.cancel() })
+        }
+        self.cancellables.insert(.init { task.cancel() })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -239,7 +243,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             self.present(alert, animated: true, completion: nil)
         }
     }
-
+    
     func putPointForFirestore(point: Int, activity: String) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity): \(point)pt", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
