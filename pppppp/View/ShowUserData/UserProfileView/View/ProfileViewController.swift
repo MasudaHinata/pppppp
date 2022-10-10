@@ -57,8 +57,8 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
 
     //MARK: - Setting Delegate
     func notChangeName() {
-        let secondVC = StoryboardScene.SetNameView.initialScene.instantiate()
-        self.showDetailViewController(secondVC, sender: self)
+        let setNameVC = StoryboardScene.SetNameView.initialScene.instantiate()
+        self.showDetailViewController(setNameVC, sender: self)
     }
 
     func scene() {

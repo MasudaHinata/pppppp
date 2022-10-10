@@ -7,18 +7,22 @@ class AddFriendViewController: UIViewController {
     
     @IBOutlet var addFriendButtonLayout: UIButton! {
         didSet {
-            addFriendButtonLayout.tintColor = UIColor(named: "")
+            var configuration = UIButton.Configuration.filled()
+            configuration.title = "Add Friend!"
+            configuration.baseBackgroundColor = Asset.Colors.subColor.color
+            configuration.cornerStyle = .capsule
+            addFriendButtonLayout.configuration = configuration
         }
     }
     
     @IBAction func addFriendButton() {
-        let secondVC = StoryboardScene.ShareMyDataView.initialScene.instantiate()
-        self.showDetailViewController(secondVC, sender: self)
+        let shareMyDataVC = StoryboardScene.ShareMyDataView.initialScene.instantiate()
+        self.showDetailViewController(shareMyDataVC, sender: self)
     }
     
     @IBAction func sceneSetting() {
-        let secondVC = StoryboardScene.SettingView.initialScene.instantiate()
-        self.showDetailViewController(secondVC, sender: self)
+        let settingVC = StoryboardScene.SettingView.initialScene.instantiate()
+        self.showDetailViewController(settingVC, sender: self)
     }
     
     override func viewDidLoad() {

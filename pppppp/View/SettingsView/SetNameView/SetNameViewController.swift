@@ -32,8 +32,8 @@ class SetNameViewController: UIViewController {
                 if changename != "" {
                     try await FirebaseClient.shared.putNameFirestore(name: changename)
                     ShowAlertHelper.okAlert(vc: self, title: "完了", message: "名前を設定しました") { _ in
-                        let secondVC = StoryboardScene.Main.initialScene.instantiate()
-                        self.showDetailViewController(secondVC, sender: self)
+                        let mainVC = StoryboardScene.Main.initialScene.instantiate()
+                        self.showDetailViewController(mainVC, sender: self)
                     }
                 } else {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "名前を入力してください")

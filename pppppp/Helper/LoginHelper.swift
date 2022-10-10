@@ -8,7 +8,7 @@ class LoginHelper {
     var viewController: UIViewController?
     
     func showAccountViewController() {
-        let secondVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
-        viewController?.present(secondVC, animated: true, completion: nil)
+        let signInWithAppleVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
+        viewController?.present(signInWithAppleVC, animated: true, completion: nil)
     }
 }

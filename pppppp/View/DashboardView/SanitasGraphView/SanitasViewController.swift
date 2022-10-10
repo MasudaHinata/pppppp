@@ -14,14 +14,14 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     @IBOutlet var mountainView: DrawView!
     
     @IBAction func sceneDashboardView() {
-        let secondVC = StoryboardScene.DashboardView.initialScene.instantiate()
-        secondVC.friendDataList = friendDataList
-        self.navigationController?.pushViewController(secondVC, animated: true)
+        let dashboardVC = StoryboardScene.DashboardView.initialScene.instantiate()
+        dashboardVC.friendDataList = friendDataList
+        self.navigationController?.pushViewController(dashboardVC, animated: true)
     }
     
     @IBAction func sceneHealthView() {
-        let profileVC = HealthChartsViewController(viewModel: HealthChartsViewModel())
-        self.navigationController?.pushViewController(profileVC, animated: true)
+        let healthChartsVC = HealthChartsViewController(viewModel: HealthChartsViewModel())
+        self.navigationController?.pushViewController(healthChartsVC, animated: true)
     }
     
     //MARK: - 体重・運動を記録する
@@ -29,18 +29,18 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         if #available(iOS 16.0, *) {
             let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
-                let secondVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
-                if let sheet = secondVC.sheetPresentationController {
+                let recordWeightVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
+                if let sheet = recordWeightVC.sheetPresentationController {
                     sheet.detents = [.custom { context in 178 }]
                 }
-                self.present(secondVC, animated: true, completion: nil)
+                self.present(recordWeightVC, animated: true, completion: nil)
             }
             let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
-                let secondVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
-                if let sheet = secondVC.sheetPresentationController {
+                let recordExerciseVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
+                if let sheet = recordExerciseVC.sheetPresentationController {
                     sheet.detents = [.custom { context in 178 }]
                 }
-                self.present(secondVC, animated: true, completion: nil)
+                self.present(recordExerciseVC, animated: true, completion: nil)
             }
             let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
             actionSheet.addAction(weightAction)
@@ -50,12 +50,12 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         } else {
             let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let weightAction = UIAlertAction(title: "体重の記録を追加", style: .default) { _ in
-                let secondVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
-                self.present(secondVC, animated: true, completion: nil)
+                let recordWeightVC = StoryboardScene.RecordWeightView.initialScene.instantiate()
+                self.present(recordWeightVC, animated: true, completion: nil)
             }
             let exerciseAction = UIAlertAction(title: "運動の記録を追加", style: .default) { _ in
-                let secondVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
-                self.present(secondVC, animated: true, completion: nil)
+                let recordExerciseVC = StoryboardScene.RecordExerciseView.initialScene.instantiate()
+                self.present(recordExerciseVC, animated: true, completion: nil)
             }
             let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
             actionSheet.addAction(weightAction)
@@ -126,8 +126,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 if friendDataList.count == 1 {
-                    let secondVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-                    self.showDetailViewController(secondVC, sender: self)
+                    let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+                    self.showDetailViewController(addFriendVC, sender: self)
                 }
 
                 activityIndicator.stopAnimating()
@@ -153,15 +153,15 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         //MARK: 初期画面
         let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
         if judge == false {
-            let secondVC = StoryboardScene.OnboardingView1.initialScene.instantiate()
-            self.showDetailViewController(secondVC, sender: self)
+            let onboardingView1VC = StoryboardScene.OnboardingView1.initialScene.instantiate()
+            self.showDetailViewController(onboardingView1VC, sender: self)
         }
 
         //MARK: MountainViewの位置更新
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
-            let secondVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-            self.showDetailViewController(secondVC, sender: self)
+            let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+            self.showDetailViewController(addFriendVC, sender: self)
         }
         activityIndicator.stopAnimating()
 
@@ -178,10 +178,10 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 if now >= 19 {
                     let selfCheckJudge = try await FirebaseClient.shared.checkSelfCheck()
                     if selfCheckJudge {
-                        let secondVC = StoryboardScene.SelfCheckView.initialScene.instantiate()
-                        secondVC.modalPresentationStyle = .overFullScreen
-                        secondVC.modalTransitionStyle = .crossDissolve
-                        self.present(secondVC, animated: true)
+                        let selfCheckVC = StoryboardScene.SelfCheckView.initialScene.instantiate()
+                        selfCheckVC.modalPresentationStyle = .overFullScreen
+                        selfCheckVC.modalTransitionStyle = .crossDissolve
+                        self.present(selfCheckVC, animated: true)
                     }
                 }
                 
@@ -201,8 +201,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
                 let weight = try await HealthKit_ScoreringManager.shared.getWeight()
                 guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
-                    let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
-                    self.showDetailViewController(secondVC, sender: self)
+                    let setGoalWeightVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
+                    self.showDetailViewController(setGoalWeightVC, sender: self)
                     return
                 }
                 if judge {
@@ -236,8 +236,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     func emailVerifyRequiredAlert() {
         let alert = UIAlertController(title: "仮登録が完了していません", message: "メールを確認してください", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let secondVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
-            self.showDetailViewController(secondVC, sender: self)
+            let signInWithAppleVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
+            self.showDetailViewController(signInWithAppleVC, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
@@ -262,7 +262,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     }
 
     func notChangeName() {
-        let secondVC = StoryboardScene.SetNameView.initialScene.instantiate()
-        self.showDetailViewController(secondVC, sender: self)
+        let setNameVC = StoryboardScene.SetNameView.initialScene.instantiate()
+        self.showDetailViewController(setNameVC, sender: self)
     }
 }

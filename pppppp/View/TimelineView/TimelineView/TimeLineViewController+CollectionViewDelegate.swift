@@ -23,9 +23,9 @@ extension TimeLineViewController: UICollectionViewDelegate, UICollectionViewData
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 if userID == postDataItem[indexPath.row].postData.userID {
-                    let secondVC = StoryboardScene.TimelineNotificationView.initialScene.instantiate()
-                    secondVC.postData = postDataItem[indexPath.row]
-                    self.navigationController?.pushViewController(secondVC, animated: true)
+                    let timelineNotificationVC = StoryboardScene.TimelineNotificationView.initialScene.instantiate()
+                    timelineNotificationVC.postData = postDataItem[indexPath.row]
+                    self.navigationController?.pushViewController(timelineNotificationVC, animated: true)
                 }
             }
             catch {

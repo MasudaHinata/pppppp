@@ -15,8 +15,8 @@ class SignInWithAppleViewController: UIViewController {
     }
     
     @IBAction func sceneEmailSignInButton() {
-        let secondVC = StoryboardScene.EmailSignInView.initialScene.instantiate()
-        self.showDetailViewController(secondVC, sender: self)
+        let emailSignInVC = StoryboardScene.EmailSignInView.initialScene.instantiate()
+        self.showDetailViewController(emailSignInVC, sender: self)
     }
     
     @IBAction func privacyPolicyButton() {
@@ -129,8 +129,8 @@ extension SignInWithAppleViewController: ASAuthorizationControllerDelegate {
                     print(error!.localizedDescription)
                     return
                 }
-                let secondVC = StoryboardScene.Main.initialScene.instantiate()
-                self.showDetailViewController(secondVC, sender: self)
+                let mainVC = StoryboardScene.Main.initialScene.instantiate()
+                self.showDetailViewController(mainVC, sender: self)
             }
         }
     }

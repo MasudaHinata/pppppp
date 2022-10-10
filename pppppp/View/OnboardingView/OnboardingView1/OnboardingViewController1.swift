@@ -15,8 +15,8 @@ class OnboardingViewController1: UIViewController {
     }
     
     @IBAction private func nextButton(_ sender: Any) {
-        let secondVC = StoryboardScene.OnboardingView2.initialScene.instantiate()
-        let navigationController = UINavigationController(rootViewController: secondVC)
+        let onboardingView2VC = StoryboardScene.OnboardingView2.initialScene.instantiate()
+        let navigationController = UINavigationController(rootViewController: onboardingView2VC)
         navigationController.modalPresentationStyle = .fullScreen
         let transition = CATransition()
         transition.duration = 0.2

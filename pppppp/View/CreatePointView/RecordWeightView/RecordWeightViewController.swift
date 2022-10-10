@@ -40,8 +40,8 @@ class RecordWeightViewController: UIViewController {
                 try await HealthKit_ScoreringManager.shared.writeWeight(weight: inputWeight)
 
                 guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
-                    let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
-                    self.showDetailViewController(secondVC, sender: self)
+                    let setGoalWeightVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
+                    self.showDetailViewController(setGoalWeightVC, sender: self)
                     return
                 }
                 let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: inputWeight)

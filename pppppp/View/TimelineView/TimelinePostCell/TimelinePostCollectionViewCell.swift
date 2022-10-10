@@ -64,10 +64,10 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 var likedFriendDataList = [UserData]()
                 likedFriendDataList = try await FirebaseClient.shared.getPostLikeFriendDate(postId: postDisplayData.postData.id ?? "")
-                likeFriendCountLabel.text = "\(likedFriendDataList.count)"
                 if likedFriendDataList.first(where: { $0.id == userID }) != nil {
                     heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 }
+                likeFriendCountLabel.text = "\(likedFriendDataList.count)"
             } catch {
                 print("TimelinePostCollection tapGoodButton error:",error.localizedDescription)
             }
