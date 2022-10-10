@@ -92,5 +92,5 @@ final class HealthChartsViewModel: ObservableObject {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    
+
 }
