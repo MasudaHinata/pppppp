@@ -33,7 +33,7 @@ class OnboardingViewController3: UIViewController {
     }
     
     @IBAction func nextButton(_ sender: Any) {
-        let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
+        let secondVC = StoryboardScene.Main.initialScene.instantiate()
         let navigationController = UINavigationController(rootViewController: secondVC)
         navigationController.modalPresentationStyle = .fullScreen
         let transition = CATransition()

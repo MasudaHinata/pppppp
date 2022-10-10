@@ -86,7 +86,7 @@ struct ProfileContentView: View {
                                 Alert(title: Text("警告"),
                                       message: Text("友達を削除しますか？"),
                                       primaryButton: .cancel(Text("キャンセル")),
-                                      secondaryButton: .destructive(Text("削除"), action: { viewModel.friendDelete() })) 
+                                      secondaryButton: .destructive(Text("削除"), action: { viewModel.friendDelete() }))
                             }
                         }
                     }

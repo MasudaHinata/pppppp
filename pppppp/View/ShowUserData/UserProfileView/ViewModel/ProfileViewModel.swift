@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import UIKit
 
-final class ProfileViewModel: ObservableObject {
+final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelegate {
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -100,16 +100,23 @@ final class ProfileViewModel: ObservableObject {
     }
 
     func friendDelete() {
-
         let task = Task {
             do {
+                FirebaseClient.shared.deletefriendDelegate = self
                 guard let friendID = userDataItem?.id else { return }
                 try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: friendID)
             }
             catch {
-                print("ProfileViewModel friendDelete() error:",error.localizedDescription)
+                print("ProfileViewModel friendDelete error:",error.localizedDescription)
             }
         }
         self.cancellables.insert(.init { task.cancel() })
+    }
+
+    //MARK: - Setting Delegate
+    func friendDeleted() async {
+        //FIXME: アラートが出ない
+        let profileVC = ProfileViewController(viewModel: .init())
+        ShowAlertHelper.okAlert(vc: profileVC, title: "完了", message: "友達を削除しました")
     }
 }

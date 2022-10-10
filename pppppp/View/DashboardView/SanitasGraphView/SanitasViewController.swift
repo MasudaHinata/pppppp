@@ -191,24 +191,25 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     try await HealthKit_ScoreringManager.shared.createStepPoint()
                 }
 
-                //MARK: 体重のポイント作成判定
-                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
-                if judge {
-                    let weight = try await HealthKit_ScoreringManager.shared.getWeight()
-                    guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
-                        let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
-                        self.showDetailViewController(secondVC, sender: self)
-                        return
-                    }
-                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
-                    if checkPoint == [] {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "HealthKitに過去2週間の体重データがないためポイントを作成できませんでした")
-                    }
-                }
                 //MARK: ワークアウトのポイント作成判定
                 let createdPointjudge = try await HealthKit_ScoreringManager.shared.createWorkoutPoint()
                 if createdPointjudge == false {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "HealthKitにデータがないためポイントを作成できませんでした")
+                }
+
+                //MARK: 体重のポイント作成判定
+                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
+                let weight = try await HealthKit_ScoreringManager.shared.getWeight()
+                guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
+                    let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
+                    self.showDetailViewController(secondVC, sender: self)
+                    return
+                }
+                if judge {
+                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
+                    if checkPoint == [] {
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "HealthKitに過去2週間の体重データがないためポイントを作成できませんでした")
+                    }
                 }
             }
             catch {
@@ -243,7 +244,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+
     func putPointForFirestore(point: Int, activity: String) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity): \(point)pt", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
