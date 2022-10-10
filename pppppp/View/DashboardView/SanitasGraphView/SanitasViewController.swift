@@ -116,31 +116,59 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
         mountainView.delegate = self
+
+        let task = Task { [weak self] in
+            guard let self = self else { return }
+            do {
+                //MARK: MountainView
+                self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
+                mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
+                if friendDataList.count == 1 {
+                    let secondVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+                    self.showDetailViewController(secondVC, sender: self)
+                }
+            } catch {
+                    print("SanitasViewContro ViewDidL error:",error.localizedDescription)
+                    if error.localizedDescription == "Authorization not determined" {
+                    } else if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
+                            self.viewDidAppear(true)
+                        }
+                    } else {
+                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
+                    }
+                }
+            }
+            self.cancellables.insert(.init { task.cancel() })
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         activityIndicator.startAnimating()
-        
         //MARK: 初期画面
         let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
         if judge == false {
             let secondVC = StoryboardScene.OnboardingView1.initialScene.instantiate()
             self.showDetailViewController(secondVC, sender: self)
         }
-        
-        //MARK: MountainViewを表示(一回読み込んでおいて待ち時間を減らす)
+
+        //MARK: MountainViewの位置更新
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
             let secondVC = StoryboardScene.AddFriendView.initialScene.instantiate()
             self.showDetailViewController(secondVC, sender: self)
         }
-        
+        activityIndicator.stopAnimating()
+
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
                 try await FirebaseClient.shared.checkUserAuth()
-                
+
+                //MARK: 今日の歩数を表示
+                stepsLabel.text = "Today \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps())) steps"
+
                 //MARK: 今日の自己評価が完了しているかの判定
                 let now = calendar.component(.hour, from: Date())
                 if now >= 19 {
@@ -158,17 +186,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 if createStepPointJudge {
                     try await HealthKit_ScoreringManager.shared.createStepPoint()
                 }
-                
-                //MARK: MountainViewを更新
-                self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
-                mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
-                if friendDataList.count == 1 {
-                    let secondVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-                    self.showDetailViewController(secondVC, sender: self)
-                }
-                
-                activityIndicator.stopAnimating()
-                
+
                 //MARK: 体重のポイント作成判定
                 let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
                 if judge {
@@ -188,9 +206,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 if createdPointjudge == false {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "HealthKitにデータがないためポイントを作成できませんでした")
                 }
-                
-                //MARK: 今日の歩数を表示
-                stepsLabel.text = "Today \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps())) steps"
             }
             catch {
                 print("SanitasViewContro ViewAppear error:",error.localizedDescription)
