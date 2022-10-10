@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0314457028EFD7DA00B29D2B /* TimelineNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0314456F28EFD7DA00B29D2B /* TimelineNotificationViewController.swift */; };
-		0314457228EFD7EE00B29D2B /* TimelineNotificationView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0314457128EFD7EE00B29D2B /* TimelineNotificationView.storyboard */; };
 		0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0318016828D4D32A004C7002 /* AddFriendView.storyboard */; };
 		0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318016A28D4D344004C7002 /* AddFriendViewController.swift */; };
 		032843A628DC8C7E00AB1A5D /* OnboardingView3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 032843A528DC8C7E00AB1A5D /* OnboardingView3.storyboard */; };
@@ -20,6 +18,8 @@
 		032DF36128F24E7F00458C20 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36028F24E7F00458C20 /* DateHelper.swift */; };
 		032DF36A28F30FDA00458C20 /* CGPointHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36928F30FDA00458C20 /* CGPointHelper.swift */; };
 		032DF36C28F3BDDD00458C20 /* HealthChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36B28F3BDDD00458C20 /* HealthChartsViewModel.swift */; };
+		032DF37028F44F4F00458C20 /* HKWorkoutActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */; };
+		032DF37228F4535D00458C20 /* PointActivityImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF37128F4535D00458C20 /* PointActivityImage.swift */; };
 		0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */; };
 		033945F028DF25C100681E9C /* HealthChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033945EF28DF25C100681E9C /* HealthChartsViewController.swift */; };
 		033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37B28DC7FA9008DBC49 /* Colors.xcassets */; };
@@ -64,10 +64,6 @@
 		0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374653928ED7C9100DB0833 /* PostDispleyData.swift */; };
 		0374653C28EDA3F900DB0833 /* SetGoalWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374653B28EDA3F900DB0833 /* SetGoalWeightViewController.swift */; };
 		0374653E28EDA42400DB0833 /* SetGoalWeightView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0374653D28EDA42400DB0833 /* SetGoalWeightView.storyboard */; };
-		037EE2AA28F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EE2A928F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift */; };
-		037EE2B128F068E400912D6F /* TimelineNotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EE2AF28F068E400912D6F /* TimelineNotificationViewCell.swift */; };
-		037EE2B228F068E400912D6F /* TimelineNotificationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 037EE2B028F068E400912D6F /* TimelineNotificationViewCell.xib */; };
-		037EE2B428F11C8D00912D6F /* TimelineViewController+CellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037EE2B328F11C8D00912D6F /* TimelineViewController+CellDelegate.swift */; };
 		03879DE128E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03879DE028E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift */; };
 		038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E26AD28BF4BF1000204A4 /* SettingViewController.swift */; };
 		0397BD6E28B5F18600CDFA62 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0397BD6D28B5F18600CDFA62 /* UserData.swift */; };
@@ -128,8 +124,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0314456F28EFD7DA00B29D2B /* TimelineNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineNotificationViewController.swift; sourceTree = "<group>"; };
-		0314457128EFD7EE00B29D2B /* TimelineNotificationView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimelineNotificationView.storyboard; sourceTree = "<group>"; };
 		0318016828D4D32A004C7002 /* AddFriendView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFriendView.storyboard; sourceTree = "<group>"; };
 		0318016A28D4D344004C7002 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		032843A528DC8C7E00AB1A5D /* OnboardingView3.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView3.storyboard; sourceTree = "<group>"; };
@@ -141,6 +135,8 @@
 		032DF36028F24E7F00458C20 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		032DF36928F30FDA00458C20 /* CGPointHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointHelper.swift; sourceTree = "<group>"; };
 		032DF36B28F3BDDD00458C20 /* HealthChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsViewModel.swift; sourceTree = "<group>"; };
+		032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKWorkoutActivityType.swift; sourceTree = "<group>"; };
+		032DF37128F4535D00458C20 /* PointActivityImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointActivityImage.swift; sourceTree = "<group>"; };
 		0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
 		033945EF28DF25C100681E9C /* HealthChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsViewController.swift; sourceTree = "<group>"; };
 		033BC37B28DC7FA9008DBC49 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -185,10 +181,6 @@
 		0374653928ED7C9100DB0833 /* PostDispleyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDispleyData.swift; sourceTree = "<group>"; };
 		0374653B28EDA3F900DB0833 /* SetGoalWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGoalWeightViewController.swift; sourceTree = "<group>"; };
 		0374653D28EDA42400DB0833 /* SetGoalWeightView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetGoalWeightView.storyboard; sourceTree = "<group>"; };
-		037EE2A928F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelineNotificationViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
-		037EE2AF28F068E400912D6F /* TimelineNotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineNotificationViewCell.swift; sourceTree = "<group>"; };
-		037EE2B028F068E400912D6F /* TimelineNotificationViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineNotificationViewCell.xib; sourceTree = "<group>"; };
-		037EE2B328F11C8D00912D6F /* TimelineViewController+CellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelineViewController+CellDelegate.swift"; sourceTree = "<group>"; };
 		03879DE028E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthKit&ScoreringManager.swift"; sourceTree = "<group>"; };
 		038E26AD28BF4BF1000204A4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0397BD6D28B5F18600CDFA62 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -264,16 +256,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0314456E28EFD7A200B29D2B /* TimelineNotificationView */ = {
-			isa = PBXGroup;
-			children = (
-				0314456F28EFD7DA00B29D2B /* TimelineNotificationViewController.swift */,
-				037EE2A928F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift */,
-				0314457128EFD7EE00B29D2B /* TimelineNotificationView.storyboard */,
-			);
-			path = TimelineNotificationView;
-			sourceTree = "<group>";
-		};
 		032843AD28DC9A5A00AB1A5D /* SetNameView */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +558,8 @@
 				03DAC3FF28EA7918005F173B /* UIColorHelper.swift */,
 				032DF36028F24E7F00458C20 /* DateHelper.swift */,
 				032DF36928F30FDA00458C20 /* CGPointHelper.swift */,
+				032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */,
+				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -583,7 +567,7 @@
 		036F698828BB93F60066A7DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
+				032DF37128F4535D00458C20 /* PointActivityImage.swift */,
 				036F697E28B8EACE0066A7DA /* PointData.swift */,
 				03DAC40828EB369D005F173B /* PostData.swift */,
 				0374653928ED7C9100DB0833 /* PostDispleyData.swift */,
@@ -622,15 +606,6 @@
 				0374653D28EDA42400DB0833 /* SetGoalWeightView.storyboard */,
 			);
 			path = SetGoalWeightView;
-			sourceTree = "<group>";
-		};
-		037EE2A228F0588F00912D6F /* TimelineNotificationViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				037EE2AF28F068E400912D6F /* TimelineNotificationViewCell.swift */,
-				037EE2B028F068E400912D6F /* TimelineNotificationViewCell.xib */,
-			);
-			path = TimelineNotificationViewCell;
 			sourceTree = "<group>";
 		};
 		03A45B6D28D8A43E0059B617 /* SanitasGraphView */ = {
@@ -732,8 +707,6 @@
 			children = (
 				03DAC40A28EC2818005F173B /* TimelineView */,
 				03DAC40B28EC282A005F173B /* TimelinePostCell */,
-				0314456E28EFD7A200B29D2B /* TimelineNotificationView */,
-				037EE2A228F0588F00912D6F /* TimelineNotificationViewCell */,
 			);
 			path = TimelineView;
 			sourceTree = "<group>";
@@ -743,7 +716,6 @@
 			children = (
 				03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */,
 				03DAC41028EC287D005F173B /* TimeLineViewController+CollectionViewDelegate.swift */,
-				037EE2B328F11C8D00912D6F /* TimelineViewController+CellDelegate.swift */,
 				03DAC40628EB2C21005F173B /* TimeLineView.storyboard */,
 			);
 			path = TimelineView;
@@ -887,7 +859,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				037EE2B228F068E400912D6F /* TimelineNotificationViewCell.xib in Resources */,
 				036F69FA28C08E7F0066A7DA /* SettingView.storyboard in Resources */,
 				03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */,
 				036E476B28DB1A6E00EA7BB1 /* RecordWeightView.storyboard in Resources */,
@@ -916,7 +887,6 @@
 				03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */,
 				0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
-				0314457228EFD7EE00B29D2B /* TimelineNotificationView.storyboard in Resources */,
 				033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */,
 				9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */,
 				0374653E28EDA42400DB0833 /* SetGoalWeightView.storyboard in Resources */,
@@ -940,11 +910,11 @@
 				032DF36C28F3BDDD00458C20 /* HealthChartsViewModel.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				0374653C28EDA3F900DB0833 /* SetGoalWeightViewController.swift in Sources */,
-				0314457028EFD7DA00B29D2B /* TimelineNotificationViewController.swift in Sources */,
 				032DF36128F24E7F00458C20 /* DateHelper.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				03DAC41128EC287D005F173B /* TimeLineViewController+CollectionViewDelegate.swift in Sources */,
+				032DF37028F44F4F00458C20 /* HKWorkoutActivityType.swift in Sources */,
 				0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */,
 				035CE51E28CF1E53001F89BB /* RecordExerciseViewController.swift in Sources */,
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
@@ -956,6 +926,7 @@
 				03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */,
 				033945F028DF25C100681E9C /* HealthChartsViewController.swift in Sources */,
 				032DF36A28F30FDA00458C20 /* CGPointHelper.swift in Sources */,
+				032DF37228F4535D00458C20 /* PointActivityImage.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
 				035D29DA28E98AA400E1BEA4 /* HealthChartsContentView.swift in Sources */,
 				036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */,
@@ -971,7 +942,6 @@
 				03DAC40928EB369D005F173B /* PostData.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
 				036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */,
-				037EE2B428F11C8D00912D6F /* TimelineViewController+CellDelegate.swift in Sources */,
 				9C1A900C283506D5004B4100 /* ProfileViewController.swift in Sources */,
 				03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */,
 				0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */,
@@ -986,7 +956,6 @@
 				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
-				037EE2B128F068E400912D6F /* TimelineNotificationViewCell.swift in Sources */,
 				03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */,
 				0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */,
 				032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */,
@@ -1003,7 +972,6 @@
 				0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
 				032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */,
-				037EE2AA28F0663E00912D6F /* TimelineNotificationViewController+CollectionViewDelegate.swift in Sources */,
 				03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,
 			);

@@ -252,23 +252,6 @@ final class HealthKit_ScoreringManager {
         return lastweightList
     }
 
-
-    //MARK: - Workoutを取得
-    func getWorkoutData() async throws -> [WorkoutData] {
-        getPermissionHealthKit()
-        self.dateFormatter.dateFormat = “YY/MM/dd”
-        var workoutData = [WorkoutData]()
-        let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [])
-        let results = try await descriptor.result(for: myHealthStore)
-        for workout in results {
-            let data = WorkoutData(date: self.dateFormatter.string(from: workout.startDate), activityTypeID: Int(workout.workoutActivityType.rawValue), time: 0, energy: workout.totalEnergyBurned!)
-            workoutData.append(data)
-        }
-        print(results.last?.workoutActivityType)
-        return workoutData
-    }
-
-
     //MARK: - ポイント作成の判定 & 最新のworkoutを取得してポイントを作成
     func createWorkoutPoint() async throws -> Bool {
         getPermissionHealthKit()
@@ -276,8 +259,7 @@ final class HealthKit_ScoreringManager {
         var checkWorkoutPoint: Bool
         let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [])
         let results = try await descriptor.result(for: myHealthStore)
-        
-        
+
         let lastDate = UserDefaults.standard.object(forKey: "createWorkoutPointDate") as? Date
         if UserDefaults.standard.object(forKey: "createWorkoutPointDate") as? Date == nil {
             checkWorkoutPoint = true
@@ -308,9 +290,9 @@ final class HealthKit_ScoreringManager {
                 } else {
                     exercisePoint = Int(15 / (0.6 + exp(-exercise * 0.2)))
                 }
+
                 //TODO: AppleのworkoutIDからcaseで名前を代入する
-                let exercizeName = "Workout"
-                
+                let exercizeName = results.last?.workoutActivityType.name ?? "workout"
                 try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: exercizeName)
             } else {
                 createdPointJudge = false
