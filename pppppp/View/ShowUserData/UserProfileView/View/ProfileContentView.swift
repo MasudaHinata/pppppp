@@ -110,6 +110,7 @@ struct ProfileContentView: View {
             .background(Color(asset: Asset.Colors.mainColor))
 
             .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
+
             .navigationBarItems(trailing: HStack {
                 Button {
                     viewModel.sceneShareMyData()
@@ -117,6 +118,8 @@ struct ProfileContentView: View {
                     Image(systemName: "person.crop.circle.badge.plus")
                 }
                 .foregroundColor(.white)
+
+                Spacer()
 
                 Button {
                     viewModel.sceneSetting()

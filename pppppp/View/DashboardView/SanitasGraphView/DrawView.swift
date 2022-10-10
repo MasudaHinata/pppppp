@@ -27,7 +27,6 @@ class DrawView: UIView {
             path.removeAllPoints()
         }
         paths = []
-
         if friendPositions.count == 0 {
             friendPositions = []
 
@@ -57,6 +56,7 @@ class DrawView: UIView {
             graph(vertex: newPosition, item: item, index: index)
         }
     }
+
     func configure(rect: CGRect, friendListItems: [UserData]) {
         self.friendListItems = friendListItems
         self.friendPositions = []
@@ -70,6 +70,7 @@ class DrawView: UIView {
         pointLabels = []
         setNeedsDisplay()
     }
+
     func graph(vertex: CGPoint, item: UserData, index: Int) {
         let delta = min(bounds.height - vertex.y, vertex.y) * 0.4
         let deltaTop = vertex.y - delta
@@ -121,6 +122,7 @@ class DrawView: UIView {
         paths.append(path)
     }
 
+    //MARK: -　path・アイコン・Labelを動かす
     func startAccelerometer() {
         let handler: CMAccelerometerHandler = {( CMAccelerometerData: CMAccelerometerData?, error: Error?) -> Void in
 

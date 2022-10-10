@@ -303,14 +303,13 @@
 			path = SettingCell;
 			sourceTree = "<group>";
 		};
-		032DF36428F2E50300458C20 /* MyProfileView */ = {
+		032DF36428F2E50300458C20 /* FriendListVIew */ = {
 			isa = PBXGroup;
 			children = (
-				033BC38128DC81ED008DBC49 /* ProfileView */,
 				035D29DD28E9F25F00E1BEA4 /* FriendListView */,
 				03A45B7128D8A4EA0059B617 /* FriendDataCell */,
 			);
-			path = MyProfileView;
+			path = FriendListVIew;
 			sourceTree = "<group>";
 		};
 		032DF36528F2EAAE00458C20 /* View */ = {
@@ -388,13 +387,13 @@
 			path = ShareMyDataView;
 			sourceTree = "<group>";
 		};
-		033BC38128DC81ED008DBC49 /* ProfileView */ = {
+		033BC38128DC81ED008DBC49 /* UserProfileView */ = {
 			isa = PBXGroup;
 			children = (
 				032DF36528F2EAAE00458C20 /* View */,
 				032DF36628F2EABB00458C20 /* ViewModel */,
 			);
-			path = ProfileView;
+			path = UserProfileView;
 			sourceTree = "<group>";
 		};
 		033BC38228DC81FF008DBC49 /* RecentActivityCell */ = {
@@ -582,9 +581,10 @@
 		036F69E828BE60190066A7DA /* ShowUserData */ = {
 			isa = PBXGroup;
 			children = (
-				032DF36428F2E50300458C20 /* MyProfileView */,
+				033BC38128DC81ED008DBC49 /* UserProfileView */,
 				033BC38328DC8212008DBC49 /* SummeryCell */,
 				033BC38228DC81FF008DBC49 /* RecentActivityCell */,
+				032DF36428F2E50300458C20 /* FriendListVIew */,
 			);
 			path = ShowUserData;
 			sourceTree = "<group>";
