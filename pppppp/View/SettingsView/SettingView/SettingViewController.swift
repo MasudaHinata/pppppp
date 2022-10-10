@@ -64,8 +64,8 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
                 catch {
                     print("SettingView deleteAccount error:\(String(describing: error.localizedDescription))")
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "ログインし直してもう一度お試しください") { _ in
-                        let secondVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
-                        self.showDetailViewController(secondVC, sender: self)
+                        let signInWithAppleVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
+                        self.showDetailViewController(signInWithAppleVC, sender: self)
                     }
                 }
             }
@@ -90,8 +90,8 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
         let alert = UIAlertController(title: "完了", message: "アカウントを削除しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let secondVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
-            self.showDetailViewController(secondVC, sender: self)
+            let signInWithAppleVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
+            self.showDetailViewController(signInWithAppleVC, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
@@ -104,8 +104,8 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
         UserDefaults.standard.removePersistentDomain(forName: appDomain!)
         let alert = UIAlertController(title: "ログインしなおしてもう一度試してください", message: "データが全て消えている可能性があります", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let secondVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
-            self.showDetailViewController(secondVC, sender: self)
+            let signInWithAppleVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
+            self.showDetailViewController(signInWithAppleVC, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
@@ -125,8 +125,8 @@ class SettingViewController: UIViewController, SetttingAccountDelegate  {
     func logoutCompleted() {
         let alert = UIAlertController(title: "完了", message: "ログアウトしました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let secondVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
-            self.showDetailViewController(secondVC, sender: self)
+            let signInWithAppleVC = StoryboardScene.SignInWithAppleView.initialScene.instantiate()
+            self.showDetailViewController(signInWithAppleVC, sender: self)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {

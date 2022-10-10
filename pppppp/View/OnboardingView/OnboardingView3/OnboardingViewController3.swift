@@ -21,8 +21,8 @@ class OnboardingViewController3: UIViewController {
     }
     
     @IBAction func backButton(_ sender: Any) {
-        let secondVC = StoryboardScene.OnboardingView2.initialScene.instantiate()
-        let navigationController = UINavigationController(rootViewController: secondVC)
+        let onboardingView2VC = StoryboardScene.OnboardingView2.initialScene.instantiate()
+        let navigationController = UINavigationController(rootViewController: onboardingView2VC)
         navigationController.modalPresentationStyle = .fullScreen
         let transition = CATransition()
         transition.duration = 0.2
@@ -33,8 +33,8 @@ class OnboardingViewController3: UIViewController {
     }
     
     @IBAction func nextButton(_ sender: Any) {
-        let secondVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
-        let navigationController = UINavigationController(rootViewController: secondVC)
+        let mainVC = StoryboardScene.Main.initialScene.instantiate()
+        let navigationController = UINavigationController(rootViewController: mainVC)
         navigationController.modalPresentationStyle = .fullScreen
         let transition = CATransition()
         transition.duration = 0.2
@@ -46,5 +46,6 @@ class OnboardingViewController3: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.set(true, forKey: "initialScreen")
     }
 }

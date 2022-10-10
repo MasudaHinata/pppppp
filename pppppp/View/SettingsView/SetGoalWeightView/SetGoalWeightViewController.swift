@@ -56,14 +56,13 @@ class SetGoalWeightViewController: UIViewController {
         UserDefaults.standard.set(inputWeightGoal, forKey: "weightGoal")
 
         ShowAlertHelper.okAlert(vc: self, title: "完了", message: "記録しました") { _ in
-            let secondVC = StoryboardScene.Main.initialScene.instantiate()
-            self.showDetailViewController(secondVC, sender: self)
+            let mainVC = StoryboardScene.Main.initialScene.instantiate()
+            self.showDetailViewController(mainVC, sender: self)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserDefaults.standard.set(true, forKey: "initialScreen")
         
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
