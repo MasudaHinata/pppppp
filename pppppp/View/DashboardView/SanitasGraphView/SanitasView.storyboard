@@ -21,9 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qPs-X6-uaJ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qPs-X6-uaJ">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HiD-Bi-t46" customClass="DrawView" customModule="pppppp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
@@ -65,9 +64,13 @@
                         <viewLayoutGuide key="safeArea" id="Ypr-RF-fL0"/>
                         <color key="backgroundColor" name="mainColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="qPs-X6-uaJ" secondAttribute="bottom" id="CQf-fn-9cX"/>
                             <constraint firstAttribute="bottom" secondItem="HiD-Bi-t46" secondAttribute="bottom" id="KXl-En-dVg"/>
                             <constraint firstItem="HiD-Bi-t46" firstAttribute="top" secondItem="vvX-uT-WQU" secondAttribute="top" id="ULB-al-vg7"/>
+                            <constraint firstItem="qPs-X6-uaJ" firstAttribute="trailing" secondItem="vvX-uT-WQU" secondAttribute="trailing" id="VKf-tN-6Vi"/>
+                            <constraint firstItem="qPs-X6-uaJ" firstAttribute="leading" secondItem="vvX-uT-WQU" secondAttribute="leading" id="WHv-EW-nhd"/>
                             <constraint firstItem="HiD-Bi-t46" firstAttribute="leading" secondItem="vvX-uT-WQU" secondAttribute="leading" id="YMb-Gr-5Tg"/>
+                            <constraint firstItem="qPs-X6-uaJ" firstAttribute="top" secondItem="vvX-uT-WQU" secondAttribute="top" id="hjH-99-PQM"/>
                             <constraint firstItem="HiD-Bi-t46" firstAttribute="trailing" secondItem="vvX-uT-WQU" secondAttribute="trailing" id="o65-FN-IIa"/>
                         </constraints>
                     </view>
