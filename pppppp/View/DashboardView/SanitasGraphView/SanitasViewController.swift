@@ -225,15 +225,11 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 //MARK: 体重のポイント作成判定
                 let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
                 let weight = try await HealthKit_ScoreringManager.shared.getWeight()
-
-
                 guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
                     let setGoalWeightVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
                     self.showDetailViewController(setGoalWeightVC, sender: self)
                     return
                 }
-
-                
                 if judge {
                     let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
                     if checkPoint == [] {
