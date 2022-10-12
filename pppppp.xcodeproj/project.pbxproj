@@ -561,7 +561,6 @@
 				032DF36028F24E7F00458C20 /* DateHelper.swift */,
 				032DF36928F30FDA00458C20 /* CGPointHelper.swift */,
 				032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */,
-				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -569,6 +568,7 @@
 		036F698828BB93F60066A7DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0397BD6D28B5F18600CDFA62 /* UserData.swift */,
 				032DF37128F4535D00458C20 /* PointActivityImage.swift */,
 				036F697E28B8EACE0066A7DA /* PointData.swift */,
 				03DAC40828EB369D005F173B /* PostData.swift */,

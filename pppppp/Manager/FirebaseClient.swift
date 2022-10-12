@@ -286,6 +286,17 @@ final class FirebaseClient {
         try await db.collection("User").document(userID).updateData(["name": name])
         UserDefaults.standard.set(name, forKey: "name")
     }
+
+    //MARK: - 目標体重をfirebaseに保存
+    func putWeightGoal(weightGoal: Int) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        try await db.collection("User").document(userID).updateData(["weightGoal": weightGoal])
+        UserDefaults.standard.set(weightGoal, forKey: "weightGoal")
+    }
     
     //MARK: - 自己評価をfirebaseに保存
     func putSelfCheckLog(log: String) async throws {
