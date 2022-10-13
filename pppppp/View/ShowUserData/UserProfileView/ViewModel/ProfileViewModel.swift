@@ -19,6 +19,7 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
     @Published var changeProfileView: Void = ()
     @Published var settingView: Void = ()
     @Published var shareMyData: Void = ()
+//    @Published var healthChartsView: Void = ()
 
     @Published var userDataItem: UserData?
     @Published var meJudge = Bool()
@@ -52,13 +53,17 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
         self.changeProfileView = ()
     }
 
+    func sceneSetting() {
+        self.settingView = ()
+    }
+
     func sceneShareMyData() {
         self.shareMyData = ()
     }
 
-    func sceneSetting() {
-        self.settingView = ()
-    }
+//    func sceneHealthCharts() {
+//        self.healthChartsView = ()
+//    }
     
     func getProfileData() {
         

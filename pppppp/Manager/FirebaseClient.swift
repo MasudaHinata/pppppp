@@ -238,7 +238,6 @@ final class FirebaseClient {
         let userID = user.uid
         var friendData = [UserData]()
         let userData: [UserData] = try await getUserDataFromId(userId: userID)
-
         for userId in userData {
             guard let friendIds = userId.receivedInvitations else {
                 return []
@@ -249,6 +248,28 @@ final class FirebaseClient {
             }
         }
         return friendData
+    }
+
+    //MARK: - 友達リクエストの数を取得
+    func getFriendRequestCount() async throws -> Int {
+        guard let user = Auth.auth().currentUser else {
+            try await self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        var friendData = [UserData]()
+        let userData: [UserData] = try await getUserDataFromId(userId: userID)
+
+        for userId in userData {
+            guard let friendIds = userId.receivedInvitations else {
+                return 0
+            }
+            for friendId in friendIds {
+                let userData: [UserData] = try await getUserDataFromId(userId: friendId)
+                friendData += userData
+            }
+        }
+        return friendData.count
     }
 
     //MARK: - FireStore Write

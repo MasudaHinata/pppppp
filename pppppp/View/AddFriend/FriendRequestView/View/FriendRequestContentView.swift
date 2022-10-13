@@ -45,7 +45,7 @@ struct FriendRequestContentView: View {
                         }
                     }
                     Text("")
-                        .frame(height: 8)
+                        .frame(height: 4)
                 }
             }
         }

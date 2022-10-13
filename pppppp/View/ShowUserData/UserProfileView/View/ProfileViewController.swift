@@ -49,6 +49,13 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
                 self.present(settingViewController, animated: true)
             }.store(in: &cancellables)
 
+//        viewModel.$healthChartsView
+//            .dropFirst()
+//            .sink { [weak self] _ in
+//                guard let self = self else { return }
+//                let healthChartsVC = HealthChartsViewController(viewModel: HealthChartsViewModel())
+//                self.present(healthChartsVC, animated: true)
+//            }.store(in: &cancellables)
     }
 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {

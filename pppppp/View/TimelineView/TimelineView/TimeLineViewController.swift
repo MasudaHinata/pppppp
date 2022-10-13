@@ -19,11 +19,6 @@ class TimeLineViewController: UIViewController {
         }
     }
 
-    @IBAction func sceneFriendRequest() {
-        let healthChartsVC = FriendRequestHostingViewController(viewModel: FriendRequestViewModel())
-        self.navigationController?.pushViewController(healthChartsVC, animated: true)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,6 +41,16 @@ class TimeLineViewController: UIViewController {
                 activityIndicator.startAnimating()
                 postDataItem = try await FirebaseClient.shared.getPointActivityPost()
                 collectionView.reloadData()
+                let friendRequestCount = try await FirebaseClient.shared.getFriendRequestCount()
+                if friendRequestCount == 0 {
+                    let createButton = UIBarButtonItem(image: UIImage(systemName: "bell.fill")!, style: .plain, target: self, action: #selector(didTapCreateDeckButton))
+                    navigationItem.rightBarButtonItem = createButton
+                    createButton.tintColor = UIColor.white
+                } else {
+                    let createButton = UIBarButtonItem(image: UIImage(systemName: "bell.badge.fill")!, style: .plain, target: self, action: #selector(didTapCreateDeckButton))
+                    navigationItem.rightBarButtonItem = createButton
+                    createButton.tintColor = UIColor.white
+                }
             }
             catch {
                 print("TimeLineViewContro viewDidL error:", error.localizedDescription)
@@ -58,6 +63,11 @@ class TimeLineViewController: UIViewController {
             activityIndicator.stopAnimating()
         }
         cancellables.insert(.init { task.cancel() })
+    }
+
+    @objc func didTapCreateDeckButton() {
+        let friendRequestHostingVC = FriendRequestHostingViewController(viewModel: FriendRequestViewModel())
+        self.navigationController?.pushViewController(friendRequestHostingVC, animated: true)
     }
     
     //MARK: - timelineの更新
