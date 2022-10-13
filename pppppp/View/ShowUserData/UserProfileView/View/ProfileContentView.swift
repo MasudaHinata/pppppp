@@ -15,37 +15,37 @@ struct ProfileContentView: View {
 
         NavigationView {
             Form {
-                if viewModel.meJudge {
-                    //MARK: 自分のデータを表示する時
-                    Section {
-                        HStack(alignment: .center, spacing: width * 0.10) {
-                            KFImage(viewModel.iconImageURL)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 72, height: 72)
-                                .cornerRadius(36)
+                Section {
+                    HStack(alignment: .center, spacing: width * 0.10) {
+                        KFImage(viewModel.iconImageURL)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 72, height: 72)
+                            .cornerRadius(36)
 
+                        VStack {
+                            Text("point")
+                                .font(.custom("F5.6", fixedSize: 14))
+                            Text("\(viewModel.point)")
+                                .font(.custom("F5.6", fixedSize: 18))
+                        }
+
+                        Button {
+                            //TODO: push遷移させる
+                            viewModel.sceneFriendList()
+                        } label: {
                             VStack {
-                                Text("point")
+                                Text("friend")
                                     .font(.custom("F5.6", fixedSize: 14))
-                                Text("\(viewModel.point)")
+                                Text("\(viewModel.friendCount)")
                                     .font(.custom("F5.6", fixedSize: 18))
                             }
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .foregroundColor(.white)
 
-                            Button {
-                                //TODO: push遷移させる
-                                viewModel.sceneFriendList()
-                            } label: {
-                                VStack {
-                                    Text("friend")
-                                        .font(.custom("F5.6", fixedSize: 14))
-                                    Text("\(viewModel.friendCount)")
-                                        .font(.custom("F5.6", fixedSize: 18))
-                                }
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .foregroundColor(.white)
-
+                        if viewModel.meJudge {
+                            //MARK: 自分のデータを表示する時
                             Button{
                                 viewModel.sceneChangeProfile()
                             } label: {
@@ -56,28 +56,8 @@ struct ProfileContentView: View {
                                     .foregroundColor(Color(asset: Asset.Colors.white00))
                             }
                             .buttonStyle(PlainButtonStyle())
-                        }
-                        .listRowBackground(Color.clear)
-                    }
-                } else {
-                    //MARK: 友達のデータを表示する時
-                    Section {
-                        HStack(alignment: .center) {
-                            KFImage(URL(string: viewModel.userDataItem?.iconImageURL ?? ""))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 72, height: 72)
-                                .cornerRadius(36)
-
-                            HStack {
-                                Text(String(viewModel.userDataItem?.point ?? 0))
-                                    .font(.custom("F5.6", fixedSize: 24))
-                                Text("pt")
-                                    .font(.custom("F5.6", fixedSize: 24))
-                            }
-
-                            Spacer()
-
+                        } else {
+                            //MARK: 友達のデータを表示する時
                             Button {
                                 self.showingAlert = true
                             } label: {
@@ -94,7 +74,6 @@ struct ProfileContentView: View {
                     }
                     .listRowBackground(Color.clear)
                 }
-
 
                 //MARK: - Streak
                 Section {
