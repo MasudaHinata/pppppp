@@ -12,9 +12,9 @@ final class FriendRequestViewModel: ObservableObject {
     func getFriendRequest() {
         let task = Task {
             do {
-//                userData = try await FirebaseClient.shared.
+                userData = try await FirebaseClient.shared.getFriendRequest()
             } catch {
-                
+                print("FriendRequestViewModel getFriendRequest error: \(error.localizedDescription)")
             }
         }
         self.cancellables.insert(.init { task.cancel() })
