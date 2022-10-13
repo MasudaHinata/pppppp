@@ -11,9 +11,9 @@ struct FriendRequestContentView: View {
         let width = bounds.width
 
         ScrollView {
-            VStack {
+            VStack (alignment: .leading){
                 ForEach(viewModel.userData) { item in
-                    HStack (spacing: width * 0.10) {
+                    HStack (spacing: width * 0.08) {
                         KFImage(URL(string: item.iconImageURL))
                             .resizable()
                             .scaledToFill()
@@ -21,6 +21,8 @@ struct FriendRequestContentView: View {
                             .cornerRadius(32)
                         
                         Text(item.name)
+                            .fontWeight(.semibold)
+                            .frame(width: 104, height: 32)
                         
                         Button {
                             viewModel.sendFriendRequest(friendId: item.id ?? "")
