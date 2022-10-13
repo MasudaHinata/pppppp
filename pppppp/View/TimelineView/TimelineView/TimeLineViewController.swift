@@ -39,18 +39,19 @@ class TimeLineViewController: UIViewController {
             guard let self = self else { return }
             do {
                 activityIndicator.startAnimating()
+                let friendRequestCount = try await FirebaseClient.shared.getFriendRequestCount()
+                var buttonImage: String
+                if friendRequestCount == 2 {
+                    buttonImage = "bell.fill"
+                } else {
+                    buttonImage = "bell.badge.fill"
+                }
+                let createButton = UIBarButtonItem(image: UIImage(systemName: buttonImage)!, style: .plain, target: self, action: #selector(didTapCreateDeckButton))
+                navigationItem.rightBarButtonItem = createButton
+                createButton.tintColor = UIColor.white
+
                 postDataItem = try await FirebaseClient.shared.getPointActivityPost()
                 collectionView.reloadData()
-                let friendRequestCount = try await FirebaseClient.shared.getFriendRequestCount()
-                if friendRequestCount == 0 {
-                    let createButton = UIBarButtonItem(image: UIImage(systemName: "bell.fill")!, style: .plain, target: self, action: #selector(didTapCreateDeckButton))
-                    navigationItem.rightBarButtonItem = createButton
-                    createButton.tintColor = UIColor.white
-                } else {
-                    let createButton = UIBarButtonItem(image: UIImage(systemName: "bell.badge.fill")!, style: .plain, target: self, action: #selector(didTapCreateDeckButton))
-                    navigationItem.rightBarButtonItem = createButton
-                    createButton.tintColor = UIColor.white
-                }
             }
             catch {
                 print("TimeLineViewContro viewDidL error:", error.localizedDescription)
@@ -77,6 +78,16 @@ class TimeLineViewController: UIViewController {
             do {
                 postDataItem = try await FirebaseClient.shared.getPointActivityPost()
                 collectionView.reloadData()
+                let friendRequestCount = try await FirebaseClient.shared.getFriendRequestCount()
+                if friendRequestCount == 0 {
+                    let createButton = UIBarButtonItem(image: UIImage(systemName: "bell.fill")!, style: .plain, target: self, action: #selector(didTapCreateDeckButton))
+                    navigationItem.rightBarButtonItem = createButton
+                    createButton.tintColor = UIColor.white
+                } else {
+                    let createButton = UIBarButtonItem(image: UIImage(systemName: "bell.badge.fill")!, style: .plain, target: self, action: #selector(didTapCreateDeckButton))
+                    navigationItem.rightBarButtonItem = createButton
+                    createButton.tintColor = UIColor.white
+                }
             }
             catch {
                 print("TimeLineViewContro refresh error:",error.localizedDescription)
