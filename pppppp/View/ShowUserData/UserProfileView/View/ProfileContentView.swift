@@ -9,14 +9,17 @@ struct ProfileContentView: View {
     @State private var showingAlert = false
     
     var body: some View {
+
+        let bounds = UIScreen.main.bounds
+        let width = bounds.width
+
         NavigationView {
             //MARK: - profile画面
             Form {
-
                 if  viewModel.meJudge {
                     //MARK: 自分のデータを表示する時
                     Section {
-                        HStack(alignment: .center, spacing: 40) {
+                        HStack(alignment: .center, spacing: width * 0.15) {
                             KFImage(viewModel.iconImageURL)
                                 .resizable()
                                 .scaledToFill()

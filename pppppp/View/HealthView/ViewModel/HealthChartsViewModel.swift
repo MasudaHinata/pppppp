@@ -9,10 +9,10 @@ final class HealthChartsViewModel: ObservableObject {
     @Published var chartsStepItem = [ChartsStepItem]()
     @Published var chartsWeightItem = [ChartsWeightItem]()
     @Published var workoutDataItem = [WorkoutData]()
+    @Published var weightGoalStr: String?
 
     @Published var averageStep: Int!
     @Published var lastWeightStr: String!
-
 
     init() {
     }
@@ -37,6 +37,9 @@ final class HealthChartsViewModel: ObservableObject {
                 lastWeightStr = String(format: "%.2f", round(lastWeight * 10) / 10)
                 chartsWeightItem = try await HealthKit_ScoreringManager.shared.getWeightData(period: weightPeriod)
                 chartsWeightItem.reverse()
+
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                weightGoalStr = String(format: "%.2f", round((UserDefaults.standard.object(forKey: "weightGoal") ?? 0) as! Double * 10) / 10)
 
                 //TODO: chartsWeightItemが空だったらlabel出す
             }

@@ -223,7 +223,7 @@ final class FirebaseClient {
         }
         return likeFriendData
     }
- 
+
     //MARK: - FireStore Write
     
     //MARK: - UserDataをFirestoreに保存
@@ -285,6 +285,37 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["name": name])
         UserDefaults.standard.set(name, forKey: "name")
+    }
+
+    //MARK: - 目標体重をfirebaseに保存
+    func putWeightGoal(weightGoal: Double) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        UserDefaults.standard.set(weightGoal, forKey: "weightGoal")
+        try await db.collection("User").document(userID).updateData(["weightGoal": weightGoal])
+    }
+
+    //MARK: - 最後に体重ポイントを作成した日時をfirebaseに保存
+    func putCreatedWorkoutPointDate() async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        try await db.collection("User").document(userID).updateData(["createWorkoutPointDate": Timestamp(date: Date())])
+    }
+
+    //MARK: - 最後にworkoutポイントを作成した日時をfirebaseに保存
+    func putCreatedWeightPointDate() async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        try await db.collection("User").document(userID).updateData(["createWeightPointDate": Timestamp(date: Date())])
     }
     
     //MARK: - 自己評価をfirebaseに保存

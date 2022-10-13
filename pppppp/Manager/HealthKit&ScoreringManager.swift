@@ -192,8 +192,12 @@ final class HealthKit_ScoreringManager {
         let results = try await descriptor.result(for: myHealthStore)
         
         var checkWeightPoint: Bool
-        let lastDate = UserDefaults.standard.object(forKey: "createWeightPointDate") as? Date
-        if UserDefaults.standard.object(forKey: "createWeightPointDate") as? Date == nil {
+
+        let userID = try await FirebaseClient.shared.getUserUUID()
+        let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(friendId: userID)
+        let lastDate = userData.last?.createWeightPointDate
+
+        if lastDate == nil {
             checkWeightPoint = true
         } else {
             if results.last?.startDate != nil {
@@ -212,7 +216,7 @@ final class HealthKit_ScoreringManager {
     //MARK: - 体重ポイントを作成
     func createWeightPoint(weightGoal: Double, weight: Double) async throws -> [Double] {
         
-        UserDefaults.standard.set((Date()), forKey: "createWeightPointDate")
+        try await FirebaseClient.shared.putCreatedWeightPointDate()
         
         let endDate = calendar.date(byAdding: .day, value: 0, to: calendar.startOfDay(for: Date()))
         let startDate = calendar.date(byAdding: .day, value: -12, to: calendar.startOfDay(for: endDate!))
@@ -259,9 +263,10 @@ final class HealthKit_ScoreringManager {
         var checkWorkoutPoint: Bool
         let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [])
         let results = try await descriptor.result(for: myHealthStore)
-
-        let lastDate = UserDefaults.standard.object(forKey: "createWorkoutPointDate") as? Date
-        if UserDefaults.standard.object(forKey: "createWorkoutPointDate") as? Date == nil {
+        let userID = try await FirebaseClient.shared.getUserUUID()
+        let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(friendId: userID)
+        let lastDate = userData.last?.createWorkoutPointDate
+        if lastDate == nil {
             checkWorkoutPoint = true
         } else {
             if results.last?.startDate != nil {
@@ -291,13 +296,12 @@ final class HealthKit_ScoreringManager {
                     exercisePoint = Int(15 / (0.6 + exp(-exercise * 0.2)))
                 }
 
-                //TODO: AppleのworkoutIDからcaseで名前を代入する
                 let exercizeName = results.last?.workoutActivityType.name ?? "workout"
                 try await FirebaseClient.shared.firebasePutData(point: exercisePoint, activity: exercizeName)
             } else {
                 createdPointJudge = false
             }
-            UserDefaults.standard.set((Date()), forKey: "createWorkoutPointDate")
+            try await FirebaseClient.shared.putCreatedWorkoutPointDate()
         }
     
         return createdPointJudge

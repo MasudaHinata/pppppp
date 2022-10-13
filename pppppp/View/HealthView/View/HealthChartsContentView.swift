@@ -66,17 +66,29 @@ struct HealthChartsContentView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .frame(maxWidth: width - 32, alignment: .center)
 
-                Text("最新")
-                    .font(.custom("F5.6", fixedSize: 12))
-                    .foregroundColor(Color(asset: Asset.Colors.white48))
-                    .frame(maxWidth: width - 48, alignment: .leading)
-                    .foregroundColor(Color.white)
+                HStack {
+                    Text("Goal")
+                        .font(.custom("F5.6", fixedSize: 14))
+                        .foregroundColor(Color.white)
 
-                Text("\(viewModel.lastWeightStr ?? "0") kg")
-                    .font(.custom("F5.6", fixedSize: 16))
-                    .frame(maxWidth: width - 48, alignment: .leading)
-                    .foregroundColor(Color.white)
+                    Text("\(viewModel.weightGoalStr ?? "") kg")
+                        .font(.custom("F5.6", fixedSize: 16))
+                        .foregroundColor(Color.white)
 
+                    Spacer()
+
+                    VStack (alignment: .leading){
+                        Text("最新")
+                            .font(.custom("F5.6", fixedSize: 12))
+                            .foregroundColor(Color(asset: Asset.Colors.white48))
+
+                        Text("\(viewModel.lastWeightStr ?? "0") kg")
+                            .font(.custom("F5.6", fixedSize: 16))
+                            .foregroundColor(Color.white)
+                    }
+                }
+                .frame(maxWidth: width - 48, alignment: .leading)
+                
                 WeightChartsUIView(data: viewModel.chartsWeightItem)
                     .frame(maxWidth: width - 48, minHeight:280, alignment: .center)
             }
