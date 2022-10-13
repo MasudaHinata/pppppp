@@ -105,14 +105,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     
     override func viewDidLoad() {
         super.viewDidLoad()
-#if DEBUG
-        print("🛠Debug")
-#elseif STAGING
-        print("🧑🏻‍💻Staging")
-#else
-        print("📱Release")
-#endif
-
+        
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPointDelegate = self
         FirebaseClient.shared.notChangeDelegate = self
