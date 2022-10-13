@@ -12,28 +12,33 @@ struct FriendRequestContentView: View {
 
         ScrollView {
             ForEach(viewModel.userData) { item in
-                HStack (spacing: width * 0.1) {
+                HStack (spacing: width * 0.10) {
                     KFImage(URL(string: item.iconImageURL))
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 72, height: 72)
-                        .cornerRadius(36)
+                        .frame(width: 64, height: 64)
+                        .cornerRadius(32)
 
                     Text(item.name)
 
                     Button {
-                        //TODO: 承認送る
+                        viewModel.sendFriendRequest(friendId: item.id ?? "")
                     }label: {
                         Text("承認")
+                            .fontWeight(.semibold)
+                            .padding(4)
                             .background(Color(asset: Asset.Colors.subColor))
                             .foregroundColor(Color.white)
                     }
 
-
                     Button {
-                        //TODO: 却下する
+                        viewModel.deleteFriendRequest(friendId: item.id ?? "")
                     }label: {
                         Text("削除")
+                            .fontWeight(.semibold)
+                            .padding(5)
+                            .background(Color(asset: Asset.Colors.subColor))
+                            .foregroundColor(Color.white)
                     }
                 }
             }

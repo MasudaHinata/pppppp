@@ -233,8 +233,7 @@ final class FirebaseClient {
         let userID = user.uid
 
         let querySnapshot = try await db.collection("User").whereField("receivedInvitations", arrayContains: userID).getDocuments()
-        var userData = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
-
+        let userData = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
         return userData
     }
 
@@ -383,7 +382,18 @@ final class FirebaseClient {
         }
         let userID = user.uid
 
-        try await db.collection("Post").document(friendId).updateData(["receivedInvitations": FieldValue.arrayRemove([userID])])
+        try await db.collection("User").document(friendId).updateData(["receivedInvitations": FieldValue.arrayUnion([userID])])
+    }
+
+    //MARK: - 友達リクエストを削除
+    func deleteFriendRequest(friendId: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+
+        try await db.collection("User").document(userID).updateData(["receivedInvitations": FieldValue.arrayRemove([friendId])])
     }
     
     //MARK: - 友達を追加する
@@ -393,6 +403,7 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
+        try await db.collection("User").document(userID).updateData(["receivedInvitations": FieldValue.arrayRemove([userID])])
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayUnion([friendId])])
         try await db.collection("User").document(friendId).updateData(["FriendList": FieldValue.arrayUnion([userID])])
         self.addFriendDelegate?.addFriends()
