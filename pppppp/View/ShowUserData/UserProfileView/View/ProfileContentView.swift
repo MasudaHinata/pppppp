@@ -19,7 +19,7 @@ struct ProfileContentView: View {
                 if  viewModel.meJudge {
                     //MARK: 自分のデータを表示する時
                     Section {
-                        HStack(alignment: .center, spacing: width * 0.15) {
+                        HStack(alignment: .center, spacing: width * 0.10) {
                             KFImage(viewModel.iconImageURL)
                                 .resizable()
                                 .scaledToFill()

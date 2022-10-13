@@ -39,12 +39,14 @@ class RecordWeightViewController: UIViewController {
             do {
                 try await HealthKit_ScoreringManager.shared.writeWeight(weight: inputWeight)
 
-                guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(friendId: userID)
+                guard let goalWeight = userData.last?.weightGoal else {
                     let setGoalWeightVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
                     self.showDetailViewController(setGoalWeightVC, sender: self)
                     return
                 }
-                let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: inputWeight)
+                let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight, weight: inputWeight)
                 if checkPoint == [] {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2s週間の体重データがないためポイントを作成できませんでした")
                 }

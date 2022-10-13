@@ -294,7 +294,6 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        UserDefaults.standard.set(weightGoal, forKey: "weightGoal")
         try await db.collection("User").document(userID).updateData(["weightGoal": weightGoal])
     }
 

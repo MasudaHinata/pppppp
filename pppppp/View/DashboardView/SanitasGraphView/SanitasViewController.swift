@@ -224,14 +224,16 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
 
                 //MARK: 体重のポイント作成判定
                 let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
-                let weight = try await HealthKit_ScoreringManager.shared.getWeight()
-                guard let goalWeight = UserDefaults.standard.object(forKey: "weightGoal") else {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(friendId: userID)
+                guard let goalWeight = userData.last?.weightGoal else {
                     let setGoalWeightVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
                     self.showDetailViewController(setGoalWeightVC, sender: self)
                     return
                 }
                 if judge {
-                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight as! Double, weight: weight)
+                    let weight = try await HealthKit_ScoreringManager.shared.getWeight()
+                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight, weight: weight)
                     if checkPoint == [] {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "HealthKitに過去2週間の体重データがないためポイントを作成できませんでした")
                     }

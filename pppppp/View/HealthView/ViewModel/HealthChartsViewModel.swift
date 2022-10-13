@@ -39,7 +39,8 @@ final class HealthChartsViewModel: ObservableObject {
                 chartsWeightItem.reverse()
 
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                weightGoalStr = String(format: "%.2f", round((UserDefaults.standard.object(forKey: "weightGoal") ?? 0) as! Double * 10) / 10)
+                let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(friendId: userID)
+                weightGoalStr = String(format: "%.2f", round((userData.last?.weightGoal ?? 0) * 10) / 10)
 
                 //TODO: chartsWeightItemが空だったらlabel出す
             }
