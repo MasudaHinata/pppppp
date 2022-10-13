@@ -17,6 +17,8 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 let friendListViewController = StoryboardScene.FriendListView.initialScene.instantiate()
+                //TODO: FriendListViewにidを渡す
+//                friendListViewController.id = viewModel.userDataItem?.id
                 self.present(friendListViewController, animated: true)
             }.store(in: &cancellables)
 
@@ -32,15 +34,7 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
                 changeProfileViewController.presentationController?.delegate = self
                 self.present(changeProfileViewController, animated: true, completion: nil)
             }.store(in: &cancellables)
-
-        viewModel.$shareMyData
-            .dropFirst()
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                let shareMyDataViewController = StoryboardScene.ShareMyDataView.initialScene.instantiate()
-                self.present(shareMyDataViewController, animated: true)
-            }.store(in: &cancellables)
-
+        
         viewModel.$settingView
             .dropFirst()
             .sink { [weak self] _ in

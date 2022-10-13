@@ -34,7 +34,7 @@ class TimeLineViewController: UIViewController {
         activityIndicator.style = .large
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
-        
+
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
@@ -46,9 +46,22 @@ class TimeLineViewController: UIViewController {
                 } else {
                     buttonImage = "bell.badge.fill"
                 }
-                let createButton = UIBarButtonItem(image: UIImage(systemName: buttonImage)!, style: .plain, target: self, action: #selector(didTapCreateDeckButton))
-                navigationItem.rightBarButtonItem = createButton
-                createButton.tintColor = UIColor.white
+
+                let button1: UIBarButtonItem = UIBarButtonItem.init(
+                    image: UIImage(systemName: buttonImage),
+                    style: UIBarButtonItem.Style.plain,
+                    target: self,
+                    action: #selector(didTapFriendRequestButton))
+                button1.tintColor = UIColor.white
+
+                let button2 = UIBarButtonItem.init(
+                    image: UIImage(systemName: "person.crop.circle.badge.plus"),
+                    style: UIBarButtonItem.Style.plain,
+                    target: self,
+                    action: #selector(didTapAddFriendButton))
+                button2.tintColor = UIColor.white
+                self.navigationItem.rightBarButtonItems = [button1, button2]
+
 
                 postDataItem = try await FirebaseClient.shared.getPointActivityPost()
                 collectionView.reloadData()
@@ -66,9 +79,14 @@ class TimeLineViewController: UIViewController {
         cancellables.insert(.init { task.cancel() })
     }
 
-    @objc func didTapCreateDeckButton() {
+    @objc func didTapFriendRequestButton() {
         let friendRequestHostingVC = FriendRequestHostingViewController(viewModel: FriendRequestViewModel())
         self.navigationController?.pushViewController(friendRequestHostingVC, animated: true)
+    }
+
+    @objc func didTapAddFriendButton() {
+        let shareMyDataViewController = StoryboardScene.ShareMyDataView.initialScene.instantiate()
+        self.present(shareMyDataViewController, animated: true)
     }
     
     //MARK: - timelineの更新
@@ -79,15 +97,27 @@ class TimeLineViewController: UIViewController {
                 postDataItem = try await FirebaseClient.shared.getPointActivityPost()
                 collectionView.reloadData()
                 let friendRequestCount = try await FirebaseClient.shared.getFriendRequestCount()
-                if friendRequestCount == 0 {
-                    let createButton = UIBarButtonItem(image: UIImage(systemName: "bell.fill")!, style: .plain, target: self, action: #selector(didTapCreateDeckButton))
-                    navigationItem.rightBarButtonItem = createButton
-                    createButton.tintColor = UIColor.white
+                var buttonImage: String
+                if friendRequestCount == 2 {
+                    buttonImage = "bell.fill"
                 } else {
-                    let createButton = UIBarButtonItem(image: UIImage(systemName: "bell.badge.fill")!, style: .plain, target: self, action: #selector(didTapCreateDeckButton))
-                    navigationItem.rightBarButtonItem = createButton
-                    createButton.tintColor = UIColor.white
+                    buttonImage = "bell.badge.fill"
                 }
+
+                let button1: UIBarButtonItem = UIBarButtonItem.init(
+                    image: UIImage(systemName: buttonImage),
+                    style: UIBarButtonItem.Style.plain,
+                    target: self,
+                    action: #selector(didTapFriendRequestButton))
+                button1.tintColor = UIColor.white
+
+                let button2 = UIBarButtonItem.init(
+                    image: UIImage(systemName: "person.crop.circle.badge.plus"),
+                    style: UIBarButtonItem.Style.plain,
+                    target: self,
+                    action: #selector(didTapAddFriendButton))
+                button2.tintColor = UIColor.white
+                self.navigationItem.rightBarButtonItems = [button1, button2]
             }
             catch {
                 print("TimeLineViewContro refresh error:",error.localizedDescription)

@@ -18,7 +18,6 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
     @Published var friendListView: Void = ()
     @Published var changeProfileView: Void = ()
     @Published var settingView: Void = ()
-    @Published var shareMyData: Void = ()
 //    @Published var healthChartsView: Void = ()
 
     @Published var userDataItem: UserData?
@@ -57,10 +56,6 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
         self.settingView = ()
     }
 
-    func sceneShareMyData() {
-        self.shareMyData = ()
-    }
-
 //    func sceneHealthCharts() {
 //        self.healthChartsView = ()
 //    }
@@ -89,6 +84,8 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
                     self.point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
                     meJudge = true
                 } else {
+                    let friendDataList = try await FirebaseClient.shared.getFriendDataFromId(userId: userDataItem?.id ?? "")
+                    self.friendCount = friendDataList.count
                     pointDataList = try await FirebaseClient.shared.getPointData(id: userDataItem?.id ?? "")
                     pointDataList.reverse()
                     let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"

@@ -109,15 +109,6 @@ struct ProfileContentView: View {
 
             .navigationBarItems(trailing: HStack {
                 Button {
-                    viewModel.sceneShareMyData()
-                } label: {
-                    Image(systemName: "person.crop.circle.badge.plus")
-                }
-                .foregroundColor(.white)
-
-                Spacer()
-
-                Button {
                     viewModel.sceneSetting()
                 } label: {
                     Image(systemName: "gearshape")
