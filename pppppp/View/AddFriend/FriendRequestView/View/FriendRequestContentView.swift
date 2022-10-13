@@ -26,7 +26,7 @@ struct FriendRequestContentView: View {
                         
                         Button {
                             viewModel.sendFriendRequest(friendId: item.id ?? "")
-                        }label: {
+                        } label: {
                             Text("承認")
                                 .frame(width: 56, height: 24)
                                 .fontWeight(.medium)
@@ -36,17 +36,17 @@ struct FriendRequestContentView: View {
                         
                         Button {
                             viewModel.deleteFriendRequest(friendId: item.id ?? "")
-                        }label: {
+                        } label: {
                             Text("削除")
                                 .frame(width: 56, height: 24)
                                 .fontWeight(.medium)
-//                                .padding(4)
                                 .background(Color(asset: Asset.Colors.white48))
                                 .foregroundColor(Color.white)
                         }
                     }
+                    Text("")
+                        .frame(height: 8)
                 }
-                Spacer()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
