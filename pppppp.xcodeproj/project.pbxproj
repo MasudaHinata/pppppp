@@ -21,6 +21,9 @@
 		032DF37028F44F4F00458C20 /* HKWorkoutActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */; };
 		032DF37228F4535D00458C20 /* PointActivityImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF37128F4535D00458C20 /* PointActivityImage.swift */; };
 		032DF37A28F83BEA00458C20 /* GoogleService-Info-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032DF37928F83BEA00458C20 /* GoogleService-Info-dev.plist */; };
+		032DF37D28F84FAD00458C20 /* FriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF37C28F84FAD00458C20 /* FriendRequestViewController.swift */; };
+		032DF38128F8513000458C20 /* FriendRequestContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF38028F8513000458C20 /* FriendRequestContentView.swift */; };
+		032DF38528F8517900458C20 /* FriendRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF38428F8517900458C20 /* FriendRequestViewModel.swift */; };
 		0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */; };
 		033945F028DF25C100681E9C /* HealthChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033945EF28DF25C100681E9C /* HealthChartsViewController.swift */; };
 		033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37B28DC7FA9008DBC49 /* Colors.xcassets */; };
@@ -139,6 +142,9 @@
 		032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKWorkoutActivityType.swift; sourceTree = "<group>"; };
 		032DF37128F4535D00458C20 /* PointActivityImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointActivityImage.swift; sourceTree = "<group>"; };
 		032DF37928F83BEA00458C20 /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info-dev.plist"; path = "../../../Desktop/GoogleService-Info-dev.plist"; sourceTree = "<group>"; };
+		032DF37C28F84FAD00458C20 /* FriendRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewController.swift; sourceTree = "<group>"; };
+		032DF38028F8513000458C20 /* FriendRequestContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestContentView.swift; sourceTree = "<group>"; };
+		032DF38428F8517900458C20 /* FriendRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewModel.swift; sourceTree = "<group>"; };
 		0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
 		033945EF28DF25C100681E9C /* HealthChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsViewController.swift; sourceTree = "<group>"; };
 		033BC37B28DC7FA9008DBC49 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -329,6 +335,32 @@
 			isa = PBXGroup;
 			children = (
 				032DF36B28F3BDDD00458C20 /* HealthChartsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		032DF37B28F84F8500458C20 /* FriendRequestView */ = {
+			isa = PBXGroup;
+			children = (
+				032DF38228F8514000458C20 /* View */,
+				032DF38328F8514500458C20 /* ViewModel */,
+			);
+			path = FriendRequestView;
+			sourceTree = "<group>";
+		};
+		032DF38228F8514000458C20 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				032DF37C28F84FAD00458C20 /* FriendRequestViewController.swift */,
+				032DF38028F8513000458C20 /* FriendRequestContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		032DF38328F8514500458C20 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				032DF38428F8517900458C20 /* FriendRequestViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -700,6 +732,7 @@
 				033BC37D28DC80D6008DBC49 /* AddFriendView */,
 				033BC37E28DC8106008DBC49 /* FriendProfileView */,
 				033BC37F28DC8125008DBC49 /* ShareMyDataView */,
+				032DF37B28F84F8500458C20 /* FriendRequestView */,
 			);
 			path = AddFriend;
 			sourceTree = "<group>";
@@ -906,6 +939,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				032DF38528F8517900458C20 /* FriendRequestViewModel.swift in Sources */,
 				036E476928DB1A5C00EA7BB1 /* RecordWeightViewController.swift in Sources */,
 				03DAC40E28EC2865005F173B /* TimelinePostCollectionViewCell.swift in Sources */,
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
@@ -926,6 +960,7 @@
 				036E476528DAF73C00EA7BB1 /* StepsChartsUIView.swift in Sources */,
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
 				0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */,
+				032DF37D28F84FAD00458C20 /* FriendRequestViewController.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */,
 				033945F028DF25C100681E9C /* HealthChartsViewController.swift in Sources */,
@@ -935,6 +970,7 @@
 				035D29DA28E98AA400E1BEA4 /* HealthChartsContentView.swift in Sources */,
 				036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */,
 				03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */,
+				032DF38128F8513000458C20 /* FriendRequestContentView.swift in Sources */,
 				035329CD28EECB9000257768 /* ProfileContentView.swift in Sources */,
 				0343680E28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift in Sources */,
 				0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */,

@@ -18,7 +18,12 @@ class TimeLineViewController: UIViewController {
             collectionView.register(UINib(nibName: "TimelinePostCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TimelinePostCollectionViewCell")
         }
     }
-    
+
+    @IBAction func sceneFriendRequest() {
+        let healthChartsVC = FriendRequestHostingViewController(viewModel: FriendRequestViewModel())
+        self.navigationController?.pushViewController(healthChartsVC, animated: true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
