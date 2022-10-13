@@ -28,15 +28,15 @@
                                 <rect key="frame" x="24" y="344" width="366" height="208"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzA-A2-QDb">
-                                        <rect key="frame" x="108.5" y="140" width="149.5" height="48"/>
+                                        <rect key="frame" x="99" y="140" width="168" height="48"/>
                                         <color key="backgroundColor" red="0.72156862749999995" green="0.91372549020000005" blue="1" alpha="0.39926359519999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="149.5" id="JYO-JV-fue"/>
+                                            <constraint firstAttribute="width" constant="168" id="JYO-JV-fue"/>
                                             <constraint firstAttribute="height" constant="48" id="pPB-aQ-sqZ"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="ADD AS FRIEND">
+                                        <buttonConfiguration key="configuration" style="plain" title="FRIEND REQUEST">
                                             <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="16"/>
                                         </buttonConfiguration>
                                         <connections>

@@ -11,9 +11,9 @@ struct FriendRequestContentView: View {
         let width = bounds.width
 
         ScrollView {
-            VStack (alignment: .leading){
+            VStack (alignment: .leading) {
                 ForEach(viewModel.userData) { item in
-                    HStack (spacing: width * 0.08) {
+                    HStack {
                         KFImage(URL(string: item.iconImageURL))
                             .resizable()
                             .scaledToFill()
@@ -22,29 +22,31 @@ struct FriendRequestContentView: View {
                         
                         Text(item.name)
                             .fontWeight(.semibold)
-                            .frame(width: 104, height: 32)
+                            .frame(width: 104, height: 32, alignment: .leading)
                         
                         Button {
                             viewModel.sendFriendRequest(friendId: item.id ?? "")
                         }label: {
                             Text("承認")
-                                .fontWeight(.semibold)
-                                .padding(4)
-                                .background(Color(asset: Asset.Colors.subColor))
-                                .foregroundColor(Color.white)
+                                .frame(width: 56, height: 24)
+                                .fontWeight(.medium)
+                                .background(Color(asset: Asset.Colors.white00))
+                                .foregroundColor(Color(asset: Asset.Colors.mainColor))
                         }
                         
                         Button {
                             viewModel.deleteFriendRequest(friendId: item.id ?? "")
                         }label: {
                             Text("削除")
-                                .fontWeight(.semibold)
-                                .padding(5)
-                                .background(Color(asset: Asset.Colors.subColor))
+                                .frame(width: 56, height: 24)
+                                .fontWeight(.medium)
+//                                .padding(4)
+                                .background(Color(asset: Asset.Colors.white48))
                                 .foregroundColor(Color.white)
                         }
                     }
                 }
+                Spacer()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
