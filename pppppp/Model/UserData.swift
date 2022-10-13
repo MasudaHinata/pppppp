@@ -7,6 +7,8 @@ struct UserData: Codable {
     let iconImageURL: String
     var point: Int?
     var weightGoal: Double?
+    var createWorkoutPointDate: Date?
+    var createWeightPointDate: Date?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -14,5 +16,7 @@ struct UserData: Codable {
         case iconImageURL = "IconImageURL"
         case point
         case weightGoal
+        case createWorkoutPointDate
+        case createWeightPointDate
     }
 }

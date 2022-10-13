@@ -39,25 +39,25 @@ class SetGoalWeightViewController: UIViewController {
         }
 
         guard let inputWeightText = weightTextField.text else { return }
-        if inputWeightText != "" {
-            let task = Task { [weak self] in
-                guard let self = self else { return }
-                do {
-                    try await FirebaseClient.shared.putWeightGoal(weightGoal: inputWeightGoal)
+        
+        let task = Task { [weak self] in
+            guard let self = self else { return }
+            do {
+                if inputWeightText != "" {
                     try await HealthKit_ScoreringManager.shared.writeWeight(weight: Double(inputWeightText) ?? 0)
                 }
-                catch {
-                    print("SetGoalWeightViewDid error:", error.localizedDescription)
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
+                try await FirebaseClient.shared.putWeightGoal(weightGoal: inputWeightGoal)
+                ShowAlertHelper.okAlert(vc: self, title: "完了", message: "記録しました") { _ in
+                    let mainVC = StoryboardScene.Main.initialScene.instantiate()
+                    self.showDetailViewController(mainVC, sender: self)
                 }
             }
-            self.cancellables.insert(.init { task.cancel() })
+            catch {
+                print("SetGoalWeightViewDid error:", error.localizedDescription)
+                ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
+            }
         }
-
-        ShowAlertHelper.okAlert(vc: self, title: "完了", message: "記録しました") { _ in
-            let mainVC = StoryboardScene.Main.initialScene.instantiate()
-            self.showDetailViewController(mainVC, sender: self)
-        }
+        self.cancellables.insert(.init { task.cancel() })
     }
     
     override func viewDidLoad() {
@@ -66,6 +66,19 @@ class SetGoalWeightViewController: UIViewController {
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
+
+        let toolbar = UIToolbar()
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(didTapDoneButton))
+        toolbar.items = [space, done]
+        toolbar.sizeToFit()
+        weightTextField.inputAccessoryView = toolbar
+        weightGoalTextField.inputAccessoryView = toolbar
+    }
+
+    @objc func didTapDoneButton() {
+        weightTextField.resignFirstResponder()
+        weightGoalTextField.resignFirstResponder()
     }
     
     @objc func dismissKeyboard() {
