@@ -40,7 +40,7 @@ class RecordWeightViewController: UIViewController {
                 try await HealthKit_ScoreringManager.shared.writeWeight(weight: inputWeight)
 
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(friendId: userID)
+                let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(userId: userID)
                 guard let goalWeight = userData.last?.weightGoal else {
                     let setGoalWeightVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
                     self.showDetailViewController(setGoalWeightVC, sender: self)

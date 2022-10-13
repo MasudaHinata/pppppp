@@ -10,6 +10,7 @@ struct UserData: Identifiable, Codable {
     var weightGoal: Double?
     var createWorkoutPointDate: Date?
     var createWeightPointDate: Date?
+    var receivedInvitations: [String]?
     
     enum CodingKeys: String, CodingKey {
         case code
@@ -20,5 +21,6 @@ struct UserData: Identifiable, Codable {
         case weightGoal
         case createWorkoutPointDate
         case createWeightPointDate
+        case receivedInvitations
     }
 }

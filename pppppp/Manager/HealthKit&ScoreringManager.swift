@@ -194,7 +194,7 @@ final class HealthKit_ScoreringManager {
         var checkWeightPoint: Bool
 
         let userID = try await FirebaseClient.shared.getUserUUID()
-        let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(friendId: userID)
+        let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(userId: userID)
         let lastDate = userData.last?.createWeightPointDate
 
         if lastDate == nil {
@@ -264,7 +264,7 @@ final class HealthKit_ScoreringManager {
         let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [])
         let results = try await descriptor.result(for: myHealthStore)
         let userID = try await FirebaseClient.shared.getUserUUID()
-        let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(friendId: userID)
+        let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(userId: userID)
         let lastDate = userData.last?.createWorkoutPointDate
         if lastDate == nil {
             checkWorkoutPoint = true

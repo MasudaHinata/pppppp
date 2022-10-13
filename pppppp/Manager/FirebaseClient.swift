@@ -52,9 +52,13 @@ protocol FirebaseSentEmailDelegate: AnyObject {
     func sendEmail()
 }
 
-protocol FirebaseAddFriendDelegate: AnyObject {
-    func addFriends()
+protocol SentFriendRequestDelegate: AnyObject {
+    func sendRequest()
     func friendNotFound()
+}
+
+protocol AddFriendDelegate: AnyObject {
+    func addFriends()
 }
 
 final class FirebaseClient {
@@ -66,7 +70,8 @@ final class FirebaseClient {
     weak var SettingAccountDelegate: SetttingAccountDelegate?
     weak var putPointDelegate: FirebasePutPointDelegate?
     weak var sentEmailDelegate: FirebaseSentEmailDelegate?
-    weak var addFriendDelegate: FirebaseAddFriendDelegate?
+    weak var sentFriendRequestDelegate: SentFriendRequestDelegate?
+    weak var addFriendDelegate: AddFriendDelegate?
     private init() {}
     
     let firebaseAuth = Auth.auth()
@@ -111,9 +116,9 @@ final class FirebaseClient {
     }
     
     //MARK: - idで渡されたユーザーデータを取得する
-    func getUserDataFromId(friendId: String) async throws -> [UserData] {
+    func getUserDataFromId(userId: String) async throws -> [UserData] {
         var userData = [UserData]()
-        let querySnapShot = try await db.collection("User").document(friendId).getDocument()
+        let querySnapShot = try await db.collection("User").document(userId).getDocument()
         userData.append(try querySnapShot.data(as: UserData.self))
         
         return userData
@@ -231,10 +236,19 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
+        var friendData = [UserData]()
+        let userData: [UserData] = try await getUserDataFromId(userId: userID)
 
-        let querySnapshot = try await db.collection("User").whereField("receivedInvitations", arrayContains: userID).getDocuments()
-        let userData = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
-        return userData
+        for userId in userData {
+            guard let friendIds = userId.receivedInvitations else {
+                return []
+            }
+            for friendId in friendIds {
+                let userData: [UserData] = try await getUserDataFromId(userId: friendId)
+                friendData += userData
+            }
+        }
+        return friendData
     }
 
     //MARK: - FireStore Write
@@ -383,6 +397,7 @@ final class FirebaseClient {
         let userID = user.uid
 
         try await db.collection("User").document(friendId).updateData(["receivedInvitations": FieldValue.arrayUnion([userID])])
+        self.sentFriendRequestDelegate?.sendRequest()
     }
 
     //MARK: - 友達リクエストを削除
@@ -403,7 +418,7 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-        try await db.collection("User").document(userID).updateData(["receivedInvitations": FieldValue.arrayRemove([userID])])
+        try await db.collection("User").document(userID).updateData(["receivedInvitations": FieldValue.arrayRemove([friendId])])
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayUnion([friendId])])
         try await db.collection("User").document(friendId).updateData(["FriendList": FieldValue.arrayUnion([userID])])
         self.addFriendDelegate?.addFriends()

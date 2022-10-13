@@ -1,7 +1,8 @@
 import Foundation
+import UIKit
 import Combine
 
-final class FriendRequestViewModel: ObservableObject {
+final class FriendRequestViewModel: ObservableObject, AddFriendDelegate {
 
     private var cancellables = Set<AnyCancellable>()
     @Published var userData = [UserData]()
@@ -42,5 +43,18 @@ final class FriendRequestViewModel: ObservableObject {
             }
         }
         self.cancellables.insert(.init { task.cancel() })
+    }
+
+    //MARK: - Setting Delegate
+    func addFriends() {
+//        let alert = UIAlertController(title: "完了", message: "友達を追加しました", preferredStyle: .alert)
+//        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//            let mainVC = StoryboardScene.Main.initialScene.instantiate()
+//            self.showDetailViewController(mainVC, sender: self)
+//        }
+//        alert.addAction(ok)
+//        DispatchQueue.main.async {
+//            self.present(alert, animated: true, completion: nil)
+//        }
     }
 }
