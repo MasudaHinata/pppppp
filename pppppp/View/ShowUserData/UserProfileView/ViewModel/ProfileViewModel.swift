@@ -41,7 +41,6 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
                 print("ProfileViewModel init error:",error.localizedDescription)
             }
         }
-
         self.cancellables.insert(.init { task.cancel() })
     }
     
