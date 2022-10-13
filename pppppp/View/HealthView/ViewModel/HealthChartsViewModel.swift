@@ -9,11 +9,10 @@ final class HealthChartsViewModel: ObservableObject {
     @Published var chartsStepItem = [ChartsStepItem]()
     @Published var chartsWeightItem = [ChartsWeightItem]()
     @Published var workoutDataItem = [WorkoutData]()
-    @Published var weightGoal: Int?
+    @Published var weightGoalStr: String?
 
     @Published var averageStep: Int!
     @Published var lastWeightStr: String!
-
 
     init() {
     }
@@ -40,8 +39,7 @@ final class HealthChartsViewModel: ObservableObject {
                 chartsWeightItem.reverse()
 
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(friendId: userID)
-                weightGoal = userData.last?.weightGoal
+                weightGoalStr = String(format: "%.2f", round((UserDefaults.standard.object(forKey: "weightGoal") ?? 0) as! Double * 10) / 10)
 
                 //TODO: chartsWeightItemが空だったらlabel出す
             }

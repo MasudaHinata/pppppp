@@ -43,6 +43,7 @@ class SetGoalWeightViewController: UIViewController {
             let task = Task { [weak self] in
                 guard let self = self else { return }
                 do {
+                    try await FirebaseClient.shared.putWeightGoal(weightGoal: inputWeightGoal)
                     try await HealthKit_ScoreringManager.shared.writeWeight(weight: Double(inputWeightText) ?? 0)
                 }
                 catch {
@@ -52,8 +53,6 @@ class SetGoalWeightViewController: UIViewController {
             }
             self.cancellables.insert(.init { task.cancel() })
         }
-
-        UserDefaults.standard.set(inputWeightGoal, forKey: "weightGoal")
 
         ShowAlertHelper.okAlert(vc: self, title: "完了", message: "記録しました") { _ in
             let mainVC = StoryboardScene.Main.initialScene.instantiate()

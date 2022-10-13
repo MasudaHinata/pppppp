@@ -141,7 +141,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     imageView?.image = UIImage(named: "Rectangle1")
                 } else if todayPoint.reduce(0, +) <= 15 {
                     imageView?.image = UIImage(named: "Rectangle2")
-                } else if todayPoint.reduce(0, +) <= 60 {
+                } else if todayPoint.reduce(0, +) <= 40 {
                     imageView?.image = UIImage(named: "Rectangle3")
                 } else {
                     imageView?.image = UIImage(named: "Rectangle4")

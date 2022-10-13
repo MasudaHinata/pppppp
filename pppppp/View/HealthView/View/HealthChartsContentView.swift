@@ -67,12 +67,11 @@ struct HealthChartsContentView: View {
                 .frame(maxWidth: width - 32, alignment: .center)
 
                 HStack {
-
                     Text("Goal")
-                        .font(.custom("F5.6", fixedSize: 16))
+                        .font(.custom("F5.6", fixedSize: 14))
                         .foregroundColor(Color.white)
 
-                    Text("\(viewModel.weightGoal ?? 0) kg")
+                    Text("\(viewModel.weightGoalStr ?? "") kg")
                         .font(.custom("F5.6", fixedSize: 16))
                         .foregroundColor(Color.white)
 
@@ -89,7 +88,7 @@ struct HealthChartsContentView: View {
                     }
                 }
                 .frame(maxWidth: width - 48, alignment: .leading)
-
+                
                 WeightChartsUIView(data: viewModel.chartsWeightItem)
                     .frame(maxWidth: width - 48, minHeight:280, alignment: .center)
             }

@@ -6,7 +6,7 @@ struct UserData: Codable {
     let name: String
     let iconImageURL: String
     var point: Int?
-    var weightGoal: Int?
+    var weightGoal: Double?
     
     enum CodingKeys: String, CodingKey {
         case id

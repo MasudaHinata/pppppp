@@ -288,7 +288,7 @@ final class FirebaseClient {
     }
 
     //MARK: - 目標体重をfirebaseに保存
-    func putWeightGoal(weightGoal: Int) async throws {
+    func putWeightGoal(weightGoal: Double) async throws {
         guard let user = Auth.auth().currentUser else {
             try await  self.checkUserAuth()
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
