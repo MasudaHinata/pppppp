@@ -49,8 +49,8 @@ struct FriendRequestContentView: View {
                                 .foregroundColor(Color.white)
                         }
                     }
-                    .alert(isPresented: $viewModel.isShowAlert) {
-                        Alert(title: Text("タイトル"), message: Text("詳細メッセージです"),
+                    .alert(isPresented: $viewModel.addFriendShowAlert) {
+                        Alert(title: Text("完了"), message: Text("友達を追加しました"),
                               dismissButton: .default(Text("了解"), action: { viewModel.getFriendRequest() }))
                     }
                 }

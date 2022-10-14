@@ -6,7 +6,7 @@ final class FriendRequestViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     @Published var userData = [UserData]()
-    @Published var isShowAlert = false
+    @Published var addFriendShowAlert = false
 
     init() {
     }
@@ -28,7 +28,7 @@ final class FriendRequestViewModel: ObservableObject {
         let task = Task {
             do {
                 try await FirebaseClient.shared.addFriend(friendId: friendId)
-                isShowAlert = true
+                addFriendShowAlert = true
             } catch {
                 print("FriendRequestViewModel getFriendRequest error: \(error.localizedDescription)")
             }
@@ -43,7 +43,7 @@ final class FriendRequestViewModel: ObservableObject {
                 try await FirebaseClient.shared.deleteFriendRequest(friendId: friendId)
                 userData = try await FirebaseClient.shared.getFriendRequest()
             } catch {
-                print("FriendRequestViewModel getFriendRequest error: \(error.localizedDescription)")
+                print("FriendRequestViewModel deleteFriendRequest error: \(error.localizedDescription)")
             }
         }
         self.cancellables.insert(.init { task.cancel() })

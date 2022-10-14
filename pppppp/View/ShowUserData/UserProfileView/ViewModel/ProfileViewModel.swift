@@ -24,6 +24,9 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
     @Published var userDataItem: UserData?
     @Published var meJudge = Bool()
 
+    @Published var deleteFriendShowAlert = false
+    @Published var showAlert = false
+
     init(userDataItem: UserData? = nil) {
         self.userDataItem = userDataItem
 
@@ -111,6 +114,7 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
                 FirebaseClient.shared.deletefriendDelegate = self
                 guard let friendID = userDataItem?.id else { return }
                 try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: friendID)
+                deleteFriendShowAlert = true
             }
             catch {
                 print("ProfileViewModel friendDelete error:",error.localizedDescription)
