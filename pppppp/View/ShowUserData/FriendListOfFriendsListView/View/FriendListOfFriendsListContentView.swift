@@ -13,7 +13,7 @@ struct FriendListOfFriendsListContentView: View {
 
         NavigationView {
             ScrollView {
-                VStack (alignment: .center) {
+                VStack {
 
                     Text("").fontWeight(.semibold)
                         .padding(.horizontal, 16.0)
@@ -31,12 +31,13 @@ struct FriendListOfFriendsListContentView: View {
                                 .fontWeight(.semibold)
                                 .frame(width: 104, height: 32, alignment: .leading)
 
+
                             Button {
                                 viewModel.sentFriendRequest(friendsId: item.id ?? "")
                             } label: {
                                 Text("追加")
                                     .frame(width: 56, height: 24)
-                                    .fontWeight(.medium)
+                                    .fontWeight(.regular)
                                     .background(Color(asset: Asset.Colors.white00))
                                     .foregroundColor(Color(asset: Asset.Colors.mainColor))
                             }

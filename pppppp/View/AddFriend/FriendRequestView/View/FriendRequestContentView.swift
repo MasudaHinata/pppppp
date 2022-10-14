@@ -34,7 +34,7 @@ struct FriendRequestContentView: View {
                         } label: {
                             Text("承認")
                                 .frame(width: 56, height: 24)
-                                .fontWeight(.medium)
+                                .fontWeight(.regular)
                                 .background(Color(asset: Asset.Colors.white00))
                                 .foregroundColor(Color(asset: Asset.Colors.mainColor))
                         }
@@ -44,10 +44,14 @@ struct FriendRequestContentView: View {
                         } label: {
                             Text("削除")
                                 .frame(width: 56, height: 24)
-                                .fontWeight(.medium)
+                                .fontWeight(.regular)
                                 .background(Color(asset: Asset.Colors.white48))
                                 .foregroundColor(Color.white)
                         }
+                    }
+                    .alert(isPresented: $viewModel.isShowAlert) {
+                        Alert(title: Text("タイトル"), message: Text("詳細メッセージです"),
+                              dismissButton: .default(Text("了解"), action: { viewModel.getFriendRequest() }))
                     }
                 }
             }

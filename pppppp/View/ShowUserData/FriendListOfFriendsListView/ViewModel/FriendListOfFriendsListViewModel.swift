@@ -7,6 +7,7 @@ final class FriendListOfFriendsListViewModel: ObservableObject {
 
     @Published var userData = [UserData]()
     @Published var friendId = String()
+    @Published var isShowAlert = false
 
     init(friendId: String) {
         self.friendId = friendId
@@ -27,6 +28,7 @@ final class FriendListOfFriendsListViewModel: ObservableObject {
         let task = Task {
             do {
                 try await FirebaseClient.shared.sendFriendRequest(friendId: friendsId)
+                isShowAlert = true
             } catch {
                 print("FriendRequestViewModel getFriendRequest error: \(error.localizedDescription)")
             }

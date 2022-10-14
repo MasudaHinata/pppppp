@@ -2,14 +2,16 @@ import Foundation
 import UIKit
 import Combine
 
-final class FriendRequestViewModel: ObservableObject, AddFriendDelegate {
+final class FriendRequestViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     @Published var userData = [UserData]()
+    @Published var isShowAlert = false
 
     init() {
     }
 
+    //MARK: - 友達リクエストを取得する
     func getFriendRequest() {
         let task = Task {
             do {
@@ -26,6 +28,7 @@ final class FriendRequestViewModel: ObservableObject, AddFriendDelegate {
         let task = Task {
             do {
                 try await FirebaseClient.shared.addFriend(friendId: friendId)
+                isShowAlert = true
             } catch {
                 print("FriendRequestViewModel getFriendRequest error: \(error.localizedDescription)")
             }
@@ -38,23 +41,11 @@ final class FriendRequestViewModel: ObservableObject, AddFriendDelegate {
         let task = Task {
             do {
                 try await FirebaseClient.shared.deleteFriendRequest(friendId: friendId)
+                userData = try await FirebaseClient.shared.getFriendRequest()
             } catch {
                 print("FriendRequestViewModel getFriendRequest error: \(error.localizedDescription)")
             }
         }
         self.cancellables.insert(.init { task.cancel() })
-    }
-
-    //MARK: - Setting Delegate
-    func addFriends() {
-//        let alert = UIAlertController(title: "完了", message: "友達を追加しました", preferredStyle: .alert)
-//        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-//            let mainVC = StoryboardScene.Main.initialScene.instantiate()
-//            self.showDetailViewController(mainVC, sender: self)
-//        }
-//        alert.addAction(ok)
-//        DispatchQueue.main.async {
-//            self.present(alert, animated: true, completion: nil)
-//        }
     }
 }

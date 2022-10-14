@@ -18,7 +18,6 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
                 guard let self = self else { return }
                 //TODO: Push遷移にする
                 let friendListViewController = StoryboardScene.FriendListView.initialScene.instantiate()
-                //friendListViewController.id = viewModel.userDataItem?.id
                 self.present(friendListViewController, animated: true)
             }.store(in: &cancellables)
 

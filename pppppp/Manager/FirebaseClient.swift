@@ -57,9 +57,6 @@ protocol SentFriendRequestDelegate: AnyObject {
     func friendNotFound()
 }
 
-protocol AddFriendDelegate: AnyObject {
-    func addFriends()
-}
 
 final class FirebaseClient {
     static let shared = FirebaseClient()
@@ -71,7 +68,6 @@ final class FirebaseClient {
     weak var putPointDelegate: FirebasePutPointDelegate?
     weak var sentEmailDelegate: FirebaseSentEmailDelegate?
     weak var sentFriendRequestDelegate: SentFriendRequestDelegate?
-    weak var addFriendDelegate: AddFriendDelegate?
     private init() {}
     
     let firebaseAuth = Auth.auth()
@@ -450,7 +446,6 @@ final class FirebaseClient {
         try await db.collection("User").document(userID).updateData(["receivedInvitations": FieldValue.arrayRemove([friendId])])
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayUnion([friendId])])
         try await db.collection("User").document(friendId).updateData(["FriendList": FieldValue.arrayUnion([userID])])
-        self.addFriendDelegate?.addFriends()
     }
     
     //MARK: - 友達を削除する
