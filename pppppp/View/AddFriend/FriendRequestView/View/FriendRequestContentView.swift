@@ -10,7 +10,7 @@ struct FriendRequestContentView: View {
         let bounds = UIScreen.main.bounds
         let width = bounds.width
 
-//        ScrollView {
+        List {
             VStack (alignment: .leading) {
                 ForEach(viewModel.userData) { item in
                     HStack {
@@ -48,7 +48,7 @@ struct FriendRequestContentView: View {
                         .frame(height: 4)
                 }
             }
-//        }
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(asset: Asset.Colors.mainColor))
         .navigationBarTitle(Text("Friend Request"))

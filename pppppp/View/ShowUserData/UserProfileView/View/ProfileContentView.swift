@@ -108,26 +108,29 @@ struct ProfileContentView: View {
             .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
 
             .navigationBarItems(trailing: HStack {
+                //TODO: viewModel.meJudge == falseの時は非表示にする
+                Button {
+                    viewModel.sceneHealthCharts()
+                } label: {
+                    Image(systemName: "heart")
+                    //                    if viewModel.meJudge == false {
+                    //                        hidden()
+                    //                    }
+                }
+                .disabled(!viewModel.meJudge)
+                .foregroundColor(.white)
+
                 Button {
                     viewModel.sceneSetting()
                 } label: {
-
                     Image(systemName: "gearshape")
+                    //                    if viewModel.meJudge == false {
+                    //                        hidden()
+                    //                    }
                 }
+                .disabled(!viewModel.meJudge)
                 .foregroundColor(.white)
-                if viewModel.meJudge {
-                    hidden()
-                }
             })
-
-//            .navigationBarItems(trailing: HStack {
-//                Button {
-//                    viewModel.sceneSetting()
-//                } label: {
-//                    Image(systemName: "gearshape")
-//                }
-//                .foregroundColor(.white)
-//            })
 
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(asset: Asset.Colors.mainColor))

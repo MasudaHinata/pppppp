@@ -18,7 +18,7 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
                 guard let self = self else { return }
                 let friendListViewController = StoryboardScene.FriendListView.initialScene.instantiate()
                 //TODO: FriendListViewにidを渡す
-//                friendListViewController.id = viewModel.userDataItem?.id
+                //friendListViewController.id = viewModel.userDataItem?.id
                 self.present(friendListViewController, animated: true)
             }.store(in: &cancellables)
 
@@ -43,14 +43,14 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
                 self.present(settingViewController, animated: true)
             }.store(in: &cancellables)
 
-        //TODO: 友達のProfile画面でNavigationBarItemを非表示にできたらHealthChartsViewを移行する
-//        viewModel.$healthChartsView
-//            .dropFirst()
-//            .sink { [weak self] _ in
-//                guard let self = self else { return }
-//                let healthChartsVC = HealthChartsViewController(viewModel: HealthChartsViewModel())
-//                self.present(healthChartsVC, animated: true)
-//            }.store(in: &cancellables)
+        viewModel.$healthChartsView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                //TODO: Push遷移にする
+                let healthChartsVC = HealthChartsViewController(viewModel: HealthChartsViewModel())
+                //self.navigationController?.pushViewController(healthChartsVC, animated: true)
+            }.store(in: &cancellables)
     }
 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
