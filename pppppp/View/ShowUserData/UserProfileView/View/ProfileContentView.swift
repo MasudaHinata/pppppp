@@ -68,10 +68,10 @@ struct ProfileContentView: View {
                                 Image(systemName: "trash")
                                     .foregroundColor(Color.red)
                             }
-                            //                            .alert(isPresented: $viewModel.deleteFriendShowAlert) {
-                            //                                Alert(title: Text("完了"), message: Text("友達を削除しました"),
-                            //                                      dismissButton: .default(Text("ok"), action: { viewModel.getFriendRequest() }))
-                            //                            }
+                            //                                                        .alert(isPresented: $viewModel.deleteFriendShowAlert) {
+                            //                                                            Alert(title: Text("完了"), message: Text("友達を削除しました"),
+                            //                                                                  dismissButton: .default(Text("ok"), action: { viewModel.getFriendRequest() }))
+                            //                                                        }
                             .alert(isPresented: $viewModel.showAlert) {
                                 Alert(title: Text("警告"),
                                       message: Text("友達を削除しますか？"),

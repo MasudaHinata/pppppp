@@ -6,7 +6,6 @@ class FriendListOfFriendsListHostingController: UIHostingController<FriendListOf
 
     private var cancellables: [AnyCancellable] = []
 
-
     init(viewModel: FriendListOfFriendsListViewModel) {
         super.init(rootView: .init(viewModel: viewModel))
 
