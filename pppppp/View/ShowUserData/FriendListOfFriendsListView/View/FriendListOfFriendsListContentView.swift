@@ -33,7 +33,7 @@ struct FriendListOfFriendsListContentView: View {
 
 
                             Button {
-                                viewModel.sentFriendRequest(friendsId: item.id ?? "")
+                                viewModel.sceneAddFriendView()
                             } label: {
                                 Text("追加")
                                     .frame(width: 56, height: 24)

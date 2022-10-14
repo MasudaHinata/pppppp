@@ -9,6 +9,17 @@ class FriendListOfFriendsListHostingController: UIHostingController<FriendListOf
 
     init(viewModel: FriendListOfFriendsListViewModel) {
         super.init(rootView: .init(viewModel: viewModel))
+
+        viewModel.$addFriendView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                
+                let addFriendVC = StoryboardScene.FriendProfileView.initialScene.instantiate()
+                addFriendVC.modalPresentationStyle = .fullScreen
+                addFriendVC.friendId = viewModel.friendId
+                self.present(addFriendVC, animated: true)
+            }.store(in: &cancellables)
     }
 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
