@@ -26,8 +26,8 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 //TODO: Push遷移にする
-                let healthChartsVC = FriendListOfFriendsListHostingController(viewModel: FriendListOfFriendsListViewModel(friendId: viewModel.userDataItem?.id ?? ""))
-                self.present(healthChartsVC, animated: true)
+                let friendListOfFriendVC = FriendListOfFriendsListHostingController(viewModel: FriendListOfFriendsListViewModel(friendId: viewModel.userDataItem?.id ?? ""))
+                self.present(friendListOfFriendVC, animated: true)
             }.store(in: &cancellables)
 
 

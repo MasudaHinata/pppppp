@@ -106,11 +106,8 @@ struct HealthChartsContentView: View {
             viewModel.getHealthData(period: period, weightPeriod: weightPeriod)
         }
         .onChange(of: self.stepPeriodIndex[self.stepSelectedIndex]) { (newValue) in
-            viewModel.segmentIndexChanged(newValue: newValue)
-            self.newStepSelectedIndex = self.stepSelectedIndex
-        }
-        .onChange(of: self.stepPeriodIndex[self.stepSelectedIndex]) { (newValue) in
             viewModel.segmentIndexChangeStepCount(newValue: newValue)
+            self.newStepSelectedIndex = self.stepSelectedIndex
         }
         .onChange(of: self.weightPeriodIndex[self.weightSelectedIndex]) { (newValue) in
             viewModel.weightSegmentIndexChanged(newValue: newValue)
