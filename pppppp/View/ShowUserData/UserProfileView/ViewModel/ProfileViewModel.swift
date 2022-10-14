@@ -3,6 +3,11 @@ import Combine
 import UIKit
 
 final class ProfileViewModel: ObservableObject {
+
+    enum AlertType {
+        case warning
+        case fatal
+    }
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -24,7 +29,8 @@ final class ProfileViewModel: ObservableObject {
     @Published var userDataItem: UserData?
     @Published var meJudge = Bool()
 
-    @Published var deleteFriendShowAlert = false
+    @Published var alertType: AlertType = .warning
+
     @Published var showAlert = false
 
     init(userDataItem: UserData? = nil) {
@@ -113,7 +119,8 @@ final class ProfileViewModel: ObservableObject {
             do {
                 guard let friendID = userDataItem?.id else { return }
                 try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: friendID)
-                deleteFriendShowAlert = true
+                alertType = .fatal
+                showAlert = true
             }
             catch {
                 print("ProfileViewModel friendDelete error:",error.localizedDescription)
