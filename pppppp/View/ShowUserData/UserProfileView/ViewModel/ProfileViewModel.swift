@@ -5,15 +5,15 @@ import UIKit
 final class ProfileViewModel: ObservableObject {
 
     enum AlertType {
-        case warning
-        case fatal
+        case deleteFriendWarning
+        case deletedFriend
     }
     
     private var cancellables = Set<AnyCancellable>()
     
     @Published var friendCount: Int = 0
     @Published var point: Int = 0
-    @Published var iconImageURL = URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
+    @Published var iconImageURLStr = UserDefaults.standard.object(forKey: "IconImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
     @Published var name = UserDefaults.standard.object(forKey: "name") as? String ?? "名称未設定"
     @Published var pointDateStr = ""
     
@@ -29,8 +29,7 @@ final class ProfileViewModel: ObservableObject {
     @Published var userDataItem: UserData?
     @Published var meJudge = Bool()
 
-    @Published var alertType: AlertType = .warning
-
+    @Published var alertType: AlertType = .deleteFriendWarning
     @Published var showAlert = false
 
     init(userDataItem: UserData? = nil) {
@@ -119,7 +118,7 @@ final class ProfileViewModel: ObservableObject {
             do {
                 guard let friendID = userDataItem?.id else { return }
                 try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: friendID)
-                alertType = .fatal
+                alertType = .deletedFriend
                 showAlert = true
             }
             catch {

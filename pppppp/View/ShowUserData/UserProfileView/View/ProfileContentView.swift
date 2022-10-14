@@ -5,15 +5,6 @@ import Combine
 
 struct ProfileContentView: View {
 
-//    enum AlertType {
-//        case warning
-//        case fatal
-//    }
-
-//    @Published var alertType: AlertType = .warning
-
-    
-
     @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
@@ -25,7 +16,7 @@ struct ProfileContentView: View {
             Form {
                 Section {
                     HStack(alignment: .center, spacing: width * 0.10) {
-                        KFImage(viewModel.iconImageURL)
+                        KFImage(URL(string: viewModel.meJudge ? viewModel.iconImageURLStr : viewModel.userDataItem?.iconImageURL ?? ""))
                             .resizable()
                             .scaledToFill()
                             .frame(width: 72, height: 72)
@@ -72,7 +63,7 @@ struct ProfileContentView: View {
                         } else {
                             //MARK: 友達のデータを表示する時
                             Button {
-                                viewModel.alertType = .warning
+                                viewModel.alertType = .deleteFriendWarning
                                 viewModel.showAlert = true
                             } label: {
                                 Image(systemName: "trash")
@@ -80,12 +71,12 @@ struct ProfileContentView: View {
                             }
                             .alert(isPresented: $viewModel.showAlert) {
                                 switch viewModel.alertType {
-                                case .warning:
+                                case .deleteFriendWarning:
                                     return Alert(title: Text("警告"),
                                                  message: Text("友達を削除しますか？"),
                                                  primaryButton: .cancel(Text("キャンセル")),
                                                  secondaryButton: .destructive(Text("削除"), action: { viewModel.friendDelete() }))
-                                case .fatal:
+                                case .deletedFriend:
                                     return Alert(title: Text("完了"), message: Text("友達を削除しました"),
                                                  dismissButton: .default(Text("OK"), action: { print("Dismisする") }))
                                 }
@@ -134,22 +125,22 @@ struct ProfileContentView: View {
                     viewModel.sceneHealthCharts()
                 } label: {
                     Image(systemName: "heart")
-                    //                    if viewModel.meJudge == false {
-                    //                        hidden()
-                    //                    }
+//                    if viewModel.meJudge == false {
+//                        hidden()
+//                    }
                 }
-                .disabled(!viewModel.meJudge)
+//                .disabled(!viewModel.meJudge)
                 .foregroundColor(.white)
 
                 Button {
                     viewModel.sceneSetting()
                 } label: {
                     Image(systemName: "gearshape")
-                    //                    if viewModel.meJudge == false {
-                    //                        hidden()
-                    //                    }
+//                    if viewModel.meJudge == false {
+//                        hidden()
+//                    }
                 }
-                .disabled(!viewModel.meJudge)
+//                .disabled(!viewModel.meJudge)
                 .foregroundColor(.white)
             })
 
