@@ -13,11 +13,12 @@ class FriendListOfFriendsListHostingController: UIHostingController<FriendListOf
             .dropFirst()
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                
+
                 let addFriendVC = StoryboardScene.FriendProfileView.initialScene.instantiate()
                 addFriendVC.modalPresentationStyle = .fullScreen
-                addFriendVC.friendId = viewModel.friendId
+                addFriendVC.friendId = viewModel.friendIdOfFriend
                 self.present(addFriendVC, animated: true)
+
             }.store(in: &cancellables)
     }
 

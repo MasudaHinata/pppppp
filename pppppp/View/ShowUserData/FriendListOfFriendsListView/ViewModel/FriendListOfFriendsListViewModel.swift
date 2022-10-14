@@ -7,6 +7,7 @@ final class FriendListOfFriendsListViewModel: ObservableObject {
 
     @Published var userData = [UserData]()
     @Published var friendId = String()
+    @Published var friendIdOfFriend = String()
     @Published var isShowAlert = false
     @Published var addFriendView: Void = ()
 

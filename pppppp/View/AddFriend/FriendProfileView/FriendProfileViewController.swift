@@ -73,6 +73,7 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
             guard let self = self else { return }
             do {
                 var friendData = [UserData]()
+                print(friendId)
                 friendData = try await FirebaseClient.shared.getUserDataFromId(userId: friendId)
                 friendLabel.text = friendData.last?.name
                 friendIconView.kf.setImage(with: URL(string: friendData.last!.iconImageURL))

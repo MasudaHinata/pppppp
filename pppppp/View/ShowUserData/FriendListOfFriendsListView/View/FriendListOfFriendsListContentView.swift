@@ -8,9 +8,6 @@ struct FriendListOfFriendsListContentView: View {
     
     var body: some View {
 
-        let bounds = UIScreen.main.bounds
-        let width = bounds.width
-
         NavigationView {
             Form {
                 ForEach(viewModel.userData) { item in
@@ -27,6 +24,7 @@ struct FriendListOfFriendsListContentView: View {
 
 
                         Button {
+                            viewModel.friendIdOfFriend = item.id ?? ""
                             viewModel.sceneAddFriendView()
                         } label: {
 
