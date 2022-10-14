@@ -22,4 +22,15 @@ final class FriendListOfFriendsListViewModel: ObservableObject {
         }
         self.cancellables.insert(.init { task.cancel() })
     }
+
+    func sentFriendRequest(friendsId: String) {
+        let task = Task {
+            do {
+                try await FirebaseClient.shared.sendFriendRequest(friendId: friendsId)
+            } catch {
+                print("FriendRequestViewModel getFriendRequest error: \(error.localizedDescription)")
+            }
+        }
+        self.cancellables.insert(.init { task.cancel() })
+    }
 }

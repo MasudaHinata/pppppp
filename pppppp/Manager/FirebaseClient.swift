@@ -425,7 +425,6 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
-
         try await db.collection("User").document(friendId).updateData(["receivedInvitations": FieldValue.arrayUnion([userID])])
         self.sentFriendRequestDelegate?.sendRequest()
     }

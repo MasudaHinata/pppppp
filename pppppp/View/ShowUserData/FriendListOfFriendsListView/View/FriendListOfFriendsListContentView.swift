@@ -32,8 +32,7 @@ struct FriendListOfFriendsListContentView: View {
                                 .frame(width: 104, height: 32, alignment: .leading)
 
                             Button {
-                                //TODO: リクエストを送る
-
+                                viewModel.sentFriendRequest(friendsId: item.id ?? "")
                             } label: {
                                 Text("追加")
                                     .frame(width: 56, height: 24)
