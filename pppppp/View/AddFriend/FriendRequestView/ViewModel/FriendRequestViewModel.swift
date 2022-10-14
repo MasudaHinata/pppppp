@@ -22,7 +22,7 @@ final class FriendRequestViewModel: ObservableObject, AddFriendDelegate {
     }
 
     //MARK: - 友達リクエストを承認する
-    func sendFriendRequest(friendId: String) {
+    func addFriend(friendId: String) {
         let task = Task {
             do {
                 try await FirebaseClient.shared.addFriend(friendId: friendId)
