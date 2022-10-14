@@ -1,6 +1,5 @@
 import Combine
 import UIKit
-import SwiftUI
 
 class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
@@ -22,7 +21,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     }
     
     @IBAction func sceneHealthView() {
-        let healthChartsVC = HealthChartsViewController(viewModel: HealthChartsViewModel())
+        let healthChartsVC = HealthChartsHostingController(viewModel: HealthChartsViewModel())
         self.navigationController?.pushViewController(healthChartsVC, animated: true)
     }
     
@@ -144,8 +143,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 if friendDataList.count == 1 {
-//                    let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-//                    self.showDetailViewController(addFriendVC, sender: self)
+                    let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+                    self.showDetailViewController(addFriendVC, sender: self)
                 }
 
                 activityIndicator.stopAnimating()
@@ -178,8 +177,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         //MARK: MountainViewの位置更新
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
-//            let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-//            self.showDetailViewController(addFriendVC, sender: self)
+            let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+            self.showDetailViewController(addFriendVC, sender: self)
         }
         activityIndicator.stopAnimating()
 
@@ -248,7 +247,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     }
 
     func buttonSelected(item: UserData) {
-        let profileVC = ProfileViewController(viewModel: .init(userDataItem: item))
+        let profileVC = ProfileHostingController(viewModel: .init(userDataItem: item))
         self.showDetailViewController(profileVC, sender: self)
     }
     

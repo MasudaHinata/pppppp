@@ -19,11 +19,6 @@ enum FirebaseClientFirestoreError: Error {
 //MARK: - Setting Delegate
 
 @MainActor
-protocol FirebaseClientDeleteFriendDelegate: AnyObject {
-    func friendDeleted() async
-}
-
-@MainActor
 protocol FirebaseClientAuthDelegate: AnyObject {
     func loginScene()
 }
@@ -60,7 +55,6 @@ protocol SentFriendRequestDelegate: AnyObject {
 
 final class FirebaseClient {
     static let shared = FirebaseClient()
-    weak var deletefriendDelegate: FirebaseClientDeleteFriendDelegate?
     weak var loginDelegate: FirebaseClientAuthDelegate?
     weak var emailVerifyDelegate: FirebaseEmailVarifyDelegate?
     weak var notChangeDelegate: FireStoreCheckNameDelegate?
@@ -457,7 +451,6 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayRemove([deleteFriendId])])
         try await db.collection("User").document(deleteFriendId).updateData(["FriendList": FieldValue.arrayRemove([userID])])
-        await self.deletefriendDelegate?.friendDeleted()
     }
     
     //MARK: - 友達のFriendListから自分を削除する

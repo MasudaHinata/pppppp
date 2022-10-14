@@ -25,7 +25,7 @@
 		032DF38128F8513000458C20 /* FriendRequestContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF38028F8513000458C20 /* FriendRequestContentView.swift */; };
 		032DF38528F8517900458C20 /* FriendRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF38428F8517900458C20 /* FriendRequestViewModel.swift */; };
 		0331A20128DC8C23004AA309 /* OnboardingView2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */; };
-		033945F028DF25C100681E9C /* HealthChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033945EF28DF25C100681E9C /* HealthChartsViewController.swift */; };
+		033945F028DF25C100681E9C /* HealthChartsHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033945EF28DF25C100681E9C /* HealthChartsHostingController.swift */; };
 		033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37B28DC7FA9008DBC49 /* Colors.xcassets */; };
 		0343680028D609D0000BA656 /* OnboardingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034367FF28D609D0000BA656 /* OnboardingViewController2.swift */; };
 		0343680228D60A13000BA656 /* OnboardingViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680128D60A13000BA656 /* OnboardingViewController3.swift */; };
@@ -98,7 +98,7 @@
 		03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */; };
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
-		9C1A900C283506D5004B4100 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A900B283506D5004B4100 /* ProfileViewController.swift */; };
+		9C1A900C283506D5004B4100 /* ProfileHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A900B283506D5004B4100 /* ProfileHostingController.swift */; };
 		9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2BE4402885108300431FEC /* FirebaseClient.swift */; };
 		9C4F1C752859E6F500623C66 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F1C742859E6F500623C66 /* FriendProfileViewController.swift */; };
 		9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */; };
@@ -149,7 +149,7 @@
 		032DF38028F8513000458C20 /* FriendRequestContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestContentView.swift; sourceTree = "<group>"; };
 		032DF38428F8517900458C20 /* FriendRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewModel.swift; sourceTree = "<group>"; };
 		0331A20028DC8C22004AA309 /* OnboardingView2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingView2.storyboard; sourceTree = "<group>"; };
-		033945EF28DF25C100681E9C /* HealthChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsViewController.swift; sourceTree = "<group>"; };
+		033945EF28DF25C100681E9C /* HealthChartsHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsHostingController.swift; sourceTree = "<group>"; };
 		033BC37B28DC7FA9008DBC49 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		034367FF28D609D0000BA656 /* OnboardingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController2.swift; sourceTree = "<group>"; };
 		0343680128D60A13000BA656 /* OnboardingViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController3.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
-		9C1A900B283506D5004B4100 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		9C1A900B283506D5004B4100 /* ProfileHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHostingController.swift; sourceTree = "<group>"; };
 		9C2BE4402885108300431FEC /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		9C4F1C742859E6F500623C66 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
 		9C61891728A5F35B00DE6942 /* SelfCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfCheckViewController.swift; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 		032DF36528F2EAAE00458C20 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9C1A900B283506D5004B4100 /* ProfileViewController.swift */,
+				9C1A900B283506D5004B4100 /* ProfileHostingController.swift */,
 				035329CC28EECB9000257768 /* ProfileContentView.swift */,
 				032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */,
 			);
@@ -329,7 +329,7 @@
 		032DF36D28F3CE3000458C20 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				033945EF28DF25C100681E9C /* HealthChartsViewController.swift */,
+				033945EF28DF25C100681E9C /* HealthChartsHostingController.swift */,
 				035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */,
 				036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */,
 				03704A2028E01D78004BE7C3 /* WeightChartsUIView.swift */,
@@ -998,7 +998,7 @@
 				032DF37D28F84FAD00458C20 /* FriendRequestViewController.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */,
-				033945F028DF25C100681E9C /* HealthChartsViewController.swift in Sources */,
+				033945F028DF25C100681E9C /* HealthChartsHostingController.swift in Sources */,
 				032DF36A28F30FDA00458C20 /* CGPointHelper.swift in Sources */,
 				032DF37228F4535D00458C20 /* PointActivityImage.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
@@ -1017,7 +1017,7 @@
 				03DAC40928EB369D005F173B /* PostData.swift in Sources */,
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
 				036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */,
-				9C1A900C283506D5004B4100 /* ProfileViewController.swift in Sources */,
+				9C1A900C283506D5004B4100 /* ProfileHostingController.swift in Sources */,
 				03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */,
 				03670F2F28F9057E006075DC /* FriendListOfFriendsListViewModel.swift in Sources */,
 				0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */,

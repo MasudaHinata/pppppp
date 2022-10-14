@@ -4,7 +4,7 @@ import Combine
 import Kingfisher
 
 @MainActor
-final class ProfileViewController: UIHostingController<ProfileContentView>, FireStoreCheckNameDelegate, UIAdaptivePresentationControllerDelegate {
+final class ProfileHostingController: UIHostingController<ProfileContentView>, FireStoreCheckNameDelegate, UIAdaptivePresentationControllerDelegate {
 
     private var cancellables: [AnyCancellable] = []
 
@@ -57,7 +57,7 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 //TODO: Push遷移にする
-                let healthChartsVC = HealthChartsViewController(viewModel: HealthChartsViewModel())
+                let healthChartsVC = HealthChartsHostingController(viewModel: HealthChartsViewModel())
                 self.present(healthChartsVC, animated: true)
             }.store(in: &cancellables)
     }

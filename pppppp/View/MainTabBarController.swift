@@ -15,7 +15,7 @@ class MainTabBarController: UITabBarController {
         let timelineVC = StoryboardScene.TimeLineView.initialScene.instantiate()
         timelineVC.tabBarItem = UITabBarItem(title: "Timeline", image: .init(systemName: "message"), tag: 1)
 
-        let profileVC = ProfileViewController(viewModel: .init())
+        let profileVC = ProfileHostingController(viewModel: .init())
         profileVC.tabBarItem = UITabBarItem(title: "Me", image: .init(systemName: "person"), tag: 2)
 
         viewControllers = [sanitasVC, timelineVC, profileVC]
