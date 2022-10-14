@@ -16,6 +16,7 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
     @Published var layout = UICollectionViewFlowLayout()
     
     @Published var friendListView: Void = ()
+    @Published var friendListOfFriendView: Void = ()
     @Published var changeProfileView: Void = ()
     @Published var settingView: Void = ()
     @Published var healthChartsView: Void = ()
@@ -46,6 +47,10 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
     
     func sceneFriendList() {
         self.friendListView = ()
+    }
+
+    func sceneFriendListOfFriend() {
+        self.friendListOfFriendView = ()
     }
 
     func sceneChangeProfile() {

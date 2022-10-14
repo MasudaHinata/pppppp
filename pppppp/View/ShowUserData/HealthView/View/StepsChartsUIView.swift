@@ -7,7 +7,6 @@ struct StepsChartsUIView: View {
     var data: [ChartsStepItem]
     @Binding var selectedTabState: Int
     
-    @State var width = 0.0
     var body: some View {
         ZStack {
             

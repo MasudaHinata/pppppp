@@ -32,7 +32,12 @@ struct ProfileContentView: View {
 
                         Button {
                             //TODO: push遷移させる
-                            viewModel.sceneFriendList()
+                            if viewModel.meJudge {
+                                //MARK: 自分のデータを表示する時
+                                viewModel.sceneFriendList()
+                            } else {
+                                viewModel.sceneFriendListOfFriend()
+                            }
                         } label: {
                             VStack {
                                 Text("friend")

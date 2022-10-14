@@ -16,10 +16,22 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
             .dropFirst()
             .sink { [weak self] _ in
                 guard let self = self else { return }
+                //TODO: Push遷移にする
                 let friendListViewController = StoryboardScene.FriendListView.initialScene.instantiate()
                 //friendListViewController.id = viewModel.userDataItem?.id
                 self.present(friendListViewController, animated: true)
             }.store(in: &cancellables)
+
+        viewModel.$friendListOfFriendView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                //TODO: Push遷移にする
+                let healthChartsVC = FriendListOfFriendsListHostingController(viewModel: FriendListOfFriendsListViewModel(friendId: viewModel.userDataItem?.id ?? ""))
+                self.present(healthChartsVC, animated: true)
+                //self.navigationController?.pushViewController(healthChartsVC, animated: true)
+            }.store(in: &cancellables)
+
 
         viewModel.$changeProfileView
             .dropFirst()
