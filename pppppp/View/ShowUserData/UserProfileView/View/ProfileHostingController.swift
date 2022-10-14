@@ -60,6 +60,15 @@ final class ProfileHostingController: UIHostingController<ProfileContentView>, F
                 let healthChartsVC = HealthChartsHostingController(viewModel: HealthChartsViewModel())
                 self.present(healthChartsVC, animated: true)
             }.store(in: &cancellables)
+
+        viewModel.$dismissView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+
+                self.dismiss(animated: true)
+
+            }.store(in: &cancellables)
     }
 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {

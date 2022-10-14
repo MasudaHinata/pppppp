@@ -78,10 +78,10 @@ struct ProfileContentView: View {
                                                  secondaryButton: .destructive(Text("削除"), action: { viewModel.friendDelete() }))
                                 case .deletedFriend:
                                     return Alert(title: Text("完了"), message: Text("友達を削除しました"),
-                                                 dismissButton: .default(Text("OK"), action: { print("Dismisする") }))
+                                                 dismissButton: .default(Text("OK"), action: { viewModel.dismiss() }))
                                 }
                             }
-            
+
                         }
                     }
                     .listRowBackground(Color.clear)
@@ -125,22 +125,22 @@ struct ProfileContentView: View {
                     viewModel.sceneHealthCharts()
                 } label: {
                     Image(systemName: "heart")
-//                    if viewModel.meJudge == false {
-//                        hidden()
-//                    }
+                    //                    if viewModel.meJudge == false {
+                    //                        hidden()
+                    //                    }
                 }
-//                .disabled(!viewModel.meJudge)
+                //                .disabled(!viewModel.meJudge)
                 .foregroundColor(.white)
 
                 Button {
                     viewModel.sceneSetting()
                 } label: {
                     Image(systemName: "gearshape")
-//                    if viewModel.meJudge == false {
-//                        hidden()
-//                    }
+                    //                    if viewModel.meJudge == false {
+                    //                        hidden()
+                    //                    }
                 }
-//                .disabled(!viewModel.meJudge)
+                //                .disabled(!viewModel.meJudge)
                 .foregroundColor(.white)
             })
 

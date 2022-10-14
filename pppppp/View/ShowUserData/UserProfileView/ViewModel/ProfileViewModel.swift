@@ -25,6 +25,7 @@ final class ProfileViewModel: ObservableObject {
     @Published var changeProfileView: Void = ()
     @Published var settingView: Void = ()
     @Published var healthChartsView: Void = ()
+    @Published var dismissView: Void = ()
 
     @Published var userDataItem: UserData?
     @Published var meJudge = Bool()
@@ -71,6 +72,10 @@ final class ProfileViewModel: ObservableObject {
 
     func sceneHealthCharts() {
         self.healthChartsView = ()
+    }
+
+    func dismiss() {
+        self.dismissView = ()
     }
     
     func getProfileData() {
