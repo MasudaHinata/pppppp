@@ -30,7 +30,7 @@ struct ProfileContentView: View {
                         }
 
                         Button {
-                            //TODO: push遷移させる
+                            //TODO: Push遷移にする
                             if viewModel.meJudge {
                                 //MARK: 自分のデータを表示する時
                                 viewModel.sceneFriendList()

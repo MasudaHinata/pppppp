@@ -17,8 +17,8 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 //TODO: Push遷移にする
-                let friendListViewController = StoryboardScene.FriendListView.initialScene.instantiate()
-                self.present(friendListViewController, animated: true)
+                let friendListVC = StoryboardScene.FriendListView.initialScene.instantiate()
+                self.present(friendListVC, animated: true)
             }.store(in: &cancellables)
 
         viewModel.$friendListOfFriendView
@@ -28,7 +28,6 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
                 //TODO: Push遷移にする
                 let healthChartsVC = FriendListOfFriendsListHostingController(viewModel: FriendListOfFriendsListViewModel(friendId: viewModel.userDataItem?.id ?? ""))
                 self.present(healthChartsVC, animated: true)
-                //self.navigationController?.pushViewController(healthChartsVC, animated: true)
             }.store(in: &cancellables)
 
 
@@ -60,7 +59,6 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
                 //TODO: Push遷移にする
                 let healthChartsVC = HealthChartsViewController(viewModel: HealthChartsViewModel())
                 self.present(healthChartsVC, animated: true)
-                //self.navigationController?.pushViewController(healthChartsVC, animated: true)
             }.store(in: &cancellables)
     }
 

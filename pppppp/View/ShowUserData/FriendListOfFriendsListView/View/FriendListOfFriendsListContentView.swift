@@ -18,12 +18,12 @@ struct FriendListOfFriendsListContentView: View {
                         KFImage(URL(string: item.iconImageURL))
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 64, height: 64)
-                            .cornerRadius(32)
+                            .frame(width: 56, height: 56)
+                            .cornerRadius(28)
 
                         Text(item.name)
                             .fontWeight(.semibold)
-                            .frame(width: 104, height: 32, alignment: .leading)
+                            .font(.headline)
 
 
                         Button {
