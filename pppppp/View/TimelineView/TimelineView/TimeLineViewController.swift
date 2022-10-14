@@ -42,7 +42,7 @@ class TimeLineViewController: UIViewController {
                 let friendRequestCount = try await FirebaseClient.shared.getFriendRequestCount()
                 var buttonImage: String
                 if friendRequestCount == 0 {
-                    buttonImage = "bell.fill"
+                    buttonImage = "bell"
                 } else {
                     buttonImage = "bell.badge.fill"
                 }
