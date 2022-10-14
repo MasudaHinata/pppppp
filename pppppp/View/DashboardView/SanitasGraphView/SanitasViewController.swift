@@ -280,7 +280,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             self.present(alert, animated: true, completion: nil)
         }
     }
-
+    
     func notChangeName() {
         let setNameVC = StoryboardScene.SetNameView.initialScene.instantiate()
         self.showDetailViewController(setNameVC, sender: self)

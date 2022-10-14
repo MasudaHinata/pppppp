@@ -43,6 +43,7 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
                 self.present(settingViewController, animated: true)
             }.store(in: &cancellables)
 
+        //TODO: 友達のProfile画面でNavigationBarItemを非表示にできたらHealthChartsViewを移行する
 //        viewModel.$healthChartsView
 //            .dropFirst()
 //            .sink { [weak self] _ in

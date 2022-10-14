@@ -111,10 +111,24 @@ struct ProfileContentView: View {
                 Button {
                     viewModel.sceneSetting()
                 } label: {
+
                     Image(systemName: "gearshape")
                 }
                 .foregroundColor(.white)
+                if viewModel.meJudge {
+                    hidden()
+                }
             })
+
+//            .navigationBarItems(trailing: HStack {
+//                Button {
+//                    viewModel.sceneSetting()
+//                } label: {
+//                    Image(systemName: "gearshape")
+//                }
+//                .foregroundColor(.white)
+//            })
+
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(asset: Asset.Colors.mainColor))
             .onAppear {
