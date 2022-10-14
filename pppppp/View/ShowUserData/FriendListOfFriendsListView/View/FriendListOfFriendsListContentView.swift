@@ -14,7 +14,6 @@ struct FriendListOfFriendsListContentView: View {
         NavigationView {
             ScrollView {
                 VStack {
-
                     Text("").fontWeight(.semibold)
                         .padding(.horizontal, 16.0)
                         .frame(maxWidth: width, maxHeight: 4,alignment: .leading)
@@ -52,7 +51,6 @@ struct FriendListOfFriendsListContentView: View {
                 viewModel.getFriendListOfList()
             }
         }
-        
         .navigationTitle("Friends")
     }
 }
