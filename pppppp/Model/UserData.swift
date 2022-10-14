@@ -1,16 +1,19 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct UserData: Codable {
+struct UserData: Identifiable, Codable {
     @DocumentID var id: String?
+    let code = UUID()
     let name: String
     let iconImageURL: String
     var point: Int?
     var weightGoal: Double?
     var createWorkoutPointDate: Date?
     var createWeightPointDate: Date?
+    var receivedInvitations: [String]?
     
     enum CodingKeys: String, CodingKey {
+        case code
         case id
         case name
         case iconImageURL = "IconImageURL"
@@ -18,5 +21,6 @@ struct UserData: Codable {
         case weightGoal
         case createWorkoutPointDate
         case createWeightPointDate
+        case receivedInvitations
     }
 }

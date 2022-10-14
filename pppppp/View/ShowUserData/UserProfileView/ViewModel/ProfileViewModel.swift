@@ -2,13 +2,18 @@ import Foundation
 import Combine
 import UIKit
 
-final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelegate {
+final class ProfileViewModel: ObservableObject {
+
+    enum AlertType {
+        case deleteFriendWarning
+        case deletedFriend
+    }
     
     private var cancellables = Set<AnyCancellable>()
     
     @Published var friendCount: Int = 0
     @Published var point: Int = 0
-    @Published var iconImageURL = URL(string: UserDefaults.standard.object(forKey: "IconImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11")
+    @Published var iconImageURLStr = UserDefaults.standard.object(forKey: "IconImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
     @Published var name = UserDefaults.standard.object(forKey: "name") as? String ?? "名称未設定"
     @Published var pointDateStr = ""
     
@@ -16,12 +21,17 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
     @Published var layout = UICollectionViewFlowLayout()
     
     @Published var friendListView: Void = ()
+    @Published var friendListOfFriendView: Void = ()
     @Published var changeProfileView: Void = ()
     @Published var settingView: Void = ()
-    @Published var shareMyData: Void = ()
+    @Published var healthChartsView: Void = ()
+    @Published var dismissView: Void = ()
 
     @Published var userDataItem: UserData?
     @Published var meJudge = Bool()
+
+    @Published var alertType: AlertType = .deleteFriendWarning
+    @Published var showAlert = false
 
     init(userDataItem: UserData? = nil) {
         self.userDataItem = userDataItem
@@ -41,7 +51,6 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
                 print("ProfileViewModel init error:",error.localizedDescription)
             }
         }
-
         self.cancellables.insert(.init { task.cancel() })
     }
     
@@ -49,16 +58,24 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
         self.friendListView = ()
     }
 
+    func sceneFriendListOfFriend() {
+        self.friendListOfFriendView = ()
+    }
+
     func sceneChangeProfile() {
         self.changeProfileView = ()
     }
 
-    func sceneShareMyData() {
-        self.shareMyData = ()
-    }
-
     func sceneSetting() {
         self.settingView = ()
+    }
+
+    func sceneHealthCharts() {
+        self.healthChartsView = ()
+    }
+
+    func dismiss() {
+        self.dismissView = ()
     }
     
     func getProfileData() {
@@ -85,6 +102,8 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
                     self.point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
                     meJudge = true
                 } else {
+                    let friendDataList = try await FirebaseClient.shared.getFriendDataFromId(userId: userDataItem?.id ?? "")
+                    self.friendCount = friendDataList.count
                     pointDataList = try await FirebaseClient.shared.getPointData(id: userDataItem?.id ?? "")
                     pointDataList.reverse()
                     let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
@@ -102,21 +121,15 @@ final class ProfileViewModel: ObservableObject, FirebaseClientDeleteFriendDelega
     func friendDelete() {
         let task = Task {
             do {
-                FirebaseClient.shared.deletefriendDelegate = self
                 guard let friendID = userDataItem?.id else { return }
                 try await FirebaseClient.shared.deleteFriendQuery(deleteFriendId: friendID)
+                alertType = .deletedFriend
+                showAlert = true
             }
             catch {
                 print("ProfileViewModel friendDelete error:",error.localizedDescription)
             }
         }
         self.cancellables.insert(.init { task.cancel() })
-    }
-
-    //MARK: - Setting Delegate
-    func friendDeleted() async {
-        //FIXME: アラートが出ない
-        let profileVC = ProfileViewController(viewModel: .init())
-        ShowAlertHelper.okAlert(vc: profileVC, title: "完了", message: "友達を削除しました")
     }
 }

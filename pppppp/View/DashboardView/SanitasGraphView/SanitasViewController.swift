@@ -1,6 +1,5 @@
 import Combine
 import UIKit
-import SwiftUI
 
 class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
@@ -22,7 +21,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     }
     
     @IBAction func sceneHealthView() {
-        let healthChartsVC = HealthChartsViewController(viewModel: HealthChartsViewModel())
+        let healthChartsVC = HealthChartsHostingController(viewModel: HealthChartsViewModel())
         self.navigationController?.pushViewController(healthChartsVC, animated: true)
     }
     
@@ -105,14 +104,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     
     override func viewDidLoad() {
         super.viewDidLoad()
-#if DEBUG
-        print("🛠Debug")
-#elseif STAGING
-        print("🧑🏻‍💻Staging")
-#else
-        print("📱Release")
-#endif
-
+        
         FirebaseClient.shared.emailVerifyDelegate = self
         FirebaseClient.shared.putPointDelegate = self
         FirebaseClient.shared.notChangeDelegate = self
@@ -225,7 +217,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 //MARK: 体重のポイント作成判定
                 let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(friendId: userID)
+                let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(userId: userID)
                 guard let goalWeight = userData.last?.weightGoal else {
                     let setGoalWeightVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
                     self.showDetailViewController(setGoalWeightVC, sender: self)
@@ -255,7 +247,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     }
 
     func buttonSelected(item: UserData) {
-        let profileVC = ProfileViewController(viewModel: .init(userDataItem: item))
+        let profileVC = ProfileHostingController(viewModel: .init(userDataItem: item))
         self.showDetailViewController(profileVC, sender: self)
     }
     
@@ -287,7 +279,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             self.present(alert, animated: true, completion: nil)
         }
     }
-
+    
     func notChangeName() {
         let setNameVC = StoryboardScene.SetNameView.initialScene.instantiate()
         self.showDetailViewController(setNameVC, sender: self)

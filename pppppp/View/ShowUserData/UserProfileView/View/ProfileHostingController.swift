@@ -4,7 +4,7 @@ import Combine
 import Kingfisher
 
 @MainActor
-final class ProfileViewController: UIHostingController<ProfileContentView>, FireStoreCheckNameDelegate, UIAdaptivePresentationControllerDelegate {
+final class ProfileHostingController: UIHostingController<ProfileContentView>, FireStoreCheckNameDelegate, UIAdaptivePresentationControllerDelegate {
 
     private var cancellables: [AnyCancellable] = []
 
@@ -16,9 +16,20 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
             .dropFirst()
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                let friendListViewController = StoryboardScene.FriendListView.initialScene.instantiate()
-                self.present(friendListViewController, animated: true)
+                //TODO: Push遷移にする
+                let friendListVC = StoryboardScene.FriendListView.initialScene.instantiate()
+                self.present(friendListVC, animated: true)
             }.store(in: &cancellables)
+
+        viewModel.$friendListOfFriendView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                //TODO: Push遷移にする
+                let friendListOfFriendVC = FriendListOfFriendsListHostingController(viewModel: FriendListOfFriendsListViewModel(friendId: viewModel.userDataItem?.id ?? ""))
+                self.present(friendListOfFriendVC, animated: true)
+            }.store(in: &cancellables)
+
 
         viewModel.$changeProfileView
             .dropFirst()
@@ -32,15 +43,7 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
                 changeProfileViewController.presentationController?.delegate = self
                 self.present(changeProfileViewController, animated: true, completion: nil)
             }.store(in: &cancellables)
-
-        viewModel.$shareMyData
-            .dropFirst()
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                let shareMyDataViewController = StoryboardScene.ShareMyDataView.initialScene.instantiate()
-                self.present(shareMyDataViewController, animated: true)
-            }.store(in: &cancellables)
-
+        
         viewModel.$settingView
             .dropFirst()
             .sink { [weak self] _ in
@@ -49,6 +52,23 @@ final class ProfileViewController: UIHostingController<ProfileContentView>, Fire
                 self.present(settingViewController, animated: true)
             }.store(in: &cancellables)
 
+        viewModel.$healthChartsView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                //TODO: Push遷移にする
+                let healthChartsVC = HealthChartsHostingController(viewModel: HealthChartsViewModel())
+                self.present(healthChartsVC, animated: true)
+            }.store(in: &cancellables)
+
+        viewModel.$dismissView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+
+                self.dismiss(animated: true)
+
+            }.store(in: &cancellables)
     }
 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {

@@ -7,13 +7,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
+        firebaseConfigure()
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
             if granted {
                 UNUserNotificationCenter.current().delegate = self
             }
         }
         return true
+    }
+
+    private func firebaseConfigure() {
+#if DEBUG
+        let filePath = Bundle.main.path(forResource: "GoogleService-Info-dev", ofType: "plist")!
+#else
+        let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")!
+#endif
+        guard let options = FirebaseOptions(contentsOfFile: filePath) else {
+            return
+        }
+        FirebaseApp.configure(options: options)
     }
     
     // MARK: UISceneSession Lifecycle

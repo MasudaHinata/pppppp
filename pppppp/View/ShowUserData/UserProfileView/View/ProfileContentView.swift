@@ -6,7 +6,6 @@ import Combine
 struct ProfileContentView: View {
 
     @ObservedObject var viewModel: ProfileViewModel
-    @State private var showingAlert = false
     
     var body: some View {
 
@@ -14,39 +13,43 @@ struct ProfileContentView: View {
         let width = bounds.width
 
         NavigationView {
-            //MARK: - profile画面
             Form {
-                if  viewModel.meJudge {
-                    //MARK: 自分のデータを表示する時
-                    Section {
-                        HStack(alignment: .center, spacing: width * 0.10) {
-                            KFImage(viewModel.iconImageURL)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 72, height: 72)
-                                .cornerRadius(36)
+                Section {
+                    HStack(alignment: .center, spacing: width * 0.10) {
+                        KFImage(URL(string: viewModel.meJudge ? viewModel.iconImageURLStr : viewModel.userDataItem?.iconImageURL ?? ""))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 72, height: 72)
+                            .cornerRadius(36)
 
+                        VStack {
+                            Text("point")
+                                .font(.custom("F5.6", fixedSize: 14))
+                            Text("\(viewModel.point)")
+                                .font(.custom("F5.6", fixedSize: 18))
+                        }
+
+                        Button {
+                            //TODO: Push遷移にする
+                            if viewModel.meJudge {
+                                //MARK: 自分のデータを表示する時
+                                viewModel.sceneFriendList()
+                            } else {
+                                viewModel.sceneFriendListOfFriend()
+                            }
+                        } label: {
                             VStack {
-                                Text("point")
+                                Text("friend")
                                     .font(.custom("F5.6", fixedSize: 14))
-                                Text("\(viewModel.point)")
+                                Text("\(viewModel.friendCount)")
                                     .font(.custom("F5.6", fixedSize: 18))
                             }
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .foregroundColor(.white)
 
-                            Button {
-                                //TODO: push遷移させる
-                                viewModel.sceneFriendList()
-                            } label: {
-                                VStack {
-                                    Text("friend")
-                                        .font(.custom("F5.6", fixedSize: 14))
-                                    Text("\(viewModel.friendCount)")
-                                        .font(.custom("F5.6", fixedSize: 18))
-                                }
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .foregroundColor(.white)
-
+                        if viewModel.meJudge {
+                            //MARK: 自分のデータを表示する時
                             Button{
                                 viewModel.sceneChangeProfile()
                             } label: {
@@ -57,45 +60,32 @@ struct ProfileContentView: View {
                                     .foregroundColor(Color(asset: Asset.Colors.white00))
                             }
                             .buttonStyle(PlainButtonStyle())
-                        }
-                        .listRowBackground(Color.clear)
-                    }
-                } else {
-                    //MARK: 友達のデータを表示する時
-                    Section {
-                        HStack(alignment: .center) {
-                            KFImage(URL(string: viewModel.userDataItem?.iconImageURL ?? ""))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 72, height: 72)
-                                .cornerRadius(36)
-
-                            HStack {
-                                Text(String(viewModel.userDataItem?.point ?? 0))
-                                    .font(.custom("F5.6", fixedSize: 24))
-                                Text("pt")
-                                    .font(.custom("F5.6", fixedSize: 24))
-                            }
-
-                            Spacer()
-
+                        } else {
+                            //MARK: 友達のデータを表示する時
                             Button {
-                                self.showingAlert = true
+                                viewModel.alertType = .deleteFriendWarning
+                                viewModel.showAlert = true
                             } label: {
                                 Image(systemName: "trash")
                                     .foregroundColor(Color.red)
                             }
-                            .alert(isPresented: $showingAlert) {
-                                Alert(title: Text("警告"),
-                                      message: Text("友達を削除しますか？"),
-                                      primaryButton: .cancel(Text("キャンセル")),
-                                      secondaryButton: .destructive(Text("削除"), action: { viewModel.friendDelete() }))
+                            .alert(isPresented: $viewModel.showAlert) {
+                                switch viewModel.alertType {
+                                case .deleteFriendWarning:
+                                    return Alert(title: Text("警告"),
+                                                 message: Text("友達を削除しますか？"),
+                                                 primaryButton: .cancel(Text("キャンセル")),
+                                                 secondaryButton: .destructive(Text("削除"), action: { viewModel.friendDelete() }))
+                                case .deletedFriend:
+                                    return Alert(title: Text("完了"), message: Text("友達を削除しました"),
+                                                 dismissButton: .default(Text("OK"), action: { viewModel.dismiss() }))
+                                }
                             }
+
                         }
                     }
                     .listRowBackground(Color.clear)
                 }
-
 
                 //MARK: - Streak
                 Section {
@@ -130,22 +120,30 @@ struct ProfileContentView: View {
             .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
 
             .navigationBarItems(trailing: HStack {
+                //TODO: viewModel.meJudge == falseの時は非表示にする
                 Button {
-                    viewModel.sceneShareMyData()
+                    viewModel.sceneHealthCharts()
                 } label: {
-                    Image(systemName: "person.crop.circle.badge.plus")
+                    Image(systemName: "heart")
+                    //                    if viewModel.meJudge == false {
+                    //                        hidden()
+                    //                    }
                 }
+                //                .disabled(!viewModel.meJudge)
                 .foregroundColor(.white)
-
-                Spacer()
 
                 Button {
                     viewModel.sceneSetting()
                 } label: {
                     Image(systemName: "gearshape")
+                    //                    if viewModel.meJudge == false {
+                    //                        hidden()
+                    //                    }
                 }
+                //                .disabled(!viewModel.meJudge)
                 .foregroundColor(.white)
             })
+
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(asset: Asset.Colors.mainColor))
             .onAppear {

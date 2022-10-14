@@ -13,7 +13,7 @@ extension FriendListViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       let profileVC = ProfileViewController(viewModel: .init(userDataItem: friendDataList[indexPath.row]))
+       let profileVC = ProfileHostingController(viewModel: .init(userDataItem: friendDataList[indexPath.row]))
         self.showDetailViewController(profileVC, sender: self)
     }
 }

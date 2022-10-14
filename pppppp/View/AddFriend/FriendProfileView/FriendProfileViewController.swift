@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
+class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
     
     var friendId: String!
     var cancellables = Set<AnyCancellable>()
@@ -36,7 +36,7 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
         self.showDetailViewController(mainVC, sender: self)
     }
     
-    //MARK: - 友達を追加する
+    //MARK: - 友達リクエストを送る
     @IBAction func addFriend() {
         let task = Task { [weak self] in
             guard let self = self else { return }
@@ -48,7 +48,7 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
                         self.showDetailViewController(mainVC, sender: self)
                     }
                 } else {
-                    try await FirebaseClient.shared.addFriend(friendId: friendId)
+                    try await FirebaseClient.shared.sendFriendRequest(friendId: friendId)
                 }
             }
             catch {
@@ -67,13 +67,13 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseClient.shared.addFriendDelegate = self
+        FirebaseClient.shared.sentFriendRequestDelegate = self
 
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
                 var friendData = [UserData]()
-                friendData = try await FirebaseClient.shared.getUserDataFromId(friendId: friendId)
+                friendData = try await FirebaseClient.shared.getUserDataFromId(userId: friendId)
                 friendLabel.text = friendData.last?.name
                 friendIconView.kf.setImage(with: URL(string: friendData.last!.iconImageURL))
             }
@@ -95,10 +95,10 @@ class FriendProfileViewController: UIViewController, FirebaseAddFriendDelegate {
         }
         cancellables.insert(.init { task.cancel() })
     }
-    
+
     //MARK: - Setting Delegate
-    func addFriends() {
-        let alert = UIAlertController(title: "完了", message: "友達を追加しました", preferredStyle: .alert)
+    func sendRequest() {
+        let alert = UIAlertController(title: "完了", message: "友達リクエストを送信しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let mainVC = StoryboardScene.Main.initialScene.instantiate()
             self.showDetailViewController(mainVC, sender: self)

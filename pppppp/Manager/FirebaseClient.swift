@@ -19,11 +19,6 @@ enum FirebaseClientFirestoreError: Error {
 //MARK: - Setting Delegate
 
 @MainActor
-protocol FirebaseClientDeleteFriendDelegate: AnyObject {
-    func friendDeleted() async
-}
-
-@MainActor
 protocol FirebaseClientAuthDelegate: AnyObject {
     func loginScene()
 }
@@ -52,21 +47,21 @@ protocol FirebaseSentEmailDelegate: AnyObject {
     func sendEmail()
 }
 
-protocol FirebaseAddFriendDelegate: AnyObject {
-    func addFriends()
+protocol SentFriendRequestDelegate: AnyObject {
+    func sendRequest()
     func friendNotFound()
 }
 
+
 final class FirebaseClient {
     static let shared = FirebaseClient()
-    weak var deletefriendDelegate: FirebaseClientDeleteFriendDelegate?
     weak var loginDelegate: FirebaseClientAuthDelegate?
     weak var emailVerifyDelegate: FirebaseEmailVarifyDelegate?
     weak var notChangeDelegate: FireStoreCheckNameDelegate?
     weak var SettingAccountDelegate: SetttingAccountDelegate?
     weak var putPointDelegate: FirebasePutPointDelegate?
     weak var sentEmailDelegate: FirebaseSentEmailDelegate?
-    weak var addFriendDelegate: FirebaseAddFriendDelegate?
+    weak var sentFriendRequestDelegate: SentFriendRequestDelegate?
     private init() {}
     
     let firebaseAuth = Auth.auth()
@@ -111,11 +106,20 @@ final class FirebaseClient {
     }
     
     //MARK: - idで渡されたユーザーデータを取得する
-    func getUserDataFromId(friendId: String) async throws -> [UserData] {
+    func getUserDataFromId(userId: String) async throws -> [UserData] {
         var userData = [UserData]()
-        let querySnapShot = try await db.collection("User").document(friendId).getDocument()
+        let querySnapShot = try await db.collection("User").document(userId).getDocument()
         userData.append(try querySnapShot.data(as: UserData.self))
         
+        return userData
+    }
+
+    //MARK: - idで渡されたユーザーの友達を取得する
+    func getFriendDataFromId(userId: String) async throws -> [UserData] {
+        var userData = [UserData]()
+        let querySnapshot = try await db.collection("User").whereField("FriendList", arrayContains: userId).getDocuments()
+        userData = try querySnapshot.documents.map { try $0.data(as: UserData.self) }
+
         return userData
     }
     
@@ -222,6 +226,49 @@ final class FirebaseClient {
             likeFriendData.append(try snapshot.data(as: UserData.self))
         }
         return likeFriendData
+    }
+
+    //MARK: - 友達リクエストを取得する
+    func getFriendRequest() async throws -> [UserData] {
+        guard let user = Auth.auth().currentUser else {
+            try await self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        var friendData = [UserData]()
+        let userData: [UserData] = try await getUserDataFromId(userId: userID)
+        for userId in userData {
+            guard let friendIds = userId.receivedInvitations else {
+                return []
+            }
+            for friendId in friendIds {
+                let userData: [UserData] = try await getUserDataFromId(userId: friendId)
+                friendData += userData
+            }
+        }
+        return friendData
+    }
+
+    //MARK: - 友達リクエストの数を取得
+    func getFriendRequestCount() async throws -> Int {
+        guard let user = Auth.auth().currentUser else {
+            try await self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        var friendData = [UserData]()
+        let userData: [UserData] = try await getUserDataFromId(userId: userID)
+
+        for userId in userData {
+            guard let friendIds = userId.receivedInvitations else {
+                return 0
+            }
+            for friendId in friendIds {
+                let userData: [UserData] = try await getUserDataFromId(userId: friendId)
+                friendData += userData
+            }
+        }
+        return friendData.count
     }
 
     //MARK: - FireStore Write
@@ -360,6 +407,28 @@ final class FirebaseClient {
         
         try await db.collection("Post").document(postId).updateData(["likeFriendList": FieldValue.arrayRemove([userID])])
     }
+
+    //MARK: - 友達リクエストを送る
+    func sendFriendRequest(friendId: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+        try await db.collection("User").document(friendId).updateData(["receivedInvitations": FieldValue.arrayUnion([userID])])
+        self.sentFriendRequestDelegate?.sendRequest()
+    }
+
+    //MARK: - 友達リクエストを削除
+    func deleteFriendRequest(friendId: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            try await  self.checkUserAuth()
+            throw FirebaseClientAuthError.firestoreUserDataNotCreated
+        }
+        let userID = user.uid
+
+        try await db.collection("User").document(userID).updateData(["receivedInvitations": FieldValue.arrayRemove([friendId])])
+    }
     
     //MARK: - 友達を追加する
     func addFriend(friendId: String) async throws {
@@ -368,9 +437,9 @@ final class FirebaseClient {
             throw FirebaseClientAuthError.firestoreUserDataNotCreated
         }
         let userID = user.uid
+        try await db.collection("User").document(userID).updateData(["receivedInvitations": FieldValue.arrayRemove([friendId])])
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayUnion([friendId])])
         try await db.collection("User").document(friendId).updateData(["FriendList": FieldValue.arrayUnion([userID])])
-        self.addFriendDelegate?.addFriends()
     }
     
     //MARK: - 友達を削除する
@@ -382,7 +451,6 @@ final class FirebaseClient {
         let userID = user.uid
         try await db.collection("User").document(userID).updateData(["FriendList": FieldValue.arrayRemove([deleteFriendId])])
         try await db.collection("User").document(deleteFriendId).updateData(["FriendList": FieldValue.arrayRemove([userID])])
-        await self.deletefriendDelegate?.friendDeleted()
     }
     
     //MARK: - 友達のFriendListから自分を削除する

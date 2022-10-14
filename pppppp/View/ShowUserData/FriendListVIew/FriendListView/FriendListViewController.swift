@@ -6,6 +6,7 @@ class FriendListViewController: UIViewController {
     var friendDataList = [UserData]()
     var refreshCtl = UIRefreshControl()
     var cancellables = Set<AnyCancellable>()
+    var id = String()
     
     @IBOutlet var friendcollectionView: UICollectionView! {
         didSet {
@@ -30,6 +31,8 @@ class FriendListViewController: UIViewController {
         let task = Task {  [weak self] in
             guard let self = self else { return }
             do {
+                //TODO: Profileからidを渡される
+                //                friendDataList = try await FirebaseClient.shared.getUserDataFromId(userId: id)
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
             }

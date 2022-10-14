@@ -18,7 +18,7 @@ class TimeLineViewController: UIViewController {
             collectionView.register(UINib(nibName: "TimelinePostCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TimelinePostCollectionViewCell")
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,11 +34,35 @@ class TimeLineViewController: UIViewController {
         activityIndicator.style = .large
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
-        
+
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
                 activityIndicator.startAnimating()
+                let friendRequestCount = try await FirebaseClient.shared.getFriendRequestCount()
+                var buttonImage: String
+                if friendRequestCount == 0 {
+                    buttonImage = "bell.fill"
+                } else {
+                    buttonImage = "bell.badge.fill"
+                }
+
+                let button1: UIBarButtonItem = UIBarButtonItem.init(
+                    image: UIImage(systemName: buttonImage),
+                    style: UIBarButtonItem.Style.plain,
+                    target: self,
+                    action: #selector(didTapFriendRequestButton))
+                button1.tintColor = UIColor.white
+
+                let button2 = UIBarButtonItem.init(
+                    image: UIImage(systemName: "person.crop.circle.badge.plus"),
+                    style: UIBarButtonItem.Style.plain,
+                    target: self,
+                    action: #selector(didTapAddFriendButton))
+                button2.tintColor = UIColor.white
+                self.navigationItem.rightBarButtonItems = [button1, button2]
+
+
                 postDataItem = try await FirebaseClient.shared.getPointActivityPost()
                 collectionView.reloadData()
             }
@@ -54,6 +78,16 @@ class TimeLineViewController: UIViewController {
         }
         cancellables.insert(.init { task.cancel() })
     }
+
+    @objc func didTapFriendRequestButton() {
+        let friendRequestHostingVC = FriendRequestHostingViewController(viewModel: FriendRequestViewModel())
+        self.navigationController?.pushViewController(friendRequestHostingVC, animated: true)
+    }
+
+    @objc func didTapAddFriendButton() {
+        let shareMyDataViewController = StoryboardScene.ShareMyDataView.initialScene.instantiate()
+        self.present(shareMyDataViewController, animated: true)
+    }
     
     //MARK: - timelineの更新
     func refresh() {
@@ -62,6 +96,28 @@ class TimeLineViewController: UIViewController {
             do {
                 postDataItem = try await FirebaseClient.shared.getPointActivityPost()
                 collectionView.reloadData()
+                let friendRequestCount = try await FirebaseClient.shared.getFriendRequestCount()
+                var buttonImage: String
+                if friendRequestCount == 0 {
+                    buttonImage = "bell"
+                } else {
+                    buttonImage = "bell.badge.fill"
+                }
+
+                let button1: UIBarButtonItem = UIBarButtonItem.init(
+                    image: UIImage(systemName: buttonImage),
+                    style: UIBarButtonItem.Style.plain,
+                    target: self,
+                    action: #selector(didTapFriendRequestButton))
+                button1.tintColor = UIColor.white
+
+                let button2 = UIBarButtonItem.init(
+                    image: UIImage(systemName: "person.crop.circle.badge.plus"),
+                    style: UIBarButtonItem.Style.plain,
+                    target: self,
+                    action: #selector(didTapAddFriendButton))
+                button2.tintColor = UIColor.white
+                self.navigationItem.rightBarButtonItems = [button1, button2]
             }
             catch {
                 print("TimeLineViewContro refresh error:",error.localizedDescription)
