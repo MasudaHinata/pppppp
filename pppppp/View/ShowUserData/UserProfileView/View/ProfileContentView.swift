@@ -121,27 +121,21 @@ struct ProfileContentView: View {
 
             .navigationBarItems(trailing: HStack {
                 //TODO: viewModel.meJudge == falseの時は非表示にする
-                Button {
-                    viewModel.sceneHealthCharts()
-                } label: {
-                    Image(systemName: "heart")
-                    //                    if viewModel.meJudge == false {
-                    //                        hidden()
-                    //                    }
-                }
-                //                .disabled(!viewModel.meJudge)
-                .foregroundColor(.white)
+                if viewModel.meJudge {
+                    Button {
+                        viewModel.sceneHealthCharts()
+                    } label: {
+                        Image(systemName: "heart")
+                    }
+                    .foregroundColor(.white)
 
-                Button {
-                    viewModel.sceneSetting()
-                } label: {
-                    Image(systemName: "gearshape")
-                    //                    if viewModel.meJudge == false {
-                    //                        hidden()
-                    //                    }
+                    Button {
+                        viewModel.sceneSetting()
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                    .foregroundColor(.white)
                 }
-                //                .disabled(!viewModel.meJudge)
-                .foregroundColor(.white)
             })
 
             .frame(maxWidth: .infinity, maxHeight: .infinity)
