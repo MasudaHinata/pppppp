@@ -9,7 +9,6 @@ struct StepsChartsUIView: View {
     
     var body: some View {
         ZStack {
-            
             Color(asset: Asset.Colors.mainColor)
             Chart {
                 ForEach(data) { item in
