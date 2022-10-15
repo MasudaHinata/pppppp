@@ -123,7 +123,14 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             guard let self = self else { return }
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                let shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
+                var shareWebsite: URL?
+
+#if DEBUG
+                shareWebsite = URL(string: "sanitas-ios-dev-debug://?id=\(userID)")!
+#else
+                shareWebsite = URL(string: "sanitas-ios-dev://?id=\(userID)")!
+#endif
+                
                 let activityVC = UIActivityViewController(activityItems: [shareWebsite], applicationActivities: nil)
                 present(activityVC, animated: true, completion: nil)
             } catch {

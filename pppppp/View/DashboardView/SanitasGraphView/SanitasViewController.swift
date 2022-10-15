@@ -13,6 +13,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     @IBOutlet var stepsLabel: UILabel!
     @IBOutlet var mountainView: DrawView!
     @IBOutlet var imageView: UIImageView!
+
+    
     
     @IBAction func sceneDashboardView() {
         let dashboardVC = StoryboardScene.DashboardView.initialScene.instantiate()

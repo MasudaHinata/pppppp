@@ -2,14 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDisplayName</key>
-	<string>Sanitas</string>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
-	<key>UIUserInterfaceStyle</key>
-	<string>Dark</string>
+	<key> item1</key>
+	<string>F5.6-Regular.otf</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Sanitas</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -25,24 +23,37 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleIdentifier</key>
+			<string></string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>dev.sanitas</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>sanitas-ios-dev</string>
+				<string>$(PRODUCT_URL_SCHEME)</string>
 			</array>
 		</dict>
+		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>友達のQRCodeを読み込むためにカメラの使用を許可をしてください</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>HealthKitから情報を読み込みます</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>HealthKitに情報をかき込みます</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ライブラリを開きます</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string></string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -80,15 +91,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>ライブラリを開きます</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string></string>
-	</array>
-	<key> item1</key>
-	<string>F5.6-Regular.otf</string>
-	<key>NSCameraUsageDescription</key>
-	<string>友達のQRCodeを読み込むためにカメラの使用を許可をしてください</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Dark</string>
 </dict>
 </plist>

@@ -32,6 +32,7 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
     }
     
     @IBAction func backButton() {
+//        self.dismiss(animated: true, completion: nil)
         let mainVC = StoryboardScene.Main.initialScene.instantiate()
         self.showDetailViewController(mainVC, sender: self)
     }
@@ -46,6 +47,7 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "自分とは友達になれません") { _ in
                         let mainVC = StoryboardScene.Main.initialScene.instantiate()
                         self.showDetailViewController(mainVC, sender: self)
+                        //                        self.dismiss(animated: true, completion: nil)
                     }
                 } else {
                     try await FirebaseClient.shared.sendFriendRequest(friendId: friendId)
@@ -73,7 +75,6 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
             guard let self = self else { return }
             do {
                 var friendData = [UserData]()
-                print(friendId)
                 friendData = try await FirebaseClient.shared.getUserDataFromId(userId: friendId)
                 friendLabel.text = friendData.last?.name
                 friendIconView.kf.setImage(with: URL(string: friendData.last!.iconImageURL))
@@ -82,6 +83,7 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
                 print("FriendProfileViewContro ViewAppear error:", error.localizedDescription)
                 if error.localizedDescription == "The operation couldn’t be completed. (pppppp.FirebaseClientFirestoreError error 0.)" {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "アカウントが存在しません") { _ in
+                        //                        self.dismiss(animated: true, completion: nil)
                         let mainVC = StoryboardScene.Main.initialScene.instantiate()
                         self.showDetailViewController(mainVC, sender: self)
                     }
@@ -101,6 +103,7 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
     func sendRequest() {
         let alert = UIAlertController(title: "完了", message: "友達リクエストを送信しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            //            self.dismiss(animated: true, completion: nil)
             let mainVC = StoryboardScene.Main.initialScene.instantiate()
             self.showDetailViewController(mainVC, sender: self)
         }
@@ -115,6 +118,7 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
             let mainVC = StoryboardScene.Main.initialScene.instantiate()
             self.showDetailViewController(mainVC, sender: self)
+            //            self.dismiss(animated: true, completion: nil)
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
