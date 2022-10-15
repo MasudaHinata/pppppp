@@ -12,7 +12,7 @@ struct ProfileContentView: View {
         let bounds = UIScreen.main.bounds
         let width = bounds.width
 
-        NavigationView {
+        NavigationStack {
             Form {
                 Section {
                     HStack(alignment: .center, spacing: width * 0.10) {
@@ -35,6 +35,7 @@ struct ProfileContentView: View {
                                 //MARK: 自分のデータを表示する時
                                 viewModel.sceneFriendList()
                             } else {
+                                //MARK: 友達のデータを表示する時
                                 viewModel.sceneFriendListOfFriend()
                             }
                         } label: {
@@ -92,6 +93,7 @@ struct ProfileContentView: View {
                     StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList))
                         .frame(width: 343.4, height: 139)
                         .listRowBackground(Color(asset: Asset.Colors.white16))
+
                 } header: {
                     Text("STREAK")
                 }

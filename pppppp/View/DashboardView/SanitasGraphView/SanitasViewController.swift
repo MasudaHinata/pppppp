@@ -144,10 +144,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 //MARK: MountainViewを表示
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
-                if friendDataList.count == 1 {
-                    let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-                    self.showDetailViewController(addFriendVC, sender: self)
-                }
 
                 activityIndicator.stopAnimating()
             } catch {
@@ -178,10 +174,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
 
         //MARK: MountainViewの位置更新
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
-        if friendDataList.count == 1 {
-            let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-            self.showDetailViewController(addFriendVC, sender: self)
-        }
+
         activityIndicator.stopAnimating()
 
         let task = Task { [weak self] in

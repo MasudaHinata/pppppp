@@ -32,7 +32,6 @@ class FriendListViewController: UIViewController {
             guard let self = self else { return }
             do {
                 //TODO: Profileからidを渡される
-                //                friendDataList = try await FirebaseClient.shared.getUserDataFromId(userId: id)
                 friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                 self.friendcollectionView.reloadData()
             }

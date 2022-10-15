@@ -17,6 +17,7 @@ struct StreakCollectionView: UIViewRepresentable {
         streakCollectionView.delegate = context.coordinator
         streakCollectionView.dataSource = context.coordinator
         streakCollectionView.register(UINib(nibName: "SummaryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SummaryCollectionViewCell")
+        streakCollectionView.backgroundColor = .clear
         return streakCollectionView
     }
     
