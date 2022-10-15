@@ -20,7 +20,6 @@
 		032DF36C28F3BDDD00458C20 /* HealthChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36B28F3BDDD00458C20 /* HealthChartsViewModel.swift */; };
 		032DF37028F44F4F00458C20 /* HKWorkoutActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */; };
 		032DF37228F4535D00458C20 /* PointActivityImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF37128F4535D00458C20 /* PointActivityImage.swift */; };
-		032DF37A28F83BEA00458C20 /* GoogleService-Info-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 032DF37928F83BEA00458C20 /* GoogleService-Info-dev.plist */; };
 		032DF37D28F84FAD00458C20 /* FriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF37C28F84FAD00458C20 /* FriendRequestViewController.swift */; };
 		032DF38128F8513000458C20 /* FriendRequestContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF38028F8513000458C20 /* FriendRequestContentView.swift */; };
 		032DF38528F8517900458C20 /* FriendRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF38428F8517900458C20 /* FriendRequestViewModel.swift */; };
@@ -47,6 +46,7 @@
 		03670F2B28F90521006075DC /* FriendListOfFriendsListHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03670F2A28F90521006075DC /* FriendListOfFriendsListHostingController.swift */; };
 		03670F2D28F90547006075DC /* FriendListOfFriendsListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03670F2C28F90547006075DC /* FriendListOfFriendsListContentView.swift */; };
 		03670F2F28F9057E006075DC /* FriendListOfFriendsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03670F2E28F9057E006075DC /* FriendListOfFriendsListViewModel.swift */; };
+		03670F3128FA9299006075DC /* GoogleService-Info-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03670F3028FA9299006075DC /* GoogleService-Info-dev.plist */; };
 		036E476528DAF73C00EA7BB1 /* StepsChartsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */; };
 		036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */; };
 		036E476928DB1A5C00EA7BB1 /* RecordWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036E476828DB1A5C00EA7BB1 /* RecordWeightViewController.swift */; };
@@ -144,7 +144,6 @@
 		032DF36B28F3BDDD00458C20 /* HealthChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsViewModel.swift; sourceTree = "<group>"; };
 		032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKWorkoutActivityType.swift; sourceTree = "<group>"; };
 		032DF37128F4535D00458C20 /* PointActivityImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointActivityImage.swift; sourceTree = "<group>"; };
-		032DF37928F83BEA00458C20 /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info-dev.plist"; path = "../../../Desktop/GoogleService-Info-dev.plist"; sourceTree = "<group>"; };
 		032DF37C28F84FAD00458C20 /* FriendRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewController.swift; sourceTree = "<group>"; };
 		032DF38028F8513000458C20 /* FriendRequestContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestContentView.swift; sourceTree = "<group>"; };
 		032DF38428F8517900458C20 /* FriendRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewModel.swift; sourceTree = "<group>"; };
@@ -171,6 +170,7 @@
 		03670F2A28F90521006075DC /* FriendListOfFriendsListHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListOfFriendsListHostingController.swift; sourceTree = "<group>"; };
 		03670F2C28F90547006075DC /* FriendListOfFriendsListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListOfFriendsListContentView.swift; sourceTree = "<group>"; };
 		03670F2E28F9057E006075DC /* FriendListOfFriendsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListOfFriendsListViewModel.swift; sourceTree = "<group>"; };
+		03670F3028FA9299006075DC /* GoogleService-Info-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-dev.plist"; sourceTree = "<group>"; };
 		036E476428DAF73C00EA7BB1 /* StepsChartsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsChartsUIView.swift; sourceTree = "<group>"; };
 		036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsStepItem.swift; sourceTree = "<group>"; };
 		036E476828DB1A5C00EA7BB1 /* RecordWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordWeightViewController.swift; sourceTree = "<group>"; };
@@ -849,7 +849,7 @@
 				036F698728BB93DA0066A7DA /* Helper */,
 				BE7F33892580D0810027620D /* Info.plist */,
 				BEA64AEC25D3EC040064F184 /* GoogleService-Info.plist */,
-				032DF37928F83BEA00458C20 /* GoogleService-Info-dev.plist */,
+				03670F3028FA9299006075DC /* GoogleService-Info-dev.plist */,
 				9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */,
 				03B832F228DC88E400C8AE3E /* Localizable.strings */,
 			);
@@ -933,6 +933,7 @@
 				036E476B28DB1A6E00EA7BB1 /* RecordWeightView.storyboard in Resources */,
 				03DAC40F28EC2865005F173B /* TimelinePostCollectionViewCell.xib in Resources */,
 				03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */,
+				03670F3128FA9299006075DC /* GoogleService-Info-dev.plist in Resources */,
 				03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */,
 				036F69F428C08B330066A7DA /* ResetPasswordView.storyboard in Resources */,
 				036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */,
@@ -954,7 +955,6 @@
 				0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */,
 				036F69FE28C0914D0066A7DA /* SelfCheckView.storyboard in Resources */,
 				03C7E7C428D454030069A46E /* OnboardingView1.storyboard in Resources */,
-				032DF37A28F83BEA00458C20 /* GoogleService-Info-dev.plist in Resources */,
 				0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */,
 				036F69EE28BE8F850066A7DA /* RecentActivitysTableViewCell.xib in Resources */,
 				033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */,
