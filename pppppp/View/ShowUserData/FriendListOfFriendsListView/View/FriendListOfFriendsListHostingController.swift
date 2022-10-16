@@ -17,6 +17,7 @@ class FriendListOfFriendsListHostingController: UIHostingController<FriendListOf
                 let addFriendVC = StoryboardScene.FriendProfileView.initialScene.instantiate()
                 addFriendVC.modalPresentationStyle = .fullScreen
                 addFriendVC.friendId = viewModel.friendIdOfFriend
+                addFriendVC.linkJudge = false
                 self.present(addFriendVC, animated: true)
 
             }.store(in: &cancellables)

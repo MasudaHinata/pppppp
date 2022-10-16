@@ -4,6 +4,7 @@ import Combine
 class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
     
     var friendId: String!
+    var linkJudge: Bool = false
     var cancellables = Set<AnyCancellable>()
     
     @IBOutlet var friendLabel: UILabel!
@@ -32,9 +33,12 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
     }
     
     @IBAction func backButton() {
-//        self.dismiss(animated: true, completion: nil)
-        let mainVC = StoryboardScene.Main.initialScene.instantiate()
-        self.showDetailViewController(mainVC, sender: self)
+        if linkJudge {
+            let mainVC = StoryboardScene.Main.initialScene.instantiate()
+            self.showDetailViewController(mainVC, sender: self)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     //MARK: - 友達リクエストを送る
@@ -45,9 +49,12 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 if friendId == userID {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "自分とは友達になれません") { _ in
-                        let mainVC = StoryboardScene.Main.initialScene.instantiate()
-                        self.showDetailViewController(mainVC, sender: self)
-                        //                        self.dismiss(animated: true, completion: nil)
+                        if self.linkJudge {
+                            let mainVC = StoryboardScene.Main.initialScene.instantiate()
+                            self.showDetailViewController(mainVC, sender: self)
+                        } else {
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     }
                 } else {
                     try await FirebaseClient.shared.sendFriendRequest(friendId: friendId)
@@ -83,9 +90,12 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
                 print("FriendProfileViewContro ViewAppear error:", error.localizedDescription)
                 if error.localizedDescription == "The operation couldn’t be completed. (pppppp.FirebaseClientFirestoreError error 0.)" {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "アカウントが存在しません") { _ in
-                        //                        self.dismiss(animated: true, completion: nil)
-                        let mainVC = StoryboardScene.Main.initialScene.instantiate()
-                        self.showDetailViewController(mainVC, sender: self)
+                        if self.linkJudge {
+                            let mainVC = StoryboardScene.Main.initialScene.instantiate()
+                            self.showDetailViewController(mainVC, sender: self)
+                        } else {
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     }
                 } else if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
@@ -103,9 +113,12 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
     func sendRequest() {
         let alert = UIAlertController(title: "完了", message: "友達リクエストを送信しました", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            //            self.dismiss(animated: true, completion: nil)
-            let mainVC = StoryboardScene.Main.initialScene.instantiate()
-            self.showDetailViewController(mainVC, sender: self)
+            if self.linkJudge {
+                let mainVC = StoryboardScene.Main.initialScene.instantiate()
+                self.showDetailViewController(mainVC, sender: self)
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
         }
         alert.addAction(ok)
         DispatchQueue.main.async {
@@ -116,9 +129,12 @@ class FriendProfileViewController: UIViewController, SentFriendRequestDelegate {
     func friendNotFound() {
         let alert = UIAlertController(title: "エラー", message: "アカウントが存在しません", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            let mainVC = StoryboardScene.Main.initialScene.instantiate()
-            self.showDetailViewController(mainVC, sender: self)
-            //            self.dismiss(animated: true, completion: nil)
+            if self.linkJudge {
+                let mainVC = StoryboardScene.Main.initialScene.instantiate()
+                self.showDetailViewController(mainVC, sender: self)
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
         }
         alert.addAction(ok)
         DispatchQueue.main.async {

@@ -69,6 +69,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "FriendProfileView", bundle: nil)
         let resultVC: FriendProfileViewController = mainStoryboard.instantiateInitialViewController() as! FriendProfileViewController
         resultVC.friendId = recievedId
+        resultVC.linkJudge = true
         self.window?.rootViewController = resultVC
         self.window?.makeKeyAndVisible()
     }
