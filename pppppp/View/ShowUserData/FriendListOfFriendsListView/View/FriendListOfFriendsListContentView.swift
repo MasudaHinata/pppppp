@@ -25,7 +25,15 @@ struct FriendListOfFriendsListContentView: View {
 
                         Button {
                             viewModel.friendIdOfFriend = item.id ?? ""
-                            viewModel.sceneAddFriendView()
+
+                            if (viewModel.friendData.first(where: {$0.id == item.id }) != nil) {
+                                print("追加済み")
+                                viewModel.sceneFriendProfileView()
+                            } else {
+                                print("まだ追加してない")
+                                viewModel.sceneAddFriendView()
+                            }
+
                         } label: {
 
                         }

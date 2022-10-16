@@ -21,6 +21,16 @@ class FriendListOfFriendsListHostingController: UIHostingController<FriendListOf
                 self.present(addFriendVC, animated: true)
 
             }.store(in: &cancellables)
+
+        viewModel.$friendProfileView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+
+                let profileVC = ProfileHostingController(viewModel: .init())
+                self.present(profileVC, animated: true)
+
+            }.store(in: &cancellables)
     }
 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
