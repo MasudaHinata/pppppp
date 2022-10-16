@@ -27,8 +27,9 @@ class FriendListOfFriendsListHostingController: UIHostingController<FriendListOf
             .sink { [weak self] _ in
                 guard let self = self else { return }
 
-                let profileVC = ProfileHostingController(viewModel: .init())
-                self.present(profileVC, animated: true)
+                //TODO: userDataを入れて渡す
+//                let profileVC = ProfileHostingController(viewModel: .init(userDataItem: viewModel.friendIdOfFriend))
+//                self.present(profileVC, animated: true)
 
             }.store(in: &cancellables)
     }
