@@ -24,6 +24,7 @@ struct FriendListOfFriendsListContentView: View {
 
 
                         Button {
+//                            viewModel.getFriendOfFriendData(friendOfFriendId: item.id ?? "")
                             viewModel.friendIdOfFriend = item.id ?? ""
 
                             if (viewModel.friendData.first(where: {$0.id == item.id }) != nil) {

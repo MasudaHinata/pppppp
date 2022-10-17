@@ -122,6 +122,15 @@ final class FirebaseClient {
 
         return userData
     }
+
+    //MARK: - idで渡されたユーザーデータを取得する
+    func getFriendOfFriendId(userId: String) async throws -> UserData {
+        var userData: UserData?
+        let querySnapShot = try await db.collection("User").document(userId).getDocument()
+        userData = try querySnapShot.data(as: UserData.self)
+
+        return userData!
+    }
     
     //MARK: - idで与えられたユーザーの累積ポイントを返す
     func getPointDataSum(id: String, accumulationType: String) async throws -> Int {

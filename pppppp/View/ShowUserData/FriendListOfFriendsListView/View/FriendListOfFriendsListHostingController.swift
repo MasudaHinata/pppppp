@@ -28,7 +28,8 @@ class FriendListOfFriendsListHostingController: UIHostingController<FriendListOf
                 guard let self = self else { return }
 
                 //TODO: userDataを入れて渡す
-//                let profileVC = ProfileHostingController(viewModel: .init(userDataItem: viewModel.friendIdOfFriend))
+//                let profileVC = ProfileHostingController(viewModel: .init(userDataItem: viewModel.friendOfFriendData))
+//                print(viewModel.friendOfFriendData)
 //                self.present(profileVC, animated: true)
 
             }.store(in: &cancellables)

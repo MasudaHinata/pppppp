@@ -12,6 +12,7 @@ final class FriendListOfFriendsListViewModel: ObservableObject {
     @Published var addFriendView: Void = ()
     @Published var friendProfileView: Void = ()
     @Published var friendData = [UserData]()
+//    @Published var friendOfFriendData: UserData?
 
     func sceneAddFriendView() {
         self.addFriendView = ()
@@ -36,4 +37,15 @@ final class FriendListOfFriendsListViewModel: ObservableObject {
         }
         self.cancellables.insert(.init { task.cancel() })
     }
+
+//    func getFriendOfFriendData(friendOfFriendId: String) {
+//        let task = Task {
+//            do {
+//                friendOfFriendData = try await FirebaseClient.shared.getFriendOfFriendId(userId: friendOfFriendId)
+//            } catch {
+//                print("FriendRequestViewModel getFriendRequest error: \(error.localizedDescription)")
+//            }
+//        }
+//        self.cancellables.insert(.init { task.cancel() })
+//    }
 }
