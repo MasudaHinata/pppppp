@@ -118,7 +118,7 @@ class DrawView: UIView {
         }
         imageButtons[index].frame = CGRect(x: vertex.x - 28, y: vertex.y - 28, width: 56, height: 56)
 
-
+        //TODO: 王冠つける
         paths.append(path)
     }
 
