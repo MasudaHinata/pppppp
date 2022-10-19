@@ -12,7 +12,6 @@ struct FriendRequestContentView: View {
 
         ScrollView {
             VStack (alignment: .center) {
-
                 Text("").fontWeight(.semibold)
                     .padding(.horizontal, 16.0)
                     .frame(maxWidth: width, maxHeight: 4,alignment: .leading)
@@ -29,26 +28,30 @@ struct FriendRequestContentView: View {
                             .fontWeight(.semibold)
                             .frame(width: 104, height: 32, alignment: .leading)
 
+                        Spacer()
+
                         Button {
                             viewModel.addFriend(friendId: item.id ?? "")
                         } label: {
-                            Text("承認")
-                                .frame(width: 56, height: 24)
-                                .fontWeight(.regular)
-                                .background(Color(asset: Asset.Colors.white00))
-                                .foregroundColor(Color(asset: Asset.Colors.mainColor))
+                            Image(systemName: "checkmark.circle")
+                                .resizable()
+                                .font(.subheadline)
+                                .foregroundColor(Color.green.opacity(0.8))
+                                .frame(width: 32, height: 32)
                         }
 
                         Button {
                             viewModel.deleteFriendRequest(friendId: item.id ?? "")
                         } label: {
-                            Text("削除")
-                                .frame(width: 56, height: 24)
-                                .fontWeight(.regular)
-                                .background(Color(asset: Asset.Colors.white48))
-                                .foregroundColor(Color.white)
+                            Image(systemName: "xmark.circle")
+                                .resizable()
+                                .font(.subheadline)
+                                .foregroundColor(Color.red.opacity(0.6))
+                                .frame(width: 32, height: 32)
                         }
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding()
                     .alert(isPresented: $viewModel.addFriendShowAlert) {
                         Alert(title: Text("完了"), message: Text("友達を追加しました"),
                               dismissButton: .default(Text("了解"), action: { viewModel.getFriendRequest() }))
