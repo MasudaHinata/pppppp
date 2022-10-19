@@ -14,17 +14,10 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     @IBOutlet var mountainView: DrawView!
     @IBOutlet var imageView: UIImageView!
 
-    
-    
     @IBAction func sceneDashboardView() {
         let dashboardVC = StoryboardScene.DashboardView.initialScene.instantiate()
         dashboardVC.friendDataList = friendDataList
         self.navigationController?.pushViewController(dashboardVC, animated: true)
-    }
-    
-    @IBAction func sceneHealthView() {
-        let healthChartsVC = HealthChartsHostingController(viewModel: HealthChartsViewModel())
-        self.navigationController?.pushViewController(healthChartsVC, animated: true)
     }
     
     //MARK: - 体重・運動を記録する
@@ -134,7 +127,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 if todayPoint.reduce(0, +) <= 0 {
                     imageView?.image = UIImage(named: "Rectangle1")
                 } else if todayPoint.reduce(0, +) <= 15 {
-                    imageView?.image = UIImage(named: "Rectangle2")
+                    imageView?.image = UIImage(named: "Rectangle4")
                 } else if todayPoint.reduce(0, +) <= 40 {
                     imageView?.image = UIImage(named: "Rectangle3")
                 } else {

@@ -82,12 +82,6 @@
                                     <action selector="sceneDashboardView" destination="i61-BL-DWj" id="mCS-Zm-MUL"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="heart" catalog="system" id="zi6-1S-vdI">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="sceneHealthView" destination="i61-BL-DWj" id="bvS-pB-Yvb"/>
-                                </connections>
-                            </barButtonItem>
                             <barButtonItem image="arrow.clockwise" catalog="system" id="tko-kg-OBX">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -132,7 +126,6 @@
     </scenes>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
-        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="list.bullet.rectangle.portrait" catalog="system" width="115" height="128"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
