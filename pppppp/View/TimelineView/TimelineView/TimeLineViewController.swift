@@ -22,7 +22,7 @@ class TimeLineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 104)
+        layout.estimatedItemSize = CGSize(width: self.view.frame.width, height: 142)
         
         refreshCtl.tintColor = .white
         collectionView.refreshControl = refreshCtl

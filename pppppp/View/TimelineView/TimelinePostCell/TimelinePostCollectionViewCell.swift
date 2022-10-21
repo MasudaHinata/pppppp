@@ -18,11 +18,20 @@ class TimelinePostCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var activityLabel: UILabel!
     @IBOutlet private var dateLabel: UILabel!
     @IBOutlet private var activityImageView: UIImageView!
+
     @IBOutlet private var userIconImageView: UIImageView! {
         didSet {
-            userIconImageView.layer.cornerRadius = 32
+            userIconImageView.layer.cornerRadius = 16
             userIconImageView.clipsToBounds = true
             userIconImageView.layer.cornerCurve = .continuous
+        }
+    }
+
+    @IBOutlet var backgroundColorView: UIView! {
+        didSet {
+            backgroundColorView.layer.cornerRadius = 32
+            backgroundColorView.clipsToBounds = true
+            backgroundColorView.layer.cornerCurve = .continuous
         }
     }
     
