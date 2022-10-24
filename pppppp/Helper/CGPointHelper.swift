@@ -1,10 +1,3 @@
-//
-//  CGPointHelper.swift
-//  pppppp
-//
-//  Created by hinata on 2022/10/09.
-//
-
 import Foundation
 
 extension CGPoint {
