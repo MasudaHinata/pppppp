@@ -5,7 +5,7 @@ import Combine
 struct FriendListOfFriendsListContentView: View {
 
     @ObservedObject var viewModel: FriendListOfFriendsListViewModel
-    
+
     var body: some View {
 
         NavigationView {
@@ -22,18 +22,39 @@ struct FriendListOfFriendsListContentView: View {
                             .fontWeight(.semibold)
                             .font(.headline)
 
+                        Spacer()
 
-                        Button {
-//                            viewModel.getFriendOfFriendData(friendOfFriendId: item.id ?? "")
-                            viewModel.friendIdOfFriend = item.id ?? ""
-
-                            if (viewModel.friendData.first(where: {$0.id == item.id }) != nil) {
-                                viewModel.sceneFriendProfileView()
-                            } else {
+                        if (viewModel.friendData.first(where: {$0.id == item.id }) == nil) {
+                            Button {
+                                viewModel.friendIdOfFriend = item.id ?? ""
                                 viewModel.sceneAddFriendView()
+                            } label: {
+                                Image(systemName: "person.crop.circle.badge.plus")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .font(.subheadline)
+                                    .foregroundColor(Color.white)
+                                    .frame(width: 32, height: 32)
                             }
-                        } label: {
                         }
+
+//                        Button {
+//                            viewModel.friendIdOfFriend = item.id ?? ""
+//
+//                            if (viewModel.friendData.first(where: {$0.id == item.id }) != nil) {
+//                                viewModel.sceneFriendProfileView()
+//                                print("すでに友達")
+//                            } else {
+//                                viewModel.sceneAddFriendView()
+//                                print("まだ追加してない")
+//                            }
+//                        } label: {
+//                            Image(systemName: "person.crop.circle.badge.plus")
+//                                .resizable()
+//                                .font(.subheadline)
+//                                .foregroundColor(Color.white)
+//                                .frame(width: 32, height: 32)
+//                        }
                     }
                 }
                 .listRowBackground(Color.clear)
