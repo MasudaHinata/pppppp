@@ -29,13 +29,28 @@ struct FriendListOfFriendsListContentView: View {
                                 viewModel.friendIdOfFriend = item.id ?? ""
                                 viewModel.sceneAddFriendView()
                             } label: {
-                                Image(systemName: "person.crop.circle.badge.plus")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .font(.subheadline)
-                                    .foregroundColor(Color.white)
-                                    .frame(width: 32, height: 32)
+                                HStack {
+                                    Image(systemName: "plus")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .foregroundColor(Color.white)
+                                        .fontWeight(.black)
+                                        .frame(width: 14, height: 14)
+                                        .padding(3)
+
+                                    Text("ADD")
+                                        .font(.system(size: 14))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color.white)
+                                        .padding(4)
+                                }
+                                .background(Color(asset: Asset.Colors.subColor))
+                                .cornerRadius(6)
                             }
+                        } else {
+                            Text("mutual")
+                                .font(.system(size: 12))
+                                .fontWeight(.semibold)
                         }
                     }
                 }
