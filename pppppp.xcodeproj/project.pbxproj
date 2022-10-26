@@ -1164,7 +1164,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PRODUCT_URL_SCHEME = "sanitas-ios-dev";
@@ -1313,7 +1313,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PRODUCT_URL_SCHEME = "sanitas-ios-dev-debug";
@@ -1340,7 +1340,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PRODUCT_URL_SCHEME = "sanitas-ios-dev";
