@@ -61,6 +61,14 @@ final class ProfileHostingController: UIHostingController<ProfileContentView>, F
                 self.present(healthChartsVC, animated: true)
             }.store(in: &cancellables)
 
+        viewModel.$addFriendView
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let addFriendViewController = StoryboardScene.ShareMyDataView.initialScene.instantiate()
+                self.present(addFriendViewController, animated: true)
+            }.store(in: &cancellables)
+
         viewModel.$dismissView
             .dropFirst()
             .sink { [weak self] _ in

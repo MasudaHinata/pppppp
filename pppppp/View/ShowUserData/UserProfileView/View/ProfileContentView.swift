@@ -132,6 +132,13 @@ struct ProfileContentView: View {
                     .foregroundColor(.white)
 
                     Button {
+                        viewModel.sceneAddFriend()
+                    } label: {
+                        Image(systemName: "person.crop.circle.badge.plus")
+                    }
+                    .foregroundColor(.white)
+
+                    Button {
                         viewModel.sceneSetting()
                     } label: {
                         Image(systemName: "gearshape")

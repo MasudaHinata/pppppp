@@ -25,6 +25,7 @@ final class ProfileViewModel: ObservableObject {
     @Published var changeProfileView: Void = ()
     @Published var settingView: Void = ()
     @Published var healthChartsView: Void = ()
+    @Published var addFriendView: Void = ()
     @Published var dismissView: Void = ()
 
     @Published var userDataItem: UserData?
@@ -72,6 +73,10 @@ final class ProfileViewModel: ObservableObject {
 
     func sceneHealthCharts() {
         self.healthChartsView = ()
+    }
+
+    func sceneAddFriend() {
+        self.addFriendView = ()
     }
 
     func dismiss() {

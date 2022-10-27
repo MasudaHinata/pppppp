@@ -81,6 +81,10 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 stepsLabel.text = "Today  \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps()))  steps"
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
+                if friendDataList.count == 1 {
+                    let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+                    self.showDetailViewController(addFriendVC, sender: self)
+                }
                 activityIndicator.stopAnimating()
             }
             catch {
@@ -137,6 +141,10 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 //MARK: MountainViewを表示
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
+                if friendDataList.count == 1 {
+                    let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+                    self.showDetailViewController(addFriendVC, sender: self)
+                }
 
                 activityIndicator.stopAnimating()
             } catch {
@@ -159,16 +167,19 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
 
         activityIndicator.startAnimating()
         //MARK: 初期画面
-//        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
-//        if judge == false {
-//            let onboardingView1VC = StoryboardScene.OnboardingView1.initialScene.instantiate()
-//            self.showDetailViewController(onboardingView1VC, sender: self)
-//        }
+        //        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
+        //        if judge == false {
+        //            let onboardingView1VC = StoryboardScene.OnboardingView1.initialScene.instantiate()
+        //            self.showDetailViewController(onboardingView1VC, sender: self)
+        //        }
 
         //MARK: MountainViewの位置更新
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
-
         activityIndicator.stopAnimating()
+        if friendDataList.count == 1 {
+            let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+            self.showDetailViewController(addFriendVC, sender: self)
+        }
 
         let task = Task { [weak self] in
             guard let self = self else { return }
