@@ -118,6 +118,11 @@ class DrawView: UIView {
         }
         imageButtons[index].frame = CGRect(x: vertex.x - 28, y: vertex.y - 28, width: 56, height: 56)
 
+        if friendListItems[0].id == item.id  {
+            //TODO: 1位の人に王冠つける
+            print(friendListItems[0].name, "1位")
+        }
+
         //TODO: 王冠つける
         paths.append(path)
     }
