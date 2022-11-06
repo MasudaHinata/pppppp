@@ -120,22 +120,22 @@ class DrawView: UIView {
         imageButtons[index].frame = CGRect(x: vertex.x - 28, y: vertex.y - 28, width: 56, height: 56)
 
 
-        if friendListItems[0].id == item.id  {
-            //TODO: 1位の人に王冠つける
-            print(friendListItems[0].name, "1位")
-
-            let imageButton = UIButton()
-            imageButton.setImage(UIImage(systemName: "crown.fill"), for: .normal)
-            imageButton.imageView?.contentMode = .scaleAspectFill
-            imageButton.layer.cornerRadius = 14
-            imageButton.layer.cornerCurve = .continuous
-            imageButton.clipsToBounds = true
-            imageButton.addAction(.init { button in self.delegate?.buttonSelected(item: item) }, for: .touchUpInside)
-            self.addSubview(imageButton)
-            crownImageButtons.append(imageButton)
-
-            crownImageButtons[0].frame = CGRect(x: vertex.x - 10, y: vertex.y - 32, width: 56, height: 56)
-        }
+//        if friendListItems[0].id == item.id  {
+//            //TODO: 1位の人に王冠つける
+//            print(friendListItems[0].name, "1位")
+//
+//            let imageButton = UIButton()
+//            imageButton.setImage(UIImage(systemName: "crown.fill"), for: .normal)
+//            imageButton.imageView?.contentMode = .scaleAspectFill
+//            imageButton.layer.cornerRadius = 14
+//            imageButton.layer.cornerCurve = .continuous
+//            imageButton.clipsToBounds = true
+//            imageButton.addAction(.init { button in self.delegate?.buttonSelected(item: item) }, for: .touchUpInside)
+//            self.addSubview(imageButton)
+//            crownImageButtons.append(imageButton)
+//
+//            crownImageButtons[0].frame = CGRect(x: vertex.x - 10, y: vertex.y - 42, width: 56, height: 56)
+//        }
 
         paths.append(path)
     }
