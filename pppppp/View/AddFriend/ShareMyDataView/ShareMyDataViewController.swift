@@ -61,13 +61,15 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             albumButtonLayout.configuration = configuration
         }
     }
-    
+
+    //MARK: - カメラの許可がない時のアラート
     @IBAction func alertButton() {
         if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
-    
+
+    //MARK: - ライブラリを開く
     @IBAction func openAlbumButton(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
@@ -75,7 +77,8 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         present(picker, animated: true)
         self.present(picker, animated: true, completion: nil)
     }
-    
+
+    //MARK: - QRCodeを表示
     @IBAction func showMyQRCode() {
         let task = Task { [weak self] in
             guard let self = self else { return }
