@@ -25,6 +25,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             gradationFilterView.backgroundColor = .clear
             let gradientLayer: CAGradientLayer = CAGradientLayer()
             gradientLayer.frame.size = gradationFilterView.frame.size
+            //TODO: ColorAssetにする
             gradientLayer.colors = [UIColor.init(hex: "4A0061", alpha: 0.6).cgColor, UIColor.init(hex: "0045F5",alpha: 0.6).cgColor]
             gradationFilterView.layer.addSublayer(gradientLayer)
         }
