@@ -140,7 +140,7 @@ class DrawView: UIView {
 
             self.addSubview(imageButton)
             crownImageButtons.append(imageButton)
-            crownImageButtons[index].frame = CGRect(x: vertex.x - 10, y: vertex.y - 54, width: 56, height: 56)
+            crownImageButtons[index].frame = CGRect(x: vertex.x - 10, y: vertex.y - 60, width: 56, height: 56)
         }
 
         paths.append(path)

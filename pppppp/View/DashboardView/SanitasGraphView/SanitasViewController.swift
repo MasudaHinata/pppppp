@@ -123,6 +123,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 activityIndicator.startAnimating()
 
                 let userID = try await FirebaseClient.shared.getUserUUID()
+                try await FirebaseClient.shared.checkNameData()
+                try await FirebaseClient.shared.checkIconData()
                 pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
                 pointDataList.reverse()
 
