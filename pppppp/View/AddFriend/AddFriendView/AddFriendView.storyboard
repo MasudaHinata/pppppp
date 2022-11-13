@@ -22,13 +22,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="and" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsS-q9-5ve">
-                                <rect key="frame" x="161.66666666666666" y="485.66666666666674" width="70" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsS-q9-5ve">
+                                <rect key="frame" x="161.66666666666666" y="485.66666666666669" width="70" height="48.000000000000057"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Get Started !" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPc-RC-B96">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Started !" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPc-RC-B96">
                                 <rect key="frame" x="78.666666666666686" y="533.66666666666663" width="236" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -55,6 +55,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="mainColor"/>
                         <constraints>
+                            <constraint firstItem="HR6-au-lWA" firstAttribute="bottom" secondItem="WsS-q9-5ve" secondAttribute="top" id="7fy-zH-veg"/>
                             <constraint firstItem="H4C-zg-WFA" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.4" id="9QJ-gq-qsT"/>
                             <constraint firstItem="fPc-RC-B96" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="J44-fp-TAv"/>
                             <constraint firstItem="HR6-au-lWA" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="SPu-s2-rIN"/>
@@ -67,7 +68,14 @@
                             <constraint firstItem="H4C-zg-WFA" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="xEz-Ht-f0u"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="SiI-qa-hIL"/>
+                    <navigationItem key="navigationItem" id="SiI-qa-hIL">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="gearshape" catalog="system" id="YqD-CM-Wym">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="sceneSetting" destination="Y6W-OH-hqX" id="tQZ-Rb-xN2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addFriendButtonLayout" destination="Bk9-rt-Jp9" id="wV1-yL-wdr"/>
                     </connections>
@@ -97,6 +105,7 @@
     </scenes>
     <resources>
         <image name="Group 2" width="1474" height="826"/>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
         <namedColor name="mainColor">
             <color red="0.071000002324581146" green="0.0" blue="0.29800000786781311" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

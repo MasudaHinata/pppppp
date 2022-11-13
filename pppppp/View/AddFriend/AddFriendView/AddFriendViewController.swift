@@ -20,6 +20,11 @@ class AddFriendViewController: UIViewController {
         self.showDetailViewController(shareMyDataVC, sender: self)
     }
     
+    @IBAction func sceneSetting() {
+        let settingVC = StoryboardScene.SettingView.initialScene.instantiate()
+        self.showDetailViewController(settingVC, sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
