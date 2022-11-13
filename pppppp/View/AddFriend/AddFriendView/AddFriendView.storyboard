@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="svz-kS-0Mh">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="svz-kS-0Mh">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,29 +13,29 @@
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="AddFriendViewController" customModule="pppppp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Friend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HR6-au-lWA">
-                                <rect key="frame" x="94" y="506" width="202" height="48"/>
+                                <rect key="frame" x="95.666666666666686" y="437.66666666666669" width="202" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsS-q9-5ve">
-                                <rect key="frame" x="160" y="554" width="70" height="48"/>
+                                <rect key="frame" x="161.66666666666666" y="485.66666666666669" width="70" height="48.000000000000057"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get Started !" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPc-RC-B96">
-                                <rect key="frame" x="77" y="602" width="236" height="48"/>
+                                <rect key="frame" x="78.666666666666686" y="533.66666666666663" width="236" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bk9-rt-Jp9">
-                                <rect key="frame" x="95" y="706" width="200" height="64"/>
+                                <rect key="frame" x="96.666666666666686" y="690" width="200" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="DGQ-vS-8in"/>
                                     <constraint firstAttribute="width" constant="200" id="s4i-lX-k57"/>
@@ -48,27 +48,24 @@
                                     <action selector="addFriendButton" destination="Y6W-OH-hqX" eventType="touchUpInside" id="2AU-Y6-Xic"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 2" translatesAutoresizingMaskIntoConstraints="NO" id="H4C-zg-WFA">
-                                <rect key="frame" x="-49" y="73" width="488" height="425"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="425" id="ZBc-Zu-axu"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 2" translatesAutoresizingMaskIntoConstraints="NO" id="H4C-zg-WFA">
+                                <rect key="frame" x="-540.66666666666663" y="73" width="1474.333333333333" height="340.66666666666669"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="mainColor"/>
                         <constraints>
+                            <constraint firstItem="H4C-zg-WFA" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.4" id="9QJ-gq-qsT"/>
                             <constraint firstItem="fPc-RC-B96" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="J44-fp-TAv"/>
                             <constraint firstItem="WsS-q9-5ve" firstAttribute="top" secondItem="HR6-au-lWA" secondAttribute="bottom" id="L4I-b7-vcz"/>
                             <constraint firstItem="HR6-au-lWA" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="SPu-s2-rIN"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Bk9-rt-Jp9" secondAttribute="bottom" constant="40" id="TIS-4d-gMr"/>
-                            <constraint firstItem="Bk9-rt-Jp9" firstAttribute="top" secondItem="fPc-RC-B96" secondAttribute="bottom" constant="56" id="WJZ-Dp-76C"/>
-                            <constraint firstItem="H4C-zg-WFA" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="-49" id="XLA-eY-RLN"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Bk9-rt-Jp9" secondAttribute="bottom" constant="64" id="TIS-4d-gMr"/>
+                            <constraint firstItem="HR6-au-lWA" firstAttribute="top" secondItem="H4C-zg-WFA" secondAttribute="bottom" constant="24" id="VEw-EA-RgK"/>
                             <constraint firstItem="fPc-RC-B96" firstAttribute="top" secondItem="WsS-q9-5ve" secondAttribute="bottom" id="Zih-oI-hxG"/>
-                            <constraint firstAttribute="trailing" secondItem="H4C-zg-WFA" secondAttribute="trailing" constant="-49" id="dGR-oE-oeG"/>
                             <constraint firstItem="WsS-q9-5ve" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uI1-jY-Fn3"/>
                             <constraint firstItem="Bk9-rt-Jp9" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uXr-ya-bW5"/>
                             <constraint firstItem="H4C-zg-WFA" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="73" id="vHL-5F-IaL"/>
+                            <constraint firstItem="H4C-zg-WFA" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="xEz-Ht-f0u"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SiI-qa-hIL">
@@ -93,7 +90,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="svz-kS-0Mh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TsQ-fA-KRG">
-                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

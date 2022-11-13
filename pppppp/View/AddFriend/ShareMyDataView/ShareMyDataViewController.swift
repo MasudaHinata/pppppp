@@ -80,6 +80,49 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
 
     //MARK: - QRCodeを表示
     @IBAction func showMyQRCode() {
+
+        
+        flag = false
+        qrCodeView = UIView()
+        qrCodeView.backgroundColor = Asset.Colors.white00.color
+        qrCodeView.layer.cornerRadius = 64
+        qrCodeView.layer.cornerCurve = .continuous
+        qrCodeView.translatesAutoresizingMaskIntoConstraints = false
+
+        qrCodeImageView = UIImageView()
+        qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
+
+
+        dismissButton = UIButton()
+        dismissButton.backgroundColor = Asset.Colors.black39.color
+        dismissButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickDismissButton(sender:)), for: .touchUpInside)
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
+
+        qrCodeView.isHidden = false
+        qrCodeImageView.isHidden = false
+        dismissButton.isHidden = false
+
+        self.view.addSubview(dismissButton)
+        self.view.addSubview(qrCodeView)
+        self.view.addSubview(qrCodeImageView)
+
+        let constraints = [qrCodeView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
+                           qrCodeView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
+                           qrCodeView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                           qrCodeView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+
+                           qrCodeImageView.leadingAnchor.constraint(equalTo: qrCodeView.leadingAnchor, constant: 32),
+                           qrCodeImageView.trailingAnchor.constraint(equalTo: qrCodeView.trailingAnchor, constant: -32),
+                           qrCodeImageView.topAnchor.constraint(equalTo: qrCodeView.topAnchor, constant: 32),
+                           qrCodeImageView.bottomAnchor.constraint(equalTo: qrCodeView.bottomAnchor, constant: -32),
+
+                           dismissButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                           dismissButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                           dismissButton.topAnchor.constraint(equalTo: self.view.topAnchor),
+                           dismissButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)]
+
+        NSLayoutConstraint.activate(constraints)
+
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
@@ -96,29 +139,6 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             }
         }
         cancellables.insert(.init { task.cancel() })
-        
-        flag = false
-        qrCodeView = UIView(frame: CGRect(x: 24, y: 196, width: 344, height: 344))
-        qrCodeView.backgroundColor = Asset.Colors.white00.color
-        qrCodeView.layer.cornerRadius = 64
-        qrCodeView.layer.cornerCurve = .continuous
-        qrCodeImageView = UIImageView(frame: CGRect(x: 64, y: 236, width: 264, height: 264))
-
-        //TODO: 他のところ触ったら閉じるようにする
-        dismissButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
-        dismissButton.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 108)
-        dismissButton.backgroundColor = Asset.Colors.black39.color
-        dismissButton.layer.cornerRadius = 28.0
-        dismissButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        dismissButton.tintColor = Asset.Colors.white00.color
-        dismissButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickDismissButton(sender:)), for: .touchUpInside)
-        
-        qrCodeView.isHidden = false
-        qrCodeImageView.isHidden = false
-        dismissButton.isHidden = false
-        self.view.addSubview(qrCodeView)
-        self.view.addSubview(qrCodeImageView)
-        self.view.addSubview(dismissButton)
     }
     
     @IBAction func shareLink() {
