@@ -63,8 +63,10 @@ final class ProfileHostingController: UIHostingController<ProfileContentView>, F
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 //TODO: Push遷移にする
-                let healthChartsVC = HealthChartsHostingController(viewModel: HealthChartsViewModel())
-                self.present(healthChartsVC, animated: true)
+                if #available(iOS 16.0, *) {
+                    let healthChartsVC = HealthChartsHostingController(viewModel: HealthChartsViewModel())
+                    self.present(healthChartsVC, animated: true)
+                }
             }.store(in: &cancellables)
 
         viewModel.$addFriendView

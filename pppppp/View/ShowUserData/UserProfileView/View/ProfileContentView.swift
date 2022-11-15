@@ -12,7 +12,8 @@ struct ProfileContentView: View {
         let bounds = UIScreen.main.bounds
         let width = bounds.width
 
-        NavigationStack {
+        //TODO: NavigationStackにする
+        NavigationView {
             Form {
                 Section {
                     HStack(alignment: .center, spacing: width * 0.10) {
@@ -116,7 +117,7 @@ struct ProfileContentView: View {
                     Text("RECENT ACTIVITIES")
                 }
             }
-            .scrollContentBackground(.hidden)
+//            .scrollContentBackground(.hidden)
             .background(Color(asset: Asset.Colors.mainColor))
 
             .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
