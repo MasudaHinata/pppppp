@@ -34,8 +34,8 @@ struct FriendListOfFriendsListContentView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .foregroundColor(Color.white)
-                                        
-//                                        .fontWeight(.black)
+                                    //TODO: ios16に対応させる
+                                    //                                        .fontWeight(.black)
                                         .frame(width: 14, height: 14)
                                         .padding(3)
 
@@ -57,7 +57,8 @@ struct FriendListOfFriendsListContentView: View {
                 }
                 .listRowBackground(Color.clear)
             }
-//            .scrollContentBackground(.hidden)
+            //TODO: ios16に対応させる
+            //            .scrollContentBackground(.hidden)
             .background(Color(asset: Asset.Colors.mainColor))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarTitle(Text("Friends"))

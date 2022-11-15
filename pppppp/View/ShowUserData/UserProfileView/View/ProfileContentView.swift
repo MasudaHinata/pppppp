@@ -117,11 +117,12 @@ struct ProfileContentView: View {
                     Text("RECENT ACTIVITIES")
                 }
             }
-//            .scrollContentBackground(.hidden)
+            //TODO: ios16に対応させる
+            //            .scrollContentBackground(.hidden)
             .background(Color(asset: Asset.Colors.mainColor))
 
             .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
-
+            
             .navigationBarItems(trailing: HStack {
                 if viewModel.meJudge {
                     //MARK: iOS16のみHealthChartViewに遷移するボタンを表示する
