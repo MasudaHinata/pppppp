@@ -122,14 +122,16 @@ struct ProfileContentView: View {
             .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
 
             .navigationBarItems(trailing: HStack {
-                //TODO: viewModel.meJudge == falseの時は非表示にする
                 if viewModel.meJudge {
-                    Button {
-                        viewModel.sceneHealthCharts()
-                    } label: {
-                        Image(systemName: "heart")
+                    //MARK: iOS16のみHealthChartViewに遷移するボタンを表示する
+                    if #available(iOS 16.0, *) {
+                        Button {
+                            viewModel.sceneHealthCharts()
+                        } label: {
+                            Image(systemName: "heart")
+                        }
+                        .foregroundColor(.white)
                     }
-                    .foregroundColor(.white)
 
                     Button {
                         viewModel.sceneAddFriend()
