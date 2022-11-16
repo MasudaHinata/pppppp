@@ -137,13 +137,13 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 let todayPoint = pointDataList.filter { $0.date.getZeroTime() == Date().getZeroTime() }.compactMap { $0.point }
 
                 if todayPoint.reduce(0, +) <= 0 {
-                    imageView?.image = UIImage(named: "Rectangle1")
+                    imageView?.image = Asset.Assets.orange.image
                 } else if todayPoint.reduce(0, +) <= 15 {
-                    imageView?.image = UIImage(named: "Rectangle4")
+                    imageView?.image = Asset.Assets.pink.image
                 } else if todayPoint.reduce(0, +) <= 40 {
-                    imageView?.image = UIImage(named: "Rectangle3")
+                    imageView?.image = Asset.Assets.blue.image
                 } else {
-                    imageView?.image = UIImage(named: "Rectangle4")
+                    imageView?.image = Asset.Assets.green.image
                 }
 
                 //MARK: MountainViewを表示

@@ -8,6 +8,7 @@ class TimeLineViewController: UIViewController {
     var refreshCtl = UIRefreshControl()
     var activityIndicator: LottieAnimationView!
     var postDataItem = [PostDisplayData]()
+    var pointDataList = [PointData]()
     var cancellables = Set<AnyCancellable>()
     
     @IBOutlet var collectionView: UICollectionView! {
@@ -19,6 +20,8 @@ class TimeLineViewController: UIViewController {
             collectionView.register(UINib(nibName: "TimelinePostCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TimelinePostCollectionViewCell")
         }
     }
+
+    @IBOutlet var imageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,23 @@ class TimeLineViewController: UIViewController {
             do {
                 activityIndicator.isHidden = false
                 activityIndicator.play()
+
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                pointDataList.reverse()
+
+                let todayPoint = pointDataList.filter { $0.date.getZeroTime() == Date().getZeroTime() }.compactMap { $0.point }
+
+                if todayPoint.reduce(0, +) <= 0 {
+                    imageView?.image = Asset.Assets.orange.image
+                } else if todayPoint.reduce(0, +) <= 15 {
+                    imageView?.image = Asset.Assets.pink.image
+                } else if todayPoint.reduce(0, +) <= 40 {
+                    imageView?.image = Asset.Assets.blue.image
+                } else {
+                    imageView?.image = Asset.Assets.green.image
+                }
+                
                 let friendRequestCount = try await FirebaseClient.shared.getFriendRequestCount()
                 var buttonImage: String
                 if friendRequestCount == 0 {

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bOc-oz-swF">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,8 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wyy-tS-OSZ">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HWL-JB-unQ">
-                                <rect key="frame" x="0.0" y="91" width="390" height="674"/>
+                                <rect key="frame" x="0.0" y="143" width="390" height="622"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3Pt-ym-5fh">
@@ -44,6 +48,10 @@
                         <constraints>
                             <constraint firstItem="HWL-JB-unQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5Fu-mW-JYg"/>
                             <constraint firstItem="HWL-JB-unQ" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="4" id="7s8-3f-F7G"/>
+                            <constraint firstItem="Wyy-tS-OSZ" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="9YR-VB-tkD"/>
+                            <constraint firstAttribute="trailing" secondItem="Wyy-tS-OSZ" secondAttribute="trailing" id="Q4V-PT-EVY"/>
+                            <constraint firstAttribute="bottom" secondItem="Wyy-tS-OSZ" secondAttribute="bottom" id="VFJ-pf-yaC"/>
+                            <constraint firstItem="Wyy-tS-OSZ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="aqh-Js-vwe"/>
                             <constraint firstItem="HWL-JB-unQ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="kEr-Oa-Mqg"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="HWL-JB-unQ" secondAttribute="trailing" id="r2f-Km-0FP"/>
                         </constraints>
@@ -52,6 +60,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="HWL-JB-unQ" id="MbQ-tU-S2s"/>
+                        <outlet property="imageView" destination="Wyy-tS-OSZ" id="uNj-Hb-0HO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -42,6 +42,10 @@ internal enum Asset {
     internal static let onboardingImage1 = ImageAsset(name: "onboardingImage1")
     internal static let onboardingImage2 = ImageAsset(name: "onboardingImage2")
     internal static let onboardingImage3 = ImageAsset(name: "onboardingImage3")
+    internal static let blue = ImageAsset(name: "blue")
+    internal static let green = ImageAsset(name: "green")
+    internal static let orange = ImageAsset(name: "orange")
+    internal static let pink = ImageAsset(name: "pink")
   }
   internal enum Colors {
     internal static let black00 = ColorAsset(name: "black00")
