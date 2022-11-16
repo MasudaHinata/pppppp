@@ -53,12 +53,13 @@ struct FriendListOfFriendsListContentView: View {
                 }
                 .listRowBackground(Color.clear)
             }
+            .hideListBackgroundIfAvailable()
             .background(Color(asset: Asset.Colors.mainColor))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarTitle(Text("Friends"))
             .onAppear() {
                 viewModel.getFriendListOfList()
-                UITableView.appearance().backgroundColor = .clear
+                UITableView.appearance().backgroundColor = Asset.Colors.mainColor.color
             }
         }
         .navigationTitle("Friends")
