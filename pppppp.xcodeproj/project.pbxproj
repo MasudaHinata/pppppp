@@ -77,7 +77,7 @@
 		03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */; };
 		03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */; };
 		03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */; };
-		03A3F8072924E81F004E3CD0 /* LottieFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8062924E81F004E3CD0 /* LottieFile.swift */; };
+		03A3F8072924E81F004E3CD0 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8062924E81F004E3CD0 /* LottieView.swift */; };
 		03A3F80A2924E8EB004E3CD0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 03A3F8092924E8EB004E3CD0 /* Lottie */; };
 		03A3F80C2924EA50004E3CD0 /* lottie-loop.json in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F80B2924EA50004E3CD0 /* lottie-loop.json */; };
 		03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */; };
@@ -204,7 +204,7 @@
 		03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeProfileViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
-		03A3F8062924E81F004E3CD0 /* LottieFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieFile.swift; sourceTree = "<group>"; };
+		03A3F8062924E81F004E3CD0 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		03A3F80B2924EA50004E3CD0 /* lottie-loop.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-loop.json"; sourceTree = "<group>"; };
 		03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertHelper.swift; sourceTree = "<group>"; };
 		03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChangeProfileView.storyboard; sourceTree = "<group>"; };
@@ -563,7 +563,7 @@
 			children = (
 				03670F2A28F90521006075DC /* FriendListOfFriendsListHostingController.swift */,
 				03670F2C28F90547006075DC /* FriendListOfFriendsListContentView.swift */,
-				03A3F8062924E81F004E3CD0 /* LottieFile.swift */,
+				03A3F8062924E81F004E3CD0 /* LottieView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -992,7 +992,7 @@
 				032DF36C28F3BDDD00458C20 /* HealthChartsViewModel.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				0374653C28EDA3F900DB0833 /* SetGoalWeightViewController.swift in Sources */,
-				03A3F8072924E81F004E3CD0 /* LottieFile.swift in Sources */,
+				03A3F8072924E81F004E3CD0 /* LottieView.swift in Sources */,
 				03670F2D28F90547006075DC /* FriendListOfFriendsListContentView.swift in Sources */,
 				03670F2B28F90521006075DC /* FriendListOfFriendsListHostingController.swift in Sources */,
 				032DF36128F24E7F00458C20 /* DateHelper.swift in Sources */,
