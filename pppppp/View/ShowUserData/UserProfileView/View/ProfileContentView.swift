@@ -4,7 +4,6 @@ import Charts
 import Combine
 
 struct ProfileContentView: View {
-
     @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
@@ -118,12 +117,7 @@ struct ProfileContentView: View {
                     Text("RECENT ACTIVITIES")
                 }
             }
-            //TODO: ios16に対応させる
-            .scrollContentBackground(.hidden)
-            .background(Color(asset: Asset.Colors.mainColor))
-
             .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
-            
             .navigationBarItems(trailing: HStack {
                 if viewModel.meJudge {
                     //MARK: iOS16のみHealthChartViewに遷移するボタンを表示する
@@ -151,12 +145,14 @@ struct ProfileContentView: View {
                     .foregroundColor(.white)
                 }
             })
-
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .hideListBackgroundIfAvailable()
             .background(Color(asset: Asset.Colors.mainColor))
-            .onAppear {
-                viewModel.getProfileData()
-            }
+        }
+
+        .onAppear {
+            viewModel.getProfileData()
+            UITableView.appearance().backgroundColor = Asset.Colors.mainColor.color
         }
     }
     
@@ -164,5 +160,17 @@ struct ProfileContentView: View {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd"
         return dateFormatter.string(from: date)
+    }
+}
+
+extension View {
+    func hideListBackgroundIfAvailable() -> some View {
+        Group {
+            if #available(iOS 16.0, *) {
+                self.scrollContentBackground(.hidden)
+            } else {
+                self
+            }
+        }
     }
 }
