@@ -36,12 +36,18 @@ final class ProfileHostingController: UIHostingController<ProfileContentView>, F
             .sink { [weak self] _ in
                 guard let self = self else { return }
 
-                let changeProfileViewController = StoryboardScene.ChangeProfileView.initialScene.instantiate()
-                if let sheet = changeProfileViewController.sheetPresentationController {
-                    sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
+                //MARK: iOS16のみカスタムモーダルを使用
+                if #available(iOS 16.0, *) {
+                    let changeProfileViewController = StoryboardScene.ChangeProfileView.initialScene.instantiate()
+                    if let sheet = changeProfileViewController.sheetPresentationController {
+                        sheet.detents = [.custom { context in 0.35 * context.maximumDetentValue }]
+                    }
+                    changeProfileViewController.presentationController?.delegate = self
+                    self.present(changeProfileViewController, animated: true, completion: nil)
+                } else {
+                    let changeProfileViewController = StoryboardScene.ChangeProfileView.initialScene.instantiate()
+                    self.present(changeProfileViewController, animated: true, completion: nil)
                 }
-                changeProfileViewController.presentationController?.delegate = self
-                self.present(changeProfileViewController, animated: true, completion: nil)
             }.store(in: &cancellables)
         
         viewModel.$settingView
@@ -57,8 +63,10 @@ final class ProfileHostingController: UIHostingController<ProfileContentView>, F
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 //TODO: Push遷移にする
-                let healthChartsVC = HealthChartsHostingController(viewModel: HealthChartsViewModel())
-                self.present(healthChartsVC, animated: true)
+                if #available(iOS 16.0, *) {
+                    let healthChartsVC = HealthChartsHostingController(viewModel: HealthChartsViewModel())
+                    self.present(healthChartsVC, animated: true)
+                }
             }.store(in: &cancellables)
 
         viewModel.$addFriendView

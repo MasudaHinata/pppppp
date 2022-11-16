@@ -1,12 +1,14 @@
 import UIKit
 import Combine
+import Lottie
 
 class TimeLineViewController: UIViewController {
     
     let layout = UICollectionViewFlowLayout()
     var refreshCtl = UIRefreshControl()
-    var activityIndicator: UIActivityIndicatorView!
+    var activityIndicator: LottieAnimationView!
     var postDataItem = [PostDisplayData]()
+    var pointDataList = [PointData]()
     var cancellables = Set<AnyCancellable>()
     
     @IBOutlet var collectionView: UICollectionView! {
@@ -19,6 +21,8 @@ class TimeLineViewController: UIViewController {
         }
     }
 
+    @IBOutlet var imageView: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,17 +32,37 @@ class TimeLineViewController: UIViewController {
         collectionView.refreshControl = refreshCtl
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
 
-        activityIndicator = UIActivityIndicatorView()
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        activityIndicator = LottieAnimationView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
         activityIndicator.center = self.view.center
-        activityIndicator.style = .large
-        activityIndicator.hidesWhenStopped = true
+        activityIndicator.animation = LottieAnimation.named("sanitas-logo-lottie")
+        activityIndicator.loopMode = .loop
+        activityIndicator.isHidden = true
+
         self.view.addSubview(activityIndicator)
 
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                activityIndicator.startAnimating()
+                activityIndicator.isHidden = false
+                activityIndicator.play()
+
+                let userID = try await FirebaseClient.shared.getUserUUID()
+                pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
+                pointDataList.reverse()
+
+                let todayPoint = pointDataList.filter { $0.date.getZeroTime() == Date().getZeroTime() }.compactMap { $0.point }
+
+                if todayPoint.reduce(0, +) <= 0 {
+                    imageView?.image = Asset.Assets.orange.image
+                } else if todayPoint.reduce(0, +) <= 15 {
+                    imageView?.image = Asset.Assets.pink.image
+                } else if todayPoint.reduce(0, +) <= 40 {
+                    imageView?.image = Asset.Assets.blue.image
+                } else {
+                    imageView?.image = Asset.Assets.green.image
+                }
+                
                 let friendRequestCount = try await FirebaseClient.shared.getFriendRequestCount()
                 var buttonImage: String
                 if friendRequestCount == 0 {
@@ -74,7 +98,8 @@ class TimeLineViewController: UIViewController {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
-            activityIndicator.stopAnimating()
+            activityIndicator.stop()
+            activityIndicator.isHidden = true
         }
         cancellables.insert(.init { task.cancel() })
     }

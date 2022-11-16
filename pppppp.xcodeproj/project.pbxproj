@@ -77,6 +77,9 @@
 		03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */; };
 		03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */; };
 		03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */; };
+		03A3F8072924E81F004E3CD0 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8062924E81F004E3CD0 /* LottieView.swift */; };
+		03A3F80A2924E8EB004E3CD0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 03A3F8092924E8EB004E3CD0 /* Lottie */; };
+		03A3F80E2924FD2B004E3CD0 /* sanitas-logo-lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F80D2924FD2B004E3CD0 /* sanitas-logo-lottie.json */; };
 		03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */; };
 		03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */; };
 		03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B832F228DC88E400C8AE3E /* Localizable.strings */; };
@@ -201,6 +204,8 @@
 		03A1E0B628D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0C028D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChangeProfileViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
 		03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		03A3F8062924E81F004E3CD0 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		03A3F80D2924FD2B004E3CD0 /* sanitas-logo-lottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sanitas-logo-lottie.json"; sourceTree = "<group>"; };
 		03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertHelper.swift; sourceTree = "<group>"; };
 		03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChangeProfileView.storyboard; sourceTree = "<group>"; };
 		03B832F128DC88E400C8AE3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -260,6 +265,7 @@
 				BE0BF72725B5C734005646AE /* HealthKit.framework in Frameworks */,
 				9CB2AB9A28A116120050562C /* Kingfisher in Frameworks */,
 				9C7F3C2B289CA2480039BA2E /* KeychainAccess in Frameworks */,
+				03A3F80A2924E8EB004E3CD0 /* Lottie in Frameworks */,
 				9C7F3C27289CA2250039BA2E /* FirebaseFirestore in Frameworks */,
 				9C7F3C2F289CA3A80039BA2E /* FirebaseStorage in Frameworks */,
 				9C7F3C25289CA21F0039BA2E /* FirebaseAuth in Frameworks */,
@@ -384,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				033BC37A28DC7F51008DBC49 /* Generated */,
+				03A3F80D2924FD2B004E3CD0 /* sanitas-logo-lottie.json */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				033BC37B28DC7FA9008DBC49 /* Colors.xcassets */,
 			);
@@ -556,6 +563,7 @@
 			children = (
 				03670F2A28F90521006075DC /* FriendListOfFriendsListHostingController.swift */,
 				03670F2C28F90547006075DC /* FriendListOfFriendsListContentView.swift */,
+				03A3F8062924E81F004E3CD0 /* LottieView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -880,6 +888,7 @@
 				9C7F3C2C289CA2510039BA2E /* FirebaseAnalytics */,
 				9C7F3C2E289CA3A80039BA2E /* FirebaseStorage */,
 				9CB2AB9928A116120050562C /* Kingfisher */,
+				03A3F8092924E8EB004E3CD0 /* Lottie */,
 			);
 			productName = pppppp;
 			productReference = BE7F33782580D07E0027620D /* pppppp.app */;
@@ -913,6 +922,7 @@
 				BEA64AEF25D3F1A60064F184 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				9CAA892926BAA0EE005517D5 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				9CB2AB9828A116120050562C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				03A3F8082924E8EB004E3CD0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = BE7F33792580D07E0027620D /* Products */;
 			projectDirPath = "";
@@ -943,6 +953,7 @@
 				9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */,
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
 				036F69E528BE1DC70066A7DA /* SummaryCollectionViewCell.xib in Resources */,
+				03A3F80E2924FD2B004E3CD0 /* sanitas-logo-lottie.json in Resources */,
 				03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */,
 				036F69F228C089B40066A7DA /* EmailSignInView.storyboard in Resources */,
 				035D29E128E9F29200E1BEA4 /* FriendListView.storyboard in Resources */,
@@ -981,6 +992,7 @@
 				032DF36C28F3BDDD00458C20 /* HealthChartsViewModel.swift in Sources */,
 				9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */,
 				0374653C28EDA3F900DB0833 /* SetGoalWeightViewController.swift in Sources */,
+				03A3F8072924E81F004E3CD0 /* LottieView.swift in Sources */,
 				03670F2D28F90547006075DC /* FriendListOfFriendsListContentView.swift in Sources */,
 				03670F2B28F90521006075DC /* FriendListOfFriendsListHostingController.swift in Sources */,
 				032DF36128F24E7F00458C20 /* DateHelper.swift in Sources */,
@@ -1137,7 +1149,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1159,7 +1171,7 @@
 				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Sanitas;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1228,7 +1240,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1286,7 +1298,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)${BUNDLE_DISPLAY_NAME_SUFFIX}";
@@ -1308,7 +1320,7 @@
 				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Sanitas;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1335,7 +1347,7 @@
 				DEVELOPMENT_TEAM = 5M57D4KW9D;
 				INFOPLIST_FILE = pppppp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Sanitas;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1377,6 +1389,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		03A3F8082924E8EB004E3CD0 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		9CAA892926BAA0EE005517D5 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess/";
@@ -1404,6 +1424,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		03A3F8092924E8EB004E3CD0 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03A3F8082924E8EB004E3CD0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		9C7F3C24289CA21F0039BA2E /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BEA64AEF25D3F1A60064F184 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

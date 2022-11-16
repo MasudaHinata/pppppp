@@ -4,7 +4,6 @@ import Charts
 import Combine
 
 struct ProfileContentView: View {
-
     @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
@@ -12,7 +11,8 @@ struct ProfileContentView: View {
         let bounds = UIScreen.main.bounds
         let width = bounds.width
 
-        NavigationStack {
+        //TODO: NavigationStackにする
+        NavigationView {
             Form {
                 Section {
                     HStack(alignment: .center, spacing: width * 0.10) {
@@ -90,6 +90,7 @@ struct ProfileContentView: View {
 
                 //MARK: - Streak
                 Section {
+                    //TODO: 端末のサイズに合わせて表示
                     StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList))
                         .frame(width: 343.4, height: 139)
                         .listRowBackground(Color(asset: Asset.Colors.white16))
@@ -116,20 +117,18 @@ struct ProfileContentView: View {
                     Text("RECENT ACTIVITIES")
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(Color(asset: Asset.Colors.mainColor))
-
             .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
-
             .navigationBarItems(trailing: HStack {
-                //TODO: viewModel.meJudge == falseの時は非表示にする
                 if viewModel.meJudge {
-                    Button {
-                        viewModel.sceneHealthCharts()
-                    } label: {
-                        Image(systemName: "heart")
+                    //MARK: iOS16のみHealthChartViewに遷移するボタンを表示する
+                    if #available(iOS 16.0, *) {
+                        Button {
+                            viewModel.sceneHealthCharts()
+                        } label: {
+                            Image(systemName: "heart")
+                        }
+                        .foregroundColor(.white)
                     }
-                    .foregroundColor(.white)
 
                     Button {
                         viewModel.sceneAddFriend()
@@ -146,12 +145,14 @@ struct ProfileContentView: View {
                     .foregroundColor(.white)
                 }
             })
-
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .hideListBackgroundIfAvailable()
             .background(Color(asset: Asset.Colors.mainColor))
-            .onAppear {
-                viewModel.getProfileData()
-            }
+        }
+
+        .onAppear {
+            viewModel.getProfileData()
+            UITableView.appearance().backgroundColor = Asset.Colors.mainColor.color
         }
     }
     
@@ -159,5 +160,17 @@ struct ProfileContentView: View {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd"
         return dateFormatter.string(from: date)
+    }
+}
+
+extension View {
+    func hideListBackgroundIfAvailable() -> some View {
+        Group {
+            if #available(iOS 16.0, *) {
+                self.scrollContentBackground(.hidden)
+            } else {
+                self
+            }
+        }
     }
 }

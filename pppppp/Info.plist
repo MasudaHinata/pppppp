@@ -48,6 +48,8 @@
 	<string>HealthKitから情報を読み込みます</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>HealthKitに情報をかき込みます</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>ライブラリにQRCodeを保存します。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>ライブラリを開きます</string>
 	<key>UIAppFonts</key>
