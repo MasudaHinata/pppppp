@@ -31,12 +31,8 @@ struct FriendListOfFriendsListContentView: View {
                             } label: {
                                 HStack {
                                     Image(systemName: "plus")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
+                                        .font(.system(size: 24, weight: .black, design: .rounded))
                                         .foregroundColor(Color.white)
-                                    //TODO: ios16に対応させる
-                                        .bold()
-                                        .frame(width: 14, height: 14)
                                         .padding(3)
 
                                     Text("ADD")
@@ -57,15 +53,15 @@ struct FriendListOfFriendsListContentView: View {
                 }
                 .listRowBackground(Color.clear)
             }
-            //TODO: ios16に対応させる
-            .scrollContentBackground(.hidden)
             .background(Color(asset: Asset.Colors.mainColor))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarTitle(Text("Friends"))
             .onAppear() {
                 viewModel.getFriendListOfList()
+                UITableView.appearance().backgroundColor = .clear
             }
         }
         .navigationTitle("Friends")
     }
 }
+
