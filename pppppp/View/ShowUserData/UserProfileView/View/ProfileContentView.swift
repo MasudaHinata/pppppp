@@ -91,6 +91,7 @@ struct ProfileContentView: View {
 
                 //MARK: - Streak
                 Section {
+                    //TODO: 端末のサイズに合わせて表示
                     StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList))
                         .frame(width: 343.4, height: 139)
                         .listRowBackground(Color(asset: Asset.Colors.white16))
@@ -118,7 +119,7 @@ struct ProfileContentView: View {
                 }
             }
             //TODO: ios16に対応させる
-            //            .scrollContentBackground(.hidden)
+            .scrollContentBackground(.hidden)
             .background(Color(asset: Asset.Colors.mainColor))
 
             .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
