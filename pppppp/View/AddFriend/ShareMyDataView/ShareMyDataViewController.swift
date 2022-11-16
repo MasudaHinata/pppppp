@@ -11,6 +11,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     var qrCodeView = UIView()
     var qrCodeImageView = UIImageView()
     var dismissButton = UIButton()
+    var saveButton = UIButton()
 
     @IBOutlet weak var caputureView: UIView!
     
@@ -63,16 +64,6 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         }
     }
 
-    @IBOutlet var saveImageLayout: UIButton! {
-        didSet {
-            albumButtonLayout.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
-            var configuration = UIButton.Configuration.filled()
-            configuration.baseBackgroundColor = Asset.Colors.black39.color
-            configuration.cornerStyle = .capsule
-            albumButtonLayout.configuration = configuration
-        }
-    }
-
     //MARK: - カメラの許可がない時のアラート
     @IBAction func alertButton() {
         if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
@@ -107,13 +98,23 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         dismissButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickDismissButton(sender:)), for: .touchUpInside)
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
 
+        saveButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
+        saveButton.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 108)
+        saveButton.backgroundColor = Asset.Colors.white48.color
+        saveButton.layer.cornerRadius = 28.0
+        saveButton.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
+        saveButton.tintColor = .black
+        saveButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickSaveQRCodeImageButton(sender:)), for: .touchUpInside)
+
         qrCodeView.isHidden = false
         qrCodeImageView.isHidden = false
         dismissButton.isHidden = false
+        saveButton.isHidden = false
 
         self.view.addSubview(dismissButton)
         self.view.addSubview(qrCodeView)
         self.view.addSubview(qrCodeImageView)
+        self.view.addSubview(saveButton)
 
         let constraints = [qrCodeView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
                            qrCodeView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
@@ -196,67 +197,6 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         }
     }
 
-    @IBAction func saveImage() {
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                let userID = try await FirebaseClient.shared.getUserUUID()
-                let myProfileURL = "sanitas-ios-dev://?id=\(userID)"
-                let url = myProfileURL
-                let data = url.data(using: .utf8)!
-                let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])!
-                let sizeTransform = CGAffineTransform(scaleX: 10, y: 10)
-
-                print(UIImage(ciImage:qr.outputImage!.transformed(by: sizeTransform)))
-
-                UIImageWriteToSavedPhotosAlbum(UIImage(ciImage:qr.outputImage!.transformed(by: sizeTransform)), self, #selector(self.showResultOfSaveImage(_:didFinishSavingWithError:contextInfo:)), nil)
-            } catch {
-                print("ShareMyDataViewController showMyQRCode error:",error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
-                        self.viewDidLoad()
-                    }
-                } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message:"\(error.localizedDescription)")
-                }
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-    }
-
-    @objc func showResultOfSaveImage(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
-        var title = "保存完了"
-        var message = "カメラロールに保存しました"
-
-        if error != nil {
-            title = "エラー"
-            message = "保存に失敗しました"
-        }
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        print(error.localizedDescription)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        alertButtonLayout.isHidden = true
-        useCameraPermission()
-        initDeviceCamera()
-    }
-    
-    //MARK: カメラの許可
-    func useCameraPermission() {
-        AVCaptureDevice.requestAccess(for: .video) { [weak self] (res) in
-            guard let self = self else { return }
-            if res == false {
-                DispatchQueue.main.async {
-                    self.alertButtonLayout.isHidden = false
-                }
-            }
-        }
-    }
-    
     //MARK: - QRCode読み取り
     private func initDeviceCamera() {
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back)
@@ -300,11 +240,11 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     //MARK: - QRCode生成
     func makeQRcode(uiImage: UIImageView) async throws {
         let userID = try await FirebaseClient.shared.getUserUUID()
-        #if DEBUG
+#if DEBUG
         let myProfileURL = "sanitas-ios-dev-debug://?id=\(userID)"
-        #else
+#else
         let myProfileURL = "sanitas-ios-dev://?id=\(userID)"
-        #endif
+#endif
         let url = myProfileURL
         let data = url.data(using: .utf8)!
         let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])!
@@ -331,5 +271,72 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         qrCodeView.isHidden = true
         qrCodeImageView.isHidden = true
         dismissButton.isHidden = true
+        saveButton.isHidden = true
+    }
+
+    //MARK: - QRCode保存ボタンが押された時の処理
+    @objc func onClickSaveQRCodeImageButton(sender: UIButton) {
+        let task = Task { [weak self] in
+            guard let self = self else { return }
+            do {
+                let userID = try await FirebaseClient.shared.getUserUUID()
+#if DEBUG
+                let myProfileURL = "sanitas-ios-dev-debug://?id=\(userID)"
+#else
+                let myProfileURL = "sanitas-ios-dev://?id=\(userID)"
+#endif
+                let url = myProfileURL
+                let data = url.data(using: .utf8)!
+                let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])!
+                let sizeTransform = CGAffineTransform(scaleX: 10, y: 10)
+
+                print(UIImage(ciImage:qr.outputImage!.transformed(by: sizeTransform)))
+                UIImageWriteToSavedPhotosAlbum(UIImage(ciImage: qr.outputImage!.transformed(by: sizeTransform)), nil, #selector(self.showResultOfSaveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+            } catch {
+                print("ShareMyDataViewController showMyQRCode error:",error.localizedDescription)
+                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
+                        self.viewDidLoad()
+                    }
+                } else {
+                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message:"\(error.localizedDescription)")
+                }
+            }
+        }
+        cancellables.insert(.init { task.cancel() })
+    }
+
+    @objc func showResultOfSaveImage(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
+        var title = "保存完了"
+        var message = "カメラロールに保存しました"
+
+        print(error.localizedDescription)
+        if error != nil {
+            title = "エラー"
+            message = "保存に失敗しました"
+        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        print(error.localizedDescription)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        alertButtonLayout.isHidden = true
+        useCameraPermission()
+        initDeviceCamera()
+    }
+
+    //MARK: カメラの許可
+    func useCameraPermission() {
+        AVCaptureDevice.requestAccess(for: .video) { [weak self] (res) in
+            guard let self = self else { return }
+            if res == false {
+                DispatchQueue.main.async {
+                    self.alertButtonLayout.isHidden = false
+                }
+            }
+        }
     }
 }

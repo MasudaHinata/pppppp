@@ -1,9 +1,10 @@
 import Combine
 import UIKit
+import Lottie
 
 class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, FirebasePutPointDelegate, DrawViewDelegate, FireStoreCheckNameDelegate {
     
-    var activityIndicator: UIActivityIndicatorView!
+    var activityIndicator: LottieAnimationView!
     var cancellables = Set<AnyCancellable>()
     let calendar = Calendar.current
     var startDate = Date()
@@ -65,7 +66,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                activityIndicator.startAnimating()
+                activityIndicator.isHidden = false
+                activityIndicator.play()
                 let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
                 if type as! String == "今日までの一週間" {
                     startDate = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: Date()))!
@@ -85,7 +87,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
                     self.showDetailViewController(addFriendVC, sender: self)
                 }
-                activityIndicator.stopAnimating()
+                activityIndicator.stop()
+                activityIndicator.isHidden = true
             }
             catch {
                 print("SanitasViewContro reloadButton error:", error.localizedDescription)
@@ -108,19 +111,22 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         FirebaseClient.shared.putPointDelegate = self
         FirebaseClient.shared.notChangeDelegate = self
         NotificationManager.setCalendarNotification(title: "自己評価をしてポイントを獲得しましょう", body: "19時になりました")
-        
-        activityIndicator = UIActivityIndicatorView()
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+
+        activityIndicator = LottieAnimationView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
         activityIndicator.center = self.view.center
-        activityIndicator.style = .large
-        activityIndicator.hidesWhenStopped = true
+        activityIndicator.animation = LottieAnimation.named("sanitas-logo-lottie")
+        activityIndicator.loopMode = .loop
+        activityIndicator.isHidden = true
         self.view.addSubview(activityIndicator)
+
         mountainView.delegate = self
 
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                activityIndicator.startAnimating()
+                activityIndicator.isHidden = false
+                activityIndicator.play()
 
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 try await FirebaseClient.shared.checkNameData()
@@ -147,8 +153,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
                     self.showDetailViewController(addFriendVC, sender: self)
                 }
-
-                activityIndicator.stopAnimating()
+                activityIndicator.stop()
+                activityIndicator.isHidden = true
             } catch {
                 print("SanitasViewContro ViewDidL error:",error.localizedDescription)
                 if error.localizedDescription == "Authorization not determined" {
@@ -167,7 +173,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        activityIndicator.startAnimating()
         //MARK: 初期画面
         //        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
         //        if judge == false {
@@ -177,7 +182,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
 
         //MARK: MountainViewの位置更新
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
-        activityIndicator.stopAnimating()
         if friendDataList.count == 1 {
             let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
             self.showDetailViewController(addFriendVC, sender: self)
@@ -202,7 +206,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                         self.present(selfCheckVC, animated: true)
                     }
                 }
-                
+
                 //MARK: 今日の歩数ポイントの作成が完了しているかの判定
                 let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
                 if createStepPointJudge {

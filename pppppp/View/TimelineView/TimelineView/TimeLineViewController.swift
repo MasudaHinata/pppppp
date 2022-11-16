@@ -30,9 +30,9 @@ class TimeLineViewController: UIViewController {
         refreshCtl.addAction(.init { _ in self.refresh() }, for: .valueChanged)
 
         activityIndicator = LottieAnimationView()
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
         activityIndicator.center = self.view.center
-        activityIndicator.animation = LottieAnimation.named("lottie-loop")
+        activityIndicator.animation = LottieAnimation.named("sanitas-logo-lottie")
         activityIndicator.loopMode = .loop
         activityIndicator.isHidden = true
 
