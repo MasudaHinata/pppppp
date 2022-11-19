@@ -80,6 +80,9 @@
 		03A3F8072924E81F004E3CD0 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8062924E81F004E3CD0 /* LottieView.swift */; };
 		03A3F80A2924E8EB004E3CD0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 03A3F8092924E8EB004E3CD0 /* Lottie */; };
 		03A3F80E2924FD2B004E3CD0 /* sanitas-logo-lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F80D2924FD2B004E3CD0 /* sanitas-logo-lottie.json */; };
+		03A3F8112928B6A8004E3CD0 /* SettingGoalWeightContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8102928B6A8004E3CD0 /* SettingGoalWeightContentView.swift */; };
+		03A3F8132928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8122928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift */; };
+		03A3F8162928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8152928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift */; };
 		03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */; };
 		03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */; };
 		03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B832F228DC88E400C8AE3E /* Localizable.strings */; };
@@ -206,6 +209,9 @@
 		03A1E0C228D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		03A3F8062924E81F004E3CD0 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		03A3F80D2924FD2B004E3CD0 /* sanitas-logo-lottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sanitas-logo-lottie.json"; sourceTree = "<group>"; };
+		03A3F8102928B6A8004E3CD0 /* SettingGoalWeightContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalWeightContentView.swift; sourceTree = "<group>"; };
+		03A3F8122928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalWeightHostingController.swift; sourceTree = "<group>"; };
+		03A3F8152928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalWeightViewModel.swift; sourceTree = "<group>"; };
 		03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertHelper.swift; sourceTree = "<group>"; };
 		03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChangeProfileView.storyboard; sourceTree = "<group>"; };
 		03B832F128DC88E400C8AE3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -683,6 +689,32 @@
 			path = SetGoalWeightView;
 			sourceTree = "<group>";
 		};
+		03A3F80F2928B595004E3CD0 /* SettingGoalWeightView */ = {
+			isa = PBXGroup;
+			children = (
+				03A3F8142928B6D7004E3CD0 /* View */,
+				03A3F8172928B6ED004E3CD0 /* ViewModel */,
+			);
+			path = SettingGoalWeightView;
+			sourceTree = "<group>";
+		};
+		03A3F8142928B6D7004E3CD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				03A3F8122928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift */,
+				03A3F8102928B6A8004E3CD0 /* SettingGoalWeightContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		03A3F8172928B6ED004E3CD0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				03A3F8152928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		03A45B6D28D8A43E0059B617 /* SanitasGraphView */ = {
 			isa = PBXGroup;
 			children = (
@@ -814,6 +846,7 @@
 				032843AE28DC9A7900AB1A5D /* SettingView */,
 				032843AF28DC9A9A00AB1A5D /* SettingCell */,
 				0374653F28EDA43D00DB0833 /* SetGoalWeightView */,
+				03A3F80F2928B595004E3CD0 /* SettingGoalWeightView */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -1030,6 +1063,7 @@
 				9CE63B8D288C548D00FFE94C /* LoginHelper.swift in Sources */,
 				036F69E428BE1DC70066A7DA /* SummaryCollectionViewCell.swift in Sources */,
 				9C1A900C283506D5004B4100 /* ProfileHostingController.swift in Sources */,
+				03A3F8132928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift in Sources */,
 				03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */,
 				03670F2F28F9057E006075DC /* FriendListOfFriendsListViewModel.swift in Sources */,
 				0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */,
@@ -1044,6 +1078,7 @@
 				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
+				03A3F8162928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift in Sources */,
 				03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */,
 				0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */,
 				032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */,
@@ -1059,6 +1094,7 @@
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
+				03A3F8112928B6A8004E3CD0 /* SettingGoalWeightContentView.swift in Sources */,
 				032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */,
 				03A1E0B728D4C2F300B5B9C3 /* DashboardViewController+CollectionViewDelegate.swift in Sources */,
 				9CD49C2728AEAD5E000CDEDF /* NotificationManager.swift in Sources */,

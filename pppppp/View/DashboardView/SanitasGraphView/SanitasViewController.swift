@@ -220,21 +220,21 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 }
 
                 //MARK: 体重のポイント作成判定
-                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
-                let userID = try await FirebaseClient.shared.getUserUUID()
-                let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(userId: userID)
-                guard let goalWeight = userData.last?.weightGoal else {
-                    let setGoalWeightVC = StoryboardScene.SetGoalWeightView.initialScene.instantiate()
-                    self.showDetailViewController(setGoalWeightVC, sender: self)
-                    return
-                }
-                if judge {
-                    let weight = try await HealthKit_ScoreringManager.shared.getWeight()
-                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight, weight: weight)
-                    if checkPoint == [] {
-                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "HealthKitに過去2週間の体重データがないためポイントを作成できませんでした")
-                    }
-                }
+//                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
+//                let userID = try await FirebaseClient.shared.getUserUUID()
+//                let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(userId: userID)
+//                guard let goalWeight = userData.last?.weightGoal else {
+                    let settingGoalWeightVC = SettingGoalWeightHostingController(viewModel: SettingGoalWeightViewModel())
+                    self.showDetailViewController(settingGoalWeightVC, sender: self)
+//                    return
+//                }
+//                if judge {
+//                    let weight = try await HealthKit_ScoreringManager.shared.getWeight()
+//                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight, weight: weight)
+//                    if checkPoint == [] {
+//                        ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "HealthKitに過去2週間の体重データがないためポイントを作成できませんでした")
+//                    }
+//                }
             }
             catch {
                 print("SanitasViewContro ViewAppear error:",error.localizedDescription)
