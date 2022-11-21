@@ -43,6 +43,7 @@ class RecordWeightViewController: UIViewController {
                 let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(userId: userID)
                 guard let goalWeight = userData.last?.weightGoal else {
                     let settingGoalWeightVC = SettingGoalWeightHostingController(viewModel: SettingGoalWeightViewModel())
+                    settingGoalWeightVC.modalPresentationStyle = .fullScreen
                     self.showDetailViewController(settingGoalWeightVC, sender: self)
                     return
                 }
