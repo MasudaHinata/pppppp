@@ -4,6 +4,7 @@ import Lottie
 struct SettingGoalWeightContentView: View {
 
     @ObservedObject var viewModel: SettingGoalWeightViewModel
+//    @FocusState var focus: Bool
 
     var body: some View {
 
@@ -11,19 +12,32 @@ struct SettingGoalWeightContentView: View {
         let width = bounds.width
         let height = bounds.height
 
-        VStack{
+        VStack {
+            //TODO: アニメーションゆっくりにする
             LottieView(name: "sanitas-logo-lottie", contentMode: .scaleAspectFill, loopMode: .loop)
-                .frame(width: width, height: height * 0.4)
+                .frame(width: width * 1.1, height: height * 0.6)
 
-            TextField("weight", text: $viewModel.weight)
-                .keyboardType(.decimalPad)
+            Text("Enter weight")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(Color(asset: Asset.Colors.white48))
 
-            Text("\(viewModel.weight) KG")
+            ZStack {
+                TextField("\(viewModel.weight)", value: $viewModel.weight, formatter: NumberFormatter())
+                    .font(.system(size: 14, weight: .bold))
+                    .keyboardType(.decimalPad)
+                    .frame(width: width * 0.8, height: 48)
+                    .background(Color(asset: Asset.Colors.subPurple50))
 
-            TextField("weight goal", text: $viewModel.weightGoal)
-                .keyboardType(.decimalPad)
+                Text("kg")
+            }
 
-            Text("\(viewModel.weightGoal) KG")
+            Text("\(viewModel.weight) kg")
+
+
+            Text("Enter weight goal")
+
+            
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(asset: Asset.Colors.mainColor))
