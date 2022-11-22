@@ -46,11 +46,12 @@ struct SettingGoalWeightContentView: View {
                     .frame(width: width * 0.8, height: 48)
                     .background(Color(asset: Asset.Colors.subPurple50))
 
-                Text("kg")
-                    .frame(maxWidth: width * 0.8, alignment: .leading)
-                    .font(.system(size: 14, weight: .bold))
+                    Text("kg")
+                        .frame(maxWidth: width * 0.8, alignment: .leading)
+                        .font(.system(size: 14, weight: .bold))
             }
 
+            //TODO: Button
             
             
         }
