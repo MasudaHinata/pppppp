@@ -8,7 +8,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     private let session = AVCaptureSession()
     var flag = Bool()
     var cancellables = Set<AnyCancellable>()
-    var qrCodeView = UIView()
+    var qrCodeBackgroundView = UIView()
     var qrCodeImageView = UIImageView()
     var dismissButton = UIButton()
     var saveButton = UIButton()
@@ -83,11 +83,11 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     //MARK: - QRCodeを表示
     @IBAction func showMyQRCode() {
         flag = false
-        qrCodeView = UIView()
-        qrCodeView.backgroundColor = Asset.Colors.white00.color
-        qrCodeView.layer.cornerRadius = 64
-        qrCodeView.layer.cornerCurve = .continuous
-        qrCodeView.translatesAutoresizingMaskIntoConstraints = false
+        qrCodeBackgroundView = UIView()
+        qrCodeBackgroundView.backgroundColor = Asset.Colors.white00.color
+        qrCodeBackgroundView.layer.cornerRadius = 64
+        qrCodeBackgroundView.layer.cornerCurve = .continuous
+        qrCodeBackgroundView.translatesAutoresizingMaskIntoConstraints = false
 
         qrCodeImageView = UIImageView()
         qrCodeImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -98,33 +98,33 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         dismissButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickDismissButton(sender:)), for: .touchUpInside)
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
 
-//        saveButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
-//        saveButton.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 108)
-//        saveButton.backgroundColor = Asset.Colors.white48.color
-//        saveButton.layer.cornerRadius = 28.0
-//        saveButton.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
-//        saveButton.tintColor = .black
-//        saveButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickSaveQRCodeImageButton(sender:)), for: .touchUpInside)
+        saveButton = UIButton(frame: CGRect(x: 0, y: 0, width: 56, height: 56))
+        saveButton.layer.position = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 108)
+        saveButton.backgroundColor = Asset.Colors.white48.color
+        saveButton.layer.cornerRadius = 28.0
+        saveButton.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
+        saveButton.tintColor = .black
+        saveButton.addTarget(self, action: #selector(ShareMyDataViewController.onClickSaveQRCodeImageButton(sender:)), for: .touchUpInside)
 
-        qrCodeView.isHidden = false
+        qrCodeBackgroundView.isHidden = false
         qrCodeImageView.isHidden = false
         dismissButton.isHidden = false
-//        saveButton.isHidden = false
+        saveButton.isHidden = false
 
         self.view.addSubview(dismissButton)
-        self.view.addSubview(qrCodeView)
+        self.view.addSubview(qrCodeBackgroundView)
         self.view.addSubview(qrCodeImageView)
-//        self.view.addSubview(saveButton)
+        self.view.addSubview(saveButton)
 
-        let constraints = [qrCodeView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
-                           qrCodeView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
-                           qrCodeView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                           qrCodeView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+        let constraints = [qrCodeBackgroundView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
+                           qrCodeBackgroundView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
+                           qrCodeBackgroundView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                           qrCodeBackgroundView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
 
-                           qrCodeImageView.leadingAnchor.constraint(equalTo: qrCodeView.leadingAnchor, constant: 32),
-                           qrCodeImageView.trailingAnchor.constraint(equalTo: qrCodeView.trailingAnchor, constant: -32),
-                           qrCodeImageView.topAnchor.constraint(equalTo: qrCodeView.topAnchor, constant: 32),
-                           qrCodeImageView.bottomAnchor.constraint(equalTo: qrCodeView.bottomAnchor, constant: -32),
+                           qrCodeImageView.leadingAnchor.constraint(equalTo: qrCodeBackgroundView.leadingAnchor, constant: 32),
+                           qrCodeImageView.trailingAnchor.constraint(equalTo: qrCodeBackgroundView.trailingAnchor, constant: -32),
+                           qrCodeImageView.topAnchor.constraint(equalTo: qrCodeBackgroundView.topAnchor, constant: 32),
+                           qrCodeImageView.bottomAnchor.constraint(equalTo: qrCodeBackgroundView.bottomAnchor, constant: -32),
 
                            dismissButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
                            dismissButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -268,58 +268,31 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     
     //MARK: - dismissButtonが押された時の処理
     @objc func onClickDismissButton(sender: UIButton) {
-        qrCodeView.isHidden = true
+        qrCodeBackgroundView.isHidden = true
         qrCodeImageView.isHidden = true
         dismissButton.isHidden = true
         saveButton.isHidden = true
     }
 
     //MARK: - QRCode保存ボタンが押された時の処理
-//    @objc func onClickSaveQRCodeImageButton(sender: UIButton) {
-//        let task = Task { [weak self] in
-//            guard let self = self else { return }
-//            do {
-//                let userID = try await FirebaseClient.shared.getUserUUID()
-//#if DEBUG
-//                let myProfileURL = "sanitas-ios-dev-debug://?id=\(userID)"
-//#else
-//                let myProfileURL = "sanitas-ios-dev://?id=\(userID)"
-//#endif
-//                let url = myProfileURL
-//                let data = url.data(using: .utf8)!
-//                let qr = CIFilter(name: "CIQRCodeGenerator", parameters: ["inputMessage": data, "inputCorrectionLevel": "M"])!
-//                let sizeTransform = CGAffineTransform(scaleX: 10, y: 10)
-//
-//                print(UIImage(ciImage:qr.outputImage!.transformed(by: sizeTransform)))
-//                UIImageWriteToSavedPhotosAlbum(UIImage(ciImage: qr.outputImage!.transformed(by: sizeTransform)), nil, #selector(self.showResultOfSaveImage(_:didFinishSavingWithError:contextInfo:)), nil)
-//            } catch {
-//                print("ShareMyDataViewController showMyQRCode error:",error.localizedDescription)
-//                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-//                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください") { _ in
-//                        self.viewDidLoad()
-//                    }
-//                } else {
-//                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message:"\(error.localizedDescription)")
-//                }
-//            }
-//        }
-//        cancellables.insert(.init { task.cancel() })
-//    }
-//
-//    @objc func showResultOfSaveImage(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
-//        var title = "保存完了"
-//        var message = "カメラロールに保存しました"
-//
-//        print(error.localizedDescription)
-//        if error != nil {
-//            title = "エラー"
-//            message = "保存に失敗しました"
-//        }
-//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        print(error.localizedDescription)
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
-//    }
+    @objc func onClickSaveQRCodeImageButton(sender: UIButton) {
+        let screenShot = qrCodeImageView.getScreenShot(windowFrame: view.frame, adFrame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        //FIXME: 保存された時の大きさが変
+        UIImageWriteToSavedPhotosAlbum(screenShot, self, #selector(self.showResultOfSaveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+
+    @objc func showResultOfSaveImage(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
+        var title = "保存完了"
+        var message = "カメラロールに保存しました"
+
+        if error != nil {
+            title = "エラー"
+            message = "保存に失敗しました"
+        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

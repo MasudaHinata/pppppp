@@ -83,6 +83,7 @@
 		03A3F8112928B6A8004E3CD0 /* SettingGoalWeightContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8102928B6A8004E3CD0 /* SettingGoalWeightContentView.swift */; };
 		03A3F8132928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8122928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift */; };
 		03A3F8162928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8152928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift */; };
+		03A3F819292D2B99004E3CD0 /* ViewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F818292D2B99004E3CD0 /* ViewScreenshot.swift */; };
 		03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */; };
 		03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */; };
 		03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B832F228DC88E400C8AE3E /* Localizable.strings */; };
@@ -212,6 +213,7 @@
 		03A3F8102928B6A8004E3CD0 /* SettingGoalWeightContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalWeightContentView.swift; sourceTree = "<group>"; };
 		03A3F8122928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalWeightHostingController.swift; sourceTree = "<group>"; };
 		03A3F8152928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalWeightViewModel.swift; sourceTree = "<group>"; };
+		03A3F818292D2B99004E3CD0 /* ViewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewScreenshot.swift; sourceTree = "<group>"; };
 		03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertHelper.swift; sourceTree = "<group>"; };
 		03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChangeProfileView.storyboard; sourceTree = "<group>"; };
 		03B832F128DC88E400C8AE3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -639,6 +641,7 @@
 				032DF36928F30FDA00458C20 /* CGPointHelper.swift */,
 				032DF37128F4535D00458C20 /* PointActivityImage.swift */,
 				032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */,
+				03A3F818292D2B99004E3CD0 /* ViewScreenshot.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1068,6 +1071,7 @@
 				03670F2F28F9057E006075DC /* FriendListOfFriendsListViewModel.swift in Sources */,
 				0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */,
 				03C7E7C228D453ED0069A46E /* OnboardingViewController1.swift in Sources */,
+				03A3F819292D2B99004E3CD0 /* ViewScreenshot.swift in Sources */,
 				0343682728D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */,
 				9CAA88EC26B1918B005517D5 /* EmailSignInViewController.swift in Sources */,
