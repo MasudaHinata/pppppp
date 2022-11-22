@@ -282,16 +282,14 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
     }
 
     @objc func showResultOfSaveImage(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
-        var title = "保存完了"
+        var title = "完了"
         var message = "カメラロールに保存しました"
 
         if error != nil {
             title = "エラー"
             message = "保存に失敗しました"
         }
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        ShowAlertHelper.okAlert(vc: self, title: title, message: message)
     }
 
     override func viewDidLoad() {
