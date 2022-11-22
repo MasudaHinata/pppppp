@@ -15,7 +15,7 @@ struct SettingGoalWeightContentView: View {
         VStack {
             //TODO: アニメーションゆっくりにする
             LottieView(name: "sanitas-logo-lottie", contentMode: .scaleAspectFill, loopMode: .loop)
-                .frame(width: width * 1.1, height: height * 0.6)
+                .frame(width: width * 1.08, height: height * 0.6)
 
             Text("Enter weight")
                 .frame(maxWidth: width * 0.85, alignment: .leading)
