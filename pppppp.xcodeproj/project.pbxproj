@@ -84,6 +84,7 @@
 		03A3F8132928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8122928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift */; };
 		03A3F8162928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8152928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift */; };
 		03A3F819292D2B99004E3CD0 /* ViewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F818292D2B99004E3CD0 /* ViewScreenshot.swift */; };
+		03A3F81D292E3843004E3CD0 /* sanitas-logo-appear.json in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F81C292E3843004E3CD0 /* sanitas-logo-appear.json */; };
 		03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */; };
 		03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */; };
 		03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B832F228DC88E400C8AE3E /* Localizable.strings */; };
@@ -214,6 +215,7 @@
 		03A3F8122928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalWeightHostingController.swift; sourceTree = "<group>"; };
 		03A3F8152928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalWeightViewModel.swift; sourceTree = "<group>"; };
 		03A3F818292D2B99004E3CD0 /* ViewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewScreenshot.swift; sourceTree = "<group>"; };
+		03A3F81C292E3843004E3CD0 /* sanitas-logo-appear.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sanitas-logo-appear.json"; sourceTree = "<group>"; };
 		03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertHelper.swift; sourceTree = "<group>"; };
 		03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChangeProfileView.storyboard; sourceTree = "<group>"; };
 		03B832F128DC88E400C8AE3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 			children = (
 				033BC37A28DC7F51008DBC49 /* Generated */,
 				03A3F80D2924FD2B004E3CD0 /* sanitas-logo-lottie.json */,
+				03A3F81C292E3843004E3CD0 /* sanitas-logo-appear.json */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				033BC37B28DC7FA9008DBC49 /* Colors.xcassets */,
 			);
@@ -985,6 +988,7 @@
 				036F6A0128C092520066A7DA /* DashboardView.storyboard in Resources */,
 				032843A628DC8C7E00AB1A5D /* OnboardingView3.storyboard in Resources */,
 				036F69F628C08C0F0066A7DA /* SetNameView.storyboard in Resources */,
+				03A3F81D292E3843004E3CD0 /* sanitas-logo-appear.json in Resources */,
 				035CE52028CF1E61001F89BB /* RecordExerciseView.storyboard in Resources */,
 				9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */,
 				BE7F33882580D0810027620D /* LaunchScreen.storyboard in Resources */,
