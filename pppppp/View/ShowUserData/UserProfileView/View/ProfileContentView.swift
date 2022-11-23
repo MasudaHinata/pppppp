@@ -149,7 +149,6 @@ struct ProfileContentView: View {
             .hideListBackgroundIfAvailable()
             .background(Color(asset: Asset.Colors.mainColor))
         }
-
         .onAppear {
             viewModel.getProfileData()
             UITableView.appearance().backgroundColor = Asset.Colors.mainColor.color

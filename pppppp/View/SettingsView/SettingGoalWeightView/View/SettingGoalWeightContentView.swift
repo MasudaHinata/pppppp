@@ -4,18 +4,19 @@ import Lottie
 struct SettingGoalWeightContentView: View {
 
     @ObservedObject var viewModel: SettingGoalWeightViewModel
-    @FocusState var focus: Bool
 
     var body: some View {
 
         let bounds = UIScreen.main.bounds
         let width = bounds.width
-        let height = bounds.height
 
         VStack {
-            //TODO: アニメーションゆっくりにする
-            LottieView(name: "sanitas-logo-lottie", contentMode: .scaleAspectFill, loopMode: .loop)
-                .frame(width: width * 1.08, height: height * 0.6)
+            Spacer()
+
+            LottieView(name: "sanitas-logo-appear", contentMode: .scaleAspectFill, loopMode: .playOnce)
+                .frame(maxWidth: .infinity, maxHeight: 300)
+
+            Spacer()
 
             Text("Enter weight")
                 .frame(maxWidth: width * 0.85, alignment: .leading)
@@ -23,12 +24,14 @@ struct SettingGoalWeightContentView: View {
                 .foregroundColor(Color(asset: Asset.Colors.white48))
 
             ZStack {
-                TextField("\(viewModel.weight)", value: $viewModel.weight, formatter: NumberFormatter())
+                TextField("", value: $viewModel.weight, formatter: NumberFormatter())
                     .font(.system(size: 14, weight: .bold))
                     .keyboardType(.decimalPad)
-                    .frame(width: width * 0.85, height: 48)
+                    .frame(width: width * 0.80, height: 48)
+                    .padding(.horizontal)
                     .background(Color(asset: Asset.Colors.subPurple50))
-                //                    .focused(self.$focus)
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
                 Text("kg")
                     .font(.system(size: 14, weight: .bold))
@@ -41,44 +44,47 @@ struct SettingGoalWeightContentView: View {
                 .foregroundColor(Color(asset: Asset.Colors.white48))
 
             ZStack {
-                TextField("\(viewModel.weightGoal)", value: $viewModel.weightGoal, formatter: NumberFormatter())
+                TextField("", value: $viewModel.weightGoal, formatter: NumberFormatter())
                     .font(.system(size: 14, weight: .bold))
                     .keyboardType(.decimalPad)
-                    .frame(width: width * 0.85, height: 48)
+                    .frame(width: width * 0.80, height: 48)
+                    .padding(.horizontal)
                     .background(Color(asset: Asset.Colors.subPurple50))
-                //                    .focused(self.$focus)
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 
                 Text("kg")
                     .font(.system(size: 14, weight: .bold))
                     .frame(maxWidth: width * 0.8, alignment: .trailing)
             }
 
+            Spacer()
+
             Button {
                 viewModel.setWeightGoal()
                 print(viewModel.weight, viewModel.weightGoal)
             } label: {
-                Text("setting your goal")
+                Text("Set your goal")
                     .font(.system(size: 14, weight: .semibold))
+                    .frame(maxWidth: width * 0.85, maxHeight: 48)
             }
             .foregroundColor(.white)
+            .frame(maxWidth: width * 0.80, maxHeight: 48)
+            .padding(.horizontal)
             .background(Color(asset: Asset.Colors.subColor))
-            .frame(width: width * 0.85, height: 48)
-            .cornerRadius(24)
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(asset: Asset.Colors.mainColor))
-
-        //TODO: keyboard閉じる処理
-        //        .onTapGesture {
-        //            self.focus = false
-        //        }
-        //        .toolbar {
-        //            ToolbarItemGroup(placement: .keyboard) {
-        //                Spacer()
-        //                Button("閉じる") {
-        //                    focus = false
-        //                }
-        //            }
-        //        }
+        .background {
+            ZStack {
+                Color(asset: Asset.Colors.mainColor)
+                Image("blue")
+                    .resizable()
+                    .scaledToFill()
+            }
+            .ignoresSafeArea()
+        }
     }
 }
