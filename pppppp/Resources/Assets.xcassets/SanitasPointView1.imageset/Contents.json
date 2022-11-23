@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "SanitasPointView2.png",
+      "filename" : "SanitasPointView1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "SanitasPointView2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "SanitasPointView3.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

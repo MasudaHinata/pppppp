@@ -276,8 +276,7 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
 
     //MARK: - QRCode保存ボタンが押された時の処理
     @objc func onClickSaveQRCodeImageButton(sender: UIButton) {
-        let screenShot = qrCodeImageView.getScreenShot(windowFrame: view.frame, adFrame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        //FIXME: 保存された時の大きさが変
+        let screenShot = qrCodeImageView.getScreenShot(windowFrame: qrCodeImageView.frame, adFrame: CGRect(x: 0, y: 0, width: 0, height: 0))
         UIImageWriteToSavedPhotosAlbum(screenShot, self, #selector(self.showResultOfSaveImage(_:didFinishSavingWithError:contextInfo:)), nil)
     }
 
