@@ -89,6 +89,27 @@ struct ProfileContentView: View {
                 }
 
                 //MARK: - Streak
+                ZStack {
+                    //MARK: 自分のデータを表示する時だけ
+                    if viewModel.meJudge {
+                        Image(asset: Asset.Assets.sanitasPointView)
+
+                        HStack {
+                            Text("\(viewModel.today)")
+                            KFImage(URL(string: viewModel.iconImageURLStr))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 72, height: 72)
+                                .cornerRadius(36)
+                            Text(viewModel.name)
+                            Text("\(viewModel.point)")
+
+                        }
+                    }
+                }
+                .listRowBackground(Color.clear)
+
+                //MARK: - Streak
                 Section {
                     //TODO: 端末のサイズに合わせて表示
                     StreakCollectionView(configuration: StreakCollectionView.Configuration(pointDataList: viewModel.pointDataList))

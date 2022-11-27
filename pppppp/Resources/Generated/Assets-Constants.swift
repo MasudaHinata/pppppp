@@ -32,6 +32,7 @@ internal enum Asset {
     internal static let rectangle3 = ImageAsset(name: "Rectangle3")
     internal static let rectangle4 = ImageAsset(name: "Rectangle4")
     internal static let sanitasIcon = ImageAsset(name: "SanitasIcon")
+    internal static let sanitasPointView = ImageAsset(name: "SanitasPointView")
     internal static let sanitasLogo1 = ImageAsset(name: "Sanitas_logo1")
     internal static let scanQRCode = ImageAsset(name: "ScanQRCode")
     internal static let addFriendBackground = ImageAsset(name: "addFriendBackground")
