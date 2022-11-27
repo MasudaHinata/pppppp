@@ -208,6 +208,9 @@ final class FirebaseClient {
         let userIdList = userDataList.map { $0.id }
         for userId in userIdList {
             let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: userId!).getDocuments()
+
+//            let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: userId!).order(by: "date", descending: true).limit(to: 3).getDocuments()
+
             let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
             
             for postData in postDataList {
