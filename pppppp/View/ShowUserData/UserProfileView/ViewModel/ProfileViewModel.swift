@@ -13,8 +13,8 @@ final class ProfileViewModel: ObservableObject {
     
     @Published var friendCount: Int = 0
     @Published var point: Int = 0
-    @Published var iconImageURLStr = UserDefaults.standard.object(forKey: "IconImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
-    @Published var name = UserDefaults.standard.object(forKey: "name") as? String ?? "名称未設定"
+    @Published var iconImageURLStr = String()
+    @Published var name = String()
     @Published var pointDateStr = ""
     
     @Published var pointDataList = [PointData]()
@@ -84,7 +84,11 @@ final class ProfileViewModel: ObservableObject {
     }
     
     func getProfileData() {
-        
+
+        iconImageURLStr = UserDefaults.standard.object(forKey: "IconImageURL") as? String ?? "https://firebasestorage.googleapis.com/v0/b/healthcare-58d8a.appspot.com/o/posts%2F64f3736430fc0b1db5b4bd8cdf3c9325.jpg?alt=media&token=abb0bcde-770a-47a1-97d3-eeed94e59c11"
+
+        name = UserDefaults.standard.object(forKey: "name") as? String ?? "名称未設定"
+
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
