@@ -129,6 +129,12 @@ struct ProfileContentView: View {
                     .listRowBackground(Color.clear)
                 }
 
+                //MARK: - Graph
+                //TODO: pointを日付ごとにしてChartsPointItemに入れる
+//                PointChartsUIView(data: viewModel.)
+//                    .frame(maxWidth: width - 48, minHeight: 280, alignment: .center)
+                
+
                 //MARK: - Streak
                 Section {
                     //TODO: 端末のサイズに合わせて表示
