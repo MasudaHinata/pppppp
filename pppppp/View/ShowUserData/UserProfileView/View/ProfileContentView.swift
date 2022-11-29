@@ -82,32 +82,40 @@ struct ProfileContentView: View {
                                                  dismissButton: .default(Text("OK"), action: { viewModel.dismiss() }))
                                 }
                             }
-
                         }
                     }
                     .listRowBackground(Color.clear)
                 }
 
-                //MARK: - Streak
-                ZStack {
-                    //MARK: 自分のデータを表示する時だけ
-                    if viewModel.meJudge {
+                //MARK: -
+                if viewModel.meJudge {
+                    ZStack {
                         Image(asset: Asset.Assets.sanitasPointView)
+                        VStack(alignment: .center) {
+                            HStack {
+                                KFImage(URL(string: viewModel.iconImageURLStr))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 72, height: 72)
+                                    .cornerRadius(36)
 
-                        HStack {
-                            Text("\(viewModel.today)")
-                            KFImage(URL(string: viewModel.iconImageURLStr))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 72, height: 72)
-                                .cornerRadius(36)
-                            Text(viewModel.name)
-                            Text("\(viewModel.point)")
+                                VStack(alignment: .leading) {
+                                    Text(DateToString(date: Date()))
+                                        .font(.custom("F5.6", fixedSize: 12))
+                                        .foregroundColor(Color(asset: Asset.Colors.white48))
+
+                                    Text(viewModel.name)
+                                        .font(.system(size: 24, weight: .semibold))
+                                }
+                            }
+
+                            Text("\(viewModel.point)pt")
+                                .font(.custom("F5.6", fixedSize: 40))
 
                         }
                     }
+                    .listRowBackground(Color.clear)
                 }
-                .listRowBackground(Color.clear)
 
                 //MARK: - Streak
                 Section {
