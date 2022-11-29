@@ -101,11 +101,23 @@ struct ProfileContentView: View {
 
                                 VStack(alignment: .leading) {
                                     Text(DateToString(date: Date()))
-                                        .font(.custom("F5.6", fixedSize: 12))
+                                        .font(.custom("F5.6", fixedSize: 14))
                                         .foregroundColor(Color(asset: Asset.Colors.white48))
 
                                     Text(viewModel.name)
                                         .font(.system(size: 24, weight: .semibold))
+                                }
+
+//                                Spacer()
+
+                                Button {
+                                    viewModel.shareSns()
+                                } label: {
+                                    Image(systemName: "square.and.arrow.up")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 24, height: 24)
+                                        .foregroundColor(Color(asset: Asset.Colors.white00))
                                 }
                             }
 

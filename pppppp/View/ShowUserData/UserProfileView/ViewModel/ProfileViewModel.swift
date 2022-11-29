@@ -89,16 +89,8 @@ final class ProfileViewModel: ObservableObject {
             guard let self = self else { return }
             do {
                 let userID = try await FirebaseClient.shared.getUserUUID()
-                //TODO: 上の二つ一緒
-                if userDataItem == nil {
-                    let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
-                    self.friendCount = friendDataList.count
-                    pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
-                    pointDataList.reverse()
-                    let type = UserDefaults.standard.object(forKey: "accumulationType") ?? "今日までの一週間"
-                    self.point = try await FirebaseClient.shared.getPointDataSum(id: userID, accumulationType: type as! String)
-                    meJudge = true
-                } else if userDataItem?.id == userID {
+
+                if userDataItem == nil || userDataItem?.id == userID {
                     let friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: false)
                     self.friendCount = friendDataList.count
                     pointDataList = try await FirebaseClient.shared.getPointData(id: userID)
@@ -121,6 +113,13 @@ final class ProfileViewModel: ObservableObject {
             }
         }
         self.cancellables.insert(.init { task.cancel() })
+    }
+
+    func shareSns() {
+        //TODO: ShareSheet出す
+
+        
+
     }
 
     func friendDelete() {
