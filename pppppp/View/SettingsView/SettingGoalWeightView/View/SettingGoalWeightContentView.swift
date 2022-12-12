@@ -62,6 +62,8 @@ struct SettingGoalWeightContentView: View {
 
             Button {
                 viewModel.setWeightGoal()
+                //FIXME: viewModelから飛ばしたい
+                viewModel.dismiss()
                 print(viewModel.weight, viewModel.weightGoal)
             } label: {
                 Text("Set your goal")

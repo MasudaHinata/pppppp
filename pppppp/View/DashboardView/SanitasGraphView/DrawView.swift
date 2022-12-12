@@ -161,4 +161,12 @@ class DrawView: UIView {
         playerMotionManager.accelerometerUpdateInterval = 0.008
         playerMotionManager.startAccelerometerUpdates(to: OperationQueue.main, withHandler: handler)
     }
+
+    //TODO: Accelerometerを止める
+    func stopAccelerometer() {
+
+
+
+
+    }
 }

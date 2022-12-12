@@ -219,6 +219,10 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "HealthKitにデータがないためポイントを作成できませんでした")
                 }
 
+                let settingGoalWeightVC = SettingGoalWeightHostingController(viewModel: SettingGoalWeightViewModel())
+                settingGoalWeightVC.modalPresentationStyle = .fullScreen
+                self.showDetailViewController(settingGoalWeightVC, sender: self)
+
                 //MARK: 体重のポイント作成判定
                 let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
                 let userID = try await FirebaseClient.shared.getUserUUID()
