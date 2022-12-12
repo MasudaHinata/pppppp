@@ -13,6 +13,13 @@ struct ProfileContentView: View {
 
         //TODO: NavigationStackにする
         NavigationView {
+            //FIXME: gradationView
+            ZStack {
+                Image("blue")
+                    .resizable()
+                    .scaledToFill()
+            }
+
             Form {
                 Section {
                     HStack(alignment: .center, spacing: width * 0.10) {
