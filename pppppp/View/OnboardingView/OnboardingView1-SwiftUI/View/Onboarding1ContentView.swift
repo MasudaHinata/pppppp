@@ -22,10 +22,13 @@ struct Onboarding1ContentView: View {
                     //TODO: 行間空ける
                     Text("歩数・体重・ワークアウトを")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
+                    //                    Spacer()
                     Text("HealthKitから取得し、")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
+                    //                    Spacer()
                     Text("体格や生活リズムを考慮した")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
+                    //                    Spacer()
                     Text("努力ポイントを自動で作成")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                 }
