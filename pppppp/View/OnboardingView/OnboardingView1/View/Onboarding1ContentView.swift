@@ -37,7 +37,7 @@ struct Onboarding1ContentView: View {
                     Spacer()
 
                     Button {
-//                        viewModel.getPermissionHealthKit()
+                        viewModel.sceneOnboarding2()
                         print("next")
                     } label: {
                         HStack {

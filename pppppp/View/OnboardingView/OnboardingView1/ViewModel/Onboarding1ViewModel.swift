@@ -5,10 +5,10 @@ final class Onboarding1ViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
-//    @Published var getPermissionHealthKitView: Void = ()
-//
-//    func getPermissionHealthKit() {
-//        self.getPermissionHealthKitView = ()
-//    }
+    @Published var sceneOnboarding2View: Void = ()
+
+    func sceneOnboarding2() {
+        self.sceneOnboarding2View = ()
+    }
 }
 

@@ -15,6 +15,7 @@ class Onboarding2HostingController: UIHostingController<Onboarding2ContentView> 
             .sink {
                 HealthKit_ScoreringManager.shared.getPermissionHealthKit()
             }.store(in: &cancellables)
+
     }
 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
