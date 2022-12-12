@@ -7,14 +7,11 @@ struct FriendRequestContentView: View {
 
     var body: some View {
 
-        let bounds = UIScreen.main.bounds
-        let width = bounds.width
-
         ScrollView {
             VStack (alignment: .center) {
                 Text("").fontWeight(.semibold)
                     .padding(.horizontal, 16.0)
-                    .frame(maxWidth: width, maxHeight: 4,alignment: .leading)
+                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 4,alignment: .leading)
 
                 ForEach(viewModel.userData) { item in
                     HStack {
