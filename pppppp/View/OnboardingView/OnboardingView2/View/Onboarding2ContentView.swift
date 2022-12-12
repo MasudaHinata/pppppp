@@ -1,9 +1,9 @@
 import SwiftUI
 
-struct Onboarding1ContentView: View {
+struct Onboarding2ContentView: View {
 
-    @ObservedObject var viewModel: Onboarding1ViewModel
-    
+    @ObservedObject var viewModel: Onboarding2ViewModel
+
     var body: some View {
 
         ZStack {
@@ -11,7 +11,7 @@ struct Onboarding1ContentView: View {
             Image(asset: Asset.Assets.onboardingBackground)
                 .resizable()
                 .scaledToFill()
-            //                .frame(minWidth: UIScreen.main.bounds.width, minHeight: UIScreen.main.bounds.height)
+            
 
             VStack {
                 Image(asset: Asset.Assets.onboardingVer2)
@@ -20,16 +20,16 @@ struct Onboarding1ContentView: View {
 
                 VStack (alignment: .leading) {
                     //TODO: 行間空ける
-                    Text("歩数・体重・ワークアウトを")
+                    Text("19時以降に")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
-                    //                    Spacer()
-                    Text("HealthKitから取得し、")
+
+                    Text("今日の振り返りをすると")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
-                    //                    Spacer()
-                    Text("体格や生活リズムを考慮した")
+
+                    Text("ポイントを獲得できます")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
-                    //                    Spacer()
-                    Text("努力ポイントを自動で作成")
+
+                    Text("19時に通知を送りますか？")
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                 }
 
@@ -37,7 +37,7 @@ struct Onboarding1ContentView: View {
                     Spacer()
 
                     Button {
-                        viewModel.getPermissionHealthKit()
+//                        viewModel.getPermissionHealthKit()
                         print("next")
                     } label: {
                         HStack {

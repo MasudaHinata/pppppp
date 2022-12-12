@@ -50,21 +50,6 @@ internal enum StoryboardScene {
 
     internal static let tabBarViewController = SceneType<MainTabBarController>(storyboard: Main.self, identifier: "TabBarViewController")
   }
-  internal enum OnboardingView1: StoryboardType {
-    internal static let storyboardName = "OnboardingView1"
-
-    internal static let initialScene = InitialSceneType<OnboardingViewController1>(storyboard: OnboardingView1.self)
-  }
-  internal enum OnboardingView2: StoryboardType {
-    internal static let storyboardName = "OnboardingView2"
-
-    internal static let initialScene = InitialSceneType<OnboardingViewController2>(storyboard: OnboardingView2.self)
-  }
-  internal enum OnboardingView3: StoryboardType {
-    internal static let storyboardName = "OnboardingView3"
-
-    internal static let initialScene = InitialSceneType<OnboardingViewController3>(storyboard: OnboardingView3.self)
-  }
   internal enum RecordExerciseView: StoryboardType {
     internal static let storyboardName = "RecordExerciseView"
 

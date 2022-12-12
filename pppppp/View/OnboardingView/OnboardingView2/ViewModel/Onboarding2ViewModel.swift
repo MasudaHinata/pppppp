@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-final class Onboarding1ViewModel: ObservableObject {
+final class Onboarding2ViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -11,4 +11,3 @@ final class Onboarding1ViewModel: ObservableObject {
         self.getPermissionHealthKitView = ()
     }
 }
-

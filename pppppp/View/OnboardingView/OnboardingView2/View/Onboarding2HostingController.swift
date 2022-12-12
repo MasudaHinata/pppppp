@@ -2,21 +2,18 @@ import UIKit
 import SwiftUI
 import Combine
 
-class Onboarding1HostingController: UIHostingController<Onboarding1ContentView> {
+class Onboarding2HostingController: UIHostingController<Onboarding2ContentView> {
 
     private var cancellables: [AnyCancellable] = []
 
-    init(viewModel: Onboarding1ViewModel) {
+    init(viewModel: Onboarding2ViewModel) {
         super.init(rootView: .init(viewModel: viewModel))
 
         //MARK: 画面遷移
         viewModel.$getPermissionHealthKitView
             .dropFirst()
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-
+            .sink {
                 HealthKit_ScoreringManager.shared.getPermissionHealthKit()
-
             }.store(in: &cancellables)
     }
 
