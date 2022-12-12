@@ -40,6 +40,8 @@ internal enum Asset {
     internal static let gradation = ImageAsset(name: "gradation")
     internal static let logo = ImageAsset(name: "logo")
     internal static let morflaxStudio18 = ImageAsset(name: "morflax-studio-18")
+    internal static let onboardingBackground = ImageAsset(name: "onboarding-background")
+    internal static let onboardingVer2 = ImageAsset(name: "onboarding-ver2")
     internal static let onboardingImage1 = ImageAsset(name: "onboardingImage1")
     internal static let onboardingImage2 = ImageAsset(name: "onboardingImage2")
     internal static let onboardingImage3 = ImageAsset(name: "onboardingImage3")

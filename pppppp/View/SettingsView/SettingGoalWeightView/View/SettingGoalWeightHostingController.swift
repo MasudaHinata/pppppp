@@ -21,5 +21,4 @@ class SettingGoalWeightHostingController: UIHostingController<SettingGoalWeightC
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

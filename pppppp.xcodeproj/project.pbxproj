@@ -105,6 +105,9 @@
 		03DAC41128EC287D005F173B /* TimeLineViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC41028EC287D005F173B /* TimeLineViewController+CollectionViewDelegate.swift */; };
 		03DAC41328EC47E3005F173B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC41228EC47E3005F173B /* MainTabBarController.swift */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
+		03EEB3412946FEFA00D16ABE /* Onboarding1HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3402946FEFA00D16ABE /* Onboarding1HostingController.swift */; };
+		03EEB3432946FF1600D16ABE /* Onboarding1ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3422946FF1600D16ABE /* Onboarding1ContentView.swift */; };
+		03EEB3472946FF5B00D16ABE /* Onboarding1ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3462946FF5B00D16ABE /* Onboarding1ViewModel.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */; };
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
@@ -239,6 +242,9 @@
 		03DAC41028EC287D005F173B /* TimeLineViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeLineViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		03DAC41228EC47E3005F173B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
+		03EEB3402946FEFA00D16ABE /* Onboarding1HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1HostingController.swift; sourceTree = "<group>"; };
+		03EEB3422946FF1600D16ABE /* Onboarding1ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ContentView.swift; sourceTree = "<group>"; };
+		03EEB3462946FF5B00D16ABE /* Onboarding1ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ViewModel.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
@@ -548,6 +554,7 @@
 		034367FC28D60539000BA656 /* OnboardingView */ = {
 			isa = PBXGroup;
 			children = (
+				03EEB33D2946FE7E00D16ABE /* OnboardingView1-SwiftUI */,
 				03B832ED28DC858D00C8AE3E /* OnboardingView1 */,
 				03B832F628DC8BF400C8AE3E /* OnboardingView2 */,
 				0331A20228DC8C5C004AA309 /* OnboardingView3 */,
@@ -850,6 +857,32 @@
 			path = TimelinePostCell;
 			sourceTree = "<group>";
 		};
+		03EEB33D2946FE7E00D16ABE /* OnboardingView1-SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				03EEB3442946FF2700D16ABE /* View */,
+				03EEB3452946FF3000D16ABE /* ViewModel */,
+			);
+			path = "OnboardingView1-SwiftUI";
+			sourceTree = "<group>";
+		};
+		03EEB3442946FF2700D16ABE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				03EEB3402946FEFA00D16ABE /* Onboarding1HostingController.swift */,
+				03EEB3422946FF1600D16ABE /* Onboarding1ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		03EEB3452946FF3000D16ABE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				03EEB3462946FF5B00D16ABE /* Onboarding1ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		9CFBA12328D4B3CD003EBFB3 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1032,6 +1065,7 @@
 				032DF38528F8517900458C20 /* FriendRequestViewModel.swift in Sources */,
 				036E476928DB1A5C00EA7BB1 /* RecordWeightViewController.swift in Sources */,
 				03DAC40E28EC2865005F173B /* TimelinePostCollectionViewCell.swift in Sources */,
+				03EEB3412946FEFA00D16ABE /* Onboarding1HostingController.swift in Sources */,
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
 				035D29E328E9F30200E1BEA4 /* FriendListViewController.swift in Sources */,
 				03879DE128E46E7200C1DBA2 /* HealthKit&ScoreringManager.swift in Sources */,
@@ -1050,6 +1084,7 @@
 				035CE51E28CF1E53001F89BB /* RecordExerciseViewController.swift in Sources */,
 				9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */,
 				038E26AE28BF4BF1000204A4 /* SettingViewController.swift in Sources */,
+				03EEB3432946FF1600D16ABE /* Onboarding1ContentView.swift in Sources */,
 				036E476528DAF73C00EA7BB1 /* StepsChartsUIView.swift in Sources */,
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
 				0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */,
@@ -1080,6 +1115,7 @@
 				03A3F8132928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift in Sources */,
 				03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */,
 				03670F2F28F9057E006075DC /* FriendListOfFriendsListViewModel.swift in Sources */,
+				03EEB3472946FF5B00D16ABE /* Onboarding1ViewModel.swift in Sources */,
 				0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */,
 				03C7E7C228D453ED0069A46E /* OnboardingViewController1.swift in Sources */,
 				03A3F819292D2B99004E3CD0 /* ViewScreenshot.swift in Sources */,

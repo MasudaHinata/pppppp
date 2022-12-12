@@ -174,6 +174,11 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         super.viewDidAppear(animated)
 
         //MARK: 初期画面
+
+        let Onboarding1VC = Onboarding1HostingController(viewModel: Onboarding1ViewModel())
+        Onboarding1VC.modalPresentationStyle = .fullScreen
+        self.showDetailViewController(Onboarding1VC, sender: self)
+
         //        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
         //        if judge == false {
         //            let onboardingView1VC = StoryboardScene.OnboardingView1.initialScene.instantiate()
@@ -218,11 +223,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 if createdPointjudge == false {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "HealthKitにデータがないためポイントを作成できませんでした")
                 }
-
-                let settingGoalWeightVC = SettingGoalWeightHostingController(viewModel: SettingGoalWeightViewModel())
-                settingGoalWeightVC.modalPresentationStyle = .fullScreen
-                self.showDetailViewController(settingGoalWeightVC, sender: self)
-
+                
                 //MARK: 体重のポイント作成判定
                 let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
                 let userID = try await FirebaseClient.shared.getUserUUID()
