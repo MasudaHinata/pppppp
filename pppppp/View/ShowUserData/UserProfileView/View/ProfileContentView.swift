@@ -5,7 +5,8 @@ import Combine
 
 struct ProfileContentView: View {
     @ObservedObject var viewModel: ProfileViewModel
-    
+    @State private var renderedImage: UIImage?
+
     var body: some View {
 
         let bounds = UIScreen.main.bounds
@@ -13,12 +14,13 @@ struct ProfileContentView: View {
 
         //TODO: NavigationStackにする
         NavigationView {
-            //FIXME: gradationView
-            ZStack {
-                Image("blue")
-                    .resizable()
-                    .scaledToFill()
-            }
+
+            //            //TODO: gradationView
+            //            ZStack {
+            //                Image("blue")
+            //                    .resizable()
+            //                    .scaledToFill()
+            //            }
 
             Form {
                 Section {
@@ -94,8 +96,10 @@ struct ProfileContentView: View {
                     .listRowBackground(Color.clear)
                 }
 
-                //MARK: -
+                //MARK: - sharePointView
                 if viewModel.meJudge {
+
+
                     ZStack {
                         Image(asset: Asset.Assets.sanitasPointView)
                         VStack(alignment: .center) {
@@ -115,18 +119,43 @@ struct ProfileContentView: View {
                                         .font(.system(size: 24, weight: .semibold))
                                 }
 
-//                                Spacer()
+                                if #available(iOS 16.0, *) {
+                                    Button {
 
-                                Button {
-                                    viewModel.shareSns()
-                                } label: {
-                                    Image(systemName: "square.and.arrow.up")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 24, height: 24)
-                                        .foregroundColor(Color(asset: Asset.Colors.white00))
+                                        let renderer = ImageRenderer(content: self)
+                                        if let image = renderer.uiImage {
+                                            self.renderedImage = image
+                                        }
+
+                                        //viewModel.shareSns()
+
+                                    } label: {
+                                        Image(systemName: "square.and.arrow.up")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 24, height: 24)
+                                            .foregroundColor(Color(asset: Asset.Colors.white00))
+                                    }
                                 }
                             }
+
+                            //                                Button {
+                            //
+                            //                                    let renderer = ImageRenderer(content: self)
+                            //                                    if let image = renderer.uiImage {
+                            //                                        self.renderedImage = image
+                            //                                    }
+                            //
+                            //                                    //                                    viewModel.shareSns()
+                            //
+                            //                                } label: {
+                            //                                    Image(systemName: "square.and.arrow.up")
+                            //                                        .resizable()
+                            //                                        .scaledToFit()
+                            //                                        .frame(width: 24, height: 24)
+                            //                                        .foregroundColor(Color(asset: Asset.Colors.white00))
+                            //                                }
+                            //                            }
 
                             Text("\(viewModel.point)pt")
                                 .font(.custom("F5.6", fixedSize: 40))
@@ -134,12 +163,18 @@ struct ProfileContentView: View {
                         }
                     }
                     .listRowBackground(Color.clear)
+
+                    if let renderedImage {
+                        Image(uiImage: renderedImage)
+                            .resizable()
+                            .scaledToFill()
+                    }
                 }
 
                 //MARK: - Graph
                 //TODO: pointを日付ごとにしてChartsPointItemに入れる
-//                PointChartsUIView(data: viewModel.)
-//                    .frame(maxWidth: width - 48, minHeight: 280, alignment: .center)
+                //                PointChartsUIView(data: viewModel.)
+                //                    .frame(maxWidth: width - 48, minHeight: 280, alignment: .center)
                 
 
                 //MARK: - Streak
