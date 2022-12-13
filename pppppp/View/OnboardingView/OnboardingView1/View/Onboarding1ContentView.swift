@@ -41,7 +41,6 @@ struct Onboarding1ContentView: View {
                         print("next")
                     } label: {
                         HStack {
-
                             Text("next")
                                 .foregroundColor(Color(asset: Asset.Colors.white00))
                             Image(systemName: "figure.walk.motion")
