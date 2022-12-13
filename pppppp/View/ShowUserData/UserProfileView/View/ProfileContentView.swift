@@ -22,154 +22,189 @@ struct ProfileContentView: View {
 
             VStack {
                 Form {
-                    Section {
-                        HStack(alignment: .center, spacing: width * 0.10) {
-                            KFImage(URL(string: viewModel.meJudge ? viewModel.iconImageURLStr : viewModel.userDataItem?.iconImageURL ?? ""))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 72, height: 72)
-                                .cornerRadius(36)
+                    //MARK: Buttons
+                    HStack {
+                        Button {
 
-                            VStack {
-                                Text("point")
-                                    .font(.custom("F5.6", fixedSize: 14))
-                                Text("\(viewModel.point)")
-                                    .font(.custom("F5.6", fixedSize: 18))
-                            }
-
-                            Button {
-                                //TODO: Push遷移にする
-                                if viewModel.meJudge {
-                                    //MARK: 自分のデータを表示する時
-                                    viewModel.sceneFriendList()
-                                } else {
-                                    //MARK: 友達のデータを表示する時
-                                    viewModel.sceneFriendListOfFriend()
-                                }
-                            } label: {
-                                VStack {
-                                    Text("friend")
-                                        .font(.custom("F5.6", fixedSize: 14))
-                                    Text("\(viewModel.friendCount)")
-                                        .font(.custom("F5.6", fixedSize: 18))
-                                }
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .foregroundColor(.white)
-
-                            if viewModel.meJudge {
-                                //MARK: 自分のデータを表示する時
-                                Button{
-                                    viewModel.sceneChangeProfile()
-                                } label: {
-                                    Image(systemName: "pencil.circle.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 24, height: 24)
-                                        .foregroundColor(Color(asset: Asset.Colors.white00))
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                            } else {
-                                //MARK: 友達のデータを表示する時
-                                Button {
-                                    viewModel.alertType = .deleteFriendWarning
-                                    viewModel.showAlert = true
-                                } label: {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(Color.red)
-                                }
-                                .alert(isPresented: $viewModel.showAlert) {
-                                    switch viewModel.alertType {
-                                    case .deleteFriendWarning:
-                                        return Alert(title: Text("警告"),
-                                                     message: Text("友達を削除しますか？"),
-                                                     primaryButton: .cancel(Text("キャンセル")),
-                                                     secondaryButton: .destructive(Text("削除"), action: { viewModel.friendDelete() }))
-                                    case .deletedFriend:
-                                        return Alert(title: Text("完了"), message: Text("友達を削除しました"),
-                                                     dismissButton: .default(Text("OK"), action: { viewModel.dismiss() }))
-                                    }
-                                }
-                            }
+                        } label: {
+                            Image(systemName: "waveform.path.ecg.rectangle")
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color(asset: Asset.Colors.white48))
+                                .cornerRadius(16)
+                                .font(.system(size: 16, weight: .medium, design: .rounded))
                         }
-                        .listRowBackground(Color.clear)
+
+                        Spacer()
+
+                        Button {
+                            if #available(iOS 16.0, *) {
+                                let renderer = ImageRenderer(content: self)
+                                if let image = renderer.uiImage {
+                                    self.renderedImage = image
+                                }
+                            }
+                            //viewModel.shareSns()
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color(asset: Asset.Colors.white48))
+                                .cornerRadius(16)
+                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                        }
                     }
+                    .listRowBackground(Color.clear)
 
                     //MARK: - sharePointView
-                    if viewModel.meJudge {
+                    ZStack {
+                        //                            Image(asset: Asset.Assets.sanitasPointView)
+                        Image(asset: Asset.Assets.pointViewClear)
+                        VStack(alignment: .center) {
+                            HStack {
+                                KFImage(URL(string: viewModel.iconImageURLStr))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 72, height: 72)
+                                    .cornerRadius(36)
 
+                                VStack(alignment: .leading) {
+                                    Text(DateToString(date: Date()))
+                                        .font(.custom("F5.6", fixedSize: 14))
+                                        .foregroundColor(Color(asset: Asset.Colors.white48))
 
-                        ZStack {
-                            Image(asset: Asset.Assets.sanitasPointView)
-                            VStack(alignment: .center) {
-                                HStack {
-                                    KFImage(URL(string: viewModel.iconImageURLStr))
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 72, height: 72)
-                                        .cornerRadius(36)
-
-                                    VStack(alignment: .leading) {
-                                        Text(DateToString(date: Date()))
-                                            .font(.custom("F5.6", fixedSize: 14))
-                                            .foregroundColor(Color(asset: Asset.Colors.white48))
-
-                                        Text(viewModel.name)
-                                            .font(.system(size: 24, weight: .semibold))
-                                    }
-
-                                    if #available(iOS 16.0, *) {
-                                        Button {
-
-                                            let renderer = ImageRenderer(content: self)
-                                            if let image = renderer.uiImage {
-                                                self.renderedImage = image
-                                            }
-
-                                            //viewModel.shareSns()
-
-                                        } label: {
-                                            Image(systemName: "square.and.arrow.up")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 24, height: 24)
-                                                .foregroundColor(Color(asset: Asset.Colors.white00))
-                                        }
-                                    }
+                                    Text(viewModel.name)
+                                        .font(.system(size: 24, weight: .semibold))
                                 }
 
-                                //                                Button {
-                                //
-                                //                                    let renderer = ImageRenderer(content: self)
-                                //                                    if let image = renderer.uiImage {
-                                //                                        self.renderedImage = image
-                                //                                    }
-                                //
-                                //                                    //                                    viewModel.shareSns()
-                                //
-                                //                                } label: {
-                                //                                    Image(systemName: "square.and.arrow.up")
-                                //                                        .resizable()
-                                //                                        .scaledToFit()
-                                //                                        .frame(width: 24, height: 24)
-                                //                                        .foregroundColor(Color(asset: Asset.Colors.white00))
-                                //                                }
-                                //                            }
+//                                Spacer()
 
-                                Text("\(viewModel.point)pt")
-                                    .font(.custom("F5.6", fixedSize: 40))
-
+                                Button {
+                                    //TODO: Push遷移にする
+                                    if viewModel.meJudge {
+                                        //MARK: 自分のデータを表示する時
+                                        viewModel.sceneFriendList()
+                                    } else {
+                                        //MARK: 友達のデータを表示する時
+                                        viewModel.sceneFriendListOfFriend()
+                                    }
+                                } label: {
+                                    VStack {
+                                        Text("friend")
+                                            .font(.custom("F5.6", fixedSize: 14))
+                                        Text("\(viewModel.friendCount)")
+                                            .font(.custom("F5.6", fixedSize: 18))
+                                    }
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .foregroundColor(.white)
                             }
-                        }
-                        .listRowBackground(Color.clear)
 
-                        if let renderedImage {
-                            Image(uiImage: renderedImage)
-                                .resizable()
-                                .scaledToFill()
+                            //                                Button {
+                            //
+                            //                                    let renderer = ImageRenderer(content: self)
+                            //                                    if let image = renderer.uiImage {
+                            //                                        self.renderedImage = image
+                            //                                    }
+                            //
+                            //                                    //                                    viewModel.shareSns()
+                            //
+                            //                                } label: {
+                            //                                    Image(systemName: "square.and.arrow.up")
+                            //                                        .resizable()
+                            //                                        .scaledToFit()
+                            //                                        .frame(width: 24, height: 24)
+                            //                                        .foregroundColor(Color(asset: Asset.Colors.white00))
+                            //                                }
+                            //                            }
+
+                            Text("\(viewModel.point)pt")
+                                .font(.custom("F5.6", fixedSize: 40))
+
                         }
                     }
+                    .listRowBackground(Color.clear)
 
+                    if let renderedImage {
+                        Image(uiImage: renderedImage)
+                            .resizable()
+                            .scaledToFill()
+                    }
+
+                    //                    Section {
+                    //                        HStack(alignment: .center, spacing: width * 0.10) {
+                    //                            KFImage(URL(string: viewModel.meJudge ? viewModel.iconImageURLStr : viewModel.userDataItem?.iconImageURL ?? ""))
+                    //                                .resizable()
+                    //                                .scaledToFill()
+                    //                                .frame(width: 72, height: 72)
+                    //                                .cornerRadius(36)
+                    //
+                    //                            VStack {
+                    //                                Text("point")
+                    //                                    .font(.custom("F5.6", fixedSize: 14))
+                    //                                Text("\(viewModel.point)")
+                    //                                    .font(.custom("F5.6", fixedSize: 18))
+                    //                            }
+                    //
+                    //                            Button {
+                    //                                //TODO: Push遷移にする
+                    //                                if viewModel.meJudge {
+                    //                                    //MARK: 自分のデータを表示する時
+                    //                                    viewModel.sceneFriendList()
+                    //                                } else {
+                    //                                    //MARK: 友達のデータを表示する時
+                    //                                    viewModel.sceneFriendListOfFriend()
+                    //                                }
+                    //                            } label: {
+                    //                                VStack {
+                    //                                    Text("friend")
+                    //                                        .font(.custom("F5.6", fixedSize: 14))
+                    //                                    Text("\(viewModel.friendCount)")
+                    //                                        .font(.custom("F5.6", fixedSize: 18))
+                    //                                }
+                    //                            }
+                    //                            .buttonStyle(PlainButtonStyle())
+                    //                            .foregroundColor(.white)
+                    //
+                    //                            if viewModel.meJudge {
+                    //                                //MARK: 自分のデータを表示する時
+                    //                                Button{
+                    //                                    viewModel.sceneChangeProfile()
+                    //                                } label: {
+                    //                                    Image(systemName: "pencil.circle.fill")
+                    //                                        .resizable()
+                    //                                        .scaledToFit()
+                    //                                        .frame(width: 24, height: 24)
+                    //                                        .foregroundColor(Color(asset: Asset.Colors.white00))
+                    //                                }
+                    //                                .buttonStyle(PlainButtonStyle())
+                    //                            } else {
+                    //                                //MARK: 友達のデータを表示する時
+                    //                                Button {
+                    //                                    viewModel.alertType = .deleteFriendWarning
+                    //                                    viewModel.showAlert = true
+                    //                                } label: {
+                    //                                    Image(systemName: "trash")
+                    //                                        .foregroundColor(Color.red)
+                    //                                }
+                    //                                .alert(isPresented: $viewModel.showAlert) {
+                    //                                    switch viewModel.alertType {
+                    //                                    case .deleteFriendWarning:
+                    //                                        return Alert(title: Text("警告"),
+                    //                                                     message: Text("友達を削除しますか？"),
+                    //                                                     primaryButton: .cancel(Text("キャンセル")),
+                    //                                                     secondaryButton: .destructive(Text("削除"), action: { viewModel.friendDelete() }))
+                    //                                    case .deletedFriend:
+                    //                                        return Alert(title: Text("完了"), message: Text("友達を削除しました"),
+                    //                                                     dismissButton: .default(Text("OK"), action: { viewModel.dismiss() }))
+                    //                                    }
+                    //                                }
+                    //                            }
+                    //                        }
+                    //                        .listRowBackground(Color.clear)
+                    //                    }
+
+                    //MARK: Buttons
                     HStack {
                         Button {
 
@@ -239,33 +274,33 @@ struct ProfileContentView: View {
                     }
                 }
                 //                .navigationBarTitle(Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? ""))
-                .navigationBarItems(trailing: HStack {
-                    if viewModel.meJudge {
-                        //MARK: iOS16のみHealthChartViewに遷移するボタンを表示する
-                        if #available(iOS 16.0, *) {
-                            Button {
-                                viewModel.sceneHealthCharts()
-                            } label: {
-                                Image(systemName: "heart")
-                            }
-                            .foregroundColor(.white)
-                        }
-
-                        Button {
-                            viewModel.sceneAddFriend()
-                        } label: {
-                            Image(systemName: "person.crop.circle.badge.plus")
-                        }
-                        .foregroundColor(.white)
-
-                        Button {
-                            viewModel.sceneSetting()
-                        } label: {
-                            Image(systemName: "gearshape")
-                        }
-                        .foregroundColor(.white)
-                    }
-                })
+                //                .navigationBarItems(trailing: HStack {
+                //                    if viewModel.meJudge {
+                //                        //MARK: iOS16のみHealthChartViewに遷移するボタンを表示する
+                //                        if #available(iOS 16.0, *) {
+                //                            Button {
+                //                                viewModel.sceneHealthCharts()
+                //                            } label: {
+                //                                Image(systemName: "heart")
+                //                            }
+                //                            .foregroundColor(.white)
+                //                        }
+                //
+                //                        Button {
+                //                            viewModel.sceneAddFriend()
+                //                        } label: {
+                //                            Image(systemName: "person.crop.circle.badge.plus")
+                //                        }
+                //                        .foregroundColor(.white)
+                //
+                //                        Button {
+                //                            viewModel.sceneSetting()
+                //                        } label: {
+                //                            Image(systemName: "gearshape")
+                //                        }
+                //                        .foregroundColor(.white)
+                //                    }
+                //                })
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .hideListBackgroundIfAvailable()
                 .background(Color(asset: Asset.Colors.mainColor))
