@@ -16,9 +16,9 @@ struct ProfileContentView: View {
             //        ZStack {
 
             //TODO: gradationView
-            //            Image("blue")
-            //                .resizable()
-            //                .scaledToFill()
+//                        Image("blue")
+//                            .resizable()
+//                            .scaledToFill()
 
             VStack {
                 Form {
@@ -60,6 +60,9 @@ struct ProfileContentView: View {
                     ZStack {
                         //                            Image(asset: Asset.Assets.sanitasPointView)
                         Image(asset: Asset.Assets.pointViewClear)
+                            .resizable()
+                            .scaledToFill()
+
                         VStack(alignment: .center) {
                             HStack {
                                 KFImage(URL(string: viewModel.iconImageURLStr))
@@ -303,6 +306,12 @@ struct ProfileContentView: View {
                 //                })
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .hideListBackgroundIfAvailable()
+                //FIXME: 画面サイズに合わせる
+                .background(
+                    Image("blue")
+                        .resizable()
+                        .scaledToFill()
+                )
                 .background(Color(asset: Asset.Colors.mainColor))
             }
             .onAppear {
