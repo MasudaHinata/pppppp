@@ -176,11 +176,12 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         //MARK: 初期画面
         //        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
         //        if judge == false {
-//        let Onboarding1VC = Onboarding1HostingController(viewModel: Onboarding1ViewModel())
-//        Onboarding1VC.modalPresentationStyle = .fullScreen
-//        self.showDetailViewController(Onboarding1VC, sender: self)
+        //            let Onboarding1VC = Onboarding1HostingController(viewModel: Onboarding1ViewModel())
+        //            Onboarding1VC.modalPresentationStyle = .fullScreen
+        //            self.showDetailViewController(Onboarding1VC, sender: self)
+        //            return
         //        }
-
+        
         //MARK: MountainViewの位置更新
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
@@ -273,11 +274,13 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
 
     func putPointForFirestore(point: Int, activity: String) {
         let alert = UIAlertController(title: "ポイントを獲得しました", message: "\(activity): \(point)pt", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let ok = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(ok)
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
     }
+
 
     func notGetPoint() {
         let alert = UIAlertController(title: "今日の獲得ポイントは0ptです", message: "頑張りましょう", preferredStyle: .alert)
@@ -286,7 +289,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+
     func notChangeName() {
         let setNameVC = StoryboardScene.SetNameView.initialScene.instantiate()
         self.showDetailViewController(setNameVC, sender: self)

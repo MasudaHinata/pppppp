@@ -14,41 +14,34 @@ struct Onboarding1ContentView: View {
                 Image(asset: Asset.Assets.onboardingVer2)
                     .resizable()
                     .scaledToFit()
+                    .frame(maxHeight: 400)
 
-                VStack (alignment: .leading) {
-                    //TODO: 行間空ける
-                    Text("歩数・体重・ワークアウトを")
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                    //                    Spacer()
-                    Text("HealthKitから取得し、")
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                    //                    Spacer()
-                    Text("体格や生活リズムを考慮した")
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                    //                    Spacer()
-                    Text("努力ポイントを自動で作成")
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                }
+                Spacer()
+                Text("歩数・体重・ワークアウトを\nHealthKitから取得し、\n体格や生活リズムを考慮した\nポイントを自動で作成します。")
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .lineSpacing(24)
 
                 HStack {
                     Spacer()
 
                     Button {
                         viewModel.sceneOnboarding2()
-                        print("next")
                     } label: {
                         HStack {
                             Text("next")
                                 .foregroundColor(Color(asset: Asset.Colors.white00))
+                                .font(.system(size: 24, weight: .bold, design: .rounded))
                             Image(systemName: "figure.walk.motion")
                                 .foregroundColor(.white)
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
                         }
                         .padding()
                         .background(Color(asset: Asset.Colors.white48))
-                        .cornerRadius(30)
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
+
                     }
                 }
+                .padding()
             }
         }
     }
