@@ -16,6 +16,7 @@ final class ProfileViewModel: ObservableObject {
     @Published var iconImageURLStr = String()
     @Published var name = String()
     @Published var pointDateStr = ""
+    @Published var renderedImage: UIImage?
     
     @Published var pointDataList = [PointData]()
     @Published var layout = UICollectionViewFlowLayout()
