@@ -105,6 +105,8 @@
 		03EEB34C2947739C00D16ABE /* Onboarding2HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB34B2947739C00D16ABE /* Onboarding2HostingController.swift */; };
 		03EEB34E294773A800D16ABE /* Onboarding2ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB34D294773A800D16ABE /* Onboarding2ContentView.swift */; };
 		03EEB350294773B700D16ABE /* Onboarding2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB34F294773B700D16ABE /* Onboarding2ViewModel.swift */; };
+		03EEB3522949CFA900D16ABE /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3512949CFA900D16ABE /* ProfileHeaderView.swift */; };
+		03EEB3542949D9F500D16ABE /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3532949D9F500D16ABE /* ProfileCardView.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */; };
 		03FB125B28CB50BA00AB4F99 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */; };
 		9C1A86F3289C209700BD5EE6 /* F5.6-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */; };
@@ -239,6 +241,8 @@
 		03EEB34B2947739C00D16ABE /* Onboarding2HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2HostingController.swift; sourceTree = "<group>"; };
 		03EEB34D294773A800D16ABE /* Onboarding2ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ContentView.swift; sourceTree = "<group>"; };
 		03EEB34F294773B700D16ABE /* Onboarding2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewModel.swift; sourceTree = "<group>"; };
+		03EEB3512949CFA900D16ABE /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		03EEB3532949D9F500D16ABE /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		03FB125928CB50BA00AB4F99 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		9C1A86F2289C1FE700BD5EE6 /* F5.6-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F5.6-Regular.otf"; sourceTree = "<group>"; };
@@ -899,6 +903,8 @@
 		BE7F336F2580D07E0027620D = {
 			isa = PBXGroup;
 			children = (
+				03EEB3532949D9F500D16ABE /* ProfileCardView.swift */,
+				03EEB3512949CFA900D16ABE /* ProfileHeaderView.swift */,
 				BE7F337A2580D07E0027620D /* pppppp */,
 				BE7F33792580D07E0027620D /* Products */,
 				BE2F95D02588CCF5004DC436 /* Frameworks */,
@@ -1090,8 +1096,10 @@
 				032DF38128F8513000458C20 /* FriendRequestContentView.swift in Sources */,
 				035329CD28EECB9000257768 /* ProfileContentView.swift in Sources */,
 				0343680E28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift in Sources */,
+				03EEB3542949D9F500D16ABE /* ProfileCardView.swift in Sources */,
 				0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */,
 				0343681B28D8063D000BA656 /* ChangeProfileViewController+UITextFieldDelegate.swift in Sources */,
+				03EEB3522949CFA900D16ABE /* ProfileHeaderView.swift in Sources */,
 				03DAC41328EC47E3005F173B /* MainTabBarController.swift in Sources */,
 				03704A2328E022D6004BE7C3 /* ChartsWeightItem.swift in Sources */,
 				9CE63B8B288C40EA00FFE94C /* ErrorHelper.swift in Sources */,
