@@ -66,6 +66,8 @@ internal enum Asset {
     internal static let lightBlue00 = ColorAsset(name: "lightBlue00")
     internal static let lightBlue25 = ColorAsset(name: "lightBlue25")
     internal static let mainColor = ColorAsset(name: "mainColor")
+    internal static let onboardingGradientColor1 = ColorAsset(name: "onboardingGradientColor1")
+    internal static let onboardingGradientColor2 = ColorAsset(name: "onboardingGradientColor2")
     internal static let purple00 = ColorAsset(name: "purple00")
     internal static let purple50 = ColorAsset(name: "purple50")
     internal static let silver = ColorAsset(name: "silver")

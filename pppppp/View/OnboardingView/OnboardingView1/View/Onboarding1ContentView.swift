@@ -7,11 +7,8 @@ struct Onboarding1ContentView: View {
     var body: some View {
 
         ZStack {
-            //FIXME: 画面sizeに合わせる
-            Image(asset: Asset.Assets.onboardingBackground)
-                .resizable()
-                .scaledToFill()
-            //                .frame(minWidth: UIScreen.main.bounds.width, minHeight: UIScreen.main.bounds.height)
+            LinearGradient(colors: [Color(asset: Asset.Colors.onboardingGradientColor1), Color(asset: Asset.Colors.onboardingGradientColor2)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                .ignoresSafeArea()
 
             VStack {
                 Image(asset: Asset.Assets.onboardingVer2)

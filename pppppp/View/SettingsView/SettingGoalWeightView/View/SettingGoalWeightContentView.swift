@@ -7,9 +7,6 @@ struct SettingGoalWeightContentView: View {
 
     var body: some View {
 
-        let bounds = UIScreen.main.bounds
-        let width = bounds.width
-
         VStack {
             Spacer()
 
@@ -19,7 +16,7 @@ struct SettingGoalWeightContentView: View {
             Spacer()
 
             Text("Enter weight")
-                .frame(maxWidth: width * 0.85, alignment: .leading)
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.85, alignment: .leading)
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(Color(asset: Asset.Colors.white48))
 
@@ -27,7 +24,7 @@ struct SettingGoalWeightContentView: View {
                 TextField("", value: $viewModel.weight, formatter: NumberFormatter())
                     .font(.system(size: 14, weight: .bold))
                     .keyboardType(.decimalPad)
-                    .frame(width: width * 0.80, height: 48)
+                    .frame(width: UIScreen.main.bounds.width * 0.80, height: 48)
                     .padding(.horizontal)
                     .background(Color(asset: Asset.Colors.subPurple50))
                     .background(.ultraThinMaterial)
@@ -35,11 +32,11 @@ struct SettingGoalWeightContentView: View {
 
                 Text("kg")
                     .font(.system(size: 14, weight: .bold))
-                    .frame(maxWidth: width * 0.8, alignment: .trailing)
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .trailing)
             }
 
             Text("Enter weight goal")
-                .frame(maxWidth: width * 0.85, alignment: .leading)
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.85, alignment: .leading)
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(Color(asset: Asset.Colors.white48))
 
@@ -47,7 +44,7 @@ struct SettingGoalWeightContentView: View {
                 TextField("", value: $viewModel.weightGoal, formatter: NumberFormatter())
                     .font(.system(size: 14, weight: .bold))
                     .keyboardType(.decimalPad)
-                    .frame(width: width * 0.80, height: 48)
+                    .frame(width: UIScreen.main.bounds.width * 0.80, height: 48)
                     .padding(.horizontal)
                     .background(Color(asset: Asset.Colors.subPurple50))
                     .background(.ultraThinMaterial)
@@ -55,9 +52,9 @@ struct SettingGoalWeightContentView: View {
 
                 Text("kg")
                     .font(.system(size: 14, weight: .bold))
-                    .frame(maxWidth: width * 0.8, alignment: .trailing)
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.8, alignment: .trailing)
             }
-
+            
             Spacer()
 
             Button {
@@ -68,10 +65,10 @@ struct SettingGoalWeightContentView: View {
             } label: {
                 Text("Set your goal")
                     .font(.system(size: 14, weight: .semibold))
-                    .frame(maxWidth: width * 0.85, maxHeight: 48)
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.85, maxHeight: 48)
             }
             .foregroundColor(.white)
-            .frame(maxWidth: width * 0.80, maxHeight: 48)
+            .frame(maxWidth: UIScreen.main.bounds.width * 0.80, maxHeight: 48)
             .padding(.horizontal)
             .background(Color(asset: Asset.Colors.subColor))
             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
