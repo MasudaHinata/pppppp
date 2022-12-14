@@ -12,14 +12,7 @@ struct ProfileContentView: View {
         let bounds = UIScreen.main.bounds
         let width = bounds.width
 
-        NavigationView {
-            //        ZStack {
-
-            //TODO: gradationView
-//                        Image("blue")
-//                            .resizable()
-//                            .scaledToFill()
-
+//        NavigationView {
             VStack {
                 Form {
                     //MARK: Buttons
@@ -31,7 +24,7 @@ struct ProfileContentView: View {
                                 .foregroundColor(.white)
                                 .padding()
                                 .background(Color(asset: Asset.Colors.white48))
-                                .cornerRadius(16)
+                                .cornerRadius(20)
                                 .font(.system(size: 16, weight: .medium, design: .rounded))
                         }
 
@@ -50,7 +43,7 @@ struct ProfileContentView: View {
                                 .foregroundColor(.white)
                                 .padding()
                                 .background(Color(asset: Asset.Colors.white48))
-                                .cornerRadius(16)
+                                .cornerRadius(20)
                                 .font(.system(size: 16, weight: .medium, design: .rounded))
                         }
                     }
@@ -65,7 +58,8 @@ struct ProfileContentView: View {
 
                         VStack(alignment: .center) {
                             HStack {
-                                KFImage(URL(string: viewModel.iconImageURLStr))
+
+                                KFImage(URL(string: viewModel.meJudge ? viewModel.iconImageURLStr : viewModel.userDataItem?.iconImageURL ?? ""))
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: 72, height: 72)
@@ -76,7 +70,7 @@ struct ProfileContentView: View {
                                         .font(.custom("F5.6", fixedSize: 14))
                                         .foregroundColor(Color(asset: Asset.Colors.white48))
 
-                                    Text(viewModel.name)
+                                    Text(viewModel.meJudge ? viewModel.name : viewModel.userDataItem?.name ?? "")
                                         .font(.system(size: 24, weight: .semibold))
                                 }
 
@@ -136,38 +130,38 @@ struct ProfileContentView: View {
 
                     //                    Section {
                     //                        HStack(alignment: .center, spacing: width * 0.10) {
-                    //                            KFImage(URL(string: viewModel.meJudge ? viewModel.iconImageURLStr : viewModel.userDataItem?.iconImageURL ?? ""))
-                    //                                .resizable()
-                    //                                .scaledToFill()
-                    //                                .frame(width: 72, height: 72)
-                    //                                .cornerRadius(36)
+//                                                KFImage(URL(string: viewModel.meJudge ? viewModel.iconImageURLStr : viewModel.userDataItem?.iconImageURL ?? ""))
+//                                                    .resizable()
+//                                                    .scaledToFill()
+//                                                    .frame(width: 72, height: 72)
+//                                                    .cornerRadius(36)
+//
+//                                                VStack {
+//                                                    Text("point")
+//                                                        .font(.custom("F5.6", fixedSize: 14))
+//                                                    Text("\(viewModel.point)")
+//                                                        .font(.custom("F5.6", fixedSize: 18))
+//                                                }
                     //
-                    //                            VStack {
-                    //                                Text("point")
-                    //                                    .font(.custom("F5.6", fixedSize: 14))
-                    //                                Text("\(viewModel.point)")
-                    //                                    .font(.custom("F5.6", fixedSize: 18))
-                    //                            }
-                    //
-                    //                            Button {
-                    //                                //TODO: Push遷移にする
-                    //                                if viewModel.meJudge {
-                    //                                    //MARK: 自分のデータを表示する時
-                    //                                    viewModel.sceneFriendList()
-                    //                                } else {
-                    //                                    //MARK: 友達のデータを表示する時
-                    //                                    viewModel.sceneFriendListOfFriend()
-                    //                                }
-                    //                            } label: {
-                    //                                VStack {
-                    //                                    Text("friend")
-                    //                                        .font(.custom("F5.6", fixedSize: 14))
-                    //                                    Text("\(viewModel.friendCount)")
-                    //                                        .font(.custom("F5.6", fixedSize: 18))
-                    //                                }
-                    //                            }
-                    //                            .buttonStyle(PlainButtonStyle())
-                    //                            .foregroundColor(.white)
+//                                                Button {
+//                                                    //TODO: Push遷移にする
+//                                                    if viewModel.meJudge {
+//                                                        //MARK: 自分のデータを表示する時
+//                                                        viewModel.sceneFriendList()
+//                                                    } else {
+//                                                        //MARK: 友達のデータを表示する時
+//                                                        viewModel.sceneFriendListOfFriend()
+//                                                    }
+//                                                } label: {
+//                                                    VStack {
+//                                                        Text("friend")
+//                                                            .font(.custom("F5.6", fixedSize: 14))
+//                                                        Text("\(viewModel.friendCount)")
+//                                                            .font(.custom("F5.6", fixedSize: 18))
+//                                                    }
+//                                                }
+//                                                .buttonStyle(PlainButtonStyle())
+//                                                .foregroundColor(.white)
                     //
                     //                            if viewModel.meJudge {
                     //                                //MARK: 自分のデータを表示する時
@@ -318,7 +312,7 @@ struct ProfileContentView: View {
                 viewModel.getProfileData()
                 UITableView.appearance().backgroundColor = Asset.Colors.mainColor.color
             }
-        }
+//        }
     }
     
     func DateToString(date: Date) -> String {
