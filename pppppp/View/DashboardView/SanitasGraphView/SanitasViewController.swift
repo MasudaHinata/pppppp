@@ -176,10 +176,10 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         //MARK: 初期画面
 //                let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
 //                if judge == false {
-                    let Onboarding1VC = Onboarding1HostingController(viewModel: Onboarding1ViewModel())
-                    Onboarding1VC.modalPresentationStyle = .fullScreen
-                    self.showDetailViewController(Onboarding1VC, sender: self)
-                    return
+//                    let Onboarding1VC = Onboarding1HostingController(viewModel: Onboarding1ViewModel())
+//                    Onboarding1VC.modalPresentationStyle = .fullScreen
+//                    self.showDetailViewController(Onboarding1VC, sender: self)
+//                    return
 //                }
         
         //MARK: MountainViewの位置更新

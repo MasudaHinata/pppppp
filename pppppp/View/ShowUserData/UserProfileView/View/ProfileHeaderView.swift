@@ -36,7 +36,6 @@ struct ProfileHeaderView: View {
                             .background(Asset.Assets.blue.swiftUIImage.resizable().scaledToFill())
                             .background(Asset.Colors.mainColor.swiftUIColor)
                             .foregroundColor(.white))
-                        print(renderer.uiImage)
                         if let image = renderer.uiImage {
                             viewModel.renderedImage = image
                         }

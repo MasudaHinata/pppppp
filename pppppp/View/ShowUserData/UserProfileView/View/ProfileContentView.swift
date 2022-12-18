@@ -5,7 +5,7 @@ import Combine
 
 struct ProfileContentView: View {
     @ObservedObject var viewModel: ProfileViewModel
-    
+
     var body: some View {
         Form {
             Section {

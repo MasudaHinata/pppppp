@@ -337,6 +337,8 @@
 			children = (
 				9C1A900B283506D5004B4100 /* ProfileHostingController.swift */,
 				035329CC28EECB9000257768 /* ProfileContentView.swift */,
+				03EEB3512949CFA900D16ABE /* ProfileHeaderView.swift */,
+				03EEB3532949D9F500D16ABE /* ProfileCardView.swift */,
 				032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */,
 				0348CD4A29364117008B4775 /* PointChartsUIView.swift */,
 			);
@@ -903,8 +905,6 @@
 		BE7F336F2580D07E0027620D = {
 			isa = PBXGroup;
 			children = (
-				03EEB3532949D9F500D16ABE /* ProfileCardView.swift */,
-				03EEB3512949CFA900D16ABE /* ProfileHeaderView.swift */,
 				BE7F337A2580D07E0027620D /* pppppp */,
 				BE7F33792580D07E0027620D /* Products */,
 				BE2F95D02588CCF5004DC436 /* Frameworks */,
