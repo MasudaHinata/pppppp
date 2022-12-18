@@ -9,13 +9,13 @@ class Onboarding2HostingController: UIHostingController<Onboarding2ContentView> 
     init(viewModel: Onboarding2ViewModel) {
         super.init(rootView: .init(viewModel: viewModel))
 
-        //MARK: 画面遷移
-        viewModel.$getPermissionHealthKitView
+        viewModel.$dismissView
             .dropFirst()
-            .sink {
-                HealthKit_ScoreringManager.shared.getPermissionHealthKit()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let mainVC = StoryboardScene.Main.initialScene.instantiate()
+                self.showDetailViewController(mainVC, sender: self)
             }.store(in: &cancellables)
-
     }
 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
@@ -23,3 +23,4 @@ class Onboarding2HostingController: UIHostingController<Onboarding2ContentView> 
     }
 
 }
+

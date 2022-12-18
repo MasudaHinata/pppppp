@@ -3,6 +3,13 @@ import SwiftUI
 
 struct ProfileHeaderView: View {
     @ObservedObject var viewModel: ProfileViewModel
+
+//    var cardView = ProfileCardView(viewModel: viewModel)
+//    var cardView: ProfileCardView?
+//    init(viewModel: ProfileViewModel) {
+//        cardView = ProfileCardView(viewModel: viewModel)
+//    }
+
     var body: some View {
         if viewModel.meJudge {
             HStack {
@@ -79,6 +86,8 @@ struct ProfileHeaderView: View {
         }
 
         //MARK: - sharePointView
+//        cardView
+//            .listRowBackground(Color.clear)
         ProfileCardView(viewModel: viewModel)
             .listRowBackground(Color.clear)
 
@@ -127,6 +136,7 @@ struct ProfileHeaderView: View {
                 Image(uiImage: viewModel.renderedImage!)
                     .resizable()
                     .scaledToFill()
+                    .listRowBackground(Color.clear)
             }
         }
     }

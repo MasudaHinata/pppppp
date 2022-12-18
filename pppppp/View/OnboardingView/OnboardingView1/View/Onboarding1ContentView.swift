@@ -11,38 +11,46 @@ struct Onboarding1ContentView: View {
                 .ignoresSafeArea()
 
             VStack {
-                Image(asset: Asset.Assets.onboardingVer2)
+                Image(asset: Asset.Assets.onboarding1)
                     .resizable()
                     .scaledToFit()
                     .frame(maxHeight: 400)
+                    .padding()
+
+                Text("GET READY.")
+                    .font(.system(size: 32, weight: .bold, design: .default))
 
                 Spacer()
-                Text("歩数・体重・ワークアウトを\nHealthKitから取得し、\n体格や生活リズムを考慮した\nポイントを自動で作成します。")
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .lineSpacing(24)
+                Text("歩数・体重・ワークアウトをHealthKitから取得して体格や生活リズムを考慮したポイントを自動で作成します。")
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .padding()
 
-                HStack {
-                    Spacer()
+                Spacer()
 
-                    Button {
-                        viewModel.sceneOnboarding2()
-                    } label: {
-                        HStack {
-                            Text("next")
-                                .foregroundColor(Color(asset: Asset.Colors.white00))
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                            Image(systemName: "figure.walk.motion")
-                                .foregroundColor(.white)
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                        }
-                        .padding()
-                        .background(Color(asset: Asset.Colors.white48))
-                        .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
+                Text("Health Kit への書き込みと読み込みを全て許可してください。")
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .padding()
 
+                Button {
+                    viewModel.sceneOnboarding2()
+//                    viewModel.getPermissionHealthKit()
+                } label: {
+                    HStack {
+                        Image(systemName: "figure.walk.motion")
+                            .foregroundColor(.white)
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                        Text("Go")
+                            .foregroundColor(Color(asset: Asset.Colors.white00))
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
                     }
+                    .padding()
+                    .background(Color(asset: Asset.Colors.white48))
+                    .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
                 }
-                .padding()
             }
         }
+//        .onAppear() {
+//            viewModel.checkHealthKitPermission()
+//        }
     }
 }
