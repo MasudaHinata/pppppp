@@ -53,6 +53,7 @@ struct ProfileHeaderView: View {
                 }
             }
             .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
         } else {
             //MARK: 友達のデータを表示する時
             HStack {
@@ -83,11 +84,13 @@ struct ProfileHeaderView: View {
                 }
             }
             .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
         }
 
         //MARK: - sharePointView
         cardView
             .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
 
         //MARK: Buttons
         if viewModel.meJudge {
