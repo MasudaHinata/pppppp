@@ -13,7 +13,7 @@ class Onboarding1HostingController: UIHostingController<Onboarding1ContentView> 
             .dropFirst()
             .sink {
                 //TODO: 横に遷移したい
-                let Onboarding2VC = Onboarding2HostingController(viewModel: Onboarding1ViewModel())
+                let Onboarding2VC = Onboarding2HostingController(viewModel: OnboardingViewModel())
                 Onboarding2VC.modalPresentationStyle = .fullScreen
                 self.showDetailViewController(Onboarding2VC, sender: self)
             }.store(in: &cancellables)

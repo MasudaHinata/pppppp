@@ -5,10 +5,11 @@ struct ProfileHeaderView: View {
     @ObservedObject var viewModel: ProfileViewModel
 
 //    var cardView = ProfileCardView(viewModel: viewModel)
-//    var cardView: ProfileCardView?
-//    init(viewModel: ProfileViewModel) {
-//        cardView = ProfileCardView(viewModel: viewModel)
-//    }
+    var cardView: ProfileCardView?
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
+        cardView = ProfileCardView(viewModel: viewModel)
+    }
 
     var body: some View {
         if viewModel.meJudge {
@@ -31,7 +32,7 @@ struct ProfileHeaderView: View {
 
                 Button {
                     if #available(iOS 16.0, *) {
-                        let renderer = ImageRenderer(content: ProfileCardView(viewModel: viewModel)
+                        let renderer = ImageRenderer(content: cardView
                             .padding()
                             .background(Asset.Assets.blue.swiftUIImage.resizable().scaledToFill())
                             .background(Asset.Colors.mainColor.swiftUIColor)
@@ -85,10 +86,10 @@ struct ProfileHeaderView: View {
         }
 
         //MARK: - sharePointView
-//        cardView
-//            .listRowBackground(Color.clear)
-        ProfileCardView(viewModel: viewModel)
+        cardView
             .listRowBackground(Color.clear)
+//        ProfileCardView(viewModel: viewModel)
+//            .listRowBackground(Color.clear)
 
         //MARK: Buttons
         if viewModel.meJudge {
