@@ -149,7 +149,6 @@ class DrawView: UIView {
     //MARK: -　path・アイコン・Labelを動かす
     func startAccelerometer() {
         let handler: CMAccelerometerHandler = {( CMAccelerometerData: CMAccelerometerData?, error: Error?) -> Void in
-
             let posX = CGFloat(CMAccelerometerData!.acceleration.x) * 20
             let posY = CGFloat(CMAccelerometerData!.acceleration.y) * -20
             self.vertexPointTmps.removeFirst()
@@ -162,11 +161,9 @@ class DrawView: UIView {
         playerMotionManager.startAccelerometerUpdates(to: OperationQueue.main, withHandler: handler)
     }
 
+    //MARK: -　path・アイコン・Labelの動きを止める
     //TODO: Accelerometerを止める
     func stopAccelerometer() {
-
-
-
 
     }
 }

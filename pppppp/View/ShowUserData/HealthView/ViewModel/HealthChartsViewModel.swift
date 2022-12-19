@@ -29,14 +29,14 @@ final class HealthChartsViewModel: ObservableObject {
                 } else {
                     averagePeriod = 364
                 }
-                averageStep = try await HealthKit_ScoreringManager.shared.getAverageStep(date: Double(averagePeriod))
+                averageStep = try await HealthKitScoreringManager.shared.getAverageStep(date: Double(averagePeriod))
 
-                chartsStepItem = try await HealthKit_ScoreringManager.shared.getStepsChart(period: period)
+                chartsStepItem = try await HealthKitScoreringManager.shared.getStepsChart(period: period)
                 chartsStepItem.reverse()
 
-                let lastWeight = try await HealthKit_ScoreringManager.shared.getWeight()
+                let lastWeight = try await HealthKitScoreringManager.shared.getWeight()
                 lastWeightStr = String(format: "%.2f", round(lastWeight * 10) / 10)
-                chartsWeightItem = try await HealthKit_ScoreringManager.shared.getWeightData(period: weightPeriod)
+                chartsWeightItem = try await HealthKitScoreringManager.shared.getWeightData(period: weightPeriod)
                 chartsWeightItem.reverse()
 
                 let userID = try await FirebaseClient.shared.getUserUUID()
@@ -56,7 +56,7 @@ final class HealthChartsViewModel: ObservableObject {
     func segmentIndexChangeStepCount(newValue: String) {
         let task = Task {
             do {
-                chartsStepItem = try await HealthKit_ScoreringManager.shared.getStepsChart(period: newValue)
+                chartsStepItem = try await HealthKitScoreringManager.shared.getStepsChart(period: newValue)
                 chartsStepItem.reverse()
 
                 var averagePeriod = 0
@@ -67,7 +67,7 @@ final class HealthChartsViewModel: ObservableObject {
                 } else {
                     averagePeriod = 6
                 }
-                averageStep = try await HealthKit_ScoreringManager.shared.getAverageStep(date: Double(averagePeriod))
+                averageStep = try await HealthKitScoreringManager.shared.getAverageStep(date: Double(averagePeriod))
             }
             catch {
                 print("HealthChartsViewModel error:", error.localizedDescription)
@@ -80,7 +80,7 @@ final class HealthChartsViewModel: ObservableObject {
     func weightSegmentIndexChanged(newValue: String) {
         let task = Task {
             do {
-                chartsWeightItem = try await HealthKit_ScoreringManager.shared.getWeightData(period: newValue)
+                chartsWeightItem = try await HealthKitScoreringManager.shared.getWeightData(period: newValue)
                 chartsWeightItem.reverse()
             }
             catch {

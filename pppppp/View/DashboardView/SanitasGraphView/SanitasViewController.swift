@@ -80,7 +80,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                         startDate = calendar.date(byAdding: .day, value: -(weekNumber - 2), to: am)!
                     }
                 }
-                stepsLabel.text = "Today  \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps()))  steps"
+                stepsLabel.text = "Today  \(Int(try await HealthKitScoreringManager.shared.getTodaySteps()))  steps"
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 if friendDataList.count == 1 {
@@ -192,10 +192,16 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
+                let settingGoalWeightVC = SettingGoalWeightHostingController(viewModel: SettingGoalWeightViewModel())
+                settingGoalWeightVC.modalPresentationStyle = .fullScreen
+                self.showDetailViewController(settingGoalWeightVC, sender: self)
+                return
+
+                
                 try await FirebaseClient.shared.checkUserAuth()
 
                 //MARK: 今日の歩数を表示
-                stepsLabel.text = "Today \(Int(try await HealthKit_ScoreringManager.shared.getTodaySteps())) steps"
+                stepsLabel.text = "Today \(Int(try await HealthKitScoreringManager.shared.getTodaySteps())) steps"
 
                 //MARK: 今日の自己評価が完了しているかの判定
                 let now = calendar.component(.hour, from: Date())
@@ -212,17 +218,17 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 //MARK: 今日の歩数ポイントの作成が完了しているかの判定
                 let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
                 if createStepPointJudge {
-                    try await HealthKit_ScoreringManager.shared.createStepPoint()
+                    try await HealthKitScoreringManager.shared.createStepPoint()
                 }
 
                 //MARK: ワークアウトのポイント作成判定
-                let createdPointjudge = try await HealthKit_ScoreringManager.shared.createWorkoutPoint()
+                let createdPointjudge = try await HealthKitScoreringManager.shared.createWorkoutPoint()
                 if createdPointjudge == false {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー(Workout point)", message: "HealthKitにデータがないためポイントを作成できませんでした")
                 }
                 
                 //MARK: 体重のポイント作成判定
-                let judge = try await HealthKit_ScoreringManager.shared.checkWeightPoint()
+                let judge = try await HealthKitScoreringManager.shared.checkWeightPoint()
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(userId: userID)
                 guard let goalWeight = userData.last?.weightGoal else {
@@ -232,8 +238,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                     return
                 }
                 if judge {
-                    let weight = try await HealthKit_ScoreringManager.shared.getWeight()
-                    let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight, weight: weight)
+                    let weight = try await HealthKitScoreringManager.shared.getWeight()
+                    let checkPoint = try await HealthKitScoreringManager.shared.createWeightPoint(weightGoal: goalWeight, weight: weight)
                     if checkPoint == [] {
                         ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "HealthKitに過去2週間の体重データがないためポイントを作成できませんでした")
                     }

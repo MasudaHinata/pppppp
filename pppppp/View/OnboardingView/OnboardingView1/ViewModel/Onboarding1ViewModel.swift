@@ -14,7 +14,7 @@ final class Onboarding1ViewModel: ObservableObject {
 
     func getPermissionHealthKit() {
         healthKitPermissionFlg = true
-        HealthKit_ScoreringManager.shared.getPermissionHealthKit()
+        HealthKitScoreringManager.shared.getPermissionHealthKit()
     }
 
     func checkHealthKitPermission() {

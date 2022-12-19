@@ -21,7 +21,7 @@ final class SettingGoalWeightViewModel: ObservableObject {
             let task = Task {
                 do {
                     if weight != 0 {
-                        try await HealthKit_ScoreringManager.shared.writeWeight(weight: Double(weight))
+                        try await HealthKitScoreringManager.shared.writeWeight(weight: Double(weight))
                     }
                     try await FirebaseClient.shared.putWeightGoal(weightGoal: Double(weightGoal))
                     //TODO: alert

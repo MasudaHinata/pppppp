@@ -15,7 +15,7 @@ class Onboarding1HostingController: UIHostingController<Onboarding1ContentView> 
 //            .sink { [weak self] _ in
 //                guard let self = self else { return }
 //
-//                HealthKit_ScoreringManager.shared.getPermissionHealthKit()
+//                HealthKitScoreringManager.shared.getPermissionHealthKit()
 //
 //            }.store(in: &cancellables)
 

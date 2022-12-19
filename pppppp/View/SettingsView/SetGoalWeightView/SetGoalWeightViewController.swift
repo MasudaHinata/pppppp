@@ -44,7 +44,7 @@ class SetGoalWeightViewController: UIViewController {
             guard let self = self else { return }
             do {
                 if inputWeightText != "" {
-                    try await HealthKit_ScoreringManager.shared.writeWeight(weight: Double(inputWeightText) ?? 0)
+                    try await HealthKitScoreringManager.shared.writeWeight(weight: Double(inputWeightText) ?? 0)
                 }
                 try await FirebaseClient.shared.putWeightGoal(weightGoal: inputWeightGoal)
                 ShowAlertHelper.okAlert(vc: self, title: "完了", message: "記録しました") { _ in

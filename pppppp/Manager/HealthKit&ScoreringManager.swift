@@ -5,8 +5,8 @@ var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIden
 var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
 var typeOfWorkout = HKWorkoutType.workoutType()
 
-final class HealthKit_ScoreringManager {
-    static let shared = HealthKit_ScoreringManager()
+final class HealthKitScoreringManager {
+    static let shared = HealthKitScoreringManager()
     private init() {}
     
     let myHealthStore = HKHealthStore()
