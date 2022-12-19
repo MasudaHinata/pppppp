@@ -19,6 +19,7 @@ struct ProfileCardView: View {
                         .frame(width: 72, height: 72)
                         .cornerRadius(36)
 
+
                     VStack(alignment: .leading) {
                         Text(DateToString(date: Date()))
                             .font(.custom("F5.6", fixedSize: 14))
@@ -28,7 +29,7 @@ struct ProfileCardView: View {
                             .font(.system(size: 24, weight: .semibold))
                     }
 
-                    //                                Spacer()
+                    Spacer()
 
                     Button {
                         //TODO: Push遷移にする
@@ -50,6 +51,8 @@ struct ProfileCardView: View {
                     .buttonStyle(PlainButtonStyle())
                     .foregroundColor(.white)
                 }
+                .frame(maxWidth: 300)
+                .padding(.top)
 
                 Text("\(viewModel.point)pt")
                     .font(.custom("F5.6", fixedSize: 40))
