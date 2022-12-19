@@ -25,6 +25,7 @@
 		032DF38528F8517900458C20 /* FriendRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF38428F8517900458C20 /* FriendRequestViewModel.swift */; };
 		033945F028DF25C100681E9C /* HealthChartsHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033945EF28DF25C100681E9C /* HealthChartsHostingController.swift */; };
 		033BC37C28DC7FA9008DBC49 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033BC37B28DC7FA9008DBC49 /* Colors.xcassets */; };
+		033D90C9294FFC710043B6A6 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033D90C8294FFC710043B6A6 /* Photo.swift */; };
 		0343680E28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */; };
 		0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343681528D7ED5C000BA656 /* SignInWithAppleViewController.swift */; };
 		0343681828D7ED68000BA656 /* SignInWithAppleView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0343681728D7ED68000BA656 /* SignInWithAppleView.storyboard */; };
@@ -160,6 +161,7 @@
 		032DF38428F8517900458C20 /* FriendRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewModel.swift; sourceTree = "<group>"; };
 		033945EF28DF25C100681E9C /* HealthChartsHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsHostingController.swift; sourceTree = "<group>"; };
 		033BC37B28DC7FA9008DBC49 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		033D90C8294FFC710043B6A6 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		0343680D28D756C3000BA656 /* RecordExerciseView+UIPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordExerciseView+UIPickerDelegate.swift"; sourceTree = "<group>"; };
 		0343681528D7ED5C000BA656 /* SignInWithAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleViewController.swift; sourceTree = "<group>"; };
 		0343681728D7ED68000BA656 /* SignInWithAppleView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignInWithAppleView.storyboard; sourceTree = "<group>"; };
@@ -668,6 +670,7 @@
 				03704A2228E022D6004BE7C3 /* ChartsWeightItem.swift */,
 				036E476628DAF77200EA7BB1 /* ChartsStepItem.swift */,
 				0348CD4C29364135008B4775 /* ChartsPointItem.swift */,
+				033D90C8294FFC710043B6A6 /* Photo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1062,6 +1065,7 @@
 				BE7F33802580D07E0027620D /* SanitasViewController.swift in Sources */,
 				0343682328D807C7000BA656 /* EmailSignInViewController+UITextFieldDelegate.swift in Sources */,
 				032DF37D28F84FAD00458C20 /* FriendRequestViewController.swift in Sources */,
+				033D90C9294FFC710043B6A6 /* Photo.swift in Sources */,
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				0348CD4B29364117008B4775 /* PointChartsUIView.swift in Sources */,
 				03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */,

@@ -30,27 +30,46 @@ struct ProfileHeaderView: View {
 
                 Spacer()
 
-                Button {
-                    if #available(iOS 16.0, *) {
-                        let renderer = ImageRenderer(content: cardView
-                            .padding()
-                            .background(Asset.Assets.blue.swiftUIImage.resizable().scaledToFill())
-                            .background(Asset.Colors.mainColor.swiftUIColor)
-                            .foregroundColor(.white))
-                        if let image = renderer.uiImage {
-                            viewModel.renderedImage = image
-                        }
-                    }
-                    //viewModel.shareSns()
-                } label: {
-                    Image(systemName: "square.and.arrow.up")
-                        .frame(width: 48, height: 48)
-                        .background(Color(asset: Asset.Colors.white16))
-                        .foregroundColor(Color(asset: Asset.Colors.white00))
-                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                if #available(iOS 16.0, *) {
+
+                    ShareLink(item: Photo(image: Image(uiImage: viewModel.renderedImage!), caption: "", description: ""))
+
                 }
-                .buttonStyle(.plain)
+
+//                Button {
+//                    if #available(iOS 16.0, *) {
+//                        let renderer = ImageRenderer(content: cardView
+//                            .padding()
+//                            .background(Asset.Assets.blue.swiftUIImage.resizable().scaledToFill())
+//                            .background(Asset.Colors.mainColor.swiftUIColor)
+//                            .foregroundColor(.white))
+//                        if let image = renderer.uiImage {
+//                            viewModel.renderedImage = image
+//                        }
+//                    }
+//                    //viewModel.shareSns()
+//                } label: {
+//                    Image(systemName: "square.and.arrow.up")
+//                        .frame(width: 48, height: 48)
+//                        .background(Color(asset: Asset.Colors.white16))
+//                        .foregroundColor(Color(asset: Asset.Colors.white00))
+//                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+//                        .font(.system(size: 16, weight: .medium, design: .rounded))
+//                }
+//                .buttonStyle(.plain)
+            }
+            .onAppear() {
+                if #available(iOS 16.0, *) {
+                    let renderer = ImageRenderer(content: cardView
+                        .padding()
+                        .background(Asset.Assets.blue.swiftUIImage.resizable().scaledToFill())
+                        .background(Asset.Colors.mainColor.swiftUIColor)
+                        .foregroundColor(.white))
+                    if let image = renderer.uiImage {
+                        viewModel.renderedImage = image
+                        Photo(image: viewModel.renderedImage, caption: "sanitas", description: "")
+                    }
+                }
             }
             .listRowBackground(Color.clear)
         } else {
@@ -88,8 +107,6 @@ struct ProfileHeaderView: View {
         //MARK: - sharePointView
         cardView
             .listRowBackground(Color.clear)
-//        ProfileCardView(viewModel: viewModel)
-//            .listRowBackground(Color.clear)
 
         //MARK: Buttons
         if viewModel.meJudge {
@@ -145,5 +162,13 @@ struct ProfileHeaderView: View {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd"
         return dateFormatter.string(from: date)
+    }
+}
+
+
+@available(iOS 16.0, *)
+extension Photo: Transferable {
+    static var transferRepresentation: some TransferRepresentation {
+        ProxyRepresentation(exporting: \.image)
     }
 }
