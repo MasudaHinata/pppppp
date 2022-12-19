@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0318016928D4D32A004C7002 /* AddFriendView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0318016828D4D32A004C7002 /* AddFriendView.storyboard */; };
 		0318016B28D4D344004C7002 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318016A28D4D344004C7002 /* AddFriendViewController.swift */; };
+		0320BD44294FF9C0009BA753 /* Onboarding1HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0320BD43294FF9C0009BA753 /* Onboarding1HostingController.swift */; };
 		032843A928DC8E5700AB1A5D /* L10n-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843A728DC8E5700AB1A5D /* L10n-Constants.swift */; };
 		032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843A828DC8E5700AB1A5D /* Assets-Constants.swift */; };
 		032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */; };
@@ -99,7 +100,6 @@
 		03DAC41128EC287D005F173B /* TimeLineViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC41028EC287D005F173B /* TimeLineViewController+CollectionViewDelegate.swift */; };
 		03DAC41328EC47E3005F173B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC41228EC47E3005F173B /* MainTabBarController.swift */; };
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
-		03EEB3412946FEFA00D16ABE /* Onboarding1HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3402946FEFA00D16ABE /* Onboarding1HostingController.swift */; };
 		03EEB3432946FF1600D16ABE /* Onboarding1ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3422946FF1600D16ABE /* Onboarding1ContentView.swift */; };
 		03EEB3472946FF5B00D16ABE /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3462946FF5B00D16ABE /* OnboardingViewModel.swift */; };
 		03EEB34C2947739C00D16ABE /* Onboarding2HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB34B2947739C00D16ABE /* Onboarding2HostingController.swift */; };
@@ -144,6 +144,7 @@
 /* Begin PBXFileReference section */
 		0318016828D4D32A004C7002 /* AddFriendView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFriendView.storyboard; sourceTree = "<group>"; };
 		0318016A28D4D344004C7002 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		0320BD43294FF9C0009BA753 /* Onboarding1HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1HostingController.swift; sourceTree = "<group>"; };
 		032843A728DC8E5700AB1A5D /* L10n-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "L10n-Constants.swift"; sourceTree = "<group>"; };
 		032843A828DC8E5700AB1A5D /* Assets-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets-Constants.swift"; sourceTree = "<group>"; };
 		032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Scenes.swift"; sourceTree = "<group>"; };
@@ -234,7 +235,6 @@
 		03DAC41028EC287D005F173B /* TimeLineViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeLineViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		03DAC41228EC47E3005F173B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
-		03EEB3402946FEFA00D16ABE /* Onboarding1HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1HostingController.swift; sourceTree = "<group>"; };
 		03EEB3422946FF1600D16ABE /* Onboarding1ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ContentView.swift; sourceTree = "<group>"; };
 		03EEB3462946FF5B00D16ABE /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		03EEB34B2947739C00D16ABE /* Onboarding2HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2HostingController.swift; sourceTree = "<group>"; };
@@ -838,7 +838,7 @@
 		03EEB33D2946FE7E00D16ABE /* OnboardingView1 */ = {
 			isa = PBXGroup;
 			children = (
-				03EEB3402946FEFA00D16ABE /* Onboarding1HostingController.swift */,
+				0320BD43294FF9C0009BA753 /* Onboarding1HostingController.swift */,
 				03EEB3422946FF1600D16ABE /* Onboarding1ContentView.swift */,
 			);
 			path = OnboardingView1;
@@ -1040,7 +1040,6 @@
 				032DF38528F8517900458C20 /* FriendRequestViewModel.swift in Sources */,
 				036E476928DB1A5C00EA7BB1 /* RecordWeightViewController.swift in Sources */,
 				03DAC40E28EC2865005F173B /* TimelinePostCollectionViewCell.swift in Sources */,
-				03EEB3412946FEFA00D16ABE /* Onboarding1HostingController.swift in Sources */,
 				036F699228BCFE850066A7DA /* DashboardViewController.swift in Sources */,
 				035D29E328E9F30200E1BEA4 /* FriendListViewController.swift in Sources */,
 				03879DE128E46E7200C1DBA2 /* HealthKitScoreringManager.swift in Sources */,
@@ -1066,6 +1065,7 @@
 				036F69ED28BE8F850066A7DA /* RecentActivitysTableViewCell.swift in Sources */,
 				0348CD4B29364117008B4775 /* PointChartsUIView.swift in Sources */,
 				03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */,
+				0320BD44294FF9C0009BA753 /* Onboarding1HostingController.swift in Sources */,
 				033945F028DF25C100681E9C /* HealthChartsHostingController.swift in Sources */,
 				032DF36A28F30FDA00458C20 /* CGPointHelper.swift in Sources */,
 				032DF37228F4535D00458C20 /* PointActivityImage.swift in Sources */,

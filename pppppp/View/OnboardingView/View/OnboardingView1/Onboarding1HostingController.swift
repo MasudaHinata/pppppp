@@ -22,5 +22,4 @@ class Onboarding1HostingController: UIHostingController<Onboarding1ContentView> 
     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
