@@ -16,19 +16,20 @@ final class HealthKitScoreringManager {
     let typeOfRead = Set([typeOfBodyMass, typeOfStepCount, typeOfWorkout])
     
     //MARK: - HealthKitの許可を求める
-    func getPermissionHealthKit() {
+    func getPermissionHealthKit() async throws {
         //TODO: 許可されてるかどうかを判定する,asyncにしたい
-        myHealthStore.requestAuthorization(toShare: typeOfWrite, read: typeOfRead) { (success, error) in
-            if let error = error {
-                print("Scorering getPermission error:", error.localizedDescription)
-                return
-            }
-        }
+//        myHealthStore.requestAuthorization(toShare: typeOfWrite, read: typeOfRead) { (success, error) in
+//            if let error = error {
+//                print("Scorering getPermission error:", error.localizedDescription)
+//                return
+//            }
+//        }
+        try await myHealthStore.requestAuthorization(toShare: typeOfWrite, read: typeOfRead)
     }
     
     //MARK: - 今日の歩数を取得
     func getTodaySteps() async throws -> Double {
-        getPermissionHealthKit()
+        try await getPermissionHealthKit()
         let startDate = calendar.startOfDay(for: Date())
         let period = HKQuery.predicateForSamples(withStart: startDate, end: Date())
         let stepsToday = HKSamplePredicate.quantitySample(type: typeOfStepCount, predicate: period)
@@ -39,7 +40,7 @@ final class HealthKitScoreringManager {
     
     //MARK: - 平均歩数を取得
     func getAverageStep(date: Double) async throws -> Int {
-        getPermissionHealthKit()
+        try await getPermissionHealthKit()
         var averageStep = Int()
         let endDate = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: Date()))
         let startDate = calendar.date(byAdding: .day, value: Int(-date), to: calendar.startOfDay(for: Date()))
@@ -52,7 +53,7 @@ final class HealthKitScoreringManager {
     
     //MARK: - Chart用の歩数を取得
     func getStepsChart(period: String) async throws -> [ChartsStepItem] {
-        getPermissionHealthKit()
+        try await getPermissionHealthKit()
         var chartsStepItem = [ChartsStepItem]()
         var days = [Int]()
         
@@ -98,7 +99,7 @@ final class HealthKitScoreringManager {
     
     //MARK: - 歩数を取得・歩数ポイントを作成
     func createStepPoint() async throws {
-        getPermissionHealthKit()
+        try await getPermissionHealthKit()
         let endDateMonth = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date()))
         let startDateMonth = calendar.date(byAdding: .day, value: -31, to: calendar.startOfDay(for: Date()))
         let periodMonth = HKQuery.predicateForSamples(withStart: startDateMonth, end: endDateMonth)
@@ -140,7 +141,7 @@ final class HealthKitScoreringManager {
     
     //MARK: - 最新の体重を取得
     func getWeight() async throws -> Double {
-        getPermissionHealthKit()
+        try await getPermissionHealthKit()
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [])
         let results = try await descriptor.result(for: myHealthStore)
         guard let doubleValues = results.last?.quantity.doubleValue(for: .gramUnit(with: .kilo)) else { return 0 }
@@ -149,7 +150,7 @@ final class HealthKitScoreringManager {
     
     //MARK: - Chart用の体重を取得
     func getWeightData(period: String) async throws -> [ChartsWeightItem] {
-        getPermissionHealthKit()
+        try await getPermissionHealthKit()
         var chartsWeightItem = [ChartsWeightItem]()
         var days = [Int]()
         
@@ -179,7 +180,7 @@ final class HealthKitScoreringManager {
     
     //MARK: - 体重をHealthKitに書き込み
     func writeWeight(weight: Double) async throws {
-        getPermissionHealthKit()
+        try await getPermissionHealthKit()
         let myWeight = HKQuantity(unit: HKUnit.gramUnit(with: .kilo), doubleValue: weight)
         let myWeightData = HKQuantitySample(type: typeOfBodyMass, quantity: myWeight, start: Date(),end: Date())
         try await self.myHealthStore.save(myWeightData)
@@ -187,7 +188,7 @@ final class HealthKitScoreringManager {
     
     //MARK: - 体重ポイント作成の判定
     func checkWeightPoint() async throws -> Bool {
-        getPermissionHealthKit()
+        try await getPermissionHealthKit()
         let descriptor = HKSampleQueryDescriptor(predicates:[.quantitySample(type: typeOfBodyMass)], sortDescriptors: [])
         let results = try await descriptor.result(for: myHealthStore)
         
@@ -258,7 +259,7 @@ final class HealthKitScoreringManager {
 
     //MARK: - ポイント作成の判定 & 最新のworkoutを取得してポイントを作成
     func createWorkoutPoint() async throws -> Bool {
-        getPermissionHealthKit()
+        try await getPermissionHealthKit()
         var createdPointJudge: Bool = true
         var checkWorkoutPoint: Bool
         let descriptor = HKSampleQueryDescriptor(predicates:[.workout()], sortDescriptors: [])

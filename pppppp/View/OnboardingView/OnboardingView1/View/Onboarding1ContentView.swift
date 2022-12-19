@@ -32,8 +32,8 @@ struct Onboarding1ContentView: View {
                     .padding()
 
                 Button {
-                    viewModel.sceneOnboarding2()
-//                    viewModel.getPermissionHealthKit()
+                    viewModel.getPermissionHealthKit()
+//                    viewModel.sceneOnboarding2()
                 } label: {
                     HStack {
                         Image(systemName: "figure.walk.motion")
@@ -49,8 +49,5 @@ struct Onboarding1ContentView: View {
                 }
             }
         }
-//        .onAppear() {
-//            viewModel.checkHealthKitPermission()
-//        }
     }
 }

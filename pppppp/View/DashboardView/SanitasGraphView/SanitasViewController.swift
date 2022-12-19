@@ -174,13 +174,13 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         super.viewDidAppear(animated)
         
         //MARK: 初期画面
-//                let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
-//                if judge == false {
-//                    let Onboarding1VC = Onboarding1HostingController(viewModel: Onboarding1ViewModel())
-//                    Onboarding1VC.modalPresentationStyle = .fullScreen
-//                    self.showDetailViewController(Onboarding1VC, sender: self)
-//                    return
-//                }
+        let judge: Bool = (UserDefaults.standard.object(forKey: "initialScreen") as? Bool) ?? false
+        if judge == false {
+            let Onboarding1VC = Onboarding1HostingController(viewModel: Onboarding1ViewModel())
+            Onboarding1VC.modalPresentationStyle = .fullScreen
+            self.showDetailViewController(Onboarding1VC, sender: self)
+            return
+        }
         
         //MARK: MountainViewの位置更新
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
@@ -192,12 +192,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                let settingGoalWeightVC = SettingGoalWeightHostingController(viewModel: SettingGoalWeightViewModel())
-                settingGoalWeightVC.modalPresentationStyle = .fullScreen
-                self.showDetailViewController(settingGoalWeightVC, sender: self)
-                return
-
-                
                 try await FirebaseClient.shared.checkUserAuth()
 
                 //MARK: 今日の歩数を表示
