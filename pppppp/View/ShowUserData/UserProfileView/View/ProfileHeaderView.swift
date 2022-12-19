@@ -4,11 +4,22 @@ import SwiftUI
 struct ProfileHeaderView: View {
     @ObservedObject var viewModel: ProfileViewModel
 
-//    var cardView = ProfileCardView(viewModel: viewModel)
     var cardView: ProfileCardView?
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
         cardView = ProfileCardView(viewModel: viewModel)
+
+        if #available(iOS 16.0, *) {
+            let renderer = ImageRenderer(content: cardView
+                .padding()
+                .background(Asset.Assets.blue.swiftUIImage.resizable().scaledToFill())
+                .background(Asset.Colors.mainColor.swiftUIColor)
+                .foregroundColor(.white))
+            if let image = renderer.uiImage {
+                viewModel.renderedImage = image
+                print(viewModel.renderedImage)
+            }
+        }
     }
 
     var body: some View {
@@ -31,44 +42,14 @@ struct ProfileHeaderView: View {
                 Spacer()
 
                 if #available(iOS 16.0, *) {
-
-                    ShareLink(item: Photo(image: Image(uiImage: viewModel.renderedImage!), caption: "", description: ""))
-
-                }
-
-//                Button {
-//                    if #available(iOS 16.0, *) {
-//                        let renderer = ImageRenderer(content: cardView
-//                            .padding()
-//                            .background(Asset.Assets.blue.swiftUIImage.resizable().scaledToFill())
-//                            .background(Asset.Colors.mainColor.swiftUIColor)
-//                            .foregroundColor(.white))
-//                        if let image = renderer.uiImage {
-//                            viewModel.renderedImage = image
-//                        }
-//                    }
-//                    //viewModel.shareSns()
-//                } label: {
-//                    Image(systemName: "square.and.arrow.up")
-//                        .frame(width: 48, height: 48)
-//                        .background(Color(asset: Asset.Colors.white16))
-//                        .foregroundColor(Color(asset: Asset.Colors.white00))
-//                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-//                        .font(.system(size: 16, weight: .medium, design: .rounded))
-//                }
-//                .buttonStyle(.plain)
-            }
-            .onAppear() {
-                if #available(iOS 16.0, *) {
-                    let renderer = ImageRenderer(content: cardView
-                        .padding()
-                        .background(Asset.Assets.blue.swiftUIImage.resizable().scaledToFill())
-                        .background(Asset.Colors.mainColor.swiftUIColor)
-                        .foregroundColor(.white))
-                    if let image = renderer.uiImage {
-                        viewModel.renderedImage = image
-                        Photo(image: viewModel.renderedImage, caption: "sanitas", description: "")
+                    ShareLink(item: Photo(image: Image(uiImage: viewModel.renderedImage!), caption: "", description: ""), preview: SharePreview("Sanitas", image: Photo(image: Image(uiImage: viewModel.renderedImage!), caption: "", description: ""))) {
+                        Image(systemName: "square.and.arrow.up")
                     }
+                    .frame(width: 48, height: 48)
+                    .background(Color(asset: Asset.Colors.white16))
+                    .foregroundColor(Color(asset: Asset.Colors.white00))
+                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    .font(.system(size: 16, weight: .medium, design: .rounded))
                 }
             }
             .listRowBackground(Color.clear)
@@ -148,13 +129,6 @@ struct ProfileHeaderView: View {
                 }
             }
             .listRowBackground(Color.clear)
-
-            if viewModel.renderedImage != nil {
-                Image(uiImage: viewModel.renderedImage!)
-                    .resizable()
-                    .scaledToFill()
-                    .listRowBackground(Color.clear)
-            }
         }
     }
 
