@@ -6,7 +6,7 @@ class Onboarding2HostingController: UIHostingController<Onboarding2ContentView> 
 
     private var cancellables: [AnyCancellable] = []
 
-    init(viewModel: Onboarding2ViewModel) {
+    init(viewModel: OnboardingViewModel) {
         super.init(rootView: .init(viewModel: viewModel))
 
         viewModel.$dismissView

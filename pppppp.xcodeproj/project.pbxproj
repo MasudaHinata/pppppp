@@ -101,10 +101,9 @@
 		03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFB7A228B7A8390019381A /* SetNameViewController.swift */; };
 		03EEB3412946FEFA00D16ABE /* Onboarding1HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3402946FEFA00D16ABE /* Onboarding1HostingController.swift */; };
 		03EEB3432946FF1600D16ABE /* Onboarding1ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3422946FF1600D16ABE /* Onboarding1ContentView.swift */; };
-		03EEB3472946FF5B00D16ABE /* Onboarding1ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3462946FF5B00D16ABE /* Onboarding1ViewModel.swift */; };
+		03EEB3472946FF5B00D16ABE /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3462946FF5B00D16ABE /* OnboardingViewModel.swift */; };
 		03EEB34C2947739C00D16ABE /* Onboarding2HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB34B2947739C00D16ABE /* Onboarding2HostingController.swift */; };
 		03EEB34E294773A800D16ABE /* Onboarding2ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB34D294773A800D16ABE /* Onboarding2ContentView.swift */; };
-		03EEB350294773B700D16ABE /* Onboarding2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB34F294773B700D16ABE /* Onboarding2ViewModel.swift */; };
 		03EEB3522949CFA900D16ABE /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3512949CFA900D16ABE /* ProfileHeaderView.swift */; };
 		03EEB3542949D9F500D16ABE /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEB3532949D9F500D16ABE /* ProfileCardView.swift */; };
 		03FB125A28CB50BA00AB4F99 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */; };
@@ -237,10 +236,9 @@
 		03DFB7A228B7A8390019381A /* SetNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameViewController.swift; sourceTree = "<group>"; };
 		03EEB3402946FEFA00D16ABE /* Onboarding1HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1HostingController.swift; sourceTree = "<group>"; };
 		03EEB3422946FF1600D16ABE /* Onboarding1ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ContentView.swift; sourceTree = "<group>"; };
-		03EEB3462946FF5B00D16ABE /* Onboarding1ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ViewModel.swift; sourceTree = "<group>"; };
+		03EEB3462946FF5B00D16ABE /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		03EEB34B2947739C00D16ABE /* Onboarding2HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2HostingController.swift; sourceTree = "<group>"; };
 		03EEB34D294773A800D16ABE /* Onboarding2ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ContentView.swift; sourceTree = "<group>"; };
-		03EEB34F294773B700D16ABE /* Onboarding2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewModel.swift; sourceTree = "<group>"; };
 		03EEB3512949CFA900D16ABE /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		03EEB3532949D9F500D16ABE /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		03FB125828CB50BA00AB4F99 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
@@ -294,6 +292,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0320BD42294FF4AE009BA753 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				03EEB33D2946FE7E00D16ABE /* OnboardingView1 */,
+				03EEB3482947735800D16ABE /* OnboardingView2 */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		032843AD28DC9A5A00AB1A5D /* SetNameView */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,8 +552,8 @@
 		034367FC28D60539000BA656 /* OnboardingView */ = {
 			isa = PBXGroup;
 			children = (
-				03EEB33D2946FE7E00D16ABE /* OnboardingView1 */,
-				03EEB3482947735800D16ABE /* OnboardingView2 */,
+				0320BD42294FF4AE009BA753 /* View */,
+				03EEB3452946FF3000D16ABE /* ViewModel */,
 			);
 			path = OnboardingView;
 			sourceTree = "<group>";
@@ -831,25 +838,16 @@
 		03EEB33D2946FE7E00D16ABE /* OnboardingView1 */ = {
 			isa = PBXGroup;
 			children = (
-				03EEB3442946FF2700D16ABE /* View */,
-				03EEB3452946FF3000D16ABE /* ViewModel */,
-			);
-			path = OnboardingView1;
-			sourceTree = "<group>";
-		};
-		03EEB3442946FF2700D16ABE /* View */ = {
-			isa = PBXGroup;
-			children = (
 				03EEB3402946FEFA00D16ABE /* Onboarding1HostingController.swift */,
 				03EEB3422946FF1600D16ABE /* Onboarding1ContentView.swift */,
 			);
-			path = View;
+			path = OnboardingView1;
 			sourceTree = "<group>";
 		};
 		03EEB3452946FF3000D16ABE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				03EEB3462946FF5B00D16ABE /* Onboarding1ViewModel.swift */,
+				03EEB3462946FF5B00D16ABE /* OnboardingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -857,27 +855,10 @@
 		03EEB3482947735800D16ABE /* OnboardingView2 */ = {
 			isa = PBXGroup;
 			children = (
-				03EEB34A2947737F00D16ABE /* View */,
-				03EEB3492947737300D16ABE /* ViewModel */,
-			);
-			path = OnboardingView2;
-			sourceTree = "<group>";
-		};
-		03EEB3492947737300D16ABE /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				03EEB34F294773B700D16ABE /* Onboarding2ViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		03EEB34A2947737F00D16ABE /* View */ = {
-			isa = PBXGroup;
-			children = (
 				03EEB34B2947739C00D16ABE /* Onboarding2HostingController.swift */,
 				03EEB34D294773A800D16ABE /* Onboarding2ContentView.swift */,
 			);
-			path = View;
+			path = OnboardingView2;
 			sourceTree = "<group>";
 		};
 		9CFBA12328D4B3CD003EBFB3 /* SettingsView */ = {
@@ -1111,7 +1092,7 @@
 				03A3F8132928B6C0004E3CD0 /* SettingGoalWeightHostingController.swift in Sources */,
 				03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */,
 				03670F2F28F9057E006075DC /* FriendListOfFriendsListViewModel.swift in Sources */,
-				03EEB3472946FF5B00D16ABE /* Onboarding1ViewModel.swift in Sources */,
+				03EEB3472946FF5B00D16ABE /* OnboardingViewModel.swift in Sources */,
 				0343681F28D80761000BA656 /* ResetPasswordViewController+UITextFieldDelegate.swift in Sources */,
 				03A3F819292D2B99004E3CD0 /* ViewScreenshot.swift in Sources */,
 				0343682728D8147D000BA656 /* ShareMyDataViewController+UIImagePickerControllerDelegate.swift in Sources */,
@@ -1120,7 +1101,6 @@
 				9C4F1C752859E6F500623C66 /* FriendProfileViewController.swift in Sources */,
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
 				03704A2128E01D78004BE7C3 /* WeightChartsUIView.swift in Sources */,
-				03EEB350294773B700D16ABE /* Onboarding2ViewModel.swift in Sources */,
 				03DAC40028EA7918005F173B /* UIColorHelper.swift in Sources */,
 				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
