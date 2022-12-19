@@ -36,6 +36,7 @@ struct Onboarding2ContentView: View {
             HStack {
                 Spacer()
                 Button {
+                    UserDefaults.standard.set(true, forKey: "initialScreen")
                     viewModel.dismiss()
                 } label: {
                     HStack {

@@ -37,6 +37,7 @@ final class OnboardingViewModel: ObservableObject {
             }
             catch {
                 print(error.localizedDescription)
+                sceneOnboarding2()
             }
         }
         self.cancellables.insert(.init { task.cancel() })
