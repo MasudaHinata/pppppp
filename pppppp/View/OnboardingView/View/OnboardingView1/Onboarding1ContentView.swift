@@ -14,7 +14,8 @@ struct Onboarding1ContentView: View {
 
             if #available(iOS 16.0, *) {
                 Text("GET READY.")
-                    .font(.system(size: 32, weight: .bold, design: .default))
+                    .font(.largeTitle.width(.expanded))
+                    .bold()
             } else {
                 Text("GET READY.")
                     .font(.system(size: 32, weight: .bold, design: .default))

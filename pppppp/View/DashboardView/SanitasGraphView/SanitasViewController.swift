@@ -254,6 +254,10 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         self.cancellables.insert(.init { task.cancel() })
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        mountainView.stopAccelerometer()
+    }
+
     func buttonSelected(item: UserData) {
         let profileVC = ProfileHostingController(viewModel: .init(userDataItem: item))
         self.showDetailViewController(profileVC, sender: self)

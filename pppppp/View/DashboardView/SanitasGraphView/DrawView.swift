@@ -164,6 +164,6 @@ class DrawView: UIView {
     //MARK: -　path・アイコン・Labelの動きを止める
     //TODO: Accelerometerを止める
     func stopAccelerometer() {
-
+        playerMotionManager.stopAccelerometerUpdates()
     }
 }
