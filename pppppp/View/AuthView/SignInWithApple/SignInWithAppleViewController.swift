@@ -20,7 +20,7 @@ class SignInWithAppleViewController: UIViewController {
     }
     
     @IBAction func privacyPolicyButton() {
-        guard let url = URL(string: "https://sanitas.dev/privacy_policy") else { return }
+        guard let url = URL(string: "https://peraichi.com/landing_pages/view/7zjul") else { return }
         let safariController = SFSafariViewController(url: url)
         present(safariController, animated: true, completion: nil)
     }

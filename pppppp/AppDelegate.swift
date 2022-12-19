@@ -8,11 +8,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         firebaseConfigure()
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
-            if granted {
-                UNUserNotificationCenter.current().delegate = self
-            }
-        }
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
+//            if granted {
+//                UNUserNotificationCenter.current().delegate = self
+//            }
+//        }
         return true
     }
 

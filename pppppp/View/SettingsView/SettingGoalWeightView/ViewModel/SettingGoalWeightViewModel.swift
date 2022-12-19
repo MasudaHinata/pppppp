@@ -7,24 +7,25 @@ final class SettingGoalWeightViewModel: ObservableObject {
     @Published var weightGoal = 0
     @Published var weight = 0
 
+    @Published var dismissView: Void = ()
+
+    func dismiss() {
+        self.dismissView = ()
+    }
+
     func setWeightGoal() {
         if weightGoal == 0 {
+            //TODO: alert
             print("目標体重を入力してください")
         } else {
-
-            let task = Task { [weak self] in
-                guard let self = self else { return }
+            let task = Task {
                 do {
                     if weight != 0 {
-                        try await HealthKit_ScoreringManager.shared.writeWeight(weight: Double(weight))
+                        try await HealthKitScoreringManager.shared.writeWeight(weight: Double(weight))
                     }
                     try await FirebaseClient.shared.putWeightGoal(weightGoal: Double(weightGoal))
+                    //TODO: alert
                     print("記録済み")
-                    //TODO: alert・画面遷移
-                    //                    ShowAlertHelper.okAlert(vc: self, title: "完了", message: "記録しました") { _ in
-                    //                        let mainVC = StoryboardScene.Main.initialScene.instantiate()
-                    //                        self.showDetailViewController(mainVC, sender: self)
-                    //                    }
                 }
                 catch {
                     print("SetGoalWeightViewDid error:", error.localizedDescription)

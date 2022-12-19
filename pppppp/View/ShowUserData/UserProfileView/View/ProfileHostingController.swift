@@ -81,9 +81,7 @@ final class ProfileHostingController: UIHostingController<ProfileContentView>, F
             .dropFirst()
             .sink { [weak self] _ in
                 guard let self = self else { return }
-
                 self.dismiss(animated: true)
-
             }.store(in: &cancellables)
     }
 

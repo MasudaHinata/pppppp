@@ -6,7 +6,7 @@ class RecordWeightViewController: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
     
-    let myHealthStore = HealthKit_ScoreringManager.shared.myHealthStore
+    let myHealthStore = HealthKitScoreringManager.shared.myHealthStore
     var typeOfBodyMass = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
     var typeOfStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
     var typeOfHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!
@@ -37,7 +37,7 @@ class RecordWeightViewController: UIViewController {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await HealthKit_ScoreringManager.shared.writeWeight(weight: inputWeight)
+                try await HealthKitScoreringManager.shared.writeWeight(weight: inputWeight)
 
                 let userID = try await FirebaseClient.shared.getUserUUID()
                 let userData: [UserData] = try await FirebaseClient.shared.getUserDataFromId(userId: userID)
@@ -47,7 +47,7 @@ class RecordWeightViewController: UIViewController {
                     self.showDetailViewController(settingGoalWeightVC, sender: self)
                     return
                 }
-                let checkPoint = try await HealthKit_ScoreringManager.shared.createWeightPoint(weightGoal: goalWeight, weight: inputWeight)
+                let checkPoint = try await HealthKitScoreringManager.shared.createWeightPoint(weightGoal: goalWeight, weight: inputWeight)
                 if checkPoint == [] {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "過去2s週間の体重データがないためポイントを作成できませんでした")
                 }
