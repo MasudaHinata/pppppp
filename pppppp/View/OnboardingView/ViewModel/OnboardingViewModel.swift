@@ -16,11 +16,7 @@ final class OnboardingViewModel: ObservableObject {
 
     func getNotifiedPermission() -> Bool {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (granted, error) in
-            if granted {
-                // 通知の処理
-            } else {
-                // 許可がないとき
-            }
+            //TODO: Health data is unavailable on this deviceアラート
         }
         return true
     }
