@@ -2,13 +2,7 @@ import SwiftUI
 import Lottie
 
 struct SettingGoalWeightContentView: View {
-
-//    enum AlertType {
-//        case warning
-//        case complete
-//      }
-//    @State var alertType: AlertType = .warning
-
+    
     @ObservedObject var viewModel: SettingGoalWeightViewModel
 
     var body: some View {

@@ -192,10 +192,6 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                let settingGoalWeightVC = SettingGoalWeightHostingController(viewModel: SettingGoalWeightViewModel())
-                settingGoalWeightVC.modalPresentationStyle = .fullScreen
-                self.showDetailViewController(settingGoalWeightVC, sender: self)
-                return
                 try await FirebaseClient.shared.checkUserAuth()
 
                 //MARK: 今日の歩数を表示

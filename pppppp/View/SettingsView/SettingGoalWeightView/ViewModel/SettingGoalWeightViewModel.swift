@@ -22,10 +22,8 @@ final class SettingGoalWeightViewModel: ObservableObject {
 
     func setWeightGoal() {
         if weightGoal == 0 {
-            //TODO: alert
             alertType = .warning
             self.showingAlert = true
-            print("目標体重を入力してください")
         } else {
             let task = Task {
                 do {
