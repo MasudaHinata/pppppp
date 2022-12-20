@@ -3,9 +3,16 @@ import Combine
 
 final class SettingGoalWeightViewModel: ObservableObject {
 
+    enum AlertType {
+        case warning
+        case complete
+    }
+    @Published var alertType: AlertType = .warning
+
     private var cancellables = Set<AnyCancellable>()
     @Published var weightGoal = 0
     @Published var weight = 0
+    @Published var showingAlert = false
 
     @Published var dismissView: Void = ()
 
@@ -16,6 +23,8 @@ final class SettingGoalWeightViewModel: ObservableObject {
     func setWeightGoal() {
         if weightGoal == 0 {
             //TODO: alert
+            alertType = .warning
+            self.showingAlert = true
             print("目標体重を入力してください")
         } else {
             let task = Task {
@@ -24,13 +33,11 @@ final class SettingGoalWeightViewModel: ObservableObject {
                         try await HealthKitScoreringManager.shared.writeWeight(weight: Double(weight))
                     }
                     try await FirebaseClient.shared.putWeightGoal(weightGoal: Double(weightGoal))
-                    //TODO: alert
-                    print("記録済み")
+                    alertType = .complete
+                    self.showingAlert = true
                 }
                 catch {
                     print("SetGoalWeightViewDid error:", error.localizedDescription)
-                    //TODO: alert
-                    //                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
                 }
             }
             self.cancellables.insert(.init { task.cancel() })

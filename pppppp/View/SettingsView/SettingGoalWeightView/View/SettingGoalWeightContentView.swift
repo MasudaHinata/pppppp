@@ -3,6 +3,12 @@ import Lottie
 
 struct SettingGoalWeightContentView: View {
 
+//    enum AlertType {
+//        case warning
+//        case complete
+//      }
+//    @State var alertType: AlertType = .warning
+
     @ObservedObject var viewModel: SettingGoalWeightViewModel
 
     var body: some View {
@@ -59,13 +65,19 @@ struct SettingGoalWeightContentView: View {
 
             Button {
                 viewModel.setWeightGoal()
-                //FIXME: viewModelから飛ばしたい
-                viewModel.dismiss()
-                print(viewModel.weight, viewModel.weightGoal)
             } label: {
                 Text("Set your goal")
                     .font(.system(size: 14, weight: .semibold))
                     .frame(maxWidth: UIScreen.main.bounds.width * 0.85, maxHeight: 48)
+            }
+            .alert(isPresented: $viewModel.showingAlert) {
+                switch viewModel.alertType {
+                case .warning:
+                    return Alert(title: Text("目標体重を入力してください"))
+                case .complete:
+                    return Alert(title: Text("設定しました"),
+                          dismissButton: .default(Text("ok"), action: { viewModel.dismiss() }))
+                }
             }
             .foregroundColor(.white)
             .frame(maxWidth: UIScreen.main.bounds.width * 0.80, maxHeight: 48)
