@@ -15,8 +15,8 @@
 		032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */; };
 		032DF35D28F1B7AC00458C20 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */; };
 		032DF35F28F1D0EE00458C20 /* StreakCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */; };
-		032DF36128F24E7F00458C20 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36028F24E7F00458C20 /* DateHelper.swift */; };
-		032DF36A28F30FDA00458C20 /* CGPointHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36928F30FDA00458C20 /* CGPointHelper.swift */; };
+		032DF36128F24E7F00458C20 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36028F24E7F00458C20 /* Date+Extension.swift */; };
+		032DF36A28F30FDA00458C20 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36928F30FDA00458C20 /* CGPoint+Extension.swift */; };
 		032DF36C28F3BDDD00458C20 /* HealthChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36B28F3BDDD00458C20 /* HealthChartsViewModel.swift */; };
 		032DF37028F44F4F00458C20 /* HKWorkoutActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */; };
 		032DF37228F4535D00458C20 /* PointActivityImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032DF37128F4535D00458C20 /* PointActivityImage.swift */; };
@@ -85,13 +85,13 @@
 		03A3F8162928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F8152928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift */; };
 		03A3F819292D2B99004E3CD0 /* ViewScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3F818292D2B99004E3CD0 /* ViewScreenshot.swift */; };
 		03A3F81D292E3843004E3CD0 /* sanitas-logo-appear.json in Resources */ = {isa = PBXBuildFile; fileRef = 03A3F81C292E3843004E3CD0 /* sanitas-logo-appear.json */; };
-		03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */; };
+		03B2A3AF28D849D00018BA26 /* ShowAlert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B2A3AE28D849D00018BA26 /* ShowAlert+Extension.swift */; };
 		03B832EC28DC84B200C8AE3E /* ChangeProfileView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */; };
 		03B832F028DC88E400C8AE3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B832F228DC88E400C8AE3E /* Localizable.strings */; };
 		03C7E79D28D2F3B10069A46E /* ShareMyDataView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */; };
 		03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */; };
 		03C7E7C628D49DB10069A46E /* SanitasView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C7E7C528D49DB10069A46E /* SanitasView.storyboard */; };
-		03DAC40028EA7918005F173B /* UIColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC3FF28EA7918005F173B /* UIColorHelper.swift */; };
+		03DAC40028EA7918005F173B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC3FF28EA7918005F173B /* UIColor+Extension.swift */; };
 		03DAC40228EAD1DD005F173B /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40128EAD1DD005F173B /* WorkoutData.swift */; };
 		03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */; };
 		03DAC40728EB2C21005F173B /* TimeLineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DAC40628EB2C21005F173B /* TimeLineView.storyboard */; };
@@ -151,8 +151,8 @@
 		032843AB28DC8F8400AB1A5D /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Scenes.swift"; sourceTree = "<group>"; };
 		032DF35C28F1B7AC00458C20 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		032DF35E28F1D0EE00458C20 /* StreakCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakCollectionView.swift; sourceTree = "<group>"; };
-		032DF36028F24E7F00458C20 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
-		032DF36928F30FDA00458C20 /* CGPointHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointHelper.swift; sourceTree = "<group>"; };
+		032DF36028F24E7F00458C20 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		032DF36928F30FDA00458C20 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		032DF36B28F3BDDD00458C20 /* HealthChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsViewModel.swift; sourceTree = "<group>"; };
 		032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKWorkoutActivityType.swift; sourceTree = "<group>"; };
 		032DF37128F4535D00458C20 /* PointActivityImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointActivityImage.swift; sourceTree = "<group>"; };
@@ -220,14 +220,14 @@
 		03A3F8152928B6EA004E3CD0 /* SettingGoalWeightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGoalWeightViewModel.swift; sourceTree = "<group>"; };
 		03A3F818292D2B99004E3CD0 /* ViewScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewScreenshot.swift; sourceTree = "<group>"; };
 		03A3F81C292E3843004E3CD0 /* sanitas-logo-appear.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sanitas-logo-appear.json"; sourceTree = "<group>"; };
-		03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertHelper.swift; sourceTree = "<group>"; };
+		03B2A3AE28D849D00018BA26 /* ShowAlert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShowAlert+Extension.swift"; sourceTree = "<group>"; };
 		03B832EB28DC84B200C8AE3E /* ChangeProfileView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ChangeProfileView.storyboard; sourceTree = "<group>"; };
 		03B832F128DC88E400C8AE3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03B832F328DC891200C8AE3E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03C7E79C28D2F3B10069A46E /* ShareMyDataView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareMyDataView.storyboard; sourceTree = "<group>"; };
 		03C7E79E28D2F3BE0069A46E /* ShareMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMyDataViewController.swift; sourceTree = "<group>"; };
 		03C7E7C528D49DB10069A46E /* SanitasView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SanitasView.storyboard; sourceTree = "<group>"; };
-		03DAC3FF28EA7918005F173B /* UIColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHelper.swift; sourceTree = "<group>"; };
+		03DAC3FF28EA7918005F173B /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		03DAC40128EAD1DD005F173B /* WorkoutData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutData.swift; sourceTree = "<group>"; };
 		03DAC40428EB2C0D005F173B /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		03DAC40628EB2C21005F173B /* TimeLineView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeLineView.storyboard; sourceTree = "<group>"; };
@@ -648,10 +648,10 @@
 				9CE63B8A288C40EA00FFE94C /* ErrorHelper.swift */,
 				9CE63B8C288C548D00FFE94C /* LoginHelper.swift */,
 				9CE63B88288C384100FFE94C /* CoverWindow.swift */,
-				03B2A3AE28D849D00018BA26 /* ShowAlertHelper.swift */,
-				03DAC3FF28EA7918005F173B /* UIColorHelper.swift */,
-				032DF36028F24E7F00458C20 /* DateHelper.swift */,
-				032DF36928F30FDA00458C20 /* CGPointHelper.swift */,
+				03B2A3AE28D849D00018BA26 /* ShowAlert+Extension.swift */,
+				03DAC3FF28EA7918005F173B /* UIColor+Extension.swift */,
+				032DF36028F24E7F00458C20 /* Date+Extension.swift */,
+				032DF36928F30FDA00458C20 /* CGPoint+Extension.swift */,
 				032DF37128F4535D00458C20 /* PointActivityImage.swift */,
 				032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */,
 				03A3F818292D2B99004E3CD0 /* ViewScreenshot.swift */,
@@ -1052,7 +1052,7 @@
 				03A3F8072924E81F004E3CD0 /* LottieView.swift in Sources */,
 				03670F2D28F90547006075DC /* FriendListOfFriendsListContentView.swift in Sources */,
 				03670F2B28F90521006075DC /* FriendListOfFriendsListHostingController.swift in Sources */,
-				032DF36128F24E7F00458C20 /* DateHelper.swift in Sources */,
+				032DF36128F24E7F00458C20 /* Date+Extension.swift in Sources */,
 				036F698C28BB9DAD0066A7DA /* DrawView.swift in Sources */,
 				9CE63B89288C384100FFE94C /* CoverWindow.swift in Sources */,
 				03DAC41128EC287D005F173B /* TimeLineViewController+CollectionViewDelegate.swift in Sources */,
@@ -1071,7 +1071,7 @@
 				03DAC40528EB2C0D005F173B /* TimeLineViewController.swift in Sources */,
 				0320BD44294FF9C0009BA753 /* Onboarding1HostingController.swift in Sources */,
 				033945F028DF25C100681E9C /* HealthChartsHostingController.swift in Sources */,
-				032DF36A28F30FDA00458C20 /* CGPointHelper.swift in Sources */,
+				032DF36A28F30FDA00458C20 /* CGPoint+Extension.swift in Sources */,
 				032DF37228F4535D00458C20 /* PointActivityImage.swift in Sources */,
 				03EEB34C2947739C00D16ABE /* Onboarding2HostingController.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
@@ -1105,7 +1105,7 @@
 				9C4F1C752859E6F500623C66 /* FriendProfileViewController.swift in Sources */,
 				9C2BE4412885108300431FEC /* FirebaseClient.swift in Sources */,
 				03704A2128E01D78004BE7C3 /* WeightChartsUIView.swift in Sources */,
-				03DAC40028EA7918005F173B /* UIColorHelper.swift in Sources */,
+				03DAC40028EA7918005F173B /* UIColor+Extension.swift in Sources */,
 				032843AC28DC8F8400AB1A5D /* Storyboard Scenes.swift in Sources */,
 				03A1E0C328D4C52000B5B9C3 /* SettingViewController+TableViewDelegate.swift in Sources */,
 				036F698128B940270066A7DA /* ResetPasswordViewController.swift in Sources */,
@@ -1122,7 +1122,7 @@
 				032DF35F28F1D0EE00458C20 /* StreakCollectionView.swift in Sources */,
 				035D29E528E9F46D00E1BEA4 /* FriendListViewController+CollectionViewDelegate.swift in Sources */,
 				9C61891828A5F35B00DE6942 /* SelfCheckViewController.swift in Sources */,
-				03B2A3AF28D849D00018BA26 /* ShowAlertHelper.swift in Sources */,
+				03B2A3AF28D849D00018BA26 /* ShowAlert+Extension.swift in Sources */,
 				BE7F337C2580D07E0027620D /* AppDelegate.swift in Sources */,
 				0374653A28ED7C9100DB0833 /* PostDispleyData.swift in Sources */,
 				BE7F337E2580D07E0027620D /* SceneDelegate.swift in Sources */,
