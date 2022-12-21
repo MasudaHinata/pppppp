@@ -12,10 +12,11 @@ struct Onboarding2ContentView: View {
                 .scaledToFit()
                 .frame(maxHeight: 400)
                 .padding(80)
-            
+
             if #available(iOS 16.0, *) {
                 Text("STAY NOTIFIED.")
-                    .font(.system(size: 32, weight: .bold, design: .default))
+                    .font(.largeTitle.width(.expanded))
+                    .bold()
             } else {
                 Text("STAY NOTIFIED.")
                     .font(.system(size: 32, weight: .bold, design: .default))
