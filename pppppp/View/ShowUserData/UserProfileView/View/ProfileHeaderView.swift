@@ -95,41 +95,75 @@ struct ProfileHeaderView: View {
         //MARK: Buttons
         if viewModel.meJudge {
             HStack {
-                Button {
+                HStack {
+                    Image(systemName: "pencil")
+                        .foregroundColor(.white)
+                    Spacer()
+                    Text("Edit Profile")
+                        .foregroundColor(Color(asset: Asset.Colors.white00))
+                    Spacer()
+                }
+                .padding()
+                .background(Color(asset: Asset.Colors.white16))
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .font(.system(size: 16, weight: .medium, design: .rounded))
+                .frame(maxWidth: .infinity)
+                .onTapGesture {
                     viewModel.sceneChangeProfile()
-                } label: {
-                    HStack {
-                        Image(systemName: "pencil")
-                            .foregroundColor(.white)
-                        Spacer()
-                        Text("Edit Profile")
-                            .foregroundColor(Color(asset: Asset.Colors.white00))
-                        Spacer()
-                    }
-                    .padding()
-                    .background(Color(asset: Asset.Colors.white16))
-                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .frame(maxWidth: .infinity)
                 }
 
-                Button {
-                    viewModel.sceneSetting()
-                } label: {
-                    HStack {
-                        Image(systemName: "gearshape.2")
-                            .foregroundColor(.white)
-                        Spacer()
-                        Text("Settings")
-                            .foregroundColor(Color(asset: Asset.Colors.white00))
-                        Spacer()
-                    }
-                    .padding()
-                    .background(Color(asset: Asset.Colors.white16))
-                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .frame(maxWidth: .infinity)
+                HStack {
+                    Image(systemName: "gearshape.2")
+                        .foregroundColor(.white)
+                    Spacer()
+                    Text("Settings")
+                        .foregroundColor(Color(asset: Asset.Colors.white00))
+                    Spacer()
                 }
+                .padding()
+                .background(Color(asset: Asset.Colors.white16))
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .font(.system(size: 16, weight: .medium, design: .rounded))
+                .frame(maxWidth: .infinity)
+                .onTapGesture {
+                    viewModel.sceneSetting()
+                }
+
+//                Button {
+//                    viewModel.sceneChangeProfile()
+//                } label: {
+//                    HStack {
+//                        Image(systemName: "pencil")
+//                            .foregroundColor(.white)
+//                        Spacer()
+//                        Text("Edit Profile")
+//                            .foregroundColor(Color(asset: Asset.Colors.white00))
+//                        Spacer()
+//                    }
+//                    .padding()
+//                    .background(Color(asset: Asset.Colors.white16))
+//                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+//                    .font(.system(size: 16, weight: .medium, design: .rounded))
+//                    .frame(maxWidth: .infinity)
+//                }
+
+//                Button {
+//                    viewModel.sceneSetting()
+//                } label: {
+//                    HStack {
+//                        Image(systemName: "gearshape.2")
+//                            .foregroundColor(.white)
+//                        Spacer()
+//                        Text("Settings")
+//                            .foregroundColor(Color(asset: Asset.Colors.white00))
+//                        Spacer()
+//                    }
+//                    .padding()
+//                    .background(Color(asset: Asset.Colors.white16))
+//                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+//                    .font(.system(size: 16, weight: .medium, design: .rounded))
+//                    .frame(maxWidth: .infinity)
+//                }
             }
             .listRowBackground(Color.clear)
         }
