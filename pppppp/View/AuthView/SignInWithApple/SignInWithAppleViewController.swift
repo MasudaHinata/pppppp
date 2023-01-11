@@ -1,7 +1,7 @@
 import UIKit
 import AuthenticationServices
 import CryptoKit
-import Firebase
+import FirebaseAuth
 import SafariServices
 
 class SignInWithAppleViewController: UIViewController {
