@@ -146,7 +146,6 @@
 		9C699040286C6517009D5BF5 /* FriendDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69903E286C6517009D5BF5 /* FriendDataCell.swift */; };
 		9C699041286C6517009D5BF5 /* FriendDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C69903F286C6517009D5BF5 /* FriendDataCell.xib */; };
 		9C6F344E28A1EDC200E0FAB8 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6F344D28A1EDC200E0FAB8 /* ChangeProfileViewController.swift */; };
-		9C7F3C2B289CA2480039BA2E /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 9C7F3C2A289CA2480039BA2E /* KeychainAccess */; };
 		9CA6E4422883B5DE00AB41AD /* DashBoardFriendDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6E4402883B5DE00AB41AD /* DashBoardFriendDataCell.swift */; };
 		9CA6E4432883B5DE00AB41AD /* DashBoardFriendDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA6E4412883B5DE00AB41AD /* DashBoardFriendDataCell.xib */; };
 		9CAA88EC26B1918B005517D5 /* EmailSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA88EB26B1918B005517D5 /* EmailSignInViewController.swift */; };
@@ -331,7 +330,6 @@
 				03FE9C23296ECE5A002863EA /* leveldb-library.xcframework in Frameworks */,
 				9CB2AB9A28A116120050562C /* Kingfisher in Frameworks */,
 				03FE9C27296ECE5C002863EA /* FirebaseCoreExtension.xcframework in Frameworks */,
-				9C7F3C2B289CA2480039BA2E /* KeychainAccess in Frameworks */,
 				03FE9C0F296ECE55002863EA /* GoogleUtilities.xcframework in Frameworks */,
 				03FE9C19296ECE57002863EA /* FBLPromises.xcframework in Frameworks */,
 				03FE9C0D296ECE54002863EA /* gRPC-C++.xcframework in Frameworks */,
@@ -1038,7 +1036,6 @@
 			);
 			name = pppppp;
 			packageProductDependencies = (
-				9C7F3C2A289CA2480039BA2E /* KeychainAccess */,
 				9CB2AB9928A116120050562C /* Kingfisher */,
 				03A3F8092924E8EB004E3CD0 /* Lottie */,
 			);
@@ -1071,7 +1068,6 @@
 			);
 			mainGroup = BE7F336F2580D07E0027620D;
 			packageReferences = (
-				9CAA892926BAA0EE005517D5 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				9CB2AB9828A116120050562C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				03A3F8082924E8EB004E3CD0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
@@ -1560,14 +1556,6 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		9CAA892926BAA0EE005517D5 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess/";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.2;
-			};
-		};
 		9CB2AB9828A116120050562C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1583,11 +1571,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 03A3F8082924E8EB004E3CD0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		9C7F3C2A289CA2480039BA2E /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9CAA892926BAA0EE005517D5 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
 		};
 		9CB2AB9928A116120050562C /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
