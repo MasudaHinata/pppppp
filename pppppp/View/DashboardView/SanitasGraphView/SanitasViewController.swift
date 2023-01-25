@@ -150,8 +150,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 if friendDataList.count == 1 {
-                    let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-                    self.showDetailViewController(addFriendVC, sender: self)
+//                    let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+//                    self.showDetailViewController(addFriendVC, sender: self)
                 }
                 activityIndicator.stop()
                 activityIndicator.isHidden = true
@@ -185,8 +185,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         //MARK: MountainViewの位置更新
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
-            let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-            self.showDetailViewController(addFriendVC, sender: self)
+//            let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+//            self.showDetailViewController(addFriendVC, sender: self)
         }
 
         let task = Task { [weak self] in
@@ -206,6 +206,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                         selfCheckVC.modalPresentationStyle = .overFullScreen
                         selfCheckVC.modalTransitionStyle = .crossDissolve
                         self.present(selfCheckVC, animated: true)
+
+                        return
                     }
                 }
 
@@ -213,6 +215,7 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 let createStepPointJudge = try await FirebaseClient.shared.checkCreateStepPoint()
                 if createStepPointJudge {
                     try await HealthKitScoreringManager.shared.createStepPoint()
+                    return
                 }
 
                 //MARK: ワークアウトのポイント作成判定
