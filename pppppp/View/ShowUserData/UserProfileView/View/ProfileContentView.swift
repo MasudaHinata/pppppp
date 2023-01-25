@@ -45,14 +45,13 @@ struct ProfileContentView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .hideListBackgroundIfAvailable()
-        //FIXME: 画面サイズに合わせる
+        //FIXME: 色変える
         .background(
-            Image("blue")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+            ZStack {
+                Asset.Colors.mainColor.swiftUIColor
+                RadialGradient(colors: [Asset.Colors.gradientBlue1.swiftUIColor, .clear], center: .top, startRadius: 1, endRadius: UIScreen.main.bounds.width * 2)
+            }.ignoresSafeArea()
         )
-        .background(Asset.Colors.mainColor.swiftUIColor)
         .onAppear {
             viewModel.getProfileData()
             UITableView.appearance().backgroundColor = Asset.Colors.mainColor.color
