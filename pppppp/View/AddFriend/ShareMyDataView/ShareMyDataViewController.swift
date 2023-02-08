@@ -1,7 +1,6 @@
 import UIKit
 import Combine
 import AVFoundation
-import AVKit
 
 class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
@@ -224,7 +223,9 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
         previewLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         previewLayer.videoGravity = .resizeAspectFill
         caputureView.layer.addSublayer(previewLayer)
-        session.startRunning()
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.session.startRunning()
+        }
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
