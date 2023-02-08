@@ -532,6 +532,7 @@ final class FirebaseClient {
         }
         if String("名称未設定") == querySnapshot.data()!["name"]! as! String {
             self.notChangeDelegate?.notChangeName()
+            return
         }
         if UserDefaults.standard.object(forKey: "name") == nil {
             let querySnapShot = try await db.collection("User").document(userID).getDocument()

@@ -36,6 +36,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
             goodButton.layer.cornerRadius = 30
             goodButton.layer.cornerCurve = .continuous
             goodButton.layer.masksToBounds = true
+            goodButton.tag = 1
         }
     }
     
@@ -44,6 +45,7 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
             normalButton.layer.cornerRadius = 30
             normalButton.layer.cornerCurve = .continuous
             normalButton.layer.masksToBounds = true
+            normalButton.tag = 2
         }
     }
     
@@ -52,55 +54,34 @@ class SelfCheckViewController: UIViewController, FirebasePutPointDelegate {
             badButton.layer.cornerRadius = 30
             badButton.layer.cornerCurve = .continuous
             badButton.layer.masksToBounds = true
+            badButton.tag = 3
         }
     }
-    
-    @IBAction func goodButtonPressed(){
+
+    @IBAction func statusButtonPressed(sender: UIButton) {
+
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await FirebaseClient.shared.firebasePutData(point: 7, activity: "SelfCheck")
-                try await FirebaseClient.shared.putSelfCheckLog(log: "good")
-            }
-            catch {
-                print("SelfViewCotro goodButton error:", error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message:  "インターネット接続を確認してください")
-                } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "\(error.localizedDescription)")
+                goodButton.isEnabled = false
+                normalButton.isEnabled = false
+                badButton.isEnabled = false
+                switch sender.tag {
+                case 1:
+                    try await FirebaseClient.shared.firebasePutData(point: 7, activity: "SelfCheck")
+                    try await FirebaseClient.shared.putSelfCheckLog(log: "good")
+                case 2:
+                    try await FirebaseClient.shared.firebasePutData(point: 5, activity: "SelfCheck")
+                    try await FirebaseClient.shared.putSelfCheckLog(log: "normal")
+                case 3:
+                    try await FirebaseClient.shared.firebasePutData(point: 3, activity: "SelfCheck")
+                    try await FirebaseClient.shared.putSelfCheckLog(log: "bad")
+                default:
+                    break
                 }
             }
-        }
-        cancellables.insert(.init { task.cancel() })
-    }
-    
-    @IBAction func normalButtonPressed(){
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                try await FirebaseClient.shared.firebasePutData(point: 5, activity: "SelfCheck")
-                try await FirebaseClient.shared.putSelfCheckLog(log: "normal")
-            }
             catch {
-                print("SelfViewCotro normalButton error", error.localizedDescription)
-                if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message:  "インターネット接続を確認してください")
-                } else {
-                    ShowAlertHelper.okAlert(vc: self, title: "エラー", message:  "\(error.localizedDescription)")
-                }
-            }
-        }
-        cancellables.insert(.init { task.cancel() })
-    }
-    @IBAction func badButtonPressed(){
-        let task = Task { [weak self] in
-            guard let self = self else { return }
-            do {
-                try await FirebaseClient.shared.firebasePutData(point: 3, activity: "SelfCheck")
-                try await FirebaseClient.shared.putSelfCheckLog(log: "bad")
-            }
-            catch {
-                print("SelfViewCotro badButton error", error.localizedDescription)
+                print("SelfViewCotro statusButton error", error.localizedDescription)
                 if error.localizedDescription == "Network error (such as timeout, interrupted connection or unreachable host) has occurred." {
                     ShowAlertHelper.okAlert(vc: self, title: "エラー", message: "インターネット接続を確認してください")
                 } else {

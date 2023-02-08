@@ -232,7 +232,18 @@ class ShareMyDataViewController: UIViewController, AVCaptureMetadataOutputObject
             guard let value = metadata.stringValue else { return }
             if let url = URL(string: value) {
                 self.session.stopRunning()
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+
+                var recievedId: String = ""
+                let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+                if let queryValue = urlComponents?.queryItems?.first?.value {
+                    recievedId = queryValue
+                }
+
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "FriendProfileView", bundle: nil)
+                let resultVC: FriendProfileViewController = mainStoryboard.instantiateInitialViewController() as! FriendProfileViewController
+                resultVC.friendId = recievedId
+                resultVC.linkJudge = true
+                self.present(resultVC, animated: true)
             }
         }
     }
