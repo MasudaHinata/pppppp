@@ -159,6 +159,10 @@ final class FirebaseClient {
         for point in pointArray {
             pointSum += point ?? 0
         }
+        var userID = try await getUserUUID()
+        if userID == id {
+            submitScore(value: pointSum, leaderboardID: "sanitas.point.ranking")
+        }
         return pointSum
     }
     
@@ -312,7 +316,6 @@ final class FirebaseClient {
             try await FirebaseClient.shared.putPointActivityPost(point: point, activity: activity)
             self.putPointDelegate?.putPointForFirestore(point: point, activity: activity)
         }
-        submitScore(value: point, leaderboardID: "sanitas.point.ranking")
     }
     
     //MARK: - 画像をfirestore,firebaseStorageに保存

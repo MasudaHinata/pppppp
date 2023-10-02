@@ -39,6 +39,7 @@
 		035329CD28EECB9000257768 /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035329CC28EECB9000257768 /* ProfileContentView.swift */; };
 		035A073B2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035A073A2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift */; };
 		035A073D2ACAD599001BDBA3 /* GameCenterController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035A073C2ACAD599001BDBA3 /* GameCenterController+Extension.swift */; };
+		035A073F2ACAD725001BDBA3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035A073E2ACAD724001BDBA3 /* GameKit.framework */; };
 		035CE51E28CF1E53001F89BB /* RecordExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */; };
 		035CE52028CF1E61001F89BB /* RecordExerciseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */; };
 		035D29DA28E98AA400E1BEA4 /* HealthChartsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */; };
@@ -198,6 +199,7 @@
 		035329CC28EECB9000257768 /* ProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
 		035A073A2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKLocalPlayerUtil.swift; sourceTree = "<group>"; };
 		035A073C2ACAD599001BDBA3 /* GameCenterController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameCenterController+Extension.swift"; sourceTree = "<group>"; };
+		035A073E2ACAD724001BDBA3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordExerciseViewController.swift; sourceTree = "<group>"; };
 		035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordExerciseView.storyboard; sourceTree = "<group>"; };
 		035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsContentView.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				03FE9C34296ECF01002863EA /* HealthKit.framework in Frameworks */,
 				03FE9C2B296ECE5E002863EA /* FirebaseFunctions.xcframework in Frameworks */,
 				03FE9C17296ECE57002863EA /* Libuv-gRPC.xcframework in Frameworks */,
+				035A073F2ACAD725001BDBA3 /* GameKit.framework in Frameworks */,
 				03FE9C29296ECE5D002863EA /* GoogleAppMeasurement.xcframework in Frameworks */,
 				03FE9C03296ECE52002863EA /* FirebaseAnalytics.xcframework in Frameworks */,
 				03FE9C30296ECED6002863EA /* GoogleAppMeasurementIdentitySupport.xcframework in Frameworks */,
@@ -955,6 +958,7 @@
 		BE2F95D02588CCF5004DC436 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				035A073E2ACAD724001BDBA3 /* GameKit.framework */,
 				03FE9BEA296ECE4F002863EA /* abseil.xcframework */,
 				03FE9BF3296ECE50002863EA /* BoringSSL-GRPC.xcframework */,
 				03FE9BED296ECE4F002863EA /* FBLPromises.xcframework */,
