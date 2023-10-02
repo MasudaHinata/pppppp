@@ -38,6 +38,7 @@
 		0348CD4D29364135008B4775 /* ChartsPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348CD4C29364135008B4775 /* ChartsPointItem.swift */; };
 		035329CD28EECB9000257768 /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035329CC28EECB9000257768 /* ProfileContentView.swift */; };
 		035A073B2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035A073A2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift */; };
+		035A073D2ACAD599001BDBA3 /* GameCenterController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035A073C2ACAD599001BDBA3 /* GameCenterController+Extension.swift */; };
 		035CE51E28CF1E53001F89BB /* RecordExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */; };
 		035CE52028CF1E61001F89BB /* RecordExerciseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */; };
 		035D29DA28E98AA400E1BEA4 /* HealthChartsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */; };
@@ -196,6 +197,7 @@
 		0348CD4C29364135008B4775 /* ChartsPointItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPointItem.swift; sourceTree = "<group>"; };
 		035329CC28EECB9000257768 /* ProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
 		035A073A2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKLocalPlayerUtil.swift; sourceTree = "<group>"; };
+		035A073C2ACAD599001BDBA3 /* GameCenterController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameCenterController+Extension.swift"; sourceTree = "<group>"; };
 		035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordExerciseViewController.swift; sourceTree = "<group>"; };
 		035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordExerciseView.storyboard; sourceTree = "<group>"; };
 		035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsContentView.swift; sourceTree = "<group>"; };
@@ -727,6 +729,7 @@
 				032DF37128F4535D00458C20 /* PointActivityImage.swift */,
 				032DF36F28F44F4F00458C20 /* HKWorkoutActivityType.swift */,
 				03A3F818292D2B99004E3CD0 /* ViewScreenshot.swift */,
+				035A073C2ACAD599001BDBA3 /* GameCenterController+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1165,6 +1168,7 @@
 				032DF36A28F30FDA00458C20 /* CGPoint+Extension.swift in Sources */,
 				032DF37228F4535D00458C20 /* PointActivityImage.swift in Sources */,
 				03EEB34C2947739C00D16ABE /* Onboarding2HostingController.swift in Sources */,
+				035A073D2ACAD599001BDBA3 /* GameCenterController+Extension.swift in Sources */,
 				0343681D28D806B1000BA656 /* SetNameViewController+UITextFieldDelegate.swift in Sources */,
 				035D29DA28E98AA400E1BEA4 /* HealthChartsContentView.swift in Sources */,
 				036E476728DAF77200EA7BB1 /* ChartsStepItem.swift in Sources */,

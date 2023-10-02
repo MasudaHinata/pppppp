@@ -1,4 +1,5 @@
 import Combine
+import GameKit
 import UIKit
 import Lottie
 
@@ -14,6 +15,23 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
     @IBOutlet var stepsLabel: UILabel!
     @IBOutlet var mountainView: DrawView!
     @IBOutlet var imageView: UIImageView!
+
+    //MARK: - ゲームセンターDashboardを表示させる
+    @IBAction func showLeaderboard() {
+        //TODO:
+        let localPlayer = GKLocalPlayer()
+        localPlayer.loadDefaultLeaderboardIdentifier() { leaderboardIdentifier,error in
+            if error != nil {
+                print(error.debugDescription)
+            } else {
+                let gcvc:GKGameCenterViewController = GKGameCenterViewController()
+                gcvc.gameCenterDelegate = self
+                gcvc.viewState = .leaderboards
+                gcvc.leaderboardIdentifier = "sanitas.point.ranking"
+                self.present(gcvc, animated: true, completion: nil)
+            }
+        }
+    }
 
     @IBAction func sceneDashboardView() {
         let dashboardVC = StoryboardScene.DashboardView.initialScene.instantiate()
@@ -150,8 +168,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
                 self.friendDataList = try await FirebaseClient.shared.getProfileData(includeMe: true)
                 mountainView.configure(rect: self.view.bounds, friendListItems: self.friendDataList)
                 if friendDataList.count == 1 {
-//                    let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-//                    self.showDetailViewController(addFriendVC, sender: self)
+                    //                    let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+                    //                    self.showDetailViewController(addFriendVC, sender: self)
                 }
                 activityIndicator.stop()
                 activityIndicator.isHidden = true
@@ -185,8 +203,8 @@ class SanitasViewController: UIViewController, FirebaseEmailVarifyDelegate, Fire
         //MARK: MountainViewの位置更新
         mountainView.configure(rect: self.view.bounds, friendListItems: friendDataList)
         if friendDataList.count == 1 {
-//            let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
-//            self.showDetailViewController(addFriendVC, sender: self)
+            //            let addFriendVC = StoryboardScene.AddFriendView.initialScene.instantiate()
+            //            self.showDetailViewController(addFriendVC, sender: self)
         }
 
         let task = Task { [weak self] in
