@@ -8,11 +8,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         firebaseConfigure()
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
-//            if granted {
-//                UNUserNotificationCenter.current().delegate = self
-//            }
-//        }
+        //        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
+        //            if granted {
+        //                UNUserNotificationCenter.current().delegate = self
+        //            }
+        //        }
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window {
+//            window.backgroundColor = UIColor.whiteColor()
+            window.rootViewController = MainTabBarController()
+            window.makeKeyAndVisible()
+        }
+        // GameCenter Auto Login
+        print(window, window?.rootViewController)
+        if let presentView = window?.rootViewController {
+            let targetViewController = presentView
+            GKLocalPlayerUtil.login(target: targetViewController)
+        }
         return true
     }
 

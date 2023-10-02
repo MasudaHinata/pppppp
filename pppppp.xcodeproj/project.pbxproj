@@ -37,6 +37,7 @@
 		0348CD4B29364117008B4775 /* PointChartsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348CD4A29364117008B4775 /* PointChartsUIView.swift */; };
 		0348CD4D29364135008B4775 /* ChartsPointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0348CD4C29364135008B4775 /* ChartsPointItem.swift */; };
 		035329CD28EECB9000257768 /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035329CC28EECB9000257768 /* ProfileContentView.swift */; };
+		035A073B2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035A073A2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift */; };
 		035CE51E28CF1E53001F89BB /* RecordExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */; };
 		035CE52028CF1E61001F89BB /* RecordExerciseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */; };
 		035D29DA28E98AA400E1BEA4 /* HealthChartsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */; };
@@ -194,6 +195,7 @@
 		0348CD4A29364117008B4775 /* PointChartsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointChartsUIView.swift; sourceTree = "<group>"; };
 		0348CD4C29364135008B4775 /* ChartsPointItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsPointItem.swift; sourceTree = "<group>"; };
 		035329CC28EECB9000257768 /* ProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
+		035A073A2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKLocalPlayerUtil.swift; sourceTree = "<group>"; };
 		035CE51D28CF1E53001F89BB /* RecordExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordExerciseViewController.swift; sourceTree = "<group>"; };
 		035CE51F28CF1E61001F89BB /* RecordExerciseView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordExerciseView.storyboard; sourceTree = "<group>"; };
 		035D29D928E98AA400E1BEA4 /* HealthChartsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthChartsContentView.swift; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 				03A3F81C292E3843004E3CD0 /* sanitas-logo-appear.json */,
 				BE7F33842580D0810027620D /* Assets.xcassets */,
 				033BC37B28DC7FA9008DBC49 /* Colors.xcassets */,
+				035A073A2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1201,6 +1204,7 @@
 				03DFB7A328B7A8390019381A /* SetNameViewController.swift in Sources */,
 				0343681628D7ED5C000BA656 /* SignInWithAppleViewController.swift in Sources */,
 				032843AA28DC8E5700AB1A5D /* Assets-Constants.swift in Sources */,
+				035A073B2ACABA67001BDBA3 /* GKLocalPlayerUtil.swift in Sources */,
 				03A1E0C128D4C49800B5B9C3 /* ChangeProfileViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				03C7E79F28D2F3BE0069A46E /* ShareMyDataViewController.swift in Sources */,
 				0348CD4D29364135008B4775 /* ChartsPointItem.swift in Sources */,
@@ -1332,7 +1336,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1482,7 +1486,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1510,7 +1514,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.9;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = app.hinata.masuda.pppppp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1561,7 +1565,7 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
+				minimumVersion = 7.6.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

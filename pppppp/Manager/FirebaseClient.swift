@@ -1,4 +1,5 @@
 import Combine
+import GameKit
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
@@ -208,7 +209,7 @@ final class FirebaseClient {
         for userId in userIdList {
             let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: userId!).getDocuments()
 
-//            let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: userId!).order(by: "date", descending: true).limit(to: 3).getDocuments()
+            //            let snapshot = try await db.collection("Post").whereField("userID", isEqualTo: userId!).order(by: "date", descending: true).limit(to: 3).getDocuments()
 
             let postDataList = try snapshot.documents.map { try $0.data(as: PostData.self) }
             
@@ -311,6 +312,7 @@ final class FirebaseClient {
             try await FirebaseClient.shared.putPointActivityPost(point: point, activity: activity)
             self.putPointDelegate?.putPointForFirestore(point: point, activity: activity)
         }
+        submitScore(value: point, leaderboardID: "sanitas.point.ranking")
     }
     
     //MARK: - 画像をfirestore,firebaseStorageに保存
@@ -647,6 +649,22 @@ final class FirebaseClient {
         }
         catch {
             self.SettingAccountDelegate?.faildAcccountDelete()
+        }
+    }
+}
+
+//MARK: - ゲームセンターにスコア送信
+//TODO: GKScore使わないようにする
+func submitScore(value: Int, leaderboardID: String){
+    var score: GKScore = GKScore()
+    score.value = Int64(value)
+    score.leaderboardIdentifier = leaderboardID
+    var scoreArr:[GKScore] = [score]
+    GKScore.report(scoreArr) { error in
+        if((error != nil)){
+            print("ReportScore NG")
+        }else{
+            print("ReportScore OK")
         }
     }
 }
